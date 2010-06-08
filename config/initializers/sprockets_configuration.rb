@@ -1,0 +1,1 @@
+SprocketsApplication.use_page_caching = Rails.env.production?
