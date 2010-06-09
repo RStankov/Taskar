@@ -12,23 +12,19 @@ describe SectionsController do
   
   before do
     sign_in Factory(:user)
+    
+    Project.stub(:find).with("1").and_return(mock_project)
+    mock_project.should_receive(:sections).and_return(Section)
   end
 
   describe "GET index" do
-    it "assigns all sections as @sections" do
-      Project.stub(:find).with("1").and_return(mock_project)
-      mock_project.should_receive(:sections).and_return([mock_section])
+    it "assigns project sections as @sections" do
       get :index, :project_id => "1"
-      assigns[:sections].should == [mock_section]
+      assigns[:sections].should == Section
     end
   end
 
   describe "GET show" do
-    before do
-      Project.stub(:find).with("1").and_return(mock_project)
-      mock_project.should_receive(:sections).and_return(Section)
-    end
-      
     it "assigns the requested section as @section" do
       Section.stub(:find).with("37").and_return(mock_section)
       get :show, :id => "37", :project_id => "1"
@@ -38,20 +34,13 @@ describe SectionsController do
 
   describe "GET new" do
     it "assigns a new section as @section" do
-      Project.stub(:find).with("1").and_return(mock_project)
-      mock_project.should_receive(:sections).and_return(Section)
       Section.stub(:build).and_return(mock_section)
       get :new, :project_id => "1"
       assigns[:section].should equal(mock_section)
     end
   end
 
-  describe "GET edit" do
-    before do
-      Project.stub(:find).with("1").and_return(mock_project)
-      mock_project.should_receive(:sections).and_return(Section)
-    end
-    
+  describe "GET edit" do    
     it "assigns the requested section as @section" do
       Section.stub(:find).with("37").and_return(mock_section)
       get :edit, :id => "37", :project_id => "1"
@@ -60,11 +49,6 @@ describe SectionsController do
   end
 
   describe "POST create" do
-    before do
-      Project.stub(:find).with("1").and_return(mock_project)
-      mock_project.should_receive(:sections).and_return(Section)
-    end
-
     describe "with valid params" do
       it "assigns a newly created section as @section" do
         Section.stub(:build).with({'these' => 'params'}).and_return(mock_section(:save => true))
@@ -96,11 +80,6 @@ describe SectionsController do
   end
 
   describe "PUT update" do
-    before do
-      Project.stub(:find).with("1").and_return(mock_project)
-      mock_project.should_receive(:sections).and_return(Section)
-    end
-    
     describe "with valid params" do
       it "updates the requested section" do
         Section.should_receive(:find).with("37").and_return(mock_section)
@@ -144,11 +123,6 @@ describe SectionsController do
   end
 
   describe "DELETE destroy" do
-    before do
-      Project.stub(:find).with("1").and_return(mock_project)
-      mock_project.should_receive(:sections).and_return(Section)
-    end
-    
     it "destroys the requested section" do
       Section.should_receive(:find).with("37").and_return(mock_section(:project_id => 1))
       mock_section.should_receive(:destroy)
