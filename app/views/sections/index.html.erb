@@ -1,24 +1,9 @@
-<h1>Listing sections</h1>
-
-<table>
-  <tr>
-    <th>Project</th>
-    <th>Name</th>
-    <th>Position</th>
-  </tr>
-
-<% @sections.each do |section| %>
-  <tr>
-    <td><%=h section.project %></td>
-    <td><%=h section.name %></td>
-    <td><%=h section.position %></td>
-    <td><%= link_to 'Show', [@project, section] %></td>
-    <td><%= link_to 'Edit', [:edit, @project, section] %></td>
-    <td><%= link_to 'Destroy', [@project, section], :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New section', [:new, @project, :section] %>
+<ul id="events">
+  <% for i in 1..10 %>
+  <li<%= i % 3 == 0 ? ' class="personal"' : '' %>>
+    <a href="#"><%= image_tag "temp/ra4oil.png" %></a>
+    <p><a href="#">Radoslav Stankov</a> closed <a href="#">Taskar layout</a>, opened <a href="#">Dashboard design</a></p>
+    <span>about 12 hours ago</span>
+  </li>
+  <% end %>
+</ul>

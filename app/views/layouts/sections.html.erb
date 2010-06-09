@@ -1,17 +1,99 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html>
 <head>
-  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-  <title>Sections: <%= controller.action_name %></title>
-  <%= stylesheet_link_tag 'scaffold' %>
+  <meta charset="utf-8">
+  <title>Project: <%= @project.name %></title>
+  <%= stylesheet_link_tag 'application' %>
 </head>
 <body>
-
-<p style="color: green"><%= notice %></p>
-
-<%= yield %>
-
+  <header>
+    <div id="nav_projects">
+      <span>Switch to a different project</span>
+      <ul>
+        <% Project.all(:limit => 10).each do |project| %>
+        <li><%= link_to project.name, [project, :sections] %></li>
+        <% end %>
+        <li><%= link_to "all projects", projects_path %></li>
+      </ul>
+    </div>
+    <p id="nav_account">
+      <a href="#">Settings</a> | 
+      <a href="<%= edit_user_registration_path %>">Profile</a> |
+      <a href="<%= destroy_user_session_path %>">Logout</a>
+    </p>
+  </header>
+  <!-- TODO: <p style="color: green"><%= notice %></p>  -->
+  <nav id="nav_main">
+    <%= link_to '', [@project, :sections], :id => "goto_dashboard"  %>
+    <ul id="nav_sections">
+      <% @project.sections.each do |section| %>
+      <li class="add_section"><span><span>Add new section</span></span></li>
+      <li class="section"><%= link_to section.name, [@project, section], :class => @section == section ? "selected" : nil %></li>
+      <% end %>
+      <li class="add_section"><span><span>Add new section</span></span></li>
+      <li>
+        <form>
+          <input type="text" value="" />
+          <input type="submit" value="Submit" />
+          <input type="button" value="Cancel" />
+        </form>
+      </li>
+    </ul>
+    <div id="nav_more_sections">
+      <span title="View sections"></span>
+      <ul>
+        <li><a href="#">Design</a></li>
+        <li><a href="#">HTML/CSS</a></li>
+        <li><a href="#">CMS</a></li>
+        <li><a href="#">Test</a></li>
+      </ul>
+    </div>
+  </nav>
+  <section>
+    <article>
+      <%= yield %>
+    </article>
+    <aside>
+      <form id="live_search">
+        <input type="text" value="" />
+        <input type="submit" value="" />
+        <%= image_tag "loader1.gif", :style => 'display: none;' %>
+        <ul style="display: none;">
+          <li><a href="#">fuck da world</a></li>
+          <li class="selected"><a href="#">fuck da world</a></li>
+          <li><a href="#"><strong>fuck</strong> da world</a></li>
+        </ul>
+      </form>
+      <div id="user_card">
+        <a href="#">
+          <%= image_tag "temp/ra4oil.png" %>
+          <strong>Dobromir Raynov</strong>
+          69 tasks
+        </a>
+      </div>
+      <div id="people_envolved">
+        <h3>
+          People on this project
+          <button class="list_extended"></button>
+          <button class="list_images list_on"></button>
+        </h3>
+        <ul class="people_extended">
+          <% for i in 1..4 %>
+          <li>
+            <a href="#"><%= image_tag "temp/ra4oil.png" %></a>
+            <span class="people_info">              
+                <strong>Radoslav Stankov</strong>
+                last active: 12.12.2012 09:15<span></span>              
+            </span>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+    </aside>
+  </section>
+  <footer>
+    <p>© <%= Time.now.year %> Radoslav Stankov</p>
+    <a href="#nav_projects"><span title="Scroll to top"></span></a>
+  </footer>
+  <%= sprockets_include_tag %>
 </body>
 </html>
