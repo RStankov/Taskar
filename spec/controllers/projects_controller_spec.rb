@@ -5,6 +5,10 @@ describe ProjectsController do
   def mock_project(stubs={})
     @mock_project ||= mock_model(Project, stubs)
   end
+  
+  before do
+    sign_in Factory(:user)
+  end
 
   describe "GET index" do
     it "assigns all projects as @projects" do
