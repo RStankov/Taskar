@@ -6,6 +6,10 @@
 </head>
 <body>
   <header>
+    <p id="nav_account">
+      <a href="<%= edit_user_registration_path %>">Profile</a> |
+      <a href="<%= destroy_user_session_path %>">Logout</a>
+    </p>
     <div id="nav_projects">
       <span>Switch to a different project</span>
       <ul>
@@ -15,11 +19,6 @@
         <li><%= link_to "all projects", projects_path %></li>
       </ul>
     </div>
-    <p id="nav_account">
-      <a href="#">Settings</a> | 
-      <a href="<%= edit_user_registration_path %>">Profile</a> |
-      <a href="<%= destroy_user_session_path %>">Logout</a>
-    </p>
   </header>
   <!-- TODO: <p style="color: green"><%= notice %></p>  -->
   <nav id="nav_main">
