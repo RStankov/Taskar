@@ -1,4 +1,9 @@
 Taskar.NewSectionForm = function(sectionsBar){
+  sectionsBar.on('click',  '.add_section',       show);
+  sectionsBar.on('click',  'input[type=button]', hide);
+  sectionsBar.on('keyup',  'form',               hideOnEsc);
+  sectionsBar.on('submit', 'form',               validate);
+  
   function show(e, element){
     e.stop();
     
@@ -33,9 +38,4 @@ Taskar.NewSectionForm = function(sectionsBar){
       highlight.play(input);
     }
   }
-  
-  sectionsBar.on('click',  '.add_section',       show);
-  sectionsBar.on('click',  'input[type=button]', hide);
-  sectionsBar.on('keyup',  'form',               hideOnEsc);
-  sectionsBar.on('submit', 'form',               validate);
 };
