@@ -7,5 +7,5 @@ ActionController::Routing::Routes.draw do |map|
 
   SprocketsApplication.routes(map)
   
-  map.root :controller => 'sessions', :action => 'new'
+  map.root :controller => 'projects', :action => 'index'
 end
