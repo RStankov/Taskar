@@ -224,7 +224,7 @@ header {
   cursor: pointer;
 }
 
-#nav_sections .add_section > span {
+#nav_sections .add_section > a {
   background: url(../images/sprite.png) -50px 0 no-repeat;
   box-shadow: 0px 10px 10px -10px #888;
   -moz-box-shadow: 0px 10px 10px -10px #888;
@@ -233,13 +233,14 @@ header {
   margin: 36px 0 0 -42px;
   padding-top: 4px;
   width: 89px;
+  text-decoration: none;
 }
 
-#nav_sections li.add_section:hover > span {
+#nav_sections li.add_section:hover > a {
   display: block;
 }
 
-#nav_sections .add_section span span {
+#nav_sections .add_section span {
   background-color: #a5a5a5;
   border-radius: 5px;
   -moz-border-radius: 5px;

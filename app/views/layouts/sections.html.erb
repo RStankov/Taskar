@@ -24,12 +24,12 @@
   <nav id="nav_main">
     <%= link_to '', [@project, :sections], :id => "goto_dashboard"  %>
     <ul id="nav_sections">
-      <% @project.sections.each do |section| %>
-      <li class="add_section"><span><span>Add new section</span></span></li>
+      <% @project.sections.all.each do |section| %>
+      <li class="add_section"><%= link_to "<span>Add new section</span>", [:new, @project, :section] %></li>
       <li class="section"><%= link_to section.name, [@project, section], :class => @section == section ? "selected" : nil %></li>
       <% end %>
-      <li class="add_section"><span><span>Add new section</span></span></li>
-      <li>
+      <li class="add_section"><%= link_to "<span>Add new section</span>", [:new, @project, :section] %></li>
+      <li id="">
         <form>
           <input type="text" value="" />
           <input type="submit" value="Submit" />
