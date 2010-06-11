@@ -1,19 +1,9 @@
-<h1>Editing section</h1>
-
+<div id="section_title">
+  <h1>Edit Section</h1>
+</div>
 <% form_for [@project, @section] do |f| %>
   <%= f.error_messages %>
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :position %><br />
-    <%= f.text_field :position %>
-  </p>
-  <p>
-    <%= f.submit 'Update' %>
-  </p>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.submit 'Update' %>
 <% end %>
-
-<%= link_to 'Show', [:edit, @project, @section] %> |
-<%= link_to 'Back', project_sections_path(@project) %>
