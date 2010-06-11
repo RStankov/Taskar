@@ -2,4 +2,4 @@
 var Taskar = {};
 
 //= require "taskar/fx"
-//= require "taskar/sections_menu"
+//= require "taskar/new_section_form"
