@@ -13,8 +13,27 @@ input, textarea, select {
   background-color: #fff;
 }
 
+input[type="submit"], input[type="button"] {
+  cursor: pointer;
+}
+
 header, nav, section, article, aside, footer {
 	display: block;
+}
+
+input[type="submit"] {
+  background-color: #00589D;
+  border: 0;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkitborder-radius: 5px;
+	color: #fff;
+}
+
+input[type="button"] {
+  background: none;
+  border: 0;
+  color: #5c5c5c;
 }
 
 #nav_main, footer {
@@ -46,7 +65,7 @@ header {
 	-webkit-box-shadow: 0px 10px 10px -10px #888;
 	color: #fff;
 	margin-bottom: 20px;
-	padding: 5px 20px 5px 15px;
+	padding: 5px 20px 0 15px;
 }
 
 #nav_projects {
@@ -73,9 +92,9 @@ header {
 
 #nav_projects ul {
 	background-color: #fff;
-	border-radius: 0 10px 10px 10px;
-	-moz-border-radius: 0 10px 10px 10px;
-	-webkitborder-radius: 0 10px 10px 10px;
+	border-radius: 0 0 10px 10px;
+	-moz-border-radius: 0 0 10px 10px;
+	-webkitborder-radius: 0 0 10px 10px;
 	box-shadow: 0 5px 5px #aeaeae;
 	-moz-box-shadow: 0 5px 5px #aeaeae;
 	-webkit-box-shadow: 0 5px 5px #aeaeae;
@@ -246,8 +265,13 @@ header {
   border: 1px solid #d7d7d7;
   font-size: 12px;
   height: 22px;
+  margin-right: 5px;
   padding: 3px 4px;
   width: 100px;
+}
+
+#nav_sections input[type="text"]:hover {
+  border-color: #b7b7b7;
 }
 
 #nav_sections input[type="text"]:focus {
@@ -255,21 +279,6 @@ header {
   box-shadow: 0px 0px 2px #999;
   -moz-box-shadow: 0px 0px 2px #999;
   -webkit-box-shadow: 0px 0px 2px #999;
-}
-
-#nav_sections input[type="submit"] {
-  background-color: #00589D;
-  border: 0;
-	border-radius: 5px;
-	-moz-border-radius: 5px;
-	-webkitborder-radius: 5px;
-	color: #fff;
-}
-
-#nav_sections input[type="button"] {
-  background: none;
-  border: 0;
-  color: #5c5c5c;
 }
 
 #nav_more_sections {
@@ -299,9 +308,9 @@ header {
 
 #nav_more_sections ul {
 	background: #eee;
-	border-radius: 10px;
-	-moz-border-radius: 10px;
-	-webkitborder-radius: 10px;
+	border-radius: 0 10px 10px;
+	-moz-border-radius: 0 10px 10px;
+	-webkitborder-radius: 0 10px 10px;
 	box-shadow: 0 5px 5px #aeaeae;
 	-moz-box-shadow: 0 5px 5px #aeaeae;
 	-webkit-box-shadow: 0 5px 5px #aeaeae;
@@ -632,11 +641,70 @@ aside {
   padding: 0;
 }
 
-#section_title button {
+#section_title h1 a {
+  display: none;
+  font-size: 11px;
+  font-weight: normal;
+  margin-top: 3px;
+  padding: 0 10px;
+  text-decoration: none;
+  vertical-align: top;
+}
+
+#section_title h1:hover a {
+  display: inline-block;
+}
+
+#section_title h1 .edit {
+  background-color: #00589D;
+  border: 0;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkitborder-radius: 5px;
+	color: #fff;
+	margin-left: 10px;
+}
+
+#section_title h1 .delete {
+  background: none;
+  border: 0;
+  color: #5c5c5c;
+}
+
+#section_title form {
+  margin: 0;
+  padding: 0;
+display: none;
+}
+
+#section_title form input[type="text"] {
+  border: 1px solid #b7b7b7;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkitborder-radius: 10px;
+	font-size: 12px;
+	margin-right: 10px;
+	padding: 4px 25px 4px 10px;
+	width: 300px;
+}
+
+#section_title form input[type="text"]:hover {
+  border-color: #7e7e7e;
+}
+
+#section_title form input[type="text"]:focus {
+  border-color: #008fff;
+  box-shadow: 0px 0px 4px #999;
+  -moz-box-shadow: 0px 0px 4px #999;
+  -webkit-box-shadow: 0px 0px 4px #999;
+  color: #2c2c2c;
+}
+
+#section_title form button {
   
 }
 
-#section_title .edit {
+#section_title form .edit {
   
 }
 
@@ -644,24 +712,112 @@ aside {
 
 #tasks {
   padding: 20px;
+  color: #3d3d3d;
 }
 
-.checkbox {
+#tasks .task {
+  padding: 10px 10px 25px;
+  position: relative;
+}
+
+#tasks li:hover.task {
+  background-color: #FDFDFD;
+}
+
+#tasks a {
+  color: #00589D;
+  text-decoration: none;
+}
+
+#tasks .rejected, #tasks .closed {
+  opacity: 0.6;
+}
+
+.checkbox_open, .checkbox_closed, .checkbox_rejected {
   background: #5C5C5C;
 	border-radius: 5px;
 	-moz-border-radius: 5px;
 	-webkitborder-radius: 5px;
   color: #eee;
-	display: block;
+  cursor: pointer;
+  display: inline-block;
+  float: left;
 	font-size: 16px;
-  height: 14px;
-  line-height: 14px;
-  width: 14px;
+  height: 16px;
+  margin: 1px 5px 0 0;
+  width: 16px;
 }
 
 .checkbox_closed:after {
   content: "✔";
-} 
+  display: inline-block;
+  margin: -2px 0 0 1px;
+}
+
+.checkbox_rejected:after {
+  content: "✘";
+  display: inline-block;
+  margin: -2px 0 0 3px;
+}
+
+#tasks p {
+  display: inline-block;
+  float: left;
+}
+
+#tasks .rejected p {
+	text-decoration: line-through;
+}
+
+#tasks .more {
+  color: #00589D;
+  cursor: pointer;
+  font-size: 12px;
+  padding-left: 10px;
+}
+
+#tasks .timing {
+  display: block;
+  clear: both;
+  font-size: 11px;
+  padding-left: 22px;
+}
+
+#tasks .drag {
+	background: url(../images/sprite.png) -28px -63px no-repeat;
+	display: none;
+  height: 13px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 13px;
+}
+
+#tasks .drag:hover {
+	background-position: -28px -103px;
+}
+
+.task ul {
+  bottom: 10px;
+  display: none;
+  font-size: 11px;
+  position: absolute;
+  right: 10px;
+  text-align: right;
+}
+
+.task li {
+  display: inline;
+  padding-left: 10px;
+}
+
+#tasks li:hover.task .drag, #tasks li:hover.task ul {
+	display: block;
+}
+
+.divider {
+  border-bottom: 1px solid #eee;
+}
 
 
 /*** LIST VIEW BUTTONS ***/
