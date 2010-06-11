@@ -22,4 +22,5 @@ document.on('click', 'a[data-method=delete]', function(e, element){
 	}
 });
 
+//= require "taskar"
 //= require "behaviors"
