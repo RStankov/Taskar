@@ -12,7 +12,7 @@ class TasksController < ApplicationController
     @task    = @section.tasks.build(params[:task])
 
     if @task.save
-      redirect_to [@section.project, @section]
+      redirect_to project_section_path(@section.project, @section, :anchor => "task_#{@task.id}")
     else
       render :action => "new"
     end
