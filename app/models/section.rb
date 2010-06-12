@@ -7,4 +7,8 @@ class Section < ActiveRecord::Base
   attr_accessible :name
   
   attr_readonly :project_id
+  
+  acts_as_list :scope => :project
+  
+  default_scope :order => "position ASC"
 end
