@@ -1,6 +1,6 @@
 <div id="section_title">
   <h1>
-    <%= @section.name %>
+    <%=h @section.name %>
     <%= link_to "edit", [:edit, @project, @section], :class => "edit" %>
     <%= link_to_delete "delete", [@project, @section], :class => "delete", :confirm => "Are you sure?" %>
   </h1>
