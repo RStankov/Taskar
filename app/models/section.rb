@@ -11,4 +11,12 @@ class Section < ActiveRecord::Base
   acts_as_list :scope => :project
   
   default_scope :order => "position ASC"
+
+  def move_to(position)
+    case position.to_s
+      when "top"    then  move_to_top
+      when "bottom" then  move_to_bottom
+      else                insert_at(Section.find(position).position)
+    end
+  end
 end
