@@ -21,4 +21,12 @@ class Task < ActiveRecord::Base
       bottom_position_in_list.to_i + 1
     end
   end
+  
+  def state
+    case status
+      when -1 then "rejected"
+      when  0 then "opened"
+      when  1 then "completed"
+    end
+  end
 end
