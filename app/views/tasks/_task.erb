@@ -1,0 +1,15 @@
+<% content_tag_for(:li, task, :class => task.state) do %>
+  <span class="checkbox"></span>
+  <a href="#" class="archive"></a>
+  <p><a href="#"><strong>RStankov</strong></a> <%=h task.text %></p>
+  <span class="more">...more</span>
+  <span class="timing" data-time="<%= task.created_at.rfc2822 %>"><%= time_ago_in_words(task.created_at) %></span>
+  <input class="drag" type="button" title="Drag&amp;Drop" />
+  <ul>
+    <li><%= link_to "edit", [:edit, task], :class => "edit" %></li>
+    <li>коментари 3</li>
+    <li>подзадачи 5</li>
+    <li>файлове 1</li>
+    <li><%= link_to "delete", task, :class => "delete" %></li>
+  </ul>
+<% end %>
