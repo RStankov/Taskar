@@ -3,7 +3,7 @@
   <a href="#" class="archive"></a>
   <p><a href="#"><strong>RStankov</strong></a> <%=h task.text %></p>
   <span class="more">...more</span>
-  <span class="timing" data-time="<%= task.created_at.rfc2822 %>"><%= time_ago_in_words(task.created_at) %></span>
+  <time datetime="<%= task.created_at.rfc2822 %>"><%= time_ago_in_words(task.created_at) %></time>
   <input class="drag" type="button" title="Drag&amp;Drop" />
   <ul>
     <li><%= link_to "edit", [:edit, task], :class => "edit" %></li>

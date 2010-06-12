@@ -776,7 +776,7 @@ b  ackground: url(../images/sprite.png) 0 0 no-repeat;
   padding-left: 10px;
 }
 
-#tasks .timing {
+#tasks time {
   display: block;
   clear: both;
   font-size: 11px;
