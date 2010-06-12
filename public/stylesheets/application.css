@@ -729,11 +729,11 @@ b  ackground: url(../images/sprite.png) 0 0 no-repeat;
   text-decoration: none;
 }
 
-#tasks .rejected, #tasks .closed {
+#tasks .rejected, #tasks .completed {
   opacity: 0.6;
 }
 
-.checkbox_open, .checkbox_closed, .checkbox_rejected {
+.checkbox {
   background: #5C5C5C;
   border-radius: 5px;
   -moz-border-radius: 5px;
@@ -748,13 +748,13 @@ b  ackground: url(../images/sprite.png) 0 0 no-repeat;
   width: 16px;
 }
 
-.checkbox_closed:after {
+.completed .checkbox:after {
   content: "✔";
   display: inline-block;
   margin: -2px 0 0 1px;
 }
 
-.checkbox_rejected:after {
+.rejected .checkbox:after {
   content: "✘";
   display: inline-block;
   margin: -2px 0 0 3px;
