@@ -170,6 +170,10 @@ header {
   background-position: 13px -49px;
 }
 
+#new_section {
+  overflow: hidden;
+}
+
 #nav_sections {
   float: left;
   font-size: 14px;
