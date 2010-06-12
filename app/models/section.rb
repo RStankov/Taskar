@@ -1,5 +1,6 @@
 class Section < ActiveRecord::Base
   belongs_to :project
+  has_many :tasks, :dependent => :destroy
   
   validates_presence_of :name
   validates_presence_of :project

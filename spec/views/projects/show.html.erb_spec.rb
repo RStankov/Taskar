@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe "/projects/show.html.erb" do
-  include ProjectsHelper
   before(:each) do
     assigns[:project] = @project = stub_model(Project,
       :name => "value for name"

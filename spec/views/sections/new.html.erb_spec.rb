@@ -1,8 +1,6 @@
 require 'spec_helper'
 
 describe "/sections/new.html.erb" do
-  include SectionsHelper
-
   before(:each) do
     assigns[:project] = @project = stub_model(Project)
     assigns[:section] = stub_model(Section,

@@ -1,0 +1,23 @@
+<p>
+  <b>Section:</b>
+  <%=h @task.section %>
+</p>
+
+<p>
+  <b>Text:</b>
+  <%=h @task.text %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%=h @task.status %>
+</p>
+
+<p>
+  <b>Position:</b>
+  <%=h @task.position %>
+</p>
+
+
+<%= link_to 'Edit', edit_task_path(@task) %> |
+<%= link_to 'Back', tasks_path %>

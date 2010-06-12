@@ -1,8 +1,6 @@
 require 'spec_helper'
 
 describe "/projects/new.html.erb" do
-  include ProjectsHelper
-
   before(:each) do
     assigns[:project] = stub_model(Project,
       :new_record? => true,
