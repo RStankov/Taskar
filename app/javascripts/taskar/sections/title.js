@@ -1,6 +1,10 @@
 Taskar.Sections.Title = function(section){
   var head = section.down('h1'),
       form = section.down('form');
+      
+  if (!form){
+    return;
+  }
   
    head.down('a.edit').observe('click', toggle);
    form.down('input[type=button]').observe('click', toggle);
