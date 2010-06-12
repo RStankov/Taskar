@@ -8,10 +8,11 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(params[:task])
+    @section = Section.find(params[:section_id])
+    @task    = @section.tasks.build(params[:task])
 
     if @task.save
-      redirect_to(@task, :notice => 'Task was successfully created.')
+      redirect_to [@section.project, @section]
     else
       render :action => "new"
     end
@@ -21,7 +22,7 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
 
     if @task.update_attributes(params[:task])
-      redirect_to(@task, :notice => 'Task was successfully updated.')
+      redirect_to @task
     else
       render :action => "edit"
     end
@@ -31,6 +32,6 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     @task.destroy
 
-    redirect_to(project_section_path(@task.section.project, @task.section))
+    redirect_to [@task.section.project, @task.section]
   end
 end

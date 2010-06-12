@@ -1,0 +1,7 @@
+<% form_for [@section.project, @section, Task.new] do |form| %>
+  <%= form.error_messages %>
+  <%= form.label :text, "Enter tasks text" %>
+  <%= form.text_area :text %>
+  <%= form.hidden_field :insert_before %>
+  <%= form.submit "Create" %>
+<% end %>
