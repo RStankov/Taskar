@@ -67,43 +67,6 @@ describe Section do
       end
       
     end
-    
-    describe "move_before" do
-      before do
-        @section   = create_next_section
-        @section_1 = create_next_section
-        @section_2 = create_next_section
-        @section_3 = create_next_section
-        
-        should_have_order_of(@section, @section_1, @section_2, @section_3)
-      end
-      
-      it "should do noting if invalid value is given" do
-        @section.move_before nil
-        @section.move_before -9999
-        
-        should_have_order_of(@section, @section_1, @section_2, @section_3)
-      end
-      
-      it "should move before section 1" do
-        @section.move_before(@section_1.id)
-        
-        should_have_order_of(@section, @section_1, @section_2, @section_3)
-      end
-      
-      it "should move before section 2 " do
-        
-        @section.move_before(@section_2.id)
-        
-        should_have_order_of(@section_1, @section, @section_2, @section_3)
-      end
-      
-      it "should move before section 3" do
-        @section.move_before(@section_3.id)
-        
-        should_have_order_of(@section_1, @section_2, @section, @section_3)
-      end
-    end
   end
   
 end

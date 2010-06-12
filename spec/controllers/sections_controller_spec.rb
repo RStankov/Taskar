@@ -61,12 +61,6 @@ describe SectionsController do
         post :create, :section => {}, :project_id => "1"
         response.should redirect_to(project_section_url(mock_project, mock_section))
       end
-      
-      it "calls also move_after if after params is given" do
-        Section.stub(:build).and_return(mock_section(:save => true))
-        mock_section.should_receive(:move_before).with("foo").and_return(true)
-        post :create, :section => {}, :project_id => "1", :before => "foo"
-      end
     end
 
     describe "with invalid params" do

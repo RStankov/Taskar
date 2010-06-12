@@ -13,12 +13,6 @@ class Section < ActiveRecord::Base
   acts_as_list :scope => :project
   
   default_scope :order => "position ASC"
-
-  def move_before(record_id)
-    if record_id && record = Section.find(:first, :conditions => {:id => record_id})
-      insert_at(record.position)
-    end
-  end
   
   def add_to_list_bottom
     self[position_column] = if insert_before && record = Section.find(:first, :conditions => {:id => insert_before})
