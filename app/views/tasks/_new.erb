@@ -1,7 +1,15 @@
-<% form_for [@section.project, @section, Task.new] do |form| %>
-  <%= form.error_messages %>
-  <%= form.label :text, "Enter tasks text" %>
-  <%= form.text_area :text %>
-  <%= form.hidden_field :insert_before %>
-  <%= form.submit "Create" %>
-<% end %>
+<li id="new_task">
+  <% form_for [@section.project, @section, Task.new], :html => {:class => nil, :id => nil} do |form| %>
+    <%= form.error_messages %>
+    <%= form.label :text, "What's the task:" %>
+    <%= form.text_area :text, :cols => nil, :rows => nil %>
+    <%= form.hidden_field :insert_before %>
+    <!-- TODO
+    <div>
+      Who is responsible? | When it have to completed ? | Tagging | Attachments
+    </div>
+    <hr>
+    -->
+    <%= form.submit "Add new task" %> | <input type="button" value="Stop adding tasks" class="cancel">
+  <% end %>
+</li>
