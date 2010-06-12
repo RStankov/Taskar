@@ -21,6 +21,7 @@ class SectionsController < ApplicationController
     @section = @project.sections.build(params[:section])
 
     if @section.save
+      @section.move_after params[:after] if params[:after]  
       redirect_to [@project, @section], :notice => 'Section was successfully created.'
     else
       render :action => "new"
