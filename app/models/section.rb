@@ -12,11 +12,9 @@ class Section < ActiveRecord::Base
   
   default_scope :order => "position ASC"
 
-  def move_after(position)
-    case position.to_s
-      when "first" then  move_to_top
-      when "last"  then  move_to_bottom
-      else               insert_at(Section.find(position).position)
+  def move_before(position)
+    position = Section.find(position).position - 1
+    insert_at(position < 1 ? 0 : position)
     end
   end
 end

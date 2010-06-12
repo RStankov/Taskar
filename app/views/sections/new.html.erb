@@ -5,5 +5,6 @@
   <%= f.error_messages %>
   <%= f.label :name %>
   <%= f.text_field :name %>
+  <%= hidden_field_tag 'before', '', :id => nil, :value => params[:before] if params[:before] %>
   <%= f.submit 'Create' %>
 <% end %>

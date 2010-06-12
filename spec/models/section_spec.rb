@@ -15,63 +15,49 @@ describe Section do
       @project = Factory(:project)
     end
     
-    it "should be scoped at project" do
-      section_0 = Factory(:section)
-      section_1 = Factory(:section, :project_id => @project.id)
-      section_2 = Factory(:section, :project_id => @project.id)
-      section_3 = Factory(:section, :project_id => @project.id)
-      section_4 = Factory(:section, :project_id => @project.id)
-      
-      section_0.position.should == 1
-      section_1.position.should == 1
-      section_2.position.should == 2
-      section_3.position.should == 3
-      section_4.position.should == 4
+    def create_next_section
+      Factory(:section, :project_id => @project.id)
     end
     
-    describe "move_at" do
+    def should_have_order_of(*sections)
+      sections = sections.each(&:reload)
+      sections.should == sections.sort_by(&:position)
+    end
+    
+    it "should be scoped at project" do
+      section_0 = Factory(:section)
+      
+      should_have_order_of(create_next_section, create_next_section, create_next_section)
+      
+      section_0.position.should == 1
+    end
+    
+    describe "move_before" do
       before do
-        @section = Factory(:section, :project_id => @project.id)
+        @section   = create_next_section
+        @section_1 = create_next_section
+        @section_2 = create_next_section
+        @section_3 = create_next_section
+        
+        should_have_order_of(@section, @section_1, @section_2, @section_3)
       end
       
-      it "should make position to 1 on move to 'top'" do
-        @section.move_after "first"
+      it "should move before section 1" do        
+        @section.move_before(@section_1.id)
         
-        @section.valid?.should be_true
-        @section.position.should == 1
+        should_have_order_of(@section, @section_1, @section_2, @section_3)
       end
       
-      it "should make position to 3 (last) on move to 'bottom' (re-arranging sections)" do
-        section_1 = Factory(:section, :project_id => @project.id)
-        section_2 = Factory(:section, :project_id => @project.id)
-        section_3 = Factory(:section, :project_id => @project.id)
+      it "should move before section 2 " do        
+        @section.move_before(@section_2.id)
         
-        @section.position.should  == 1
-        section_1.position.should == 2
-        section_2.position.should == 3
-        section_3.position.should == 4
-        
-        @section.move_after "last"
-        
-        section_1.reload.position.should == 1
-        section_2.reload.position.should == 2
-        section_3.reload.position.should == 3
-        @section.position.should         == 4
+        should_have_order_of(@section_1, @section, @section_2, @section_3)
       end
       
-      it "should move after given section" do
-        section_1 = Factory(:section, :project_id => @project.id)
-        section_2 = Factory(:section, :project_id => @project.id)
+      it "should move before section 3" do        
+        @section.move_before(@section_3.id)
         
-        @section.position.should  == 1
-        section_1.position.should == 2
-        section_2.position.should == 3
-        
-        @section.move_after section_1
-        
-        section_1.reload.position.should == 1
-        @section.position.should         == 2
-        section_2.reload.position.should == 3
+        should_have_order_of(@section_1, @section_2, @section, @section_3)
       end
     end
   end

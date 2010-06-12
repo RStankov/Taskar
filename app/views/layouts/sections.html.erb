@@ -25,8 +25,8 @@
     <%= link_to '', [@project, :sections], :id => "goto_dashboard"  %>
     <ul id="nav_sections">
       <% @project.sections.all.each do |section| %>
-      <li class="add_section"><%= link_to "<span>Add new section</span>", [:new, @project, :section] %></li>
-      <li class="section"><%= link_to h(section.name), [@project, section], :class => @section == section ? "selected" : nil %></li>
+        <li class="add_section"><%= link_to "<span>Add new section</span>", new_project_section_path(@project, :before => section.id) %></li>
+        <li class="section"><%= link_to h(section.name), [@project, section], :class => @section == section ? "selected" : nil %></li>
       <% end %>
       <li class="add_section"><%= link_to "<span>Add new section</span>", [:new, @project, :section] %></li>
       <li id="new_section" style="display:none;">

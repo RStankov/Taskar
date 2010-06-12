@@ -64,8 +64,8 @@ describe SectionsController do
       
       it "calls also move_after if after params is given" do
         Section.stub(:build).and_return(mock_section(:save => true))
-        mock_section.should_receive(:move_after).with("foo").and_return(true)
-        post :create, :section => {}, :project_id => "1", :after => "foo"
+        mock_section.should_receive(:move_before).with("foo").and_return(true)
+        post :create, :section => {}, :project_id => "1", :before => "foo"
       end
     end
 
