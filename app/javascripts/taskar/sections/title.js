@@ -6,21 +6,27 @@ Taskar.Sections.Title = function(section){
     return;
   }
   
-  head.down('a.edit').observe('click', toggle);
-  form.down('input[type=button]').observe('click', toggle);
+  head.down('a.edit').observe('click', show);
+  form.down('input[type=button]').observe('click', hide);
   form.observe('submit', validate);
   form.observe('keyup', function(e){
     if (e.keyCode == Event.KEY_ESC){
-      toggle(e);
+      hide();
     }
   });
-   
-  function toggle(e){
-    if (e && 'stop' in e) e.stop();
-     
-    head.toggle();
-    form.reset();
-    form.toggle();
+  
+  function hide(){
+    head.morph('opacity: 1.0');
+    form.fade();
+  }
+  
+  function show(e){
+    e.stop();
+    
+    head.morph('opacity: 0.0');
+    form.appear(function(){
+      form.down('input[type=text]').focus();
+    });
   }
    
   var highlight = new S2.FX.Highlight(section, {after: function(e){ e.element.style.backgroundColor = null; }});
