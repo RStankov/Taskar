@@ -13,7 +13,7 @@ class Section < ActiveRecord::Base
   default_scope :order => "position ASC"
 
   def move_before(position)
-    position = Section.find(position).position - 1
+    position = Section.find(position).position
     insert_at(position < 1 ? 0 : position)
   end
 end
