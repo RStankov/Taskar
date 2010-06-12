@@ -15,6 +15,5 @@ class Section < ActiveRecord::Base
   def move_before(position)
     position = Section.find(position).position - 1
     insert_at(position < 1 ? 0 : position)
-    end
   end
 end
