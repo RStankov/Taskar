@@ -35,7 +35,7 @@ describe Section do
       end
       
       it "should make position to 1 on move to 'top'" do
-        @section.move_to "top"
+        @section.move_after "first"
         
         @section.valid?.should be_true
         @section.position.should == 1
@@ -51,7 +51,7 @@ describe Section do
         section_2.position.should == 3
         section_3.position.should == 4
         
-        @section.move_to "bottom"
+        @section.move_after "last"
         
         section_1.reload.position.should == 1
         section_2.reload.position.should == 2
@@ -67,7 +67,7 @@ describe Section do
         section_1.position.should == 2
         section_2.position.should == 3
         
-        @section.move_to section_1
+        @section.move_after section_1
         
         section_1.reload.position.should == 1
         @section.position.should         == 2
