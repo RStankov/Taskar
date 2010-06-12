@@ -2,14 +2,6 @@ require 'spec_helper'
 
 describe TasksController do
   describe "routing" do
-    it "recognizes and generates #index" do
-      { :get => "/tasks" }.should route_to(:controller => "tasks", :action => "index")
-    end
-
-    it "recognizes and generates #new" do
-      { :get => "/tasks/new" }.should route_to(:controller => "tasks", :action => "new")
-    end
-
     it "recognizes and generates #show" do
       { :get => "/tasks/1" }.should route_to(:controller => "tasks", :action => "show", :id => "1")
     end
@@ -19,7 +11,7 @@ describe TasksController do
     end
 
     it "recognizes and generates #create" do
-      { :post => "/tasks" }.should route_to(:controller => "tasks", :action => "create") 
+      { :post => "projects/1/sections/2/tasks" }.should route_to(:controller => "tasks", :action => "create", :project_id => "1", :section_id => "2") 
     end
 
     it "recognizes and generates #update" do
