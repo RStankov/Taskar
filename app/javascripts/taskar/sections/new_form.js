@@ -14,8 +14,7 @@ Taskar.Sections.NewForm = function(sectionsBar){
     
     var form = $('new_section');
     form.down('form').reset();
-    form.down('input[name=before]').setValue(element.getAttribute('data-before'));
-    console.log(form.down('input[name=before]').getValue());
+    form.down('input[name*=insert_before]').setValue(element.getAttribute('data-before'));
       
     if (element.previous() == form && form.visible()){
       return;

@@ -36,7 +36,7 @@
       <li id="new_section" style="display:none;">
         <% form_for [@project, Section.new], :html => {:id => nil} do |form|  %>
           <%= form.text_field :name, :autocomplete => "off", :placeholder => "Name" %>
-          <%= hidden_field_tag 'before', '', :id => nil, :value => "" %>
+          <%= form.hidden_field :insert_before %>
           <%= form.submit "Create" %>
           <input type="button" value="Cancel" />
         <% end %>
