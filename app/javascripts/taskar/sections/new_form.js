@@ -1,8 +1,8 @@
-Taskar.NewSectionForm = function(sectionsBar){
+Taskar.Sections.NewForm = function(sectionsBar){
   sectionsBar.on('click',  '.add_section',       show);
   sectionsBar.on('click',  'input[type=button]', hide);
   sectionsBar.on('keyup',  'form',               hideOnEsc);
-  sectionsBar.on('submit', 'form',               validate);
+  sectionsBar.on('submit', 'form',               Taskar.Sections.validateForm);
   
   var appear = new S2.FX.Style(sectionsBar, {
     before: function(e){ e.element.setStyle({ width: '0px', opacity: 0.0 }); },

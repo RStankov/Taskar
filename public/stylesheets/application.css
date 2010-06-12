@@ -672,7 +672,6 @@ b  ackground: url(../images/sprite.png) 0 0 no-repeat;
 #section_title form {
   margin: 0;
   padding: 0;
-  display: none;
 }
 
 #section_title form input[type="text"] {

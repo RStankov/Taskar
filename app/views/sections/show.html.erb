@@ -4,11 +4,11 @@
     <%= link_to "edit", [:edit, @project, @section], :class => "edit" %>
     <%= link_to_delete "delete", [@project, @section], :class => "delete", :confirm => "Are you sure?" %>
   </h1>
-  <form>
-    <input type="text" value="HTML/CSS" />
-    <input type="submit" value="Submit" />
+  <% form_for [@project, @section], :html => {:style => "display:none;"} do |form| %>
+    <%= form.text_field :name, :placeholder => "Name" %>
+    <%= form.submit "Submit" %>
     <input type="button" value="Cancel" />
-  </form>
+  <% end %>
 </div>
 <ul id="tasks">
   <li class="task personal open">
