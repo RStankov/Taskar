@@ -21,7 +21,7 @@ class SectionsController < ApplicationController
     @section = @project.sections.build(params[:section])
 
     if @section.save
-      redirect_to [@project, @section], :notice => 'Section was successfully created.'
+      redirect_to [@project, @section]
     else
       render :action => "new"
     end
@@ -31,7 +31,7 @@ class SectionsController < ApplicationController
     @section = @project.sections.find(params[:id])
     
     if @section.update_attributes(params[:section])
-      redirect_to [@project, @section], :notice => 'Section was successfully updated.'
+      redirect_to [@project, @section]
     else
       render :action => "edit"
     end
