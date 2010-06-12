@@ -15,7 +15,7 @@ Taskar.NewSectionForm = function(sectionsBar){
     var form = $('new_section');
     form.down('form').reset();
   
-    if (element.previous() == form){
+    if (element.previous() == form && form.visible()){
       return;
     }
     
