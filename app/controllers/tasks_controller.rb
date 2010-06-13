@@ -29,13 +29,13 @@ class TasksController < ApplicationController
   end
   
   def destroy
-    @task = Task.find(params[:id])
-    @task.destroy
+    task = Task.find(params[:id])
+    task.destroy
 
     if request.xhr?
       head :ok
     else
-      redirect_to [@task.section.project, @task.section]
+      redirect_to [task.section.project, task.section]
     end
   end
   
