@@ -26,7 +26,7 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
 
     if @task.update_attributes(params[:task])
-      redirect_to @task
+      render :action => "show"
     else
       render :action => "edit"
     end

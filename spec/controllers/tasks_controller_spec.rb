@@ -100,10 +100,10 @@ describe TasksController do
         assigns[:task].should equal(mock_task)
       end
 
-      it "redirects to the task" do
+      it "renders show action" do
         Task.stub(:find).and_return(mock_task(:update_attributes => true))
         put :update, :id => "1"
-        response.should redirect_to(task_url(mock_task))
+        response.should render_template("show")
       end
     end
 

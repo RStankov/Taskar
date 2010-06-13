@@ -2,19 +2,11 @@ Taskar.Sections.Tasks = {
   click: {
     '.edit': function(e, element){
       e.stop();
-      element.request({
-        onLoading: function(){
-          element.update("Loading...");
-        }
-      });
+      element.request();
     },
     'a.cancel': function(e, element){
       e.stop();
-      element.request({
-        onLoading: function(){
-          element.update("Loading...");
-        }
-      });
+      element.request();
     },
     'input.cancel': function(e, element){
       e.findElement('li').slideUp();
@@ -51,10 +43,15 @@ Taskar.Sections.Tasks = {
       }
     }
   },
-  submit: function(e){
-    e.stop();
-    var form = e.findElement('form');
-    form.request();
-    Taskar.Sections.resetTaskForm(form);
+  submit: {
+    '.task form': function(e, form){
+      e.stop();
+      form.request();
+    },
+    '#new_task form': function(e, form){
+      e.stop();
+      form.request();
+      Taskar.Sections.resetTaskForm(form);
+    }
   }
 };
