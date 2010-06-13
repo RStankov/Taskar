@@ -733,6 +733,10 @@ b  ackground: url(../images/sprite.png) 0 0 no-repeat;
   text-decoration: none;
 }
 
+#tasks a:hover {
+  text-decoration: underline;
+}
+
 #tasks .rejected, #tasks .completed {
   opacity: 0.6;
 }
