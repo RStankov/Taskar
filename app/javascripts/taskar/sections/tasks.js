@@ -1,0 +1,28 @@
+Taskar.Sections.Tasks = {
+  click: {
+    '.cancel': function(e, element){
+      e.findElement('li').slideUp();
+    },
+    '.delete': function(e, element){
+      e.stop();
+      element.request({
+        method: 'delete',
+        onComplete: function(){
+          e.findElement('.task').slideUp(function(e){
+            e.element.remove();
+          });
+        }
+      });
+    },
+    '.checkbox': Taskar.UI.StateCheckboxObserver
+  },
+  'state:changed': function(e) {
+    var checkbox = e.findElement('.checkbox');
+    if (checkbox){
+      new Ajax.Request(checkbox.getAttribute('data-url'), {
+        method:     'put',
+        parameters: {state: checkbox.getAttribute('data-state')}
+      });
+    }
+  }
+};
