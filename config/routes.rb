@@ -1,7 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :projects do |projects|
     projects.resources :sections do |sections|
-      sections.resources :tasks, :shallow => true, :except => [:new, :index]
+      sections.resources :tasks, :shallow => true, :except => [:new, :index], :member => {:state => :put}
     end
   end
 

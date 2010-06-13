@@ -38,4 +38,12 @@ class TasksController < ApplicationController
       redirect_to [@task.section.project, @task.section]
     end
   end
+  
+  def state
+    task = Task.find(params[:id])
+    task.state = params[:state]
+    task.save
+    
+    head :ok
+  end
 end

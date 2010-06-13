@@ -21,5 +21,9 @@ describe TasksController do
     it "recognizes and generates #destroy" do
       { :delete => "/tasks/1" }.should route_to(:controller => "tasks", :action => "destroy", :id => "1") 
     end
+
+    it "recognizes and generates #state" do
+      { :put => "/tasks/1/state" }.should route_to(:controller => "tasks", :action => "state", :id => "1") 
+    end
   end
 end

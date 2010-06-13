@@ -133,11 +133,31 @@ describe TasksController do
       response.should redirect_to_section_url
     end
     
-    it "return ok when this is xhr request" do
+    it "returns ok when this is xhr request" do
       xhr :delete, :destroy, :id => "37"
       
       response.should be_success
       response.should_not redirect_to_section_url
+    end
+  end
+  
+  describe "PUT state" do
+    before do
+      Task.stub!(:find).with("5").and_return(mock_task(:save => true))
+    end
+    
+    it "updates state attribute" do
+      mock_task.should_receive(:state=).with("completed")
+      
+      xhr :put, :state, :id => "5", :state => "completed"
+    end
+    
+    it "returns ok" do
+      mock_task.stub!(:state=)
+      
+      xhr :put, :state, :id => "5"
+      
+      response.should be_success
     end
   end
 
