@@ -1,7 +1,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Project: <%= @project.name %></title>
+  <title>Project: <%= @project.name %><%= " / #{@section.name}" if @section %></title>
   <%= stylesheet_link_tag 'application' %>
 </head>
 <body>
