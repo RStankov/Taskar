@@ -14,8 +14,9 @@ CD3.Behaviors({
             e.element.remove();
           });
         }
-      })
-    }
+      });
+    },
+    '.checkbox': Taskar.UI.StateCheckboxObserver
   },
   '#add_task_button:click': function(){
     var newTask = $('new_task');
