@@ -70,7 +70,29 @@ describe Task do
     end
   end
 
-  describe "state" do    
+  describe "status validation" do
+    [-1, 0, 1].each do |value|
+      it "should be valid when is #{value}" do
+        task = Task.new
+        task.status = value
+        task.valid?
+        
+        task.errors.on(:status).should be_nil
+      end
+    end
+    
+    [-3, -2, 2, 3].each do |value|
+      it "should not be valid when is #{value}" do
+        task = Task.new
+        task.status = value
+        task.valid?
+        
+        task.errors.on(:status).should_not be_nil
+      end
+    end
+  end
+
+  describe "state" do
     def task_with_status(status)
       Task.new do |task|
         task.status = status
