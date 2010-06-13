@@ -1,11 +1,3 @@
-Element.addMethods({
-  replaceClassName: function(element, oldClassName, newClassName){
-    element = $(element);
-    element.className = element.className.replace(oldClassName, newClassName);
-    return element;
-  }
-});
-
 Taskar.UI.StateCheckboxObserver = (function(){
   function nextState(state){
     switch(state){
