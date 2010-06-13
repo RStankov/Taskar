@@ -8,9 +8,7 @@ Taskar.Sections.Tasks = {
       element.request({
         method: 'delete',
         onComplete: function(){
-          e.findElement('.task').slideUp(function(e){
-            e.element.remove();
-          });
+          element.up('.task').removeWithEffect('slideUp');
         }
       });
     },
