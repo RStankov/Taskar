@@ -13,4 +13,8 @@ module ApplicationHelper
       link_to( args.first, args.second, html_options )
     end
   end
+  
+  def javascript_response(&block)
+    concat("try {" + capture(&block) + "} catch(e){ if (console) console.log(e); }")
+  end
 end

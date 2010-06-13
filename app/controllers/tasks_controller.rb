@@ -18,7 +18,7 @@ class TasksController < ApplicationController
         render
       end
     else
-      render :action => "new"
+      render :partial => "new"
     end
   end
   

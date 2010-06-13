@@ -79,7 +79,7 @@ describe TasksController do
       it "re-renders the 'new' template" do
         Task.stub(:build).and_return(mock_task(:save => false))
         post :create, :task => {}, :project_id => "1", :section_id => "2"
-        response.should render_template('new')
+        response.should render_template("_new")
       end
     end
 
