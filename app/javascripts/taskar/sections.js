@@ -7,6 +7,7 @@ Taskar.Sections = {
         e.stop();
         Taskar.FX.shake(input, {distance: 2, turns: 2});
         highlight.play(input);
+        input.focus();
       }
     }
   })()
