@@ -7,4 +7,5 @@ tmp/**/*
 config/database.yml
 db/*.sqlite3
 public/files/**/*
+public/system/**/*
 coverage/*
