@@ -915,6 +915,52 @@ footer span:hover {
   font-size: 12px;
 }
 
+#errorExplanation {
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+   -moz-border-radius: 5px;
+   -webkit-border-radius: 5px;
+}
+
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: #c00;
+  color: #fff;
+  display: block;
+}
+
+#errorExplanation p {
+  color: #333;
+  margin: 5px;
+  padding: 10px;
+  display: block;
+  font-size: 12px;
+}
+
+#errorExplanation ul {
+  clear: both;
+  list-style: none;
+  padding-left: 20px;
+}
+
+#errorExplanation li {
+  font-size: 12px;
+  list-style: square;
+}
+
+.fieldWithErrors textarea {
+  border-width: 2px;
+  border-color: #ff9999;
+}
+
 /*** FOR REVISION:SECTION FOOTER ***/
 
 #section_footer {
