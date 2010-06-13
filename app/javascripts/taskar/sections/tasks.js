@@ -1,6 +1,22 @@
 Taskar.Sections.Tasks = {
   click: {
-    '.cancel': function(e, element){
+    '.edit': function(e, element){
+      e.stop();
+      element.request({
+        onLoading: function(){
+          element.update("Loading...");
+        }
+      });
+    },
+    'a.cancel': function(e, element){
+      e.stop();
+      element.request({
+        onLoading: function(){
+          element.update("Loading...");
+        }
+      });
+    },
+    'input.cancel': function(e, element){
       e.findElement('li').slideUp();
     },
     '.delete': function(e, element){
@@ -24,7 +40,12 @@ Taskar.Sections.Tasks = {
     }
   },
   keyup: {
-    'form': function(e){
+    '.task': function(e, element){
+      if (e.keyCode == Event.KEY_ESC){
+        element.down('.cancel').request();
+      }
+    },
+    '#new_task': function(e){
       if (e.keyCode == Event.KEY_ESC){
         e.findElement('li').slideUp();
       }

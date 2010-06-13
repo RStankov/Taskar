@@ -1,0 +1,4 @@
+<% javascript_response do %>
+  $('task_<%= @task.id %>').replace("<%= escape_javascript(render @task) %>");
+  $('task_<%= @task.id %>').highlight();
+<% end %>

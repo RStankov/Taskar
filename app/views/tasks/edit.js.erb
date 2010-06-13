@@ -1,0 +1,3 @@
+<% javascript_response do %>
+  $('task_<%= @task.id %>').update("<%= escape_javascript(render "form") %>").highlight().down('textarea').focus();
+<% end %>

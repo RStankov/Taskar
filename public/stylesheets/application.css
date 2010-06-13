@@ -961,6 +961,36 @@ footer span:hover {
   border-color: #ff9999;
 }
 
+.task form{
+  margin: -10px;
+  padding: 10px;
+  position: relative;
+  background-color: #eee;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+}
+
+.task label {
+  display: block;
+}
+
+.task textarea {
+  display: block;
+  width: 100%;
+  height: 80px;
+  margin: 10px 0 10px 0;
+}
+
+.task input[type="submit"] {
+  font-size: 16px;
+  padding: 5px;
+}
+
+.task input[type="button"] {
+  font-size: 12px;
+}
+
 /*** FOR REVISION:SECTION FOOTER ***/
 
 #section_footer {
