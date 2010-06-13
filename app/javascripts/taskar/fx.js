@@ -92,3 +92,5 @@ Element.addMethods({
 		return $(element).effect(effect, options);
 	}
 });
+
+

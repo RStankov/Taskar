@@ -1,4 +1,6 @@
-var Taskar = {};
+var Taskar = {
+  ERROR_COLOR: '#ff9999'
+};
 
 //= require "taskar/fx"
 //= require "taskar/ui"

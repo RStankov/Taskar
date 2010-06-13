@@ -1,4 +1,4 @@
 <% javascript_response do %>
   $('new_task').replace("<%= escape_javascript(render "new_form") %>");
-  $('new_task').show().highlight({startColor: '#ff9999'});
+  $('new_task').show().highlight({startColor: Taskar.ERROR_COLOR});
 <% end %>
