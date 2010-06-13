@@ -11,7 +11,11 @@
     <td><%= link_to 'Show', project %></td>
     <td><%= link_to 'Sections', [project, :sections] %></td>
     <td><%= link_to 'Edit', edit_project_path(project) %></td>
-    <td><%= link_to 'Destroy', project, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td>
+      <% link_to_delete(project, :confirm => 'Are you sure?', :method => :delete) do %>
+        Destroy
+      <% end %>
+    </td>
   </tr>
 <% end %>
 </table>
