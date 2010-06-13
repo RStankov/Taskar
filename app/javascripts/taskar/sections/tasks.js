@@ -27,6 +27,6 @@ Taskar.Sections.Tasks = {
     e.stop();
     var form = e.findElement('form');
     form.request();
-    form.reset();
+    Taskar.Sections.resetTaskForm(form);
   }
 };

@@ -4,8 +4,8 @@ CD3.Behaviors({
   '#tasks':         Taskar.Sections.Tasks,
   '#add_task_button:click': function(){
     var newTask = $('new_task');
-        
-    newTask.down('form').reset();
+    
+    Taskar.Sections.resetTaskForm(newTask.down('form'));
     
     if (newTask.visible() && !newTask.next()){
       return newTask.down('textarea').focus();

@@ -8,6 +8,17 @@ Taskar.Sections = {
       input.highlight({startColor: Taskar.ERROR_COLOR});
       input.focus();
     }
+  },
+  resetTaskForm: function(form){
+    form.reset();
+    
+    var errors = form.down('.errorExplanation');
+    if (errors){
+      errors.remove();
+      form.select('.fieldWithErrors').each(function(element){
+        element.replace(element.down());
+      });
+    }
   }
 };
 
