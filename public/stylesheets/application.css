@@ -881,6 +881,7 @@ footer span:hover {
 }
 
 /*** FOR REVISION:TASK FORMS ***/
+
 #new_task {
   padding: 10px;
   position: relative;
@@ -908,4 +909,26 @@ footer span:hover {
 
 #new_task input[type="button"] {
   font-size: 12px;
+}
+
+/*** FOR REVISION:SECTION FOOTER ***/
+
+#section_footer {
+  padding: 0 20px 0 20px;
+}
+
+#section_footer input[type="button"]:hover {
+  color: #fff;
+  background-color: #00589D;
+  border-radius: 5px;
+   -moz-border-radius: 5px;
+   -webkit-border-radius: 5px;
+}
+
+#section_footer li {
+  display: inline-block;
+}
+
+#section_footer li:last-child {
+  float: right;
 }
