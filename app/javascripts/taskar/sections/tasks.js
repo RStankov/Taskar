@@ -7,7 +7,7 @@ Taskar.Sections.Tasks = {
       e.stop();
       element.request({
         method: 'delete',
-        onComplete: function(){
+        onCreate: function(){
           element.up('.task').removeWithEffect('slideUp');
         }
       });
