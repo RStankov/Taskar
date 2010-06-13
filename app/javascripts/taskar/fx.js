@@ -75,6 +75,12 @@ Taskar.FX.ScrollTo =Class.create(S2.FX.Base, {
   }
 });
 
+S2.FX.Element.prototype.play = function(element, options){
+  if (element) this.element = $(element);
+  this.operators = [];
+  return S2.FX.Base.prototype.play.call(this, options);
+};
+
 Element.addMethods({
   effect: function(element, effect, options){
     if (Object.isFunction(effect))
