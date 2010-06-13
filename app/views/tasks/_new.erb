@@ -1,4 +1,4 @@
-<li id="new_task">
+<li id="new_task" style="display:none;">
   <% form_for [@section.project, @section, Task.new], :html => {:class => nil, :id => nil} do |form| %>
     <%= form.error_messages %>
     <%= form.label :text, "What's the task:" %>
