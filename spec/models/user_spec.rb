@@ -13,6 +13,7 @@ describe User do
     it { should     allow_mass_assignment_of(:last_name) }
     it { should     allow_mass_assignment_of(:password) }
     it { should     allow_mass_assignment_of(:password_confirmation) }
+    it { should     allow_mass_assignment_of(:avatar) }
 
     it { should validate_presence_of(:email) }
     it { Factory(:user).should validate_uniqueness_of(:email) }
@@ -26,6 +27,8 @@ describe User do
 
     it { should validate_presence_of(:password) }
     it { should ensure_length_of(:password).is_at_least(6).is_at_most(20) }
+    
+    it { User.should have_attached_file(:avatar) }
 
     it "should have password confirmation error" do
      user = Factory.build(:user, :password => '123456', :password_confirmation => 'blqkblqk')
