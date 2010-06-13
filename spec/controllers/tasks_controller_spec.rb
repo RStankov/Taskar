@@ -115,16 +115,29 @@ describe TasksController do
   end
 
   describe "DELETE destroy" do
-    it "destroys the requested task" do
+    before do
       Task.should_receive(:find).with("37").and_return(mock_task)
       mock_task.should_receive(:destroy)
+    end
+    
+    def redirect_to_section_url
+      redirect_to(project_section_url(mock_project, mock_section))
+    end
+    
+    it "destroys the requested task" do
       delete :destroy, :id => "37"
     end
 
     it "redirects to the tasks list" do
-      Task.stub(:find).and_return(mock_task(:destroy => true))
-      delete :destroy, :id => "1"
-      response.should redirect_to(project_section_url(mock_project, mock_section))
+      delete :destroy, :id => "37"
+      response.should redirect_to_section_url
+    end
+    
+    it "return ok when this is xhr request" do
+      xhr :delete, :destroy, :id => "37"
+      
+      response.should be_success
+      response.should_not redirect_to_section_url
     end
   end
 

@@ -32,6 +32,10 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     @task.destroy
 
-    redirect_to [@task.section.project, @task.section]
+    if request.xhr?
+      head :ok
+    else
+      redirect_to [@task.section.project, @task.section]
+    end
   end
 end

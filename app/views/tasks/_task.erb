@@ -10,6 +10,6 @@
     <li>коментари 3</li>
     <li>подзадачи 5</li>
     <li>файлове 1</li>
-    <li><%= link_to "delete", task, :class => "delete" %></li>
+    <li><%= link_to "delete", task, :class => "delete", "data-confirm" => "Are you sure?" %></li>
   </ul>
 <% end %>

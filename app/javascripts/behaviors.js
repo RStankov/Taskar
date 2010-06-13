@@ -4,6 +4,17 @@ CD3.Behaviors({
   '#tasks:click': {
     '.cancel': function(e, element){
       e.findElement('li').slideUp();
+    },
+    '.delete': function(e, element){
+      e.stop();
+      element.request({
+        method: 'delete',
+        onComplete: function(){
+          e.findElement('.task').slideUp(function(e){
+            e.element.remove();
+          });
+        }
+      })
     }
   },
   '#add_task_button:click': function(){
