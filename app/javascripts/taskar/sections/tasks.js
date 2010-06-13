@@ -22,5 +22,11 @@ Taskar.Sections.Tasks = {
         parameters: {state: checkbox.getAttribute('data-state')}
       });
     }
+  },
+  submit: function(e){
+    e.stop();
+    var form = e.findElement('form');
+    form.request();
+    form.reset();
   }
 };

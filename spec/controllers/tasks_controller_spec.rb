@@ -41,17 +41,32 @@ describe TasksController do
     end
     
     describe "with valid params" do
-      it "assigns a newly created task as @task" do
+      before do
         Task.stub(:build).with({'these' => 'params'}).and_return(mock_task(:save => true))
-        post :create, :task => {:these => 'params'}, :project_id => "1", :section_id => "2"
+      end
+      
+      def params
+        {:task => {:these => 'params'}, :project_id => "1", :section_id => "2"}
+      end
+      
+      it "assigns a newly created task as @task" do
+        post :create, params
+        
         assigns[:task].should equal(mock_task)
       end
 
       it "redirects to the created task" do
-        Task.stub(:build).and_return(mock_task(:save => true))
-        post :create, :task => {}, :project_id => "1", :section_id => "2"
+        post :create, params
+        
         response.should redirect_to(project_section_url(mock_project, mock_section, :anchor => "task_#{mock_task.id}"))
       end
+      
+      it "renders create.rjs on xhr request" do
+        xhr :post, :create, params
+        
+        response.should render_template("create")
+      end
+      
     end
 
     describe "with invalid params" do
