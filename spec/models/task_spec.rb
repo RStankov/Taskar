@@ -70,14 +70,20 @@ describe Task do
     end
   end
 
-  describe "state" do
+  describe "state" do    
     def task_with_status(status)
       Task.new do |task|
         task.status = status
       end
     end
+        
+    def task_with_state(state)
+      Task.new do |task|
+        task.state = state
+      end
+    end
     
-    it "should be 'open' if status is 0" do
+    it "should be 'opened' if status is 0" do
       task_with_status(0).state.should == "opened"
     end
 
@@ -87,6 +93,18 @@ describe Task do
         
     it "should be 'rejected' if status is -1" do
       task_with_status(-1).state.should == "rejected"
+    end
+    
+    it "should set status to 0 when set as 'opened'" do
+      task_with_state('opened').status.should == 0
+    end
+
+    it "should set status to 1 when set as 'completed'" do
+      task_with_state('completed').status.should == 1
+    end
+
+    it "should set status to -1 when set as 'rejected'" do
+      task_with_state('rejected').status.should == -1
     end
   end
 end

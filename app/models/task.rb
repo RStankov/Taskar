@@ -22,11 +22,17 @@ class Task < ActiveRecord::Base
     end
   end
   
+  STATES = {
+    -1 => "rejected",
+     0 => "opened",
+     1 => "completed"
+  }
+  
   def state
-    case status
-      when -1 then "rejected"
-      when  0 then "opened"
-      when  1 then "completed"
-    end
+    STATES[status]
+  end
+  
+  def state=(state)  
+    self.status = STATES.index(state)
   end
 end
