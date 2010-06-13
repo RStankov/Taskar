@@ -147,9 +147,9 @@ describe TasksController do
     end
     
     it "updates state attribute" do
-      mock_task.should_receive(:state=).with("completed")
+      mock_task.should_receive(:state=).with("fooo")
       
-      xhr :put, :state, :id => "5", :state => "completed"
+      xhr :put, :state, :id => "5", :state => "fooo"
     end
     
     it "returns ok" do

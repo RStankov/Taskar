@@ -18,6 +18,15 @@ CD3.Behaviors({
     },
     '.checkbox': Taskar.UI.StateCheckboxObserver
   },
+  '#tasks:state:changed': function(e) {
+    var checkbox = e.findElement('.checkbox');
+    if (checkbox){
+      new Ajax.Request(checkbox.getAttribute('data-url'), {
+        method:     'put',
+        parameters: {state: checkbox.getAttribute('data-state')}
+      });
+    }
+  },
   '#add_task_button:click': function(){
     var newTask = $('new_task');
         

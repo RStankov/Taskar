@@ -3,7 +3,7 @@ class Task < ActiveRecord::Base
   
   validates_presence_of :text
   validates_presence_of :section
-  validates_inclusion_of :status, :in => [-1, 0, 0]
+  validates_inclusion_of :status, :in => [-1, 0, 1]
   
   attr_accessor :insert_before
   
@@ -32,7 +32,7 @@ class Task < ActiveRecord::Base
     STATES[status]
   end
   
-  def state=(state)  
+  def state=(state)
     self.status = STATES.index(state)
   end
 end
