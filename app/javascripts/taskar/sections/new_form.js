@@ -4,15 +4,15 @@ Taskar.Sections.NewForm = function(sectionsBar){
   sectionsBar.on('keyup',  'form',               hideOnEsc);
   sectionsBar.on('submit', 'form',               Taskar.Sections.validateForm);
   
-  var appear = new S2.FX.Style(sectionsBar, {
-    before: function(e){ e.element.setStyle({ width: '0px', opacity: 0.0 }); },
-    after:  function(e){ e.element.down('input[type=text]').focus(); }
-  });
+  var form   = $('new_section');
+      appear = new S2.FX.Style(form, {
+        before: function(e){ form.setStyle({ width: '0px', opacity: 0.0 }); },
+        after:  function(e){ form.down('input[type=text]').focus(); }
+      });
   
   function show(e, element){
     e.stop();
     
-    var form = $('new_section');
     form.down('form').reset();
     form.down('input[name*=insert_before]').setValue(element.getAttribute('data-before'));
       
@@ -28,16 +28,16 @@ Taskar.Sections.NewForm = function(sectionsBar){
     
     form.show();
     
-    appear.play(form, {style: 'opacity:1; width:' + form.getWidth() + 'px'})
+    appear.play(null, {style: 'opacity:1; width:' + form.getWidth() + 'px'})
   }
   
-  function hide(e, element){
-    e.findElement('li').hide();
+  function hide(){
+    form.hide();
   }
   
-  function hideOnEsc(e, element){
+  function hideOnEsc(e){
     if (e.keyCode == Event.KEY_ESC){
-      hide(e);
+      form.hide();
     }
   }
 };
