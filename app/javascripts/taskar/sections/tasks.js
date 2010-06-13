@@ -23,6 +23,13 @@ Taskar.Sections.Tasks = {
       });
     }
   },
+  keyup: {
+    'form': function(e){
+      if (e.keyCode == Event.KEY_ESC){
+        e.findElement('li').slideUp();
+      }
+    }
+  },
   submit: function(e){
     e.stop();
     var form = e.findElement('form');
