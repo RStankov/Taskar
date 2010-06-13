@@ -15,6 +15,6 @@ module ApplicationHelper
   end
   
   def javascript_response(&block)
-    concat("try {" + capture(&block) + "} catch(e){ if (console) console.log(e); }")
+    concat("try {" + capture(&block) + "} catch(e){ alert(e); }")
   end
 end
