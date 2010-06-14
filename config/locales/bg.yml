@@ -4,8 +4,10 @@ bg:
   scroll_to_top: "Нагоре"
   create: "Добави"
   cancel: "Откажи"
-  update: "Промени"
+  edit: "Промени"
+  update: "Запиши"
   delete: "Изтрий"
+  confirm: "Сигурни ли сте?"
   layouts:
     sections:
       profile: "Профил"
@@ -24,5 +26,10 @@ bg:
   sections:
     new_section: "Нова секция"
     edit_section: "Промяна на секция"
+    show:
+      confirm: "Сигурни ли сте че, искате тази секция?"
+      add_task: "Добави задача"
+      toggle_tasks: "Ахрив"
+      more: "Действия"
   
       

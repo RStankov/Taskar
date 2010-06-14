@@ -6,6 +6,7 @@ module ApplicationHelper
     });
     
     html_options['data-confirm'] = html_options.delete('confirm') if html_options['confirm']
+    html_options['data-confirm'] = t(:confirm) if html_options['data-confirm'] == true
     
     if block_given?
       link_to( args.first, html_options, &block )
