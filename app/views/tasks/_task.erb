@@ -2,14 +2,14 @@
   <%= task_state_checkbox(task) %>
   <a href="#" class="archive"></a>
   <p><a href="#"><strong>RStankov</strong></a> <%=h task.text %></p>
-  <span class="more">...more</span>
+  <span class="more">...<%=t :'.more' %></span>
   <time datetime="<%= task.created_at.rfc2822 %>"><%= time_ago_in_words(task.created_at) %></time>
-  <input class="drag" type="button" title="Drag&amp;Drop" />
+  <input class="drag" type="button" title="<%=t :'.dnd' %>" />
   <ul>
-    <li><%= link_to "edit", [:edit, task], :class => "edit" %></li>
-    <li>коментари 3</li>
-    <li>подзадачи 5</li>
-    <li>файлове 1</li>
-    <li><%= link_to "delete", task, :class => "delete", "data-confirm" => "Are you sure?" %></li>
+    <li><%= link_to t(:edit), [:edit, task], :class => "edit" %></li>
+    <li><%=t :'.comments', :count => 0 %></li>
+    <li><%=t :'.subtasks', :count => 0 %></li>
+    <li><%=t :'.files', :count => 0 %></li>
+    <li><%= link_to t(:delete), task, :class => "delete", "data-confirm" => t(:'.confirm') %></li>
   </ul>
 <% end %>

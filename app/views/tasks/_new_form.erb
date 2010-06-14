@@ -1,7 +1,7 @@
 <li id="new_task" style="display:none;">
   <% form_for [@section.project, @section, @task || Task.new], :html => {:class => nil, :id => nil} do |form| %>
     <%= form.error_messages %>
-    <%= form.label :text, "What's the task:" %>
+    <%= form.label :text, t(:'tasks.form.text') %>
     <%= form.text_area :text, :cols => nil, :rows => nil %>
     <%= form.hidden_field :insert_before %>
     <!-- TODO
@@ -10,6 +10,6 @@
     </div>
     <hr>
     -->
-    <%= form.submit "Add new task" %> | <input type="button" value="Stop adding tasks" class="cancel">
+    <%= form.submit t(:'tasks.form.create') %> | <input type="button" value="<%=t :'tasks.form.stop' %>" class="cancel">
   <% end %>
 </li>
