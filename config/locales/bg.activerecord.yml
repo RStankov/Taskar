@@ -1,0 +1,33 @@
+bg:
+    activerecord:
+        models:
+          project: "Проект"
+          section: "Секция"
+          task: "Задача"
+          user: "Потребител"
+        
+        attributes:
+          project:
+            name: "Име"
+          
+          section:
+            name: "Име"
+            position: "Позиция"
+          
+          task:
+            text: "Текс"
+            status: "Статус"
+            position: "Позиция"
+          
+          user:
+            email: "E-майл"
+            first_name: "Име"
+            last_name: "Фамилия"
+            full_name: "Име"
+            password: "Парола"
+            password_confirmation: "Потвърди паролата"
+            avatar: "Снимка"
+          
+        
+      
+    
