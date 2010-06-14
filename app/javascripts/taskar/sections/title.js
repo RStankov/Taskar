@@ -9,7 +9,7 @@ Taskar.Sections.Title = function(section){
   head.down('a.edit').observe('click', show);
   form.down('input[type=button]').observe('click', hide);
   form.observe('submit', Taskar.Sections.validateForm);
-  form.observe('keyup', hideOnEsc);
+  form.observe('key:esc', hide);
   
   function show(e){
     e.stop();
@@ -23,11 +23,5 @@ Taskar.Sections.Title = function(section){
   function hide(){
     head.morph('opacity: 1.0');
     form.fade();
-  }
-  
-  function hideOnEsc(e){
-    if (e.keyCode == Event.KEY_ESC){
-      hide();
-    }
   }
 };

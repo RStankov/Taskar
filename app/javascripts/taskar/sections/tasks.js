@@ -31,16 +31,12 @@ Taskar.Sections.Tasks = {
       });
     }
   },
-  keyup: {
+  'key:esc': {
     '.task': function(e, element){
-      if (e.keyCode == Event.KEY_ESC){
-        element.down('.cancel').request();
-      }
+      element.down('.cancel').request();
     },
     '#new_task': function(e){
-      if (e.keyCode == Event.KEY_ESC){
-        e.findElement('li').slideUp();
-      }
+      e.findElement('li').slideUp();
     }
   },
   submit: {

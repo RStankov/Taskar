@@ -22,5 +22,11 @@ document.on('click', 'a[data-method=delete]', function(e, element){
 	}
 });
 
+document.observe('keyup', function(e){
+  if (e.keyCode == Event.KEY_ESC){
+    e.findElement().fire('key:esc');
+  }
+});
+
 //= require "taskar"
 //= require "behaviors"

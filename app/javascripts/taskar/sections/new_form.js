@@ -1,8 +1,8 @@
 Taskar.Sections.NewForm = function(sectionsBar){
-  sectionsBar.on('click',  '.add_section',       show);
-  sectionsBar.on('click',  'input[type=button]', hide);
-  sectionsBar.on('keyup',  'form',               hideOnEsc);
-  sectionsBar.on('submit', 'form',               Taskar.Sections.validateForm);
+  sectionsBar.on('click',     '.add_section',       show);
+  sectionsBar.on('click',     'input[type=button]', hide);
+  sectionsBar.on('key:esc',   'form',               hide);
+  sectionsBar.on('submit',    'form',               Taskar.Sections.validateForm);
   
   var form   = $('new_section');
       appear = new S2.FX.Style(form, {
@@ -33,11 +33,5 @@ Taskar.Sections.NewForm = function(sectionsBar){
   
   function hide(){
     form.hide();
-  }
-  
-  function hideOnEsc(e){
-    if (e.keyCode == Event.KEY_ESC){
-      form.hide();
-    }
   }
 };
