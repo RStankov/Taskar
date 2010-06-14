@@ -1,9 +1,9 @@
 <div id="section_title">
-  <h1>Edit Section</h1>
+  <h1><%=t :'sections.edit_section' %></h1>
 </div>
 <% form_for [@project, @section] do |f| %>
   <%= f.error_messages %>
   <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.submit 'Update' %>
+  <%= f.text_field :name, :autofocus => true %>
+  <%= f.submit t(:update) %>
 <% end %>

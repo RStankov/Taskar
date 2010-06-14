@@ -1,9 +1,11 @@
 bg: 
   project: "Проект"
-  create: "Добави"
-  cancel: "Откажи"
   copywrite: '© {{year}} Радослав Станков'
   scroll_to_top: "Нагоре"
+  create: "Добави"
+  cancel: "Откажи"
+  update: "Промени"
+  delete: "Изтрий"
   layouts:
     sections:
       profile: "Профил"
@@ -18,4 +20,9 @@ bg:
       
       people_in_project: "Участници в проекта"
       last_activity: "Последно активен в {{time}}"
+      
+  sections:
+    new_section: "Нова секция"
+    edit_section: "Промяна на секция"
+  
       
