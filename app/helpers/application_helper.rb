@@ -17,4 +17,8 @@ module ApplicationHelper
   def javascript_response(&block)
     concat("try {" + capture(&block) + "} catch(e){ alert(e); }")
   end
+  
+  def copywrite
+    t(:'copywrite', :year => Time.now.year)
+  end
 end

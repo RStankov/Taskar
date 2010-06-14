@@ -1,53 +1,48 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Project: <%= @project.name %><%= " / #{@section.name}" if @section %></title>
+  <title><%=t :project %>: <%= @project.name %><%= " / #{@section.name}" if @section %></title>
   <%= stylesheet_link_tag 'application' %>
 </head>
 <body>
   <header>
     <p id="nav_account">
-      <a href="<%= edit_user_registration_path %>">Profile</a> |
-      <a href="<%= destroy_user_session_path %>">Logout</a>
+      <%= link_to t(:".profile"), edit_user_registration_path %> | 
+      <%= link_to t(:".logout"), destroy_user_session_path %>
     </p>
     <div id="nav_projects">
-      <span>Switch to a different project</span>
+      <span><%= t :".switch_to_project" %></span>
       <ul>
         <% Project.all(:limit => 10).each do |project| %>
         <li><%= link_to project.name, [project, :sections] %></li>
         <% end %>
-        <li><%= link_to "all projects", projects_path %></li>
+        <li><%= link_to t(:".all_projects"), projects_path %></li>
       </ul>
     </div>
   </header>
   <nav id="nav_main">
-    <%= link_to '', [@project, :sections], :id => "goto_dashboard"  %>
+    <%= link_to '', [@project, :sections], :id => "goto_dashboard", :title => t(:".goto_dashboard")  %>
     <ul id="nav_sections">
       <% @project.sections.all.each do |section| %>
-        <li class="add_section" data-before="<%= section.id %>">
-          <%= link_to "<span>Add new section</span>", new_project_section_path(@project, :before => section.id) %>
-        </li>
+        <%= new_section_link(section) %>
         <li class="section">
           <%= link_to h(section.name), [@project, section], :class => @section == section ? "selected" : nil %>
         </li>
       <% end %>
-      <li class="add_section"><%= link_to "<span>Add new section</span>", [:new, @project, :section] %></li>
+      <%= new_section_link %>
       <li id="new_section" style="display:none;">
         <% form_for [@project, Section.new], :html => {:id => nil} do |form|  %>
           <%= form.text_field :name, :autocomplete => "off", :placeholder => "Name" %>
           <%= form.hidden_field :insert_before %>
-          <%= form.submit "Create" %>
-          <input type="button" value="Cancel" />
+          <%= form.submit t(:create) %>
+          <input type="button" value="<%= t(:cancel) %>" />
         <% end %>
       </li>
     </ul>
     <div id="nav_more_sections">
       <span title="View sections"></span>
       <ul>
-        <li><a href="#">Design</a></li>
-        <li><a href="#">HTML/CSS</a></li>
-        <li><a href="#">CMS</a></li>
-        <li><a href="#">Test</a></li>
+        <li><a href="#">TODO</a></li>
       </ul>
     </div>
   </nav>
@@ -61,21 +56,21 @@
         <input type="submit" value="" />
         <%= image_tag "loader1.gif", :style => 'display: none;' %>
         <ul style="display: none;">
-          <li><a href="#">fuck da world</a></li>
-          <li class="selected"><a href="#">fuck da world</a></li>
-          <li><a href="#"><strong>fuck</strong> da world</a></li>
+          <li><a href="#">TODO</a></li>
+          <li class="selected"><a href="#">TODO</a></li>
+          <li><a href="#"><strong>TO</strong>DO</a></li>
         </ul>
       </form>
       <div id="user_card">
         <a href="#">
           <%= image_tag current_user.avatar.url %>
           <strong><%= current_user.full_name %></strong>
-          69 tasks
+          <%=t :".tasks", :count => rand(10) %>
         </a>
       </div>
       <div id="people_envolved">
         <h3>
-          People on this project
+          <%=t :".people_in_project" %>
           <button class="list_extended"></button>
           <button class="list_images list_on"></button>
         </h3>
@@ -85,7 +80,7 @@
             <a href="#"><%= image_tag "temp/ra4oil.png" %></a>
             <span class="people_info">              
                 <strong>Radoslav Stankov</strong>
-                last active: 12.12.2012 09:15<span></span>              
+                <%=t :".last_activity", :time => "12.06.2010 09:15" %>
             </span>
           </li>
           <% end %>
@@ -94,8 +89,8 @@
     </aside>
   </section>
   <footer>
-    <p>© <%= Time.now.year %> Radoslav Stankov</p>
-    <a href="#nav_projects" id="scroll_to_top"><span title="Scroll to top"></span></a>
+    <p><%= copywrite %></p>
+    <a href="#nav_account" id="scroll_to_top"><span title="<%=t :"scroll_to_top" %>"></span></a>
   </footer>
   <%= sprockets_include_tag %>
 </body>

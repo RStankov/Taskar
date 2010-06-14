@@ -1,0 +1,21 @@
+bg: 
+  project: "Проект"
+  create: "Добави"
+  cancel: "Откажи"
+  copywrite: '© {{year}} Радослав Станков'
+  scroll_to_top: "Нагоре"
+  layouts:
+    sections:
+      profile: "Профил"
+      logout: "Изход"
+      switch_to_project: "Отвори друг проект"
+      all_projects: "Всички проекти"
+      goto_dashboard: "Табло"
+      new_section: "Нова секция"
+      tasks:
+        one: "Една задача"
+        other: "{{count}} задачи"
+      
+      people_in_project: "Участници в проекта"
+      last_activity: "Последно активен в {{time}}"
+      
