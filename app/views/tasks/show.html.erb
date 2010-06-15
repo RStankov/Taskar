@@ -1,19 +1,11 @@
-<p>
-  <b>Section:</b>
-  <%=h @task.section %>
-</p>
-
-<p>
-  <b>Text:</b>
+<div id="task_title">
+  <%= task_state_checkbox(@task) %>
   <%=h @task.text %>
-</p>
-
-<p>
-  <b>Status:</b>
-  <%=h @task.status %>
-</p>
-
-<p>
-  <b>Position:</b>
-  <%=h @task.position %>
-</p>
+  <p>
+    
+  </p>
+</div>
+<div id="task_comments">
+</div>
+<div id="task_new_comment">
+</div>
