@@ -1,4 +1,6 @@
 class TasksController < ApplicationController
+  layout "sections"
+  
   def show
     @task    = Task.find(params[:id])
     @section = @task.section
