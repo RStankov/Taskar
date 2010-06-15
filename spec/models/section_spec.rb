@@ -1,16 +1,12 @@
 require 'spec_helper'
 
 describe Section do
+  it_should_allow_mass_assignment_only_of :name, :insert_before
+  
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:project) }
   it { should belong_to(:project) }
   it { should have_many(:tasks) }
-  
-  it { should_not allow_mass_assignment_of(:project) }
-  it { should_not allow_mass_assignment_of(:project_id) }
-  it { should_not allow_mass_assignment_of(:position) }
-  it { should allow_mass_assignment_of(:name) }
-  it { should allow_mass_assignment_of(:insert_before) }
 
   describe "acts_as_list" do
     before do

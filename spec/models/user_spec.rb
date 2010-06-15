@@ -2,18 +2,7 @@ require 'spec_helper'
 
 describe User do
   describe "validation" do
-    it { should_not allow_mass_assignment_of(:encrypted_password) }
-    it { should_not allow_mass_assignment_of(:salt) }
-    it { should_not allow_mass_assignment_of(:token) }
-    it { should_not allow_mass_assignment_of(:token_expires_at) }
-    it { should_not allow_mass_assignment_of(:updated_at) }
-    it { should_not allow_mass_assignment_of(:group_id) }
-    it { should     allow_mass_assignment_of(:email) }
-    it { should     allow_mass_assignment_of(:first_name) }
-    it { should     allow_mass_assignment_of(:last_name) }
-    it { should     allow_mass_assignment_of(:password) }
-    it { should     allow_mass_assignment_of(:password_confirmation) }
-    it { should     allow_mass_assignment_of(:avatar) }
+    it_should_allow_mass_assignment_only_of :email, :first_name, :last_name, :password, :password_confirmation, :avatar
 
     it { should validate_presence_of(:email) }
     it { Factory(:user).should validate_uniqueness_of(:email) }
