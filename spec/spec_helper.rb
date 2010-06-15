@@ -18,4 +18,5 @@ require 'paperclip/matchers'
 Spec::Runner.configure do |config|
   config.include Paperclip::Shoulda::Matchers
   config.include Taskar::Auth::SpecHelper
+  config.extend Taskar::SpecHelper
 end
