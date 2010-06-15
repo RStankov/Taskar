@@ -13,6 +13,8 @@ class Task < ActiveRecord::Base
   
   default_scope :order => "position ASC"
   
+  delegate :project, :to => :section
+  
   def add_to_list_bottom
     self[position_column] = if insert_before && record = Task.find(:first, :conditions => {:id => insert_before})
       increment_positions_on_lower_items record.position

@@ -1,6 +1,8 @@
 class TasksController < ApplicationController
   def show
-    @task = Task.find(params[:id])
+    @task    = Task.find(params[:id])
+    @section = @task.section
+    @project = @task.project
   end
 
   def edit

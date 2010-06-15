@@ -3,7 +3,7 @@ require 'spec_helper'
 describe TasksController do
 
   def mock_task(stubs={})
-    @mock_task ||= mock_model(Task, {:section => mock_section}.merge(stubs))
+    @mock_task ||= mock_model(Task, {:section => mock_section, :project => mock_project}.merge(stubs))
   end
   
   def mock_section(stubs={})
@@ -19,10 +19,21 @@ describe TasksController do
   end
 
   describe "GET show" do
-    it "assigns the requested task as @task" do
+    before do
       Task.stub(:find).with("37").and_return(mock_task)
       get :show, :id => "37"
-      assigns[:task].should equal(mock_task)
+    end
+    
+    it "assigns the requested task as @task" do
+      assigns[:task].should == mock_task
+    end
+    
+    it "assigns task's section as @section" do
+      assigns[:section].should == mock_section
+    end
+    
+    it "assigns task's project as @project" do
+      assigns[:project].should == mock_project
     end
   end
 
