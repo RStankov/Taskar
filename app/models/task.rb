@@ -1,5 +1,6 @@
 class Task < ActiveRecord::Base
   belongs_to :section, :touch => true
+  has_many :comments, :dependent => :destroy
   
   validates_presence_of :text
   validates_presence_of :section

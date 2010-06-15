@@ -8,6 +8,7 @@ describe Task do
   it { should_not allow_mass_assignment_of(:section_id) }
   
   it { should belong_to(:section) }
+  it { should have_many(:comments)}
   
   it { should validate_presence_of(:text) }
   it { should validate_presence_of(:section) }
