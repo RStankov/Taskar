@@ -3,6 +3,9 @@
   <%=h @task.text %>
   <%= task_description(@task) %>
 </div>
+<% if @task.comments.size > 0 %>
+<h3><%=t :'.comments', :count => @task.comments.size %></h3>
+<% end %>
 <ul id="comments">
   <%= render @task.comments %>
   <li id="new_comment">

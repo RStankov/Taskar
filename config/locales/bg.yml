@@ -54,6 +54,7 @@ bg:
       
     show:
       description: "от {{from}} за {{to}} на {{on}} до {{due}}"
+      comments: "Коментари({{count}})"
     
     form:
       text: "Какво има да се прави:"
