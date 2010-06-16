@@ -106,7 +106,7 @@ bg:
         one: "{{count}} ден"
         few: "{{count}} дни"
         many: "{{count}} дни"
-        other: "{{count}} дена"
+        other: "{{count}} дни"
       about_x_months:
         one: "около {{count}} месеца"
         few: "около {{count}} месеца"
