@@ -51,6 +51,9 @@ bg:
       files:
         one: "Един файл"
         other: "{{count}} Файлове"
+      
+    show:
+      description: "от {{from}} за {{to}} на {{on}} до {{due}}"
     
     form:
       text: "Какво има да се прави:"

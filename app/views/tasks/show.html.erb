@@ -1,9 +1,7 @@
 <div id="task_title">
   <%= task_state_checkbox(@task) %>
   <%=h @task.text %>
-  <p>
-    
-  </p>
+  <%= task_description(@task) %>
 </div>
 <ul id="comments">
   <%= render @task.comments %>

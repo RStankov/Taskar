@@ -3,4 +3,8 @@ module TasksHelper
     state = task.state
     '<span class="checkbox ' + state + '" data-state="' + state + '" data-url="' + state_task_path(task) + '"></span>'
   end
+  
+  def task_description(task)
+    '<p>' + t(:'.description', :from => 'Радослав Станков', :to => 'Някой друг', :on => '10.05.2010', :due => '10.05.2010') + '</p>'
+  end
 end
