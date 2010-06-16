@@ -45,7 +45,7 @@ describe CommentsController do
       end
 
       it "redirects to the created comment" do
-        response.should redirect_to(task_url(mock_comment.task))
+        response.should redirect_to(task_url(mock_comment.task, :anchor => "comment_#{mock_comment.id}"))
       end
     end
 
@@ -85,7 +85,7 @@ describe CommentsController do
       it "redirects to the comment" do
         Comment.should_receive(:find).and_return(mock_comment(:update_attributes => true))
         put :update, :id => "1"
-        response.should redirect_to(task_url(mock_comment.task))
+        response.should redirect_to(task_url(mock_comment.task, :anchor => "comment_#{mock_comment.id}"))
       end
     end
 
@@ -121,7 +121,7 @@ describe CommentsController do
     it "redirects to the comments list" do
       Comment.stub(:find).and_return(mock_comment(:destroy => true))
       delete :destroy, :id => "1"
-      response.should redirect_to(task_url(mock_comment.task))
+      response.should redirect_to(task_url(mock_comment.task, :anchor => "new_comment"))
     end
   end
 

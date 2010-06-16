@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
     @comment = current_user.new_comment(Task.find(params[:task_id]), params[:comment])
 
     if @comment.save
-      redirect_to @comment.task
+      redirect_to_comment
     else
       render :action => "new"
     end
@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
 
     if @comment.update_attributes(params[:comment])
-      redirect_to @comment.task
+      redirect_to_comment
     else
       render :action => "edit"
     end
@@ -27,6 +27,11 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     @comment.destroy
 
-    redirect_to @comment.task
+    redirect_to task_path(@comment.task, :anchor => "new_comment")
   end
+  
+  private 
+    def redirect_to_comment
+      redirect_to task_path(@comment.task, :anchor => "comment_#{@comment.id}")
+    end
 end
