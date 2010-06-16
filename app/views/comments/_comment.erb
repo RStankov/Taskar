@@ -1,3 +1,10 @@
 <% content_tag_for(:li, comment) do %>
-  <%= simple_format h(comment.text) %>
+  <%= image_tag comment.user.avatar.url %>
+  <div>
+    <h4>
+      <%= link_to comment.user.full_name, :anchor => "comment_#{comment.id}" %>
+      <%= time_tag(comment.updated_at) %>
+    </h4>
+    <%= simple_format h(comment.text) %>
+  </div>
 <% end %>
