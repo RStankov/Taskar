@@ -22,4 +22,8 @@ module ApplicationHelper
   def copywrite
     t(:'copywrite', :year => Time.now.year)
   end
+  
+  def time_tag(time)
+    '<time datetime="' + time.rfc2822 + '">' + time_ago_in_words(time) + '</time>'
+  end
 end

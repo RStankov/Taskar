@@ -3,7 +3,7 @@
   <a href="#" class="archive"></a>
   <p><a href="#"><strong>RStankov</strong></a> <%=h task.text %></p>
   <span class="more">...<%=t :'.more' %></span>
-  <time datetime="<%= task.created_at.rfc2822 %>"><%= time_ago_in_words(task.created_at) %></time>
+  <%= time_tag task.created_at %>
   <input class="drag" type="button" title="<%=t :'.dnd' %>" />
   <ul>
     <li><%= link_to t(:'.comments', :count => task.comments.size), task %></li>
