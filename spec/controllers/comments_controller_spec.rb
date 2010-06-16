@@ -25,33 +25,42 @@ describe CommentsController do
   describe "POST create" do
     before do
       Task.should_receive(:find).with("1").and_return(mock_task)
-      mock_task.should_receive(:comments).and_return(Comment)
+      
+      def controller.current_user
+        @current_user ||= Factory(:user)
+      end
+      
+      controller.current_user.should_receive(:new_comment).with(mock_task, {"these" => "params"}).and_return(mock_comment)
     end
 
     describe "with valid params" do
-      it "assigns a newly created comment as @comment" do
-        Comment.stub(:build).with({'these' => 'params'}).and_return(mock_comment(:save => true))
+      before do
+        mock_comment.stub!(:save).and_return(true)
+      
         post :create, :comment => {:these => 'params'}, :task_id => "1"
+      end
+      
+      it "assigns a newly created comment as @comment" do
         assigns[:comment].should equal(mock_comment)
       end
 
       it "redirects to the created comment" do
-        Comment.stub(:build).and_return(mock_comment(:save => true))
-        post :create, :comment => {}, :task_id => "1"
         response.should redirect_to(task_url(mock_comment.task))
       end
     end
 
     describe "with invalid params" do
-      it "assigns a newly created but unsaved comment as @comment" do
-        Comment.stub(:build).with({'these' => 'params'}).and_return(mock_comment(:save => false))
+      before do
+        mock_comment.stub!(:save).and_return(false)
+                
         post :create, :comment => {:these => 'params'}, :task_id => "1"
+      end
+      
+      it "assigns a newly created but unsaved comment as @comment" do
         assigns[:comment].should equal(mock_comment)
       end
 
       it "re-renders the 'new' template" do
-        Comment.stub(:build).and_return(mock_comment(:save => false))
-        post :create, :comment => {}, :task_id => "1"
         response.should render_template('new')
       end
     end

@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = Task.find(params[:task_id]).comments.build(params[:comment]) 
+    @comment = current_user.new_comment(Task.find(params[:task_id]), params[:comment])
 
     if @comment.save
       redirect_to @comment.task

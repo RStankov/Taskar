@@ -60,5 +60,11 @@ bg:
       cancel: "Откажи промените"
     
   
-
+  
+  comments:
+    new_form:
+      title: "Нов коментар"
+      submit: "Коментирай"
+      preview: "Преглед" 
+  
       

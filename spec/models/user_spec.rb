@@ -78,8 +78,9 @@ describe User do
     it "should build new comment from task, assign user.id to it" do
       task = Factory(:task)
       user = Factory(:user)
-      comment = user.new_comment(task)
+      comment = user.new_comment(task, {:text => "comment text"})
       
+      comment.text.should  == "comment text"
       comment.user_id.should == user.id
       task.comments.detect {|c| c == comment}.should be_true
     end

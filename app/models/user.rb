@@ -14,8 +14,8 @@ class User < ActiveRecord::Base
     @full_name ||= "#{first_name} #{last_name}"
   end
   
-  def new_comment(task)
-    task.comments.build do |comment|
+  def new_comment(task, attributes = {})
+    task.comments.build(attributes) do |comment|
       comment.user_id = id
     end
   end
