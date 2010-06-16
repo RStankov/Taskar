@@ -30,3 +30,4 @@ document.observe('keyup', function(e){
 
 //= require "taskar"
 //= require "behaviors"
+//= require "icons"
