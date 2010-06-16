@@ -7,27 +7,6 @@ describe Comment do
   it { should belong_to(:user) }
   it { should belong_to(:task) }
   
-  it "should have counter_cache on Task" do
-    task = Factory(:task)
-    
-    task.comments_count.should == 0
-    
-    Factory(:comment, :task => task)
-    Factory(:comment, :task => task)
-    Factory(:comment, :task => task)
-    
-    task.reload.comments_count.should == 3
-  end
-  
-  it "should have counter_cache on User" do
-    user = Factory(:user)
-    
-    user.comments_count.should == 0
-    
-    Factory(:comment, :user => user)
-    Factory(:comment, :user => user)
-    Factory(:comment, :user => user)
-    
-    user.reload.comments_count.should == 3
-  end
+  it_should_have_counter_cache_of :task
+  it_should_have_counter_cache_of :user
 end

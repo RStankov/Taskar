@@ -11,5 +11,22 @@ module Taskar
         end
       end
     end
+    
+    def it_should_have_counter_cache_of(name)
+      class_name = subject.call.class.class_name.underscore
+      
+      it "should have counter_cache on #{name.to_s.classify}" do  
+        counter = "#{class_name.pluralize}_count".to_sym
+        
+        parent  = Factory(name)
+        parent[counter].should == 0
+        
+        1.upto 3 do
+          Factory(class_name, { name => parent })
+        end
+    
+        parent.reload[counter].should == 3
+      end
+    end
   end
 end
