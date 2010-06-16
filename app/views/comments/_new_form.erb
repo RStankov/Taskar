@@ -1,0 +1,5 @@
+<% form_for [@task, @comment || Comment.new] do |form| %>
+  <%= form.label :text, t(:'.title') %>
+  <%= form.text_area :text %>
+  <%= form.submit t(:'.submit')%> | <input type="button" class="preview" value="<%=t :'.preview' %>">
+<% end %>
