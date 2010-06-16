@@ -6,7 +6,7 @@
   <time datetime="<%= task.created_at.rfc2822 %>"><%= time_ago_in_words(task.created_at) %></time>
   <input class="drag" type="button" title="<%=t :'.dnd' %>" />
   <ul>
-    <li><%= link_to t(:'.comments', :count => 0), task %></li>
+    <li><%= link_to t(:'.comments', :count => task.comments.size), task %></li>
     <li><%= link_to t(:edit), [:edit, task], :class => "edit" %></li>
     <li><%= link_to t(:delete), task, :class => "delete", "data-confirm" => t(:'.confirm') %></li>
   </ul>
