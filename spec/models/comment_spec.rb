@@ -18,4 +18,16 @@ describe Comment do
     
     task.reload.comments_count.should == 3
   end
+  
+  it "should have counter_cache on User" do
+    user = Factory(:user)
+    
+    user.comments_count.should == 0
+    
+    Factory(:comment, :user => user)
+    Factory(:comment, :user => user)
+    Factory(:comment, :user => user)
+    
+    user.reload.comments_count.should == 3
+  end
 end
