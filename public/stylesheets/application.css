@@ -1018,7 +1018,7 @@ footer span:hover {
 #task_title {
   border-bottom: 1px solid #eee;
   margin: 0 10px;
-  padding: 20px 10px 10px 42px;
+  padding: 10px;
   position: relative;
 }
 
@@ -1041,4 +1041,10 @@ footer span:hover {
   float: right;
   font-size: 12px;
   font-weight: normal;
+}
+
+#new_comment {
+  border-top: 1px solid #eee;
+  margin: 0 10px;
+  padding: 10px;
 }
