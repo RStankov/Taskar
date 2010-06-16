@@ -73,4 +73,15 @@ describe User do
     user = Factory(:user, {:first_name => 'Radoslav', :last_name => 'Stankov'})
     user.full_name.should == "Radoslav Stankov"
   end
+
+  describe "new_comment" do
+    it "should build new comment from task, assign user.id to it" do
+      task = Factory(:task)
+      user = Factory(:user)
+      comment = user.new_comment(task)
+      
+      comment.user_id.should == user.id
+      task.comments.detect {|c| c == comment}.should be_true
+    end
+  end
 end
