@@ -1,0 +1,12 @@
+[submodule "vendor/sprockets/cd3widgets"]
+	path = vendor/sprockets/cd3widgets
+	url = git@github.com:RStankov/controldepo-3-widgets.git
+[submodule "vendor/sprockets/scripty2"]
+	path = vendor/sprockets/scripty2
+	url = http://github.com/madrobby/scripty2.git
+[submodule "vendor/sprockets/prototype"]
+	path = vendor/sprockets/prototype
+	url = git://github.com/sstephenson/prototype.git
+[submodule "vendor/sprockets/raphael/src"]
+	path = vendor/sprockets/raphael/src
+	url = git://github.com/DmitryBaranovskiy/raphael.git
