@@ -1,4 +1,4 @@
-class CommentsController < ApplicationController
+class CommentsController < ApplicationController  
   def edit
     @comment = Comment.find(params[:id])
   end
@@ -25,7 +25,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
-    @comment.destroy
+    @comment.destroy if @comment.editable_by(current_user)
     
     if request.xhr?
       head :ok

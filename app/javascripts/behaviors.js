@@ -2,6 +2,7 @@ CD3.Behaviors({
   '#nav_sections':  Taskar.Sections.NewForm,
   '#section_title': Taskar.Sections.Title,
   '#tasks':         Taskar.Sections.Tasks,
+  '#comments':      Taskar.Sections.Comments,
   '#scroll_to_top:click': function(e){
     e.stop();
     var id      = this.getAttribute('href').split('#').last(),

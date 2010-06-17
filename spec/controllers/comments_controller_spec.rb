@@ -113,11 +113,18 @@ describe CommentsController do
 
   describe "DELETE destroy" do
     before do
-      Comment.should_receive(:find).with("37").and_return(mock_comment(:destroy => true))
+      Comment.should_receive(:find).with("37").and_return(mock_comment(:destroy => true, :editable_by => false))
     end
     
-    it "destroys the requested comment" do
+    it "destroys the requested comment (if it's editable)" do
+      mock_comment.should_receive(:editable_by).and_return(true)
       mock_comment.should_receive(:destroy)
+      delete :destroy, :id => "37"
+    end
+    
+    it "should not destroys the requested comment (if it's not editable)" do
+      mock_comment.should_receive(:editable_by).and_return(false)
+      mock_comment.should_not_receive(:destroy)
       delete :destroy, :id => "37"
     end
 
