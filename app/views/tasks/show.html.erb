@@ -2,6 +2,10 @@
   <%= task_state_checkbox(@task) %>
   <%=h @task.text %>
   <%= task_description(@task) %>
+  <ul>
+    <li><%= link_to t(:edit), [:edit, @task], :class => "edit" %></li>
+    <li><%= link_to_delete t(:delete), @task, :class => "delete", :confirm => t(:'tasks.task.confirm') %></li>
+  </ul>
 </div>
 <% if @task.comments.size > 0 %>
 <h3><icon name="comments"><%=t :'.comments', :count => @task.comments.size %></h3>
