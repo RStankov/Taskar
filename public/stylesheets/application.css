@@ -720,7 +720,7 @@ b  ackground: url(../images/sprite.png) 0 0 no-repeat;
 }
 
 #tasks .task {
-  padding: 10px 10px 25px;
+  padding: 10px 10px 10px;
   position: relative;
 }
 
