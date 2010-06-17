@@ -26,8 +26,12 @@ class CommentsController < ApplicationController
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
-
-    redirect_to task_path(@comment.task, :anchor => "new_comment")
+    
+    if request.xhr?
+      head :ok
+    else
+      redirect_to task_path(@comment.task, :anchor => "new_comment")
+    end
   end
   
   private 

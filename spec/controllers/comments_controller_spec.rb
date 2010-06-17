@@ -112,16 +112,25 @@ describe CommentsController do
   end
 
   describe "DELETE destroy" do
+    before do
+      Comment.should_receive(:find).with("37").and_return(mock_comment(:destroy => true))
+    end
+    
     it "destroys the requested comment" do
-      Comment.should_receive(:find).with("37").and_return(mock_comment)
       mock_comment.should_receive(:destroy)
       delete :destroy, :id => "37"
     end
 
     it "redirects to the comments list" do
-      Comment.stub(:find).and_return(mock_comment(:destroy => true))
-      delete :destroy, :id => "1"
+      delete :destroy, :id => "37"
       response.should redirect_to(task_url(mock_comment.task, :anchor => "new_comment"))
+    end
+    
+    it "returns ok when this is xhr request" do
+      xhr :delete, :destroy, :id => "37"
+      
+      response.should be_success
+      response.should_not redirect_to(task_url(mock_comment.task, :anchor => "new_comment"))
     end
   end
 
