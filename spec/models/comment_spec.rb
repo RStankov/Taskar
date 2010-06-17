@@ -19,14 +19,29 @@ describe Comment do
       @comment.editable_by(Factory(:user)).should be_false
     end
     
-    it "should be true for the current user (if updated_at in Comment.EDITABLE_BY time)" do
+    it "should be true for the current user (if updated_at in Comment::EDITABLE_BY time)" do
       @comment.updated_at = Time.now
       @comment.editable_by(@comment.user).should be_true
     end
     
-    it "should be false for the current user (if updated_at out of Comment.EDITABLE_BY time)" do
+    it "should be false for the current user (if updated_at out of Comment::EDITABLE_BY time)" do
       @comment.updated_at = Time.now - 2 * Comment::EDITABLE_BY
       @comment.editable_by(@comment.user).should be_false
+    end
+  end
+  
+  describe "editable_for" do 
+    before do
+      @comment = Factory(:comment)
+    end
+     
+    it "should return diffrence between Comment::EDITABLE_BY and updated_at " do
+      @comment.editable_for.should == (((@comment.updated_at + Comment::EDITABLE_BY) - Time.now) / 60).ceil
+    end
+    
+    it "should return 0 if this is not editable" do
+      @comment.updated_at = Time.now - 2 * Comment::EDITABLE_BY
+      @comment.editable_for.should == 0
     end
   end
 end
