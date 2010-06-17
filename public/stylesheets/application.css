@@ -1044,6 +1044,19 @@ footer span:hover {
   font-weight: normal;
 }
 
+.comment .actions {
+  float: right;
+  font-size: 12px;
+  font-weight: normal;
+  padding: 5px;
+  margin-left: 5px;
+  margin-top: -5px;
+  background-color: #fd7;
+  border-radius: 5px;
+   -moz-border-radius: 5px;
+   -webkit-border-radius: 5px;
+}
+
 #new_comment {
   border-top: 1px solid #eee;
   margin: 0 10px;

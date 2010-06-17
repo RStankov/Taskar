@@ -3,6 +3,13 @@
   <div>
     <h4>
       <%= link_to comment.user.full_name, :anchor => "comment_#{comment.id}" %>
+      <% if comment.editable_by(current_user) %>
+      <span class="actions">
+        <%=t :'.editable_for', :minutes => comment.editable_for %>
+        <%= link_to t(:edit), [:edit, comment], :class => "edit" %>
+        <%= link_to t(:delete), comment, :class => "delete", :confirm => t(:'.confirm') %>
+      </span>
+      <% end %>
       <%= time_tag(comment.updated_at) %>
     </h4>
     <%= simple_format h(comment.text) %>

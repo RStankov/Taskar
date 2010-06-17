@@ -66,6 +66,11 @@ bg:
   
   
   comments:
+    comment:
+        editable_for: "редактируем за oще {{minutes}} минути" 
+        confirm: "Сигурни ли сте, че искате да изтриете този коментар"
+    
+      
     new_form:
       title: "Нов коментар"
       submit: "Коментирай"
