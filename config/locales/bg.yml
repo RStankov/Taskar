@@ -1,6 +1,6 @@
 bg: 
   project: "Проект"
-  copywrite: '© {{year}} Радослав Станков'
+  copywrite: '© %{year} Радослав Станков'
   scroll_to_top: "Нагоре"
   create: "Добави"
   cancel: "Откажи"
@@ -18,10 +18,10 @@ bg:
       new_section: "Нова секция"
       tasks:
         one: "Една задача"
-        other: "{{count}} задачи"
+        other: "%{count} задачи"
       
       people_in_project: "Участници в проекта"
-      last_activity: "Последно активен в {{time}}"
+      last_activity: "Последно активен в %{time}"
     
   
   sections:
@@ -42,19 +42,19 @@ bg:
       confirm: "Сигурни ли сте, че искате да изтриете тази задача?"
       comments:
         one: "Един коментар"
-        other: "{{count}} Коментара"
+        other: "%{count} Коментара"
       
       subtasks:
         one: "Една подзадача"
-        other: "{{count}} Подзадачи"
+        other: "%{count} Подзадачи"
       
       files:
         one: "Един файл"
-        other: "{{count}} Файлове"
+        other: "%{count} Файлове"
       
     show:
-      description: "от {{from}} за {{to}} на {{on}} до {{due}}"
-      comments: "Коментари({{count}})"
+      description: "от %{from} за %{to} на %{on} до %{due}"
+      comments: "Коментари(%{count})"
     
     form:
       text: "Какво има да се прави:"
@@ -67,7 +67,7 @@ bg:
   
   comments:
     comment:
-        editable_for: "редактируем за oще {{minutes}} минути" 
+        editable_for: "редактируем за oще %{minutes} минути" 
         confirm: "Сигурни ли сте, че искате да изтриете този коментар"
     
       
