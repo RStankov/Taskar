@@ -1030,6 +1030,38 @@ footer span:hover {
   color: #808080;
 }
 
+#task_title .actions {
+  display: none;
+  float: right;
+  font-size: 11px;
+  vertical-align: top;
+}
+
+#task_title .actions a {
+  text-decoration: none;
+  padding: 5px;
+}
+
+#task_title:hover .actions {
+  display: inline-block;
+}
+
+#task_title .edit {
+  background-color: #00589D;
+  border: 0;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  color: #fff;
+  margin-left: 10px;
+}
+
+#task_title .delete {
+  background: none;
+  border: 0;
+  color: #5c5c5c;
+}
+
 .comment {
   padding: 10px 10px 25px;
 }
