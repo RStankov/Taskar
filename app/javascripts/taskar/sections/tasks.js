@@ -1,9 +1,5 @@
 Taskar.Sections.Tasks = {
   click: {
-    '.edit': function(e, element){
-      e.stop();
-      element.request();
-    },
     'a.cancel': function(e, element){
       e.stop();
       element.request();
