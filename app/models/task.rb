@@ -38,4 +38,11 @@ class Task < ActiveRecord::Base
   def state=(state)
     self.status = STATES.index(state)
   end
+  
+  def self.reorder(ids)
+    position = 0
+    ids.each do |id|
+      find(id).update_attribute('position', position += 1)
+    end
+  end
 end

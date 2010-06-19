@@ -18,8 +18,8 @@ describe Task do
       @section = Factory(:section)
     end
     
-    def create_next_task
-      Factory(:task, :section_id => @section.id)
+    def create_next_task(section = @section)
+      Factory(:task, :section_id => section.id)
     end
     
     def should_have_order_of(*tasks)
@@ -68,6 +68,39 @@ describe Task do
         should_have_order_of(@task_1, @task_2, @task_3, @task)
       end
       
+    end
+  
+    describe "reorder" do
+      before do
+        @task_1 = create_next_task
+        @task_2 = create_next_task
+        @task_3 = create_next_task
+        @task_4 = create_next_task
+      end
+      
+      it "should take array of task ids and sort them" do
+        Task.reorder([@task_2.id, @task_4.id, @task_1.id, @task_3.id])
+        
+        should_have_order_of @task_2, @task_4, @task_1, @task_3
+      end
+      
+      it "should ensure that given tasks don't change their parent_ids" do
+        s2  = Factory(:section)
+        t21 = create_next_task(s2)
+        t22 = create_next_task(s2)
+        
+        Task.reorder([@task_3.id, t21.id, @task_1.id, t22.id, @task_4.id, @task_2.id])
+        
+        should_have_order_of @task_3, @task_1, @task_4, @task_2
+        
+        [@task_3, @task_1, @task_4, @task_2].each do |task|
+          task.reload.section_id.should == @section.id
+        end
+        
+        [t21, t22].each do |task|
+          task.reload.section_id.should == s2.id
+        end
+      end
     end
   end
 
@@ -130,4 +163,5 @@ describe Task do
       task_with_state('rejected').status.should == -1
     end
   end
+  
 end
