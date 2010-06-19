@@ -20,11 +20,15 @@ Taskar.UI.StateCheckboxObserver.callback = (function(){
   
   function changeState(element){
     var current = element.getAttribute('data-state'),
-        next    = nextState(current);
+        next    = nextState(current),
+        parent  = element.up('.task');
     
     element.setAttribute('data-state', next);
     element.replaceClassName(current, next);
-    element.up('.task').replaceClassName(current, next);
+    
+    if (parent){
+      parent.replaceClassName(current, next);
+    }
   }
   
   function clearTimer(element){
