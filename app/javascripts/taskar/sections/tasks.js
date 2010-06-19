@@ -19,16 +19,6 @@ Taskar.Sections.Tasks = {
           element.up('.task').removeWithEffect('slideUp');
         }
       });
-    },
-    '.checkbox': Taskar.UI.StateCheckboxObserver
-  },
-  'state:changed': function(e) {
-    var checkbox = e.findElement('.checkbox');
-    if (checkbox){
-      new Ajax.Request(checkbox.getAttribute('data-url'), {
-        method:     'put',
-        parameters: {state: checkbox.getAttribute('data-state')}
-      });
     }
   },
   'key:esc': {

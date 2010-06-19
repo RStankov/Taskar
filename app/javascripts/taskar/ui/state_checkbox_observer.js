@@ -1,4 +1,14 @@
-Taskar.UI.StateCheckboxObserver = (function(){
+Taskar.UI.StateCheckboxObserver = function(){
+  document.on('click', '.checkbox', Taskar.UI.StateCheckboxObserver.callback);
+  document.on('state:changed', '.checkbox', function(e, checkbox){
+    new Ajax.Request(checkbox.getAttribute('data-url'), {
+      method:     'put',
+      parameters: {state: checkbox.getAttribute('data-state')}
+    });
+  });
+};
+
+Taskar.UI.StateCheckboxObserver.callback = (function(){
   function nextState(state){
     switch(state){
       case 'opened':    return 'completed';
