@@ -30,7 +30,11 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
 
     if @task.update_attributes(params[:task])
-      render :action => "show"
+      if request.xhr?
+        render :action => "show"
+      else
+        redirect_to @task
+      end
     else
       render :action => "edit"
     end

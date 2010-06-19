@@ -119,9 +119,14 @@ describe TasksController do
         assigns[:task].should equal(mock_task)
       end
 
-      it "renders show action" do
-        put :update, params
+      it "renders show action if xhr" do
+        xhr :put, :update, params
         response.should render_template("show")
+      end
+      
+      it "redirects to tasks_url if not xhr" do
+        put :update, params
+        response.should redirect_to(task_url(mock_task))        
       end
     end
 

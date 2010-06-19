@@ -1,4 +1,13 @@
 <% javascript_response do %>
-  $('task_<%= @task.id %>').replace("<%= escape_javascript(render @task) %>");
-  $('task_<%= @task.id %>').highlight();
+  (function(){
+    var element = $('task_title');
+    if (element){
+      element.replace("<%= escape_javascript(render 'task_title') %>");
+    } else {
+      element = $('task_<%= @task.id %>');
+      element.replace("<%= escape_javascript(render @task) %>");
+    }
+    element.highlight();
+  })();
 <% end %>
+

@@ -22,6 +22,11 @@ document.on('click', 'a[data-method=delete]', function(e, element){
 	}
 });
 
+document.on('click', 'a[data-remote]', function(e, element){
+  e.stop();
+  element.request();
+});
+
 document.observe('keyup', function(e){
   if (e.keyCode == Event.KEY_ESC){
     e.findElement().fire('key:esc');
