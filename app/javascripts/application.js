@@ -6,6 +6,7 @@ var CD3 = {};
 //= require <cd3/behaviors>
 //= require <cd3/extensions>
 
+//= require "dragdrop"
 //= require "rails"
 //= require "taskar"
 //= require "behaviors"

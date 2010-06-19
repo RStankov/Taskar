@@ -4,7 +4,7 @@
   <p><a href="#"><strong>RStankov</strong></a> <%=h task.text %></p>
   <span class="more">...<%=t :'.more' %></span>
   <%= time_tag task.created_at %>
-  <input class="drag" type="button" title="<%=t :'.dnd' %>" />
+  <a href="#" class="drag" title="<%=t :'.dnd' %>"></a>
   <ul>
     <li><%= link_to t(:'.comments', :count => task.comments.size), task %></li>
     <li><%= link_to t(:edit), [:edit, task], :class => "edit", "data-remote" => true %></li>

@@ -4,6 +4,9 @@ Taskar.Sections.Tasks = {
       e.findElement('li').slideUp();
     },
   },
+  mousedown: {
+    '.drag': Taskar.Dnd.startSorting
+  },
   'ajax:delete': {
     '.task': function(e, element){
       element.removeWithEffect('slideUp');
