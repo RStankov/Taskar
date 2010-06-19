@@ -7,14 +7,10 @@ Taskar.Sections.Tasks = {
     'input.cancel': function(e, element){
       e.findElement('li').slideUp();
     },
-    '.delete': function(e, element){
-      e.stop();
-      element.request({
-        method: 'delete',
-        onCreate: function(){
-          element.up('.task').removeWithEffect('slideUp');
-        }
-      });
+  },
+  'ajax:delete': {
+    '.task': function(e, element){
+      element.removeWithEffect('slideUp');
     }
   },
   'key:esc': {

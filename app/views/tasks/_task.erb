@@ -8,6 +8,6 @@
   <ul>
     <li><%= link_to t(:'.comments', :count => task.comments.size), task %></li>
     <li><%= link_to t(:edit), [:edit, task], :class => "edit", "data-remote" => true %></li>
-    <li><%= link_to t(:delete), task, :class => "delete", "data-confirm" => t(:'.confirm') %></li>
+    <li><%= link_to t(:delete), task, :class => "delete", "data-remote" => true, "data-method" => "delete", "data-confirm" => t(:'.confirm') %></li>
   </ul>
 <% end %>
