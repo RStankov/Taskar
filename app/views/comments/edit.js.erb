@@ -1,0 +1,7 @@
+<% javascript_response do %>
+  (function(element){
+    element.update("<%= escape_javascript(render "edit_form") %>");
+    element.highlight();
+    element.down('textarea').focus();
+  })($('comment_<%= @comment.id %>'));
+<% end %>

@@ -65,15 +65,17 @@ bg:
     
   
   
-  comments:
+  comments:    
+    preview: "Преглед"
     comment:
-        editable_for: "редактируем за oще %{minutes} минути" 
-        confirm: "Сигурни ли сте, че искате да изтриете този коментар"
+      editable_for: "редактируем за oще %{minutes} минути" 
+      confirm: "Сигурни ли сте, че искате да изтриете този коментар"
     
       
     new_form:
       title: "Нов коментар"
       submit: "Коментирай"
-      preview: "Преглед" 
   
-      
+    edit_form:
+      submit: "Промени коментара"
+    

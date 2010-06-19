@@ -1,0 +1,3 @@
+<% javascript_response do %>
+  $('comment_<%= @comment.id %>').replace("<%= escape_javascript(render @comment) %>");
+<% end %>
