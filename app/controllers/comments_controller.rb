@@ -1,4 +1,10 @@
 class CommentsController < ApplicationController  
+  def show
+    @comment = Comment.find(params[:id])
+    
+    redirect_to_comment unless request.xhr?
+  end
+  
   def edit
     @comment = Comment.find(params[:id])
   end

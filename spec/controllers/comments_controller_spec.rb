@@ -21,6 +21,27 @@ describe CommentsController do
   before do
     sign_in Factory(:user)
   end
+  
+  describe "GET show" do
+    before do
+      Comment.should_receive(:find).with("1").and_return(mock_comment)
+    end
+    
+    it "assign retrieved comment as @comment" do
+      get :show, :id => "1"
+      assigns[:comment].should == mock_comment
+    end
+    
+    it "renders show action on xhr" do
+      xhr :get, :show, :id => "1"
+      response.should render_template('show')
+    end
+    
+    it "redirects to comment page on non xhr request" do
+      get :show, :id => "1"
+      response.should redirect_to(task_url(mock_comment.task, :anchor => "comment_#{mock_comment.id}"))
+    end
+  end
 
   describe "POST create" do
     before do

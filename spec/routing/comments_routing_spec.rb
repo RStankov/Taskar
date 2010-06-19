@@ -7,11 +7,11 @@ describe CommentsController do
     end
 
     it "recognizes and generates #new" do
-      { :get => "/comments/new" }.should_not be_routable
+      { :get => "/comments/new" }.should  route_to(:controller => "comments", :action => "show", :id => "new")
     end
 
     it "recognizes and generates #show" do
-      { :get => "/comments/1" }.should_not be_routable
+      { :get => "/comments/1" }.should route_to(:controller => "comments", :action => "show", :id => "1")
     end
 
     it "recognizes and generates #edit" do

@@ -3,5 +3,5 @@
    <%= form.text_area :text, :cols => nil, :rows => nil %>
    <%= form.submit t(:'.submit') %> | 
    <input type="button" class="preview" value="<%=t :'comments.preview' %>"> |
-   <%= link_to t(:'tasks.form.cancel'), @task, :class => "cancel", "data-remote" => true %>
+   <%= link_to t(:'tasks.form.cancel'), @comment, :class => "cancel", "data-remote" => true %>
 <% end %>
