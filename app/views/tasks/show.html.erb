@@ -1,13 +1,5 @@
 <div id="task_title">
-  <span class="actions">
-    <%= link_to t(:edit), [:edit, @task], :class => "edit" %>
-    <%= link_to_delete t(:delete), @task, :class => "delete", :confirm => t(:'tasks.task.confirm') %>
-  </span>
-  <%= task_state_checkbox(@task) %>
-  <%= simple_format h(@task.text) %>
-  <div>
-    <%= task_description(@task) %>
-  </div>
+  <%= render "task_title" %>
 </div>
 <% if @task.comments.size > 0 %>
 <h3><icon name="comments"><%=t :'.comments', :count => @task.comments.size %></h3>
