@@ -1,4 +1,6 @@
-class CommentsController < ApplicationController  
+class CommentsController < ApplicationController
+  before_filter :get_comment_and_ensure_its_editable, :only => [:edit, :update, :destroy]
+  
   def show
     @comment = Comment.find(params[:id])
     
@@ -6,7 +8,6 @@ class CommentsController < ApplicationController
   end
   
   def edit
-    @comment = Comment.find(params[:id])
   end
 
   def create
@@ -20,8 +21,6 @@ class CommentsController < ApplicationController
   end
 
   def update
-    @comment = Comment.find(params[:id])
-
     if @comment.update_attributes(params[:comment])
       if request.xhr?
         render :action => "show"
@@ -34,8 +33,7 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = Comment.find(params[:id])
-    @comment.destroy if @comment.editable_by(current_user)
+    @comment.destroy
     
     if request.xhr?
       head :ok
@@ -45,6 +43,18 @@ class CommentsController < ApplicationController
   end
   
   private 
+    def get_comment_and_ensure_its_editable
+      @comment = Comment.find(params[:id])
+      
+      unless @comment.editable_by(current_user)
+        if request.xhr?
+          head :bad_request
+        else
+          redirect_to_comment
+        end
+      end
+    end
+
     def redirect_to_comment
       redirect_to task_path(@comment.task, :anchor => "comment_#{@comment.id}")
     end

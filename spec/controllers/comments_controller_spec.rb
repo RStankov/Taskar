@@ -88,9 +88,27 @@ describe CommentsController do
 
   end
 
+  describe "GET edit" do 
+    before do
+      Comment.should_receive(:find).with("1").and_return(mock_comment)
+      mock_comment.stub!(:editable_by).and_return(true)
+      
+      get :edit, :id => "1"
+    end
+    
+    it "assigns comment as @comment" do
+      assigns[:comment].should == mock_comment
+    end
+    
+    it "renders edit template" do
+      response.should render_template(:edit)
+    end
+  end
+
   describe "PUT update" do
     before do
       Comment.should_receive(:find).with("1").and_return(mock_comment)
+      mock_comment.stub!(:editable_by).and_return(true)
     end
 
     def params
@@ -147,6 +165,7 @@ describe CommentsController do
   describe "DELETE destroy" do
     before do
       Comment.should_receive(:find).with("37").and_return(mock_comment(:destroy => true, :editable_by => false))
+      mock_comment.stub!(:editable_by).and_return(true)
     end
     
     it "destroys the requested comment (if it's editable)" do
@@ -155,12 +174,6 @@ describe CommentsController do
       delete :destroy, :id => "37"
     end
     
-    it "should not destroys the requested comment (if it's not editable)" do
-      mock_comment.should_receive(:editable_by).and_return(false)
-      mock_comment.should_not_receive(:destroy)
-      delete :destroy, :id => "37"
-    end
-
     it "redirects to the comments list" do
       delete :destroy, :id => "37"
       response.should redirect_to(task_url(mock_comment.task, :anchor => "new_comment"))
@@ -172,6 +185,59 @@ describe CommentsController do
       response.should be_success
       response.should_not redirect_to(task_url(mock_comment.task, :anchor => "new_comment"))
     end
+  end
+
+  describe "get_comment_and_ensure_its_editable filter (with not editable comment)" do
+    before do
+      Comment.should_receive(:find).with("1").and_return(mock_comment)
+      mock_comment.stub!(:editable_by).and_return(false)
+    end
+
+    
+    describe "sets status to :bad_request, on xhr" do
+      it "on GET edit" do
+        xhr :get, :edit, :id => "1"
+        
+        response.should_not be_success
+      end
+      
+      it "on PUT update" do
+        xhr :put, :update, :id => "1"
+      
+        response.should_not be_success
+      end
+    
+      it "on DELETE destroy" do
+        xhr :delete, :destroy, :id => "1"
+        
+        response.should_not be_success
+      end
+    end
+    
+    describe "redirect" do
+      def redirect_to_comment
+        redirect_to(task_url(mock_comment.task, :anchor => "comment_#{mock_comment.id}"))
+      end
+      
+      it "on GET edit" do
+        get :edit, :id => "1"
+        
+        response.should redirect_to_comment
+      end
+      
+      it "on PUT update" do
+        put :update, :id => "1"
+      
+        response.should redirect_to_comment
+      end
+    
+      it "on DELETE destroy" do
+        delete :destroy, :id => "1"
+        
+        response.should redirect_to_comment
+      end
+    end
+    
   end
 
 end
