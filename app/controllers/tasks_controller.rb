@@ -58,4 +58,10 @@ class TasksController < ApplicationController
     
     head :ok
   end
+  
+  def reorder 
+    Task.reorder(params[:tasks])
+    
+    head :ok
+  end
 end

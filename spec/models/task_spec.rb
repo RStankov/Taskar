@@ -78,6 +78,10 @@ describe Task do
         @task_4 = create_next_task
       end
       
+      it "should accept nil as argument" do
+        lambda { Task.reorder( nil ) }.should_not raise_error
+      end
+      
       it "should take array of task ids and sort them" do
         Task.reorder([@task_2.id, @task_4.id, @task_1.id, @task_3.id])
         

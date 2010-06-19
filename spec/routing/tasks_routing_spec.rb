@@ -17,6 +17,10 @@ describe TasksController do
     it "recognizes and generates #update" do
       { :put => "/tasks/1" }.should route_to(:controller => "tasks", :action => "update", :id => "1") 
     end
+  
+    it "recognizes and generates #reorder" do
+      { :put => "projects/1/sections/2/tasks/reorder" }.should route_to(:controller => "tasks", :action => "reorder", :project_id => "1", :section_id => "2") 
+    end
 
     it "recognizes and generates #destroy" do
       { :delete => "/tasks/1" }.should route_to(:controller => "tasks", :action => "destroy", :id => "1") 
