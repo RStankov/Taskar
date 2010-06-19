@@ -756,13 +756,13 @@ b  ackground: url(../images/sprite.png) 0 0 no-repeat;
   width: 16px;
 }
 
-.completed .checkbox:after {
+.checkbox.completed:after {
   content: "✔";
   display: inline-block;
   margin: -2px 0 0 1px;
 }
 
-.rejected .checkbox:after {
+.checkbox.rejected:after {
   content: "✘";
   display: inline-block;
   margin: -2px 0 0 3px;
