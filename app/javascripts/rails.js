@@ -1,4 +1,4 @@
-(function(){
+(function(){  
   document.on('click', 'a[data-method=delete]', function(e, element){
   	if (element.hasAttribute('data-remote')) return;
 
@@ -15,13 +15,15 @@
   	}
   });
   
-  function request(e, element){
-    e.stop();
-    element.request();
+  function handleRemote(e, element){
+    if (!e.stopped){
+      e.stop();
+      element.request();
+    }
   }
 
-  document.on('click', 'a[data-remote=true]', request);
-  document.on('submit', 'form[data-remote=true]', request);
+  document.on('click', 'a[data-remote=true]', handleRemote);
+  document.on('submit', 'form[data-remote=true]', handleRemote);
   
   document.observe('keyup', function(e){
     if (e.keyCode == Event.KEY_ESC){
