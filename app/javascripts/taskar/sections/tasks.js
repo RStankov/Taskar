@@ -1,9 +1,5 @@
 Taskar.Sections.Tasks = {
   click: {
-    'a.cancel': function(e, element){
-      e.stop();
-      element.request();
-    },
     'input.cancel': function(e, element){
       e.findElement('li').slideUp();
     },
