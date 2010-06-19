@@ -38,7 +38,7 @@ class CommentsController < ApplicationController
     if request.xhr?
       head :ok
     else
-      redirect_to task_path(@comment.task, :anchor => "new_comment")
+      redirect_to task_path(@comment.task)
     end
   end
   

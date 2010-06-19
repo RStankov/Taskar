@@ -176,14 +176,14 @@ describe CommentsController do
     
     it "redirects to the comments list" do
       delete :destroy, :id => "37"
-      response.should redirect_to(task_url(mock_comment.task, :anchor => "new_comment"))
+      response.should redirect_to(task_url(mock_comment.task))
     end
     
     it "returns ok when this is xhr request" do
       xhr :delete, :destroy, :id => "37"
       
       response.should be_success
-      response.should_not redirect_to(task_url(mock_comment.task, :anchor => "new_comment"))
+      response.should_not redirect_to(task_url(mock_comment.task))
     end
   end
 
