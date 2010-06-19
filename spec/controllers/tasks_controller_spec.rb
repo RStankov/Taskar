@@ -97,43 +97,50 @@ describe TasksController do
   end
 
   describe "PUT update" do
-
+    before do
+      Task.should_receive(:find).with("1").and_return(mock_task)
+    end
+    
+    def params
+      {:id => "1", :task => {:these => 'params'}}
+    end
+    
     describe "with valid params" do
+      before do
+        mock_task.should_receive(:update_attributes).with("these" => "params").and_return(true)
+      end
+      
       it "updates the requested task" do
-        Task.should_receive(:find).with("37").and_return(mock_task)
-        mock_task.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, :id => "37", :task => {:these => 'params'}
+        put :update, params
       end
 
       it "assigns the requested task as @task" do
-        Task.stub(:find).and_return(mock_task(:update_attributes => true))
-        put :update, :id => "1"
+        put :update, params
         assigns[:task].should equal(mock_task)
       end
 
       it "renders show action" do
-        Task.stub(:find).and_return(mock_task(:update_attributes => true))
-        put :update, :id => "1"
+        put :update, params
         response.should render_template("show")
       end
     end
 
     describe "with invalid params" do
+      before do
+        mock_task.should_receive(:update_attributes).with("these" => "params").and_return(false)
+      end
+      
       it "updates the requested task" do
-        Task.should_receive(:find).with("37").and_return(mock_task)
-        mock_task.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, :id => "37", :task => {:these => 'params'}
+        put :update, params
       end
 
       it "assigns the task as @task" do
-        Task.stub(:find).and_return(mock_task(:update_attributes => false))
-        put :update, :id => "1"
+        put :update, params
         assigns[:task].should equal(mock_task)
       end
 
       it "re-renders the 'edit' template" do
-        Task.stub(:find).and_return(mock_task(:update_attributes => false))
-        put :update, :id => "1"
+        put :update, params
         response.should render_template('edit')
       end
     end
