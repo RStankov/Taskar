@@ -203,7 +203,7 @@ describe TasksController do
     it "should call Tasks.reorder with the given ids" do
       Task.should_receive(:reorder).with(["1", "2", "3", "4"])
       
-      xhr :put, :reorder, :tasks => ["1", "2", "3", "4"], :project_id => "1", :section_id => "2"
+      xhr :put, :reorder, :items => ["1", "2", "3", "4"], :project_id => "1", :section_id => "2"
     end
     
     it "should not render template" do

@@ -225,8 +225,18 @@ var Draggable = Class.create({
   initialize: function(element) {
     var defaults = {
       handle: false,
-      reverteffect: Prototype.emptyFunction,
-      endeffect: Prototype.emptyFunction,
+      reverteffect: function(element, top, left) {
+        new S2.FX.Style(element, {
+          style:    {top: '-' + top + 'px', left: '-' + left + 'px'},
+          duration: Math.sqrt(Math.abs(top^2)+Math.abs(left^2))*0.02
+        }).play();
+      },
+      endeffect: function(element) {
+        new S2.FX.Style(element, {
+          style:    {opacity: element._opacity || 1.0},
+          duration: 0.2
+        }).play();
+      },
       zindex: 1000,
       revert: false,
       quiet: false,
@@ -239,7 +249,11 @@ var Draggable = Class.create({
 
     if(!arguments[1] || Object.isUndefined(arguments[1].endeffect))
       Object.extend(defaults, {
-        starteffect: Prototype.emptyFunction
+        starteffect: function(element) {
+          element._opacity = Element.getOpacity(element);
+          Draggable._dragging[element] = true;
+          new S2.FX.Style(element.setOpacity(element._opacity), {style: {opacity: 0.7}, duraction: 0.2}).play();
+        }
       });
 
     var options = Object.extend(defaults, arguments[1] || { });
@@ -721,8 +735,11 @@ var Sortable = {
 
   // return all suitable-for-sortable elements in a guaranteed order
   findElements: function(element, options) {
+    return element.select('> ' + options.tag);
+/*
     return Element.findChildren(
       element, options.only, options.tree ? true : false, options.tag);
+*/
   },
 
   findTreeElements: function(element, options) {

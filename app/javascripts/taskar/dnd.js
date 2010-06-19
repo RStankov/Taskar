@@ -9,10 +9,22 @@ Taskar.Dnd = {
       }
   }),
   startSorting: function(e, element){
-    var item = element.up('li'),
-        list = item.up('ul');
-
-    Sortable.create(list);
+    var item    = element.up('li'),
+        list    = item.up('ul'),
+        options = {
+          tag: list.getAttribute('data-sort') || 'li'
+        };
+        
+    if (list.getAttribute('data-sortable')){
+      options.onUpdate = function(){
+        new Ajax.Request(list.getAttribute('data-sortable'), {
+					method: 	'put',
+					parameters: Sortable.serialize(list.identify(), {name: 'items'})
+				});
+      }
+    }
+    
+    Sortable.create(list, options);
 
     var drag = Sortable.sortables[ list.identify() ].draggables.find(function(drag){ return drag.element == item; });
     if (drag){

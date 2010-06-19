@@ -60,7 +60,7 @@ class TasksController < ApplicationController
   end
   
   def reorder 
-    Task.reorder(params[:tasks])
+    Task.reorder(params[:items])
     
     head :ok
   end
