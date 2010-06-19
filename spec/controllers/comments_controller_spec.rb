@@ -82,15 +82,20 @@ describe CommentsController do
       end
       
       it "updates the requested comment" do
-        put :update, params
+        xhr :put, :update, params
       end
 
       it "assigns the requested comment as @comment" do
-        put :update, params
+        xhr :put, :update, params
         assigns[:comment].should equal(mock_comment)
       end
+      
+      it "renders show action if this is xhr request" do
+        xhr :put, :update, params
+        response.should render_template('show')
+      end
 
-      it "redirects to the comment" do
+      it "redirects to the comment if not xhr request" do
         put :update, params
         response.should redirect_to(task_url(mock_comment.task, :anchor => "comment_#{mock_comment.id}"))
       end

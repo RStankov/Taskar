@@ -17,7 +17,11 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
 
     if @comment.update_attributes(params[:comment])
-      redirect_to_comment
+      if request.xhr?
+        render :action => "show"
+      else
+        redirect_to_comment
+      end
     else
       render :action => "edit"
     end
