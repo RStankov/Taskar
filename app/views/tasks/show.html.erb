@@ -1,7 +1,9 @@
 <div id="task_title">
   <%= task_state_checkbox(@task) %>
-  <%=h @task.text %>
-  <%= task_description(@task) %>
+  <%= simple_format h(@task.text) %>
+  <div>
+    <%= task_description(@task) %>
+  </div>
   <ul>
     <li><%= link_to t(:edit), [:edit, @task], :class => "edit" %></li>
     <li><%= link_to_delete t(:delete), @task, :class => "delete", :confirm => t(:'tasks.task.confirm') %></li>
