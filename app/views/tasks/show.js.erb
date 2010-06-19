@@ -2,7 +2,7 @@
   (function(){
     var element = $('task_title');
     if (element){
-      element.replace("<%= escape_javascript(render 'task_title') %>");
+      element.update("<%= escape_javascript(render 'task_title') %>");
     } else {
       element = $('task_<%= @task.id %>');
       element.replace("<%= escape_javascript(render @task) %>");

@@ -1,4 +1,4 @@
-<% form_for @task, :html => {:class => nil, :id => nil} do |form| %>
+<% form_for @task, :html => {:class => nil, :id => nil, :'data-remote' => true} do |form| %>
    <%= form.error_messages %>
    <%= form.label :text, t(:'tasks.form.text') %>
    <%= form.text_area :text, :cols => nil, :rows => nil %>

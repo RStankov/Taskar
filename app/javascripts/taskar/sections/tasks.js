@@ -30,10 +30,6 @@ Taskar.Sections.Tasks = {
     }
   },
   submit: {
-    '.task form': function(e, form){
-      e.stop();
-      form.request();
-    },
     '#new_task form': function(e, form){
       e.stop();
       form.request();
