@@ -7,7 +7,6 @@ class SectionsController < ApplicationController
 
   def show
     @section = Section.find(params[:id])
-    @project = @section.project
   end
 
   def new
@@ -16,7 +15,6 @@ class SectionsController < ApplicationController
   
   def edit
     @section = Section.find(params[:id])
-    @project = @section.project
   end
 
   def create

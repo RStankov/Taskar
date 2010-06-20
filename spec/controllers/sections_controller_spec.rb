@@ -40,10 +40,6 @@ describe SectionsController do
     it "assigns the requested section as @section" do
       assigns[:section].should == mock_section
     end
-    
-    it "assigns project as @project" do
-      assigns[:project].should == mock_project
-    end
   end
 
   describe "GET new" do
@@ -73,10 +69,6 @@ describe SectionsController do
     
     it "assigns the requested section as @section" do
       assigns[:section].should == mock_section
-    end
-    
-    it "assigns project as @project" do
-      assigns[:project].should == mock_project
     end
   end
 
