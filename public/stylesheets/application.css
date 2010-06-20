@@ -517,11 +517,18 @@ aside {
   text-decoration: none;
 }
 
-#live_search .selected {
-  color: #000;
+#live_search li {
+  padding: 5px;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
 }
 
-#live_search a:hover, #live_search strong {
+#live_search .selected {
+  background-color: #EEE;
+}
+
+#live_search strong {
   color: #00589d;
 }
 
