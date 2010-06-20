@@ -118,42 +118,39 @@ describe SectionsController do
 
   describe "PUT update" do
     describe "with valid params" do
+      before do
+        Section.should_receive(:find).with("1").and_return(mock_section)
+        mock_section.should_receive(:update_attributes).with({'these' => 'params'}).and_return(true)
+        
+        put :update, :id => "1", :section => {:these => 'params'}
+      end
+      
       it "updates the requested section" do
-        Section.should_receive(:find).with("37").and_return(mock_section)
-        mock_section.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, :id => "37", :section => {:these => 'params'}
       end
 
       it "assigns the requested section as @section" do
-        Section.stub(:find).and_return(mock_section(:update_attributes => true))
-        put :update, :id => "1"
         assigns[:section].should equal(mock_section)
       end
 
       it "redirects to the section" do
-        Section.stub(:find).and_return(mock_section(:update_attributes => true))
-        put :update, :id => "1"
         response.should redirect_to(section_url(mock_section))
       end
     end
 
     describe "with invalid params" do
-      it "updates the requested section" do
+      before do
         Section.should_receive(:find).with("37").and_return(mock_section)
-        mock_section.should_receive(:update_attributes).with({'these' => 'params'})
+        mock_section.should_receive(:update_attributes).with({'these' => 'params'}).and_return(false)
+        
         put :update, :id => "37", :section => {:these => 'params'}
       end
 
       it "assigns the section as @section" do
-        Section.stub(:find).and_return(mock_section(:update_attributes => false))
-        put :update, :id => "1", :project_id => "1"
         assigns[:section].should equal(mock_section)
       end
 
       it "re-renders the 'edit' template" do
-        Section.stub(:find).and_return(mock_section(:update_attributes => false))
-        put :update, :id => "1", :project_id => "1"
-        response.should render_template('edit')
+        response.should render_template(:edit)
       end
     end
 
