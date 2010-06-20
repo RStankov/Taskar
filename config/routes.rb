@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|  
-  map.resources :tasks, :collection => {:reorder => :put}, :only => []
+  map.resources :tasks, :collection => {:reorder => :put, :search => :get}, :only => []
   
   map.resources :projects do |projects|
     projects.resources :sections, :shallow => true do |sections|

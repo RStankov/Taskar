@@ -63,4 +63,8 @@ class TasksController < ApplicationController
     
     head :ok
   end
+  
+  def search
+    @tasks = Task.search(params[:ss])
+  end
 end

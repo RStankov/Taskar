@@ -47,4 +47,8 @@ class Task < ActiveRecord::Base
       end
     end
   end
+  
+  def self.search(ss)
+    find :all, :conditions => ["text LIKE :ss", {:ss => "%#{ss}%"}]
+  end
 end

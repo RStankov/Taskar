@@ -209,4 +209,24 @@ describe TasksController do
       response.should be_success
     end
   end
+
+  describe "GET search" do
+    before do
+      Task.should_receive(:search).with("term").and_return([mock_task])
+      
+      get :search, :ss => "term"
+    end
+    
+    it "should search for given :ss" do
+    end
+    
+    it "should assign founded tasks as @tasks" do
+      assigns[:tasks].should == [mock_task]
+    end
+    
+    it "should render search template" do
+      response.should render_template(:search)
+    end
+  end
+
 end

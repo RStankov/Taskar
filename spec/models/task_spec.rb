@@ -168,4 +168,20 @@ describe Task do
     end
   end
   
+  describe "search" do
+    it "should find :all with :conditions => text like '%ss%'" do
+      ss = "search term"
+      
+      Task.should_receive(:find).with(:all, :conditions => ["text LIKE :ss", {:ss => "%#{ss}%"}])
+      Task.search(ss)
+    end
+    
+    it "should find all containing the given text" do
+      text = 'very specific text content'
+      task = Factory(:task, :text => text + " wrapped")
+      
+      Task.search(text).include?(task).should be_true
+    end
+  end
+  
 end

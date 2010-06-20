@@ -29,5 +29,9 @@ describe TasksController do
     it "recognizes and generates #state" do
       { :put => "/tasks/1/state" }.should route_to(:controller => "tasks", :action => "state", :id => "1") 
     end
+    
+    it "recognizes and generates #search" do
+      { :get => "/tasks/search" }.should route_to(:controller => "tasks", :action => "search")
+    end
   end
 end
