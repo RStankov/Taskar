@@ -1,3 +1,23 @@
+/*
+
+options (draggable):
+	- filter
+	- moveX
+	- moveY
+	
+options (sortable)
+	view CD3.Dnd.Sortable.DEFAULT_OPTIONS
+
+events (dragable):
+	drag:start
+	drag:move
+	drag:finish
+	
+events (sortable)
+	order:changed
+	order:updated
+
+*/
 Taskar.Dnd = (function(){
   var element, original, options, offset, style;
 
