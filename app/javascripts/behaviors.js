@@ -3,6 +3,7 @@ CD3.Behaviors({
   '#section_title': Taskar.Sections.Title,
   '#tasks':         Taskar.Sections.Tasks,
   '#comments':      Taskar.Sections.Comments,
+  '#live_search':   Taskar.UI.LiveSearch.Form,
   '#scroll_to_top:click': function(e){
     e.stop();
     var id      = this.getAttribute('href').split('#').last(),

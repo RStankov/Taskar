@@ -52,8 +52,8 @@
       <%= yield %>
     </article>
     <aside>
-      <form id="live_search">
-        <input type="text" value="" />
+      <form id="live_search" action="<%= search_tasks_path %>" method="get">
+        <input type="text" name="ss" value="" autocomplete="off" />
         <input type="submit" value="" />
         <%= image_tag "loader1.gif", :style => 'display: none;' %>
         <ul style="display: none;">
