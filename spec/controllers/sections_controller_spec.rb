@@ -160,14 +160,16 @@ describe SectionsController do
   end
 
   describe "DELETE destroy" do
-    it "destroys the requested section" do
-      Section.should_receive(:find).with("37").and_return(mock_section(:project_id => 1))
+    before do
+      Section.should_receive(:find).with("1").and_return(mock_section)
       mock_section.should_receive(:destroy)
-      delete :destroy, :id => "37"
+    end
+    
+    it "destroys the requested section" do
+      delete :destroy, :id => "1"
     end
 
     it "redirects to the sections list" do
-      Section.stub(:find).and_return(mock_section(:destroy => true, :project_id => 1))
       delete :destroy, :id => "1"
       response.should redirect_to(project_sections_url(mock_project))
     end
