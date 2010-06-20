@@ -1,5 +1,5 @@
 <% unless @tasks.size > 0 %>
-  <li>No search results</li>
+  <li><%= t(:'tasks.show.no_results_found') %></li>
 <% else %>
   <% @tasks.each do |task| %>
     <li><%= link_to highlight(h(truncate(task.text)), h(params[:ss]), :highlighter => '<strong>\1</strong>'), task %></li>

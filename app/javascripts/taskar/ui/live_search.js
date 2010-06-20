@@ -7,7 +7,7 @@ Taskar.UI.LiveSearch = Class.create({
       results:    null,
       indicator:  null,
       resultItem: 'li',
-      onSelect:	false
+      onSelect:   false
     }, options);
 
     this.url        = options.url;
@@ -26,7 +26,7 @@ Taskar.UI.LiveSearch = Class.create({
     this.showIndicator = indicator ? Element.show.curry(indicator) : Prototype.emptyFunction;
     this.hideIndicator = indicator ? Element.hide.curry(indicator) : Prototype.emptyFunction;
 
-    this.input.setAttribute('autocomplete','off');
+    this.input.setAttribute('autocomplete', 'off');
     this.input.observe('keypress',  this.handleKeypress);		
     this.input.observe('blur',      this.handleFocusOut);
     this.input.observe('change',    this.handleFocusOut);
@@ -90,7 +90,7 @@ Taskar.UI.LiveSearch = Class.create({
     this.resultsBox.select('.selected').invoke('removeClassName', 'selected');
     e.findElement(this.resultItem).addClassName('selected');
   },
-  updateSelection:function(diff){ 
+  updateSelection:function(diff){
     var selected = this.resultsBox.down('.selected');
     if (selected){
       selected.removeClassName('selected');

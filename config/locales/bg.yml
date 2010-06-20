@@ -55,6 +55,7 @@ bg:
     show:
       description: "от %{from} за %{to} на %{on} до %{due}"
       comments: "Коментари(%{count})"
+      no_results_found: "Няма намерени задачи"
     
     form:
       text: "Какво има да се прави:"
