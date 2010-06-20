@@ -48,7 +48,7 @@ class Task < ActiveRecord::Base
     end
   end
   
-  def self.search(ss)
-    find :all, :conditions => ["text LIKE :ss", {:ss => "%#{ss}%"}]
+  def self.search(ss, limit = 20)
+    find :all, :conditions => ["text LIKE :ss", {:ss => "%#{ss}%"}], :limit => limit
   end
 end
