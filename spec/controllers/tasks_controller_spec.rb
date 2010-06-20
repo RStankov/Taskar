@@ -31,10 +31,6 @@ describe TasksController do
     it "assigns task's section as @section" do
       assigns[:section].should == mock_section
     end
-    
-    it "assigns task's project as @project" do
-      assigns[:project].should == mock_project
-    end
   end
 
   describe "GET edit" do
