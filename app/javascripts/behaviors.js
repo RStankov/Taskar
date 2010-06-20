@@ -31,7 +31,7 @@ CD3.Behaviors({
 });
 
 CD3.Behaviors('#tasks', function(element){
-  var sortable = new Taskar.Dnd.Sortable(element, {
+  new Taskar.Dnd.Sortable(element, {
     list:   '#' + element.id,
     item:   'li.task',
     handle: '.drag'
