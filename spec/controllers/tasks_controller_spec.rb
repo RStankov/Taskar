@@ -57,7 +57,7 @@ describe TasksController do
       end
       
       def params
-        {:task => {:these => 'params'}, :project_id => "1", :section_id => "2"}
+        {:task => {:these => 'params'}, :section_id => "2"}
       end
       
       it "assigns a newly created task as @task" do
@@ -69,7 +69,7 @@ describe TasksController do
       it "redirects to the created task" do
         post :create, params
         
-        response.should redirect_to(project_section_url(mock_project, mock_section, :anchor => "task_#{mock_task.id}"))
+        response.should redirect_to(section_url(mock_section, :anchor => "task_#{mock_task.id}"))
       end
       
       it "renders create.rjs on xhr request" do
@@ -83,13 +83,13 @@ describe TasksController do
     describe "with invalid params" do
       it "assigns a newly created but unsaved task as @task" do
         Task.stub(:build).with({'these' => 'params'}).and_return(mock_task(:save => false))
-        post :create, :task => {:these => 'params'}, :project_id => "1", :section_id => "2"
+        post :create, :task => {:these => 'params'}, :section_id => "2"
         assigns[:task].should equal(mock_task)
       end
 
       it "re-renders the 'new' template" do
         Task.stub(:build).and_return(mock_task(:save => false))
-        post :create, :task => {}, :project_id => "1", :section_id => "2"
+        post :create, :task => {}, :section_id => "2"
         response.should render_template("_new")
       end
     end
@@ -159,7 +159,7 @@ describe TasksController do
     end
     
     def redirect_to_section_url
-      redirect_to(project_section_url(mock_project, mock_section))
+      redirect_to(section_url(mock_section))
     end
     
     it "destroys the requested task" do
@@ -203,11 +203,11 @@ describe TasksController do
     it "should call Tasks.reorder with the given ids" do
       Task.should_receive(:reorder).with(["1", "2", "3", "4"])
       
-      xhr :put, :reorder, :items => ["1", "2", "3", "4"], :project_id => "1", :section_id => "2"
+      xhr :put, :reorder, :items => ["1", "2", "3", "4"], :section_id => "2"
     end
     
     it "should not render template" do
-      xhr :put, :reorder, :project_id => "1", :section_id => "2"
+      xhr :put, :reorder, :section_id => "2"
       
       response.should_not render_template(:reorder)
       response.should be_success

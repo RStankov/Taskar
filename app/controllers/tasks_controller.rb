@@ -17,7 +17,7 @@ class TasksController < ApplicationController
 
     if @task.save
       unless request.xhr?
-        redirect_to project_section_path(@section.project, @section, :anchor => "task_#{@task.id}")
+        redirect_to section_path(@section, :anchor => "task_#{@task.id}")
       else
         render
       end
@@ -47,7 +47,7 @@ class TasksController < ApplicationController
     if request.xhr?
       head :ok
     else
-      redirect_to [task.section.project, task.section]
+      redirect_to task.section
     end
   end
   

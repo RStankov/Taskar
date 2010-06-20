@@ -3,7 +3,7 @@ require 'spec_helper'
 describe SectionsController do
 
   def mock_section(stubs={})
-    @mock_section ||= mock_model(Section, stubs)
+    @mock_section ||= mock_model(Section, {:project => mock_project}.merge(stubs))
   end
   
   def mock_project(stubs={})
@@ -12,43 +12,80 @@ describe SectionsController do
   
   before do
     sign_in Factory(:user)
-    
-    Project.stub(:find).with("1").and_return(mock_project)
-    mock_project.should_receive(:sections).and_return(Section)
   end
 
   describe "GET index" do
-    it "assigns project sections as @sections" do
+    before do
+      Project.stub(:find).with("1").and_return(mock_project)
+      mock_project.should_receive(:sections).and_return(Section)
+            
       get :index, :project_id => "1"
+    end
+    
+    it "assigns project sections as @sections" do
       assigns[:sections].should == Section
+    end
+    
+    it "assigns project as @project" do
+      assigns[:project].should == mock_project
     end
   end
 
   describe "GET show" do
-    it "assigns the requested section as @section" do
+    before do
       Section.stub(:find).with("37").and_return(mock_section)
-      get :show, :id => "37", :project_id => "1"
-      assigns[:section].should equal(mock_section)
+      get :show, :id => "37"
+    end
+    
+    it "assigns the requested section as @section" do
+      assigns[:section].should == mock_section
+    end
+    
+    it "assigns project as @project" do
+      assigns[:project].should == mock_project
     end
   end
 
   describe "GET new" do
-    it "assigns a new section as @section" do
+    before do
+      Project.stub(:find).with("1").and_return(mock_project)
+      mock_project.should_receive(:sections).and_return(Section)
+            
       Section.stub(:build).and_return(mock_section)
+
       get :new, :project_id => "1"
+    end
+    
+    it "assigns a new section as @section" do
       assigns[:section].should equal(mock_section)
+    end
+    
+    it "assigns project as @project" do
+      assigns[:project].should == mock_project
     end
   end
 
-  describe "GET edit" do    
-    it "assigns the requested section as @section" do
+  describe "GET edit" do
+    before do
       Section.stub(:find).with("37").and_return(mock_section)
-      get :edit, :id => "37", :project_id => "1"
-      assigns[:section].should equal(mock_section)
+      get :edit, :id => "37"
+    end
+    
+    it "assigns the requested section as @section" do
+      assigns[:section].should == mock_section
+    end
+    
+    it "assigns project as @project" do
+      assigns[:project].should == mock_project
     end
   end
 
   describe "POST create" do
+    before do
+      Project.stub(:find).with("1").and_return(mock_project)
+      mock_project.should_receive(:sections).and_return(Section)
+    end
+    
     describe "with valid params" do
       it "assigns a newly created section as @section" do
         Section.stub(:build).with({'these' => 'params'}).and_return(mock_section(:save => true))
@@ -59,7 +96,7 @@ describe SectionsController do
       it "redirects to the created section" do
         Section.stub(:build).and_return(mock_section(:save => true))
         post :create, :section => {}, :project_id => "1"
-        response.should redirect_to(project_section_url(mock_project, mock_section))
+        response.should redirect_to(section_url(mock_section))
       end
     end
 
@@ -84,19 +121,19 @@ describe SectionsController do
       it "updates the requested section" do
         Section.should_receive(:find).with("37").and_return(mock_section)
         mock_section.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, :id => "37", :section => {:these => 'params'}, :project_id => "1"
+        put :update, :id => "37", :section => {:these => 'params'}
       end
 
       it "assigns the requested section as @section" do
         Section.stub(:find).and_return(mock_section(:update_attributes => true))
-        put :update, :id => "1", :project_id => "1"
+        put :update, :id => "1"
         assigns[:section].should equal(mock_section)
       end
 
       it "redirects to the section" do
         Section.stub(:find).and_return(mock_section(:update_attributes => true))
-        put :update, :id => "1", :project_id => "1"
-        response.should redirect_to(project_section_url(mock_project, mock_section))
+        put :update, :id => "1"
+        response.should redirect_to(section_url(mock_section))
       end
     end
 
@@ -104,7 +141,7 @@ describe SectionsController do
       it "updates the requested section" do
         Section.should_receive(:find).with("37").and_return(mock_section)
         mock_section.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, :id => "37", :section => {:these => 'params'}, :project_id => "1"
+        put :update, :id => "37", :section => {:these => 'params'}
       end
 
       it "assigns the section as @section" do
@@ -126,12 +163,12 @@ describe SectionsController do
     it "destroys the requested section" do
       Section.should_receive(:find).with("37").and_return(mock_section(:project_id => 1))
       mock_section.should_receive(:destroy)
-      delete :destroy, :id => "37", :project_id => "1"
+      delete :destroy, :id => "37"
     end
 
     it "redirects to the sections list" do
       Section.stub(:find).and_return(mock_section(:destroy => true, :project_id => 1))
-      delete :destroy, :id => "1", :project_id => "1"
+      delete :destroy, :id => "1"
       response.should redirect_to(project_sections_url(mock_project))
     end
   end

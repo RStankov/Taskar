@@ -26,7 +26,7 @@
       <% @project.sections.all.each do |section| %>
         <%= new_section_link(section) %>
         <li class="section">
-          <%= link_to h(section.name), [@project, section], :class => @section == section ? "selected" : nil %>
+          <%= link_to h(section.name), section, :class => @section == section ? "selected" : nil %>
         </li>
       <% end %>
       <%= new_section_link %>

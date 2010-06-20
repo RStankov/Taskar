@@ -1,7 +1,7 @@
 <div id="section_title">
   <h1><%=t :'sections.edit_section' %></h1>
 </div>
-<% form_for [@project, @section] do |f| %>
+<% form_for @section do |f| %>
   <%= f.error_messages %>
   <%= f.label :name %>
   <%= f.text_field :name, :autofocus => true %>
