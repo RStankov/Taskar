@@ -27,9 +27,9 @@ Taskar.UI.LiveSearch = Class.create({
     this.hideIndicator = indicator ? Element.hide.curry(indicator) : Prototype.emptyFunction;
 
     this.input.setAttribute('autocomplete', 'off');
-    this.input.observe('keypress',  this.handleKeypress);		
-    this.input.observe('blur',      this.handleFocusOut);
-    this.input.observe('change',    this.handleFocusOut);
+    this.input.observe('keyup',   this.handleKeypress);		
+    this.input.observe('blur',    this.handleFocusOut);
+    this.input.observe('change',  this.handleFocusOut);
 
     new Form.Element.Observer(this.input, 1.0, this.handleSearch);
 
@@ -40,7 +40,7 @@ Taskar.UI.LiveSearch = Class.create({
     Element.hide.delay(.5, this.resultsBox);
   },
   handleKeypress:function(e){
-    switch (e.which || e.keyCode) {
+    switch (e.keyCode){
       case Event.KEY_ESC:     return this.close();
       case Event.KEY_UP:      return this.updateSelection(-1); 
       case Event.KEY_DOWN:    return this.updateSelection(+1);
