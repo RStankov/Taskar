@@ -199,11 +199,11 @@ describe TasksController do
     it "should call Tasks.reorder with the given ids" do
       Task.should_receive(:reorder).with(["1", "2", "3", "4"])
       
-      xhr :put, :reorder, :items => ["1", "2", "3", "4"], :section_id => "2"
+      xhr :put, :reorder, :items => ["1", "2", "3", "4"]
     end
     
     it "should not render template" do
-      xhr :put, :reorder, :section_id => "2"
+      xhr :put, :reorder
       
       response.should_not render_template(:reorder)
       response.should be_success

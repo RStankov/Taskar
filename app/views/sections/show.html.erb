@@ -10,7 +10,7 @@
     <input type="button" value="<%=t :cancel %>" />
   <% end %>
 </div>
-<ul id="tasks" data-sortable="<%= reorder_section_tasks_path(@section)  %>">
+<ul id="tasks" data-sortable="<%= reorder_tasks_path(@section)  %>">
   <%= render @section.tasks %>
   <%= render "tasks/new_form" %>
 </ul>
