@@ -172,20 +172,20 @@ describe Task do
     it "should find :all with :conditions => text like '%ss%'" do
       ss = "search term"
       
-      Task.should_receive(:find).with(:all, :conditions => ["text LIKE :ss", {:ss => "%#{ss}%"}], :limit => 20)
+      Task.should_receive(:find).with(:all, :conditions => ["text LIKE :ss", {:ss => "%#{ss.gsub(' ', '%')}%"}], :limit => 20)
       Task.search(ss)
     end
     
     it "should have limit as second argument" do
       ss = "search term"
 
-      Task.should_receive(:find).with(:all, :conditions => ["text LIKE :ss", {:ss => "%#{ss}%"}], :limit => 100)
+      Task.should_receive(:find).with(:all, :conditions => ["text LIKE :ss", {:ss => "%#{ss.gsub(' ', '%')}%"}], :limit => 100)
       Task.search(ss, 100)
     end
     
     it "should find all containing the given text" do
       text = 'very specific text content'
-      task = Factory(:task, :text => text + " wrapped")
+      task = Factory(:task, :text => text.gsub(" ", "_") + " wrapped")
       
       Task.search(text).include?(task).should be_true
     end
