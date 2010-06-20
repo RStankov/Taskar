@@ -1,35 +1,188 @@
-Taskar.Dnd = {
-  DraggingObserver: Class.create({
-      initialize: function(element){
-          this.element = element;
-      },
-      onEnd: function(){
-          Sortable.destroy(this.element.identify());
-          Draggables.removeObserver(this.element);
-      }
-  }),
-  startSorting: function(e, element){
-    var item    = element.up('li'),
-        list    = item.up('ul'),
-        options = {
-          tag: list.getAttribute('data-sort') || 'li'
-        };
-        
-    if (list.getAttribute('data-sortable')){
-      options.onUpdate = function(){
-        new Ajax.Request(list.getAttribute('data-sortable'), {
-					method: 	'put',
-					parameters: Sortable.serialize(list.identify(), {name: 'items'})
-				});
-      }
+Taskar.Dnd = (function(){
+  var element, original, options, offset, style;
+
+  function start(drag, e, givenOptions){
+    e.stop();
+  
+    if (element){
+      end(e);
+    }
+
+    element		= $(drag);
+    style     = element.style;
+    options		= givenOptions || {};
+    original	= {
+      position: style.position,
+      zIndex:   style.zIndex,
+      top:      style.top,
+      left:     style.left
+    };
+
+    var cumulativeOffset = element.cumulativeOffset(); 
+    
+    offset = {
+      x: e.pointerX() - cumulativeOffset[0],
+      y: e.pointerY() - cumulativeOffset[1]
+    };
+
+    style.position = 'absolute'; // element.makePositioned();
+
+    element.fire('drag:start', { element: element });
+
+    document.observe('mousemove', move);
+    document.observe('mouseup', end);
+  }
+
+  function move(e){
+    e.stop();
+  
+    if (!element) return;
+
+    var cumulativeOffset = element.cumulativeOffset(); 
+    var position = {
+      x: e.pointerX() - cumulativeOffset[0] + (parseInt(element.getStyle('left')) || 0) - offset.x,
+      y: e.pointerY() - cumulativeOffset[1] + (parseInt(element.getStyle('top'))  || 0) - offset.y
+    }
+
+    if (options.filter)         position   = options.filter(position);
+    if (options.moveX != false) element.style.left = position.x + 'px';
+    if (options.moveY != false) element.style.top  = position.y + 'px';
+    
+    element.fire('drag:move', {
+      x:		   e.pointerX(),
+      y:		   e.pointerY(),
+      element: element
+    });
+  }
+
+  function end(e){
+    e.stop();
+    if (!element){
+      return;
     }
     
-    Sortable.create(list, options);
+    element.fire('drag:finish', { element: element });
+    
+    element.setStyle(original);
+    
+    element = original = options = offset = style = null;
 
-    var drag = Sortable.sortables[ list.identify() ].draggables.find(function(drag){ return drag.element == item; });
-    if (drag){
-      drag.initDrag(e);
-      Draggables.addObserver(new Taskar.Dnd.DraggingObserver(list));
+    document.stopObserving('mousemove', move);
+    document.stopObserving('mouseup', end);
+  }
+
+  return {
+    drag: start,
+    startDragging: function(e, element){
+      start(element || e.findElement(), e);
     }
+  };
+})();
+
+Taskar.Dnd.Sortable = Class.create({
+  initialize: function(container, options){
+    this.container  = container = $(container);
+    this.options    = options   = Object.extend(this.constructor.DEFAULT_OPTIONS, options || {});
+
+    if (!options.handle){
+      options.handle = options.item;
+    }
+
+    container.on('mousedown', options.handle, this.startDragging.bind(this));
+
+    container.observe('drag:start', 	this.onDragStart.bind(this));
+    container.observe('drag:move',		this.onDrag.bind(this));
+    container.observe('drag:finish',	this.onDragEnd.bind(this));
+
+    if (options.ghosting){
+      this.constructor.Ghost.initialize(this);
+    }
+  },
+  startDragging: function(e){
+    var options = this.options;
+    Taskar.Dnd.drag(e.findElement(options.item), e, {
+      moveX: options.moveX,
+      moveY: options.moveY
+    });
+  },
+  onDragStart: function(e){
+    var options   = this.options,
+        drag	    = e.findElement(options.item);
+
+    this.changed = false;
+    this.drag 	 = drag;
+    this.items	 = this.container.select(options.item).reject(function(item){ return item == drag });
+  },
+  onDrag: function(e){
+    var hover = this.items.find(function(item){ return Position.within(item, e.memo.x, e.memo.y); });
+
+    if (!hover) return;
+
+    var insert  = Position.overlap('vertical', hover) > 0.5 ? ['previous', 'before'] : ['next', 'after'],
+        sibling = hover[ insert[0] ](this.options.item);
+
+    if (sibling == this.drag || sibling == this.ghost){
+      return;
+    }
+
+    Element._insertionTranslations[ insert[1] ](hover, this.drag);
+
+    this.changed = true;
+    this.container.fire('order:changed', {
+      sortable: this,
+      changed:  hover.up(this.options.list)
+    });
+  },
+  onDragEnd: function(e){
+    if (this.changed){
+      (e.findElement() || this.container).fire('order:updated', { sortable: this });
+    }
+    this.changed = this.drag = this.items = null;
+  },
+  serialize: function(name, list){
+    var id, rule = this.constructor.SERIALIZE_RULE;
+
+    name || (name = this.options.name);
+    
+    return ($(list) || this.container).select(this.options.item).inject([], function(memo, item){
+      if (id = (item.id && item.id.match(rule)[1])){
+        memo.push( name + '=' + id );
+      }
+      return memo;
+    }).join('&');
+  }
+});
+
+Taskar.Dnd.Sortable.SERIALIZE_RULE = /\w+_(\d+)/;
+Taskar.Dnd.Sortable.DEFAULT_OPTIONS = {
+  name:       'items',
+  list:       'ul',
+  item:       'li',
+  handle:     null,
+  ghosting:   true,
+  moveX:      false,
+  moveY:      true
+};
+
+Taskar.Dnd.Sortable.Ghost = {
+  initialize: function(sortable){
+    sortable.container.observe('drag:start',		this.create.bind(sortable));
+    sortable.container.observe('order:changed',	this.swap.bind(sortable));
+    sortable.container.observe('drag:finish',   this.remove.bind(sortable));
+  },
+  create: function(){
+    this.ghost = $(this.drag.cloneNode(true));
+    this.ghost.id = null;
+    this.ghost.setOpacity(0.5);
+    this.ghost.style.position = null;
+
+    this.drag.insert({ after: this.ghost });
+  },
+  swap: function(){
+    this.drag.insert({ after: this.ghost });
+  },
+  remove: function(){
+    this.ghost.remove();
+    this.ghost = false;
   }
 };

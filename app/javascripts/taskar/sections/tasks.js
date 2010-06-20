@@ -4,8 +4,11 @@ Taskar.Sections.Tasks = {
       e.findElement('li').slideUp();
     },
   },
-  mousedown: {
-    '.drag': Taskar.Dnd.startSorting
+  'order:updated': function(e){
+    new Ajax.Request(this.getAttribute('data-sortable'), {
+      method:     'put',
+      parameters: e.memo.sortable.serialize('items[]')
+    });
   },
   'ajax:delete': {
     '.task': function(e, element){
