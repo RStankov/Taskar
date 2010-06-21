@@ -21,13 +21,25 @@ header, nav, section, article, aside, footer {
   display: block;
 }
 
+input[type="submit"], input[type="button"] {
+  outline
+}
+
 input[type="submit"] {
   background-color: #00589D;
   border: 0;
-  border-radius: 5px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
   color: #fff;
+}
+
+input[type="submit"]:hover {
+  background: -moz-linear-gradient(top, #1977c0, #00589D)
+}
+
+input[type="submit"]:focus {
+  background: -moz-linear-gradient(top, #00589D, #1977c0)
 }
 
 input[type="button"] {
@@ -921,7 +933,7 @@ footer span:hover {
 /*** FOR REVISION:TASK FORMS ***/
 
 #new_task {
-  padding: 10px;
+  padding: 12px 15px;
   position: relative;
   background-color: #eee;
   border-radius: 10px;
@@ -942,7 +954,8 @@ footer span:hover {
 
 #new_task input[type="submit"] {
   font-size: 16px;
-  padding: 5px;
+  margin-right: 5px;
+  padding: 5px 10px;
 }
 
 #new_task input[type="button"] {
