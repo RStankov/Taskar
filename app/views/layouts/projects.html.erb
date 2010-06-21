@@ -1,18 +1,47 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html>
 <head>
-  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-  <title>Projects: <%= controller.action_name %></title>
-  <%= stylesheet_link_tag 'scaffold' %>
+  <meta charset="utf-8">
+  <title><%=t :'.projects' %></title>
+  <%= stylesheet_link_tag 'application' %>
 </head>
 <body>
-
-<p style="color: green"><%= notice %></p>
-
-<%= yield %>
-
-<%= sprockets_include_tag %>
+  <header>
+    <p id="nav_account">
+      <%= link_to t(:"layouts.general.profile"), edit_user_registration_path %> | 
+      <%= link_to t(:"layouts.general.logout"), destroy_user_session_path %>
+    </p>
+  </header>
+  <section>
+    <article>
+      <%= yield %>
+    </article>
+    <aside>
+      <div>
+        <h3><%=t :'.users', :count => User.count %></h3>
+        <ul>
+          <li><%= link_to t(:'.new_user'), new_user_path %></li>
+          <li><%= link_to t(:'.manage_users'), users_path %></li>
+        </ul>
+      </div>
+      <div>
+        <% @projects = Project.all %>
+        <h3><%=t :".current_projects", :count => @projects.size  %></h3>
+        <ul>
+          <% @projects.each do |project| %>
+          <li>
+              <strong><%= link_to project.name, [project, :sections] %></strong>
+              (<%= link_to t(:'.project_settings'), project %>)
+          </li>
+          <% end %>
+        </ul>
+      </div>
+      <%= link_to t(:'.new_project'), new_project_path %>
+    </aside>
+  </section>
+  <footer>
+    <p><%= copywrite %></p>
+    <a href="#nav_account" id="scroll_to_top"><span title="<%=t :"scroll_to_top" %>"></span></a>
+  </footer>
+  <%= sprockets_include_tag %>
 </body>
 </html>

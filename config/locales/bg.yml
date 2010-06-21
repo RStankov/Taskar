@@ -9,9 +9,20 @@ bg:
   delete: "Изтрий"
   confirm: "Сигурни ли сте?"
   layouts:
-    sections:
+    general:
       profile: "Профил"
       logout: "Изход"
+    
+    projects:
+      projects: "Проекти"
+      users: "Потребители (%{count})"
+      new_user: "Добави потребител"
+      manage_users: "Менажирай"
+      current_projects: "Текущи проекти (%{count})"
+      project_settings: "Настройки"
+      new_project: "Добави нов проект"
+    
+    sections:
       switch_to_project: "Отвори друг проект"
       all_projects: "Всички проекти"
       goto_dashboard: "Табло"

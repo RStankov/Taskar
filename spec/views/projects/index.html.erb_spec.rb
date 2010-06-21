@@ -2,18 +2,10 @@ require 'spec_helper'
 
 describe "/projects/index.html.erb" do
   before(:each) do
-    assigns[:projects] = [
-      stub_model(Project,
-        :name => "value for name"
-      ),
-      stub_model(Project,
-        :name => "value for name"
-      )
-    ]
+    assigns[:projects] = [stub_model(Project)]
   end
 
-  it "renders a list of projects" do
+  it "renders" do
     render
-    response.should have_tag("tr>td", "value for name".to_s, 2)
   end
 end
