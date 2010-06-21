@@ -646,6 +646,7 @@ b  ackground: url(../images/sprite.png) 0 0 no-repeat;
 
 .people_extended li {
   height: 42px;
+  line-height: 10px;
 }
 
 .people_extended img {
@@ -657,6 +658,7 @@ b  ackground: url(../images/sprite.png) 0 0 no-repeat;
 #people_envolved strong {
   display: block;
   font-size: 12px;
+  padding-bottom: 2px;
 }
 
 /*** SECTION TITLE ***/
