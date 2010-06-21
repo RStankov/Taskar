@@ -1,12 +1,19 @@
+<h1><%=h @user.full_name %></h1>
+
+<%= link_to t(:edit), [:edit, @user] %> | <%= link_to_delete t(:delete), @user, :confirm => t(:'users.confirm') %>
+
+<% if @user.avatar? %>
+  <%= image_tag @user.avatar.url %>
+<% end %>
+
 <p>
-  <strong>Full Name:</strong>
-  <%=h @user.full_name %>
-</p>
-<p>
-  <strong>E-mail:</strong>
+  <strong><%= User.human_attribute_name(:email) %>:</strong>
   <%= @user.email %>
 </p>
 
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<h3><%=t :'users.projects', :name => @user.full_name %></h3>
+<ul>
+  <% @user.projects.each do |project| %>
+    <li><%= link_to h(project.name), [project, :sections] %></li>
+  <% end %>
+</ul>

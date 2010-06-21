@@ -1,24 +1,12 @@
-<h1>Listing users</h1>
+<h1><%=t :'users.title' %></h1>
+<%= link_to t(:'layouts.projects.new_user'), new_user_path %>
 
-<table>
-  <tr>
-    <th>Full Name</th>
-  </tr>
-
-<% @users.each do |user| %>
-  <tr>
-    <td><%=h user.full_name %></td>
-    <td><%= link_to 'Show', user %></td>
-    <td><%= link_to 'Edit', [:edit, user] %></td>
-    <td>
-      <% link_to_delete(user, :confirm => 'Are you sure?', :method => :delete) do %>
-        Destroy
-      <% end %>
-    </td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New user', new_user_path %>
+<ul>
+  <% @users.each do |user| %>
+    <li>
+      <%= image_tag user.avatar.url %>
+      <strong><%= link_to h(user.full_name), user %></strong><br />
+      <small><%= user.email %></small>
+    </li>
+  <% end %>
+</ul>

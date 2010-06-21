@@ -1,8 +1,8 @@
-<h1>Editing user</h1>
+<h1><%=t :'users.edit_user' %></h1>
 
 <%= render "form" %>
 
-<h2>Change Password</h2>
+<h2><%=t :'users.change_password' %></h2>
 
 <% form_for @user, :html => {:multipart => true} do |f| %>
   <%= f.error_messages if @user.errors.on(:password) %>
@@ -12,8 +12,5 @@
   <p><%= f.label :password_confirmation %></p>
   <p><%= f.password_field :password_confirmation %></p>
   
-  <p><%= f.submit "Submit" %></p>
+  <p><%= f.submit t(:update) %></p>
 <% end %>
-
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>

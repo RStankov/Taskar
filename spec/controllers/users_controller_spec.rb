@@ -26,7 +26,7 @@ describe UsersController do
   
   describe "show action" do
     before do
-      User.should_receive(:first).with("15").and_return(mock_user)
+      User.should_receive(:first).with(:conditions => {:id => "15"}).and_return(mock_user)
       get :show, :id => "15"
     end
     
@@ -86,7 +86,7 @@ describe UsersController do
   
   describe "edit action" do
     before do
-      User.should_receive(:first).with("15").and_return(mock_user)
+      User.should_receive(:first).with(:conditions => {:id => "15"}).and_return(mock_user)
       get :edit, :id => "15"
     end
   
@@ -109,7 +109,7 @@ describe UsersController do
     end
     
     before do
-      User.should_receive(:first).with("15").and_return(mock_user)
+      User.should_receive(:first).with(:conditions => {:id => "15"}).and_return(mock_user)
     end
   
     it "should render edit template when user is invalid" do
@@ -132,7 +132,7 @@ describe UsersController do
   
   describe "destroy action" do
     before do
-      User.should_receive(:first).with("15").and_return(mock_user)
+      User.should_receive(:first).with(:conditions => {:id => "15"}).and_return(mock_user)
       mock_user.should_receive(:destroy)
     end
     

@@ -45,6 +45,6 @@ class UsersController < ApplicationController
   
   private
     def get_user
-      @user = User.first(params[:id])
+      @user = User.first(:conditions => {:id => params[:id]})
     end
 end

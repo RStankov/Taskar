@@ -42,6 +42,14 @@ bg:
     new_project: "Нов проект"
     edit_project: "Промяна на прект"
   
+  users:
+    title: "Потребители"
+    new_user: "Нов потребител"
+    edit_user: "Промяна на потребител"
+    change_password: "Промяна на паралота"
+    confirm: "Сигурни ли сте, че искате да изтриете този потребител"
+    projects: "Проекти, в който участва %{name}"
+  
   sections:
     new_section: "Нова секция"
     edit_section: "Промяна на секция"
