@@ -24,19 +24,21 @@ header, nav, section, article, aside, footer {
 input[type="submit"] {
   background-color: #00589D;
   border: 0;
-  border-radius: 5px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
   color: #fff;
 }
 
-input[type="button"] {
+input[type="button"], .cancel {
   background: none;
   border: 0;
   color: #5c5c5c;
 }
 
-input[type="button"]:hover {
+.cancel {
+  font-size: 12px;
+  text-decoration: none;
+}
+
+input[type="button"]:hover, .cancel:hover {
   color: #FF0000;
 }
 
@@ -761,7 +763,7 @@ b  ackground: url(../images/sprite.png) 0 0 no-repeat;
   background-color: #FDFDFD;
 }
 
-#tasks a {
+#tasks a:not(.cancel) {
   color: #00589D;
   text-decoration: none;
 }
@@ -920,33 +922,54 @@ footer span:hover {
 
 /*** FOR REVISION:TASK FORMS ***/
 
-#new_task {
-  padding: 10px;
+#tasks form {
+  padding: 13px 15px;
   position: relative;
   background-color: #eee;
   border-radius: 10px;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
 }
+.task form{
+  margin: -10px;
+}
 
-#new_task label {
+#tasks form label {
   display: block;
 }
 
-#new_task textarea {
+#tasks form textarea {
   display: block;
   width: 100%;
   height: 80px;
   margin: 10px 0 10px 0;
 }
 
-#new_task input[type="submit"] {
-  font-size: 16px;
-  padding: 5px;
+#tasks form input[type="button"] {
+  font-size: 12px;
 }
 
-#new_task input[type="button"] {
-  font-size: 12px;
+#tasks form input[type="submit"] {
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  font-size: 16px;
+  margin-right: 5px;
+  padding: 5px 10px;
+}
+
+#tasks form input[type="submit"]:hover {
+  background: -moz-linear-gradient(top, #1977c0, #00589D);
+  box-shadow: 0 0 6px #000000;
+  -moz-box-shadow: 0 0 6px #000000;
+  -webkit-box-shadow: 0 0 6px #000000;
+}
+
+#tasks form input[type="submit"]:focus {
+  background: -moz-linear-gradient(top, #00589D, #1977c0);
+  box-shadow: 0 0 6px #666;
+  -moz-box-shadow: 0 0 6px #666;
+  -webkit-box-shadow: 0 0 6px #666;
 }
 
 #errorExplanation {
@@ -993,36 +1016,6 @@ footer span:hover {
 .fieldWithErrors textarea {
   border-width: 2px;
   border-color: #ff9999;
-}
-
-.task form{
-  margin: -10px;
-  padding: 10px;
-  position: relative;
-  background-color: #eee;
-  border-radius: 10px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-}
-
-.task label {
-  display: block;
-}
-
-.task textarea {
-  display: block;
-  width: 100%;
-  height: 80px;
-  margin: 10px 0 10px 0;
-}
-
-.task input[type="submit"] {
-  font-size: 16px;
-  padding: 5px;
-}
-
-.task input[type="button"] {
-  font-size: 12px;
 }
 
 /*** FOR REVISION:SECTION FOOTER ***/
