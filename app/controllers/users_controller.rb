@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  layout "projects"
+  
   filter_parameter_logging :password, :password_confirmation
   
   before_filter :get_user, :only => [:show, :edit, :update, :destroy]
