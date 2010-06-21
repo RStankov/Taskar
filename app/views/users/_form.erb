@@ -1,0 +1,23 @@
+<% form_for @user, :html => {:multipart => true} do |f| %>
+  <%= f.error_messages if @user.new_record? || !@user.errors.on(:password) %>
+  <p><%= f.label :email %></p>
+  <p><%= f.text_field :email %></p>
+
+  <% if @user.new_record? %>
+    <p><%= f.label :password %></p>
+    <p><%= f.password_field :password %></p>
+
+    <p><%= f.label :password_confirmation %></p>
+    <p><%= f.password_field :password_confirmation %></p>
+  <% end %>
+  <p><%= f.label :first_name  %></p>
+  <p><%= f.text_field :first_name  %></p>
+
+  <p><%= f.label :last_name  %></p>
+  <p><%= f.text_field :last_name  %></p>
+  
+  <p><%= f.label :avatar %></p>
+  <p><%= f.file_field :avatar %></p>
+  
+  <p><%= f.submit "Submit" %></p>
+<% end %>
