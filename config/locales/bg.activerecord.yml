@@ -5,6 +5,8 @@ bg:
           section: "Секция"
           task: "Задача"
           user: "Потребител"
+          comment: "Коментар"
+          
         
         attributes:
           project:
@@ -27,3 +29,9 @@ bg:
             password: "Парола"
             password_confirmation: "Потвърди паролата"
             avatar: "Снимка"
+          
+          comment:
+            task_id: "Задача"
+            user_id: "Потребител"
+            text: "Текст"
+          
