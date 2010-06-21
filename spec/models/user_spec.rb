@@ -1,6 +1,12 @@
 require 'spec_helper'
 
 describe User do
+  describe "relationships" do
+    it { should have_many(:comments) }
+    it { should have_many(:projects) }
+    it { should have_many(:project_participations) }
+  end
+  
   describe "validation" do
     it_should_allow_mass_assignment_only_of :email, :first_name, :last_name, :password, :password_confirmation, :avatar
 

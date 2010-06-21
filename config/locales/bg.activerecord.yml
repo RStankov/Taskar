@@ -6,7 +6,7 @@ bg:
           task: "Задача"
           user: "Потребител"
           comment: "Коментар"
-          
+          project_user: "Участие в проект"
         
         attributes:
           project:
@@ -34,4 +34,8 @@ bg:
             task_id: "Задача"
             user_id: "Потребител"
             text: "Текст"
+            
+          project_user:  
+            user_id: "Потребител"
+            project_id: "Проект"
           

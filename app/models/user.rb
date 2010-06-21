@@ -10,6 +10,9 @@ class User < ActiveRecord::Base
   
   has_many :comments, :dependent => :destroy
   
+  has_many :project_participations, :class_name => "ProjectUser", :foreign_key => "user_id", :dependent => :destroy
+  has_many :projects, :through => :project_participations
+  
   def full_name
     @full_name ||= "#{first_name} #{last_name}"
   end
