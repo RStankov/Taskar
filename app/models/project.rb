@@ -4,4 +4,6 @@ class Project < ActiveRecord::Base
   has_many :users, :through => :participants
   
   validates_presence_of :name
+  
+  attr_accessible :name
 end
