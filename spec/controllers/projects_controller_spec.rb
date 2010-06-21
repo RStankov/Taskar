@@ -11,10 +11,9 @@ describe ProjectsController do
   end
 
   describe "GET index" do
-    it "assigns all projects as @projects" do
-      Project.stub(:find).with(:all).and_return([mock_project])
+    it "renders index template" do
       get :index
-      assigns[:projects].should == [mock_project]
+      response.should render_template(:index)
     end
   end
 
