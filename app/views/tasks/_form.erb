@@ -2,5 +2,5 @@
    <%= form.error_messages %>
    <%= form.label :text, t(:'tasks.form.text') %>
    <%= form.text_area :text, :cols => nil, :rows => nil %>
-   <%= form.submit t(:'tasks.form.update') %> |<%= link_to t(:'tasks.form.cancel'), @task, :class => "cancel", "data-remote" => true %>
+   <%= form.submit t(:'tasks.form.update') %> | <%= link_to t(:'tasks.form.cancel'), @task, :class => "cancel", "data-remote" => true %>
 <% end %>
