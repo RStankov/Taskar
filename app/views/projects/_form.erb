@@ -5,7 +5,7 @@
     <%= f.text_field :name %>
   </p>
   <p>
-    <h3>Project participants</h3>
+    <h3><%=t :'project.participants' %></h3>
     <%= hidden_field_tag "project[user_ids][]", nil, :id => nil %>
     <ul>
       <% User.all.each do |user| %>
@@ -17,6 +17,10 @@
     </ul>
   </p>
   <p>
-    <%= f.submit 'Save form' %>
+    <% if @project.new_record? %>
+      <%= f.submit t(:create) %> | <%= link_to t(:cancel), projects_path %>
+    <% else %>
+      <%= f.submit t(:update) %> | <%= link_to t(:cancel), @project %>
+    <% end %>
   </p>
 <% end %>

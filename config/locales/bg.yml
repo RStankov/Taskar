@@ -35,6 +35,13 @@ bg:
       last_activity: "Последно активен в %{time}"
     
   
+  projects:
+    participants: "Участници в проекта"
+    sections: "Секции"
+    confirm: "Сигруни ли сте, че искате да изтриете този проект?"
+    new_project: "Нов проект"
+    edit_project: "Промяна на прект"
+  
   sections:
     new_section: "Нова секция"
     edit_section: "Промяна на секция"
@@ -76,18 +83,17 @@ bg:
       cancel: "Откажи промените"
     
   
-  
-  comments:    
+  comments:
     preview: "Преглед"
     comment:
       editable_for: "редактируем за oще %{minutes} минути" 
       confirm: "Сигурни ли сте, че искате да изтриете този коментар"
     
-      
     new_form:
       title: "Нов коментар"
       submit: "Коментирай"
-  
+    
     edit_form:
       submit: "Промени коментара"
     
+  
