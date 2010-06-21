@@ -405,7 +405,6 @@ article {
   -moz-box-shadow: 0px 0px 3px #999;
   -webkit-box-shadow: 0px 0px 3px #999;
   margin: 3px 0;
-  text-align: right;
 }
 
 #events li:hover {
@@ -415,11 +414,6 @@ article {
 #events img {
   float: left;
   margin-right: 10px;
-}
-
-#events .personal img {
-  float: right;
-  margin: 0 0 0 10px;
 }
 
 #events a {
@@ -442,6 +436,19 @@ article {
 #events span {
   font-size: 11px;
 }
+
+    /* events reversed alignment */
+
+    #events.align_right .personal {
+      text-align: right;
+    }
+
+    #events.align_right .personal img {
+      float: right;
+      margin: 0 0 0 10px;
+    }
+    
+    /* /events reversed alignment */
 
 /*** PERSONAL ***/
 
