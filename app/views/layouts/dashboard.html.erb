@@ -1,0 +1,37 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title><%=t :'.projects' %></title>
+  <%= stylesheet_link_tag 'application' %>
+</head>
+<body>
+  <header>
+    <p id="nav_account">
+      <%= link_to t(:"layouts.general.profile"), edit_user_registration_path %> | 
+      <%= link_to t(:"layouts.general.logout"), destroy_user_session_path %>
+    </p>
+  </header>
+  <section>
+    <article>
+      <%= yield %>
+    </article>
+    <aside>
+      <div>
+        <h3><%=t :".current_projects", :count => @projects.size  %></h3>
+        <ul>
+          <% @projects.each do |project| %>
+          <li>
+              <strong><%= link_to project.name, [project, :sections] %></strong>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+    </aside>
+  </section>
+  <footer>
+    <p><%= copywrite %></p>
+    <a href="#nav_account" id="scroll_to_top"><span title="<%=t :"scroll_to_top" %>"></span></a>
+  </footer>
+  <%= sprockets_include_tag %>
+</body>
+</html>
