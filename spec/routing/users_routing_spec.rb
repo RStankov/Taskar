@@ -29,5 +29,9 @@ describe UsersController do
     it "recognizes and generates #destroy" do
       { :delete => "/users/1" }.should route_to(:controller => "users", :action => "destroy", :id => "1") 
     end
+    
+    it "recognizes and generates #set_admin" do
+      { :put => "/users/1/set_admin" }.should route_to(:controller => "users", :action => "set_admin", :id => "1") 
+    end
   end
 end

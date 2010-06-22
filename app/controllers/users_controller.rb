@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   
   filter_parameter_logging :password, :password_confirmation
   
-  before_filter :get_user, :only => [:show, :edit, :update, :destroy]
+  before_filter :get_user, :only => [:show, :edit, :update, :destroy, :set_admin]
   
   def index
     @users = User.all
@@ -41,6 +41,13 @@ class UsersController < ApplicationController
     @user.destroy
     
     redirect_to :users
+  end
+  
+  def set_admin
+    @user.admin = params[:admin]
+    @user.save
+    
+    redirect_to @user
   end
   
   private

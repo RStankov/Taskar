@@ -142,4 +142,24 @@ describe UsersController do
     end
   end
 
+  describe "set_admin action" do
+    before do
+      User.should_receive(:first).with(:conditions => {:id => "15"}).and_return(mock_user)
+      mock_user.should_receive(:save)
+    end
+    
+    it "set user admin field to param[:value]" do
+      mock_user.should_receive(:admin=).with(true)
+      
+      put :set_admin, :id => "15", :admin => true
+    end
+    
+    it "redirects to user page" do
+      mock_user.stub!(:admin=)
+      
+      put :set_admin, :id => "15"
+      
+      response.should redirect_to(user_url(mock_user))
+    end
+  end
 end
