@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   
   filter_parameter_logging :password, :password_confirmation
   
+  before_filter :check_for_admin
   before_filter :get_user, :only => [:show, :edit, :update, :destroy, :set_admin]
   
   def index
@@ -53,6 +54,12 @@ class UsersController < ApplicationController
   end
   
   private
+    def check_for_admin
+      unless current_user.admin?
+        redirect_to root_path
+      end
+    end
+  
     def get_user
       @user = User.first(:conditions => {:id => params[:id]})
     end
