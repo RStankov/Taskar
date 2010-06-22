@@ -56,7 +56,7 @@ class UsersController < ApplicationController
   private
     def check_for_admin
       unless current_user.admin?
-        redirect_to root_path
+        deny_access
       end
     end
   

@@ -137,6 +137,8 @@ describe ProjectsController do
   describe "with normal user" do
     before do
       sign_in Factory(:user)
+      
+      ensure_deny_access_is_called
     end
     
     {
@@ -150,8 +152,6 @@ describe ProjectsController do
     }.each do |(action, code)|
       it "should not allow #{action}, and redirect_to root_url" do
         eval code
-        
-        response.should redirect_to(root_url)
       end
     end
   end

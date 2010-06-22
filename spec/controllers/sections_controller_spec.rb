@@ -205,6 +205,8 @@ describe SectionsController do
       user = Factory(:user)
       sign_in user
       mock_project.should_receive(:involves?).with(user).and_return(false)
+      
+      ensure_deny_access_is_called
     end
     
     {
@@ -217,8 +219,6 @@ describe SectionsController do
         Section.should_receive(:find).with("1").and_return(mock_section)
         
         eval code
-        
-        response.should redirect_to(root_url)
       end
     end
     
@@ -231,8 +231,6 @@ describe SectionsController do
        Project.should_receive(:find).with("1").and_return(mock_project)
       
        eval code
-      
-       response.should redirect_to(root_url)
      end
     end
   end

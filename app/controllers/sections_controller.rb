@@ -53,7 +53,7 @@ class SectionsController < ApplicationController
     
     def check_permissions
       unless @project.involves? current_user
-        redirect_to root_path
+        deny_access
       end
     end
 end
