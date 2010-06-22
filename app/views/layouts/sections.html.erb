@@ -77,7 +77,7 @@
             <%= image_tag current_user.avatar.url(:aside) %>
             <span class="people_info">              
                 <strong><%= user.full_name %></strong>
-                <%=t :".last_activity", :time => time_ago_in_words(user.updated_at) %>
+                <%=t :".last_activity", :time => time_ago_in_words(user.last_active_at) %>
             </span>
           </li>
           <% end %>
