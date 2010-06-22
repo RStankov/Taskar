@@ -183,6 +183,7 @@ header {
 #nav_sections {
   float: left;
   font-size: 14px;
+  overflow: hidden;
   width: 900px;
 }
 
@@ -806,6 +807,7 @@ b  ackground: url(../images/sprite.png) 0 0 no-repeat;
 #tasks p {
   display: inline-block;
   float: left;
+  max-width: 615px;
 }
 
 #tasks .rejected p {
