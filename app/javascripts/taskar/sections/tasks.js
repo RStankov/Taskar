@@ -3,6 +3,16 @@ Taskar.Sections.Tasks = {
     'input.cancel': function(e, element){
       e.findElement('li').slideUp();
     },
+    '.more': function(e, element){
+      var p = element.up('.task').down('p');
+      
+      if (p.hasClassName('less')){
+        p.morph('height:18px', function(){ p.removeClassName('less') });
+      } else {
+        p.morph('height:' + p.scrollHeight + 'px', function(){ p.addClassName('less') });
+      }
+      
+    }
   },
   'order:updated': function(e){
     new Ajax.Request(this.getAttribute('data-sortable'), {
