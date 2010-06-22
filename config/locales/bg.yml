@@ -35,6 +35,7 @@ bg:
       last_activity: "Последно активен в %{time}"
     
     dashboard:
+      title: 'Табло'
       current_projects: "Проекти в които участвате (%{count})"
   
   projects:
