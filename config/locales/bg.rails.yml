@@ -123,10 +123,10 @@ bg:
         many: "около %{count} години"
         other: "около %{count} години"
       over_x_years:
-        one: "над %{count} година"
-        few: "над %{count} години"
-        many: "над %{count} години"
-        other: "над %{count} години"
+        one: "повече от %{count} година"
+        few: "повече от %{count} години"
+        many: "повече от %{count} години"
+        other: "повече от %{count} години"
     prompts:
       year: "Година"
       month: "Месец"

@@ -72,12 +72,12 @@
           <button class="list_images list_on"></button>
         </h3>
         <ul class="people_extended">
-          <% for i in 1..4 %>
+          <% @project.users.each do |user| %>
           <li>
-            <a href="#"><%= image_tag "temp/ra4oil.png" %></a>
+            <%= image_tag current_user.avatar.url(:aside) %>
             <span class="people_info">              
-                <strong>Radoslav Stankov</strong>
-                <%=t :".last_activity", :time => "12.06.2010 09:15" %>
+                <strong><%= user.full_name %></strong>
+                <%=t :".last_activity", :time => time_ago_in_words(user.updated_at) %>
             </span>
           </li>
           <% end %>

@@ -32,7 +32,7 @@ bg:
         other: "%{count} задачи"
       
       people_in_project: "Участници в проекта"
-      last_activity: "Последно активен в %{time}"
+      last_activity: "Последно активен преди %{time}"
     
     dashboard:
       title: 'Табло'
