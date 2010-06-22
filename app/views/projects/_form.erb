@@ -5,7 +5,7 @@
     <%= f.text_field :name %>
   </p>
   <p>
-    <h3><%=t :'project.participants' %></h3>
+    <h3><%=t :'projects.participants' %></h3>
     <%= hidden_field_tag "project[user_ids][]", nil, :id => nil %>
     <ul>
       <% User.all.each do |user| %>
