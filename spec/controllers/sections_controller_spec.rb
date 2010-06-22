@@ -40,6 +40,10 @@ describe SectionsController do
     it "assigns the requested section as @section" do
       assigns[:section].should == mock_section
     end
+    
+    it "assigns project as @project" do
+      assigns[:project].should == mock_project
+    end
   end
 
   describe "GET new" do
@@ -70,6 +74,10 @@ describe SectionsController do
     it "assigns the requested section as @section" do
       assigns[:section].should == mock_section
     end
+    
+    it "assigns project as @project" do
+      assigns[:project].should == mock_project
+    end
   end
 
   describe "POST create" do
@@ -79,30 +87,40 @@ describe SectionsController do
     end
     
     describe "with valid params" do
-      it "assigns a newly created section as @section" do
+      before do
         Section.stub(:build).with({'these' => 'params'}).and_return(mock_section(:save => true))
         post :create, :section => {:these => 'params'}, :project_id => "1"
+      end
+      
+      it "assigns a newly created section as @section" do
         assigns[:section].should equal(mock_section)
       end
 
       it "redirects to the created section" do
-        Section.stub(:build).and_return(mock_section(:save => true))
-        post :create, :section => {}, :project_id => "1"
         response.should redirect_to(section_url(mock_section))
+      end
+      
+      it "assigns project as @project" do
+        assigns[:project].should == mock_project
       end
     end
 
     describe "with invalid params" do
-      it "assigns a newly created but unsaved section as @section" do
+      before do
         Section.stub(:build).with({'these' => 'params'}).and_return(mock_section(:save => false))
         post :create, :section => {:these => 'params'}, :project_id => "1"
+      end
+      
+      it "assigns a newly created but unsaved section as @section" do
         assigns[:section].should equal(mock_section)
       end
 
       it "re-renders the 'new' template" do
-        Section.stub(:build).and_return(mock_section(:save => false))
-        post :create, :section => {}, :project_id => "1"
         response.should render_template('new')
+      end
+      
+      it "assigns project as @project" do
+        assigns[:project].should == mock_project
       end
     end
 
@@ -127,6 +145,10 @@ describe SectionsController do
       it "redirects to the section" do
         response.should redirect_to(section_url(mock_section))
       end
+      
+      it "assigns project as @project" do
+        assigns[:project].should == mock_project
+      end
     end
 
     describe "with invalid params" do
@@ -143,6 +165,10 @@ describe SectionsController do
 
       it "re-renders the 'edit' template" do
         response.should render_template(:edit)
+      end
+      
+      it "assigns project as @project" do
+        assigns[:project].should == mock_project
       end
     end
 
@@ -161,6 +187,11 @@ describe SectionsController do
     it "redirects to the sections list" do
       delete :destroy, :id => "1"
       response.should redirect_to(project_sections_url(mock_project))
+    end
+    
+    it "assigns project as @project" do
+      delete :destroy, :id => "1"
+      assigns[:project].should == mock_project
     end
   end
 
