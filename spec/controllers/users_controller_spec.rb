@@ -145,17 +145,27 @@ describe UsersController do
   describe "set_admin action" do
     before do
       User.should_receive(:first).with(:conditions => {:id => "15"}).and_return(mock_user)
-      mock_user.should_receive(:save)
     end
     
-    it "set user admin field to param[:value]" do
+    it "should set user admin field to param[:value]" do
       mock_user.should_receive(:admin=).with(true)
+      mock_user.should_receive(:save)
       
       put :set_admin, :id => "15", :admin => true
     end
     
-    it "redirects to user page" do
+    it "should not allow the current user to change his admin status" do
+      controller.should_receive(:current_user).and_return(mock_user)
+      
+      mock_user.should_not_receive(:admin=)
+      mock_user.should_not_receive(:save)
+      
+      put :set_admin, :id => "15", :admin => true
+    end
+    
+    it "should redirect to user page" do
       mock_user.stub!(:admin=)
+      mock_user.stub!(:save)
       
       put :set_admin, :id => "15"
       

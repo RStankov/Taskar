@@ -44,8 +44,10 @@ class UsersController < ApplicationController
   end
   
   def set_admin
-    @user.admin = params[:admin]
-    @user.save
+    unless @user == current_user
+      @user.admin = params[:admin]
+      @user.save
+    end
     
     redirect_to @user
   end
