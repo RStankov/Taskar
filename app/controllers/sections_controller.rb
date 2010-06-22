@@ -1,12 +1,12 @@
 class SectionsController < ApplicationController
   before_filter :get_project, :only => [:index, :new, :create]
+  before_filter :get_section_and_project, :only => [:show, :edit, :update, :destroy]
   
   def index
     @sections = @project.sections
   end
 
   def show
-    @section = Section.find(params[:id])
   end
 
   def new
@@ -14,12 +14,11 @@ class SectionsController < ApplicationController
   end
   
   def edit
-    @section = Section.find(params[:id])
   end
 
   def create
     @section = @project.sections.build(params[:section])
-
+    
     if @section.save
       redirect_to @section
     else
@@ -28,8 +27,6 @@ class SectionsController < ApplicationController
   end
 
   def update
-    @section = Section.find(params[:id])
-    
     if @section.update_attributes(params[:section])
       redirect_to @section
     else
@@ -38,7 +35,6 @@ class SectionsController < ApplicationController
   end
 
   def destroy
-    @section = Section.find(params[:id])
     @section.destroy
     
     redirect_to project_sections_path(@section.project)
@@ -47,5 +43,10 @@ class SectionsController < ApplicationController
   private
     def get_project
       @project = Project.find(params[:project_id])
+    end
+    
+    def get_section_and_project
+      @section = Section.find(params[:id])
+      @project = @section.project
     end
 end
