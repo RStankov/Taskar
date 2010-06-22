@@ -38,10 +38,10 @@ class SectionsController < ApplicationController
   end
 
   def destroy
-    section = Section.find(params[:id])
-    section.destroy
+    @section = Section.find(params[:id])
+    @section.destroy
     
-    redirect_to project_sections_path(section.project)
+    redirect_to project_sections_path(@section.project)
   end
   
   private
