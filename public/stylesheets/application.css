@@ -1036,8 +1036,68 @@ footer span:hover {
   display: inline-block;
 }
 
-#section_footer li:last-child {
+#section_footer > li:last-child {
   float: right;
+}
+
+/*** MORE ACTIONS ***/
+
+#more_actions {
+  font-size: 11px;
+  line-height: 15px;
+  overflow: hidden;
+  padding-top: 4px;
+  position: relative;
+  text-align: center;
+}
+
+#more_actions:hover {
+  overflow: visible;
+}
+
+#more_actions > span {
+  cursor: pointer;
+  display: block;
+  height: 15px;
+  padding: 0 10px;
+}
+
+#more_actions:hover > span {
+  color: #fff;
+  background-color: #00589D;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
+#more_actions ul {
+  background-color: #eee;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  padding: 3px 0;
+  position: absolute;
+  width: 100%;
+}
+
+#more_actions li {
+  display: block;
+  padding: 0 3px;
+}
+
+#more_actions li a, #more_actions li span {
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  color: #4B4B4B;
+  cursor: pointer;
+  display: block;
+  text-decoration: none;
+}
+
+#more_actions li a:hover, #more_actions li span:hover {
+  background-color: #5C5C5C;
+  color: #fff;
 }
 
 /*** FRO REVISION: TASK SHOW ***/
@@ -1162,3 +1222,9 @@ footer span:hover {
 	-moz-transform: rotate(30deg);
 	-webkit-transform: rotate(30deg);
 }
+
+
+
+
+
+

@@ -17,5 +17,13 @@
 <ul id="section_footer">
   <li><input type="button" value="<%=t :'.add_task' %>" id="add_task_button"></li>
   <li><input type="button" value="<%=t :'.toggle_tasks' %>"></li>
-  <li><input type="button" value="<%=t :'.more' %>"</li>
+  <li id="more_actions">
+    <span><%=t :'.more' %></span>
+    <ul>
+      <li><a href="#">RSS</a></li>
+      <li><span>Print</span></li>
+      <li><a href="#">Export</a></li>
+      <li><a href="#">Import</a></li>
+    </ul>
+  </li>
 </ul>
