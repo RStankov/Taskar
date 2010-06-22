@@ -40,20 +40,20 @@ class TasksController < ApplicationController
   end
   
   def destroy
-    task = Task.find(params[:id])
-    task.destroy
+    @task = Task.find(params[:id])
+    @task.destroy
 
     if request.xhr?
       head :ok
     else
-      redirect_to task.section
+      redirect_to @task.section
     end
   end
   
   def state
-    task = Task.find(params[:id])
-    task.state = params[:state]
-    task.save
+    @task = Task.find(params[:id])
+    @task.state = params[:state]
+    @task.save
     
     head :ok
   end
