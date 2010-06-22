@@ -183,6 +183,7 @@ header {
 #nav_sections {
   float: left;
   font-size: 14px;
+  overflow: hidden;
   width: 900px;
 }
 
