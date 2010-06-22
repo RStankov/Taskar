@@ -13,5 +13,5 @@ ActionController::Routing::Routes.draw do |map|
 
   SprocketsApplication.routes(map)
   
-  map.root :controller => 'projects', :action => 'index'
+  map.root :controller => 'dashboard', :action => 'index'
 end
