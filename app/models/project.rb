@@ -6,4 +6,8 @@ class Project < ActiveRecord::Base
   validates_presence_of :name
   
   attr_accessible :name, :user_ids
+  
+  def involves?(user)
+    users.include? user
+  end
 end
