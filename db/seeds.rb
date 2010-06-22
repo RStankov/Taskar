@@ -11,7 +11,8 @@ user = User.create(
   :first_name             => 'Admin', 
   :last_name              => 'Adminov', 
   :password               => '123456', 
-  :password_confirmation  => '123456'
+  :password_confirmation  => '123456',
+  :admin                  => true
 )
 
 unless user.new_record?

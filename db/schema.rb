@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100621203849) do
+ActiveRecord::Schema.define(:version => 20100622184426) do
 
   create_table "comments", :force => true do |t|
     t.integer  "task_id"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(:version => 20100621203849) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.integer  "comments_count",                      :default => 0
+    t.boolean  "admin"
   end
 
 end
