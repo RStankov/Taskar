@@ -5,4 +5,13 @@ class ApplicationController < ActionController::Base
   helper :all
   protect_from_forgery
   before_filter :authenticate_user!
+  
+  protected 
+    def deny_access
+      if request.xhr?
+        head :forbidden
+      else
+        redirect_to root_path
+      end
+    end
 end
