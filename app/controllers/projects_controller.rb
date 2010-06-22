@@ -1,4 +1,6 @@
 class ProjectsController < ApplicationController
+  before_filter :check_for_admin
+  
   def index
     @projects = Project.all
   end
@@ -41,4 +43,11 @@ class ProjectsController < ApplicationController
 
     redirect_to projects_url
   end
+  
+  private
+    def check_for_admin
+      unless current_user.admin?
+        redirect_to root_path
+      end
+    end
 end
