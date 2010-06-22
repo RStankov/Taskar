@@ -14,10 +14,10 @@
     <div id="nav_projects">
       <span><%= t :".switch_to_project" %></span>
       <ul>
-        <% Project.all(:limit => 10).each do |project| %>
+        <% current_user.projects.all(:limit => 10).each do |project| %>
         <li><%= link_to project.name, [project, :sections] %></li>
         <% end %>
-        <li><%= link_to t(:".all_projects"), projects_path %></li>
+        <li><%= link_to t(:".all_projects"), root_path %></li>
       </ul>
     </div>
   </header>
