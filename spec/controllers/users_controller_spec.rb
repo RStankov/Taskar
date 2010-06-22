@@ -10,7 +10,7 @@ describe UsersController do
       sign_in Factory(:user, :admin => true)
     end
 
-    describe "index action" do
+    describe "GET index" do
       before do
         User.should_receive(:all).and_return([mock_user])
         get :index
@@ -25,7 +25,7 @@ describe UsersController do
       end
     end
 
-    describe "show action" do
+    describe "GET show" do
       before do
         User.should_receive(:first).with(:conditions => {:id => "15"}).and_return(mock_user)
         get :show, :id => "15"
@@ -40,7 +40,7 @@ describe UsersController do
       end
     end
 
-    describe "new action" do
+    describe "GET new" do
       before do
         get :new
       end
@@ -54,7 +54,7 @@ describe UsersController do
       end
     end
 
-    describe "create action" do
+    describe "POST create" do
       def user_params
         {:these => "params"}
       end
@@ -85,7 +85,7 @@ describe UsersController do
       end
     end
 
-    describe "edit action" do
+    describe "GET edit" do
       before do
         User.should_receive(:first).with(:conditions => {:id => "15"}).and_return(mock_user)
         get :edit, :id => "15"
@@ -100,7 +100,7 @@ describe UsersController do
       end
     end
 
-    describe "update action" do
+    describe "PUT update" do
       def user_params
         {:these => 'params'}
       end
@@ -131,7 +131,7 @@ describe UsersController do
       end
     end
 
-    describe "destroy action" do
+    describe "DELETE destroy" do
       before do
         User.should_receive(:first).with(:conditions => {:id => "15"}).and_return(mock_user)
         mock_user.should_receive(:destroy)
@@ -143,7 +143,7 @@ describe UsersController do
       end
     end
 
-    describe "set_admin action" do
+    describe "PUT set_admin" do
       before do
         User.should_receive(:first).with(:conditions => {:id => "15"}).and_return(mock_user)
       end
