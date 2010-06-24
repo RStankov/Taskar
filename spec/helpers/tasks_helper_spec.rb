@@ -3,7 +3,7 @@ require 'spec_helper'
 describe TasksHelper do
   describe "task_state_checkbox" do
     before do
-      @task = mock_model(Project, {:state => "opened"})
+      @task = mock_task(:state => "opened")
     end
     
     describe "on not archived task" do
@@ -58,10 +58,9 @@ describe TasksHelper do
   
   describe "task_description" do
     it "returns tasks description in p" do
-      task      = mock_model(Task)
       expected  = ('<p>' + t(:'tasks.show.description', :from => 'Радослав Станков', :to => 'Някой друг', :on => '10.05.2010', :due => '10.05.2010') + '</p>')
       
-      helper.task_description(task).should == expected
+      helper.task_description(mock_task).should == expected
     end
   end
 end

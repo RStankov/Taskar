@@ -3,14 +3,10 @@ require 'spec_helper'
 describe SectionsHelper do
   describe "new_section_link" do
     before do
-      assigns[:project] = @project = mock_model(Project)
+      assigns[:project] = @project = mock_project
       
       helper.stub(:t).and_return("")
     end
-    
-    def mock_section
-      @mock_section ||= mock_model(Section)
-    end  
     
     it "return li.add_section" do
       helper.new_section_link.should have_tag("li.add_section")

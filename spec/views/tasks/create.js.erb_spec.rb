@@ -12,7 +12,7 @@ describe "/tasks/create.js.erb" do
   end
   
   it "contains higher_item.id text, when @task don't higher_item" do
-    @task.stub!(:higher_item).and_return(mock_model(Task, :id => 12345))
+    @task.stub!(:higher_item).and_return(mock_task(:id => 12345))
     
     render
     
