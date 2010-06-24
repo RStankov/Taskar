@@ -238,10 +238,16 @@ describe TasksController do
       mock_task.stub!(:archived=)
     end
     
-    it "should try to archive the task" do
-      mock_task.should_receive(:archived=).with("true")
+    it "should try to archive the task to true, when archived is true" do
+      mock_task.should_receive(:archived=).with(true)
       
       xhr :put, :archive, :id => "5", :archived => "true"
+    end
+    
+    it "should try to archive the task to false, when archived is set to false" do
+      mock_task.should_receive(:archived=).with(false)
+      
+      xhr :put, :archive, :id => "5"
     end
     
     it "should just head ok" do

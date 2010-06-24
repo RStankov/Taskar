@@ -73,7 +73,7 @@ class TasksController < ApplicationController
   
   def archive 
      @task = Task.find(params[:id])
-     @task.archived = params[:archived]
+     @task.archived = params[:archived] ? true : false
      @task.save
      
      head :ok

@@ -1,6 +1,6 @@
 <% content_tag_for(:li, task, :class => task.state) do %>
   <%= task_state_checkbox(task) %>
-  <%= link_to '[archive]', archive_task_path(task), :class => "archive", "data-remote" => true, "data-method" => "put" %>
+  <%= link_to '[archive]', archive_task_path(task, :archived => !task.archived?), :class => "archive", "data-remote" => true, "data-method" => "put" %>
   <p style="overflow:hidden;height: 18px;"><a href="#"><strong>RStankov</strong></a> <%=h task.text %></p>
   <span class="more">...<%=t :'.more' %></span>
   <%= time_tag task.created_at %>

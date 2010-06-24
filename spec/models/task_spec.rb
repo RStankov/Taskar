@@ -196,30 +196,42 @@ describe Task do
       @task = Factory(:task)
     end
     
-    it "should not archive task if it state is opened" do
-      @task.state = "opened"
-      @task.archived = true
-      @task.archived?.should be_false
-    end
-    
-    it "should unarchive task if it state is opened" do
-      @task.state = "opened"
-      @task.archived = false
-      @task.reload.archived?.should be_false
-    end
-    
-    %w(completed rejected).each do |state|
-      [true, false].each do |archive|
-        it "should set archive field to #{archive}, when state is #{state}" do
-          @task.state = state
-          @task.archived = archive
-          @task.archived?.should == archive
+    describe "archived= method" do
+      it "should not archive task if it state is opened" do
+        @task.state = "opened"
+        @task.archived = true
+        @task.archived?.should be_false
+      end
+
+      it "should unarchive task if it state is opened" do
+        @task.state = "opened"
+        @task.archived = false
+        @task.reload.archived?.should be_false
+      end
+
+      it "should accept string 'true' and set it to true" do
+        @task.state = "completed"
+        @task.archived = "true"
+        @task.archived.should be_true
+      end
+
+      it "should accept string 'false' and set it to true" do
+        @task.state = "completed"
+        @task.archived = "false"
+        @task.archived.should be_false
+      end
+
+      %w(completed rejected).each do |state|
+        [true, false].each do |archive|
+          it "should set archive field to #{archive}, when state is #{state}" do
+            @task.state = state
+            @task.archived = archive
+            @task.archived?.should == archive
+          end
         end
       end
     end
     
-    require File.dirname(__FILE__) + '/../spec_helper'
-
     describe "task state" do
       Task::STATES.each_value do |state|
         it "should not be changed to #{state} when task is archived" do
