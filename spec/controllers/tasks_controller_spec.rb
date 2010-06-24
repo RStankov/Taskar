@@ -215,7 +215,10 @@ describe TasksController do
 
   describe "GET search" do
     before do
-      Task.should_receive(:search).with("term").and_return([mock_task])
+      @tasks = [mock_task]
+      
+      Task.should_receive(:unarchived).and_return(@tasks)
+      @tasks.should_receive(:search).with("term").and_return(@tasks)
       
       get :search, :ss => "term"
     end
@@ -224,7 +227,7 @@ describe TasksController do
     end
     
     it "should assign founded tasks as @tasks" do
-      assigns[:tasks].should == [mock_task]
+      assigns[:tasks].should == @tasks
     end
     
     it "should render search template" do
