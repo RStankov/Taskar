@@ -52,8 +52,25 @@ Taskar.Sections.Actions = {
     });
   },
   'ajax:put': {
-    '.archive': function(e, element){
-      e.findElement('.task').removeWithEffect('slideUp');
+    '.archive': function(e){
+      var task = e.findElement('.task');
+      task.slideUp(function(e){
+        var parent, insert;
+        if (task.parentNode.id == 'tasks'){
+          parent = $('archived_tasks');
+          insert = {top: task};
+        } else { 
+          parent = $('tasks');
+          insert = {bottom: task};
+        }
+        
+        if (!parent){
+          task.remove();
+        } else {
+          parent.insert(insert);
+          task.slideDown();
+        }
+      });
     } 
   },
   'ajax:delete': {
