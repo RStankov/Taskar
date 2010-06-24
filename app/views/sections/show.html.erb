@@ -11,7 +11,7 @@
   <% end %>
 </div>
 <ul id="tasks" data-sortable="<%= reorder_tasks_path(@section)  %>">
-  <%= render @section.tasks %>
+  <%= render @section.tasks.unarchived %>
   <%= render "tasks/new_form" %>
 </ul>
 <ul id="section_footer">

@@ -5,7 +5,10 @@ describe "/sections/show.html.erb" do
     assigns[:section] = @section = Factory(:section)
     assigns[:project] = @project = @section.project
     
-    @section.should_receive(:tasks).and_return([Factory(:task)])
+    tasks = [Factory(:task)]
+    
+    @section.should_receive(:tasks).and_return(tasks)
+    tasks.should_receive(:unarchived).and_return(tasks)
   end
 
   it "should renders" do
