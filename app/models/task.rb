@@ -55,6 +55,7 @@ class Task < ActiveRecord::Base
   
   def archived=(archived)
     if status != 0 || !archived
+      move_to_bottom
       super
     end
   end

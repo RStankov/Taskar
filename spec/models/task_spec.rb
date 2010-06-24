@@ -198,24 +198,28 @@ describe Task do
     
     describe "archived= method" do
       it "should not archive task if it state is opened" do
+        @task.should_not_receive(:move_to_bottom)
         @task.state = "opened"
         @task.archived = true
         @task.archived?.should be_false
       end
 
       it "should unarchive task if it state is opened" do
+        @task.should_receive(:move_to_bottom)
         @task.state = "opened"
         @task.archived = false
-        @task.reload.archived?.should be_false
+        @task.archived?.should be_false
       end
 
       it "should accept string 'true' and set it to true" do
+        @task.should_receive(:move_to_bottom)
         @task.state = "completed"
         @task.archived = "true"
         @task.archived.should be_true
       end
 
       it "should accept string 'false' and set it to true" do
+        @task.should_receive(:move_to_bottom)
         @task.state = "completed"
         @task.archived = "false"
         @task.archived.should be_false
@@ -224,6 +228,8 @@ describe Task do
       %w(completed rejected).each do |state|
         [true, false].each do |archive|
           it "should set archive field to #{archive}, when state is #{state}" do
+            @task.should_receive(:move_to_bottom)
+            
             @task.state = state
             @task.archived = archive
             @task.archived?.should == archive
