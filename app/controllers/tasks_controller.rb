@@ -68,7 +68,7 @@ class TasksController < ApplicationController
   def search
     @tasks = Task.search(params[:ss])
     
-    render :search, :layout => false
+    render :layout => false
   end
   
   def archive 
