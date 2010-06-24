@@ -182,6 +182,7 @@ describe TasksController do
   describe "PUT state" do
     before do
       Task.stub!(:find).with("5").and_return(mock_task(:save => true))
+      mock_task.stub!(:state=)
     end
     
     it "updates state attribute" do
@@ -190,9 +191,7 @@ describe TasksController do
       xhr :put, :state, :id => "5", :state => "fooo"
     end
     
-    it "returns ok" do
-      mock_task.stub!(:state=)
-      
+    it "returns ok" do      
       xhr :put, :state, :id => "5"
       
       response.should be_success
@@ -242,16 +241,10 @@ describe TasksController do
     it "should try to archive the task" do
       mock_task.should_receive(:archived=).with("true")
       
-      put :archive, :id => "5", :archived => "true"
+      xhr :put, :archive, :id => "5", :archived => "true"
     end
     
-    it "should redirect to section on regular request" do
-      put :archive, :id => "5", :archived => "true"
-      
-      response.should redirect_to(section_url(mock_task.section))
-    end
-    
-    it "should just head ok on xhr request" do
+    it "should just head ok" do
       xhr :put, :archive, :id => "5", :archived => "true"
       
       response.should be_success

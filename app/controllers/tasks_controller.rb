@@ -76,10 +76,6 @@ class TasksController < ApplicationController
      @task.archived = params[:archived]
      @task.save
      
-     if request.xhr?
-       head :ok
-     else
-       redirect_to @task.section
-     end 
+     head :ok
   end
 end
