@@ -82,5 +82,7 @@ class TasksController < ApplicationController
   def archived
     @section = Section.find(params[:section_id])
     @tasks   = @section.tasks.archived
+    
+    render :layout => false
   end
 end
