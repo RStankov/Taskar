@@ -1,8 +1,7 @@
 CD3.Behaviors({
   '#nav_sections':    Taskar.Sections.NewForm,
   '#section_title':   Taskar.Sections.Title,
-  '#tasks':           Taskar.Sections.Tasks,
-  '#section_footer':  Taskar.Sections.Footer,
+  '#sections_show':   Taskar.Sections.Actions,
   '#comments':        Taskar.Sections.Comments,
   '#live_search':     Taskar.UI.LiveSearch.Form,
   '#scroll_to_top:click': function(e){

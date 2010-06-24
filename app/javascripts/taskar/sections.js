@@ -23,7 +23,6 @@ Taskar.Sections = {
 };
 
 //= require "sections/new_form"
+//= require "sections/actions"
 //= require "sections/title"
-//= require "sections/tasks"
-//= require "sections/footer"
 //= require "sections/comments"
