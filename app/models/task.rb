@@ -16,6 +16,9 @@ class Task < ActiveRecord::Base
   
   delegate :project, :to => :section
   
+  named_scope :archived,   :conditions => { :archived => true  }
+  named_scope :unarchived, :conditions => { :archived => false }
+  
   def add_to_list_bottom
     self[position_column] = if insert_before && record = Task.find(:first, :conditions => {:id => insert_before})
       increment_positions_on_lower_items record.position

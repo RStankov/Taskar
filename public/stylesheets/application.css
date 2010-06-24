@@ -857,6 +857,10 @@ b  ackground: url(../images/sprite.png) 0 0 no-repeat;
   padding-left: 10px;
 }
 
+.opened .archive {
+  display: none;
+}
+
 #tasks li:hover.task .drag, #tasks li:hover.task ul {
   display: block;
 }

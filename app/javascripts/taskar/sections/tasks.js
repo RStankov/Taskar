@@ -20,6 +20,11 @@ Taskar.Sections.Tasks = {
       parameters: e.memo.sortable.serialize('items[]')
     });
   },
+  'ajax:put': {
+    '.archive': function(e, element){
+      e.findElement('.task').removeWithEffect('slideUp');
+    } 
+  },
   'ajax:delete': {
     '.task': function(e, element){
       element.removeWithEffect('slideUp');
