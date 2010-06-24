@@ -209,16 +209,12 @@ describe Task do
     end
     
     %w(completed rejected).each do |state|
-      it "should archive the task if it state is #{state}" do
-        @task.state = state
-        @task.archived = true
-        @task.archived?.should be_true
-      end
-      
-      it "should unarchive the task if it state is #{state}" do
+      [true, false].each do |archive|
+        it "should set archive field to #{archive}, when state is #{state}" do
           @task.state = state
-          @task.archived = false
-          @task.archived?.should be_false
+          @task.archived = archive
+          @task.archived?.should == archive
+        end
       end
     end
   end
