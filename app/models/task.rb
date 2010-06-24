@@ -12,12 +12,10 @@ class Task < ActiveRecord::Base
   
   acts_as_list :scope => :section
   
-  default_scope :order => "position ASC"
-  
   delegate :project, :to => :section
   
-  named_scope :archived,   :conditions => { :archived => true  }
-  named_scope :unarchived, :conditions => { :archived => false }
+  named_scope :archived,   :conditions => { :archived => true  }, :order => "position DESC"
+  named_scope :unarchived, :conditions => { :archived => false }, :order => "position ASC"
   
   def add_to_list_bottom
     self[position_column] = if insert_before && record = Task.find(:first, :conditions => {:id => insert_before})
