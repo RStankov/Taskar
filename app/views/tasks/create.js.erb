@@ -1,6 +1,10 @@
 <% javascript_response do %>
   <% if higher_item = @task.higher_item %>
-    $("task_<%= @task.higher_item.id %>").insert({after: "<%= escape_javascript(render @task) %>"});
+    if ($("task_<%= @task.higher_item.id %>")){
+      $("task_<%= @task.higher_item.id %>").insert({after: "<%= escape_javascript(render @task) %>"});
+    } else {
+      $("new_task").insert({before: "<%= escape_javascript(render @task) %>"});
+    }
   <% else %>
     $("tasks").insert({top: "<%= escape_javascript(render @task) %>"});
   <% end %>
