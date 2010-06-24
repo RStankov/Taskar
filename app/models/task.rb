@@ -51,4 +51,10 @@ class Task < ActiveRecord::Base
   def self.search(ss, limit = 20)
     find :all, :conditions => ["text LIKE :ss", {:ss => "%#{ss.gsub(' ', '%')}%"}], :limit => limit
   end
+  
+  def archived=(archived)
+    if status != 0 || !archived
+      super
+    end
+  end
 end

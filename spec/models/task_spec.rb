@@ -190,5 +190,36 @@ describe Task do
       Task.search(text).include?(task).should be_true
     end
   end
-  
+ 
+  describe "archive" do
+    before do
+      @task = Factory(:task)
+    end
+    
+    it "should not archive task if it state is opened" do
+      @task.state = "opened"
+      @task.archived = true
+      @task.archived?.should be_false
+    end
+    
+    it "should unarchive task if it state is opened" do
+      @task.state = "opened"
+      @task.archived = false
+      @task.reload.archived?.should be_false
+    end
+    
+    %w(completed rejected).each do |state|
+      it "should archive the task if it state is #{state}" do
+        @task.state = state
+        @task.archived = true
+        @task.archived?.should be_true
+      end
+      
+      it "should unarchive the task if it state is #{state}" do
+          @task.state = state
+          @task.archived = false
+          @task.archived?.should be_false
+      end
+    end
+  end
 end
