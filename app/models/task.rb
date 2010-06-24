@@ -36,7 +36,7 @@ class Task < ActiveRecord::Base
   end
   
   def state=(state)
-    self.status = STATES.index(state)
+    self.status = STATES.index(state) unless archived?
   end
   
   def self.reorder(ids)

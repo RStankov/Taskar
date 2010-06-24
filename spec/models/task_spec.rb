@@ -191,7 +191,7 @@ describe Task do
     end
   end
  
-  describe "archive" do
+  describe "archived" do
     before do
       @task = Factory(:task)
     end
@@ -214,6 +214,22 @@ describe Task do
           @task.state = state
           @task.archived = archive
           @task.archived?.should == archive
+        end
+      end
+    end
+    
+    require File.dirname(__FILE__) + '/../spec_helper'
+
+    describe "task state" do
+      Task::STATES.each_value do |state|
+        it "should not be changed to #{state} when task is archived" do
+          @task.state = "completed"
+          @task.archived = true
+          
+          @task.state = state
+          
+          @task.archived?.should be_true
+          @task.state.should == "completed"
         end
       end
     end
