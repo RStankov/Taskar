@@ -60,7 +60,7 @@ bg:
     show:
       confirm: "Сигурни ли сте че, искате тази секция?"
       add_task: "Добави задача"
-      toggle_tasks: "Ахрив"
+      toggle_archive: "Ахрив"
       more: "Действия"
     
   
