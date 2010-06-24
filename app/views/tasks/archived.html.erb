@@ -1,14 +1,3 @@
 <ul id="archived_tasks">
-  <% @tasks.each do |task| %>
-    <% content_tag_for(:li, task, :class => task.state) do %>
-      <span class="checkbox <%= task.state %>"></span>
-      <%= link_to '[archive]', archive_task_path(task), :class => "archive", "data-remote" => true, "data-method" => "put" %>
-      <p><a href="#"><strong>RStankov</strong></a> <%=h task.text %></p>
-      <%= time_tag task.created_at %>
-      <ul>
-        <li><%= link_to t(:'.comments', :count => task.comments.size), task %></li>
-        <li><%= link_to t(:delete), task, :class => "delete", "data-remote" => true, "data-method" => "delete", "data-confirm" => t(:'.confirm') %></li>
-      </ul>
-    <% end %>
-  <% end %>
+  <%= render @tasks %>
 </ul>
