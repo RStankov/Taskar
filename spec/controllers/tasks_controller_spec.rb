@@ -256,4 +256,28 @@ describe TasksController do
       response.should be_success
     end
   end
+
+  describe "GET archived" do
+    before do
+      @tasks = [mock_task]
+      
+      Section.should_receive(:find).with("1").and_return(mock_section)
+      mock_section.should_receive(:tasks).and_return(@tasks)
+      @tasks.should_receive(:archived).and_return(@tasks)
+      
+      xhr :get, :archived, :section_id => "1"
+    end
+    
+    it "should assign the selected section as @section" do
+      assigns[:section] = mock_section
+    end
+    
+    it "should get section archived items, and assign them as @tasks" do
+      assigns[:tasks] = @tasks
+    end
+    
+    it "should render archived template" do
+      response.should render_template(:archived)
+    end
+  end
 end

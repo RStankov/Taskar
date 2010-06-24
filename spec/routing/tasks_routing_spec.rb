@@ -37,5 +37,9 @@ describe TasksController do
     it "recognizes and generates #search" do
       { :get => "/tasks/search" }.should route_to(:controller => "tasks", :action => "search")
     end
+    
+    it "recognizes and generates #archived" do
+      { :get => "/sections/2/tasks/archived" }.should route_to(:controller => "tasks", :action => "archived", :section_id => "2")
+    end
   end
 end
