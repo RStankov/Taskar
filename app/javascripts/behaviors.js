@@ -1,9 +1,10 @@
 CD3.Behaviors({
-  '#nav_sections':  Taskar.Sections.NewForm,
-  '#section_title': Taskar.Sections.Title,
-  '#tasks':         Taskar.Sections.Tasks,
-  '#comments':      Taskar.Sections.Comments,
-  '#live_search':   Taskar.UI.LiveSearch.Form,
+  '#nav_sections':    Taskar.Sections.NewForm,
+  '#section_title':   Taskar.Sections.Title,
+  '#tasks':           Taskar.Sections.Tasks,
+  '#section_footer':  Taskar.Sections.Footer,
+  '#comments':        Taskar.Sections.Comments,
+  '#live_search':     Taskar.UI.LiveSearch.Form,
   '#scroll_to_top:click': function(e){
     e.stop();
     var id      = this.getAttribute('href').split('#').last(),
@@ -14,20 +15,6 @@ CD3.Behaviors({
         location.hash = id;
       });
     }
-  },
-  '#add_task_button:click': function(){
-    var newTask = $('new_task');
-    
-    Taskar.Sections.resetTaskForm(newTask.down('form'));
-    
-    if (newTask.visible() && !newTask.next()){
-      return newTask.down('textarea').focus();
-    }
-    
-    newTask.slideDown(function(e){
-      e.element.down('textarea').focus();
-      new Taskar.FX.ScrollTo(e.element);
-    });
   }
 });
 
