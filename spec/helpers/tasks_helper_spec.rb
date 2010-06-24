@@ -4,25 +4,55 @@ describe TasksHelper do
   describe "task_state_checkbox" do
     before do
       @task = mock_model(Project, {:state => "opened"})
+    end
+    
+    describe "on not archived task" do
+      before do
+        @task.stub!(:archived?).and_return(false)
+        @returned = helper.task_state_checkbox(@task)
+      end
       
-      @returned = helper.task_state_checkbox(@task)
+      it "should return span.checkbox" do
+        @returned.should have_tag("span.checkbox")
+      end
+
+      it "should return span.(@task.state)" do
+        @returned.should have_tag("span.checkbox.#{@task.state}")
+      end
+
+      it "should return span[data-state]" do
+        @returned.should have_tag("span[data-state=#{@task.state}]")
+      end
+
+      it "should return span[data-url]" do
+        url = state_task_path(@task)
+        @returned.should have_tag("span[data-url=#{url}]")
+      end
     end
     
-    it "returns span.checkbox" do
-      @returned.should have_tag("span.checkbox")
-    end
-    
-    it "returns span.(@task.state)" do
-      @returned.should have_tag("span.checkbox.#{@task.state}")
-    end
-    
-    it "returns span[data-state]" do
-      @returned.should have_tag("span[data-state=#{@task.state}]")
-    end
-    
-    it "returns span[data-url]" do
-      url = state_task_path(@task)
-      @returned.should have_tag("span[data-url=#{url}]")
+    describe "on archived task" do
+      before do
+        @task.stub!(:state).and_return("complete")
+        @task.stub!(:archived?).and_return(true)
+        @returned = helper.task_state_checkbox(@task)
+      end
+      
+      it "should return span.checkbox" do
+        @returned.should have_tag("span.checkbox")
+      end
+
+      it "should return span.(@task.state)" do
+        @returned.should have_tag("span.checkbox.#{@task.state}")
+      end
+
+      it "should not return span[data-state]" do
+        @returned.should_not have_tag("span[data-state=#{@task.state}]")
+      end
+
+      it "should not return span[data-url]" do
+        url = state_task_path(@task)
+        @returned.should_not have_tag("span[data-url=#{url}]")
+      end
     end
   end
   

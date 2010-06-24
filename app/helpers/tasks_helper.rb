@@ -1,7 +1,12 @@
 module TasksHelper
   def task_state_checkbox(task)
     state = task.state
-    '<span class="checkbox ' + state + '" data-state="' + state + '" data-url="' + state_task_path(task) + '"></span>'
+    
+    if task.archived?
+      '<span class="checkbox ' + state + '"></span>'
+    else 
+      '<span class="checkbox ' + state + '" data-state="' + state + '" data-url="' + state_task_path(task) + '"></span>'
+    end
   end
   
   def task_description(task)
