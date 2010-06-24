@@ -20,4 +20,5 @@ Spec::Runner.configure do |config|
   config.include Taskar::Auth::SpecHelper
   config.extend Taskar::SpecHelper
   config.include ControllerMacros
+  config.include TaskarMocks
 end

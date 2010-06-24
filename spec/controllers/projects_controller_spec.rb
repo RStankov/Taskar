@@ -1,11 +1,6 @@
 require 'spec_helper'
 
 describe ProjectsController do
-
-  def mock_project(stubs={})
-    @mock_project ||= mock_model(Project, stubs)
-  end
-
   describe "with admin user" do
     before do
       sign_in Factory(:user, :admin => true)

@@ -1,19 +1,6 @@
 require 'spec_helper'
 
 describe TasksController do
-
-  def mock_task(stubs={})
-    @mock_task ||= mock_model(Task, {:section => mock_section, :project => mock_project}.merge(stubs))
-  end
-  
-  def mock_section(stubs={})
-    @mock_section ||= mock_model(Section, {:project => mock_project}.merge(stubs))
-  end
-
-  def mock_project(stubs={})
-    @mock_project ||= mock_model(Project, stubs)
-  end
-
   before do
     sign_in Factory(:user)
   end

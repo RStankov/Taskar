@@ -1,15 +1,6 @@
 require 'spec_helper'
 
 describe SectionsController do
-
-  def mock_section(stubs={})
-    @mock_section ||= mock_model(Section, {:project => mock_project}.merge(stubs))
-  end
-  
-  def mock_project(stubs={})
-    @mock_project ||= mock_model(Project, stubs)
-  end
-
   describe "with project user" do
     before do
       user = Factory(:user)
