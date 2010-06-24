@@ -59,7 +59,7 @@ class TasksController < ApplicationController
     head :ok
   end
   
-  def reorder 
+  def reorder
     Task.reorder(params[:items])
     
     head :ok
@@ -71,7 +71,7 @@ class TasksController < ApplicationController
     render :layout => false
   end
   
-  def archive 
+  def archive
      @task = Task.find(params[:id])
      @task.archived = params[:archived] ? true : false
      @task.save
