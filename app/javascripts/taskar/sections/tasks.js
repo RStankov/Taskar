@@ -27,7 +27,6 @@ Taskar.Sections.Tasks = {
   },
   'ajax:delete': {
     '.task': function(e, element){
-      //element.removeWithEffect('slideUp');
       Taskar.FX.dropOut(element, function(e){e.element.remove()});
     }
   },
