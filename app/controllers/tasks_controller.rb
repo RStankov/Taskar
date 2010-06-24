@@ -70,4 +70,16 @@ class TasksController < ApplicationController
     
     render :search, :layout => false
   end
+  
+  def archive 
+     @task = Task.find(params[:id])
+     @task.archived = params[:archived]
+     @task.save
+     
+     if request.xhr?
+       head :ok
+     else
+       redirect_to @task.section
+     end 
+  end
 end

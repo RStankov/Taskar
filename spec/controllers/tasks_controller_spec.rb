@@ -233,4 +233,28 @@ describe TasksController do
     end
   end
 
+  describe "PUT archive" do
+    before do
+      Task.stub!(:find).with("5").and_return(mock_task(:save => true))
+      mock_task.stub!(:archived=)
+    end
+    
+    it "should try to archive the task" do
+      mock_task.should_receive(:archived=).with("true")
+      
+      put :archive, :id => "5", :archived => "true"
+    end
+    
+    it "should redirect to section on regular request" do
+      put :archive, :id => "5", :archived => "true"
+      
+      response.should redirect_to(section_url(mock_task.section))
+    end
+    
+    it "should just head ok on xhr request" do
+      xhr :put, :archive, :id => "5", :archived => "true"
+      
+      response.should be_success
+    end
+  end
 end
