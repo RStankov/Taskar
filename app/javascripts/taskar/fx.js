@@ -19,6 +19,12 @@ Taskar.FX.Move = Class.create(S2.FX.Element, {
 	}
 });
 
+Taskar.FX.dropOut = function(element, options){
+  element = $(element);
+  element.style.height = element.getHeight() + 'px';
+  return element.morph("top: 100px; left: 0px; height: 0px; opacity: 0;", options);
+};
+
 Taskar.FX.shake = function(element, options){
   element = $(element);
   
