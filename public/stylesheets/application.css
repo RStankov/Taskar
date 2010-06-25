@@ -750,30 +750,30 @@ b  ackground: url(../images/sprite.png) 0 0 no-repeat;
 
 /*** TASK ***/
 
-#tasks {
+.tasks_list {
   padding: 20px;
   color: #3d3d3d;
 }
 
-#tasks .task {
+.tasks_list .task {
   padding: 10px 10px 10px;
   position: relative;
 }
 
-#tasks li:hover.task {
+.tasks_list li:hover.task {
   background-color: #FDFDFD;
 }
 
-#tasks a:not(.cancel) {
+.tasks_list a:not(.cancel) {
   color: #00589D;
   text-decoration: none;
 }
 
-#tasks a:hover {
+.tasks_list a:hover {
   text-decoration: underline;
 }
 
-#tasks .rejected, #tasks .completed {
+.tasks_list .rejected, .tasks_list .completed {
   opacity: 0.6;
 }
 
@@ -804,24 +804,24 @@ b  ackground: url(../images/sprite.png) 0 0 no-repeat;
   margin: -2px 0 0 3px;
 }
 
-#tasks p {
+.tasks_list p {
   display: inline-block;
   float: left;
   max-width: 615px;
 }
 
-#tasks .rejected p {
+.tasks_list .rejected p {
   text-decoration: line-through;
 }
 
-#tasks .more {
+.tasks_list .more {
   color: #00589D;
   cursor: pointer;
   font-size: 12px;
   padding-left: 10px;
 }
 
-#tasks time {
+.tasks_list time {
   display: block;
   clear: both;
   font-size: 11px;
@@ -829,7 +829,7 @@ b  ackground: url(../images/sprite.png) 0 0 no-repeat;
   color: #808080;
 }
 
-#tasks .drag {
+.tasks_list .drag {
   background: url(../images/sprite.png) -28px -63px no-repeat;
   display: none;
   height: 13px;
@@ -839,7 +839,7 @@ b  ackground: url(../images/sprite.png) 0 0 no-repeat;
   width: 13px;
 }
 
-#tasks .drag:hover {
+.tasks_list .drag:hover {
   background-position: -28px -103px;
 }
 
@@ -861,7 +861,7 @@ b  ackground: url(../images/sprite.png) 0 0 no-repeat;
   display: none;
 }
 
-#tasks li:hover.task .drag, #tasks li:hover.task ul {
+.tasks_list li:hover.task .drag, .tasks_list li:hover.task ul {
   display: block;
 }
 
@@ -928,7 +928,7 @@ footer span:hover {
 
 /*** FOR REVISION:TASK FORMS ***/
 
-#tasks form {
+.tasks_list form {
   padding: 13px 15px;
   position: relative;
   background-color: #eee;
@@ -940,22 +940,22 @@ footer span:hover {
   margin: -10px;
 }
 
-#tasks form label {
+.tasks_list form label {
   display: block;
 }
 
-#tasks form textarea {
+.tasks_list form textarea {
   display: block;
   width: 100%;
   height: 80px;
   margin: 10px 0 10px 0;
 }
 
-#tasks form input[type="button"] {
+.tasks_list form input[type="button"] {
   font-size: 12px;
 }
 
-#tasks form input[type="submit"] {
+.tasks_list form input[type="submit"] {
   border-radius: 10px;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
@@ -964,14 +964,14 @@ footer span:hover {
   padding: 5px 10px;
 }
 
-#tasks form input[type="submit"]:hover {
+.tasks_list form input[type="submit"]:hover {
   background: -moz-linear-gradient(top, #1977c0, #00589D);
   box-shadow: 0 0 6px #000000;
   -moz-box-shadow: 0 0 6px #000000;
   -webkit-box-shadow: 0 0 6px #000000;
 }
 
-#tasks form input[type="submit"]:focus {
+.tasks_list form input[type="submit"]:focus {
   background: -moz-linear-gradient(top, #00589D, #1977c0);
   box-shadow: 0 0 6px #666;
   -moz-box-shadow: 0 0 6px #666;
