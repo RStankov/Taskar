@@ -897,6 +897,18 @@ b  ackground: url(../images/sprite.png) 0 0 no-repeat;
   border-color: #D7D7D7;
 }
 
+#archived_tasks {
+  border-top: 1px solid #EEE;
+}
+
+#archived_tasks .task:hover .drag {
+  display: none;
+}
+
+#archived_tasks .task:hover .edit {
+  display: none;
+}
+
 /*** FOOTER ***/
 
 footer {
