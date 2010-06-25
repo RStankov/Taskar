@@ -952,9 +952,9 @@ footer span:hover {
   padding: 13px 15px;
   position: relative;
   background-color: #eee;
-  border-radius: 10px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
 }
 .task form{
   margin: -10px;
