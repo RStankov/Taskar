@@ -5,11 +5,7 @@
   <%= stylesheet_link_tag 'application' %>
 </head>
 <body>
-  <header>
-    <p id="nav_account">
-      <%= link_to t(:"layouts.general.profile"), edit_user_registration_path %> | 
-      <%= link_to t(:"layouts.general.logout"), destroy_user_session_path %>
-    </p>
+  <% content_for :header do %>
     <div id="nav_projects">
       <span><%= t :".switch_to_project" %></span>
       <ul>
@@ -19,7 +15,8 @@
         <li><%= link_to t(:".all_projects"), root_path %></li>
       </ul>
     </div>
-  </header>
+  <% end %>
+  <%= render "shared/header" %>
   <nav id="nav_main">
     <%= link_to '', [@project, :sections], :id => "goto_dashboard", :title => t(:".goto_dashboard")  %>
     <ul id="nav_sections">

@@ -5,12 +5,7 @@
   <%= stylesheet_link_tag 'application' %>
 </head>
 <body>
-  <header>
-    <p id="nav_account">
-      <%= link_to t(:"layouts.general.profile"), edit_user_registration_path %> | 
-      <%= link_to t(:"layouts.general.logout"), destroy_user_session_path %>
-    </p>
-  </header>
+  <%= render "shared/header" %>
   <section>
     <article>
       <%= yield %>
