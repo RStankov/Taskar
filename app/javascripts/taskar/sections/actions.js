@@ -97,5 +97,14 @@ Taskar.Sections.Actions = {
       form.request();
       Taskar.Sections.resetTaskForm(form);
     }
+  },
+  mouseover: {
+    '.task': function(e, element){
+      var content = element.down('p');
+      if (content && !content._marked && !(content.scrollHeight > content.getHeight())){
+        content._marked = [1];
+        element.down('span.more').hide();
+      }
+    }
   }
 };

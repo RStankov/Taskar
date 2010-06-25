@@ -818,8 +818,13 @@ b  ackground: url(../images/sprite.png) 0 0 no-repeat;
   color: #00589D;
   cursor: pointer;
   font-size: 12px;
-  padding-left: 10px;
+  display: none;
 }
+
+.task:hover .more {
+  display: block;
+}
+
 
 .tasks_list time {
   display: block;
@@ -841,6 +846,11 @@ b  ackground: url(../images/sprite.png) 0 0 no-repeat;
 
 .tasks_list .drag:hover {
   background-position: -28px -103px;
+}
+
+.task > p {
+  overflow: hidden;
+  height: 18px;
 }
 
 .task ul {
