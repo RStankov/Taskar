@@ -30,7 +30,11 @@ Taskar.Sections.Actions = {
       var archive = $('archived_tasks');
       if (archive){
         element.toggleClassName('selected');
-        return archive.toggle();
+        return archive.toggleWithEffect('slide', function(e){
+          if (archive.visible()){
+            new Taskar.FX.ScrollTo(element);
+          }
+        });
       }
       
       element.addClassName('loading');
@@ -41,6 +45,7 @@ Taskar.Sections.Actions = {
           element.removeClassName('loading');
           element.addClassName('selected');
           e.findElement('ul').insert({ after: t.responseText });
+          $('archived_tasks').hide().slideDown(function(e){ new Taskar.FX.ScrollTo(element); })
         }
       });
     }
