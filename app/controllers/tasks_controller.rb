@@ -1,19 +1,19 @@
 class TasksController < ApplicationController
   layout "sections"
   
+  before_filter :get_task_and_project, :only => [:show, :edit, :update, :destroy, :state, :archive]
+  before_filter :get_section_and_project, :only => [:create, :archived]
+  before_filter :check_permissions
+  
   def show
-    @task    = Task.find(params[:id])
     @section = @task.section
-    @project = @section.project
   end
 
   def edit
-    @task = Task.find(params[:id])
   end
 
   def create
-    @section = Section.find(params[:section_id])
-    @task    = @section.tasks.build(params[:task])
+    @task = @section.tasks.build(params[:task])
 
     if @task.save
       unless request.xhr?
@@ -27,8 +27,6 @@ class TasksController < ApplicationController
   end
   
   def update
-    @task = Task.find(params[:id])
-
     if @task.update_attributes(params[:task])
       if request.xhr?
         render :action => "show"
@@ -41,7 +39,6 @@ class TasksController < ApplicationController
   end
   
   def destroy
-    @task = Task.find(params[:id])
     @task.destroy
 
     if request.xhr?
@@ -52,11 +49,17 @@ class TasksController < ApplicationController
   end
   
   def state
-    @task = Task.find(params[:id])
     @task.state = params[:state]
     @task.save
     
     head :ok
+  end
+  
+  def archive
+     @task.archived = params[:archived] ? true : false
+     @task.save
+     
+     head :ok
   end
   
   def reorder
@@ -71,18 +74,26 @@ class TasksController < ApplicationController
     render :layout => false
   end
   
-  def archive
-     @task = Task.find(params[:id])
-     @task.archived = params[:archived] ? true : false
-     @task.save
-     
-     head :ok
-  end
-
   def archived
-    @section = Section.find(params[:section_id])
-    @tasks   = @section.tasks.archived
+    @tasks = @section.tasks.archived
     
     render :layout => false
   end
+
+  private
+    def get_task_and_project
+      @task    = Task.find(params[:id])
+      @project = @task.project
+    end
+    
+    def get_section_and_project
+      @section = Section.find(params[:section_id])
+      @project = @section.project
+    end
+    
+    def check_permissions
+      unless @project.involves? current_user
+        deny_access
+      end
+    end
 end

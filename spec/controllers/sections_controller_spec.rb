@@ -2,11 +2,7 @@ require 'spec_helper'
 
 describe SectionsController do
   describe "with project user" do
-    before do
-      user = Factory(:user)
-      sign_in user
-      mock_project.should_receive(:involves?).with(user).and_return(true)
-    end
+    before { sign_with_project_user }
     
     describe "GET index" do
       before do
@@ -192,13 +188,7 @@ describe SectionsController do
   end
   
   describe "with user outside project" do
-    before do
-      user = Factory(:user)
-      sign_in user
-      mock_project.should_receive(:involves?).with(user).and_return(false)
-      
-      ensure_deny_access_is_called
-    end
+    before { sign_with_user_outside_the_project }
     
     {
       :show       => 'get(:show, :id => "1")',
