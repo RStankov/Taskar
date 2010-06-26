@@ -11,6 +11,17 @@ describe Task do
   it { should validate_presence_of(:section) }
   it { should validate_presence_of(:project) }
   
+  it "should inherit the project_id from its parent section" do
+    section = Factory(:section)
+    
+    task = Task.new
+    task.section_id = section.id
+    task.text = "dummy text"
+    
+    task.save.should be_true
+    task.project_id.should  == section.project_id
+  end
+  
   describe "acts_as_list" do
     before do
       @section = Factory(:section)
@@ -250,4 +261,5 @@ describe Task do
       end
     end
   end
+
 end

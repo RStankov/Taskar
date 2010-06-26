@@ -15,6 +15,8 @@ class Task < ActiveRecord::Base
   
   acts_as_list :scope => :section
   
+  before_validation_on_create :inherit_section_project 
+  
   named_scope :archived,   :conditions => { :archived => true  }, :order => "position DESC"
   named_scope :unarchived, :conditions => { :archived => false }, :order => "position ASC"
   
@@ -60,4 +62,9 @@ class Task < ActiveRecord::Base
       super
     end
   end
+  
+  protected 
+    def inherit_section_project
+      self.project_id = section.try(:project_id)
+    end
 end
