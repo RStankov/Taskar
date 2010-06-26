@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
-  before_filter :get_comment, :except => [:create]
+  before_filter :get_comment_and_project, :except => [:create]
+  before_filter :get_task_and_project, :only => [:create] 
+  before_filter :check_project_permissions
   before_filter :ensure_comment_is_editable, :only => [:edit, :update, :destroy]
   
   def show
@@ -10,7 +12,7 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = current_user.new_comment(Task.find(params[:task_id]), params[:comment])
+    @comment = current_user.new_comment(@task, params[:comment])
 
     if @comment.save
       redirect_to_comment
@@ -42,8 +44,14 @@ class CommentsController < ApplicationController
   end
   
   private 
-    def get_comment
+    def get_comment_and_project
       @comment = Comment.find(params[:id])
+      @project = @comment.project
+    end
+    
+    def get_task_and_project
+      @task = Task.find(params[:task_id])
+      @project = @task.project
     end
     
     def ensure_comment_is_editable

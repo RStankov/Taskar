@@ -9,15 +9,15 @@ module ControllerMacros
   end
   
   def sign_with_project_user
-    user = Factory(:user)
-    sign_in user
-    mock_project.should_receive(:involves?).with(user).and_return(true)
+    @current_user = Factory(:user)
+    sign_in @current_user
+    mock_project.should_receive(:involves?).with(@current_user).and_return(true)
   end
   
   def sign_with_user_outside_the_project
-    user = Factory(:user)
-    sign_in user
-    mock_project.should_receive(:involves?).with(user).and_return(false)
+    @current_user = Factory(:user)
+    sign_in @current_user
+    mock_project.should_receive(:involves?).with(@current_user).and_return(false)
     
     ensure_deny_access_is_called
   end
