@@ -1,4 +1,4 @@
-ActionController::Routing::Routes.draw do |map|  
+ActionController::Routing::Routes.draw do |map|
   map.resources :users, :member => {:set_admin => :put}
   map.resources :projects do |projects|
     projects.resources :tasks, :collection => {:reorder => :put, :search => :get}, :only => []

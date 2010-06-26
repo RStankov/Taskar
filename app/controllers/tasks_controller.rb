@@ -70,7 +70,7 @@ class TasksController < ApplicationController
   end
   
   def search
-    @tasks = Task.unarchived.search(params[:ss])
+    @tasks = @project.tasks.unarchived.search(params[:ss])
     
     render :layout => false
   end

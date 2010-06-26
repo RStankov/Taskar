@@ -207,9 +207,9 @@ describe TasksController do
       before do
         @tasks = [mock_task]
       
-        Task.should_receive(:unarchived).and_return(@tasks)
         Project.should_receive(:find).with("3").and_return(mock_project)
-        
+        mock_project.should_receive(:tasks).and_return(@tasks)
+        @tasks.should_receive(:unarchived).and_return(@tasks)
         @tasks.should_receive(:search).with("term").and_return(@tasks)
       
         get :search, :project_id => "3", :ss => "term"
