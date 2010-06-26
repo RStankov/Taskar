@@ -1,9 +1,8 @@
 class CommentsController < ApplicationController
-  before_filter :get_comment_and_ensure_its_editable, :only => [:edit, :update, :destroy]
+  before_filter :get_comment, :except => [:create]
+  before_filter :ensure_comment_is_editable, :only => [:edit, :update, :destroy]
   
   def show
-    @comment = Comment.find(params[:id])
-    
     redirect_to_comment unless request.xhr?
   end
   
@@ -43,9 +42,11 @@ class CommentsController < ApplicationController
   end
   
   private 
-    def get_comment_and_ensure_its_editable
+    def get_comment
       @comment = Comment.find(params[:id])
-      
+    end
+    
+    def ensure_comment_is_editable
       unless @comment.editable_by(current_user)
         if request.xhr?
           head :bad_request
