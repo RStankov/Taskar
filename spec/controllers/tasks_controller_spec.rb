@@ -185,14 +185,18 @@ describe TasksController do
     end
 
     describe "PUT reorder" do
+      before do
+        Project.should_receive(:find).with("3").and_return(mock_project)
+      end
+      
       it "should call Tasks.reorder with the given ids" do
         Task.should_receive(:reorder).with(["1", "2", "3", "4"])
       
-        xhr :put, :reorder, :items => ["1", "2", "3", "4"]
+        xhr :put, :reorder, :project_id => "3", :items => ["1", "2", "3", "4"]
       end
     
       it "should not render template" do
-        xhr :put, :reorder
+        xhr :put, :reorder, :project_id => "3"
       
         response.should_not render_template(:reorder)
         response.should be_success
@@ -204,9 +208,11 @@ describe TasksController do
         @tasks = [mock_task]
       
         Task.should_receive(:unarchived).and_return(@tasks)
+        Project.should_receive(:find).with("3").and_return(mock_project)
+        
         @tasks.should_receive(:search).with("term").and_return(@tasks)
       
-        get :search, :ss => "term"
+        get :search, :project_id => "3", :ss => "term"
       end
     
       it "should search for given :ss" do
@@ -301,10 +307,14 @@ describe TasksController do
     end
     
     {
-      :reorder    => 'get(:reorder)',
-      :search     => 'get(:search)'
+      :reorder    => 'get(:reorder, :project_id => "1")',
+      :search     => 'get(:search, :project_id => "1")'
     }.each do |(action, code)|
-     it "should not allow #{action}, and redirect_to root_url"
+     it "should not allow #{action}, and redirect_to root_url" do
+       Project.should_receive(:find).with("1").and_return(mock_project)
+       
+       eval code
+     end
     end
   end
 end

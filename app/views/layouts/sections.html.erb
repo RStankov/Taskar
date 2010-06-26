@@ -48,7 +48,7 @@
       <%= yield %>
     </article>
     <aside>
-      <form id="live_search" action="<%= search_tasks_path %>" method="get">
+      <form id="live_search" action="<%= search_project_tasks_path(@project) %>" method="get">
         <input type="text" name="ss" value="" />
         <input type="submit" value="" />
         <%= image_tag "loader1.gif", :style => 'display: none;' %>

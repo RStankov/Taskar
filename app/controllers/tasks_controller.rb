@@ -3,6 +3,7 @@ class TasksController < ApplicationController
   
   before_filter :get_task_and_project, :only => [:show, :edit, :update, :destroy, :state, :archive]
   before_filter :get_section_and_project, :only => [:create, :archived]
+  before_filter :get_project, :only => [:search, :reorder]
   before_filter :check_permissions
   
   def show
@@ -89,6 +90,10 @@ class TasksController < ApplicationController
     def get_section_and_project
       @section = Section.find(params[:section_id])
       @project = @section.project
+    end
+    
+    def get_project
+      @project = Project.find(params[:project_id])
     end
     
     def check_permissions

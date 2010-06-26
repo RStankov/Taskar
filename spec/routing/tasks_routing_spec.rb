@@ -19,7 +19,7 @@ describe TasksController do
     end
   
     it "recognizes and generates #reorder" do
-      { :put => "/tasks/reorder" }.should route_to(:controller => "tasks", :action => "reorder") 
+      { :put => "projects/3/tasks/reorder" }.should route_to(:controller => "tasks", :action => "reorder", :project_id => "3") 
     end
 
     it "recognizes and generates #destroy" do
@@ -35,7 +35,7 @@ describe TasksController do
       end
     
     it "recognizes and generates #search" do
-      { :get => "/tasks/search" }.should route_to(:controller => "tasks", :action => "search")
+      { :get => "projects/3/tasks/search" }.should route_to(:controller => "tasks", :action => "search", :project_id => "3")
     end
     
     it "recognizes and generates #archived" do
