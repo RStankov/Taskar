@@ -24,6 +24,6 @@ module ApplicationHelper
   end
   
   def time_tag(time)
-    '<time datetime="' + time.rfc2822  + '" title="' + l(time, :format => :long) + '">' + time_ago_in_words(time) + '</time>'
+    '<time datetime="' + time.rfc2822  + '" title="' + l(time, :format => :long) + '">' + t(:before, :time => time_ago_in_words(time)) + '</time>'
   end
 end
