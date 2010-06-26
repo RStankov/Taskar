@@ -14,4 +14,10 @@ class ApplicationController < ActionController::Base
         redirect_to root_path
       end
     end
+    
+    def check_project_permissions
+      unless @project.involves? current_user
+        deny_access
+      end
+    end
 end

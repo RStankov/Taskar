@@ -4,7 +4,7 @@ class TasksController < ApplicationController
   before_filter :get_task_and_project, :only => [:show, :edit, :update, :destroy, :state, :archive]
   before_filter :get_section_and_project, :only => [:create, :archived]
   before_filter :get_project, :only => [:search, :reorder]
-  before_filter :check_permissions
+  before_filter :check_project_permissions
   
   def show
     @section = @task.section
@@ -94,11 +94,5 @@ class TasksController < ApplicationController
     
     def get_project
       @project = Project.find(params[:project_id])
-    end
-    
-    def check_permissions
-      unless @project.involves? current_user
-        deny_access
-      end
-    end
+    end   
 end
