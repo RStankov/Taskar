@@ -315,15 +315,21 @@ header {
   width: 40px;
 }
 
+#nav_more_sections:hover {
+  border-bottom-right-radius: 0;
+  -moz-border-bottom-right-radius: 0;
+  -webkit-border-bottom-right-radius: 0;
+}
+
 #nav_more_sections:hover span {
   background-position: 13px -121px;
 }
 
 #nav_more_sections ul {
   background: #eee;
-  border-radius: 0 10px 10px;
-  -moz-border-radius: 0 10px 10px;
-  -webkit-border-radius: 0 10px 10px;
+  border-radius: 0 0 10px 10px;
+  -moz-border-radius: 0 0 10px 10px;
+  -webkit-border-radius: 0 0 10px 10px;
   box-shadow: 0 5px 5px #aeaeae;
   -moz-box-shadow: 0 5px 5px #aeaeae;
   -webkit-box-shadow: 0 5px 5px #aeaeae;
