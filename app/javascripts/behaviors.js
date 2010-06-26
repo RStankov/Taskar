@@ -5,6 +5,10 @@ CD3.Behaviors({
   '#comments':        Taskar.Sections.Comments,
   '#live_search':     Taskar.UI.LiveSearch.Form,
   '#tasks':           function(element){
+    if (!element.down('.task')){
+      $('new_task').show().down('textarea').highlight().focus();
+    }
+    
     new Taskar.Dnd.Sortable(element, {
       list:   '#' + element.id,
       item:   'li.task',
