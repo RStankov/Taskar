@@ -947,7 +947,7 @@ footer p {
   display: inline;
 }
 
-footer span {
+#scroll_to_top {
   background: url(../images/sprite.png) 4px -173px no-repeat;
   cursor: pointer;
   display: block;
@@ -956,7 +956,7 @@ footer span {
   width: 20px;
 }
 
-footer span:hover {
+#scroll_to_top:hover {
   background-position: 4px -203px;
 }
 
