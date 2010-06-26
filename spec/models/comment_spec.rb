@@ -15,6 +15,16 @@ describe Comment do
   it_should_have_counter_cache_of :task
   it_should_have_counter_cache_of :user
   
+  it "should inherit the project_id from its parent task" do
+    task = Factory(:task)
+    user = Factory(:user)
+    
+    comment = user.new_comment(task, :text => "text")
+    
+    comment.save.should be_true
+    comment.project_id.should  == comment.project_id
+  end
+  
   describe "editable_by?" do
     before do
       @comment = Factory(:comment)

@@ -5,7 +5,11 @@ class Comment < ActiveRecord::Base
   
   validates_presence_of :text, :user, :task, :project
   
+  before_validation_on_create :inherit_task_project 
+  
   attr_accessible :text
+  
+  attr_readonly :project_id
   
   EDITABLE_BY = 15.minutes
   
@@ -20,4 +24,9 @@ class Comment < ActiveRecord::Base
       0
     end
   end
+  
+  protected
+    def inherit_task_project
+      self.project = task.try(:project)
+    end
 end

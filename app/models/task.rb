@@ -65,6 +65,6 @@ class Task < ActiveRecord::Base
   
   protected 
     def inherit_section_project
-      self.project_id = section.try(:project_id)
+      self.project = section.try(:project)
     end
 end
