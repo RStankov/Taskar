@@ -187,6 +187,7 @@ describe TasksController do
     describe "PUT reorder" do
       before do
         Project.should_receive(:find).with("3").and_return(mock_project)
+        mock_project.should_receive(:tasks).and_return(Task)
       end
       
       it "should call Tasks.reorder with the given ids" do
