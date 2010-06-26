@@ -1,9 +1,10 @@
 class Task < ActiveRecord::Base
   belongs_to :section, :touch => true
+  belongs_to :project
+  
   has_many :comments, :dependent => :destroy
   
-  validates_presence_of :text
-  validates_presence_of :section
+  validates_presence_of :text, :section, :project
   validates_inclusion_of :status, :in => [-1, 0, 1]
   
   attr_accessor :insert_before
@@ -11,8 +12,6 @@ class Task < ActiveRecord::Base
   attr_accessible :text, :insert_before
   
   acts_as_list :scope => :section
-  
-  delegate :project, :to => :section
   
   named_scope :archived,   :conditions => { :archived => true  }, :order => "position DESC"
   named_scope :unarchived, :conditions => { :archived => false }, :order => "position ASC"

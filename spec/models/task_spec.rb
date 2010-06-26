@@ -4,10 +4,12 @@ describe Task do
   it_should_allow_mass_assignment_only_of :text, :insert_before
   
   it { should belong_to(:section) }
+  it { should belong_to(:project) }
   it { should have_many(:comments)}
   
   it { should validate_presence_of(:text) }
   it { should validate_presence_of(:section) }
+  it { should validate_presence_of(:project) }
   
   describe "acts_as_list" do
     before do

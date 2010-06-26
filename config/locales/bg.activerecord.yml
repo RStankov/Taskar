@@ -20,6 +20,8 @@ bg:
             text: "Текс"
             status: "Статус"
             position: "Позиция"
+            project: "Проект"
+            section: "Секция"
           
           user:
             email: "E-майл"
