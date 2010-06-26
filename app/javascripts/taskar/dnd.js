@@ -102,13 +102,9 @@ Taskar.Dnd = (function(){
 Taskar.Dnd.Sortable = Class.create({
   initialize: function(container, options){
     this.container  = container = $(container);
-    this.options    = options   = Object.extend(this.constructor.DEFAULT_OPTIONS, options || {});
+    this.options    = options   = Object.extend(Object.clone(this.constructor.DEFAULT_OPTIONS), options || {});
 
-    if (!options.handle){
-      options.handle = options.item;
-    }
-
-    container.on('mousedown', options.handle, this.startDragging.bind(this));
+    container.on('mousedown', options.handle || options.item, this.startDragging.bind(this));
 
     container.observe('drag:start', 	this.onDragStart.bind(this));
     container.observe('drag:move',		this.onDrag.bind(this));
