@@ -15,7 +15,7 @@ bg:
       logout: "Изход"
     
     projects:
-      projects: "Проекти"
+      title: "Проекти"
       users: "Потребители (%{count})"
       new_user: "Добави потребител"
       manage_users: "Менажирай"
@@ -36,7 +36,8 @@ bg:
       last_activity: "Последно активен преди %{time}"
     
     dashboard:
-      title: 'Табло'
+      title: "Табло"
+      manage: "Менажирай"
       current_projects: "Проекти в които участвате (%{count})"
   
   projects:

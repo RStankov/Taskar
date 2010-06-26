@@ -11,6 +11,15 @@
       <%= yield %>
     </article>
     <aside>
+      <% if current_user.admin? %>
+      <div>
+        <h3><%=t :".manage"  %></h3>
+        <ul>
+          <li><%= link_to t(:'layouts.projects.title'), users_path %></li>
+          <li><%= link_to t(:'users.title'), projects_path %></li>
+        </ul>
+      </div>
+      <% end %>
       <div>
         <h3><%=t :".current_projects", :count => @projects.size  %></h3>
         <ul>
