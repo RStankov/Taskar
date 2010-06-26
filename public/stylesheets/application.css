@@ -875,6 +875,10 @@ b  ackground: url(../images/sprite.png) 0 0 no-repeat;
   display: block;
 }
 
+.tasks_list.dragging ul, .tasks_list.dragging .drag, .tasks_list.dragging .more {
+  visibility: hidden;
+}
+
 .divider {
   border-bottom: 1px solid #eee;
 }

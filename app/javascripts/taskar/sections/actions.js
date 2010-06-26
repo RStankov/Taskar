@@ -50,6 +50,16 @@ Taskar.Sections.Actions = {
       });
     }
   },
+  'drag:start': {
+    '.tasks_list': function(e, element){
+      element.addClassName('dragging');
+    }
+  },
+  'drag:finish': {
+    '.tasks_list': function(e, element){
+      element.removeClassName('dragging');
+    }
+  },
   'order:updated': function(e){
     new Ajax.Request(e.findElement('#tasks').getAttribute('data-sortable'), {
       method:     'put',
