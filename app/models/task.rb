@@ -11,6 +11,8 @@ class Task < ActiveRecord::Base
   
   attr_accessible :text, :insert_before
   
+  attr_readonly :project_id
+  
   acts_as_list :scope => :section
   
   named_scope :archived,   :conditions => { :archived => true  }, :order => "position DESC"
