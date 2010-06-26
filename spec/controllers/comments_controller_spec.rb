@@ -74,7 +74,7 @@ describe CommentsController do
   describe "GET edit" do 
     before do
       Comment.should_receive(:find).with("1").and_return(mock_comment)
-      mock_comment.stub!(:editable_by).and_return(true)
+      mock_comment.stub!(:editable_by?).and_return(true)
       
       get :edit, :id => "1"
     end
@@ -91,7 +91,7 @@ describe CommentsController do
   describe "PUT update" do
     before do
       Comment.should_receive(:find).with("1").and_return(mock_comment)
-      mock_comment.stub!(:editable_by).and_return(true)
+      mock_comment.stub!(:editable_by?).and_return(true)
     end
 
     def params
@@ -147,12 +147,12 @@ describe CommentsController do
 
   describe "DELETE destroy" do
     before do
-      Comment.should_receive(:find).with("37").and_return(mock_comment(:destroy => true, :editable_by => false))
-      mock_comment.stub!(:editable_by).and_return(true)
+      Comment.should_receive(:find).with("37").and_return(mock_comment(:destroy => true, :editable_by? => false))
+      mock_comment.stub!(:editable_by?).and_return(true)
     end
     
     it "destroys the requested comment (if it's editable)" do
-      mock_comment.should_receive(:editable_by).and_return(true)
+      mock_comment.should_receive(:editable_by?).and_return(true)
       mock_comment.should_receive(:destroy)
       delete :destroy, :id => "37"
     end
@@ -173,7 +173,7 @@ describe CommentsController do
   describe "get_comment_and_ensure_its_editable filter (with not editable comment)" do
     before do
       Comment.should_receive(:find).with("1").and_return(mock_comment)
-      mock_comment.stub!(:editable_by).and_return(false)
+      mock_comment.stub!(:editable_by?).and_return(false)
     end
 
     

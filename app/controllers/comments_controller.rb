@@ -47,7 +47,7 @@ class CommentsController < ApplicationController
     end
     
     def ensure_comment_is_editable
-      unless @comment.editable_by(current_user)
+      unless @comment.editable_by?(current_user)
         if request.xhr?
           head :bad_request
         else
