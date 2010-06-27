@@ -9,6 +9,7 @@ options (sortable)
 	view CD3.Dnd.Sortable.DEFAULT_OPTIONS
 
 events (dragable):
+  drag:before
 	drag:start
 	drag:move
 	drag:finish
@@ -44,8 +45,10 @@ Taskar.Dnd = (function(){
       x: e.pointerX() - cumulativeOffset[0],
       y: e.pointerY() - cumulativeOffset[1]
     };
+    
+    element.fire('drag:before', { element: element });
 
-    style.position = 'absolute'; // element.makePositioned();
+    element.absolutize();// style.position = 'absolute'; // 
 
     element.fire('drag:start', { element: element });
 
@@ -104,7 +107,9 @@ Taskar.Dnd.Sortable = Class.create({
     this.container  = container = $(container);
     this.options    = options   = Object.extend(Object.clone(this.constructor.DEFAULT_OPTIONS), options || {});
 
-    container.on('mousedown', options.handle || options.item, this.startDragging.bind(this));
+    if (options.autostart){
+      container.on('mousedown', options.handle || options.item, this.startDragging.bind(this));
+    }
 
     container.observe('drag:start', 	this.onDragStart.bind(this));
     container.observe('drag:move',		this.onDrag.bind(this));
@@ -122,8 +127,8 @@ Taskar.Dnd.Sortable = Class.create({
     });
   },
   onDragStart: function(e){
-    var options   = this.options,
-        drag	    = e.findElement(options.item);
+    var options = this.options,
+        drag	  = e.memo.element;
 
     this.changed = false;
     this.drag 	 = drag;
@@ -177,22 +182,23 @@ Taskar.Dnd.Sortable.DEFAULT_OPTIONS = {
   handle:     null,
   ghosting:   true,
   moveX:      false,
-  moveY:      true
+  moveY:      true,
+  autostart:  true
 };
 
 Taskar.Dnd.Sortable.Ghost = {
   initialize: function(sortable){
-    sortable.container.observe('drag:start',		this.create.bind(sortable));
+    sortable.container.observe('drag:before',		this.create.bind(sortable));
     sortable.container.observe('order:changed',	this.swap.bind(sortable));
     sortable.container.observe('drag:finish',   this.remove.bind(sortable));
   },
-  create: function(){
-    this.ghost = $(this.drag.cloneNode(true));
+  create: function(e){
+    this.ghost = $(e.memo.element.cloneNode(true));
     this.ghost.id = null;
     this.ghost.setOpacity(0.5);
     this.ghost.style.position = null;
 
-    this.drag.insert({ after: this.ghost });
+    e.memo.element.insert({ after: this.ghost });
   },
   swap: function(){
     this.drag.insert({ after: this.ghost });

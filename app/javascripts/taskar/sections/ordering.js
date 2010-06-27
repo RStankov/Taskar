@@ -1,21 +1,40 @@
 Taskar.Sections.Ordering = function(element){
-  new Taskar.Dnd.Sortable(element.parentNode, {
-    item:   '.section',
-    handle: false,
-    moveX:  true,
-    moveY:  false
+  var sort = new Taskar.Dnd.Sortable(element.parentNode, {
+    item:       '.section',
+    handle:     false,
+    moveX:      true,
+    moveY:      false,
+    autostart:  false
   });
-  
-  var displayLinks = new Event.Handler(element, 'click', 'a', Event.stop);
-  displayLinks.stop = displayLinks.stop.bind(displayLinks);
   
   element.select('.add_section').each(function(add){
     (add.next('.section') || element).store('add_section', add);
   });
   
-  element.observe('drag:start', function(){ displayLinks.start() });
-  element.observe('drag:finish', function(){
-    displayLinks.stop.defer();
+  var trace = false;
+  element.on('mousedown', '.section', function(e){
+    e.preventDefault();
+    trace = true;
+  });
+
+  element.on('mousemove', '.section', function(e){
+    if (trace){
+      sort.startDragging(e);
+      trace = false;
+    }
+  });
+
+  var disable = new Event.Handler(element, 'click', 'a', Event.stop);
+  disable.stop = disable.stop.bind(disable);
+  
+  element.observe('drag:start', function(e){
+    disable.start();
+    e.findElement().addClassName('dragging');
+  });
+  
+  element.observe('drag:finish', function(e){
+    disable.stop.defer();
+    e.findElement().removeClassName('dragging');
     
     element.insert({bottom: element.retrieve('add_section')});
     element.select('.section').each(function(section){
