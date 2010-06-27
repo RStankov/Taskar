@@ -2,6 +2,7 @@ class Task < ActiveRecord::Base
   belongs_to :section, :touch => true
   belongs_to :project
   belongs_to :user, :touch => :last_active_at
+  belongs_to :responsible_party, :class_name => "User"
   
   has_many :comments, :dependent => :destroy
   
@@ -10,7 +11,7 @@ class Task < ActiveRecord::Base
   
   attr_accessor :insert_before
   
-  attr_accessible :text, :insert_before
+  attr_accessible :text, :insert_before, :responsible_party_id
   
   attr_readonly :project_id, :user_id
   

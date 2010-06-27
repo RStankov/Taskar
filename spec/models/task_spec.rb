@@ -1,11 +1,12 @@
 require 'spec_helper'
 
 describe Task do
-  it_should_allow_mass_assignment_only_of :text, :insert_before
+  it_should_allow_mass_assignment_only_of :text, :insert_before, :responsible_party_id
   
   it { should belong_to(:section) }
   it { should belong_to(:project) }
   it { should belong_to(:user) }
+  it { should belong_to(:responsible_party) }
   it { should have_many(:comments)}
   
   it { should validate_presence_of(:text) }
