@@ -2,7 +2,7 @@
   <%= task_state_checkbox(task) %>
   <p>
     <%= link_to '[a]', archive_task_path(task, :archived => !task.archived?), :class => "archive", "data-remote" => true, "data-method" => "put" %>
-    <% if task.responsible_party_id %><strong><%= task.responsible_party.full_name %></strong><% end %>
+    <% if task.responsible_party %><strong><%= task.responsible_party.full_name %></strong><% end %>
     <%=h task.text %>
   </p>
   <span class="more"><%=t :'.more' %></span>
