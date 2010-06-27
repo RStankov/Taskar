@@ -1,5 +1,3 @@
-require "digest/sha1"
-
 module Taskar
   module Auth
     module Model
