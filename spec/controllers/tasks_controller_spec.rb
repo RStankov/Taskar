@@ -34,12 +34,11 @@ describe TasksController do
     describe "POST create" do
       before do
         Section.stub(:find).with("2").and_return(mock_section)
-        mock_section.stub(:tasks).and_return(Task)
       end
     
       describe "with valid params" do
         before do
-          Task.stub(:build).with({'these' => 'params'}).and_return(mock_task(:save => true))
+          @current_user.should_receive(:new_task).with(mock_section, {'these' => 'params'}).and_return(mock_task(:save => true))
         end
       
         def params
@@ -67,16 +66,17 @@ describe TasksController do
       end
 
       describe "with invalid params" do
-        it "assigns a newly created but unsaved task as @task" do
-          Task.stub(:build).with({'these' => 'params'}).and_return(mock_task(:save => false))
+        before do
+          @current_user.should_receive(:new_task).with(mock_section, {'these' => 'params'}).and_return(mock_task(:save => false))
           post :create, :task => {:these => 'params'}, :section_id => "2"
+        end
+        
+        it "assigns a newly created but unsaved task as @task" do
           assigns[:task].should equal(mock_task)
         end
 
         it "re-renders the 'new' template" do
-          Task.stub(:build).and_return(mock_task(:save => false))
-          post :create, :task => {}, :section_id => "2"
-          response.should render_template("_new")
+          response.should render_template(:_new)
         end
       end
 

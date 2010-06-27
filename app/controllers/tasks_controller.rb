@@ -14,7 +14,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = @section.tasks.build(params[:task])
+    @task = current_user.new_task(@section, params[:task])
 
     if @task.save
       unless request.xhr?
