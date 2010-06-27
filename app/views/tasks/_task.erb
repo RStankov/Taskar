@@ -1,4 +1,4 @@
-<% content_tag_for(:li, task, :class => task.state) do %>
+<% content_tag_for(:li, task, :class => task.state + (current_user.id == task.responsible_party_id ? ' personal' : '')) do %>
   <%= task_state_checkbox(task) %>
   <p>
     <%= link_to '[a]', archive_task_path(task, :archived => !task.archived?), :class => "archive", "data-remote" => true, "data-method" => "put" %>

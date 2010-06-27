@@ -770,6 +770,7 @@ b  ackground: url(../images/sprite.png) 0 0 no-repeat;
 .tasks_list .task {
   padding: 10px 10px 10px;
   position: relative;
+  margin-bottom: 5px;
 }
 
 .tasks_list li:hover.task {
