@@ -23,7 +23,8 @@
   function handleRemote(e, element){
     if (!e.stopped){
       e.stop();
-      element.request();
+      var request = element.request();
+      element.fire('ajax:' + request.options.method);
     }
   }
 
