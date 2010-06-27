@@ -771,10 +771,13 @@ b  ackground: url(../images/sprite.png) 0 0 no-repeat;
   padding: 10px 10px 10px;
   position: relative;
   margin-bottom: 5px;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
 }
 
 .tasks_list li:hover.task {
-  background-color: #FDFDFD;
+  background-color: #ECF3FE;
 }
 
 .tasks_list a:not(.cancel) {
