@@ -55,11 +55,9 @@
         <ul style="display: none;"></ul>
       </form>
       <div id="user_card">
-        <a href="#">
-          <%= image_tag current_user.avatar.url %>
-          <strong><%= current_user.full_name %></strong>
-          <%=t :".tasks", :count => rand(10) %>
-        </a>
+        <%= image_tag current_user.avatar.url %>
+        <strong><%= current_user.full_name %></strong>
+        <span><%=t :".tasks", :count => current_user.responsibilities_count %></span>
       </div>
       <div id="people_envolved">
         <h3>
