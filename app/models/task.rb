@@ -15,19 +15,12 @@ class Task < ActiveRecord::Base
   
   acts_as_list :scope => :section
   
+  include Taskar::List::Model
+  
   before_validation_on_create :inherit_section_project 
   
   named_scope :archived,   :conditions => { :archived => true  }, :order => "position DESC"
   named_scope :unarchived, :conditions => { :archived => false }, :order => "position ASC"
-  
-  def add_to_list_bottom
-    self[position_column] = if insert_before && record = Task.find(:first, :conditions => {:id => insert_before})
-      increment_positions_on_lower_items record.position
-      record.position
-    else
-      bottom_position_in_list.to_i + 1
-    end
-  end
   
   STATES = {
     -1 => "rejected",
@@ -41,15 +34,6 @@ class Task < ActiveRecord::Base
   
   def state=(state)
     self.status = STATES.index(state) unless archived?
-  end
-  
-  def self.reorder(ids)
-    if ids.is_a? Array
-      position = 0
-      ids.each do |id|
-        find(id).update_attribute('position', position += 1)
-      end
-    end
   end
   
   def self.search(ss, limit = 20)
