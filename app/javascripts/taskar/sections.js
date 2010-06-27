@@ -25,5 +25,6 @@ Taskar.Sections = {
 //= require "sections/new_form"
 //= require "sections/actions"
 //= require "sections/title"
+//= require "sections/ordering"
 //= require "sections/init_task_list"
 //= require "sections/comments"
