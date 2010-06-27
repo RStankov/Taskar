@@ -30,4 +30,8 @@ class User < ActiveRecord::Base
       task.user_id = id
     end
   end
+  
+  def responsibilities_count
+    @responsibilities_count ||= responsibilities.count :conditions => {:status => 0}
+  end
 end

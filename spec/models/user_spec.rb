@@ -105,4 +105,16 @@ describe User do
       section.tasks.detect {|t| t == task}.should be_true
     end
   end
+
+  describe "responsibilities_count" do
+    it "should get the count of all responsibilities who are with status = 0" do
+      user = Factory(:user)
+      
+      (1..1).each { Factory(:task, :responsible_party => user, :status => -1) }
+      (1..2).each { Factory(:task, :responsible_party => user, :status =>  1) }
+      (1..3).each { Factory(:task, :responsible_party => user, :status =>  0) }
+      
+      user.responsibilities_count.should == 3
+    end
+  end
 end
