@@ -43,11 +43,4 @@ class ProjectsController < ApplicationController
 
     redirect_to projects_url
   end
-  
-  private
-    def check_for_admin
-      unless current_user.admin?
-        deny_access
-      end
-    end
 end

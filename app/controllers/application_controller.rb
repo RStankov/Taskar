@@ -20,4 +20,10 @@ class ApplicationController < ActionController::Base
         deny_access
       end
     end
+
+    def check_for_admin
+      unless current_user.admin?
+        deny_access
+      end
+    end
 end

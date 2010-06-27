@@ -54,12 +54,6 @@ class UsersController < ApplicationController
   end
   
   private
-    def check_for_admin
-      unless current_user.admin?
-        deny_access
-      end
-    end
-  
     def get_user
       @user = User.first(:conditions => {:id => params[:id]})
     end
