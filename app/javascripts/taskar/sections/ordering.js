@@ -12,9 +12,14 @@ Taskar.Sections.Ordering = function(element){
   });
   
   var trace = false;
+  
   element.on('mousedown', '.section', function(e){
     e.preventDefault();
     trace = true;
+  });
+
+  element.on('mouseup', '.section', function(e){
+    trace = false;
   });
 
   element.on('mousemove', '.section', function(e){
