@@ -29,5 +29,9 @@ describe SectionsController do
     it "recognizes and generates #destroy" do
       { :delete => "/sections/1" }.should route_to(:controller => "sections", :action => "destroy", :id => "1") 
     end
+    
+    it "recognizes and generates #reorder" do
+      { :put => "projects/1/sections/reorder" }.should route_to(:controller => "sections", :action => "reorder", :project_id => "1") 
+    end
   end
 end

@@ -190,7 +190,7 @@ describe TasksController do
         mock_project.should_receive(:tasks).and_return(Task)
       end
       
-      it "should call Tasks.reorder with the given ids" do
+      it "should reorder the given ids" do
         Task.should_receive(:reorder).with(["1", "2", "3", "4"])
       
         xhr :put, :reorder, :project_id => "3", :items => ["1", "2", "3", "4"]

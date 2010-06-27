@@ -185,6 +185,25 @@ describe SectionsController do
       end
     end
 
+     describe "PUT reorder" do
+        before do
+          Project.should_receive(:find).with("1").and_return(mock_project)
+          mock_project.should_receive(:sections).and_return(Section)
+        end
+
+        it "should call reorder the given ids" do
+          Section.should_receive(:reorder).with(["1", "2", "3", "4"])
+
+          xhr :put, :reorder, :project_id => "1", :items => ["1", "2", "3", "4"]
+        end
+
+        it "should not render template" do
+          xhr :put, :reorder, :project_id => "1"
+
+          response.should_not render_template(:reorder)
+          response.should be_success
+        end
+      end
   end
   
   describe "with user outside project" do
@@ -207,6 +226,7 @@ describe SectionsController do
       :index      => 'get(:index, :project_id => "1")',
       :create     => 'post(:create, :project_id => "1")',
       :new        => 'get(:new, :project_id => "1")',
+      :reorder    => 'put(:reorder, :project_id => "1")'
     }.each do |(action, code)|
      it "should not allow #{action}, and redirect_to root_url" do
        Project.should_receive(:find).with("1").and_return(mock_project)
