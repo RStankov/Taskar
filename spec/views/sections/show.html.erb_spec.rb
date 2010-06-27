@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe "/sections/show.html.erb" do
   before(:each) do
+    sign_in Factory(:user) 
+        
     assigns[:section] = @section = Factory(:section)
     assigns[:project] = @project = @section.project
     

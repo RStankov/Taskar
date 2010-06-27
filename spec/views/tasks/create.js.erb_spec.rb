@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe "/tasks/create.js.erb" do
   before do
+    sign_in Factory(:user) 
+    
     assigns[:task] = @task = Factory(:task)
   end
 
