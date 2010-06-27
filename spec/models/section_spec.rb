@@ -13,8 +13,8 @@ describe Section do
       @project = Factory(:project)
     end
     
-    def create_next_section
-      Factory(:section, :project_id => @project.id)
+    def create_next_section(project = @project)
+      Factory(:section, :project_id => project.id)
     end
     
     def should_have_order_of(*sections)
@@ -63,6 +63,43 @@ describe Section do
         should_have_order_of(@section_1, @section_2, @section_3, @section)
       end
       
+    end
+  
+    describe "reorder" do
+      before do
+        @section_1 = create_next_section
+        @section_2 = create_next_section
+        @section_3 = create_next_section
+        @section_4 = create_next_section
+      end
+
+      it "should accept nil as argument" do
+        lambda { Section.reorder( nil ) }.should_not raise_error
+      end
+
+      it "should take array of section ids and sort them" do
+        Section.reorder([@section_2.id, @section_4.id, @section_1.id, @section_3.id])
+
+        should_have_order_of @section_2, @section_4, @section_1, @section_3
+      end
+
+      it "should ensure that given sections don't change their parent_ids" do
+        p2  = Factory(:project)
+        s21 = create_next_section(p2)
+        s22 = create_next_section(p2)
+
+        Section.reorder([@section_3.id, s21.id, @section_1.id, s22.id, @section_4.id, @section_2.id])
+
+        should_have_order_of @section_3, @section_1, @section_4, @section_2
+
+        [@section_3, @section_1, @section_4, @section_2].each do |section|
+          section.reload.project_id.should == @project.id
+        end
+
+        [s21, s22].each do |section|
+          section.reload.project_id.should == p2.id
+        end
+      end
     end
   end
   
