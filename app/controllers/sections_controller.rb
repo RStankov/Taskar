@@ -48,7 +48,7 @@ class SectionsController < ApplicationController
   end
   
   def aside
-    render :json => {:responsibilities_count => current_user.responsibilities_count}
+    render :json => {:responsibilities_count => t(:'layouts.sections.tasks', :count => current_user.responsibilities_count)}
   end
   
   private

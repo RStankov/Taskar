@@ -212,7 +212,7 @@ describe SectionsController do
         
         get :aside, :id => "1"
         
-        response.body.should == {:responsibilities_count => 321}.to_json
+        response.body.should == { :responsibilities_count => I18n.t(:'layouts.sections.tasks', :count => 321) }.to_json
       end
     end
   end

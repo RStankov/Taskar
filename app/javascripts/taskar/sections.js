@@ -28,3 +28,4 @@ Taskar.Sections = {
 //= require "sections/ordering"
 //= require "sections/init_task_list"
 //= require "sections/comments"
+//= require "sections/aside"
