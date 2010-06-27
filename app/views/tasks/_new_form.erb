@@ -1,15 +1,3 @@
 <li id="new_task" style="display:none;">
-  <% form_for [@section, @task || Task.new], :html => {:class => nil, :id => nil, :'data-remote' => true} do |form| %>
-    <%= form.error_messages %>
-    <%= form.label :text, t(:'tasks.form.text') %>
-    <%= form.text_area :text, :cols => nil, :rows => nil %>
-    <%= form.hidden_field :insert_before %>
-    <!-- TODO
-    <div>
-      Who is responsible? | When it have to completed ? | Tagging | Attachments
-    </div>
-    <hr>
-    -->
-    <%= form.submit t(:'tasks.form.create') %> |<input type="button" value="<%=t :'tasks.form.stop' %>" class="cancel">
-  <% end %>
+  <%= render "tasks/form", :task => [@section, @task || Task.new] %>
 </li>

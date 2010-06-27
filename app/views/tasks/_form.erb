@@ -1,6 +1,10 @@
-<% form_for @task, :html => {:class => nil, :id => nil, :'data-remote' => true} do |form| %>
+<% form_for task, :html => {:class => nil, :id => nil, :'data-remote' => true} do |form| %>
    <%= form.error_messages %>
    <%= form.label :text, t(:'tasks.form.text') %>
    <%= form.text_area :text, :cols => nil, :rows => nil %>
-   <%= form.submit t(:'tasks.form.update') %> | <%= link_to t(:'tasks.form.cancel'), @task, :class => "cancel", "data-remote" => true %>
+   <% if form.object.new_record? %>
+    <%= form.submit t(:'tasks.form.create') %> |<input type="button" value="<%=t :'tasks.form.stop' %>" class="cancel">
+   <% else %>
+    <%= form.submit t(:'tasks.form.update') %> | <%= link_to t(:'tasks.form.cancel'), task, :class => "cancel", "data-remote" => true %>
+  <% end %>
 <% end %>
