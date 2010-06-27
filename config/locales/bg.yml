@@ -87,7 +87,12 @@ bg:
         other: "%{count} Файлове"
       
     show:
-      description: "от %{from} за %{to} на %{on} до %{due}"
+      description: 
+        short: "от %{form} на %{on}"
+        responsible: "от %{form} за %{to} на %{on}"
+        same: "от и за %{user} на %{on}"
+        full: "от %{from} за %{to} на %{on} до %{due}"
+      
       comments: "Коментари(%{count})"
       no_results_found: "Няма намерени задачи"
     
