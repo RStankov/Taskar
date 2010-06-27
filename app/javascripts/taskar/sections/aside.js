@@ -4,7 +4,9 @@ Taskar.Sections.Aside = function(aside){
   function updateAside(t){
     var data = t.responseJSON || {};
     
-    $('user_card').down('span').update(data.responsibilities_count || 0);
+    $('user_card').down('span').morph('opacity:0', function(e){
+      e.element.update(data.responsibilities_count || 0).morph('opacity:1');
+    })
   }
   
   Ajax.Responders.register({
