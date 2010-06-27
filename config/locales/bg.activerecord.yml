@@ -22,6 +22,7 @@ bg:
             position: "Позиция"
             project: "Проект"
             section: "Секция"
+            user: "Създател"
           
           user:
             email: "E-майл"
