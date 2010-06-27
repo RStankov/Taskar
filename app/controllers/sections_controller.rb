@@ -1,6 +1,6 @@
 class SectionsController < ApplicationController
   before_filter :get_project, :only => [:index, :new, :create, :reorder]
-  before_filter :get_section_and_project, :only => [:show, :edit, :update, :destroy]
+  before_filter :get_section_and_project, :only => [:show, :edit, :update, :destroy, :aside]
   before_filter :check_project_permissions
   
   def index
@@ -45,6 +45,10 @@ class SectionsController < ApplicationController
     @project.sections.reorder(params[:items])
     
     head :ok
+  end
+  
+  def aside
+    render :json => {:responsibilities_count => current_user.responsibilities_count}
   end
   
   private

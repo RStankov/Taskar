@@ -204,6 +204,17 @@ describe SectionsController do
         response.should be_success
       end
     end
+  
+    describe "GET aside" do
+      it "should render json with current user responsibilities_count" do
+        Section.should_receive(:find).with("1").and_return(mock_section)
+        @current_user.should_receive(:responsibilities_count).and_return(321)
+        
+        get :aside, :id => "1"
+        
+        response.body.should == {:responsibilities_count => 321}.to_json
+      end
+    end
   end
   
   describe "with user outside project" do
@@ -213,7 +224,8 @@ describe SectionsController do
       :show       => 'get(:show, :id => "1")',
       :edit       => 'get(:edit, :id => "1")',
       :update     => 'put(:update, :id => "1")',
-      :destroy    => 'delete(:destroy, :id => "1")'
+      :destroy    => 'delete(:destroy, :id => "1")',
+      :aside      => 'get(:aside, :id => "1")'
     }.each do |(action, code)|
       it "should not allow #{action}, and redirect_to root_url" do
         Section.should_receive(:find).with("1").and_return(mock_section)
