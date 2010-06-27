@@ -58,7 +58,14 @@ describe TasksHelper do
   
   describe "task_description" do
     it "returns tasks description in p" do
-      expected  = ('<p>' + t(:'tasks.show.description', :from => 'Радослав Станков', :to => 'Някой друг', :on => '10.05.2010', :due => '10.05.2010') + '</p>')
+      time = Time.now - 1.week;
+      
+      mock_user(:full_name => 'Radoslav Stankov')
+      mock_task(:created_at => time)
+      
+      on = t(:before, :time => helper.time_ago_in_words(time))
+      
+      expected  = ('<p>' + t(:'tasks.show.description', :from => 'Radoslav Stankov', :to => 'Някой друг', :on => on, :due => '10.05.2010') + '</p>')
       
       helper.task_description(mock_task).should == expected
     end
