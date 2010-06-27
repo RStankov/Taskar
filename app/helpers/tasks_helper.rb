@@ -10,7 +10,21 @@ module TasksHelper
   end
   
   def task_description(task)
-    #TODO more advanced description logic
-    '<p>' + t(:'tasks.show.description.full', :from => task.user.full_name, :to => 'Някой друг', :on => t(:before, :time => time_ago_in_words(task.created_at)), :due => '10.05.2010') + '</p>'
+    name    = "short"
+    options = {
+      :from => task.user.full_name,
+      :on   => time_ago_in_words(task.created_at)
+    }
+    
+    if task.responsible_party
+      if task.responsible_party == task.user
+        name = "same"
+      else
+        name = "responsible"
+        options[:to] = task.responsible_party.full_name
+      end
+    end
+    
+    '<p>' + t(:"tasks.show.description.#{name}", options) + '</p>'
   end
 end
