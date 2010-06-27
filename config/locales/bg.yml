@@ -39,6 +39,7 @@ bg:
       title: "Табло"
       manage: "Менажирай"
       current_projects: "Проекти в които участвате (%{count})"
+    
   
   projects:
     participants: "Участници в проекта"
@@ -96,6 +97,8 @@ bg:
       update: "Промени задачата"
       stop: "Скрий формата"
       cancel: "Откажи промените"
+      responsible_party: "Трябва да се свърши от"
+      anyone: "Който и да е"
     
   
   comments:
