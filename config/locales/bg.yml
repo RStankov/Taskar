@@ -30,6 +30,7 @@ bg:
       new_section: "Нова секция"
       tasks:
         one: "Една задача"
+        zero: "Нямате задачи"
         other: "%{count} задачи"
       
       people_in_project: "Участници в проекта"
