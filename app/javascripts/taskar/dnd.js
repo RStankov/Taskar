@@ -144,7 +144,7 @@ Taskar.Dnd.Sortable = Class.create({
     Element._insertionTranslations[ insert[1] ](hover, this.drag);
 
     this.changed = true;
-    this.container.fire('order:changed', {
+    hover.fire('order:changed', {
       sortable: this,
       changed:  hover.up(this.options.list)
     });
