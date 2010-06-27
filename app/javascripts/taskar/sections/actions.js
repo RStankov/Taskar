@@ -66,6 +66,11 @@ Taskar.Sections.Actions = {
       parameters: e.memo.sortable.serialize('items[]')
     });
   },
+  'ajax:post': {
+    '#new_task': function(e){
+      Taskar.Sections.resetTaskForm(e.findElement('form'));
+    }
+  },
   'ajax:put': {
     '.archive': function(e){
       var task = e.findElement('.task');
@@ -99,13 +104,6 @@ Taskar.Sections.Actions = {
     },
     '#new_task': function(e){
       e.findElement('li').slideUp();
-    }
-  },
-  submit: {
-    '#new_task form': function(e, form){
-      e.stop();
-      form.request();
-      Taskar.Sections.resetTaskForm(form);
     }
   },
   mouseover: {

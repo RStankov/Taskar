@@ -1,5 +1,5 @@
 <li id="new_task" style="display:none;">
-  <% form_for [@section, @task || Task.new], :html => {:class => nil, :id => nil} do |form| %>
+  <% form_for [@section, @task || Task.new], :html => {:class => nil, :id => nil, :'data-remote' => true} do |form| %>
     <%= form.error_messages %>
     <%= form.label :text, t(:'tasks.form.text') %>
     <%= form.text_area :text, :cols => nil, :rows => nil %>
