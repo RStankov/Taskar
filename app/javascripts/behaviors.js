@@ -18,7 +18,7 @@ CD3.Behaviors({
   }
 });
 
-/*
+
 CD3.Behaviors('#nav_sections', function(element){
   new Taskar.Dnd.Sortable(element.parentNode, {
     item:   '.section',
@@ -43,5 +43,11 @@ CD3.Behaviors('#nav_sections', function(element){
       section.insert({ before: section.retrieve('add_section') });
     });
   });
+  
+  element.observe('order:updated', function(e){
+    new Ajax.Request(element.getAttribute('data-sortable'), {
+      method:     'put',
+      parameters: e.memo.sortable.serialize('items[]')
+    });
+  });
 });
-*/

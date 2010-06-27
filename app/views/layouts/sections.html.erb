@@ -19,12 +19,12 @@
   <%= render "shared/header" %>
   <nav id="nav_main">
     <%= link_to '', [@project, :sections], :id => "goto_dashboard", :title => t(:".goto_dashboard")  %>
-    <ul id="nav_sections">
+    <ul id="nav_sections" data-sortable="<%= reorder_project_sections_path(@project.id) %>">
       <% @project.sections.all.each do |section| %>
         <%= new_section_link(section) %>
-        <li class="section">
-          <%= link_to h(section.name), section, :class => @section == section ? "selected" : nil %>
-        </li>
+        <% content_tag_for(:li, section) do %>
+            <%= link_to h(section.name), section, :class => @section == section ? "selected" : nil %>
+        <% end %>
       <% end %>
       <%= new_section_link %>
       <li id="new_section" style="display:none;">
