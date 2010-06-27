@@ -47,7 +47,7 @@
     <article id="<%= "#{controller_name}_#{action_name}" %>">
       <%= yield %>
     </article>
-    <aside id="section_aside" data-update-path="<%= aside_section_path(@section) %>">
+    <aside<% if @section %> id="section_aside" data-update-path="<%= aside_section_path(@section) %>"<% end %>>
       <form id="live_search" action="<%= search_project_tasks_path(@project) %>" method="get">
         <input type="text" name="ss" value="" />
         <input type="submit" value="" />
