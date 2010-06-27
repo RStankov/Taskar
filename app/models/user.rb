@@ -23,4 +23,10 @@ class User < ActiveRecord::Base
       comment.user_id = id
     end
   end
+  
+  def new_task(section, attributes = {})
+    section.tasks.build(attributes) do |task|
+      task.user_id = id
+    end
+  end
 end

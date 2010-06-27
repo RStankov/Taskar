@@ -92,4 +92,16 @@ describe User do
       task.comments.detect {|c| c == comment}.should be_true
     end
   end
+  
+  describe "new_task" do
+    it "should build new coment from section, assign user.id to it" do
+      section = Factory(:section)
+      user    = Factory(:user)
+      task    = user.new_task(section, {:text => "comment text"})
+      
+      task.text.should  == "comment text"
+      task.user_id.should == user.id
+      section.tasks.detect {|t| t == task}.should be_true
+    end
+  end
 end
