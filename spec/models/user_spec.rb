@@ -5,6 +5,7 @@ describe User do
     it { should have_many(:comments) }
     it { should have_many(:projects) }
     it { should have_many(:project_participations) }
+    it { should have_many(:tasks) }
   end
   
   describe "validation" do

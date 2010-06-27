@@ -12,7 +12,7 @@ module TaskarMocks
   end
   
   def mock_task(stubs={})
-    @mock_task ||= mock_model(Task, {:section => mock_section, :project => mock_project}.merge(stubs))
+    @mock_task ||= mock_model(Task, {:section => mock_section, :project => mock_project, :user => mock_user}.merge(stubs))
   end
   
   def mock_comment(stubs={})

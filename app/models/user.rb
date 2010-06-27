@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_attached_file           :avatar,  :styles => { :image => '48x48', :aside => '32x32' }, :default_style => :image
   
   has_many :comments, :dependent => :destroy
+  has_many :tasks, :dependent => :destroy
   
   has_many :project_participations, :class_name => "ProjectUser", :foreign_key => "user_id", :dependent => :destroy
   has_many :projects, :through => :project_participations

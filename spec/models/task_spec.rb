@@ -5,18 +5,17 @@ describe Task do
   
   it { should belong_to(:section) }
   it { should belong_to(:project) }
+  it { should belong_to(:user) }
   it { should have_many(:comments)}
   
   it { should validate_presence_of(:text) }
   it { should validate_presence_of(:section) }
+  it { should validate_presence_of(:user) }
   it { should validate_presence_of(:project) }
   
   it "should inherit the project_id from its parent section" do
-    section = Factory(:section)
-    
-    task = Task.new
-    task.section_id = section.id
-    task.text = "dummy text"
+    section = Factory(:section)    
+    task    = Factory(:task, :section_id => section.id)
     
     task.save.should be_true
     task.project_id.should  == section.project_id
