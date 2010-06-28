@@ -75,14 +75,18 @@ Taskar.Sections.Actions = {
     '.archive': function(e){
       var task = e.findElement('.task');
       task.slideUp(function(e){
-        var parent, insert;
+        var parent, insert, disabled;
         if (task.parentNode.id == 'tasks'){
-          parent = $('archived_tasks');
-          insert = {top: task};
+          parent    = $('archived_tasks');
+          insert    = {top: task};
+          disabled  = "true";
         } else { 
-          parent = $('tasks');
-          insert = {bottom: task};
+          parent    = $('tasks');
+          insert    = {bottom: task};
+          disabled  = null;
         }
+        
+        task.down('.checkbox').writeAttribute('data-disabled', disabled);
         
         if (!parent){
           task.remove();
