@@ -28,6 +28,11 @@ describe TasksHelper do
         url = state_task_path(@task)
         @returned.should have_tag("span[data-url=#{url}]")
       end
+
+      it "should not return span[data-disabled]" do
+        url = state_task_path(@task)
+        @returned.should_not have_tag("span[data-disabled]")
+      end
     end
     
     describe "on archived task" do
@@ -45,13 +50,18 @@ describe TasksHelper do
         @returned.should have_tag("span.checkbox.#{@task.state}")
       end
 
-      it "should not return span[data-state]" do
-        @returned.should_not have_tag("span[data-state=#{@task.state}]")
+      it "should return span[data-state]" do
+        @returned.should have_tag("span[data-state=#{@task.state}]")
       end
 
-      it "should not return span[data-url]" do
+      it "should return span[data-url]" do
         url = state_task_path(@task)
-        @returned.should_not have_tag("span[data-url=#{url}]")
+        @returned.should have_tag("span[data-url=#{url}]")
+      end
+      
+      it "should return span[data-disabled]" do
+        url = state_task_path(@task)
+        @returned.should have_tag("span[data-disabled]")
       end
     end
   end
