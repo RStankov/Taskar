@@ -34,4 +34,8 @@ Taskar.Sections.NewForm = function(sectionsBar){
   function hide(){
     form.hide();
   }
+  
+  if (sectionsBar.select('.section').length == 0){
+    form.show().down('input[type=text]').highlight().focus();
+  }
 };
