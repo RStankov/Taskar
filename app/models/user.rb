@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   
   has_many :comments, :dependent => :destroy
   has_many :tasks, :dependent => :destroy
+  
   has_many :responsibilities, :class_name => "Task", :foreign_key => "responsible_party_id"
   
   has_many :project_participations, :class_name => "ProjectUser", :foreign_key => "user_id", :dependent => :destroy
@@ -31,7 +32,8 @@ class User < ActiveRecord::Base
     end
   end
   
-  def responsibilities_count
-    @responsibilities_count ||= responsibilities.count :conditions => {:status => 0}
+  def responsibilities_count(project_id)
+    @responsibilities_count ||= {}
+    @responsibilities_count[project_id] ||= responsibilities.count :conditions => {:status => 0, :project_id => project_id}
   end
 end

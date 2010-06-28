@@ -110,11 +110,18 @@ describe User do
     it "should get the count of all responsibilities who are with status = 0" do
       user = Factory(:user)
       
-      (1..1).each { Factory(:task, :responsible_party => user, :status => -1) }
-      (1..2).each { Factory(:task, :responsible_party => user, :status =>  1) }
-      (1..3).each { Factory(:task, :responsible_party => user, :status =>  0) }
+      section_1 = Factory(:section)
       
-      user.responsibilities_count.should == 3
+      (1..1).each { Factory(:task, :section => section_1, :responsible_party => user, :status => -1) }
+      (1..2).each { Factory(:task, :section => section_1, :responsible_party => user, :status =>  1) }
+      (1..3).each { Factory(:task, :section => section_1, :responsible_party => user, :status =>  0) }
+      
+      section_2 = Factory(:section)
+      
+      (1..4).each { Factory(:task, :section => section_2, :responsible_party => user, :status =>  0) }
+      
+      user.responsibilities_count(section_1.project_id).should == 3
+      user.responsibilities_count(section_2.project_id).should == 4
     end
   end
 end
