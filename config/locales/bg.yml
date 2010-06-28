@@ -5,6 +5,7 @@ bg:
   create: "Добави"
   cancel: "Откажи"
   edit: "Промени"
+  view: "Преглед"
   update: "Запиши"
   delete: "Изтрий"
   confirm: "Сигурни ли сте?"

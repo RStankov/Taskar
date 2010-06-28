@@ -1,6 +1,7 @@
 <h1><%=h @project.name %></h1>
 
 <p>
+  <%= link_to t(:view), project_sections_path(@project) %> |
   <%= link_to t(:edit), edit_project_path(@project) %> |
   <%= link_to_delete t(:delete), @project, :confirm => t(:'projects.confirm') %>
 </p>
