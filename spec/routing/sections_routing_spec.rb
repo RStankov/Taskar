@@ -33,9 +33,5 @@ describe SectionsController do
     it "recognizes and generates #reorder" do
       { :put => "projects/1/sections/reorder" }.should route_to(:controller => "sections", :action => "reorder", :project_id => "1") 
     end
-    
-    it "recognizes and generates #aside" do
-      { :get => "/sections/1/aside" }.should route_to(:controller => "sections", :action => "aside", :id => "1") 
-    end
   end
 end

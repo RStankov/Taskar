@@ -46,11 +46,7 @@ class SectionsController < ApplicationController
     
     head :ok
   end
-  
-  def aside
-    render :json => {:responsibilities_count => t(:'layouts.sections.tasks', :count => current_user.responsibilities_count)}
-  end
-  
+    
   private
     def get_project
       @project = Project.find(params[:project_id])

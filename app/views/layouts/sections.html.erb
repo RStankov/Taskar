@@ -47,7 +47,7 @@
     <article id="<%= "#{controller_name}_#{action_name}" %>">
       <%= yield %>
     </article>
-    <aside<% if @section %> id="section_aside" data-update-path="<%= aside_section_path(@section) %>"<% end %>>
+    <aside id="section_aside" data-update-path="<%= project_aside_index_path(@project) %>">
       <form id="live_search" action="<%= search_project_tasks_path(@project) %>" method="get">
         <input type="text" name="ss" value="" />
         <input type="submit" value="" />
@@ -57,7 +57,7 @@
       <div id="user_card">
         <%= image_tag current_user.avatar.url %>
         <strong><%= current_user.full_name %></strong>
-        <span><%=t :".tasks", :count => current_user.responsibilities_count %></span>
+        <span><%=t :".tasks", :count => current_user.responsibilities_count(@project.id) %></span>
       </div>
       <div id="people_envolved">
         <h3>

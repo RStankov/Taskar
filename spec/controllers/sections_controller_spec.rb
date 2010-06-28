@@ -204,17 +204,6 @@ describe SectionsController do
         response.should be_success
       end
     end
-  
-    describe "GET aside" do
-      it "should render json with current user responsibilities_count" do
-        Section.should_receive(:find).with("1").and_return(mock_section)
-        @current_user.should_receive(:responsibilities_count).and_return(321)
-        
-        get :aside, :id => "1"
-        
-        response.body.should == { :responsibilities_count => I18n.t(:'layouts.sections.tasks', :count => 321) }.to_json
-      end
-    end
   end
   
   describe "with user outside project" do
