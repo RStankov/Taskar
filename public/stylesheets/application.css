@@ -935,7 +935,7 @@ b  ackground: url(../images/sprite.png) 0 0 no-repeat;
   display: none;
 }
 
-#archived_tasks .task:hover .edit {
+#archived_tasks .task:hover .edit, .task.completed:hover .edit, .task.rejected:hover .edit {
   display: none;
 }
 
