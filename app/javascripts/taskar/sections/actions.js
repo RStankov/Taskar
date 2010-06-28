@@ -109,9 +109,11 @@ Taskar.Sections.Actions = {
   mouseover: {
     '.task': function(e, element){
       var content = element.down('p');
-      if (content && !content._marked && !(content.scrollHeight > content.getHeight())){
+      if (content && !content._marked){
         content._marked = [1];
-        element.down('span.more').hide();
+        if (!(content.scrollHeight > content.getHeight())){
+          element.down('span.more').hide();
+        }
       }
     }
   }
