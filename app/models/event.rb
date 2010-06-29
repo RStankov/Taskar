@@ -10,6 +10,8 @@ class Event < ActiveRecord::Base
   
   before_validation_on_create :inherit_subject_project
   
+  default_scope :order => 'updated_at DESC'
+  
   protected
     def inherit_subject_project
       self.project_id = subject.try(:project_id)
