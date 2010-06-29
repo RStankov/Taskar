@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-  belongs_to :user
+  belongs_to :user, :touch => :last_active_at
   belongs_to :project
   belongs_to :subject, :polymorphic => true
   
