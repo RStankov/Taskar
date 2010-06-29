@@ -3,6 +3,10 @@ require 'spec_helper'
 describe TasksController do
   describe "with project user" do
     before { sign_with_project_user }
+    
+    def should_fire_event(action)
+      controller.should_receive(:activity).with(action, mock_task)
+    end
 
     describe "GET show" do
       before do
@@ -39,6 +43,8 @@ describe TasksController do
       describe "with valid params" do
         before do
           @current_user.should_receive(:new_task).with(mock_section, {'these' => 'params'}).and_return(mock_task(:save => true))
+          
+          should_fire_event :opened
         end
       
         def params
@@ -94,6 +100,8 @@ describe TasksController do
       describe "with valid params" do
         before do
           mock_task.should_receive(:update_attributes).with("these" => "params").and_return(true)
+          
+          should_fire_event :opened
         end
       
         it "updates the requested task" do
@@ -141,6 +149,9 @@ describe TasksController do
     describe "DELETE destroy" do
       before do
         Task.should_receive(:find).with("37").and_return(mock_task)
+        
+        should_fire_event :deleted
+        
         mock_task.should_receive(:destroy)
       end
     

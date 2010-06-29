@@ -17,6 +17,8 @@ class TasksController < ApplicationController
     @task = current_user.new_task(@section, params[:task])
 
     if @task.save
+      event :opened
+      
       unless request.xhr?
         redirect_to section_path(@section, :anchor => "task_#{@task.id}")
       else
@@ -29,6 +31,8 @@ class TasksController < ApplicationController
   
   def update
     if @task.update_attributes(params[:task])
+      event :opened
+      
       if request.xhr?
         render :action => "show"
       else
@@ -41,6 +45,8 @@ class TasksController < ApplicationController
   
   def destroy
     @task.destroy
+    
+    event :deleted
 
     if request.xhr?
       head :ok
@@ -95,4 +101,8 @@ class TasksController < ApplicationController
     def get_project
       @project = Project.find(params[:project_id])
     end   
+
+    def event(action)
+      activity(action, @task)
+    end
 end
