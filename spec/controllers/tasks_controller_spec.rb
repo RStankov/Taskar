@@ -4,8 +4,8 @@ describe TasksController do
   describe "with project user" do
     before { sign_with_project_user }
     
-    def should_fire_event(action)
-      controller.should_receive(:activity).with(action, mock_task)
+    def controller_should_fire_event
+      controller.should_receive(:activity).with(mock_task)
     end
 
     describe "GET show" do
@@ -44,7 +44,7 @@ describe TasksController do
         before do
           @current_user.should_receive(:new_task).with(mock_section, {'these' => 'params'}).and_return(mock_task(:save => true))
           
-          should_fire_event :opened
+          controller_should_fire_event
         end
       
         def params
@@ -101,7 +101,7 @@ describe TasksController do
         before do
           mock_task.should_receive(:update_attributes).with("these" => "params").and_return(true)
           
-          should_fire_event :opened
+          controller_should_fire_event
         end
       
         it "updates the requested task" do
@@ -150,7 +150,7 @@ describe TasksController do
       before do
         Task.should_receive(:find).with("37").and_return(mock_task)
         
-        should_fire_event :deleted
+        controller_should_fire_event
         
         mock_task.should_receive(:destroy)
       end
@@ -180,6 +180,8 @@ describe TasksController do
       before do
         Task.stub!(:find).with("5").and_return(mock_task(:save => true))
         mock_task.stub!(:state=)
+        
+        controller_should_fire_event
       end
     
       it "updates state attribute" do
@@ -243,6 +245,8 @@ describe TasksController do
       before do
         Task.stub!(:find).with("5").and_return(mock_task(:save => true))
         mock_task.stub!(:archived=)
+        
+        controller_should_fire_event
       end
     
       it "should try to archive the task to true, when archived is true" do
