@@ -1,14 +1,29 @@
-<ul>
+<div>
+  <h1><%=t :'.title' %></h1>
+</div>
+<table id="events">
+  <% date = nil %>
   <% @project.events.each do |event| %>
-    <li>
-      <%= event.action %>
-      <%= event.subject_type %>
-      <%= link_to event.info, :controller => event.subject_type.downcase.pluralize, :id => event.subject_id, :action => :show %>
-      <%= event.user.full_name %>
-    </li>
+    <% unless event.updated_at.to_date == date %>
+      <tr>
+        <th colspan="4"><h2><%=l date = event.updated_at.to_date, :format => :long %></h2></th>
+      </tr>
+    <% end %>
+    <tr title="<%= t(:before, :time => time_ago_in_words(event.updated_at)) %>">
+      <td><span class="<%= event.type  %>"><%=t "events.subject.#{event.type}" %></span></td>
+      <td class="user"><%= event.user.full_name %></td>
+      <td class="<%= event.action %>"><%=t "events.action.#{event.action}" %></td>
+      <td class="<%= event.action %>">
+        <% if event.linkable?%>
+          <%= link_to truncate(event.info, :length => 60), event.url_options %>
+        <% else %>
+          <%= truncate(event.info, :length => 60) %>
+        <% end %>
+      </td>
+    </tr>
   <% end %>
-</ul>
-
+</table>
+<!--
 <ul id="events">
   <% for i in 1..10 %>
   <li<%= i % 4 == 0 ? ' class="personal"' : '' %>>
@@ -18,3 +33,4 @@
   </li>
   <% end %>
 </ul>
+-->

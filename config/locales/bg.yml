@@ -62,6 +62,9 @@ bg:
   sections:
     new_section: "Нова секция"
     edit_section: "Промяна на секция"
+    index:
+      title: "Активност по проекта"
+    
     show:
       confirm: "Сигурни ли сте че, искате тази секция?"
       add_task: "Добави задача"
@@ -120,5 +123,19 @@ bg:
     
     edit_form:
       submit: "Промени коментара"
+    
+  
+  events:
+    subject:
+      task: "задача"
+      comment: "коментар"
+    
+    action:
+      commented: "коментира"
+      deleted: "изтри"
+      opened: "добави"
+      completed: "завърши"
+      rejected: "отхвърли"
+      archived: "архивира"
     
   
