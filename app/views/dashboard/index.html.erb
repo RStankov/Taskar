@@ -1,0 +1,24 @@
+<div>
+  <h1><%=t :'layouts.dashboard.header' %></h1>
+</div>
+
+<% @projects.each do |project| %>
+  <h2><%= link_to project.name, [project, :sections] %></h2>
+  <table id="events">
+    <% project.events.all(:limit => 20).each do |event| %>
+      <tr>
+        <td><span class="<%= event.type  %>"><%=t "events.subject.#{event.type}" %></span></td>
+        <td class="user"><%= event.user.full_name %></td>
+        <td class="<%= event.action %>"><%=t "events.action.#{event.action}" %></td>
+        <td class="<%= event.action %>">
+          <% if event.linkable?%>
+            <%= link_to truncate(event.info, :length => 40), event.url_options %>
+          <% else %>
+            <%= truncate(event.info, :length => 40) %>
+          <% end %>
+        </td>
+        <td><%= t(:before, :time => time_ago_in_words(event.updated_at)) %></td>
+      </tr>
+    <% end %>    
+  </table>
+<% end %>
