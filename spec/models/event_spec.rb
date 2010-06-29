@@ -13,11 +13,11 @@ describe Event do
   it { should validate_presence_of(:subject_type) }
   
   it "should inherit the project_id from it's subject" do
-    section = Factory(:section)    
-    event   = Factory(:event, :subject => section)
+    task  = Factory(:task)    
+    event = Factory(:event, :subject => task)
     
     event.save.should be_true
-    event.project_id.should  == section.project_id
+    event.project_id.should  == task.project_id
   end
   
   describe "info" do
@@ -38,10 +38,10 @@ describe Event do
   
   
     it "should be subject.name if subject is Section" do
-      section = Factory(:section, :name => "section name")
-      event   = Factory(:event, :subject => section)
+      task  = Factory(:task, :text => "task test")
+      event = Factory(:event, :subject => task)
       
-      event.info.should == "section name"
+      event.info.should == "task test"
     end
   end
 
@@ -51,28 +51,28 @@ describe Event do
     end
     
     it "should create event if event doesn't exists for this subject" do
-      section = Factory(:section)
+      task = Factory(:task)
       
-      find_all_by_subject(section).should == []
+      find_all_by_subject(task).should == []
 
-      event = Event.activity(Factory(:user), :created, section)
+      event = Event.activity(Factory(:user), :created, task)
       
       event.new_record?.should be_false
-      event.info.should == section.name
+      event.info.should == task.text
       
-      find_all_by_subject(section).should == [event]
+      find_all_by_subject(task).should == [event]
     end
     
     it "should update the event for this subject if one exists" do
-      section = Factory(:section)
-      event_1 = Event.activity(Factory(:user), :created, section)
+      task = Factory(:task)
+      event_1 = Event.activity(Factory(:user), :created, task)
       
-      find_all_by_subject(section).should == [event_1]
+      find_all_by_subject(task).should == [event_1]
       
-      event_2 = Event.activity(Factory(:user), :updated, section)
+      event_2 = Event.activity(Factory(:user), :updated, task)
       
       event_2.should == event_1
-      find_all_by_subject(section).should == [event_1]
+      find_all_by_subject(task).should == [event_1]
     end
   end
 end

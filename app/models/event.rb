@@ -30,7 +30,6 @@ class Event < ActiveRecord::Base
     
     def set_info
       self.info = case subject_type
-        when "Section"  then subject.name
         when "Task"     then subject.text
         when "Comment"  then subject.task.text
       end

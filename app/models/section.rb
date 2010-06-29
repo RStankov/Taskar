@@ -3,8 +3,6 @@ class Section < ActiveRecord::Base
   
   has_many :tasks, :dependent => :destroy
   
-  has_one :event, :as => "subject"
-  
   validates_presence_of :name
   validates_presence_of :project
   
