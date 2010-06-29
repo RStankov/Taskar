@@ -23,6 +23,14 @@ class Event < ActiveRecord::Base
     end
   end
   
+  def url_options
+    {:controller => subject_type.downcase.pluralize, :action => :show, :id => subject_id}
+  end
+  
+  def linkable?
+    action != "deleted"
+  end
+  
   protected
     def inherit_subject_project
       self.project_id = subject.try(:project_id)

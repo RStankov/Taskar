@@ -113,4 +113,44 @@ describe Event do
       find_all_by_subject(task).should == [event_1]
     end
   end
+
+  describe "linkable?" do
+    before do
+      @event = Event.new
+    end
+    
+    it "should return false if action is deleted" do
+      @event.action = "deleted"
+      @event.linkable?.should be_false
+    end
+    
+    %w(commented opened completed rejected archived).each do |action|
+      it "should return true if action is #{action}" do
+        @event.action = action
+        @event.linkable?.should be_true
+      end
+    end
+  end
+  
+  describe "url_options" do
+    before do
+      event = Event.new
+      event.subject_type = 'Task'
+      event.subject_id   =  1
+      
+      @options = event.url_options
+    end
+    
+    it "should return hash with controller = subject_type.downcase.pluralize" do
+      @options[:controller].should == 'tasks'
+    end
+    
+    it "should return hash with action = :show " do
+      @options[:action].should == :show
+    end
+    
+    it "should return hash with id = subject_id " do
+      @options[:id].should == 1
+    end
+  end
 end
