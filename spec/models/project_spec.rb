@@ -9,6 +9,7 @@ describe Project do
   it { should have_many(:users) }
   it { should have_many(:tasks) }
   it { should have_many(:comments) }
+  it { should have_many(:events) }
   
   describe "involves?" do
     before do

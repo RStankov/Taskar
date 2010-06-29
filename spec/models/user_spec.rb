@@ -7,6 +7,7 @@ describe User do
     it { should have_many(:project_participations) }
     it { should have_many(:tasks) }
     it { should have_many(:responsibilities) }
+    it { should have_many(:events) }
   end
   
   describe "validation" do

@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   
   has_attached_file           :avatar,  :styles => { :image => '48x48', :aside => '32x32' }, :default_style => :image
   
+  has_many :events, :dependent => :destroy
   has_many :comments, :dependent => :destroy
   has_many :tasks, :dependent => :destroy
   
