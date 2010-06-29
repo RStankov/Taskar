@@ -15,7 +15,7 @@ describe Task do
   it { should validate_presence_of(:user) }
   it { should validate_presence_of(:project) }
   
-  it "should inherit the project_id from its parent section" do
+  it "should inherit the project_id from it's parent section" do
     section = Factory(:section)    
     task    = Factory(:task, :section_id => section.id)
     
