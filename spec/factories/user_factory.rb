@@ -1,5 +1,5 @@
 Factory.sequence :email do |n|
-  "user#{n}@domain.com"
+  "user_#{rand(100)}_#{n}@domain.com"
 end
 
 Factory.define :user do |user|
