@@ -3,7 +3,7 @@ class Event < ActiveRecord::Base
   belongs_to :project
   belongs_to :subject, :polymorphic => true
   
-  attr_readonly :project_id, :subject
+  attr_readonly :project_id
   attr_accessible :user, :subject
   
   default_scope :order => 'updated_at DESC'
@@ -16,7 +16,7 @@ class Event < ActiveRecord::Base
   
   def self.activity(user, subject)
     if event = find(:first, :conditions => {:subject_id => subject.id, :subject_type => subject.class.name})
-      event.update_attributes(:user => user)
+      event.update_attributes(:user => user, :subject => subject)
       event
     else
       create(:user => user, :subject => subject)
@@ -42,8 +42,8 @@ class Event < ActiveRecord::Base
     
     def set_info
       self.info = case subject_type
-        when "Task"     then subject.text
-        when "Comment"  then subject.task.text
+        when "Task"     then subject.try(:text) || ""
+        when "Comment"  then subject.try(:task).try(:text) || ""
       end
     end
     
