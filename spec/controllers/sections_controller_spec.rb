@@ -4,6 +4,10 @@ describe SectionsController do
   describe "with project user" do
     before { sign_with_project_user }
     
+    def should_fire_event(action)
+      controller.should_receive(:activity).with(action, mock_section)
+    end
+    
     describe "GET index" do
       before do
         Project.stub(:find).with("1").and_return(mock_project)
@@ -79,6 +83,9 @@ describe SectionsController do
       describe "with valid params" do
         before do
           Section.stub(:build).with({'these' => 'params'}).and_return(mock_section(:save => true))
+          
+          should_fire_event :created
+          
           post :create, :section => {:these => 'params'}, :project_id => "1"
         end
 
@@ -121,6 +128,8 @@ describe SectionsController do
         before do
           Section.should_receive(:find).with("1").and_return(mock_section)
           mock_section.should_receive(:update_attributes).with({'these' => 'params'}).and_return(true)
+
+          should_fire_event :updated
 
           put :update, :id => "1", :section => {:these => 'params'}
         end
@@ -168,19 +177,20 @@ describe SectionsController do
       before do
         Section.should_receive(:find).with("1").and_return(mock_section)
         mock_section.should_receive(:destroy)
+        
+        should_fire_event :deleted
+        
+        delete :destroy, :id => "1"        
       end
 
       it "destroys the requested section" do
-        delete :destroy, :id => "1"
       end
 
       it "redirects to the sections list" do
-        delete :destroy, :id => "1"
         response.should redirect_to(project_sections_url(mock_project))
       end
 
       it "assigns project as @project" do
-        delete :destroy, :id => "1"
         assigns[:project].should == mock_project
       end
     end

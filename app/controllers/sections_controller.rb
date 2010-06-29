@@ -21,6 +21,8 @@ class SectionsController < ApplicationController
     @section = @project.sections.build(params[:section])
     
     if @section.save
+      event :created
+      
       redirect_to @section
     else
       render :action => "new"
@@ -29,6 +31,8 @@ class SectionsController < ApplicationController
 
   def update
     if @section.update_attributes(params[:section])
+      event :updated
+      
       redirect_to @section
     else
       render :action => "edit"
@@ -37,6 +41,8 @@ class SectionsController < ApplicationController
 
   def destroy
     @section.destroy
+    
+    event :deleted
     
     redirect_to project_sections_path(@section.project)
   end
@@ -55,5 +61,9 @@ class SectionsController < ApplicationController
     def get_section_and_project
       @section = Section.find(params[:id])
       @project = @section.project
+    end
+    
+    def event(action)
+      activity(action, @section)
     end
 end
