@@ -4,8 +4,9 @@ class Event < ActiveRecord::Base
   belongs_to :subject, :polymorphic => true
   
   attr_readonly :project_id, :user_id
+  attr_accessible :action, :subject
   
-  validates_presence_of :user, :project, :action
+  validates_presence_of :user, :project, :action, :subject_id, :subject_type
   
   before_validation_on_create :inherit_subject_project
   
