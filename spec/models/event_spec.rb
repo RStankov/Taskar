@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Event do
-  it_should_allow_mass_assignment_only_of :action, :subject
+  it_should_allow_mass_assignment_only_of :user, :action, :subject
   
   it { should belong_to(:user) }
   it { should belong_to(:project) }
@@ -20,7 +20,7 @@ describe Event do
     event.project_id.should  == section.project_id
   end
   
-  describe "info" do    
+  describe "info" do
     it "should be subject.text if subject is Task" do
       task  = Factory(:task, :text => "task text")
       event = Factory(:event, :subject => task)
@@ -44,5 +44,35 @@ describe Event do
       event.info.should == "section name"
     end
   end
-  
+
+  describe "activity" do
+    def find_all_by_subject(subject)
+       Event.find_all_by_subject_id_and_subject_type(subject.id, subject.class.name)
+    end
+    
+    it "should create event if event doesn't exists for this subject" do
+      section = Factory(:section)
+      
+      find_all_by_subject(section).should == []
+
+      event = Event.activity(Factory(:user), :created, section)
+      
+      event.new_record?.should be_false
+      event.info.should == section.name
+      
+      find_all_by_subject(section).should == [event]
+    end
+    
+    it "should update the event for this subject if one exists" do
+      section = Factory(:section)
+      event_1 = Event.activity(Factory(:user), :created, section)
+      
+      find_all_by_subject(section).should == [event_1]
+      
+      event_2 = Event.activity(Factory(:user), :updated, section)
+      
+      event_2.should == event_1
+      find_all_by_subject(section).should == [event_1]
+    end
+  end
 end

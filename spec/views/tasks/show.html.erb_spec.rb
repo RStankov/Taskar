@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "/tasks/show.html.erb" do
   before do
-    assigns[:task] = @task = Factory(:task)
+    assigns[:task] = Factory(:task)
   end
 
   it "renders" do

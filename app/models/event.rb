@@ -3,8 +3,8 @@ class Event < ActiveRecord::Base
   belongs_to :project
   belongs_to :subject, :polymorphic => true
   
-  attr_readonly :project_id, :user_id
-  attr_accessible :action, :subject
+  attr_readonly :project_id, :subject
+  attr_accessible :user, :action, :subject
   
   default_scope :order => 'updated_at DESC'
   
@@ -13,6 +13,15 @@ class Event < ActiveRecord::Base
   before_validation_on_create :inherit_subject_project
   
   before_save :set_info
+  
+  def self.activity(user, action, subject)
+    if event = find(:first, :conditions => {:subject_id => subject.id, :subject_type => subject.class.name})
+      event.update_attributes(:user => user, :action => action)
+      event
+    else
+      create(:user => user, :action => action, :subject => subject)
+    end
+  end
   
   protected
     def inherit_subject_project
