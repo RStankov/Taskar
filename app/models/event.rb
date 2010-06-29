@@ -23,8 +23,12 @@ class Event < ActiveRecord::Base
     end
   end
   
+  def type
+    @type ||= subject_type.downcase
+  end
+  
   def url_options
-    {:controller => subject_type.downcase.pluralize, :action => :show, :id => subject_id}
+    {:controller => type.pluralize, :action => :show, :id => subject_id}
   end
   
   def linkable?

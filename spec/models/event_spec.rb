@@ -153,4 +153,23 @@ describe Event do
       @options[:id].should == 1
     end
   end
+
+  describe "type" do
+    before do
+      @event = Event.new { |event| event.subject_type = "Task" }
+    end
+    
+    it "should return subject_type lowercased" do
+      @event.type.should == "task"
+    end
+    
+    it "should be cached" do
+      @event.type.should == "task"
+      
+      @event.subject_type = "Comment"
+      
+      @event.type.should == "task"
+    end
+  end
+
 end
