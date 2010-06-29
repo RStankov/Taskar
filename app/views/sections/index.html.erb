@@ -1,3 +1,14 @@
+<ul>
+  <% @project.events.each do |event| %>
+    <li>
+      <%= event.action %>
+      <%= event.subject_type %>
+      <%= link_to event.info, :controller => event.subject_type.downcase.pluralize, :id => event.subject_id, :action => :show %>
+      <%= event.user.full_name %>
+    </li>
+  <% end %>
+</ul>
+
 <ul id="events">
   <% for i in 1..10 %>
   <li<%= i % 4 == 0 ? ' class="personal"' : '' %>>
