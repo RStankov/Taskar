@@ -1,5 +1,5 @@
 class Comment < ActiveRecord::Base
-  belongs_to :user, :counter_cache => true, :touch => :last_active_at
+  belongs_to :user, :counter_cache => true
   belongs_to :task, :counter_cache => true
   belongs_to :project
   

@@ -1,7 +1,7 @@
 class Task < ActiveRecord::Base
-  belongs_to :section, :touch => true
+  belongs_to :section
   belongs_to :project
-  belongs_to :user, :touch => :last_active_at
+  belongs_to :user
   belongs_to :responsible_party, :class_name => "User"
   
   has_one :event, :as => "subject"
