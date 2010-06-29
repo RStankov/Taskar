@@ -4,6 +4,8 @@ class Task < ActiveRecord::Base
   belongs_to :user, :touch => :last_active_at
   belongs_to :responsible_party, :class_name => "User"
   
+  has_one :event, :as => "subject"
+  
   has_many :comments, :dependent => :destroy
   
   validates_presence_of :text, :section, :project, :user

@@ -7,6 +7,7 @@ describe Section do
   it { should validate_presence_of(:project) }
   it { should belong_to(:project) }
   it { should have_many(:tasks) }
+  it { should have_one(:event) }
 
   describe "acts_as_list" do
     before do

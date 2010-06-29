@@ -8,6 +8,7 @@ describe Task do
   it { should belong_to(:user) }
   it { should belong_to(:responsible_party) }
   it { should have_many(:comments)}
+  it { should have_one(:event) }
   
   it { should validate_presence_of(:text) }
   it { should validate_presence_of(:section) }

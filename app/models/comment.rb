@@ -3,6 +3,8 @@ class Comment < ActiveRecord::Base
   belongs_to :task, :counter_cache => true
   belongs_to :project
   
+  has_one :event, :as => "subject"
+  
   validates_presence_of :text, :user, :task, :project
   
   before_validation_on_create :inherit_task_project 
