@@ -4,7 +4,7 @@ class Event < ActiveRecord::Base
   belongs_to :subject, :polymorphic => true
   
   attr_readonly :project_id, :subject
-  attr_accessible :user, :action, :subject
+  attr_accessible :user, :subject
   
   default_scope :order => 'updated_at DESC'
   
@@ -12,14 +12,14 @@ class Event < ActiveRecord::Base
   
   before_validation_on_create :inherit_subject_project
   
-  before_save :set_info, :set_action
+  before_validation :set_info, :set_action
   
-  def self.activity(user, action, subject)
+  def self.activity(user, subject)
     if event = find(:first, :conditions => {:subject_id => subject.id, :subject_type => subject.class.name})
-      event.update_attributes(:user => user, :action => action)
+      event.update_attributes(:user => user)
       event
     else
-      create(:user => user, :action => action, :subject => subject)
+      create(:user => user, :subject => subject)
     end
   end
   
@@ -36,9 +36,11 @@ class Event < ActiveRecord::Base
     end
     
     def set_action
-      self.action = subject.destroyed? ? "deleted" : case subject_type
-        when "Comment" then "commented"
-        when "Task"    then subject.archived? ? "archived" : subject.state
+      if subject
+        self.action = subject.destroyed? ? "deleted" : case subject_type
+          when "Comment" then "commented"
+          when "Task"    then subject.archived? ? "archived" : subject.state
+        end
       end
     end
 end
