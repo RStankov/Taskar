@@ -20,6 +20,41 @@ describe Event do
     event.project_id.should  == task.project_id
   end
   
+  describe "action" do
+    def event_action_for(subject)
+      Factory(:event, :subject => subject).action
+    end
+    
+    it "should be 'commented' if subject is Comment" do
+      comment = Factory(:comment)
+      
+      event_action_for(Factory(:comment)).should == "commented"
+    end
+    
+    it "should be 'deleted' if subject is destroyed?" do
+      comment = Factory(:comment)
+      comment.destroy
+      
+      event_action_for(comment).should == "deleted"
+    end
+    
+    it "should be 'archived' if subject is archived? Task" do
+      task = Factory(:task, :state => "completed")
+      task.stub!(:archived?).and_return(true)
+      
+      event_action_for(task).should == "archived"
+    end
+    
+    %w(opened completed rejected).each do |state|
+      it "should be #{state} if subject is #{state} Task" do
+        task = Factory(:task)
+        task.stub!(:state).and_return(state)
+        
+        event_action_for(task).should == state
+      end
+    end
+  end
+  
   describe "info" do
     it "should be subject.text if subject is Task" do
       task  = Factory(:task, :text => "task text")

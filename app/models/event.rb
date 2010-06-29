@@ -12,7 +12,7 @@ class Event < ActiveRecord::Base
   
   before_validation_on_create :inherit_subject_project
   
-  before_save :set_info
+  before_save :set_info, :set_action
   
   def self.activity(user, action, subject)
     if event = find(:first, :conditions => {:subject_id => subject.id, :subject_type => subject.class.name})
@@ -32,6 +32,13 @@ class Event < ActiveRecord::Base
       self.info = case subject_type
         when "Task"     then subject.text
         when "Comment"  then subject.task.text
+      end
+    end
+    
+    def set_action
+      self.action = subject.destroyed? ? "deleted" : case subject_type
+        when "Comment" then "commented"
+        when "Task"    then subject.archived? ? "archived" : subject.state
       end
     end
 end
