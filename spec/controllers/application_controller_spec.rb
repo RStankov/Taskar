@@ -17,4 +17,13 @@ describe ApplicationController do
       controller.send(:deny_access)
     end
   end
+  
+  describe "event" do
+    it "should call Event.activity with action and subject" do
+      Event.should_receive(:activity).with(mock_user, :created, mock_comment)
+      controller.should_receive(:current_user).and_return(mock_user)
+      
+      controller.send(:event, :created, mock_comment)
+    end
+  end
 end

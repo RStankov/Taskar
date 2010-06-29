@@ -26,4 +26,8 @@ class ApplicationController < ActionController::Base
         deny_access
       end
     end
+
+    def event(action, subject)
+      Event.activity(current_user, action, subject)
+    end
 end
