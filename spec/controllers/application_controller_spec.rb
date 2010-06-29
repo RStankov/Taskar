@@ -19,11 +19,14 @@ describe ApplicationController do
   end
   
   describe "event" do
-    it "should call Event.activity with action and subject" do
-      Event.should_receive(:activity).with(mock_user, :created, mock_comment)
-      controller.should_receive(:current_user).and_return(mock_user)
+    it "should create user activity" do
+      user = Factory(:user)
+      task = Factory(:task)
       
-      controller.send(:activity, :created, mock_comment)
+      controller.should_receive(:current_user).and_return(user)
+      controller.send(:activity, task)
+      
+      task.event.user.should == user
     end
   end
 end

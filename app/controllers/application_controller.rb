@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
       end
     end
 
-    def activity(action, subject)
-      Event.activity(current_user, action, subject)
+    def activity(subject)
+      Event.activity(current_user, subject)
     end
 end
