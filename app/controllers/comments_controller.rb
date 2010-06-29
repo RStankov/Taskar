@@ -15,6 +15,8 @@ class CommentsController < ApplicationController
     @comment = current_user.new_comment(@task, params[:comment])
 
     if @comment.save
+      event :commented
+      
       redirect_to_comment
     else
       render :action => "new"
@@ -23,6 +25,8 @@ class CommentsController < ApplicationController
 
   def update
     if @comment.update_attributes(params[:comment])
+      event :commented
+      
       if request.xhr?
         render :action => "show"
       else
@@ -35,6 +39,8 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment.destroy
+    
+    event :deleted
     
     if request.xhr?
       head :ok
@@ -66,5 +72,9 @@ class CommentsController < ApplicationController
 
     def redirect_to_comment
       redirect_to task_path(@comment.task, :anchor => "comment_#{@comment.id}")
+    end
+
+    def event(action)
+      activity(action, @comment)
     end
 end

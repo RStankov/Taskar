@@ -3,6 +3,10 @@ require 'spec_helper'
 describe CommentsController do
   describe "with project user" do
     before { sign_with_project_user }
+    
+    def should_fire_event(action)
+      controller.should_receive(:activity).with(action, mock_comment)
+    end
   
     describe "GET show" do
       before do
@@ -35,6 +39,8 @@ describe CommentsController do
       describe "with valid params" do
         before do
           mock_comment.stub!(:save).and_return(true)
+
+          should_fire_event(:commented)
 
           post :create, :comment => {:these => 'params'}, :task_id => "1"
         end
@@ -96,6 +102,8 @@ describe CommentsController do
       describe "with valid params" do
         before do
           mock_comment.should_receive(:update_attributes).with({'these' => 'params'}).and_return(true)
+          
+          should_fire_event(:commented)
         end
 
         it "updates the requested comment" do
@@ -144,6 +152,8 @@ describe CommentsController do
       before do
         Comment.should_receive(:find).with("37").and_return(mock_comment(:destroy => true, :editable_by? => false))
         mock_comment.stub!(:editable_by?).and_return(true)
+        
+        should_fire_event(:deleted)
       end
 
       it "destroys the requested comment (if it's editable)" do
