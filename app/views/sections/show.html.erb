@@ -3,7 +3,7 @@
     <%=h @section.name %>
     <%= link_to t(:edit), [:edit, @section], :class => "edit" %>
     <%= link_to_delete t(:delete), @section, :class => "delete", :confirm => t(:'.confirm') %>
-    <%= link_to "[a]", archive_section_path(@section, :archive => !@section.archived?), :'data-method' => 'put', :'data-confirm' => t(:'.confirm'), :'data-token' => form_authenticity_token %>
+    <%= link_to "[a]", archive_section_path(@section, :archive => !@section.archived?), :class => "archive", :'data-method' => 'put',  :'data-token' => form_authenticity_token %>
   </h1>
   <% form_for @section, :html => {:style => "display:none;"} do |form| %>
     <%= form.text_field :name, :placeholder => Section.human_attribute_name(:name) %>

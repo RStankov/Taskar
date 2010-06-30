@@ -29,6 +29,7 @@ bg:
       all_projects: "Всички проекти"
       goto_dashboard: "Табло"
       new_section: "Нова секция"
+      archived_sections: "Архивирани секции"
       tasks:
         one: "Една задача"
         zero: "Нямате задачи"
@@ -69,7 +70,7 @@ bg:
       next: "Следващи"
     
     show:
-      confirm: "Сигурни ли сте че, искате тази секция?"
+      confirm: "Сигурни ли сте че, искате да изтриете тази секция?"
       add_task: "Добави задача"
       toggle_archive: "Ахрив"
       archive: "Архив"

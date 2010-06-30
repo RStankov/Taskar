@@ -38,7 +38,7 @@
     </ul>
     <div id="nav_more_sections">
       <% if @project.sections.archived[0] %>
-        <span title="View sections"></span>
+        <span title="<%=t :'.archived_sections' %>"></span>
         <ul>
           <% @project.sections.archived.each do |section| %>
           <li><%= link_to section.name, section, :class => @section == section && 'selected' %></li>
