@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Taskar</title>
+  <%= stylesheet_link_tag 'application' %>
+</head>
+<body>
+  <%= render "shared/header" if current_user %>
+  
+  <%= '<p style="color: green">' + notice + '</p>' if notice %>
+  <%= '<p style="color: red">' + alert + '</p>' if alert %>
+  
+  <section>
+    <article>
+      <%= yield %>
+    </article>
+    <aside>
+    </aside>
+  </section>
+  <%= render "shared/footer" %>
+</body>
+</html>
