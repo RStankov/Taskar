@@ -15,13 +15,7 @@ class CommentsController < ApplicationController
     @comment = current_user.new_comment(@task, params[:comment])
 
     if @comment.save
-      event
-      
-      if request.xhr?
-        render :action => "show"
-      else
-        redirect_to_comment
-      end
+      render_or_redirect_after_event
     else
       render :action => "new"
     end
@@ -29,13 +23,7 @@ class CommentsController < ApplicationController
 
   def update
     if @comment.update_attributes(params[:comment])
-      event
-      
-      if request.xhr?
-        render :action => "show"
-      else
-        redirect_to_comment
-      end
+      render_or_redirect_after_event
     else
       render :action => "edit"
     end
@@ -46,9 +34,7 @@ class CommentsController < ApplicationController
     
     event
     
-    unless request.xhr?
-      redirect_to @comment.task
-    end
+    redirect_to @comment.task unless request.xhr?
   end
   
   private 
@@ -72,11 +58,21 @@ class CommentsController < ApplicationController
       end
     end
 
+    def event
+      activity(@comment)
+    end
+
     def redirect_to_comment
       redirect_to task_path(@comment.task, :anchor => "comment_#{@comment.id}")
     end
 
-    def event
-      activity(@comment)
+    def render_or_redirect_after_event
+      event
+      
+      if request.xhr?
+        render :action => "show"
+      else
+        redirect_to_comment
+      end
     end
 end
