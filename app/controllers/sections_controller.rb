@@ -4,7 +4,7 @@ class SectionsController < ApplicationController
   before_filter :check_project_permissions
   
   def index
-    @sections = @project.sections
+    @events = @project.events.paginate(:page => params[:page], :per_page => 30)
   end
 
   def show

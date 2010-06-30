@@ -7,14 +7,16 @@ describe SectionsController do
     describe "GET index" do
       before do
         Project.stub(:find).with("1").and_return(mock_project)
-        mock_project.should_receive(:sections).and_return(Section)
+        mock_project.stub!(:events).and_return(@events = [mock_event])
+        @events.should_receive(:paginate).with(:page => "1", :per_page => 30).and_return(@events)
 
-        get :index, :project_id => "1"
+        get :index, :project_id => "1", :page => "1"
       end
 
-      it "assigns project sections as @sections" do
-        assigns[:sections].should == Section
+      it "assigns paginated events as @events" do
+        assigns[:events].should == @events
       end
+     
 
       it "assigns project as @project" do
         assigns[:project].should == mock_project

@@ -18,4 +18,8 @@ module TaskarMocks
   def mock_comment(stubs={})
     @mock_comment ||= mock_model(Comment, {:task => mock_task, :user => mock_user, :project => mock_project}.merge(stubs))
   end
+  
+  def mock_event(stubs={})
+    @mock_event ||= mock_model(Event)
+  end
 end

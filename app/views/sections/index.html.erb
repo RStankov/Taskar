@@ -3,7 +3,7 @@
 </div>
 <table id="events">
   <% date = nil %>
-  <% @project.events.each do |event| %>
+  <% @events.each do |event| %>
     <% unless event.updated_at.to_date == date %>
       <tr>
         <th colspan="4"><h2><%=l date = event.updated_at.to_date, :format => :long %></h2></th>
@@ -23,6 +23,8 @@
     </tr>
   <% end %>
 </table>
+
+<%= will_paginate(@events, :page_links => false, :previous_label => t(:'.previous'), :next_label => t(:'.next')) %>
 <!--
 <ul id="events">
   <% for i in 1..10 %>
