@@ -263,4 +263,21 @@ describe Task do
     end
   end
 
+  describe "editable?" do
+    before do
+      @task = Task.new
+    end
+    
+    %w(completed rejected).each do |state|
+      it "should not be true if state is #{state}" do
+        @task.state = state
+        @task.editable?.should be_false
+      end
+    end
+    
+    it "should be true if state is opened" do
+      @task.state = "opened"
+      @task.editable?.should be_true
+    end
+  end
 end

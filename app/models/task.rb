@@ -51,6 +51,10 @@ class Task < ActiveRecord::Base
     end
   end
   
+  def editable?
+    status == 0
+  end
+  
   protected 
     def inherit_section_project
       self.project = section.try(:project)
