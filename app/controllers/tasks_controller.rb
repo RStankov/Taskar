@@ -5,6 +5,7 @@ class TasksController < ApplicationController
   before_filter :get_section_and_project, :only => [:create, :archived]
   before_filter :get_project, :only => [:search, :reorder]
   before_filter :check_project_permissions
+  before_filter :ensure_task_is_editable, :only => [:edit, :update]
   
   def show
     @section = @task.section
@@ -105,6 +106,16 @@ class TasksController < ApplicationController
     def get_project
       @project = Project.find(params[:project_id])
     end   
+
+    def ensure_task_is_editable
+      unless @task.editable?
+        if request.xhr?
+          render :action => "show"
+        else
+          redirect_to @task
+        end
+      end
+    end
 
     def event
       activity(@task)

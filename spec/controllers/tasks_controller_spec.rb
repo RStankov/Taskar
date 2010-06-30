@@ -29,8 +29,10 @@ describe TasksController do
 
     describe "GET edit" do
       it "assigns the requested task as @task" do
-        Task.stub(:find).with("37").and_return(mock_task)
+        Task.stub(:find).with("37").and_return(mock_task(:editable? => true))
+
         get :edit, :id => "37"
+
         assigns[:task].should equal(mock_task)
       end
     end
@@ -90,7 +92,8 @@ describe TasksController do
 
     describe "PUT update" do
       before do
-        Task.should_receive(:find).with("1").and_return(mock_task)
+        Task.should_receive(:find).with("1").and_return(mock_task(:editable? => true))
+        controller.should_receive(:ensure_task_is_editable)
       end
     
       def params
@@ -289,6 +292,25 @@ describe TasksController do
     
       it "should render archived template" do
         response.should render_template(:archived)
+      end
+    end
+  
+    describe "ensure_task_is_editable filter" do
+      before do
+        Task.stub(:find).with("1").and_return(mock_task)
+        mock_task.should_receive(:editable?).and_return(false)
+      end
+      
+      it "should render :show action on xhr request" do
+        xhr :get, :edit, :id => "1"
+        
+        response.should render_template(:show)
+      end
+      
+      it "should redirect to @task on normal request" do
+        get :edit, :id => "1"
+        
+        response.should redirect_to(task_url(mock_task))
       end
     end
   end
