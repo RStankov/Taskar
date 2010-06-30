@@ -45,7 +45,7 @@ class CommentsController < ApplicationController
     if request.xhr?
       head :ok
     else
-      redirect_to task_path(@comment.task)
+      redirect_to @comment.task
     end
   end
   

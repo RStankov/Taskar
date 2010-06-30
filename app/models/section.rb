@@ -17,4 +17,9 @@ class Section < ActiveRecord::Base
   default_scope :order => "position ASC"
 
   include Taskar::List::Model
+  
+  def archived=(archived)
+    move_to_bottom
+    super(archived ? true : false)
+  end
 end

@@ -103,4 +103,20 @@ describe Section do
     end
   end
   
+  describe "archived=" do
+    it "should call move_to_bottom" do
+      section = Factory(:section)
+      section.should_receive(:move_to_bottom)
+      section.archived = true
+      section.archived?.should be_true
+    end
+    
+    it "should convert the given parameter to boolean" do
+      section = Section.new
+      section.archived = "true"
+      section.archived?.should be_true
+      section.archived = nil
+      section.archived?.should be_false
+    end
+  end
 end
