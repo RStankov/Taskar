@@ -35,6 +35,6 @@ class Comment < ActiveRecord::Base
     end
     
     def ensure_task_is_not_archived
-      errors.add_to_base(I18n.t('activerecord.errors.comment.archived_task')) if task && task.archived?
+      errors.add_to_base(I18n.t('activerecord.errors.comments.archived_task')) if task && task.archived?
     end
 end

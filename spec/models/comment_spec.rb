@@ -32,7 +32,7 @@ describe Comment do
     
     comment.save.should be_false
     comment.errors.on_base.should_not be_nil
-    comment.errors.on_base.should == I18n.t('activerecord.errors.comment.archived_task')
+    comment.errors.on_base.should == I18n.t('activerecord.errors.comments.archived_task')
   end
   
   describe "editable_by?" do
