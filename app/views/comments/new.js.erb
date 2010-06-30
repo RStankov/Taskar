@@ -1,0 +1,3 @@
+<% javascript_response do %>
+  $('new_comment').update("<%= escape_javascript(render "new_form") %>").down('textarea').highlight({startColor: Taskar.ERROR_COLOR}).focus();
+<% end %>
