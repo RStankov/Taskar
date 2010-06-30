@@ -26,6 +26,15 @@ describe Comment do
     comment.project_id.should  == comment.project_id
   end
   
+  it "should not be added to archived task" do
+    task    = Factory(:task, :status => 1, :archived => true)
+    comment = Factory.build(:comment, :task => task)
+    
+    comment.save.should be_false
+    comment.errors.on_base.should_not be_nil
+    comment.errors.on_base.should == I18n.t('activerecord.errors.comment.archived_task')
+  end
+  
   describe "editable_by?" do
     before do
       @comment = Factory(:comment)

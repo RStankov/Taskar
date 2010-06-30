@@ -9,6 +9,8 @@ class Comment < ActiveRecord::Base
   
   before_validation_on_create :inherit_task_project 
   
+  validate :ensure_task_is_not_archived, :if => :new_record?
+  
   attr_accessible :text
   
   attr_readonly :project_id
@@ -30,5 +32,9 @@ class Comment < ActiveRecord::Base
   protected
     def inherit_task_project
       self.project = task.try(:project)
+    end
+    
+    def ensure_task_is_not_archived
+      errors.add_to_base(I18n.t('activerecord.errors.comment.archived_task')) if task && task.archived?
     end
 end
