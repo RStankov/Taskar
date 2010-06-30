@@ -118,5 +118,14 @@ describe Section do
       section.archived = nil
       section.archived?.should be_false
     end
+    
+    it "should not be able to proccedd if the is atleas one unarchived task" do
+      section = Factory(:section)
+      
+      Factory(:task, :section => section)
+      
+      section.archived = true
+      section.archived?.should be_false
+    end
   end
 end
