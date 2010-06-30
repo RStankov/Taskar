@@ -1,30 +1,56 @@
-<div id="section_title">
-  <h1>
-    <%=h @section.name %>
-    <%= link_to t(:edit), [:edit, @section], :class => "edit" %>
-    <%= link_to_delete t(:delete), @section, :class => "delete", :confirm => t(:'.confirm') %>
-    <%= link_to "[a]", archive_section_path(@section, :archive => !@section.archived?), :class => "archive", :'data-method' => 'put',  :'data-token' => form_authenticity_token %>
-  </h1>
-  <% form_for @section, :html => {:style => "display:none;"} do |form| %>
-    <%= form.text_field :name, :placeholder => Section.human_attribute_name(:name) %>
-    <%= form.submit t(:update) %>
-    <input type="button" value="<%=t :cancel %>" />
-  <% end %>
-</div>
-<ul id="tasks" class="tasks_list" data-sortable="<%= reorder_project_tasks_path(@section.project, @section)  %>">
-  <%= render @section.tasks.unarchived %>
-  <%= render "tasks/new_task" %>
-</ul>
-<ul id="section_footer">
-  <li><input type="button" value="<%=t :'.add_task' %>" class="add"></li>
-  <li><input type="button" value="<%=t :'.toggle_archive' %>" class="toggle_archived" data-url="<%= archived_section_tasks_path(@section) %>"></li>
-  <li id="more_actions">
-    <span><%=t :'.more' %></span>
-    <ul>
-      <li><a href="#">RSS</a></li>
-      <li><span>Print</span></li>
-      <li><a href="#">Export</a></li>
-      <li><a href="#">Import</a></li>
-    </ul>
-  </li>
-</ul>
+<% if @section.archived? %>
+  <div id="section_title">
+    <h1>
+      <%=h @section.name %>
+      <%= link_to_delete t(:delete), @section, :class => "delete", :confirm => t(:'.confirm') %>
+      <%= link_to "[a]", archive_section_path(@section, :archive => false), :class => "archive", :'data-method' => 'put',  :'data-token' => form_authenticity_token %>
+    </h1>
+  </div>
+  <ul class="tasks_list">
+    <% @section.tasks.archived.each do |task| %>
+      <% content_tag_for(:li, task, :class => task.state + (current_user.id == task.responsible_party_id ? ' personal' : '')) do %>
+        <%= task_state_checkbox(task) %>
+        <p>
+          <% if task.responsible_party %><strong><%= task.responsible_party.full_name %></strong><% end %>
+          <%=h task.text %>
+        </p>
+        <span class="more"><%=t :'.more' %></span>
+        <%= time_tag task.created_at %>
+        <ul>
+          <li><%= link_to t(:'tasks.show.comments', :count => task.comments.size), task %></li>
+        </ul>
+      <% end %>
+    <% end %>
+  </ul>
+<% else %>
+  <div id="section_title">
+    <h1>
+      <%=h @section.name %>
+      <%= link_to t(:edit), [:edit, @section], :class => "edit" %>
+      <%= link_to_delete t(:delete), @section, :class => "delete", :confirm => t(:'.confirm') %>
+      <%= link_to "[a]", archive_section_path(@section, :archive => true), :class => "archive", :'data-method' => 'put',  :'data-token' => form_authenticity_token %>
+    </h1>
+    <% form_for @section, :html => {:style => "display:none;"} do |form| %>
+      <%= form.text_field :name, :placeholder => Section.human_attribute_name(:name) %>
+      <%= form.submit t(:update) %>
+      <input type="button" value="<%=t :cancel %>" />
+    <% end %>
+  </div>
+  <ul id="tasks" class="tasks_list" data-sortable="<%= reorder_project_tasks_path(@section.project, @section)  %>">
+    <%= render @section.tasks.unarchived %>
+    <%= render "tasks/new_task" %>
+  </ul>
+  <ul id="section_footer">
+    <li><input type="button" value="<%=t :'.add_task' %>" class="add"></li>
+    <li><input type="button" value="<%=t :'.toggle_archive' %>" class="toggle_archived" data-url="<%= archived_section_tasks_path(@section) %>"></li>
+    <li id="more_actions">
+      <span><%=t :'.more' %></span>
+      <ul>
+        <li><a href="#">RSS</a></li>
+        <li><span>Print</span></li>
+        <li><a href="#">Export</a></li>
+        <li><a href="#">Import</a></li>
+      </ul>
+    </li>
+  </ul>
+<% end %>
