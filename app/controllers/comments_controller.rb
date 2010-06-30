@@ -46,9 +46,7 @@ class CommentsController < ApplicationController
     
     event
     
-    if request.xhr?
-      head :ok
-    else
+    unless request.xhr?
       redirect_to @comment.task
     end
   end

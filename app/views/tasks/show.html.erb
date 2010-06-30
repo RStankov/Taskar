@@ -2,7 +2,7 @@
   <%= render "task_title" %>
 </div>
 <% if @task.comments.size > 0 %>
-<h3><icon name="comments"><%=t :'.comments', :count => @task.comments.size %></h3>
+<h3><icon name="comments"><%=t :'.comments', :count => '<span id="comments_count">' + @task.comments.size.to_s + '</span>' %></h3>
 <% end %>
 <ul id="comments">
   <%= render @task.comments %>

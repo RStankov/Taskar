@@ -178,8 +178,7 @@ describe CommentsController do
       it "returns ok when this is xhr request" do
         xhr :delete, :destroy, :id => "37"
 
-        response.should be_success
-        response.should_not redirect_to(task_url(mock_comment.task))
+        response.should render_template(:destroy)
       end
     end
 

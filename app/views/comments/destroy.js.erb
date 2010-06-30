@@ -1,0 +1,3 @@
+<% javascript_response do %>
+  $('comments_count').update("<%= @comment.task.comments.count %>");
+<% end %>

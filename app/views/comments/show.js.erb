@@ -9,6 +9,7 @@
       $('comments').insert({bottom: content});
       $('comment_<%= @comment.id %>').hide().slideDown();
       $('new_comment').down('form').reset();
+      $('comments_count').update("<%= @comment.task.comments.count %>");
     }
   })();
 <% end %>
