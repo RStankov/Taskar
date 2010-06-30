@@ -15,14 +15,10 @@ class Event < ActiveRecord::Base
   before_validation :set_info, :set_action
   
   def self.activity(user, subject)
-    if event = find(:first, :conditions => {:subject_id => subject.id, :subject_type => subject.class.name})
-      # forces the record to be save, it's timestamp to be updated
-      event.updated_at = Time.now
-      event.update_attributes(:user => user, :subject => subject)
-      event
-    else
-      create(:user => user, :subject => subject)
-    end
+    event = find_or_initialize_by_subject_id_and_subject_type(subject.id, subject.class.name)
+    event.updated_at = Time.now   # forces the record to be save, it's timestamp to be updated
+    event.update_attributes(:user => user, :subject => subject)
+    event
   end
   
   def type
