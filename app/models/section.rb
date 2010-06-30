@@ -14,10 +14,11 @@ class Section < ActiveRecord::Base
   
   acts_as_list :scope => :project
 
-  default_scope :order => "position ASC"
-
   include Taskar::List::Model
   
+  named_scope :archived,   :conditions => { :archived => true  }, :order => "position DESC"
+  named_scope :unarchived, :conditions => { :archived => false }, :order => "position ASC"
+
   def archived=(archived)
     move_to_bottom
     super(archived ? true : false)
