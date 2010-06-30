@@ -3,7 +3,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :projects do |projects|
     projects.resources :aside, :only => :index
     projects.resources :tasks, :collection => {:reorder => :put, :search => :get}, :only => []
-    projects.resources :sections, :shallow => true, :collection => {:reorder => :put}, :member => {:aside => :get} do |sections|
+    projects.resources :sections, :shallow => true, :collection => {:reorder => :put}, :member => {:archive => :put} do |sections|
       sections.resources :tasks, :shallow => true, :except => [:new, :index], :member => {:state => :put, :archive => :put}, :collection => {:archived => :get} do |tasks|
         tasks.resources :comments, :shallow => true, :except => [:index, :new]
       end

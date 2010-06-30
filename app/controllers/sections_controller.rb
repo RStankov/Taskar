@@ -1,6 +1,6 @@
 class SectionsController < ApplicationController
   before_filter :get_project, :only => [:index, :new, :create, :reorder]
-  before_filter :get_section_and_project, :only => [:show, :edit, :update, :destroy, :aside]
+  before_filter :get_section_and_project, :only => [:show, :edit, :update, :destroy, :archive]
   before_filter :check_project_permissions
   
   def index
@@ -47,6 +47,13 @@ class SectionsController < ApplicationController
     head :ok
   end
     
+  def archive
+    @section.archived = params[:archive]
+    @section.save
+    
+    redirect_to @section
+  end
+  
   private
     def get_project
       @project = Project.find(params[:project_id])

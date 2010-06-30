@@ -206,6 +206,25 @@ describe SectionsController do
         response.should be_success
       end
     end
+  
+    describe "PUT archive" do
+      before do
+        Section.stub!(:find).with("1").and_return(mock_section(:save => nil))
+        mock_section.stub!(:archived=)
+      end
+      
+      it "should set archived= to params[:archive]" do
+        mock_section.should_receive(:archived=).with("true")
+        
+        put :archive, :id => "1", :archive => "true"
+      end
+      
+      it "should redirect to archived section" do
+        put :archive, :id => "1", :archive => "true"
+        
+        response.should redirect_to(section_url(mock_section))
+      end
+    end
   end
   
   describe "with user outside project" do
@@ -216,7 +235,7 @@ describe SectionsController do
       :edit       => 'get(:edit, :id => "1")',
       :update     => 'put(:update, :id => "1")',
       :destroy    => 'delete(:destroy, :id => "1")',
-      :aside      => 'get(:aside, :id => "1")'
+      :archive    => 'put(:archive, :id => "1")'
     }.each do |(action, code)|
       it "should not allow #{action}, and redirect_to root_url" do
         Section.should_receive(:find).with("1").and_return(mock_section)
