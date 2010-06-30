@@ -17,7 +17,11 @@ class CommentsController < ApplicationController
     if @comment.save
       event
       
-      redirect_to_comment
+      if request.xhr?
+        render :action => "show"
+      else
+        redirect_to_comment
+      end
     else
       render :action => "new"
     end

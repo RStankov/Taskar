@@ -41,16 +41,24 @@ describe CommentsController do
           mock_comment.stub!(:save).and_return(true)
 
           controller_should_fire_event
-
-          post :create, :comment => {:these => 'params'}, :task_id => "1"
         end
-
+        
         it "assigns a newly created comment as @comment" do
+          post :create, :comment => {:these => 'params'}, :task_id => "1"
+          
           assigns[:comment].should equal(mock_comment)
         end
 
         it "redirects to the created comment" do
+          post :create, :comment => {:these => 'params'}, :task_id => "1"
+          
           response.should redirect_to(task_url(mock_comment.task, :anchor => "comment_#{mock_comment.id}"))
+        end
+        
+        it "should render show action if xhr request" do
+          xhr :post, :create, :comment => {:these => 'params'}, :task_id => "1"
+          
+          response.should render_template(:show)
         end
       end
 

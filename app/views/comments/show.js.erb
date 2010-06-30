@@ -1,3 +1,14 @@
 <% javascript_response do %>
-  $('comment_<%= @comment.id %>').replace("<%= escape_javascript(render @comment) %>");
+  (function(){
+    var content = "<%= escape_javascript(render @comment) %>",
+        comment = $('comment_<%= @comment.id %>');
+        
+    if (comment){
+      comment.replace(content);
+    } else {
+      $('comments').insert({bottom: content});
+      $('comment_<%= @comment.id %>').hide().slideDown();
+      $('new_comment').down('form').reset();
+    }
+  })();
 <% end %>
