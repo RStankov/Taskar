@@ -128,4 +128,5 @@ describe Section do
       section.archived?.should be_false
     end
   end
+
 end

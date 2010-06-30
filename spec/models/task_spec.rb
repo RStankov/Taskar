@@ -23,6 +23,15 @@ describe Task do
     task.project_id.should  == section.project_id
   end
   
+  it "should not be added to archived section" do
+    section = Factory(:section, :archived => true)
+    task    = Factory.build(:task, :section => section)
+    
+    task.save.should be_false
+    task.errors.on_base.should_not be_nil
+    task.errors.on_base.should == I18n.t('activerecord.errors.tasks.archived_section')
+  end
+  
   describe "acts_as_list" do
     before do
       @section = Factory(:section)
@@ -280,4 +289,5 @@ describe Task do
       @task.editable?.should be_true
     end
   end
+
 end

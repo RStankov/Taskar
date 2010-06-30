@@ -38,8 +38,13 @@ bg:
             task_id: "Задача"
             user_id: "Потребител"
             text: "Текст"
-            
-          project_user:  
+          
+          project_user:
             user_id: "Потребител"
             project_id: "Проект"
           
+        errors:
+          tasks: 
+            archived_section: "Не може да се добавя задача в архивирана секция"
+          
+        

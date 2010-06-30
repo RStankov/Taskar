@@ -23,6 +23,8 @@ class Task < ActiveRecord::Base
   
   before_validation_on_create :inherit_section_project 
   
+  validate :ensure_section_is_not_archived, :if => :new_record?
+  
   named_scope :archived,   :conditions => { :archived => true  }, :order => "position DESC"
   named_scope :unarchived, :conditions => { :archived => false }, :order => "position ASC"
   
@@ -58,5 +60,9 @@ class Task < ActiveRecord::Base
   protected 
     def inherit_section_project
       self.project = section.try(:project)
+    end
+    
+    def ensure_section_is_not_archived
+      errors.add_to_base(I18n.t('activerecord.errors.tasks.archived_section')) if section && section.archived?
     end
 end
