@@ -16,6 +16,8 @@ class Event < ActiveRecord::Base
   
   def self.activity(user, subject)
     if event = find(:first, :conditions => {:subject_id => subject.id, :subject_type => subject.class.name})
+      # forces the record to be save, it's timestamp to be updated
+      event.updated_at = Time.now
       event.update_attributes(:user => user, :subject => subject)
       event
     else
