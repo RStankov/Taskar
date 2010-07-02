@@ -887,7 +887,17 @@ b  ackground: url(../images/sprite.png) 0 0 no-repeat;
   display: none;
 }
 
-.tasks_list li:hover.task .drag, .tasks_list li:hover.task ul {
+
+.task time {
+	visibility: hidden;
+}
+
+.task:hover time {
+	visibility: visible;
+}
+
+
+.task:hover .drag, .task:hover ul {
   display: block;
 }
 
