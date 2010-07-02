@@ -9,6 +9,7 @@
   <%= time_tag task.created_at %>
   <input type="button" class="drag" title="<%=t :'.dnd' %>" />
   <ul>
+    <li><a href="#" class="add" data-after="<%= task.id %>">Добави задача</a></li>
     <li><%= link_to t(:'.comments', :count => task.comments.size), task %></li>
     <li><%= link_to t(:edit), [:edit, task], :class => "edit", "data-remote" => true %></li>
     <li><%= link_to t(:delete), task, :class => "delete", "data-remote" => true, "data-method" => "delete", "data-confirm" => t(:'.confirm') %></li>
