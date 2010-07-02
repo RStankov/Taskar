@@ -931,11 +931,11 @@ b  ackground: url(../images/sprite.png) 0 0 no-repeat;
   border-top: 1px solid #EEE;
 }
 
-#archived_tasks .task:hover .drag {
-  display: none;
+#archived_tasks .task .drag, #archived_tasks .task .add {
+    display: none;
 }
 
-#archived_tasks .task:hover .edit, .task.completed:hover .edit, .task.rejected:hover .edit {
+#archived_tasks .task .edit, .task.completed .edit, .task.rejected .edit {
   display: none;
 }
 
