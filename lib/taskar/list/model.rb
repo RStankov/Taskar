@@ -2,8 +2,12 @@ module Taskar
   module List
     module Model
       def self.included(model)        
-        model.extend(ClassMethods)
-        model.send(:include, InstanceMethods)
+        model.class_exec do
+          extend ClassMethods
+          include InstanceMethods
+          
+          attr_accessor :insert_before
+        end
       end
       
       module ClassMethods

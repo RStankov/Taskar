@@ -10,9 +10,7 @@ class Task < ActiveRecord::Base
   
   validates_presence_of :text, :section, :project, :user
   validates_inclusion_of :status, :in => [-1, 0, 1]
-  
-  attr_accessor :insert_before
-  
+    
   attr_accessible :text, :insert_before, :responsible_party_id
   
   attr_readonly :project_id, :user_id

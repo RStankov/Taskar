@@ -5,9 +5,7 @@ class Section < ActiveRecord::Base
   
   validates_presence_of :name
   validates_presence_of :project
-  
-  attr_accessor :insert_before
-  
+    
   attr_accessible :name, :insert_before
   
   attr_readonly :project_id
