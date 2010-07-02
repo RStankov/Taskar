@@ -9,7 +9,7 @@ Taskar.Sections = {
       input.focus();
     }
   },
-  resetTaskForm: function(form){
+  resetTaskForm: function(form, before){
     form.reset();
     
     var errors = form.down('.errorExplanation');
@@ -18,6 +18,10 @@ Taskar.Sections = {
       form.select('.fieldWithErrors').each(function(element){
         element.replace(element.down());
       });
+    }
+    
+    if (before !== false){
+      form.down('input[name*=insert_after]').setValue(before || null);
     }
   }
 };

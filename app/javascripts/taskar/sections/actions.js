@@ -14,22 +14,16 @@ Taskar.Sections.Actions = {
     },
     '.add': function(e, element){
       var newTask = $('new_task');
-      
-      Taskar.Sections.resetTaskForm(newTask.down('form'));
-      
+  
+        
       var before = element.getAttribute('data-after');
       if (before){
         element.up('.task').insert({after: newTask});
-        newTask.down('form').insert(new Element('input', {
-          type: 'hidden', name: 'task[insert_after]', value: before
-        }));
       } else {
         $('tasks').insert({bottom: newTask});
-        var before = newTask.down('input[name*=insert_after]');
-        if (before){
-          before.remove();
-        }
       }
+
+      Taskar.Sections.resetTaskForm(newTask.down('form'), before);
 
       if (newTask.visible()){
         newTask.down('textarea').focus();

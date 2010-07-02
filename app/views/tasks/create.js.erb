@@ -14,5 +14,6 @@
     $("task_<%= @task.id %>").hide().slideDown(function(e){
       new Taskar.FX.ScrollTo(e.element);
     });
+    Taskar.Sections.resetTaskForm($('new_task').down('form').show(), '<%= @task.id %>')
   })();
 <% end %>
