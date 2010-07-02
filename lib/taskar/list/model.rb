@@ -6,7 +6,7 @@ module Taskar
           extend ClassMethods
           include InstanceMethods
           
-          attr_accessor :insert_before
+          attr_accessor :insert_before, :insert_after
         end
       end
       
@@ -25,7 +25,10 @@ module Taskar
         def add_to_list_bottom
           self[position_column] = if insert_before && record = self.class.find(:first, :conditions => {:id => insert_before})
             increment_positions_on_lower_items record.position
-            record.position
+            record.position + 1
+          elsif insert_after && record = self.class.find(:first, :conditions => {:id => insert_after})
+            increment_positions_on_lower_items record.position + 1
+            record.position + 1
           else
             bottom_position_in_list.to_i + 1
           end
