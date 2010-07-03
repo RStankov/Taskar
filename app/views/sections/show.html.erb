@@ -1,7 +1,6 @@
 <% if @section.archived? %>
   <header id="section_title">
-    <icon name="asection"</icon>
-    <h1>
+    <h1 class="archived">
       <%=h @section.name %>
       <%= link_to_delete t(:delete), @section, :class => "delete", :confirm => t(:'.confirm') %>
       <%= link_to "[a]", archive_section_path(@section, :archive => false), :class => "archive", :'data-method' => 'put',  :'data-token' => form_authenticity_token %>
@@ -25,7 +24,6 @@
   </ul>
 <% else %>
   <header id="section_title">
-    <icon name="section" scale="0.9"></icon>
     <h1>
       <%=h @section.name %>
       <%= link_to t(:edit), [:edit, @section], :class => "edit" %>

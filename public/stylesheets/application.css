@@ -693,8 +693,22 @@ section header h1 {
   display: inline-block;
   font-size: 18px;
   text-shadow: 1px 1px 1px #fff;
-  top: -5px;
-  position: relative;
+  padding-left: 35px;
+  vertical-align: middle;
+  height: 23px;
+}
+
+
+#sections_index h1 {
+  background: url(../images/i.png) 0px 0px no-repeat;
+}
+
+#sections_show h1 {
+  background: url(../images/i.png) 0px -26px no-repeat;
+}
+
+#sections_show h1.archived {
+  background: url(../images/i.png) 0px -50px no-repeat;
 }
 
 #section_title h1 a {
