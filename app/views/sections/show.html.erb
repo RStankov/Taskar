@@ -1,11 +1,12 @@
 <% if @section.archived? %>
-  <div id="section_title">
+  <header id="section_title">
+    <icon name="asection"</icon>
     <h1>
       <%=h @section.name %>
       <%= link_to_delete t(:delete), @section, :class => "delete", :confirm => t(:'.confirm') %>
       <%= link_to "[a]", archive_section_path(@section, :archive => false), :class => "archive", :'data-method' => 'put',  :'data-token' => form_authenticity_token %>
     </h1>
-  </div>
+  </header>
   <ul class="tasks_list">
     <% @section.tasks.archived.each do |task| %>
       <% content_tag_for(:li, task, :class => task.state + (current_user.id == task.responsible_party_id ? ' personal' : '')) do %>
@@ -24,7 +25,7 @@
   </ul>
 <% else %>
   <header id="section_title">
-    <icon name="section" scale="0.8"></icon>
+    <icon name="section" scale="0.9"></icon>
     <h1>
       <%=h @section.name %>
       <%= link_to t(:edit), [:edit, @section], :class => "edit" %>
