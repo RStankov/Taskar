@@ -9,6 +9,5 @@ var CD3 = {};
 //= require "rails"
 //= require "taskar"
 //= require "behaviors"
-//= require "icons"
 
 Taskar.UI.StateCheckboxObserver();
