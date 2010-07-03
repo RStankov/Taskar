@@ -678,6 +678,25 @@ b  ackground: url(../images/sprite.png) 0 0 no-repeat;
 
 /*** SECTION TITLE ***/
 
+section header {
+  border-top-left-radius: 5px;
+  -moz-border-top-left-radius: 5px;
+  -webkit-border-top-left-radius: 5px;
+  box-shadow: 0px 10px 10px -10px #888;
+  -moz-box-shadow: 0px 10px 10px -10px #888;
+  -webkit-box-shadow: 0px 10px 10px -10px #888;
+  padding: 15px 10px 10px 20px;
+  position: relative;
+}
+
+section header h1 {
+  display: inline-block;
+  font-size: 20px;
+  color: #666;
+  text-shadow: 1px 1px 1px #fff;
+  vertical-align: 10%;
+}
+
 #section_title {
   background: url(../images/sprite.png) -268px 15px no-repeat;
   border-bottom: 1px solid #eee;
