@@ -711,6 +711,10 @@ section header h1 {
   background: url(../images/i.png) 0px -50px no-repeat;
 }
 
+#tasks_show h1 {
+  background: url(../images/i.png) 0px -72px no-repeat;
+}
+
 #section_title h1 a {
   display: none;
   font-size: 11px;
