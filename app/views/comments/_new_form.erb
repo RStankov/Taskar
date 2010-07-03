@@ -1,6 +1,6 @@
 <% form_for [@task, @comment || Comment.new], :html => {:class => nil, :id => nil, :'data-remote' => true} do |form| %>
   <%= form.error_messages %>
-  <h3><icon name="comment"><%= form.label :text, t(:'.title') %></h3>
+  <h3><%= form.label :text, t(:'.title') %></h3>
   <%= form.text_area :text %>
   <%= form.submit t(:'.submit')%> | <input type="button" class="preview" value="<%=t :'comments.preview' %>">
 <% end %>
