@@ -691,24 +691,10 @@ section header {
 
 section header h1 {
   display: inline-block;
-  font-size: 20px;
-  color: #666;
+  font-size: 18px;
   text-shadow: 1px 1px 1px #fff;
-  vertical-align: 10%;
-}
-
-#section_title {
-  background: url(../images/sprite.png) -268px 15px no-repeat;
-  border-bottom: 1px solid #eee;
-  margin: 0 10px;
-  padding: 20px 10px 10px 42px;
+  top: -5px;
   position: relative;
-}
-
-#section_title h1 {
-  font-size: 16px;
-  margin: 0;
-  padding: 0;
 }
 
 #section_title h1 a {

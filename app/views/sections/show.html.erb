@@ -23,7 +23,8 @@
     <% end %>
   </ul>
 <% else %>
-  <div id="section_title">
+  <header id="section_title">
+    <icon name="section" scale="0.8"></icon>
     <h1>
       <%=h @section.name %>
       <%= link_to t(:edit), [:edit, @section], :class => "edit" %>
@@ -35,7 +36,7 @@
       <%= form.submit t(:update) %>
       <input type="button" value="<%=t :cancel %>" />
     <% end %>
-  </div>
+  </header>
   <ul id="tasks" class="tasks_list" data-sortable="<%= reorder_project_tasks_path(@section.project, @section)  %>">
     <%= render @section.tasks.unarchived %>
     <%= render "tasks/new_task" %>
