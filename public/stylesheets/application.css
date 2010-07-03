@@ -796,6 +796,42 @@ section header h1 {
 
 }
 
+/*** PAGINATION ***/
+
+.pagination {
+  border-top: 1px solid #EEE;
+  margin: 10px;
+  padding-top: 10px;
+}
+
+.pagination .disabled {
+  opacity: 0.4;
+}
+
+.prev_page, .next_page {
+  width: 32px;
+  height: 32px;
+  display: inline-block;
+}
+
+.prev_page {
+  float: left;
+  background: url(../images/i.png) -2px -154px no-repeat;
+}
+
+a.prev_page:hover {
+  background-position: -34px -154px;
+}
+
+.next_page {
+  float: right;
+  background: url(../images/i.png) -2px -186px no-repeat;
+}
+
+a.next_page:hover {
+  background-position: -34px -186px;
+}
+
 /*** TASK ***/
 
 .tasks_list {
