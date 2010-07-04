@@ -1331,7 +1331,7 @@ footer p {
 	padding: 4px;
 }
 
-.comment div {
+.comment > div {
 	margin-left: 75px;
 }
 
