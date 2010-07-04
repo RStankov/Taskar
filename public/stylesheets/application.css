@@ -258,12 +258,12 @@ a img {
   width: 5px;
 }
 
-#nav_sections li.add_section:hover {
+#nav_sections li:hover.add_section {
   background-color: #9dbed9;
   cursor: pointer;
 }
 
-#nav_sections .add_section > a {
+#nav_sections .add_section a {
   background: url(../images/sprite.png) -50px 0 no-repeat;
   box-shadow: 0px 10px 10px -10px #888;
   -moz-box-shadow: 0px 10px 10px -10px #888;
@@ -273,9 +273,10 @@ a img {
   padding-top: 4px;
   width: 89px;
   text-decoration: none;
+  position: absolute;
 }
 
-#nav_sections li.add_section:hover > a {
+#nav_sections li:hover.add_section a {
   display: block;
 }
 
