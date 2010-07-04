@@ -770,6 +770,10 @@ a.next_page:hover {
   display: inline-block;
 }
 
+#section_title .archive, #section_title .unarchive {
+  vertical-align: 0%;
+}
+
 #section_title .edit {
   border-radius: 5px;
   -moz-border-radius: 5px;
@@ -972,13 +976,13 @@ a.next_page:hover {
   display: inline-block;
 }
 
-#tasks .archive {
+.archive {
   width: 12px;
   height: 14px;
   background: url(../images/i.png) 0px -226px no-repeat;
 }
 
-#tasks .archive:hover {
+.archive:hover {
   background-position: -52px -226px;
 }
 
@@ -994,14 +998,14 @@ a.next_page:hover {
   display: none;
 }
 
-#archived_tasks .archive {
+#archived_tasks .archive, .unarchive {
   width: 18px;
   height: 14px;
   display: inline-block;
   background: url(../images/i.png) 0px -240px no-repeat;
 }
 
-#archived_tasks .archive:hover {
+#archived_tasks .archive:hover, .unarchive:hover {
   background-position: -52px -240px;
 }
 

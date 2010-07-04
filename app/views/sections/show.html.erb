@@ -2,7 +2,7 @@
   <header id="section_title">
     <h1 class="archived">
       <%=h @section.name %>
-      <%= link_to "[a]", archive_section_path(@section, :archive => false), :class => "archive", :'data-method' => 'put' %>
+      <%= link_to "", archive_section_path(@section, :archive => false), :class => "unarchive", :'data-method' => 'put' %>
       <%= link_to_delete t(:delete), @section, :class => "delete", :confirm => t(:'.confirm') %>
     </h1>
   </header>
@@ -27,7 +27,7 @@
   <header id="section_title">
     <h1>
       <%=h @section.name %>
-      <%= link_to "[a]", archive_section_path(@section, :archive => true), :class => "archive", :'data-method' => 'put' %>
+      <%= link_to "", archive_section_path(@section, :archive => true), :class => "archive", :'data-method' => 'put' %>
       <%= link_to t(:edit), [:edit, @section], :class => "edit" %>
       <%= link_to_delete t(:delete), @section, :class => "delete", :confirm => t(:'.confirm') %>
     </h1>
