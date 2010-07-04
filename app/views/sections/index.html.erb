@@ -9,13 +9,13 @@
         <th colspan="4"><h2><%=l date = event.updated_at.to_date, :format => :long %></h2></th>
       </tr>
     <% end %>
-    <tr title="<%= t(:before, :time => time_ago_in_words(event.updated_at)) %>">
+    <tr>
       <td><span class="<%= event.type  %>"><%=t "events.subject.#{event.type}" %></span></td>
-      <td class="<%= event.action %>">
+      <td class="<%= event.action %>" title="<%= t(:before, :time => time_ago_in_words(event.updated_at)) %>">
         <% if event.linkable?%>
-          <%= link_to truncate(event.info, :length => 60), event.url_options %>
+          <%= link_to truncate(event.info, :length => 65), event.url_options %>
         <% else %>
-          <%= truncate(event.info, :length => 60) %>
+          <%= truncate(event.info, :length => 65) %>
         <% end %>
       </td>  
         <td class="action"><%=t "events.action.#{event.action}" %></td>
