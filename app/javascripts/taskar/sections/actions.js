@@ -117,7 +117,8 @@ Taskar.Sections.Actions = {
   },
   'key:esc': {
     '.task': function(e, element){
-      element.down('.cancel').request();
+      var cancel = element.down('.cancel');
+      cancel && cancel.request();
     },
     '#new_task': function(e){
       e.findElement('li').slideUp();
