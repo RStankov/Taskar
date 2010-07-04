@@ -16,4 +16,25 @@ describe ApplicationHelper do
       helper.time_tag(time).should == expected
     end
   end
+  
+  describe "csrf_meta_tag" do
+    before do
+      helper.stub!(:protect_against_forgery?).and_return(true)
+      helper.stub!(:request_forgery_protection_token).and_return("foo")
+      helper.stub!(:form_authenticity_token).and_return("bar")
+    end
+    
+    it "should be nil if we are not protecting from forgery" do
+      helper.should_receive(:protect_against_forgery?).and_return(false)
+      helper.csrf_meta_tag.should == nil
+    end
+    
+    it "should contain meta[name=csrf-param]" do
+      helper.csrf_meta_tag.should have_tag("meta[name=csrf-param][content=foo]")
+    end
+    
+    it "should contain meta[name=csrf-token]" do
+      helper.csrf_meta_tag.should have_tag("meta[name=csrf-token][content=bar]")
+    end    
+  end
 end

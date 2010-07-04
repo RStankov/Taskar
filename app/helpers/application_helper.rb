@@ -26,4 +26,10 @@ module ApplicationHelper
   def time_tag(time)
     '<time datetime="' + time.rfc2822  + '" title="' + l(time, :format => :long) + '">' + t(:before, :time => time_ago_in_words(time)) + '</time>'
   end
+  
+  def csrf_meta_tag
+    if protect_against_forgery?
+      %(<meta name="csrf-param" content="#{h(request_forgery_protection_token)}"/>\n<meta name="csrf-token" content="#{h(form_authenticity_token)}"/>)
+    end
+  end
 end
