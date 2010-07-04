@@ -1241,10 +1241,83 @@ footer p {
   background: url(../images/i.png) 0px -78px no-repeat;
 }
 
+#comments {
+  margin: 10px;
+  padding: 10px;
+}
+
 #comments h3 {
   background:  url(../images/i.png) 0px -100px no-repeat;
   padding-left: 35px;
   height: 23px;
+}
+
+#comments ul {
+  margin-top: 10px;
+}
+
+.comment {
+  position: relative;
+  border-top: 1px solid #C3C3C3;
+  padding: 10px;
+}
+
+.comment a {
+  text-decoration: none;
+  color: #5C5C5C;
+}
+
+.comment a:hover {
+  text-decoration: underline;
+}
+
+.comment img {
+	float: left;
+	margin: 0 10px 10px 0;
+	border: 1px solid #eee;
+	padding: 4px;
+}
+
+.comment div {
+	margin-left: 75px;
+}
+
+.comment time {
+  float: right;
+  font-size: 10px;
+  font-weight: normal;
+}
+
+.comment .actions {
+  position: absolute;
+  bottom: 10px;
+  right: 0px;
+  font-size: 12px;
+  padding: 5px;
+  background-color: #fd7;
+  border-radius: 5px;
+   -moz-border-radius: 5px;
+   -webkit-border-radius: 5px;
+}
+
+.comment .edit, .comment .delete {
+  padding: 3px;
+  border: 0;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
+.comment .edit:hover {
+  background-color: #00589D;
+  color: #fff;
+  text-decoration: none;
+}
+
+.comment .delete:hover {
+  text-decoration: none;
+  background-color: #FF0000;
+  color: #fff;
 }
 
 #tasks_show form h3 {
@@ -1253,12 +1326,6 @@ footer p {
   height: 23px;
 }
 
-
-#comments {
-  border-top: 1px solid #C3C3C3;
-  padding: 10px;
-  margin: 10px;
-}
 
 #task_content {
   margin: 10px;
@@ -1307,60 +1374,6 @@ footer p {
   background: none;
   border: 0;
   color: #5c5c5c;
-}
-
-.comment {
-  padding: 10px 10px 25px;
-}
-
-.comment img {
-	float: left;
-	margin: 0 10px 10px 0;
-	border: 1px solid #eee;
-	padding: 4px;
-}
-
-.comment div {
-	margin-left: 75px;
-}
-
-.comment time {
-  float: right;
-  font-size: 12px;
-  font-weight: normal;
-}
-
-.comment .actions {
-  float: right;
-  font-size: 12px;
-  font-weight: normal;
-  padding: 5px;
-  margin-left: 5px;
-  margin-top: -5px;
-  background-color: #fd7;
-  border-radius: 5px;
-   -moz-border-radius: 5px;
-   -webkit-border-radius: 5px;
-}
-
-.comment .edit {
-  background-color: #00589D;
-  border: 0;
-  border-radius: 5px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  color: #fff;
-  margin-left: 10px;
-  text-decoration: none;
-  padding: 3px;
-}
-
-.comment .delete {
-  padding: 3px;
-  background: none;
-  border: 0;
-  color: #5c5c5c;
-  text-decoration: none;
 }
 
 #new_comment {
