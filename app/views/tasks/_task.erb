@@ -5,7 +5,7 @@
     <% if task.responsible_party %><strong><%= task.responsible_party.full_name %></strong><% end %>
     <%=h task.text %>
   </p>
-  <span class="more"><%=t :'.more' %></span>
+  <span class="more">...</span>
   <%= time_tag task.created_at %>
   <input type="button" class="drag" title="<%=t :'.dnd' %>" />
   <ul>
