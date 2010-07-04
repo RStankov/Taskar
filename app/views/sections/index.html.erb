@@ -1,7 +1,7 @@
 <header>
   <h1><%=t :'.title' %></h1>
 </header>
-<table id="events">
+<table id="events" colspan="0" rowspan="0">
   <% date = nil %>
   <% @events.each do |event| %>
     <% unless event.updated_at.to_date == date %>
@@ -11,15 +11,15 @@
     <% end %>
     <tr title="<%= t(:before, :time => time_ago_in_words(event.updated_at)) %>">
       <td><span class="<%= event.type  %>"><%=t "events.subject.#{event.type}" %></span></td>
-      <td class="user"><%= event.user.full_name %></td>
-      <td class="<%= event.action %>"><%=t "events.action.#{event.action}" %></td>
       <td class="<%= event.action %>">
         <% if event.linkable?%>
           <%= link_to truncate(event.info, :length => 60), event.url_options %>
         <% else %>
           <%= truncate(event.info, :length => 60) %>
         <% end %>
-      </td>
+      </td>  
+        <td class="action"><%=t "events.action.#{event.action}" %></td>
+        <td class="user"><%= event.user.full_name %></td>
     </tr>
   <% end %>
 </table>
