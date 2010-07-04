@@ -147,6 +147,7 @@ a img {
 #nav_account a {
   color: #fff;
   padding: 0 5px;
+  text-decoration: none;
 }
 
 #nav_account a:hover {
@@ -155,7 +156,6 @@ a img {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
   color: #000;
-  text-decoration: none;
 }
 
 /*** MAIN NAVIGATION ***/
