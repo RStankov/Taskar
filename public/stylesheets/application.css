@@ -414,104 +414,6 @@ article {
   vertical-align: top;
 }
 
-/*** EVENTS ***/
-
-#events {
-  margin: 10px;
-}
-
-#events h2 {
-  float: left;
-  font-size: 14px;
-  padding: 10px;
-}
-
-#events span {
-  border-radius: 0 5px 5px 0;
-  -moz-border-radius: 0 5px 5px 0;
-  -webkit-border-radius: 0 5px 5px 0;
-  color: #fff;
-  display: block;
-  padding: 3px 4px 4px 8px;
-  font-size: 10px;
-  background-color: #ccc;
-}
-
-#events td {
-  border-bottom: 1px solid #EEE;
-  padding: 5px;
-}
-
-#events span.task {
-  background-color: #00589D;
-}
-
-#events .user {
-  font-size: 12px;
-  color: #000;
-}
-
-#events .action {
-  font-size: 10px;
-  color: #808080;
-}
-
-#events .completed {
-  opacity: 0.6;
-}
-
-#events .deleted, #events .rejected {
-  opacity: 0.6;
-  text-decoration: line-through;
-}
-
-#events a {
-  color: #000;
-  padding: 2px 4px 2px 4px;
-  border-radius: 5px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-}
-
-#events a:hover {
-  color: #FFF;
-  background-color: #00589D;
-  text-decoration: none;
-}
-
-
-.pagination {
-  margin: 10px;
-}
-
-.pagination .disabled {
-  opacity: 0.4;
-}
-
-.prev_page, .next_page {
-  width: 32px;
-  height: 32px;
-  display: inline-block;
-}
-
-.prev_page {
-  float: left;
-  background: url(../images/i.png) -2px -154px no-repeat;
-}
-
-a.prev_page:hover {
-  background-position: -39px -154px;
-}
-
-.next_page {
-  float: right;
-  background: url(../images/i.png) -2px -186px no-repeat;
-}
-
-a.next_page:hover {
-  background-position: -38px -186px;
-}
-
 /*** PERSONAL ***/
 
 .personal {
@@ -697,7 +599,7 @@ aside {
 }
 
 .people_images .people_info span {
-b  ackground: url(../images/sprite.png) 0 0 no-repeat;
+  background: url(../images/sprite.png) 0 0 no-repeat;
   bottom: -4px;
   display: block;
   height: 4px;
@@ -723,7 +625,7 @@ b  ackground: url(../images/sprite.png) 0 0 no-repeat;
   padding-bottom: 2px;
 }
 
-/*** SECTION TITLE ***/
+/*** SECTIONS ***/
 
 section header {
   border-top-left-radius: 5px;
@@ -746,7 +648,6 @@ section header h1 {
   overflow: hidden;
 }
 
-
 #sections_index h1 {
   background: url(../images/i.png) 0px 0px no-repeat;
 }
@@ -758,6 +659,105 @@ section header h1 {
 #sections_show h1.archived {
   background: url(../images/i.png) 0px -52px no-repeat;
 }
+
+/*** SECTIONS/INDEX EVENTS ***/
+
+#events {
+  margin: 10px;
+}
+
+#events h2 {
+  float: left;
+  font-size: 14px;
+  padding: 10px;
+}
+
+#events span {
+  border-radius: 0 5px 5px 0;
+  -moz-border-radius: 0 5px 5px 0;
+  -webkit-border-radius: 0 5px 5px 0;
+  color: #fff;
+  display: block;
+  padding: 3px 4px 4px 8px;
+  font-size: 10px;
+  background-color: #ccc;
+}
+
+#events td {
+  border-bottom: 1px solid #EEE;
+  padding: 5px;
+}
+
+#events span.task {
+  background-color: #00589D;
+}
+
+#events .user {
+  font-size: 12px;
+  color: #000;
+}
+
+#events .action {
+  font-size: 10px;
+  color: #808080;
+}
+
+#events .completed {
+  opacity: 0.6;
+}
+
+#events .deleted, #events .rejected {
+  opacity: 0.6;
+  text-decoration: line-through;
+}
+
+#events a {
+  color: #000;
+  padding: 2px 4px 2px 4px;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
+#events a:hover {
+  color: #FFF;
+  background-color: #00589D;
+  text-decoration: none;
+}
+
+.pagination {
+  margin: 10px;
+}
+
+.pagination .disabled {
+  opacity: 0.4;
+}
+
+.prev_page, .next_page {
+  width: 32px;
+  height: 32px;
+  display: inline-block;
+}
+
+.prev_page {
+  float: left;
+  background: url(../images/i.png) -2px -154px no-repeat;
+}
+
+a.prev_page:hover {
+  background-position: -39px -154px;
+}
+
+.next_page {
+  float: right;
+  background: url(../images/i.png) -2px -186px no-repeat;
+}
+
+a.next_page:hover {
+  background-position: -38px -186px;
+}
+
+/*** SECTIONS/SHOW SECTION TITLE ***/
 
 #section_title h1 a {
   display: none;
@@ -819,15 +819,7 @@ section header h1 {
   color: #2c2c2c;
 }
 
-#section_title form button {
-
-}
-
-#section_title form .edit {
-
-}
-
-/*** TASK ***/
+/*** SECTIONS/SHOW TASKS LISTS ***/
 
 .tasks_list {
   padding: 20px;
@@ -988,6 +980,18 @@ section header h1 {
   background-position: -52px -226px;
 }
 
+#archived_tasks {
+  border-top: 1px solid #EEE;
+}
+
+#archived_tasks .task .drag, #archived_tasks .task .add {
+    display: none;
+}
+
+#archived_tasks .task .edit, .task.completed .edit, .task.rejected .edit {
+  display: none;
+}
+
 #archived_tasks .archive {
   width: 18px;
   height: 14px;
@@ -1006,12 +1010,6 @@ section header h1 {
 .tasks_list.dragging ul, .tasks_list.dragging .drag, .tasks_list.dragging .more {
   visibility: hidden;
 }
-
-.divider {
-  border-bottom: 1px solid #eee;
-}
-
-/*** LIST VIEW BUTTONS ***/
 
 .list_images, .list_extended {
   background-image: url(../images/sprite.png);
@@ -1039,18 +1037,6 @@ section header h1 {
   border-color: #D7D7D7;
 }
 
-#archived_tasks {
-  border-top: 1px solid #EEE;
-}
-
-#archived_tasks .task .drag, #archived_tasks .task .add {
-    display: none;
-}
-
-#archived_tasks .task .edit, .task.completed .edit, .task.rejected .edit {
-  display: none;
-}
-
 .toggle_archived {
   display: inline-block;
   width: 50px;
@@ -1069,96 +1055,7 @@ section header h1 {
   text-indent: -9999px;
 }
 
-/*** FOOTER ***/
-
-footer {
-  background-color: #e2e2e2;
-  color: #b8b8b8;
-  font-size: 11px;
-  height: 14px;
-  margin: 0 auto;
-  padding: 10px 10px 10px 14px;
-  width: 956px;
-}
-
-footer p {
-  display: inline;
-}
-
-#scroll_to_top {
-  background: url(../images/sprite.png) 4px -173px no-repeat;
-  cursor: pointer;
-  display: block;
-  float: right;
-  height: 14px;
-  width: 20px;
-}
-
-#scroll_to_top:hover {
-  background-position: 4px -203px;
-}
-
-/*** FOR REVISION:TASK FORMS ***/
-
-.action_form {
-  padding: 13px 15px;
-  position: relative;
-  background-color: #eee;
-  font-size: 14px;
-  border-radius: 4px;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-}
-
-.action_form label {
-  text-shadow: #fff 1px 1px 1px;
-  color: #5C5C5C;
-}
-
-.action_form textarea {
-  display: block;
-  width: 100%;
-  height: 80px;
-  margin: 10px 0 10px 0;
-}
-
-.action_form .buttons {
-  border-top: 1px dotted #C3C3C3;
-  padding-top: 10px;
-  margin-top: 10px;
-  color: #5C5C5C;
-  font-size: 12;
-}
-
-.action_form input[type="submit"] {
-  padding: 4px 8px;
-  margin-right: 5px;
-}
-
-.action_form .cancel {
-  margin-left: 5px;
-  padding: 0;
-  color: #F00;
-  text-decoration: none;
-}
-
-.action_form .cancel:hover {
-  text-decoration: underline;
-}
-
-.error_messages {
-  border-bottom: 1px dotted red;
-  margin-bottom: 10px;
-  padding: 10px;
-  color: #CC0000;
-  font-size: 12px;
-}
-
-.fieldWithErrors textarea {
-  border: 2px solid #ff9999;
-}
-
-/*** FOR REVISION:SECTION FOOTER ***/
+/*** SECTIONS/SHOW FOOTER ***/
 
 #section_footer {
   padding: 0 20px 0 20px;
@@ -1180,7 +1077,7 @@ footer p {
   float: right;
 }
 
-/*** MORE ACTIONS ***/
+/*** SECTIONS/SHOW MORE ACTIONS ***/
 
 #more_actions {
   font-size: 11px;
@@ -1240,7 +1137,96 @@ footer p {
   color: #fff;
 }
 
-/*** FOR REVISION: TASK SHOW ***/
+/*** FOOTER ***/
+
+footer {
+  background-color: #e2e2e2;
+  color: #b8b8b8;
+  font-size: 11px;
+  height: 14px;
+  margin: 0 auto;
+  padding: 10px 10px 10px 14px;
+  width: 956px;
+}
+
+footer p {
+  display: inline;
+}
+
+#scroll_to_top {
+  background: url(../images/sprite.png) 4px -173px no-repeat;
+  cursor: pointer;
+  display: block;
+  float: right;
+  height: 14px;
+  width: 20px;
+}
+
+#scroll_to_top:hover {
+  background-position: 4px -203px;
+}
+
+/*** ACTION FORM ***/
+
+.action_form {
+  padding: 13px 15px;
+  position: relative;
+  background-color: #eee;
+  font-size: 14px;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+}
+
+.action_form label {
+  text-shadow: #fff 1px 1px 1px;
+  color: #5C5C5C;
+}
+
+.action_form textarea {
+  display: block;
+  width: 100%;
+  height: 80px;
+  margin: 10px 0 10px 0;
+}
+
+.action_form .buttons {
+  border-top: 1px dotted #C3C3C3;
+  padding-top: 10px;
+  margin-top: 10px;
+  color: #5C5C5C;
+  font-size: 12;
+}
+
+.action_form input[type="submit"] {
+  padding: 4px 8px;
+  margin-right: 5px;
+}
+
+.action_form .cancel {
+  margin-left: 5px;
+  padding: 0;
+  color: #F00;
+  text-decoration: none;
+}
+
+.action_form .cancel:hover {
+  text-decoration: underline;
+}
+
+.error_messages {
+  border-bottom: 1px dotted red;
+  margin-bottom: 10px;
+  padding: 10px;
+  color: #CC0000;
+  font-size: 12px;
+}
+
+.fieldWithErrors textarea {
+  border: 2px solid #ff9999;
+}
+
+/*** TASKS/SHOW ***/
 
 #task_title {
   background: url(../images/i.png) 0px -76px no-repeat;
