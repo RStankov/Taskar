@@ -1122,6 +1122,8 @@ footer p {
   border-top: 1px dotted #C3C3C3;
   padding-top: 5px;
   margin-top: 5px;
+  color: #5C5C5C;
+  font-size: 12;
 }
 
 .task_form input[type="submit"] {
@@ -1129,6 +1131,7 @@ footer p {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   padding: 4px 8px;
+  margin-right: 5px;
   background: #1977c0;
 }
 
@@ -1142,6 +1145,17 @@ footer p {
   background: #00589D;
   background: -moz-linear-gradient(top, #00589D, #1977c0);
   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#00589D), to(#1977C0), color-stop(1,#331032));
+}
+
+.task_form .cancel {
+  margin-left: 5px;
+  padding: 0;
+  color: #F00;
+  text-decoration: none;
+}
+
+.task_form .cancel:hover {
+  text-decoration: underline;
 }
 
 #errorExplanation {

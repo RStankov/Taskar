@@ -10,6 +10,7 @@ bg:
   delete: "Изтрий"
   confirm: "Сигурни ли сте?"
   before: "преди %{time}"
+  or: "или"
   layouts:
     general:
       profile: "Профил"

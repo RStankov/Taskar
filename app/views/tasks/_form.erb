@@ -6,11 +6,13 @@
   <%= form.select :responsible_party_id, [['---------------' , '']] + @project.users.map {|p| [p.full_name, p.id]} %>
   <div>
     <% if form.object.new_record? %>
-      <%= form.submit t(:'tasks.form.create') %> | 
+      <%= form.submit t(:'tasks.form.create') %>
+      <%=t :or %>
       <input type="button" value="<%=t :'tasks.form.stop' %>" class="cancel">
       <%= form.hidden_field :insert_after %>
     <% else %>
-      <%= form.submit t(:'tasks.form.update') %> | 
+      <%= form.submit t(:'tasks.form.update') %>
+      <%=t :or %>
       <%= link_to t(:'tasks.form.cancel'), task, :class => "cancel", "data-remote" => true %>
     <% end %>
   </div>
