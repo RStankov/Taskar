@@ -987,6 +987,7 @@ a.next_page:hover {
 }
 
 #archived_tasks {
+  margin-top: 10px;
   border-top: 1px solid #EEE;
 }
 
