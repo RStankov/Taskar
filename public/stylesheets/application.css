@@ -13,6 +13,10 @@ input[type="submit"], input[type="button"] {
   cursor: pointer;
 }
 
+textarea {
+    resize: none;
+}
+
 header, nav, section, article, aside, footer {
   display: block;
 }
