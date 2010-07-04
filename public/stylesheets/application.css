@@ -743,6 +743,7 @@ section header h1 {
   padding-left: 35px;
   vertical-align: middle;
   height: 23px;
+  overflow: hidden;
 }
 
 
