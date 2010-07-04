@@ -1133,10 +1133,10 @@ footer p {
   margin: 10px 0 10px 0;
 }
 
-.task_form div {
+.task_form .buttons {
   border-top: 1px dotted #C3C3C3;
-  padding-top: 5px;
-  margin-top: 5px;
+  padding-top: 10px;
+  margin-top: 10px;
   color: #5C5C5C;
   font-size: 12;
 }
@@ -1157,45 +1157,12 @@ footer p {
   text-decoration: underline;
 }
 
-#errorExplanation {
-  border: 2px solid red;
-  padding: 7px;
-  padding-bottom: 12px;
-  margin-bottom: 20px;
-  background-color: #f0f0f0;
-  border-radius: 5px;
-   -moz-border-radius: 5px;
-   -webkit-border-radius: 5px;
-}
-
-#errorExplanation h2 {
-  text-align: left;
-  font-weight: bold;
-  padding: 5px 5px 5px 15px;
-  font-size: 12px;
-  margin: -7px;
-  background-color: #c00;
-  color: #fff;
-  display: block;
-}
-
-#errorExplanation p {
-  color: #333;
-  margin: 5px;
+.error_messages {
+  border-bottom: 1px dotted red;
+  margin-bottom: 10px;
   padding: 10px;
-  display: block;
+  color: #CC0000;
   font-size: 12px;
-}
-
-#errorExplanation ul {
-  clear: both;
-  list-style: none;
-  padding-left: 20px;
-}
-
-#errorExplanation li {
-  font-size: 12px;
-  list-style: square;
 }
 
 .fieldWithErrors textarea {

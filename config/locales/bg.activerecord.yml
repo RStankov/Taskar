@@ -17,7 +17,7 @@ bg:
             position: "Позиция"
           
           task:
-            text: "Текс"
+            text: "Текста на задачата"
             status: "Статус"
             position: "Позиция"
             project: "Проект"
