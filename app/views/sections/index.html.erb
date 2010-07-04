@@ -23,17 +23,4 @@
     </tr>
   <% end %>
 </table>
-
 <%= will_paginate(@events, :page_links => false, :previous_label => '', :next_label => '') %>
-
-<!--
-<ul id="events">
-  <% for i in 1..10 %>
-  <li<%= i % 4 == 0 ? ' class="personal"' : '' %>>
-    <a href="#"><%= image_tag "temp/ra4oil.png" %></a>
-    <p><a href="#">Radoslav Stankov</a> closed <a href="#">Taskar layout</a>, opened <a href="#">Dashboard design</a></p>
-    <span>about 12 hours ago</span>
-  </li>
-  <% end %>
-</ul>
--->
