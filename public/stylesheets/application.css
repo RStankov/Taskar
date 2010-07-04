@@ -1242,7 +1242,7 @@ footer p {
 
 /*** FOR REVISION: TASK SHOW ***/
 
-#tasks_show h1 {
+#task_title {
   background: url(../images/i.png) 0px -78px no-repeat;
   font-size: 16px;
 }
