@@ -938,7 +938,7 @@ section header h1 {
 }
 
 .task ul {
-  bottom: 10px;
+  bottom: 4px;
   display: none;
   font-size: 11px;
   position: absolute;
@@ -951,9 +951,17 @@ section header h1 {
   padding-left: 10px;
 }
 
+.task time {
+	visibility: hidden;
+}
+
+.task:hover time {
+	visibility: visible;
+}
+
 .task .show {
   width: 20px;
-  height: 12px;
+  height: 14px;
   display: inline-block;
   padding-left: 5px;
   background: url(../images/i.png) 0px -260px no-repeat;
@@ -962,7 +970,6 @@ section header h1 {
 .task .show:hover {
   background-position: -52px -260px;
 }
-
 
 .opened .archive {
   display: none;
@@ -988,14 +995,6 @@ section header h1 {
 
 #archived_tasks .archive:hover {
   background-position: -52px -240px;
-}
-
-.task time {
-	visibility: hidden;
-}
-
-.task:hover time {
-	visibility: visible;
 }
 
 .task:hover .drag, .task:hover ul {
