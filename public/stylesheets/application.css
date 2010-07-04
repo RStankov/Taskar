@@ -639,7 +639,6 @@ section header {
 }
 
 section header h1 {
-  display: inline-block;
   font-size: 18px;
   padding-top: 3px;
   padding-left: 35px;
@@ -763,30 +762,33 @@ a.next_page:hover {
   display: none;
   font-size: 11px;
   font-weight: normal;
-  margin-top: 3px;
-  padding: 0 10px;
   text-decoration: none;
-  vertical-align: top;
+  vertical-align: middle;
 }
 
 #section_title h1:hover a {
   display: inline-block;
 }
 
-#section_title h1 .edit {
-  background-color: #00589D;
-  border: 0;
+#section_title .edit {
   border-radius: 5px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
-  color: #fff;
-  margin-left: 10px;
+  padding: 2px 6px 2px 6px;
+  color: #00589D;
 }
 
-#section_title h1 .delete {
-  background: none;
-  border: 0;
+#section_title .edit:hover {
+  background-color: #014577;
+  color: #fff;
+}
+
+#section_title .delete {
   color: #5c5c5c;
+}
+
+#section_title .delete:hover {
+  color: #FF0000;
 }
 
 #section_title form {
