@@ -22,9 +22,24 @@ header, nav, section, article, aside, footer {
 }
 
 input[type="submit"] {
-  background-color: #00589D;
-  border: 0;
   color: #fff;
+  border: 0;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  background: #1977c0;
+}
+
+input[type="submit"]:hover {
+  background: #00589D;
+  background: -moz-linear-gradient(top, #1977c0, #00589D);
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#1977C0), to(#00589D), color-stop(1,#331032));
+}
+
+input[type="submit"]:active {
+  background: #00589D;
+  background: -moz-linear-gradient(top, #00589D, #1977c0);
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#00589D), to(#1977C0), color-stop(1,#331032));
 }
 
 input[type="button"], .cancel {
@@ -1127,24 +1142,8 @@ footer p {
 }
 
 .task_form input[type="submit"] {
-  border-radius: 5px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
   padding: 4px 8px;
   margin-right: 5px;
-  background: #1977c0;
-}
-
-.task_form input[type="submit"]:hover {
-  background: #00589D;
-  background: -moz-linear-gradient(top, #1977c0, #00589D);
-  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#1977C0), to(#00589D), color-stop(1,#331032));
-}
-
-.task_form input[type="submit"]:active {
-  background: #00589D;
-  background: -moz-linear-gradient(top, #00589D, #1977c0);
-  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#00589D), to(#1977C0), color-stop(1,#331032));
 }
 
 .task_form .cancel {
