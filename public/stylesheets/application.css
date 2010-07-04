@@ -1099,7 +1099,7 @@ footer p {
 
 /*** FOR REVISION:TASK FORMS ***/
 
-.task_form {
+.action_form {
   padding: 13px 15px;
   position: relative;
   background-color: #eee;
@@ -1109,14 +1109,19 @@ footer p {
   -webkit-border-radius: 4px;
 }
 
-.task_form textarea {
+.action_form label {
+  text-shadow: #fff 1px 1px 1px;
+  color: #5C5C5C;
+}
+
+.action_form textarea {
   display: block;
   width: 100%;
   height: 80px;
   margin: 10px 0 10px 0;
 }
 
-.task_form .buttons {
+.action_form .buttons {
   border-top: 1px dotted #C3C3C3;
   padding-top: 10px;
   margin-top: 10px;
@@ -1124,19 +1129,19 @@ footer p {
   font-size: 12;
 }
 
-.task_form input[type="submit"] {
+.action_form input[type="submit"] {
   padding: 4px 8px;
   margin-right: 5px;
 }
 
-.task_form .cancel {
+.action_form .cancel {
   margin-left: 5px;
   padding: 0;
   color: #F00;
   text-decoration: none;
 }
 
-.task_form .cancel:hover {
+.action_form .cancel:hover {
   text-decoration: underline;
 }
 
@@ -1368,16 +1373,16 @@ footer p {
   color: #fff;
 }
 
-#tasks_show form h3 {
-  background:  url(../images/i.png) 0px -128px no-repeat;
-  padding-left: 35px;
-  height: 23px;
+#new_comment {
+  margin: 10px;
+  padding: 10px;
 }
 
-#new_comment {
-  border-top: 1px solid #eee;
-  margin: 0 10px;
-  padding: 10px;
+#new_comment label {
+  background:  url(../images/i.png) 0px -128px no-repeat;
+  padding: 4px 0 0 40px;
+  height: 23px;
+  font-size: 16px;
 }
 
 .admin_banner {
