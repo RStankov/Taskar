@@ -1,5 +1,5 @@
 <header>
-  <h1><%=t 'activerecord.models.task' %></h1>
+  <h1><%=t 'activerecord.models.task' %> <%= task_description(@task) %></h1>
 </header>
 <div id="task_content">
   <%= render "content" %>

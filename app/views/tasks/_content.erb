@@ -1,9 +1,6 @@
-<span class="actions">
+<div class="actions">
   <%= link_to t(:edit), [:edit, @task], :class => "edit", :'data-remote' => true %>
   <%= link_to_delete t(:delete), @task, :class => "delete", :confirm => t(:'tasks.task.confirm') %>
-</span>
+</div>
 <%= task_state_checkbox(@task) %>
 <%= simple_format h(@task.text) %>
-<div>
-  <p><%= task_description(@task) %></p>
-</div>

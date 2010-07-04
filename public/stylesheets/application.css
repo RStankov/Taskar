@@ -1243,6 +1243,7 @@ footer p {
 
 #tasks_show h1 {
   background: url(../images/i.png) 0px -78px no-repeat;
+  font-size: 16px;
 }
 
 #task_content {
@@ -1255,43 +1256,37 @@ footer p {
   -webkit-border-radius: 5px;
 }
 
-#task_content div {
-  clear: both;
-  font-size: 11px;
-  padding-left: 22px;
-  color: #808080;
-}
-
 #task_content .actions {
-  display: none;
-  float: right;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
   font-size: 11px;
-  vertical-align: top;
-}
-
-#task_content .actions a {
-  text-decoration: none;
-  padding: 5px;
+  background: #fff;
+  padding: 10px 10px 10px 0;
+  border-top-left-radius: 5px;
+  -moz-border-top-left-radius: 5px;
+  -webkit-border-top-left-radius: 5px;
+  display: none;
 }
 
 #task_content:hover .actions {
-  display: inline-block;
+  display: block;
 }
 
-#task_content .edit {
-  background-color: #00589D;
-  border: 0;
-  border-radius: 5px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  color: #fff;
+#task_content .actions a {
+  color: #00589D;
+  text-decoration: none;
   margin-left: 10px;
 }
 
-#task_content .delete {
-  background: none;
-  border: 0;
-  color: #5c5c5c;
+#task_content .edit:hover {
+  text-decoration: underline;
+  color: #014577;
+}
+
+#task_content .delete:hover {
+  text-decoration: underline;
+  color: #C00;
 }
 
 #comments {
