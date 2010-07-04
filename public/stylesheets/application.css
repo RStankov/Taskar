@@ -1052,12 +1052,22 @@ section header h1 {
   display: none;
 }
 
+.toggle_archived {
+  display: inline-block;
+  width: 50px;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
 .toggle_archived.selected {
   color: #fff;
   background-color: #00589D;
-  border-radius: 5px;
-   -moz-border-radius: 5px;
-   -webkit-border-radius: 5px;
+}
+
+.toggle_archived.loading {
+  background: url(../images/loader_archive.gif) #00589D center no-repeat;
+  text-indent: -9999px;
 }
 
 /*** FOOTER ***/
