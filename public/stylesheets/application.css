@@ -739,10 +739,10 @@ section header {
 section header h1 {
   display: inline-block;
   font-size: 18px;
-  text-shadow: 1px 1px 1px #fff;
+  padding-top: 3px;
   padding-left: 35px;
   vertical-align: middle;
-  height: 23px;
+  height: 22px;
   overflow: hidden;
 }
 
@@ -1243,7 +1243,7 @@ footer p {
 /*** FOR REVISION: TASK SHOW ***/
 
 #task_title {
-  background: url(../images/i.png) 0px -78px no-repeat;
+  background: url(../images/i.png) 0px -76px no-repeat;
   font-size: 16px;
 }
 
