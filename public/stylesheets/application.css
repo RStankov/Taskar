@@ -1340,14 +1340,14 @@ footer p {
 
 .comment .actions {
   position: absolute;
-  bottom: 10px;
+  top: 0px;
   right: 0px;
   font-size: 12px;
   padding: 5px;
   background-color: #fd7;
-  border-radius: 5px;
-   -moz-border-radius: 5px;
-   -webkit-border-radius: 5px;
+  border-radius: 0 0 5px 5px;
+   -moz-border-radius: 0 0 5px 5px;
+   -webkit-border-radius: 0 0 5px 5px;
 }
 
 .comment .edit, .comment .delete {
@@ -1359,15 +1359,11 @@ footer p {
 }
 
 .comment .edit:hover {
-  background-color: #00589D;
-  color: #fff;
-  text-decoration: none;
+  color: #014577;
 }
 
 .comment .delete:hover {
-  text-decoration: none;
-  background-color: #FF0000;
-  color: #fff;
+  color: #FF0000;
 }
 
 #new_comment {
