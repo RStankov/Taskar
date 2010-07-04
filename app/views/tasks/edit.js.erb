@@ -3,5 +3,5 @@
     element.update("<%= escape_javascript(render "form", :task => @task) %>");
     element.highlight();
     element.down('textarea').focus();
-  })($('task_<%= @task.id %>') || $('task_title'));
+  })($('task_<%= @task.id %>') || $('task_content'));
 <% end %>

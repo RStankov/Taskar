@@ -1251,39 +1251,39 @@ footer p {
   color: #fff;
 }
 
-/*** FRO REVISION: TASK SHOW ***/
+/*** FOR REVISION: TASK SHOW ***/
 
-#task_title {
+#task_content {
   border-bottom: 1px solid #eee;
   margin: 0 10px;
   padding: 10px;
   position: relative;
 }
 
-#task_title div {
+#task_content div {
   clear: both;
   font-size: 11px;
   padding-left: 22px;
   color: #808080;
 }
 
-#task_title .actions {
+#task_content .actions {
   display: none;
   float: right;
   font-size: 11px;
   vertical-align: top;
 }
 
-#task_title .actions a {
+#task_content .actions a {
   text-decoration: none;
   padding: 5px;
 }
 
-#task_title:hover .actions {
+#task_content:hover .actions {
   display: inline-block;
 }
 
-#task_title .edit {
+#task_content .edit {
   background-color: #00589D;
   border: 0;
   border-radius: 5px;
@@ -1293,7 +1293,7 @@ footer p {
   margin-left: 10px;
 }
 
-#task_title .delete {
+#task_content .delete {
   background: none;
   border: 0;
   color: #5c5c5c;

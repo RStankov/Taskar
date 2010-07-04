@@ -1,8 +1,8 @@
 <header>
   <h1><%=t 'activerecord.models.task' %></h1>
 </header>
-<div id="task_title">
-  <%= render "task_title" %>
+<div id="task_content">
+  <%= render "content" %>
 </div>
 <% if @task.comments.size > 0 %>
 <h3><%=t :'.comments', :count => '<span id="comments_count">' + @task.comments.size.to_s + '</span>' %></h3>
