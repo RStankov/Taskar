@@ -922,7 +922,6 @@ a.next_page:hover {
   display: block;
 }
 
-
 .tasks_list time {
   display: block;
   clear: both;
@@ -941,7 +940,7 @@ a.next_page:hover {
   width: 13px;
 }
 
-.tasks_list .drag:hover {
+.task .drag:hover {
   background-position: -28px -103px;
 }
 
@@ -977,7 +976,7 @@ a.next_page:hover {
 }
 
 .task time {
-	visibility: hidden;
+ visibility: hidden;
 }
 
 .task:hover time {
@@ -1388,9 +1387,3 @@ footer p {
 	-moz-transform: rotate(30deg);
 	-webkit-transform: rotate(30deg);
 }
-
-
-
-
-
-
