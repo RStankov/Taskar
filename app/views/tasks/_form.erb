@@ -7,9 +7,9 @@
   <% if form.object.new_record? %>
     <%= form.submit t(:'tasks.form.create') %> | 
     <input type="button" value="<%=t :'tasks.form.stop' %>" class="cancel">
+    <%= form.hidden_field :insert_after %>
   <% else %>
     <%= form.submit t(:'tasks.form.update') %> | 
     <%= link_to t(:'tasks.form.cancel'), task, :class => "cancel", "data-remote" => true %>
   <% end %>
-  <%= form.hidden_field :insert_after %>
 <% end %>
