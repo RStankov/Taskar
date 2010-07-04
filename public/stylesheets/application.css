@@ -918,7 +918,7 @@ a.next_page:hover {
   display: none;
 }
 
-.task:hover .more {
+.tasks_list li:hover.task .more {
   display: block;
 }
 
@@ -979,7 +979,7 @@ a.next_page:hover {
  visibility: hidden;
 }
 
-.task:hover time {
+.tasks_list li:hover.task time {
 	visibility: visible;
 }
 
@@ -1038,7 +1038,7 @@ a.next_page:hover {
   background-position: -52px -240px;
 }
 
-.task:hover .drag, .task:hover ul {
+.tasks_list li:hover.task .drag, .tasks_list li:hover.task ul {
   display: block;
 }
 
