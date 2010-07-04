@@ -12,7 +12,7 @@ Taskar.Sections = {
   resetTaskForm: function(form, before){
     form.reset();
     
-    var errors = form.down('.errorExplanation');
+    var errors = form.down('.error_messages');
     if (errors){
       errors.remove();
       form.select('.fieldWithErrors').each(function(element){
