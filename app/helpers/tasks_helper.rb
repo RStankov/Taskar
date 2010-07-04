@@ -1,13 +1,11 @@
 module TasksHelper
   def task_state_checkbox(task)
     state = task.state
-    attributes = 'class="checkbox ' + state + '" data-state="' + state + '" data-url="' + state_task_path(task) + '"'
     
-    if task.archived?
-      "<span #{attributes} data-disabled=\"true\"></span>"
-    else 
-      "<span #{attributes}></span>"
-    end
+    attributes = 'class="checkbox ' + state + '" data-state="' + state + '" data-url="' + state_task_path(task) + '"'
+    attributes << ' data-disabled="true"' if task.archived?
+    
+    "<span #{attributes}></span>"
   end
   
   def task_description(task)
