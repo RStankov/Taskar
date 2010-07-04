@@ -1097,7 +1097,7 @@ footer p {
 
 /*** FOR REVISION:TASK FORMS ***/
 
-.tasks_list form {
+.task_form {
   padding: 13px 15px;
   position: relative;
   background-color: #eee;
@@ -1105,26 +1105,23 @@ footer p {
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
 }
-.task form{
-  margin: -10px;
-}
 
-.tasks_list form label {
+.task_form label {
   display: block;
 }
 
-.tasks_list form textarea {
+.task_form textarea {
   display: block;
   width: 100%;
   height: 80px;
   margin: 10px 0 10px 0;
 }
 
-.tasks_list form input[type="button"] {
+.task_form input[type="button"] {
   font-size: 12px;
 }
 
-.tasks_list form input[type="submit"] {
+.task_form input[type="submit"] {
   border-radius: 10px;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
@@ -1133,14 +1130,14 @@ footer p {
   padding: 5px 10px;
 }
 
-.tasks_list form input[type="submit"]:hover {
+.task_form input[type="submit"]:hover {
   background: -moz-linear-gradient(top, #1977c0, #00589D);
   box-shadow: 0 0 6px #000000;
   -moz-box-shadow: 0 0 6px #000000;
   -webkit-box-shadow: 0 0 6px #000000;
 }
 
-.tasks_list form input[type="submit"]:focus {
+.task_form input[type="submit"]:focus {
   background: -moz-linear-gradient(top, #00589D, #1977c0);
   box-shadow: 0 0 6px #666;
   -moz-box-shadow: 0 0 6px #666;
