@@ -84,7 +84,7 @@ a img {
   cursor: pointer;
   display: block;
   padding: 5px 10px;
-  text-decoration: underline;
+  font-size: 10px;
 }
 
 #nav_projects:hover span {
