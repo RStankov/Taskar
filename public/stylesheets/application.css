@@ -9,10 +9,6 @@ body, input, textarea, select {
   font-family: arial, tahoma, verdana, sans-serif;
 }
 
-input, textarea, select {
-  background-color: #fff;
-}
-
 input[type="submit"], input[type="button"] {
   cursor: pointer;
 }
