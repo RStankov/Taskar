@@ -1,9 +1,13 @@
-<div id="section_title">
+<header id="section_title">
   <h1><%=t :'sections.edit_section' %></h1>
+</header>
+<div style="padding: 0 20px">
+  <% form_for @section, :html => {:class => 'action_form', :id => nil} do |f| %>
+    <%= render 'shared/error_messages', :target => f.object %>
+    <%= f.label :name %>
+    <%= f.text_field :name, :autofocus => true %>
+    <div class="buttons">
+      <%= f.submit t(:update) %>
+    </div>
+  <% end %>
 </div>
-<% form_for @section do |f| %>
-  <%= f.error_messages %>
-  <%= f.label :name %>
-  <%= f.text_field :name, :autofocus => true %>
-  <%= f.submit t(:update) %>
-<% end %>

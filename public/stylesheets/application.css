@@ -652,11 +652,11 @@ section header h1 {
   background: url(../images/i.png) 0px 0px no-repeat;
 }
 
-#sections_show h1 {
+#section_title h1 {
   background: url(../images/i.png) 0px -26px no-repeat;
 }
 
-#sections_show h1.archived {
+#section_title h1.archived {
   background: url(../images/i.png) 0px -52px no-repeat;
 }
 

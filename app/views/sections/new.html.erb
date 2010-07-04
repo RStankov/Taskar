@@ -1,10 +1,14 @@
-<div id="section_title">
+<header id="section_title">
   <h1><%=t :'sections.new_section' %></h1>
+</header>
+<div style="padding: 0 20px">
+  <% form_for [@project, @section]  , :html => {:class => 'action_form', :id => nil} do |f| %>
+    <%= render 'shared/error_messages', :target => f.object %>
+    <%= f.label :name %>
+    <%= f.text_field :name, :autofocus => true %>
+    <%= f.hidden_field :insert_before, :value => params[:insert_before] if params[:insert_before] %>
+    <div class="buttons">
+      <%= f.submit t(:update) %>
+    </div>
+  <% end %>
 </div>
-<% form_for [@project, @section], :html => {:id => nil} do |f| %>
-  <%= f.error_messages %>
-  <%= f.label :name %>
-  <%= f.text_field :name, :autofocus => true %>
-  <%= f.hidden_field :insert_before, :value => params[:insert_before] if params[:insert_before] %>
-  <%= f.submit t(:create) %>
-<% end %>
