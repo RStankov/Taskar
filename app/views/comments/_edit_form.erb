@@ -1,7 +1,9 @@
-<% form_for @comment, :html => {:class => nil, :id => nil, :'data-remote' => true} do |form| %>
-   <%= form.error_messages %>
-   <%= form.text_area :text, :cols => nil, :rows => nil %>
-   <%= form.submit t(:'.submit') %> | 
-   <input type="button" class="preview" value="<%=t :'comments.preview' %>"> |
-   <%= link_to t(:'tasks.form.cancel'), @comment, :class => "cancel", "data-remote" => true %>
+<% form_for @comment, :html => {:class => 'action_form', :id => nil, :'data-remote' => true} do |form| %>
+  <%= render 'shared/error_messages', :target => form.object %>
+  <%= form.text_area :text, :cols => nil, :rows => nil %>
+  <div class="buttons">
+    <%= form.submit t(:'.submit')%>
+    <%=t :or %>
+    <%= link_to t(:'tasks.form.cancel'), @comment, :class => "cancel", "data-remote" => true %>
+  </div>  
 <% end %>
