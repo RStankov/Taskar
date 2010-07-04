@@ -6,9 +6,14 @@
 
   	if (!element.hasAttribute('data-confirm') || confirm(element.getAttribute('data-confirm'))){
   		var method  = element.getAttribute('data-method');
-  		    form    = Element('form', {method: 'post', action: element.href}).hide();
+  		    form    = Element('form', {method: 'post', action: element.href}).hide()
+  		    param   = $$('meta[name=csrf-param]')[0],
+          token   = $$('meta[name=csrf-token]')[0];
   		
-  		form.insert(Element('input', {type: 'hidden', name: 'authenticity_token', value: element.getAttribute('data-token')}));
+  		
+  		if (param && token){
+  		  form.insert(Element('input', {type: 'hidden', name: param.readAttribute('content'), value: token.readAttribute('content')}));
+		  }
 
       if (method != 'post'){
         form.insert(Element('input', {type: 'hidden', name: '_method', value: method}))

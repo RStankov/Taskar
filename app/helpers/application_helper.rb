@@ -1,8 +1,7 @@
 module ApplicationHelper
   def link_to_delete(*args, &block)
     html_options = ((block_given? ? args.second : args.third) || {}).stringify_keys.merge({
-      'data-method' => 'delete',
-      'data-token'  => form_authenticity_token
+      'data-method' => 'delete'
     });
     
     html_options['data-confirm'] = html_options.delete('confirm') if html_options['confirm']
