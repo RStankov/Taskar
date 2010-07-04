@@ -758,23 +758,6 @@ section header h1 {
   background: url(../images/i.png) 0px -52px no-repeat;
 }
 
-#tasks_show h1 {
-  background: url(../images/i.png) 0px -78px no-repeat;
-}
-
-#tasks_show > h3 {
-  background:  url(../images/i.png) 0px -100px no-repeat;
-  padding-left: 35px;
-  margin: 10px;
-  height: 23px;
-}
-
-#tasks_show form h3 {
-  background:  url(../images/i.png) 0px -128px no-repeat;
-  padding-left: 35px;
-  height: 23px;
-}
-
 #section_title h1 a {
   display: none;
   font-size: 11px;
@@ -1253,11 +1236,38 @@ footer p {
 
 /*** FOR REVISION: TASK SHOW ***/
 
+
+#tasks_show h1 {
+  background: url(../images/i.png) 0px -78px no-repeat;
+}
+
+#comments h3 {
+  background:  url(../images/i.png) 0px -100px no-repeat;
+  padding-left: 35px;
+  height: 23px;
+}
+
+#tasks_show form h3 {
+  background:  url(../images/i.png) 0px -128px no-repeat;
+  padding-left: 35px;
+  height: 23px;
+}
+
+
+#comments {
+  border-top: 1px solid #C3C3C3;
+  padding: 10px;
+  margin: 10px;
+}
+
 #task_content {
-  border-bottom: 1px solid #eee;
-  margin: 0 10px;
+  margin: 10px;
   padding: 10px;
   position: relative;
+  background: #ECF3FE;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
 }
 
 #task_content div {

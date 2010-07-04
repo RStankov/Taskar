@@ -103,7 +103,7 @@ bg:
         same: "от и за %{from} преди %{on}"
         full: "от %{from} за %{to} преди %{on} до %{due}"
       
-      comments: "Коментари(%{count})"
+      comments: "Коментари <small>(%{count})</small>"
       no_results_found: "Няма намерени задачи"
     
     form:

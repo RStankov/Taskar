@@ -4,12 +4,12 @@
 <div id="task_content">
   <%= render "content" %>
 </div>
-<% if @task.comments.size > 0 %>
-<h3><%=t :'.comments', :count => '<span id="comments_count">' + @task.comments.size.to_s + '</span>' %></h3>
-<% end %>
-<ul id="comments">
-  <%= render @task.comments %>
-</ul>
+<div id="comments"<%= ' style="display: none;"' if @task.comments.size == 0 %>>
+  <h3><%=t :'.comments', :count => '<span id="comments_count">' + @task.comments.size.to_s + '</span>' %></h3>
+  <ul>
+    <%= render @task.comments %>
+  </ul>
+</div>
 <div id="new_comment">
    <%= render "comments/new_form" %>
 </div>
