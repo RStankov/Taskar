@@ -26,6 +26,6 @@ module TasksHelper
       end
     end
     
-    '<p>' + t(:"tasks.show.description.#{name}", options) + '</p>'
+    t "tasks.show.description.#{name}", options
   end
 end

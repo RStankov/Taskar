@@ -77,12 +77,10 @@ describe TasksHelper do
     end
     
     def expected(name, options = {})
-      '<p>' + 
-        t(:"tasks.show.description.#{name}", {
-          :from => mock_user.full_name, 
-          :on   => helper.time_ago_in_words(mock_task.created_at)
-        }.merge(options)) + 
-      '</p>'
+      t(:"tasks.show.description.#{name}", {
+        :from => mock_user.full_name, 
+        :on   => helper.time_ago_in_words(mock_task.created_at)
+      }.merge(options))
     end
     
     it "should return short version if task have only creator and created at" do
