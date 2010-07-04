@@ -395,6 +395,16 @@ article {
 
 /*** EVENTS ***/
 
+#events {
+  margin: 10px;
+}
+
+#events h2 {
+  float: left;
+  font-size: 14px;
+  padding: 10px;
+}
+
 #events span {
   border-radius: 0 5px 5px 0;
   -moz-border-radius: 0 5px 5px 0;
@@ -852,9 +862,7 @@ section header h1 {
 /*** PAGINATION ***/
 
 .pagination {
-  border-top: 1px solid #EEE;
   margin: 10px;
-  padding-top: 10px;
 }
 
 .pagination .disabled {
