@@ -11,13 +11,14 @@
       <% content_tag_for(:li, task, :class => task.state + (current_user.id == task.responsible_party_id ? ' personal' : '')) do %>
         <%= task_state_checkbox(task) %>
         <p>
+          <%= link_to '', archive_task_path(task, :archived => !task.archived?), :class => "archive", "data-remote" => true, "data-method" => "put" %>
           <% if task.responsible_party %><strong><%= task.responsible_party.full_name %></strong><% end %>
           <%=h task.text %>
         </p>
-        <span class="more"><%=t :'.more' %></span>
+        <span class="more">...</span>
         <%= time_tag task.created_at %>
         <ul>
-          <li><%= link_to t(:'tasks.show.comments', :count => task.comments.size), task %></li>
+          <li><%= link_to task.comments.size, task, :class => 'show', :title => t(:'.comments', :count => task.comments.size) %></li>
         </ul>
       <% end %>
     <% end %>
