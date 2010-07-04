@@ -975,10 +975,13 @@ section header h1 {
   display: none;
 }
 
+.completed .archive, .rejected .archive {
+  display: inline-block;
+}
+
 #tasks .archive {
   width: 12px;
   height: 14px;
-  display: inline-block;
   background: url(../images/i.png) 0px -226px no-repeat;
 }
 
