@@ -569,6 +569,7 @@ aside {
 #user_card img {
   float: left;
   margin-right: 10px;
+  border: 1px solid #ccc;
 }
 
 #user_card strong {
