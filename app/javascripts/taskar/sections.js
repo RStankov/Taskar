@@ -10,6 +10,13 @@ Taskar.Sections = {
     }
   },
   resetTaskForm: function(form, before){
+    this.resetForm(form);
+    
+    if (before !== false){
+      form.down('input[name*=insert_after]').setValue(before || null);
+    }
+  },
+  resetForm: function(form){
     form.reset();
     
     var errors = form.down('.error_messages');
@@ -18,10 +25,6 @@ Taskar.Sections = {
       form.select('.fieldWithErrors').each(function(element){
         element.replace(element.down());
       });
-    }
-    
-    if (before !== false){
-      form.down('input[name*=insert_after]').setValue(before || null);
     }
   }
 };
