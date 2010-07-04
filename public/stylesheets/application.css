@@ -635,6 +635,7 @@ section header {
   -moz-box-shadow: 0px 10px 10px -10px #888;
   -webkit-box-shadow: 0px 10px 10px -10px #888;
   padding: 15px 10px 10px 20px;
+  margin-bottom: 20px;
   position: relative;
 }
 
@@ -828,7 +829,7 @@ a.next_page:hover {
 /*** SECTIONS/SHOW TASKS LISTS ***/
 
 .tasks_list {
-  padding: 20px;
+  padding: 0 20px 20px 20px;
   color: #3d3d3d;
 }
 
@@ -988,6 +989,7 @@ a.next_page:hover {
 
 #archived_tasks {
   margin-top: 10px;
+  padding-top: 10px;
   border-top: 1px solid #EEE;
 }
 
