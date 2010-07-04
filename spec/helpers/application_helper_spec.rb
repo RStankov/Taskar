@@ -1,6 +1,16 @@
 require 'spec_helper'
 
 describe ApplicationHelper do
+  describe "link_to_delete" do
+    it "should add data-method=delete" do
+      helper.link_to_delete('foo', 'bar').should have_tag('a[data-method=delete][href=bar]', 'foo')
+    end
+    
+    it "should replace confirm with data-confirm" do
+      helper.link_to_delete('foo', 'bar', :confirm => 'blaaaa').should have_tag('a[data-confirm=blaaaa]')
+    end  
+  end
+  
   describe "copywrite" do
     it "returns the t(:copywrite) with the current year" do
       helper.copywrite.should == t(:'copywrite', :year => Time.now.year)
