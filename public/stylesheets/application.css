@@ -646,6 +646,7 @@ aside {
   float: left;
   margin-right: 10px;
   max-width: 32px;
+  border: 1px solid #ccc;
 }
 
 #people_envolved strong {

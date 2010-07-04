@@ -75,7 +75,7 @@
         <ul class="people_extended">
           <% @project.users.each do |user| %>
           <li>
-            <%= image_tag current_user.avatar.url(:aside) %>
+            <%= image_tag current_user.avatar.url(:aside), :alt => user.full_name %>
             <span class="people_info">              
                 <strong><%= user.full_name %></strong>
                 <%=t :".last_activity", :time => time_ago_in_words(user.last_active_at) %>
