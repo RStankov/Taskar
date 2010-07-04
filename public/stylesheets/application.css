@@ -1105,13 +1105,10 @@ footer p {
   padding: 13px 15px;
   position: relative;
   background-color: #eee;
+  font-size: 14px;
   border-radius: 4px;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
-}
-
-.task_form label {
-  display: block;
 }
 
 .task_form textarea {
@@ -1119,6 +1116,12 @@ footer p {
   width: 100%;
   height: 80px;
   margin: 10px 0 10px 0;
+}
+
+.task_form div {
+  border-top: 1px dotted #C3C3C3;
+  padding-top: 5px;
+  margin-top: 5px;
 }
 
 .task_form input[type="button"] {
