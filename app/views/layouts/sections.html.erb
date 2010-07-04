@@ -10,7 +10,7 @@
       <span><%= t :".switch_to_project" %></span>
       <ul>
         <% current_user.projects.all(:limit => 10).each do |project| %>
-        <li><%= link_to project.name, [project, :sections] %></li>
+        <li><%= link_to project.name, [project, :sections], :class => @project == project && "selected" %></li>
         <% end %>
         <li><%= link_to t(:".all_projects"), root_path %></li>
       </ul>

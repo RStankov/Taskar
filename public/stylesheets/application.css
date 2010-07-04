@@ -124,12 +124,18 @@ a img {
   color: #095da0;
   display: block;
   padding: 10px;
+  margin: 1px;
   text-decoration: none;
 }
 
 #nav_projects a:hover {
   background-color: #e9e9e9;
   color: #5c5c5c;
+}
+
+#nav_projects .selected {
+  background-color: #00589D;
+  color: #eee;
 }
 
 #nav_account {
