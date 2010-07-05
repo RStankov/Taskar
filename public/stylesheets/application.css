@@ -307,9 +307,7 @@ a img {
   -webkit-border-radius: 5px;
   border: 1px solid #d7d7d7;
   font-size: 12px;
-  height: 22px;
   margin-right: 5px;
-  padding: 3px 4px;
   width: 100px;
 }
 
@@ -466,6 +464,7 @@ aside {
 
 #live_search {
   position: relative;
+  margin-bottom: 20px;
 }
 
 #live_search input[type="text"] {
@@ -475,7 +474,7 @@ aside {
   -webkit-border-radius: 10px;
   font-size: 12px;
   padding: 4px 25px 4px 10px;
-  width: 100%;
+  width: 190px;
 }
 
 #live_search input[type="text"]:hover {
