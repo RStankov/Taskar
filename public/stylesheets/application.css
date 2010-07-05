@@ -1424,14 +1424,15 @@ footer p {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   padding: 10px;
-}
-
-.tooltip a {
-  padding-right: 5px;
   font-size: 14px;
   font-weight: bold;
   color: #fff;
+}
+
+.tooltip a {
   text-decoration: none;
+  padding-right: 5px;
+  color: #fff;
 }
 
 .tooltip a:hover {
