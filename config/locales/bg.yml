@@ -10,6 +10,7 @@ bg:
   delete: "Изтрий"
   confirm: "Сигурни ли сте?"
   before: "преди %{time}"
+  back: "обратно"
   or: "или"
   layouts:
     general:
@@ -57,7 +58,7 @@ bg:
     title: "Потребители"
     new_user: "Нов потребител"
     edit_user: "Промяна на потребител"
-    change_password: "Промяна на паралота"
+    change_password: "Промяна на паролата"
     confirm: "Сигурни ли сте, че искате да изтриете този потребител"
     projects: "Проекти, в който участва %{name}"
     admin: "Администратор"

@@ -1,7 +1,7 @@
 <div class="form_wrap">
 	<% form_for @user, :html => {:multipart => true, :class => 'action_form'} do |f| %>
-	  <%= render 'shared/error_messages', :target => f.object %>
-  
+		<%= render 'shared/error_messages', :target => f.object if @user.new_record? || !@user.errors.on(:password) %>
+
 	  <p><%= f.label :email %></p>
 	 	<p><%= f.text_field :email %></p>
 
@@ -24,9 +24,9 @@
   
 	  <div class="buttons">
 	    <% if @user.new_record? %>
-	      <%= f.submit t(:create) %> | <%= link_to t(:cancel), users_path %>
+	      <%= f.submit t(:create) %>
 	    <% else %>
-	      <%= f.submit t(:update) %> | <%= link_to t(:cancel), @user %>
+	      <%= f.submit t(:update) %>
 	    <% end %>
 	  </div>
 	<% end %>

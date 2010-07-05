@@ -1,17 +1,22 @@
-
-<h1><%=t :'users.edit_user' %></h1>
+<header>
+	<h1><%=t :'users.edit_user' %></h1>
+</header>
 
 <%= render "form" %>
 
-<h2><%=t :'users.change_password' %></h2>
+<div class="form_wrap">
+	<% form_for @user, :html => {:multipart => true, :class => 'action_form'} do |f| %>
+		<h2><%=t :'users.change_password' %></h2>
+		
+	  <%= render 'shared/error_messages', :target => f.object if @user.errors.on(:password) %>
+	  <p><%= f.label :password %></p>
+	  <p><%= f.password_field :password %></p>
 
-<% form_for @user, :html => {:multipart => true} do |f| %>
-  <%= f.error_messages if @user.errors.on(:password) %>
-  <p><%= f.label :password %></p>
-  <p><%= f.password_field :password %></p>
-
-  <p><%= f.label :password_confirmation %></p>
-  <p><%= f.password_field :password_confirmation %></p>
-  
-  <p><%= f.submit t(:update) %></p>
-<% end %>
+	  <p><%= f.label :password_confirmation %></p>
+	  <p><%= f.password_field :password_confirmation %></p>
+  	
+		<div class="actions">
+	  	<%= f.submit t(:update) %>
+		</div>
+	<% end %>
+</div>
