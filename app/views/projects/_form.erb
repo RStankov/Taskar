@@ -1,26 +1,28 @@
-<% form_for(@project) do |f| %>
-  <%= f.error_messages %>
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <h3><%=t :'projects.participants' %></h3>
-    <%= hidden_field_tag "project[user_ids][]", nil, :id => nil %>
-    <ul>
-      <% User.all.each do |user| %>
-        <li>
-          <%= check_box_tag "project[user_ids][]", user.id, @project.users.all.include?(user), :id => "project_user_#{user.id}" %>
-          <%= label_tag "project_user_#{user.id}", user.full_name %>
-        </li>
-      <% end %>
-    </ul>
-  </p>
-  <p>
-    <% if @project.new_record? %>
-      <%= f.submit t(:create) %> | <%= link_to t(:cancel), projects_path %>
-    <% else %>
-      <%= f.submit t(:update) %> | <%= link_to t(:cancel), @project %>
-    <% end %>
-  </p>
-<% end %>
+<div class="form_wrap">
+	<% form_for @project, :html => {:class => 'action_form'} do |f| %>
+	  <%= render 'shared/error_messages', :target => f.object %>
+	  <p>
+	    <%= f.label :name %><br />
+	    <%= f.text_field :name %>
+	  </p>
+	  <p>
+	    <h3><%=t :'projects.participants' %></h3>
+	    <%= hidden_field_tag "project[user_ids][]", nil, :id => nil %>
+	    <ul>
+	      <% User.all.each do |user| %>
+	        <li>
+	          <%= check_box_tag "project[user_ids][]", user.id, @project.users.all.include?(user), :id => "project_user_#{user.id}" %>
+	          <%= label_tag "project_user_#{user.id}", user.full_name %>
+	        </li>
+	      <% end %>
+	    </ul>
+	  </p>
+	  <div class="buttons">
+	    <% if @project.new_record? %>
+	      <%= f.submit t(:create) %> | <%= link_to t(:cancel), projects_path %>
+	    <% else %>
+	      <%= f.submit t(:update) %> | <%= link_to t(:cancel), @project %>
+	    <% end %>
+	  </div>
+	<% end %>
+</div>
