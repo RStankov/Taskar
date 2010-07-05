@@ -864,7 +864,7 @@ a.next_page:hover {
 }
 
 .tasks_list .task {
-  padding: 10px 10px 10px;
+  padding: 10px 10px 5px;
   position: relative;
   margin-bottom: 5px;
   border-radius: 5px;
@@ -908,7 +908,7 @@ a.next_page:hover {
   color: #00589D;
   cursor: pointer;
   font-size: 12px;
-  display: none;
+  display: none;  
 }
 
 .tasks_list .drag {
@@ -917,7 +917,7 @@ a.next_page:hover {
   height: 13px;
   position: absolute;
   right: 10px;
-  top: 10px;
+  top: 12px;
   width: 13px;
 }
 
