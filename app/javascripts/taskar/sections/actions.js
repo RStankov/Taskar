@@ -135,7 +135,7 @@ Taskar.Sections.Actions = {
       var content = element.down('p');
       if (content && !content._marked){
         content._marked = [1];
-        if (!(content.scrollHeight > content.getHeight())){
+        if (!(content.scrollHeight > content.getHeight() + 5)){
           element.down('.more').hide();
         }
       }
