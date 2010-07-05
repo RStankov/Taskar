@@ -1390,3 +1390,61 @@ footer p {
 	-moz-transform: rotate(30deg);
 	-webkit-transform: rotate(30deg);
 }
+
+.tooltip {
+  position: absolute;
+  top: 100;
+  left: 100;
+}
+
+.tooltip div {
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.tooltip .arrow {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: 15px;
+  top: -5px;
+  background: #000;
+  border: 1px solid #000;
+  -webkit-transform-origin: center;
+  -webkit-transform: rotate(45deg);
+  -moz-transform-origin: center;
+  -moz-transform: rotate(45deg);
+}
+
+.tooltip .actions {
+  position: relative;
+  background-color: #000;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  padding: 10px;
+}
+
+.tooltip a {
+  padding-right: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+}
+
+.tooltip a:hover {
+  color: #00589D;
+  text-shadow: #00589D 0px 0px 3px;
+}
+
+.tooltip a:not(:first-child):before {
+  content: "";
+  display: inline-block;
+  margin-right: 5px;
+  height: 12px;
+  margin-bottom: -1px;
+  font-weight: normal;
+  border-left: 1px solid #eee;
+}
