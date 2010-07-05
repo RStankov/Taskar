@@ -1,6 +1,6 @@
-<div>
+<header>
   <h1><%=t :'layouts.dashboard.header' %></h1>
-</div>
+</header>
 
 <% @projects.each do |project| %>
   <h2><%= link_to project.name, [project, :sections] %></h2>
