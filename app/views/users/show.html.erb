@@ -1,4 +1,6 @@
-<h1><%=h @user.full_name %></h1>
+<header>
+	<h1><%=h @user.full_name %></h1>
+</header>
 
 <%= link_to t(:edit), [:edit, @user] %> | 
 <% link_to_delete @user, :confirm => t(:'users.confirm') do %>
