@@ -1128,6 +1128,10 @@ footer p {
 
 /*** ACTION FORM ***/
 
+.form_wrap {
+  padding: 0 20px;
+}
+
 .action_form {
   padding: 13px 15px;
   position: relative;
