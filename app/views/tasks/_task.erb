@@ -14,6 +14,6 @@
     <% if task.responsible_party %><strong><%= task.responsible_party.full_name %></strong><% end %>
     <%=h task.text %>
   </p>
-  <span class="more"><%=t '.more' %></span>
+	<%= content_tag :span, t('.more'), :class => 'more', 'data-more' => t('.more'), 'data-less' => t('.less') %>
   <input type="button" class="drag" title="<%=t :'.dnd' %>" />
 <% end %>

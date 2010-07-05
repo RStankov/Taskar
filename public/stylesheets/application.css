@@ -989,6 +989,10 @@ a.next_page:hover {
   display: block;
 }
 
+.tasks_list li:hover.task .more {
+  display: inline-block;
+}
+
 .tasks_list.dragging .tooltip, .tasks_list.dragging .drag, .tasks_list.dragging .more {
   visibility: hidden;
 }

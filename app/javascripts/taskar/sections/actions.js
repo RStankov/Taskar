@@ -7,9 +7,15 @@ Taskar.Sections.Actions = {
       var p = element.up('.task').down('p');
       
       if (p.hasClassName('less')){
-        p.morph('height:18px', function(){ p.removeClassName('less') });
+        p.morph('height:18px', function(){
+          p.removeClassName('less');
+          element.update(element.getAttribute('data-more'));
+        });
       } else {
-        p.morph('height:' + p.scrollHeight + 'px', function(){ p.addClassName('less') });
+        p.morph('height:' + p.scrollHeight + 'px', function(){
+          p.addClassName('less');
+          element.update(element.getAttribute('data-less'));
+        });
       } 
     },
     '.add': function(e, element){
@@ -130,7 +136,7 @@ Taskar.Sections.Actions = {
       if (content && !content._marked){
         content._marked = [1];
         if (!(content.scrollHeight > content.getHeight())){
-          element.down('span.more').hide();
+          element.down('.more').hide();
         }
       }
     }
