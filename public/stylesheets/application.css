@@ -876,17 +876,6 @@ a.next_page:hover {
   background-color: #ECF3FE;
 }
 
-/*
-.tasks_list a:not(.cancel) {
-  color: #00589D;
-  text-decoration: none;
-}
-
-.tasks_list a:hover {
-  text-decoration: underline;
-}
-
-*/
 .tasks_list .rejected p, .tasks_list .rejected .checkbox, .tasks_list .completed p, .tasks_list .completed .checkbox {
   opacity: 0.6;
 }
@@ -922,19 +911,6 @@ a.next_page:hover {
   display: none;
 }
 
-/*
-.tasks_list li:hover.task .more {
-  display: block;
-}
-*/
-.tasks_list time {
-  display: block;
-  clear: both;
-  font-size: 11px;
-  padding-left: 22px;
-  color: #808080;
-}
-
 .tasks_list .drag {
   background: url(../images/sprite.png) -28px -63px no-repeat;
   display: none;
@@ -961,43 +937,9 @@ a.next_page:hover {
   margin: -2px 0 0 3px;
 }
 
-.task > p {
+.task p {
   overflow: hidden;
   height: 18px;
-}
-
-.task ul {
-  bottom: 4px;
-  display: none;
-  font-size: 11px;
-  position: absolute;
-  right: 10px;
-  text-align: right;
-}
-
-.task li {
-  display: inline;
-  padding-left: 10px;
-}
-
-.task time {
- visibility: hidden;
-}
-
-.tasks_list li:hover.task time {
-	visibility: visible;
-}
-
-.task .show {
-  width: 20px;
-  height: 14px;
-  display: inline-block;
-  padding-left: 5px;
-  background: url(../images/i.png) 0px -260px no-repeat;
-}
-
-.task .show:hover {
-  background-position: -52px -260px;
 }
 
 .opened .archive {
@@ -1043,11 +985,11 @@ a.next_page:hover {
   background-position: -52px -240px;
 }
 
-.tasks_list li:hover.task .drag, .tasks_list li:hover.task ul {
+.tasks_list li:hover.task .drag {
   display: block;
 }
 
-.tasks_list.dragging ul, .tasks_list.dragging .drag, .tasks_list.dragging .more {
+.tasks_list.dragging .tooltip, .tasks_list.dragging .drag, .tasks_list.dragging .more {
   visibility: hidden;
 }
 
@@ -1393,17 +1335,6 @@ footer p {
 	-webkit-transform: rotate(30deg);
 }
 
-.tooltip {
-  z-index: 100;
-  position: absolute;
-  left: -140px;
-  bottom: -45px;
-}
-
-.task .tooltip {
-  display: none;
-}
-
 @-webkit-keyframes bounce-scale {
   from {
     -webkit-transform: scale(0);
@@ -1420,12 +1351,9 @@ footer p {
   }
 }
 
-.tasks_list li:hover.task .tooltip {
-  display: block;
-  -webkit-animation-name: bounce-scale;
-  -webkit-animation-duration: 0.2s;
-  -webkit-animation-iteration-count: 1;
-  -webkit-transform-origin: top right;
+.tooltip {
+  z-index: 100;
+  position: absolute;
 }
 
 .tooltip div {
@@ -1438,8 +1366,6 @@ footer p {
   position: absolute;
   width: 20px;
   height: 20px;
-  right: -5px;
-  top: 10px;
   background: #000;
   border: 1px solid #000;
   -moz-transform-origin: center;
@@ -1471,14 +1397,22 @@ footer p {
   color: #00589D;
   text-shadow: #00589D 0px 0px 3px;
 }
-/*
-.tooltip a:not(:first-child):before {
-  content: "";
-  display: inline-block;
-  margin-right: 5px;
-  height: 12px;
-  margin-bottom: -1px;
-  font-weight: normal;
-  border-left: 1px solid #eee;
+
+.task .tooltip {
+  left: -135px;
+  top: 0px;
+  display: none;
 }
-*/
+
+.task .tooltip .arrow {
+  right: -5px;
+  top: 10px;
+}
+
+.tasks_list li:hover.task .tooltip {
+  display: block;
+  -webkit-animation-name: bounce-scale;
+  -webkit-animation-duration: 0.2s;
+  -webkit-animation-iteration-count: 1;
+  -webkit-transform-origin: top right;
+}

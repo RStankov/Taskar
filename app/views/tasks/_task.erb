@@ -1,4 +1,13 @@
 <% content_tag_for(:li, task, :class => task.state + (current_user.id == task.responsible_party_id ? ' personal' : '')) do %>
+	<div class="tooltip">
+		<div class="arrow"></div>
+		<div class="actions">
+			<a href="#" class="add" data-after="<%= task.id %>"><%= t 'sections.show.add_task' %></a>
+			<%= link_to t(:'.comments', :count => task.comments.size), task %>
+			<%= link_to t(:edit), [:edit, task], :class => "edit", "data-remote" => true %>
+			<%= link_to t(:delete), task, :class => "delete", "data-remote" => true, "data-method" => "delete", "data-confirm" => t(:'.confirm') %>
+		</div>
+	</div>
   <%= task_state_checkbox(task) %>
   <p>
     <%= link_to '', archive_task_path(task, :archived => !task.archived?), :class => "archive", "data-remote" => true, "data-method" => "put" %>
@@ -6,22 +15,5 @@
     <%=h task.text %>
   </p>
   <span class="more">...</span>
-<!--  <%= time_tag task.created_at %> -->
   <input type="button" class="drag" title="<%=t :'.dnd' %>" />
-<!--  <ul>
-    <li><a href="#" class="add" data-after="<%= task.id %>">Добави задача</a></li>
-    <li><%= link_to t(:edit), [:edit, task], :class => "edit", "data-remote" => true %></li>
-    <li><%= link_to task.comments.size, task, :class => 'show', :title => t(:'.comments', :count => task.comments.size) %></li>
-    <li><%= link_to t(:delete), task, :class => "delete", "data-remote" => true, "data-method" => "delete", "data-confirm" => t(:'.confirm') %></li>
-  </ul>
--->
-	<div class="tooltip">
-		<div class="arrow"></div>
-		<div class="actions">
-			<a href="#" class="add" data-after="<%= task.id %>"><%= t 'sections.show.add_task' %></a>
-			<%= link_to t(:'.comments', :count => task.comments.size), task %>
-			<%= link_to t(:edit), [:edit, task], "data-remote" => true %>
-			<%= link_to t(:delete), task, "data-remote" => true, "data-method" => "delete", "data-confirm" => t(:'.confirm') %>
-		</div>
-	</div>
 <% end %>
