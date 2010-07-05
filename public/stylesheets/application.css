@@ -876,6 +876,7 @@ a.next_page:hover {
   background-color: #ECF3FE;
 }
 
+/*
 .tasks_list a:not(.cancel) {
   color: #00589D;
   text-decoration: none;
@@ -885,7 +886,8 @@ a.next_page:hover {
   text-decoration: underline;
 }
 
-.tasks_list .rejected, .tasks_list .completed {
+*/
+.tasks_list .rejected p, .tasks_list .rejected .checkbox, .tasks_list .completed p, .tasks_list .completed .checkbox {
   opacity: 0.6;
 }
 
@@ -906,7 +908,6 @@ a.next_page:hover {
 
 .tasks_list p {
   display: inline-block;
-  float: left;
   max-width: 615px;
 }
 
@@ -921,10 +922,11 @@ a.next_page:hover {
   display: none;
 }
 
+/*
 .tasks_list li:hover.task .more {
   display: block;
 }
-
+*/
 .tasks_list time {
   display: block;
   clear: both;
@@ -1392,9 +1394,38 @@ footer p {
 }
 
 .tooltip {
+  z-index: 100;
   position: absolute;
-  top: 100;
-  left: 100;
+  left: -140px;
+  bottom: -45px;
+}
+
+.task .tooltip {
+  display: none;
+}
+
+@-webkit-keyframes bounce-scale {
+  from {
+    -webkit-transform: scale(0);
+    -webkit-animation-timing-function: ease-out;
+  }
+
+  50% {
+    -webkit-transform: scale(1.125);
+    -webkit-animation-timing-function: ease-in;
+  }
+
+  to {
+    -webkit-transform: scale(1);
+  }
+}
+
+.tasks_list li:hover.task .tooltip {
+  display: block;
+  -webkit-animation-name: bounce-scale;
+  -webkit-animation-duration: 0.2s;
+  -webkit-animation-iteration-count: 1;
+  -webkit-transform-origin: top right;
 }
 
 .tooltip div {
@@ -1407,14 +1438,14 @@ footer p {
   position: absolute;
   width: 20px;
   height: 20px;
-  right: 15px;
-  top: -5px;
+  right: -5px;
+  top: 10px;
   background: #000;
   border: 1px solid #000;
-  -webkit-transform-origin: center;
-  -webkit-transform: rotate(45deg);
   -moz-transform-origin: center;
+  -webkit-transform-origin: center;
   -moz-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
 }
 
 .tooltip .actions {
@@ -1433,13 +1464,14 @@ footer p {
   text-decoration: none;
   padding-right: 5px;
   color: #fff;
+  display: block;
 }
 
 .tooltip a:hover {
   color: #00589D;
   text-shadow: #00589D 0px 0px 3px;
 }
-
+/*
 .tooltip a:not(:first-child):before {
   content: "";
   display: inline-block;
@@ -1449,3 +1481,4 @@ footer p {
   font-weight: normal;
   border-left: 1px solid #eee;
 }
+*/
