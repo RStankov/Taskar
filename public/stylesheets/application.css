@@ -1199,8 +1199,11 @@ footer p {
 
 #task_content {
   margin: 20px;
-  padding: 10px;
   position: relative;
+}
+
+#task_content .content {
+  padding: 10px;
   background: #ECF3FE;
   border-radius: 5px;
   -moz-border-radius: 5px;

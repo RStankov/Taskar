@@ -1,6 +1,8 @@
-<div class="actions">
-  <%= link_to t(:edit), [:edit, @task], :class => "edit", :'data-remote' => true %>
-  <%= link_to_delete t(:delete), @task, :class => "delete", :confirm => t(:'tasks.task.confirm') %>
+<div class="content">
+	<div class="actions">
+  	<%= link_to t(:edit), [:edit, @task], :class => "edit", :'data-remote' => true %>
+  	<%= link_to_delete t(:delete), @task, :class => "delete", :confirm => t(:'tasks.task.confirm') %>
+	</div>
+	<%= task_state_checkbox(@task) %>
+	<%= simple_format h(@task.text) %>
 </div>
-<%= task_state_checkbox(@task) %>
-<%= simple_format h(@task.text) %>
