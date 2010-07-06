@@ -4,7 +4,11 @@
         comment = $('comment_<%= @comment.id %>');
         
     if (comment){
-      comment.replace(content);
+			comment.morph({
+				change: function(){
+	      	comment.replace(content);
+				}
+			});
     } else {
       Taskar.Sections.resetForm($('new_comment').down('form'));
       $('comments').show().down('ul').insert({bottom: content});
