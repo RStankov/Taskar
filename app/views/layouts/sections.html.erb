@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <%= csrf_meta_tag %>
   <title><%=t :project %>: <%= @project.name %><%= " / #{@section.name}" if @section %></title>
   <%= stylesheet_link_tag 'application' %>
-  <%= csrf_meta_tag %>
 </head>
 <body>
   <% content_for :header do %><%= @project.name  %>
