@@ -1558,3 +1558,32 @@ header .actions a:hover {
   list-style: circle;
 }
 
+#users_list li {
+  display: inline-block;
+  margin: 1px;
+  padding: 10px;
+  height: 45px;
+  float: left;
+  
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
+#users_list li:hover {
+  margin: 0px;
+  border: 1px solid #eee;
+}
+
+#users_list img {
+  float: left;
+  border-right: 1px solid #eee;
+  padding-right: 5px;
+  margin-right: 5px;
+}
+
+#users_list em {
+  font-size: 10px;
+  color: #CC0000;
+}
+
