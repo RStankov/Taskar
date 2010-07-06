@@ -1151,6 +1151,12 @@ footer p {
   color: #5C5C5C;
 }
 
+.action_form h3 {
+  text-shadow: #fff 1px 1px 1px;
+  color: #5C5C5C;
+  margin: 10px 0 10px 0;
+}
+
 .action_form textarea {
   display: block;
   width: 100%;
