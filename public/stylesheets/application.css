@@ -21,6 +21,10 @@ a {
   color: #5C5C5C;
 }
 
+a:hover {
+  text-decoration: none;
+}
+
 header, nav, section, article, aside, footer {
   display: block;
 }
