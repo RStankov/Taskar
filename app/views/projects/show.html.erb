@@ -17,7 +17,7 @@
 		</ul>
 	<% end %>
 	
-	<% if @project.sections %>
+	<% if @project.sections[0] %>
 	<h3><%=t :'projects.sections' %></h3>
 	<ul>
 	  <% @project.sections.each do |section| %>
