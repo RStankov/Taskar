@@ -7,7 +7,7 @@ module Paperclip
         :styles            => {},
         :processors        => [:thumbnail],
         :convert_options   => {},
-        :default_url       => "/:attachment/:style/missing.png",
+        :default_url       => "/images/missing/:class/:attachment_:style.png",
         :default_style     => :original,
         :storage           => :filesystem,
         :whiny             => Paperclip.options[:whiny] || Paperclip.options[:whiny_thumbnails]
