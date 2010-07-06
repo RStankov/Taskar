@@ -14,11 +14,11 @@
 </header>
 
 <div id="content">
-	<% if @user.avatar? %>
-	  <%= image_tag @user.avatar.url %>
-	<% end %>
-
 	<p>
+		<% if @user.avatar? %>
+		  <%= image_tag @user.avatar.url, :style => 'float: right' %>
+		<% end %>
+		
 		<strong><%= User.human_attribute_name(:first_name) %>:</strong>
 	  <%= @user.first_name %>
 		<br />
