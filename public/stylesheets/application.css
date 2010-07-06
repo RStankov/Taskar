@@ -17,6 +17,10 @@ textarea {
     resize: none;
 }
 
+a {
+  color: #5C5C5C;
+}
+
 header, nav, section, article, aside, footer {
   display: block;
 }
@@ -1489,3 +1493,58 @@ footer p {
 #login_box a:hover {
   text-decoration: underline;
 }
+
+header .actions {
+  margin-top: -24px;
+  float: right;
+}
+
+header .actions li {
+  display: inline-block;
+}
+
+header .actions a {
+  text-decoration: none;
+  background: #E0E0E0;
+  background: -moz-linear-gradient(top, #E0E0E0, #B3B3B3);
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#E0E0E0), to(#B3B3B3), color-stop(1,#333333));
+  text-shadow: 1px 1px 1px #fff;
+  color: #000;
+  font-size: 14px;
+  padding: 5px;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border: 1px solid #B3B3B3;
+}
+
+header .actions a:hover {
+  border: 1px solid black;
+  margin: 0px;
+  color: black;
+}
+
+
+#content {
+  padding: 0 20px 20px;
+}
+
+#content p {
+  background: #ECF3FE;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  padding: 10px;
+}
+
+#content h2 {
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+#content ul {
+  padding-left: 20px;
+  margin: 10px;
+  list-style: circle;
+}
+

@@ -1,33 +1,40 @@
 <header>
 	<h1><%=h @user.full_name %></h1>
+	<ul class="actions">
+	<% if current_user != @user %>
+		<li>
+			<% link_to set_admin_user_path(@user, :admin => !@user.admin?), :'data-method' => "put" do %>
+	   		<%= check_box_tag '', '', @user.admin? %> <%=t :'users.admin' %>
+	 		<% end %>
+		</li>
+	<% end %>
+		<li><%= link_to t(:edit), [:edit, @user] %></li>
+		<li><% link_to_delete @user, :confirm => t(:'users.confirm') do %><%= t(:delete) %><% end %></li>
+	</ul>
 </header>
 
-<%= link_to t(:edit), [:edit, @user] %> | 
-<% link_to_delete @user, :confirm => t(:'users.confirm') do %>
-   <%= t(:delete) %>
-<% end %>
-<% if current_user != @user %>
-  |
-	<% link_to set_admin_user_path(@user, :admin => !@user.admin?), :'data-method' => "put" do %>
-   	<%= check_box_tag '', '', @user.admin? %><%=t :'users.admin' %>
- 	<% end %>
-<% end %>
-<br />
+<div id="content">
+	<% if @user.avatar? %>
+	  <%= image_tag @user.avatar.url %>
+	<% end %>
 
-<% if @user.avatar? %>
-  <%= image_tag @user.avatar.url %>
-<% end %>
+	<p>
+		<strong><%= User.human_attribute_name(:first_name) %>:</strong>
+	  <%= @user.first_name %>
+		<br />
+		<strong><%= User.human_attribute_name(:last_name) %>:</strong>
+	  <%= @user.last_name %>
+		<br />
+	  <strong><%= User.human_attribute_name(:email) %>:</strong>
+	  <%= @user.email %>
+	</p>
 
-<p>
-  <strong><%= User.human_attribute_name(:email) %>:</strong>
-  <%= @user.email %>
-</p>
-
-<% if @user.projects[0] %>
-	<h3><%=t :'users.projects', :name => @user.full_name %></h3>
-	<ul>
-	  <% @user.projects.each do |project| %>
-	    <li><%= link_to h(project.name), [project, :sections] %></li>
-	  <% end %>
-	</ul>
-<% end %>
+	<% if @user.projects[0] %>
+		<h2><%=t :'users.projects', :name => @user.full_name %>:</h2>
+		<ul>
+		  <% @user.projects.each do |project| %>
+		    <li><%= link_to h(project.name), [project, :sections] %></li>
+		  <% end %>
+		</ul>
+	<% end %>
+</div>
