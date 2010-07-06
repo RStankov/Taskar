@@ -7,9 +7,10 @@
    <%= t(:delete) %>
 <% end %>
 <% if current_user != @user %>
-  | <% link_to set_admin_user_path(@user, :admin => !@user.admin?), :'data-method' => "put", :'data-token' => form_authenticity_token do %>
-    <%= check_box_tag '', '', @user.admin? %><%=t :'users.admin' %>
-  <% end %>
+  |
+	<% link_to set_admin_user_path(@user, :admin => !@user.admin?), :'data-method' => "put" do %>
+   	<%= check_box_tag '', '', @user.admin? %><%=t :'users.admin' %>
+ 	<% end %>
 <% end %>
 <br />
 
