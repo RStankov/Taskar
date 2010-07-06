@@ -23,9 +23,11 @@
   <%= @user.email %>
 </p>
 
-<h3><%=t :'users.projects', :name => @user.full_name %></h3>
-<ul>
-  <% @user.projects.each do |project| %>
-    <li><%= link_to h(project.name), [project, :sections] %></li>
-  <% end %>
-</ul>
+<% if @user.projects[0] %>
+	<h3><%=t :'users.projects', :name => @user.full_name %></h3>
+	<ul>
+	  <% @user.projects.each do |project| %>
+	    <li><%= link_to h(project.name), [project, :sections] %></li>
+	  <% end %>
+	</ul>
+<% end %>
