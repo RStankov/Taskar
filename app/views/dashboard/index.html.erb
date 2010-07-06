@@ -2,23 +2,25 @@
   <h1><%=t :'layouts.dashboard.header' %></h1>
 </header>
 
-<% @projects.each do |project| %>
-  <h2><%= link_to project.name, [project, :sections] %></h2>
-  <table id="events">
-    <% project.events.all(:limit => 20).each do |event| %>
-      <tr>
-        <td><span class="<%= event.type  %>"><%=t "events.subject.#{event.type}" %></span></td>
-        <td class="user"><%= event.user.full_name %></td>
-        <td class="<%= event.action %>"><%=t "events.action.#{event.action}" %></td>
-        <td class="<%= event.action %>">
-          <% if event.linkable?%>
-            <%= link_to truncate(event.info, :length => 40), event.url_options %>
-          <% else %>
-            <%= truncate(event.info, :length => 40) %>
-          <% end %>
-        </td>
-        <td><%= t(:before, :time => time_ago_in_words(event.updated_at)) %></td>
-      </tr>
-    <% end %>    
-  </table>
-<% end %>
+<table id="events" colspan="0" rowspan="0" width="100%">
+	<% @projects.each do |project| %>
+	  <tr>
+      <th colspan="4"><h2><%= link_to project.name, [project, :sections] %></h2></th>
+    </tr>
+    <% project.events.all(:limit => 10).each do |event| %>
+	    <tr>
+	      <td><span class="<%= event.type  %>"><%=t "events.subject.#{event.type}" %></span></td>
+	      <td class="<%= event.action %>" title="<%= t(:before, :time => time_ago_in_words(event.updated_at)) %>">
+	        <% if event.linkable?%>
+	          <%= link_to truncate(event.info, :length => 65), event.url_options %>
+	        <% else %>
+	          <%= truncate(event.info, :length => 65) %>
+	        <% end %>
+	      </td>  
+	        <td class="action"><%=t "events.action.#{event.action}" %></td>
+	        <td class="user"><%= event.user.full_name %></td>
+	    </tr>
+		<% end %>
+  <% end %>
+</table>
+
