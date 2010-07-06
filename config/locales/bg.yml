@@ -47,6 +47,9 @@ bg:
       current_projects: "Проекти в които участвате (%{count})"
     
   
+  sessions:
+    title: "Вход"
+  
   projects:
     participants: "Участници в проекта"
     sections: "Секции"

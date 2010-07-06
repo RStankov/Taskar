@@ -33,6 +33,7 @@ bg:
             password_confirmation: "Потвърди паролата"
             avatar: "Снимка"
             admin: "Администратор"
+            remember_me: "Запомни ме"
           
           comment:
             task_id: "Задача"

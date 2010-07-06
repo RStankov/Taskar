@@ -2,11 +2,10 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Taskar login</title>
+    <title><%= t 'sessions.title' %></title>
+  	<%= stylesheet_link_tag 'application' %>
   </head>
-  <body>
-    <%= '<p style="color: green">' + notice + '</p>' if notice %>
-    <%= '<p style="color: red">' + alert + '</p>' if alert %>
+  <body id="session_page">
     <%= yield %>
   </body>
 </html>
