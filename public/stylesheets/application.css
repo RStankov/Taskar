@@ -1605,3 +1605,27 @@ header .actions a:hover {
   color: #CC0000;
 }
 
+aside .aside_section h3 {
+  border-bottom: 1px solid #D7D7D7;
+  font-size: 14px;
+  font-weight: normal;
+  margin: 0;
+  padding: 15px 0 5px;
+}
+
+aside .aside_section ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 10px 20px;
+  list-style: circle;
+}
+
+aside .aside_section a {
+  font-size: 12px;
+  text-decoration: none;
+}
+
+aside .aside_section a:hover {
+  text-decoration: underline;
+  color: #000;
+}

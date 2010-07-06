@@ -22,8 +22,8 @@ bg:
       users: "Потребители (%{count})"
       new_user: "Добави потребител"
       manage_users: "Менажирай"
-      current_projects: "Текущи проекти (%{count})"
-      project_settings: "Настройки"
+      current_projects: "Проекти (%{count})"
+      project_settings: "настройки"
       new_project: "Добави нов проект"
     
     sections:
