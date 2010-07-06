@@ -14,7 +14,7 @@
     </article>
     <aside>
       <% if current_user.admin? %>
-      <div>
+      <div class="aside_section">
         <h3><%=t :".manage"  %></h3>
         <ul>
           <li><%= link_to t(:'users.title'), users_path %></li>
@@ -22,7 +22,7 @@
         </ul>
       </div>
       <% end %>
-      <div>
+      <div class="aside_section">
         <h3><%=t :".current_projects", :count => @projects.size  %></h3>
         <ul>
           <% @projects.each do |project| %>
