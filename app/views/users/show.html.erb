@@ -18,10 +18,6 @@
   <%= image_tag @user.avatar.url %>
 <% end %>
 
-<% if @user.admin? %>
-  <div class="admin_banner"><%=t :'activerecord.attributes.user.admin' %></div>
-<% end %>
-
 <p>
   <strong><%= User.human_attribute_name(:email) %>:</strong>
   <%= @user.email %>

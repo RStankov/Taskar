@@ -1331,21 +1331,6 @@ footer p {
   font-size: 16px;
 }
 
-.admin_banner {
-	color: red;
-	border: 2px dotted red;
-	padding: 10px;
-	width: 170px;
-	text-align: center;
-	font-weight: bold;
-	float: right;
-  border-radius: 5px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-	-moz-transform: rotate(30deg);
-	-webkit-transform: rotate(30deg);
-}
-
 @-webkit-keyframes bounce-scale {
   from {
     -webkit-transform: scale(0);
