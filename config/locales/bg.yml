@@ -53,6 +53,7 @@ bg:
   projects:
     participants: "Участници в проекта"
     sections: "Секции"
+    archived_section: "aхивирана"
     confirm: "Сигруни ли сте, че искате да изтриете този проект?"
     new_project: "Нов проект"
     edit_project: "Промяна на прект"

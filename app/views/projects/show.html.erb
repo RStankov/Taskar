@@ -1,23 +1,29 @@
 <header>
 	<h1><%=h @project.name %></h1>
+	<ul class="actions">
+	  <li><%= link_to t(:view), project_sections_path(@project) %></li>
+	  <li><%= link_to t(:edit), edit_project_path(@project) %></li>
+	  <li><%= link_to_delete t(:delete), @project, :confirm => t(:'projects.confirm') %></li>
+	</ul>
 </header>
 
-<p>
-  <%= link_to t(:view), project_sections_path(@project) %> |
-  <%= link_to t(:edit), edit_project_path(@project) %> |
-  <%= link_to_delete t(:delete), @project, :confirm => t(:'projects.confirm') %>
-</p>
+<div id="content">
+	<% if @project.users[0] %>
+		<h3><%=t :'projects.participants' %></h3>
+		<ul>
+		  <% @project.users.each do |user| %>
+		    <li><%= link_to h(user.full_name), user %></li>
+		  <% end %>
+		</ul>
+	<% end %>
+	
+	<% if @project.sections %>
+	<h3><%=t :'projects.sections' %></h3>
+	<ul>
+	  <% @project.sections.each do |section| %>
+	    <li><%= link_to h(section.name), section %><%= " <small>(#{t('projects.archived_section')})</small>" if section.archived? %></li>
+	  <% end %>
+	</ul>
+	<% end %>
+</div>
 
-<h3><%=t :'projects.participants' %></h3>
-<ul>
-  <% @project.users.each do |user| %>
-    <li><%= link_to h(user.full_name), user %></li>
-  <% end %>
-</ul>
-
-<h3><%=t :'projects.sections' %></h3>
-<ul>
-  <% @project.sections.each do |section| %>
-    <li><%= link_to h(section.name), section %></li>
-  <% end %>
-</ul>
