@@ -1456,14 +1456,17 @@ footer p {
 }
 
 #login_box h1 {
-	background-color: #E3F1FA;
-	border-bottom: 1px solid #C6E4F2;
+  text-align: center;
 	font-size: 18px;
 	padding: 20px 20px 10px;
 	text-shadow: 1px 1px 1px #FFFFFF;
 	border-radius: 5px 5px 0 0;
 	-webkit-border-radius: 5px 5px 0 0;
 	-moz-border-radius: 5px 5px 0 0;
+	
+  box-shadow: 0px 10px 10px -10px #888;
+  -moz-box-shadow: 0px 10px 10px -10px #888;
+  -webkit-box-shadow: 0px 10px 10px -10px #888;
 }
 
 #login_box input[type="text"], #login_box input[type="password"] {
