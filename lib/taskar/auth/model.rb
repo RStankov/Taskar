@@ -1,13 +1,9 @@
 module Taskar
   module Auth
     module Model
-      def self.included(model)        
-        model.class_eval do
-          before_save :downcase_email
-          
-          devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable, :registerable
-        end
-      
+      def self.included(model)
+        model.send(:before_save, :downcase_email)
+        model.send(:devise, :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable, :registerable)
         model.extend(ClassMethods)
         model.send(:include, InstanceMethods)
       end
