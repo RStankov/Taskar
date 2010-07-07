@@ -53,42 +53,7 @@ describe Task do
       
       task_0.position.should == 1
     end
-    
-#    describe "insert_before property" do
-#      before do
-#        @task_1 = create_next_task
-#        @task_2 = create_next_task
-#        @task_3 = create_next_task
-#      end
-#      
-#      it "should be inserted before 1" do
-#        @task = Factory(:task, :section_id => @section.id, :insert_before => @task_1.id)
-#        
-#        should_have_order_of(@task, @task_1, @task_2, @task_3)
-#      end
-#      
-#      
-#      it "should be inserted before 2" do
-#        @task = Factory(:task, :section_id => @section.id, :insert_before => @task_2.id)
-#        
-#        should_have_order_of(@task_1, @task, @task_2, @task_3)
-#      end
-#      
-#      
-#      it "should be inserted before 3" do
-#        @task = Factory(:task, :section_id => @section.id, :insert_before => @task_3.id)
-#        
-#        should_have_order_of(@task_1, @task_2, @task, @task_3)
-#      end
-#
-#      it "should be inserted last" do
-#        @task = Factory(:task, :section_id => @section.id, :insert_before => nil)
-#
-#        should_have_order_of(@task_1, @task_2, @task_3, @task)
-#      end
-#      
-#    end
-    
+
     describe "insert_after property" do
       before do
         @task_1 = create_next_task
