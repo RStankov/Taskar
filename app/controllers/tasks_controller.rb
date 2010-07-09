@@ -3,9 +3,13 @@ class TasksController < ApplicationController
   
   before_filter :get_task_and_project, :only => [:show, :edit, :update, :destroy, :state, :archive]
   before_filter :get_section_and_project, :only => [:create, :archived]
-  before_filter :get_project, :only => [:search, :reorder]
+  before_filter :get_project, :only => [:index, :search, :reorder]
   before_filter :check_project_permissions
   before_filter :ensure_task_is_editable, :only => [:edit, :update]
+  
+  def index
+    @tasks = current_user.responsibilities.opened_in_project(@project)
+  end
   
   def show
     @section = @task.section

@@ -8,6 +8,27 @@ describe TasksController do
       controller.should_receive(:activity).with(mock_task)
     end
 
+    describe "GET index" do
+      before do
+        Project.should_receive(:find).with("1").and_return(mock_project)
+        
+        tasks = [mock_task]
+        
+        @current_user.should_receive(:responsibilities).and_return(tasks)
+        
+        tasks.should_receive(:opened_in_project).with(mock_project).and_return(tasks)
+         
+        get :index, :project_id => "1"
+      end
+      
+      
+      it "should assign tasks as @tasks" do
+        assigns[:tasks].should == [mock_task]
+      end
+      
+      it { should render_template(:index) }
+    end
+
     describe "GET show" do
       before do
         Task.stub(:find).with("37").and_return(mock_task)
@@ -344,6 +365,7 @@ describe TasksController do
     end
 
     {
+      :index      => 'get(:index, :project_id => "1")',
       :reorder    => 'get(:reorder, :project_id => "1")',
       :search     => 'get(:search, :project_id => "1")'
     }.each do |(action, code)|
