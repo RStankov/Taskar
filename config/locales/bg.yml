@@ -81,6 +81,7 @@ bg:
       toggle_archive: "Архив"
       archive: "Архив"
       more: "Действия"
+      print: "Принтирай"
     
   
   tasks:
