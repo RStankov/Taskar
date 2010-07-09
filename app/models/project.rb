@@ -7,7 +7,8 @@ class Project < ActiveRecord::Base
   
   has_many :users, :through => :participants
   
-  validates_presence_of :name
+  validates_presence_of     :name
+  validates_uniqueness_of   :name, :case_sensitive => false
   
   attr_accessible :name, :user_ids
   
