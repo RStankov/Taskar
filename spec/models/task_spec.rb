@@ -291,4 +291,18 @@ describe Task do
     end
   end
 
+  describe "opened_in_project" do
+    it "should return opened tasks in a project" do
+      project = Factory(:project)
+      section = Factory(:section, :project => project)
+      
+      Factory(:task)
+      Factory(:task, :section => section, :status => 1)
+      Factory(:task, :section => section, :status => -1)
+      
+      task = Factory(:task, :section => section, :status => 0)
+      
+      Task.opened_in_project(project).should == [task]
+    end
+  end
 end

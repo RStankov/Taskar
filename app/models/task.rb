@@ -23,8 +23,9 @@ class Task < ActiveRecord::Base
   
   validate :ensure_section_is_not_archived, :if => :new_record?
   
-  named_scope :archived,   :conditions => { :archived => true  }, :order => "position DESC"
-  named_scope :unarchived, :conditions => { :archived => false }, :order => "position ASC"
+  named_scope :archived,          :conditions => { :archived => true  }, :order => "position DESC"
+  named_scope :unarchived,        :conditions => { :archived => false }, :order => "position ASC"
+  named_scope :opened_in_project, lambda { |project| {:conditions => {:project_id => project.id, :status => 0}} }
   
   STATES = {
     -1 => "rejected",
