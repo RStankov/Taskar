@@ -79,9 +79,15 @@ describe User do
   end
 
   it "should have full_name witch is first_name + last_name" do 
-    user = Factory(:user, {:first_name => 'Radoslav', :last_name => 'Stankov'})
+    user = Factory.build(:user, {:first_name => 'Radoslav', :last_name => 'Stankov'})
     user.full_name.should == "Radoslav Stankov"
   end
+  
+  it "should have short_name witch is first_name + first letter of the last_name" do
+    user = Factory.build(:user, {:first_name => 'Radoslav', :last_name => 'Stankov'})
+    user.short_name.should == "Radoslav S."
+  end
+  
 
   describe "new_comment" do
     it "should build new comment from task, assign user.id to it" do
