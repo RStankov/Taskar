@@ -21,23 +21,25 @@
   <%= render "shared/header" %>
   <nav id="nav_main">
     <%= link_to '', [@project, :sections], :id => "goto_dashboard", :title => t(:".goto_dashboard")  %>
-    <ul id="nav_sections" data-sortable="<%= reorder_project_sections_path(@project.id) %>">
-      <% @project.sections.unarchived.each do |section| %>
-        <%= new_section_link(section) %>
-        <% content_tag_for(:li, section) do %>
-            <%= link_to h(section.name), section, :class => @section == section ? "selected" : nil %>
-        <% end %>
-      <% end %>
-      <%= new_section_link %>
-      <li id="new_section" style="display:none;">
-        <% form_for [@project, Section.new], :html => {:id => nil} do |form|  %>
-          <%= form.text_field :name, :autocomplete => "off", :placeholder => Section.human_attribute_name(:name) %>
-          <%= form.hidden_field :insert_before %>
-          <%= form.submit t(:create) %>
-          <input type="button" value="<%= t(:cancel) %>" />
-        <% end %>
-      </li>
-    </ul>
+		<div id="nav_sections">
+    	<ul data-sortable="<%= reorder_project_sections_path(@project.id) %>">
+	      <% @project.sections.unarchived.each do |section| %>
+	        <%= new_section_link(section) %>
+	        <% content_tag_for(:li, section) do %>
+	            <%= link_to h(section.name), section, :class => @section == section ? "selected" : nil %>
+	        <% end %>
+	      <% end %>
+	      <%= new_section_link %>
+	      <li id="new_section" style="display:none;">
+	        <% form_for [@project, Section.new], :html => {:id => nil} do |form|  %>
+	          <%= form.text_field :name, :autocomplete => "off", :placeholder => Section.human_attribute_name(:name) %>
+	          <%= form.hidden_field :insert_before %>
+	          <%= form.submit t(:create) %>
+	          <input type="button" value="<%= t(:cancel) %>" />
+	        <% end %>
+	      </li>
+	    </ul>
+		</div>
     <div id="nav_more_sections">
       <% if @project.sections.archived[0] %>
         <span title="<%=t :'.archived_sections' %>"></span>

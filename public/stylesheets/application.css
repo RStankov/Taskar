@@ -229,11 +229,13 @@ a img {
   overflow: hidden;
 }
 
+
 #nav_sections {
+  width: 900px;
+  height: 40px;
+  overflow: hidden;
   float: left;
   font-size: 14px;
-  overflow: hidden;
-  width: 900px;
 }
 
 #nav_sections li {
