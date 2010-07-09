@@ -3,7 +3,7 @@ Taskar.Sections.Aside = function(aside){
   
   function updateAside(t){
     var data  = t.responseJSON || {},
-        count = $('user_card').down('span');
+        count = $('user_card').down('a');
         
     if (count.innerHTML != data.responsibilities_count){
       count.morph('opacity:0', function(e){

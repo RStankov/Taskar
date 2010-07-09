@@ -5,6 +5,7 @@ CD3.Behaviors({
                           },
   '#section_title':       Taskar.Sections.Title,
   '#sections_show':       Taskar.Sections.Actions,
+  '#tasks_index':         Taskar.Sections.Actions,
   '#section_aside':       Taskar.Sections.Aside,
   '#tasks':               Taskar.Sections.initTaskList,
   '#tasks_show':          Taskar.Sections.Comments,

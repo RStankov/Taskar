@@ -111,6 +111,9 @@ bg:
       comments: "Коментари <small>(%{count})</small>"
       no_results_found: "Няма намерени задачи"
     
+    index:
+      title: "Задачи за вас"
+    
     form:
       text: "Какво има да се прави:"
       create: "Добави задачата"

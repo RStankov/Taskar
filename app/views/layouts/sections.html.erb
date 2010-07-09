@@ -63,7 +63,7 @@
       <div id="user_card">
         <%= image_tag current_user.avatar.url %>
         <strong><%= current_user.full_name %></strong>
-        <span><%=t :".tasks", :count => current_user.responsibilities_count(@project.id) %></span>
+				<%= link_to t(:".tasks", :count => current_user.responsibilities_count(@project.id)), [@project, :tasks] %>
       </div>
       <div id="people_envolved">
         <h3>

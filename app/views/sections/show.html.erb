@@ -6,7 +6,7 @@
       <%= link_to_delete t(:delete), @section, :class => "delete", :confirm => t(:'.confirm') %>
     </h1>
   </header>
-  <ul class="tasks_list">
+  <ul class="tasks_list static">
     <% @section.tasks.archived.each do |task| %>
       <% content_tag_for(:li, task, :class => task.state + (current_user.id == task.responsible_party_id ? ' personal' : '')) do %>
         <%= task_state_checkbox(task) %>
