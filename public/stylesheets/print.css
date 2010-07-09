@@ -1,0 +1,64 @@
+* {
+  color: #000;
+  font-family: Arial, Helvetica, Verdana;
+  font-size: 12px;
+}
+
+html, body {
+  margin: 0 auto;
+  padding: 0;
+}
+
+body {
+  width: 780px;
+}
+
+h1 {
+  font-size: 12px;
+}
+
+h2 {
+  font-size: 18px;
+}
+
+ul {
+  border-top: 2px solid #000;
+  padding: 0px;
+  margin: 0px;
+  list-style: none;
+  clear: both;
+}
+
+li {
+  border-bottom: 1px solid #eee;
+  padding: 10px;
+}
+
+.checkbox {
+  border: 1px solid #000;
+  display: inline-block;
+  height: 15px;
+  width: 15px;
+  position: relative;
+  top: 3px;
+}
+
+.checkbox.completed:after {
+  content: "✔";
+  margin: -2px 0 0 1px;
+}
+
+.checkbox.rejected:after {
+  content: "✘";
+  margin: -2px 0 0 3px;
+}
+
+input {
+  float: right;
+}
+
+@media print {
+  input {
+    display: none;
+  }
+}

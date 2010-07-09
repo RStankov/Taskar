@@ -1,2 +1,14 @@
 <h1><%= @project.name %></h1>
 <h2><%= @section.name %></h2>
+
+<ul>
+  <% @tasks.each do |task| %>
+    <li>
+      <%= task_state_checkbox(task) %>
+      <% if task.responsible_party %><strong><%= task.responsible_party.full_name %></strong><% end %>
+      <%=h task.text %>
+    </li>
+  <% end %>
+</ul>
+
+<input type="button" onclick="print();" value="<%= t '.print' %>" />
