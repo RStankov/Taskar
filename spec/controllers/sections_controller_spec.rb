@@ -26,6 +26,7 @@ describe SectionsController do
     describe "GET show" do
       before do
         Section.stub(:find).with("37").and_return(mock_section(:archived? => false))
+        mock_section.should_receive(:current_tasks).and_return([mock_task])
       end
       
       describe "normal format" do
@@ -41,12 +42,28 @@ describe SectionsController do
           assigns[:project].should == mock_project
         end
         
+        it "assigns current tasks as @tasks" do
+          assigns[:tasks].should == [mock_task]
+        end
+        
         it { should render_template("show.html") }
       end
       
       describe "print version" do
         before do
           get :show, :id => "37", :format => "print"
+        end
+        
+        it "assigns the requested section as @section" do
+          assigns[:section].should == mock_section
+        end
+
+        it "assigns project as @project" do
+          assigns[:project].should == mock_project
+        end
+        
+        it "assigns current tasks as @tasks" do
+          assigns[:tasks].should == [mock_task]
         end
         
         it { should render_template("show.print") }

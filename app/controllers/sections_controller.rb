@@ -8,6 +8,7 @@ class SectionsController < ApplicationController
   end
 
   def show
+    @tasks = @section.current_tasks
   end
 
   def new
