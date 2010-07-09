@@ -2,8 +2,7 @@ CD3.Behaviors({
   '#nav_sections ul':     function(){
                             Taskar.Sections.NewForm(this);
                             Taskar.Sections.Ordering(this);
-                            
-                            this.style.width = this.select('li').invoke('getWidth').reduce(function(s, v){return s+=v}) + 'px';
+                            Taskar.Sections.Slider(this);
                           },
   '#section_title':       Taskar.Sections.Title,
   '#sections_show':       Taskar.Sections.Actions,
