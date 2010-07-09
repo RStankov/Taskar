@@ -229,6 +229,9 @@ a img {
   overflow: hidden;
 }
 
+#new_section form {
+  width: 230px;
+}
 
 #nav_sections {
   width: 900px;
