@@ -983,10 +983,6 @@ a.next_page:hover {
   border-top: 1px solid #EEE;
 }
 
-#archived_tasks .task .drag, #archived_tasks .task .add {
-  display: none;
-}
-
 #archived_tasks .task .edit, .task.completed .edit, .task.rejected .edit {
   display: none;
 }
@@ -1011,6 +1007,14 @@ a.next_page:hover {
 }
 
 .tasks_list.dragging .tooltip, .tasks_list.dragging .drag, .tasks_list.dragging .more {
+  visibility: hidden;
+}
+
+.static .add {
+  display: none;
+}
+
+.static .task .drag {
   visibility: hidden;
 }
 
@@ -1215,7 +1219,7 @@ footer p {
 
 /*** TASKS/SHOW ***/
 
-#task_title {
+#task_title, #tasks_index h1 {
   background: url(../images/i.png) 0px -76px no-repeat;
   font-size: 16px;
 }
@@ -1421,6 +1425,7 @@ footer p {
   left: -135px;
   top: 0px;
   display: none;
+  min-width: 130px;
 }
 
 .task .tooltip .arrow {
