@@ -1,8 +1,8 @@
 CD3.Behaviors({
   '#nav_sections ul':     function(){
-                            Taskar.Sections.NewForm(this);
-                            Taskar.Sections.Ordering(this);
                             Taskar.Sections.Slider(this);
+                            Taskar.Sections.Ordering(this);
+                            Taskar.Sections.NewForm(this);
                           },
   '#section_title':       Taskar.Sections.Title,
   '#sections_show':       Taskar.Sections.Actions,

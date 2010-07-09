@@ -4,11 +4,7 @@ Taskar.Sections.Slider = function(element){
       maxWidth    = container.getWidth(),
       leftRange   = 300,
       rightRange  = maxWidth - leftRange;
-  
-  if (width <= maxWidth){
-    return;
-  }
-  
+
   element.style.width = width + 'px';
   
   var slide = new PeriodicalExecuter(function(timer){

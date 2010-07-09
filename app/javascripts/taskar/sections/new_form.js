@@ -4,9 +4,10 @@ Taskar.Sections.NewForm = function(container){
   container.on('key:esc',   'form',               hide);
   container.on('submit',    'form',               Taskar.Sections.validateForm);
   
-  var form   = $('new_section'),
-      width  = form.getWidth(),
-      appear = new S2.FX.Style(form, {
+  var form    = $('new_section'),
+      restore = container.style.width,
+      width   = (parseInt(container.style.width) + 238) + 'px',
+      appear  = new S2.FX.Style(form, {
         before: function(e){ form.setStyle({ width: '0px', opacity: 0.0 }); },
         after:  function(e){ form.down('input[type=text]').focus(); }
       });
@@ -27,6 +28,8 @@ Taskar.Sections.NewForm = function(container){
     element.show.bind(element).defer();
     element.insert({before: form});
     
+    container.style.width = width;
+    
     form.show();
     
     appear.play(null, {style: 'opacity:1; width:' + form.getWidth() + 'px'});
@@ -34,6 +37,7 @@ Taskar.Sections.NewForm = function(container){
   
   function hide(){
     form.hide();
+    container.style.width = restore;
   }
   
   if (container.select('.section').length == 0){
