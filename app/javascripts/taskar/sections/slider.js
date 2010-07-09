@@ -1,10 +1,9 @@
 Taskar.Sections.Slider = function(element){
-  var width       = element.select('li.section').invoke('getWidth').reduce(function(s, v){ return s += v }),
-      parent      = element.up(),
-      maxWidth    = parent.getWidth(),
+  var width       = element.select('li.section').invoke('getWidth').reduce(function(s, v){ return s += v + 10; }),
+      container   = element.up(),
+      maxWidth    = container.getWidth(),
       leftRange   = 300,
-      rightRange  = maxWidth - leftRange,
-      minSlide    = maxWidth - width;
+      rightRange  = maxWidth - leftRange;
   
   if (width <= maxWidth){
     return;
@@ -13,8 +12,7 @@ Taskar.Sections.Slider = function(element){
   element.style.width = width + 'px';
   
   var slide = new PeriodicalExecuter(function(timer){
-    var position = (parseInt(element.style.marginLeft, 10) || 0) - timer.speed * 10;
-    element.style.marginLeft = position.constrain(minSlide, 0) + 'px';
+    container.scrollLeft += timer.speed * 10;
   }, 0.05);
   slide.start = function(speed){
     this.speed = speed;
@@ -24,7 +22,7 @@ Taskar.Sections.Slider = function(element){
   
   
   element.observe('mousemove', function(e){
-    var left = e.pointerX() - parent.offsetLeft;
+    var left = e.pointerX() - container.offsetLeft;
     if (left < leftRange){
       slide.start((left - leftRange)/leftRange)
     } else if (left > rightRange){
