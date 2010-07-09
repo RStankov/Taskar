@@ -23,4 +23,12 @@ class Section < ActiveRecord::Base
       super(archived ? true : false)
     end
   end
+  
+  def current_tasks
+    if archived?
+      tasks.archived
+    else
+      tasks.unarchived
+    end
+  end
 end

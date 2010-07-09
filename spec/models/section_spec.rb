@@ -129,4 +129,22 @@ describe Section do
     end
   end
 
+  describe "current_tasks" do
+    before do
+      @section = Factory(:section)
+      
+      @unarchived_task  = Factory(:task, :section => @section, :status => 1)
+      @archived_task    = Factory(:task, :section => @section, :status => 1, :archived => true)
+    end
+    
+    it "should return archived tasks if section is archived" do
+      @section.stub!(:archived?).and_return true
+      @section.current_tasks.should == [@archived_task]
+    end
+    
+    it "should return unachived tasks if section is not actived" do
+      @section.stub!(:archived?).and_return false
+      @section.current_tasks.should == [@unarchived_task]
+    end
+  end
 end
