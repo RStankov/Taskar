@@ -1,10 +1,11 @@
-Taskar.Sections.NewForm = function(sectionsBar){
-  sectionsBar.on('click',     '.add_section',       show);
-  sectionsBar.on('click',     'input[type=button]', hide);
-  sectionsBar.on('key:esc',   'form',               hide);
-  sectionsBar.on('submit',    'form',               Taskar.Sections.validateForm);
+Taskar.Sections.NewForm = function(container){
+  container.on('click',     '.add_section',       show);
+  container.on('click',     'input[type=button]', hide);
+  container.on('key:esc',   'form',               hide);
+  container.on('submit',    'form',               Taskar.Sections.validateForm);
   
-  var form   = $('new_section');
+  var form   = $('new_section'),
+      width  = form.getWidth(),
       appear = new S2.FX.Style(form, {
         before: function(e){ form.setStyle({ width: '0px', opacity: 0.0 }); },
         after:  function(e){ form.down('input[type=text]').focus(); }
@@ -28,14 +29,14 @@ Taskar.Sections.NewForm = function(sectionsBar){
     
     form.show();
     
-    appear.play(null, {style: 'opacity:1; width:' + form.getWidth() + 'px'})
+    appear.play(null, {style: 'opacity:1; width:' + form.getWidth() + 'px'});
   }
   
   function hide(){
     form.hide();
   }
   
-  if (sectionsBar.select('.section').length == 0){
+  if (container.select('.section').length == 0){
     form.show().down('input[type=text]').highlight().focus();
   }
 };
