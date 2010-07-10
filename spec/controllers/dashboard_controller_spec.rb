@@ -8,7 +8,11 @@ describe DashboardController do
   describe "GET 'index'" do
     before do
       controller.stub(:current_user).and_return(@current_user)
-      @current_user.should_receive(:projects).and_return([@mock_project = mock(Project)])
+      
+      projects = [@mock_project = mock_project]
+      
+      @current_user.should_receive(:projects).and_return(projects)
+      projects.should_receive(:active).and_return(projects)
     end
     
     it "should touch the current user last_active_at field" do
