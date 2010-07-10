@@ -133,7 +133,7 @@ describe ProjectsController do
         mock_project.should_receive(:completed=).with("foo")
         mock_project.should_receive(:save)
         
-        put :complete, :id => "1", :completed => "foo"
+        put :complete, :id => "1", :complete => "foo"
       end
       
       it "should set completed flag to project" do

@@ -41,7 +41,7 @@ class ProjectsController < ApplicationController
   end
   
   def complete
-    @project.completed = params[:completed]
+    @project.completed = params[:complete]
     @project.save
     
     redirect_to @project
