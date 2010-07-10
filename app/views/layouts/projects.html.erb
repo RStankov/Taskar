@@ -21,14 +21,15 @@
         </ul>
       </div>
       <div class="aside_section">
-        <% @projects = Project.active.all %>
+        <% @projects ||= Project.active.all %>
         <h3><%=t :".current_projects", :count => @projects.size  %></h3>
         <ul>
           <% @projects.each do |project| %>
           <li><%= link_to project.name, project %></li>
           <% end %>
         </ul>
-				<%= link_to t(:'.new_project'), new_project_path %>
+				<%= link_to t(:'.new_project'), new_project_path %><br />
+				<%= link_to t(:'.manage_projects'), projects_path %>
       </div>
     </aside>
   </section>

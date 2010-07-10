@@ -22,9 +22,10 @@ bg:
       users: "Потребители (%{count})"
       new_user: "Добави потребител"
       manage_users: "Менажирай"
-      current_projects: "Проекти (%{count})"
+      current_projects: "Активни проекти (%{count})"
       project_settings: "настройки"
       new_project: "Добави нов проект"
+      manage_projects: "Всички проекти"
     
     sections:
       switch_to_project: "Отвори друг проект"

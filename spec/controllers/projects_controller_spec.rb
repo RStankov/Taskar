@@ -7,8 +7,22 @@ describe ProjectsController do
     end
     
     describe "GET index" do
-      it "renders index template" do
+      before do
+        Project.should_receive(:completed).and_return([@completed = mock(Project)])
+        Project.should_receive(:active).and_return([@active = mock(Project)])
+        
         get :index
+      end
+      
+      it "assigns active projects as @projects" do
+        assigns[:projects] = [@active]
+      end
+      
+      it "assings archived projects as @completed" do
+        assigns[:completed] = [@completed]
+      end
+      
+      it "renders index template" do
         response.should render_template(:index)
       end
     end

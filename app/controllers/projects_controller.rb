@@ -3,7 +3,8 @@ class ProjectsController < ApplicationController
   before_filter :get_project, :only => [:show, :edit, :update, :destroy, :complete]
   
   def index
-    @projects = Project.all
+    @projects  = Project.active
+    @completed = Project.completed
   end
 
   def show
