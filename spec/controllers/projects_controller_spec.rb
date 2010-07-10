@@ -129,17 +129,27 @@ describe ProjectsController do
 
     describe "PUT complete" do
       before do
-        Project.should_receive(:find).with("1").and_return mock_project
-        mock_project.should_receive(:completed=).with("foo")
+        Project.should_receive(:find).with("1").and_return mock_project(:completed= => nil, :save => nil)
+      end
+      
+      it "should set completed flag to project to true" do
+        mock_project.should_receive(:completed=).with(true)
         mock_project.should_receive(:save)
         
         put :complete, :id => "1", :complete => "foo"
       end
-      
-      it "should set completed flag to project" do
+
+      it "should set completed flag to project to false" do
+        mock_project.should_receive(:completed=).with(false)
+        mock_project.should_receive(:save)
+
+        put :complete, :id => "1"
       end
       
-      it { should redirect_to(project_url(mock_project)) }
+      it do
+        put :complete, :id => "1", :complete => "foo"
+        should redirect_to(project_url(mock_project)) 
+      end
     end
 
   end
