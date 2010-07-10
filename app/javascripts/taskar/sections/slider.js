@@ -1,5 +1,5 @@
 Taskar.Sections.Slider = function(element){
-  var width       = element.select('li.section').invoke('getWidth').reduce(function(s, v){ return s += v + 10; }),
+  var width       = element.select('li.section').invoke('getWidth').inject(0, function(s, v){ return s += v + 10; }),
       container   = element.up(),
       maxWidth    = container.getWidth(),
       leftRange   = 300,
