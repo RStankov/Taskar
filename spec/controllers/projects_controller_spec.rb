@@ -127,6 +127,21 @@ describe ProjectsController do
       end
     end
 
+    describe "PUT complete" do
+      before do
+        Project.should_receive(:find).with("1").and_return mock_project
+        mock_project.should_receive(:completed=).with("foo")
+        mock_project.should_receive(:save)
+        
+        put :complete, :id => "1", :completed => "foo"
+      end
+      
+      it "should set completed flag to project" do
+      end
+      
+      it { should redirect_to(project_url(mock_project)) }
+    end
+
   end
 
   describe "with normal user" do
@@ -143,7 +158,8 @@ describe ProjectsController do
       :create     => 'post(:create)',
       :edit       => 'get(:edit, :id => "1")',
       :update     => 'put(:update, :id => "1")',
-      :destroy    => 'delete(:destroy, :id => "1")'
+      :destroy    => 'delete(:destroy, :id => "1")',
+      :complete   => 'put(:complete, :id=>"1")'
     }.each do |(action, code)|
       it "should not allow #{action}, and redirect_to root_url" do
         eval code

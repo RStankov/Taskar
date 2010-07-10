@@ -43,4 +43,12 @@ class ProjectsController < ApplicationController
 
     redirect_to projects_url
   end
+  
+  def complete
+    @project = Project.find(params[:id])
+    @project.completed = params[:completed]
+    @project.save
+    
+    redirect_to @project
+  end
 end
