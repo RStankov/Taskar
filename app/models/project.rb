@@ -12,6 +12,9 @@ class Project < ActiveRecord::Base
   
   attr_accessible :name, :user_ids
   
+  named_scope :active,    :conditions => { :completed => false  }
+  named_scope :completed, :conditions => { :completed => true   }
+  
   def involves?(user)
     users.include? user
   end
