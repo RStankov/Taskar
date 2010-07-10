@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     
     if @user.save
-      redirect_to :users
+      redirect_to @user
     else
       render :action => 'new'
     end
@@ -32,7 +32,7 @@ class UsersController < ApplicationController
   
   def update
     if @user.update_attributes(params[:user])
-      redirect_to :users
+      redirect_to @user
     else
       render :action => 'edit'
     end

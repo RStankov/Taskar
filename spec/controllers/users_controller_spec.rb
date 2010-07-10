@@ -77,7 +77,7 @@ describe UsersController do
 
         post_create
 
-        response.should redirect_to(users_url)      
+        response.should redirect_to(user_url(mock_user))
       end
     end
 
@@ -123,7 +123,7 @@ describe UsersController do
 
         put_update
 
-        response.should redirect_to(users_url)   
+        response.should redirect_to(user_url(mock_user))   
       end
     end
 
