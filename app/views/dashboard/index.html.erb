@@ -2,7 +2,7 @@
   <h1><%=t :'layouts.dashboard.header' %></h1>
 </header>
 
-<table id="events" colspan="0" rowspan="0" width="100%">
+<table id="events" colspan="0" rowspan="0" width="99%">
 	<% @projects.each do |project| %>
 	  <tr>
       <th colspan="4"><h2><%= link_to project.name, [project, :sections] %></h2></th>
