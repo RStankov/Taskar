@@ -10,6 +10,8 @@
     <%= render @task.comments %>
   </ul>
 </div>
-<div id="new_comment">
-   <%= render "comments/new_form" %>
-</div>
+<% unless @task.archived? %>
+	<div id="new_comment">
+   	<%= render "comments/new_form" %>
+	</div>
+<% end %>
