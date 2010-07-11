@@ -5,31 +5,31 @@ bg:
       signed_in: 'Успешен вход в системата.'
       signed_out: 'Успешен изход от системата.'
       unauthenticated: 'Трябва да сте логнат преди да продължите.'
-      unconfirmed: 'You have to confirm your account before continuing.'
-      locked: 'Your account is locked.'
+      unconfirmed: 'Трябва да потвърдите вашия акаунт преди да продължите.'
+      locked: 'Вашия акаунт беше заключен.<br />Провете Е-майл адреса си за инструкции за отключването му.'
       invalid: 'Невалидна парола и/или е-майл.'
-      invalid_token: 'Invalid authentication token.'
-      timeout: 'Your session expired, please sign in again to continue.'
-      inactive: 'Your account was not activated yet.'
+      invalid_token: 'Невалидна сесия.'
+      timeout: 'Вашата сесия е изтекла, моля влезте отново в системата.'
+      inactive: 'Вашоя акаунт не е активиран все още'
     passwords:
       link: 'Забравена парола?'
-      send_instructions: 'You will receive an email with instructions about how to reset your password in a few minutes.'
-      updated: 'Your password was changed successfully. You are now signed in.'
+      send_instructions: 'Ще получите инструкци за това как да рестартирате вашата парола, на посочения от вас е-майл адрес.'
+      updated: 'Вашата парола беше променеа успешно може да влезете в системата.'
     confirmations:
       link: "Didn't receive confirmation instructions?"
       send_instructions: 'You will receive an email with instructions about how to confirm your account in a few minutes.'
       confirmed: 'Your account was successfully confirmed. You are now signed in.'
     registrations:
       link: 'Регистрация'
-      signed_up: 'You have signed up successfully. If enabled, a confirmation was sent to your e-mail.'
-      updated: 'You updated your account successfully.'
-      destroyed: 'Bye! Your account was successfully cancelled. We hope to see you again soon.'
+      signed_up: 'Регистрацията завършена успешно'
+      updated: 'Информацията за вашия профил беше променета успешно'
+      destroyed: 'Вашия акаунт беше деактивиран, приятен ден.'
       profile: "Профил"
       confirm_password: "Промените изискват въвеждането на вашата текуща парола"
     unlocks:
-      link: "Didn't receive unlock instructions?"
-      send_instructions: 'You will receive an email with instructions about how to unlock your account in a few minutes.'
-      unlocked: 'Your account was successfully unlocked. You are now signed in.'
+      link: "Получихте ли инструции за отключване на вашият акаунт"
+      send_instructions: "Ще поличите инстркиции за оключване на вашия е-майл адрес"
+      unlocked: 'Вашия акаунт беше успешно отключен, вече може да влезете в систеамта'
     mailer:
       confirmation_instructions: 'Confirmation instructions'
       reset_password_instructions: 'Reset password instructions'
