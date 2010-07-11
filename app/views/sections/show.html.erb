@@ -9,18 +9,21 @@
   <ul class="tasks_list static">
     <% @tasks.each do |task| %>
       <% content_tag_for(:li, task, :class => task.state + (current_user.id == task.responsible_party_id ? ' personal' : '')) do %>
-        <%= task_state_checkbox(task) %>
-        <p>
-          <%= link_to '', archive_task_path(task, :archived => !task.archived?), :class => "archive", "data-remote" => true, "data-method" => "put" %>
-          <% if task.responsible_party %><strong><%= task.responsible_party.full_name %></strong><% end %>
-          <%=h task.text %>
-        </p>
-        <span class="more">...</span>
-        <%= time_tag task.created_at %>
-        <ul>
-          <li><%= link_to task.comments.size, task, :class => 'show', :title => t(:'.comments', :count => task.comments.size) %></li>
-        </ul>
-      <% end %>
+				<div class="tooltip">
+					<div class="arrow"></div>
+					<div class="actions">
+						<a href="#" class="add" data-after="<%= task.id %>"><%= t 'sections.show.add_task' %></a>
+						<%= link_to t(:'tasks.task.comments', :count => task.comments.size), task %>
+						<%= link_to t(:delete), task, :class => "delete", "data-remote" => true, "data-method" => "delete", "data-confirm" => t(:'.confirm') %>
+					</div>
+				</div>
+			  <%= task_state_checkbox(task) %>
+			  <p>
+			    <% if task.responsible_party %><strong><%= task.responsible_party.full_name %></strong><% end %>
+			    <%=h task.text %>
+			  </p>
+				<%= content_tag :span, t('tasks.task.more'), :class => 'more', 'data-more' => t('tasks.task.more'), 'data-less' => t('tasks.task.less') %>
+			<% end %>
     <% end %>
   </ul>
   <ul id="section_footer">
