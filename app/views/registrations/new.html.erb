@@ -1,27 +1,31 @@
 <header>
-	<h1>Sign up</h1>
+	<h1><%=t 'devise.registrations.new' %></h1>
 </header>
-<% form_for resource_name, resource, :url => registration_path(resource_name), :html => {:multipart => true} do |f| -%>
-  <%= f.error_messages %>
-  <p><%= f.label :email %></p>
-  <p><%= f.text_field :email %></p>
+<div class="wrap">
+	<% form_for @user, :url => registration_path(resource_name), :html => { :class => 'action_form', :multipart => true} do |f| %>
+	  <%= render 'shared/error_messages', :target => f.object %>
+	
+	  <p><%= f.label :email %></p>
+	  <p><%= f.text_field :email %></p>
 
-  <p><%= f.label :password %></p>
-  <p><%= f.password_field :password %></p>
+	  <p><%= f.label :password %></p>
+	  <p><%= f.password_field :password %></p>
 
-  <p><%= f.label :password_confirmation %></p>
-  <p><%= f.password_field :password_confirmation %></p>
+	  <p><%= f.label :password_confirmation %></p>
+	  <p><%= f.password_field :password_confirmation %></p>
 
-  <p><%= f.label :first_name  %></p>
-  <p><%= f.text_field :first_name  %></p>
+	  <p><%= f.label :first_name  %></p>
+	  <p><%= f.text_field :first_name  %></p>
 
-  <p><%= f.label :last_name  %></p>
-  <p><%= f.text_field :last_name  %></p>
+	  <p><%= f.label :last_name  %></p>
+	  <p><%= f.text_field :last_name  %></p>
   
-  <p><%= f.label :avatar %></p>
-  <p><%= f.file_field :avatar %></p>
+	  <p><%= f.label :avatar %></p>
+	  <p><%= f.file_field :avatar %></p>
   
-  <p><%= f.submit "Sign up" %></p>
-<% end -%>
-
+		<div class="buttons">
+      <%= f.submit t('devise.registrations.register') %>
+	  </div>
+	<% end %>
+</div>
 <%= render :partial => "shared/devise_links" %>
