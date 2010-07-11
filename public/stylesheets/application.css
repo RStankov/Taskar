@@ -1478,13 +1478,8 @@ footer p {
   -webkit-transform-origin: top right;
 }
 
-/*** SESSION/NEW ***/
-#session_page {
-	margin: 25px auto 30px;
-	max-width:600px;
-}
-
-#login_box {
+/*** APPLICATION LAYOUT ***/
+#outside_box {
 	border-radius: 5px;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
@@ -1495,9 +1490,15 @@ footer p {
 	background-color:#FFFFFF;
 	font-size: 14px;
 	width: 500px;
+	
+	margin: 25px auto 30px;
 }
 
-#login_box h1 {
+#outside_box .wrap {
+  margin-top: 20px;
+}
+
+#outside_box h1 {
   text-align: center;
 	font-size: 18px;
 	padding: 20px 20px 10px;
@@ -1510,6 +1511,8 @@ footer p {
   -moz-box-shadow: 0px 10px 10px -10px #888;
   -webkit-box-shadow: 0px 10px 10px -10px #888;
 }
+
+/*** SESSION/NEW ***/
 
 #login_box input[type="text"], #login_box input[type="password"] {
   font-size: 18px;
