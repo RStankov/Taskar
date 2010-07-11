@@ -12,6 +12,7 @@ bg:
         attributes:
           project:
             name: "Име"
+            account_id: "Акаунт"
           
           section:
             name: "Име"

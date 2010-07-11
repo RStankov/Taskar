@@ -3,7 +3,7 @@ require 'spec_helper'
 describe ProjectsController do
   describe "with admin user" do
     before do
-      sign_in Factory(:user, :admin => true)
+      sign_in @current_user = Factory(:user, :admin => true)
     end
     
     describe "GET index" do
@@ -52,16 +52,27 @@ describe ProjectsController do
     end
 
     describe "POST create" do
+      def project_should_take_account_from_current_user
+        mock_project.should_receive(:account=).with(@current_user.account)
+      end
+      
 
       describe "with valid params" do
         it "assigns a newly created project as @project" do
           Project.stub(:new).with({'these' => 'params'}).and_return(mock_project(:save => true))
+          
+          
+          project_should_take_account_from_current_user
+          
           post :create, :project => {:these => 'params'}
           assigns[:project].should equal(mock_project)
         end
 
         it "redirects to the created project" do
           Project.stub(:new).and_return(mock_project(:save => true))
+          
+          project_should_take_account_from_current_user
+          
           post :create, :project => {}
           response.should redirect_to(project_url(mock_project))
         end
@@ -70,12 +81,18 @@ describe ProjectsController do
       describe "with invalid params" do
         it "assigns a newly created but unsaved project as @project" do
           Project.stub(:new).with({'these' => 'params'}).and_return(mock_project(:save => false))
+          
+          project_should_take_account_from_current_user
+          
           post :create, :project => {:these => 'params'}
           assigns[:project].should equal(mock_project)
         end
 
         it "re-renders the 'new' template" do
           Project.stub(:new).and_return(mock_project(:save => false))
+          
+          project_should_take_account_from_current_user
+          
           post :create, :project => {}
           response.should render_template('new')
         end

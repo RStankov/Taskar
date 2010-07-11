@@ -19,6 +19,7 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(params[:project])
+    @project.account = current_user.account
 
     if @project.save
       redirect_to @project
