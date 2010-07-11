@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
   has_many :project_participations, :class_name => "ProjectUser", :foreign_key => "user_id", :dependent => :destroy
   has_many :projects, :through => :project_participations
   
+  has_one :owned_account, :class_name => "Account", :foreign_key => "owner_id"
+  
   def full_name
     @full_name ||= "#{first_name} #{last_name}"
   end

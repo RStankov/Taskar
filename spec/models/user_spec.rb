@@ -8,6 +8,7 @@ describe User do
     it { should have_many(:tasks) }
     it { should have_many(:responsibilities) }
     it { should have_many(:events) }
+    it { should have_one(:owned_account)}
   end
   
   describe "validation" do
