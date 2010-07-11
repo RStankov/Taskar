@@ -8,11 +8,7 @@
 </head>
 <body>
   <%= render "shared/header" if current_user %>
-  
-  <%= '<p style="color: green">' + notice + '</p>' if notice %>
-  <%= '<p style="color: red">' + alert + '</p>' if alert %>
-  
-  <section>
+	<section>
     <article>
       <%= yield %>
     </article>

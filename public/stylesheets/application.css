@@ -65,6 +65,32 @@ input[type="button"]:hover, .cancel:hover {
   color: #FF0000;
 }
 
+.alert {
+  color: red;
+  padding: 10px;
+  margin-bottom: 15px;
+  background: #fff;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  box-shadow: 0px 0px 10px red;
+  -moz-box-shadow: 0px 0px 10px red;
+  -webkit-box-shadow: 0px 0px 10px red;
+}
+
+.notice {
+  color: green;
+  padding: 10px;
+  margin-bottom: 15px;
+  background: #fff;  
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 10px;
+  box-shadow:0px 0px 10px green;
+  -moz-box-shadow:0px 0px 10px green;
+  -webkit-box-shadow:0px 0px 10px green;
+}
+
 #nav_main, footer {
   border-radius: 10px;
   -moz-border-radius: 10px;
@@ -1495,21 +1521,7 @@ footer p {
 }
 
 #login_box p {
-  margin-bottom: 5px;
-}
-
-#login_box .alert {
-  border: 1px solid red;
-  color: red;
-  padding: 10px;
-  margin-bottom: 15px;
-}
-
-#login_box .notice {
-  border: 1px solid green;
-  color: green;
-  padding: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 #login_box input[type="submit"] {
