@@ -2,6 +2,9 @@
   <h1><%=t :'layouts.dashboard.header' %></h1>
 </header>
 
+<%= '<div class="wrap"><p class="notice">' + notice + '</p></div>' if notice %>
+<%= '<div class="wrap"><p class="alert">' + alert + '</p></div>' if alert %>
+
 <table id="events" colspan="0" rowspan="0" width="99%">
 	<% @projects.each do |project| %>
 	  <tr>
