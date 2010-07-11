@@ -6,7 +6,6 @@ class Account < ActiveRecord::Base
   validates_uniqueness_of :name
   
   attr_accessible :name
-  attr_readonly   :name, :owner_id
   
   has_many :users, :dependent => :destroy
 end
