@@ -2,10 +2,10 @@
 	<div class="tooltip">
 		<div class="arrow"></div>
 		<div class="actions">
-			<a href="#" class="add" data-after="<%= task.id %>"><%= t 'sections.show.add_task' %></a>
 			<%= link_to t(:'.comments', :count => task.comments.size), task %>
 			<%= link_to t(:edit), [:edit, task], :class => "edit", "data-remote" => true %>
 			<%= link_to t(:delete), task, :class => "delete", "data-remote" => true, "data-method" => "delete", "data-confirm" => t(:'.confirm') %>
+				<a href="#" class="add" data-after="<%= task.id %>"><%= t 'sections.show.add_task' %></a>
 		</div>
 	</div>
   <%= task_state_checkbox(task) %>
