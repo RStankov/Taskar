@@ -1512,6 +1512,27 @@ footer p {
   -webkit-box-shadow: 0px 10px 10px -10px #888;
 }
 
+.devise_links {
+  border-top: 1px solid #eee;
+  padding: 20px; 
+  height: 18px;
+}
+
+.devise_links li {
+  float: left;
+  padding-right: 5px;
+}
+
+.devise_links a {
+  color: #000;
+  text-decoration: none;
+  margin-right: 5px;
+}
+
+.devise_links a:hover {
+  text-decoration: underline;
+}
+
 /*** SESSION/NEW ***/
 
 #login_box input[type="text"], #login_box input[type="password"] {
@@ -1531,20 +1552,6 @@ footer p {
   padding: 5px;
   font-size: 14px;
   width: 100px;
-}
-
-#login_box div {
-  border-top: 1px solid #eee;
-  padding: 10px 0;
-}
-
-#login_box a {
-  color: #000;
-  text-decoration: none;
-}
-
-#login_box a:hover {
-  text-decoration: underline;
 }
 
 header .actions {
