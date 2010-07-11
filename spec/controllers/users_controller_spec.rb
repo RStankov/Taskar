@@ -3,7 +3,7 @@ require 'spec_helper'
 describe UsersController do
   describe "with admin user" do
     before do
-      sign_in Factory(:user, :admin => true)
+      sign_in @current_user = Factory(:user, :admin => true)
     end
 
     describe "GET index" do
@@ -61,6 +61,8 @@ describe UsersController do
 
       before do
         User.should_receive(:new).with(user_params.stringify_keys).and_return(mock_user)
+        
+        mock_user.should_receive(:account=).with(@current_user.account)
       end
 
       it "should render new template when user is invalid" do

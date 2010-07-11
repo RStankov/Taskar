@@ -1,6 +1,10 @@
 module TaskarMocks
+  def mock_account(stubs={})
+    @mock_account ||= mock_model(Account, stubs)
+  end
+  
   def mock_user(stubs={})
-    @mock_user ||= mock_model(User, stubs)
+    @mock_user ||= mock_model(User, {:account => mock_account}.merge(stubs))
   end
   
   def mock_project(stubs={})
