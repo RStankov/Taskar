@@ -7,10 +7,13 @@ class Project < ActiveRecord::Base
   
   has_many :users, :through => :participants
   
-  validates_presence_of     :name
-  validates_uniqueness_of   :name, :case_sensitive => false
+  belongs_to :account
+  
+  validates_presence_of     :name, :account
+  validates_uniqueness_of   :name, :scope => :account_id, :case_sensitive => false
   
   attr_accessible :name, :user_ids
+  attr_readonly :account_id
   
   named_scope :active,    :conditions => { :completed => false  }
   named_scope :completed, :conditions => { :completed => true   }

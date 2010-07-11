@@ -4,7 +4,7 @@ describe Project do
   it_should_allow_mass_assignment_only_of :name, :user_ids
   
   it { should validate_presence_of(:name) }
-  it { Factory(:project).should validate_uniqueness_of(:name) }
+  it { Factory(:project).should validate_uniqueness_of(:name).scoped_to(:account_id) }
   
   it { should have_many(:sections) }
   it { should have_many(:participants) }
@@ -12,6 +12,7 @@ describe Project do
   it { should have_many(:tasks) }
   it { should have_many(:comments) }
   it { should have_many(:events) }
+  it { should belong_to(:account) }
 
   describe "involves?" do
     before do

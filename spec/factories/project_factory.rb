@@ -4,4 +4,5 @@ end
 
 Factory.define :project do |project|
   project.name             { Factory.next :name }
+  project.account          { |a| a.association :account }
 end

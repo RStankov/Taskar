@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100711222452) do
+ActiveRecord::Schema.define(:version => 20100711232634) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(:version => 20100711222452) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "completed",  :default => false
+    t.integer  "account_id"
   end
 
   create_table "sections", :force => true do |t|
