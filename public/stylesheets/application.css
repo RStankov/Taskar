@@ -239,6 +239,7 @@ a img {
   overflow: hidden;
   float: left;
   font-size: 14px;
+  position: relative;
 }
 
 #nav_sections li {

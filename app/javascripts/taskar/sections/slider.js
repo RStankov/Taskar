@@ -31,4 +31,13 @@ Taskar.Sections.Slider = function(element){
   element.observe('mouseleave', function(e){
     slide.stop();
   });
+  
+  (function(selected){
+    if (selected){
+      var scroll = selected.offsetLeft + selected.getWidth();
+      if (scroll > maxWidth){
+        container.scrollLeft = selected.offsetLeft;
+      }
+    }
+  })(container.down('.selected'));
 };
