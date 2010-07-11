@@ -105,6 +105,10 @@ bg:
         other: "%{count} Файлове"
       
     show:
+      task:
+        normal: "Задача"
+        archived: "Архивирана задача"
+      
       description: 
         short: "от %{from} преди %{on}"
         responsible: "от %{from} за %{to} преди %{on}"
