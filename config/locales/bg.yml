@@ -59,6 +59,11 @@ bg:
     new_project: "Нов проект"
     edit_project: "Промяна на прект"
     completed: "Завършен"
+    index: 
+      title: "Проекти"
+      active: "Активни проекти"
+      completed: "Завършени проекти"
+    
   
   users:
     title: "Потребители"

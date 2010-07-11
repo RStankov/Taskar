@@ -1,17 +1,21 @@
 <header>
-	<h1>Projects</h1>
+	<h1><%=t '.title' %></h1>
 </header>
 <div class="wrap">
-	<h2>Active Projects</h2>
-	<ul>
-		<% @projects.each do |project|%>
-			<li><%= link_to project.name, project %></li>
-		<% end %>
-	</ul>
-	<h2>Completed Projects</h2>
-	<ul>
-		<% @completed.each do |project|%>
-			<li><%= link_to project.name, project %></li>
-		<% end %>
-	</ul>
+	<% if @projects[0] %>
+		<h2><%=t '.active' %></h2>
+		<ul>
+			<% @projects.each do |project|%>
+				<li><%= link_to project.name, project %></li>
+			<% end %>
+		</ul>
+	<% end %>
+	<% if @completed[0] %>
+		<h2><%=t '.completed' %></h2>
+		<ul>
+			<% @completed.each do |project|%>
+				<li><%= link_to project.name, project %></li>
+			<% end %>
+		</ul>
+	<% end %>
 </div>
