@@ -37,6 +37,7 @@ bg:
             avatar: "Снимка"
             admin: "Администратор"
             remember_me: "Запомни ме"
+            account_id: "Акаунт"
           
           comment:
             task_id: "Задача"

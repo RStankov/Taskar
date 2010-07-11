@@ -3,8 +3,7 @@ class User < ActiveRecord::Base
   
   attr_accessible             :email, :password, :password_confirmation, :first_name, :last_name, :avatar
 
-  validates_presence_of       :first_name
-  validates_presence_of       :last_name
+  validates_presence_of       :first_name, :last_name, :account
   
   has_attached_file           :avatar,  :styles => { :image => '48x48', :aside => '32x32' }, :default_style => :image
   
@@ -18,6 +17,10 @@ class User < ActiveRecord::Base
   has_many :projects, :through => :project_participations
   
   has_one :owned_account, :class_name => "Account", :foreign_key => "owner_id"
+  
+  belongs_to :account
+  
+  attr_readonly :account_id
   
   def full_name
     @full_name ||= "#{first_name} #{last_name}"
