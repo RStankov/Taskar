@@ -31,6 +31,7 @@ bg:
             full_name: "Име"
             password: "Парола"
             password_confirmation: "Потвърди паролата"
+            current_password: "Текуща парола"
             avatar: "Снимка"
             admin: "Администратор"
             remember_me: "Запомни ме"

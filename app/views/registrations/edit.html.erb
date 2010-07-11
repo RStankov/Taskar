@@ -1,39 +1,41 @@
 <header>
-	<h1>Edit <%= resource_name.to_s.humanize %></h2>
+	<h1><%= t 'devise.registrations.profile' %></h2>
 </header>
 
-<% form_for resource_name, resource, :url => registration_path(resource_name), :html => { :method => :put, :multipart => true } do |f| -%>
-  <%= f.error_messages %>
+<div class="wrap">
+	<% form_for @user, :url => registration_path(resource_name), :html => { :class => 'action_form', :method => :put, :multipart => true } do |f| %>
+	  <%= render 'shared/error_messages', :target => f.object %>
 
-  <p><%= f.label :email %></p>
-  <p><%= f.text_field :email %></p>
+		<p><em><%= t 'devise.registrations.confirm_password' %></em></p>
+		<p><%= f.label :current_password %></p>
+	  <p><%= f.password_field :current_password %></p>
+			
+	  <p><%= f.label :email %></p>
+	  <p><%= f.text_field :email %></p>
 
-  <p><%= f.label :password %> <i>(leave blank if you don't want to change it)</i></p>
-  <p><%= f.password_field :password %></p>
+	  <p><%= f.label :first_name  %></p>
+	  <p><%= f.text_field :first_name  %></p>
 
-  <p><%= f.label :password_confirmation %></p>
-  <p><%= f.password_field :password_confirmation %></p>
-
-  <p><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i></p>
-  <p><%= f.password_field :current_password %></p>
-
-  <p><%= f.label :first_name  %></p>
-  <p><%= f.text_field :first_name  %></p>
-
-  <p><%= f.label :last_name  %></p>
-  <p><%= f.text_field :last_name  %></p>
+	  <p><%= f.label :last_name  %></p>
+	  <p><%= f.text_field :last_name  %></p>
   
-  <p><%= f.label :avatar %></p>
-  <p>
-    <%= f.file_field :avatar %>
-    <%= image_tag(resource.avatar.url) %>
-  </p>
-  
-  <p><%= f.submit "Update" %></p>
-<% end -%>
+	  <p><%= f.label :avatar %></p>
+	  <p><%= f.file_field :avatar %></p>
+	
+		<p><%= f.label :password %></p>
+	  <p><%= f.password_field :password %></p>
 
+	  <p><%= f.label :password_confirmation %></p>
+	  <p><%= f.password_field :password_confirmation %></p>
+	
+		<div class="buttons">
+      <%= f.submit t(:update) %>
+	  </div>
+	<% end %>
+</div>
+<!--
 <h3>Cancel my account</h3>
 
 <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete %>.</p>
 
-<%= render :partial => "shared/devise_links" %>
+-->

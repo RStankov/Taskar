@@ -1169,10 +1169,15 @@ footer p {
   -webkit-border-radius: 4px;
 }
 
+.action_form p {
+  padding-bottom: 5px;
+}
+
 .action_form label {
   text-shadow: #fff 1px 1px 1px;
   color: #5C5C5C;
 }
+
 
 .action_form h3 {
   text-shadow: #fff 1px 1px 1px;
