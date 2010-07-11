@@ -15,6 +15,11 @@ bg:
       link: 'Забравена парола?'
       send_instructions: 'Ще получите инструкци за това как да рестартирате вашата парола, на посочения от вас е-майл адрес.'
       updated: 'Вашата парола беше променеа успешно може да влезете в системата.'
+      forgot_title: "Забравена парола?"
+      change_title: "Промяна на паролата"
+      send_instructions_button: "Изпрати ми инструкции за промяна на паролата"
+      update_button: "Промени паролата ми"
+      
     confirmations:
       link: "Didn't receive confirmation instructions?"
       send_instructions: 'You will receive an email with instructions about how to confirm your account in a few minutes.'

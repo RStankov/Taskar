@@ -32,6 +32,7 @@ bg:
             password: "Парола"
             password_confirmation: "Потвърди паролата"
             current_password: "Текуща парола"
+            reset_password_token: "Кода за възтановяване на паролата"
             avatar: "Снимка"
             admin: "Администратор"
             remember_me: "Запомни ме"
