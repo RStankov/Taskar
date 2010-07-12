@@ -1250,7 +1250,7 @@ footer p {
   font-size: 12px;
 }
 
-.fieldWithErrors textarea {
+.fieldWithErrors textarea, .fieldWithErrors input, .fieldWithErrors select {
   border: 2px solid #ff9999;
 }
 
