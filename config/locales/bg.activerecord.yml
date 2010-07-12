@@ -46,7 +46,7 @@ bg:
             text: "Текст"
           
           account:
-            name: "Име"
+            name: "Име на фирмата"
             owner_id: "Собственик"
           
           project_user:
