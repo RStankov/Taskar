@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   include Taskar::Auth::Model
   
-  attr_accessible             :email, :password, :password_confirmation, :first_name, :last_name, :avatar
+  attr_accessible             :email, :password, :password_confirmation, :first_name, :last_name, :avatar, :owned_account_attributes
 
   validates_presence_of       :first_name, :last_name, :account
   
@@ -21,6 +21,10 @@ class User < ActiveRecord::Base
   belongs_to :account
   
   attr_readonly :account_id
+  
+  accepts_nested_attributes_for :owned_account, :reject_if => :account_id
+  before_validation_on_create :assign_own_account
+  after_create :assign_as_account_owner
   
   def full_name
     @full_name ||= "#{first_name} #{last_name}"
@@ -46,4 +50,22 @@ class User < ActiveRecord::Base
     @responsibilities_count ||= {}
     @responsibilities_count[project_id] ||= responsibilities.count :conditions => {:status => 0, :project_id => project_id}
   end
+  
+  private
+    def assign_own_account
+      if owned_account
+        if account
+          self.owned_account = nil
+        else
+          self.account = owned_account
+        end
+      end 
+    end
+
+    def assign_as_account_owner
+      if owned_account
+        owned_account.owner = self
+        owned_account.save
+      end
+    end
 end

@@ -13,7 +13,7 @@ describe User do
   end
   
   describe "validation" do
-    it_should_allow_mass_assignment_only_of :email, :first_name, :last_name, :password, :password_confirmation, :avatar
+    it_should_allow_mass_assignment_only_of :email, :first_name, :last_name, :password, :password_confirmation, :avatar, :owned_account_attributes
 
     it { should validate_presence_of(:email) }
     it { Factory(:user).should validate_uniqueness_of(:email).scoped_to(:account_id) }
@@ -95,7 +95,6 @@ describe User do
     user.short_name.should == "Radoslav S."
   end
   
-
   describe "new_comment" do
     it "should build new comment from task, assign user.id to it" do
       task = Factory(:task)
@@ -136,6 +135,43 @@ describe User do
       
       user.responsibilities_count(section_1.project_id).should == 3
       user.responsibilities_count(section_2.project_id).should == 4
+    end
+  end
+
+  describe "owned_account" do
+    before :each do
+      @account_name = Factory.build(:account).name
+      
+      @user                          = User.new Factory.attributes_for(:user)
+      @user.owned_account_attributes = {:name => @account_name}
+      @user.save.should be_true
+    end
+    
+    it "should be created with user on user creation" do
+      @user.owned_account.name.should == @account_name
+    end
+    
+    it "should be same as user's account" do
+      @user.owned_account.should == @user.account
+    end
+    
+    it "should have user as owner" do
+      @user.reload
+      @user.owned_account.owner.should == @user
+      @user.account.owner.should == @user
+    end
+    
+    it "should be nil if account is assign to user" do
+      account = Factory(:account)
+      
+      user                          = User.new Factory.attributes_for(:user)
+      user.owned_account_attributes = {:name => Factory.build(:account).name}
+      user.account                  = account
+      
+      user.save.should be_true
+      user.reload
+      user.owned_account.should be_nil
+      user.account.should == account 
     end
   end
 end
