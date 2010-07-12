@@ -62,6 +62,7 @@ class User < ActiveRecord::Base
           self.owned_account = nil
         else
           self.account = owned_account
+          self.admin   = true
         end
       end 
     end
