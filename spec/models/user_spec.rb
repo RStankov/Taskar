@@ -13,7 +13,7 @@ describe User do
   end
   
   describe "validation" do
-    it_should_allow_mass_assignment_only_of :email, :first_name, :last_name, :password, :password_confirmation, :avatar, :owned_account_attributes
+    it_should_allow_mass_assignment_only_of :email, :first_name, :last_name, :password, :password_confirmation, :avatar, :owned_account_attributes, :remember_me
 
     it { should validate_presence_of(:email) }
     it { Factory(:user).should validate_uniqueness_of(:email).scoped_to(:account_id) }

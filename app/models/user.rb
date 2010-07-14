@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   include Taskar::Auth::Model
   
-  attr_accessible             :email, :password, :password_confirmation, :first_name, :last_name, :avatar, :owned_account_attributes
+  attr_accessible             :email, :password, :password_confirmation, :first_name, :last_name, :avatar, :owned_account_attributes, :remember_me
 
   validates_presence_of       :first_name, :last_name, :account
   
