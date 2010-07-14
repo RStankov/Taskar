@@ -1,12 +1,15 @@
-<h2>Resend unlock instructions</h2>
-
-<% form_for resource_name, resource, :url => unlock_path(resource_name) do |f| %>
-  <%= f.error_messages %>
-
-  <p><%= f.label :email %></p>
-  <p><%= f.text_field :email %></p>
-
-  <p><%= f.submit "Resend unlock instructions" %></p>
-<% end %>
+<header>
+	<h1><%=t 'devise.unlocks.title' %></h1>
+</header>
+<div class="wrap">
+	<% form_for resource_name, resource, :url => unlock_path(resource_name), :html => {:class => 'action_form'} do |f| %>
+		<%= render 'shared/error_messages', :target => f.object %>
+	  <p><%= f.label :email %></p>
+	  <p><%= f.text_field :email %></p>
+	  <p><%= f.label :account_id %></p>
+	  <p><%= f.select :account_id, [['---------------' , '']] + Account.all.map {|a| [a.name, a.id]} %></p>
+	  <p><%= f.submit t('devise.unlocks.submit') %></p>
+	<% end %>
+</div>
 
 <%= render :partial => "shared/devise_links" %>

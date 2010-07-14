@@ -55,10 +55,10 @@ Devise.setup do |config|
   # :email = Sends an unlock link to the user email
   # :time  = Reanables login after a certain ammount of time (see :unlock_in below)
   # :both  = enables both strategies
-  # config.unlock_strategy = :both
+  config.unlock_strategy = :both
 
   # Time interval to unlock the account if :time is enabled as unlock_strategy.
-  # config.unlock_in = 1.hour
+  config.unlock_in = 2.hour
 
   # ==> Configuration for :token_authenticatable
   # Defines name of the authentication token params key
