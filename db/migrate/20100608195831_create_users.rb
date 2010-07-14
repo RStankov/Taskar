@@ -6,7 +6,6 @@ class CreateUsers < ActiveRecord::Migration
       t.rememberable
       t.trackable
       t.timestamps
-      t.timestamps
       t.string :first_name
       t.string :last_name
     end
