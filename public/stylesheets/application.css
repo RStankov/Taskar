@@ -234,6 +234,7 @@ a img {
   height: 40px;
   margin: 0 auto;
   width: 980px;
+  position: relative;
 }
 
 #goto_dashboard {
@@ -265,7 +266,9 @@ a img {
   overflow: hidden;
   float: left;
   font-size: 14px;
-  position: relative;
+  position: absolute;
+  left: 40px;
+  height: 70px;
 }
 
 #nav_sections li {
@@ -386,7 +389,7 @@ a img {
   -moz-border-radius: 0 10px 10px 0;
   -webkit-border-radius: 0 10px 10px 0;
   display: block;
-  float: left;
+  float: right;
   height: 40px;
   overflow: visible;
   position: relative;
