@@ -3,7 +3,7 @@ module Taskar
     module Model
       def self.included(model)
         model.send(:before_save, :downcase_email)
-        model.send(:devise, :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable, :registerable)
+        model.send(:devise, :database_authenticatable, :lockable, :recoverable, :rememberable, :trackable, :validatable, :registerable, :timeoutable)
         model.extend(ClassMethods)
         model.send(:include, InstanceMethods)
       end

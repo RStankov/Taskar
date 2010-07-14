@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100711232634) do
+ActiveRecord::Schema.define(:version => 20100714181314) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -100,6 +100,9 @@ ActiveRecord::Schema.define(:version => 20100711232634) do
     t.boolean  "admin"
     t.datetime "last_active_at"
     t.integer  "account_id"
+    t.integer  "failed_attempts",                     :default => 0
+    t.string   "unlock_token"
+    t.datetime "locked_at"
   end
 
 end
