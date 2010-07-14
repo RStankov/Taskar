@@ -40,7 +40,7 @@ bg:
       link: "Оключване на акаунт"
       submit: "Отключи"
       send_instructions: "Ще поличите инстркиции за оключване на вашия е-майл адрес"
-      unlocked: 'Вашия акаунт беше успешно отключен, вече може да влезете в систеамта'
+      unlocked: "Вашия акаунт беше успешно отключен"
     
     mailer:
       confirmation_instructions: 'Confirmation instructions'
