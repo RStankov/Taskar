@@ -13,7 +13,7 @@ Taskar.Sections.NewForm = function(container){
       });
   
   function show(e, element){
-    e.stop();
+    e && e.stop();
     
     form.down('form').reset();
     form.down('input[name*=insert_before]').setValue(element.getAttribute('data-before'));
@@ -41,6 +41,6 @@ Taskar.Sections.NewForm = function(container){
   }
   
   if (container.select('.section').length == 0){
-    form.show().down('input[type=text]').highlight().focus();
+    show(null, container.down('.add_section'));
   }
 };
