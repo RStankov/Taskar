@@ -14,8 +14,14 @@ module Taskar
           super(conditions)
         end
         
+        def send_unlock_instructions(attributes={})
+         lockable = find_or_initialize_with_errors(attributes, I18n.t('devise.record.invalid'))
+         lockable.resend_unlock_token unless lockable.new_record?
+         lockable
+        end
+        
         def send_reset_password_instructions(attributes={})
-          recoverable = find_or_initialize_with_errors(attributes, I18n.t('passwords.invalid'))
+          recoverable = find_or_initialize_with_errors(attributes, I18n.t('devise.record.invalid'))
           recoverable.send_reset_password_instructions unless recoverable.new_record?
           recoverable
         end
