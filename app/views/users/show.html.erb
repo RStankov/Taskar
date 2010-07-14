@@ -1,7 +1,7 @@
 <header>
 	<h1><%=h @user.full_name %></h1>
 	<ul class="actions">
-	<% if current_user != @user %>
+	<% unless current_user == @user || @user.owned_account %>
 		<li>
 			<% link_to set_admin_user_path(@user, :admin => !@user.admin?), :'data-method' => "put" do %>
 	   		<%= check_box_tag '', '', @user.admin? %> <%=t :'users.admin' %>
