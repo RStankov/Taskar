@@ -1053,6 +1053,11 @@ a.next_page:hover {
   visibility: hidden;
 }
 
+#archived_tasks_empty {
+  font-size: 14px;
+  color: #5C5C5C;
+}
+
 /*** SECTIONS/SHOW FOOTER ***/
 
 #section_footer {

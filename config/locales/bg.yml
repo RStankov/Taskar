@@ -91,7 +91,8 @@ bg:
       print: "Отпечатване"
     
   
-  tasks:
+  tasks:    
+    empty_archive: "Няма архивирани задачи"
     task:
       more: "още"
       less: "скрий"

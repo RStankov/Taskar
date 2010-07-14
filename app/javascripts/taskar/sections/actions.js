@@ -113,6 +113,8 @@ Taskar.Sections.Actions = {
           parent.insert(insert);
           task.slideDown();
         }
+        
+        task.fire('task:archive_changed');
       });
     } 
   },
@@ -148,5 +150,9 @@ Taskar.Sections.Actions = {
         element.fire('ajax:' + $(element.form).request().options.method)
       }
     }
+  },
+  'task:archive_changed': function(e){
+    var archive = $('archived_tasks');
+    archive && $('archived_tasks_empty')[archive.getElementsByTagName('li').length == 1 ? 'show' : 'hide']();
   }
 };
