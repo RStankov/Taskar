@@ -25,6 +25,7 @@ module Taskar
         def add_to_list_bottom
           if insert_before && record = self.class.find(:first, :conditions => {:id => insert_before})
             increment_positions_on_lower_items record.position
+            record.position -= 1
           elsif insert_after && record = self.class.find(:first, :conditions => {:id => insert_after})
             increment_positions_on_lower_items record.position + 1
           else

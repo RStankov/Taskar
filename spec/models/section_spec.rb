@@ -35,32 +35,36 @@ describe Section do
         @section_1 = create_next_section
         @section_2 = create_next_section
         @section_3 = create_next_section
+        @section_4 = create_next_section
       end
       
-      it "should be inserted before 1" do
-        @section = Factory(:section, :project_id => @project.id, :insert_before => @section_1.id)
+      def create_section_before(before)
+        @section = Factory(:section, :project_id => @project.id, :insert_before => before ? before.id : nil)
+      end
         
-        should_have_order_of(@section, @section_1, @section_2, @section_3)
+      
+      it "should be inserted before 1" do
+        create_section_before(@section_1)
+        should_have_order_of(@section, @section_1, @section_2, @section_3, @section_4)
       end
       
       
       it "should be inserted before 2" do
-        @section = Factory(:section, :project_id => @project.id, :insert_before => @section_2.id)
-        
-        should_have_order_of(@section_1, @section, @section_2, @section_3)
+        create_section_before(@section_2)
+        should_have_order_of(@section_1, @section, @section_2, @section_3, @section_4)
       end
       
       
       it "should be inserted before 3" do
-        @section = Factory(:section, :project_id => @project.id, :insert_before => @section_3.id)
-        
-        should_have_order_of(@section_1, @section_2, @section, @section_3)
+        create_section_before(@section_3)
+        p [@section_1, @section_2, @section, @section_3, @section_4].map(&:reload).collect(&:position)
+        should_have_order_of(@section_1, @section_2, @section, @section_3, @section_4)
       end
 
       it "should be inserted last" do
-        @section = Factory(:section, :project_id => @project.id, :insert_before => nil)
+        create_section_before(nil)
 
-        should_have_order_of(@section_1, @section_2, @section_3, @section)
+        should_have_order_of(@section_1, @section_2, @section_3, @section_4, @section)
       end
       
     end
