@@ -6,7 +6,7 @@ Taskar.Sections.NewForm = function(container){
   
   var form    = $('new_section'),
       restore = container.style.width,
-      width   = (parseInt(container.style.width) + 238) + 'px',
+      width   = (parseInt(container.style.width) + 248) + 'px',
       appear  = new S2.FX.Style(form, {
         before: function(e){ form.setStyle({ width: '0px', opacity: 0.0 }); },
         after:  function(e){ form.down('input[type=text]').focus(); }
