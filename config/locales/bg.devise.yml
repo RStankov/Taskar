@@ -11,6 +11,7 @@ bg:
       invalid_token: 'Невалидна сесия.'
       timeout: 'Вашата сесия е изтекла, моля влезте отново в системата.'
       inactive: 'Вашоя акаунт не е активиран все още'
+    
     passwords:  
       invalid: 'Невалиден е-майл и/или акаунт.'
       link: 'Забравена парола?'
@@ -20,11 +21,7 @@ bg:
       change_title: "Промяна на паролата"
       send_instructions_button: "Изпрати ми инструкции за промяна на паролата"
       update_button: "Промени паролата ми"
-      
-    confirmations:
-      link: "Didn't receive confirmation instructions?"
-      send_instructions: 'You will receive an email with instructions about how to confirm your account in a few minutes.'
-      confirmed: 'Your account was successfully confirmed. You are now signed in.'
+    
     registrations:
       link: 'Регистрация'
       signed_up: 'Регистрацията завършена успешно'
@@ -34,10 +31,12 @@ bg:
       confirm_password: "Промените изискват въвеждането на вашата текуща парола"
       new: "Регистрация"
       register: "Регистрираи се"
+    
     unlocks:
       link: "Получихте ли инструции за отключване на вашият акаунт"
       send_instructions: "Ще поличите инстркиции за оключване на вашия е-майл адрес"
       unlocked: 'Вашия акаунт беше успешно отключен, вече може да влезете в систеамта'
+    
     mailer:
       confirmation_instructions: 'Confirmation instructions'
       reset_password_instructions: 'Reset password instructions'
