@@ -95,6 +95,26 @@ describe User do
     user.short_name.should == "Radoslav S."
   end
   
+  describe "admin?" do
+    it "should not be changable for account owner" do
+      user               = Factory(:user, :admin => true)
+      user.owned_account = Factory(:account)
+
+      user.admin = false
+      user.admin.should be_true
+    end
+    
+    it "should be changable for non account owner" do
+        user = Factory(:user, :admin => true)
+
+        user.admin = false
+        user.admin.should be_false
+        
+        user.admin = true
+        user.admin.should be_true
+    end
+  end
+  
   describe "new_comment" do
     it "should build new comment from task, assign user.id to it" do
       task = Factory(:task)
