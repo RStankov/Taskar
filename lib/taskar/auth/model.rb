@@ -13,6 +13,36 @@ module Taskar
           conditions[:email].downcase! if conditions[:email]
           super(conditions)
         end
+        
+        def send_reset_password_instructions(attributes={})
+          recoverable = find_or_initialize_with_errors(attributes, I18n.t('passwords.invalid'))
+          recoverable.send_reset_password_instructions unless recoverable.new_record?
+          recoverable
+        end
+        
+        def find_or_initialize_with_errors(attributes, error=:invalid)
+          attributes = attributes.slice(*authentication_keys)
+          attributes.delete_if { |k, v| !v.present? }
+          
+          if attributes.size == authentication_keys.size
+            record = find(:first, :conditions => attributes)
+          end
+          
+          unless record
+            record = new
+            record.send(:attributes=, attributes, false)
+            
+            if attributes.size == authentication_keys.size
+              record.errors.add_to_base(error)
+            else
+              authentication_keys.reject { |k| attributes[k].present? }.each do |attribute|
+                add_error_on(record, attribute, :blank, false)
+              end
+            end
+          end
+
+          record
+        end
       end
       
       module InstanceMethods

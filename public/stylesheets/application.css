@@ -1229,6 +1229,10 @@ footer p {
   font-size: 12;
 }
 
+.action_form input[type="text"], .action_form input[type="password"], .action_form select {
+  width: 300px;
+}
+
 .action_form input[type="submit"] {
   padding: 4px 8px;
   margin-right: 5px;
