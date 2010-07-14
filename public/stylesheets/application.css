@@ -1458,24 +1458,48 @@ footer p {
   text-shadow: #00589D 0px 0px 3px;
 }
 
-.task .tooltip {
-  left: -135px;
-  top: 0px;
-  display: none;
-  min-width: 130px;
+@media all and (max-width:1199px){
+  .task .tooltip {
+    right: -140px;
+    top: 0px;
+    display: none;
+    min-width: 130px;
+  }
+
+  .task .tooltip .arrow {
+    left: -5px;
+    top: 10px;
+  }
+  
+  .tasks_list li:hover.task .tooltip {
+    display: block;
+    -webkit-animation-name: bounce-scale;
+    -webkit-animation-duration: 0.2s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-transform-origin: top left;
+  }
 }
 
-.task .tooltip .arrow {
-  right: -5px;
-  top: 10px;
-}
+@media all and (min-width:1200px){
+  .task .tooltip {
+    left: -135px;
+    top: -2px;
+    display: none;
+    min-width: 130px;
+  }
 
-.tasks_list li:hover.task .tooltip {
-  display: block;
-  -webkit-animation-name: bounce-scale;
-  -webkit-animation-duration: 0.2s;
-  -webkit-animation-iteration-count: 1;
-  -webkit-transform-origin: top right;
+  .task .tooltip .arrow {
+    right: -5px;
+    top: 10px;
+  }
+  
+  .tasks_list li:hover.task .tooltip {
+    display: block;
+    -webkit-animation-name: bounce-scale;
+    -webkit-animation-duration: 0.2s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-transform-origin: top right;
+  }
 }
 
 /*** APPLICATION LAYOUT ***/
