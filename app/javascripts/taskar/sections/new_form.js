@@ -13,7 +13,7 @@ Taskar.Sections.NewForm = function(container){
       });
   
   function show(e, element){
-    e && e.stop();
+    e && e.preventDefault();
     
     form.down('form').reset();
     form.down('input[name*=insert_before]').setValue(element.getAttribute('data-before'));

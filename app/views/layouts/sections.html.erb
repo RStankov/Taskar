@@ -20,6 +20,10 @@
   <% end %>
   <%= render "shared/header" %>
   <nav id="nav_main">
+		<div class="tooltip" style="display: none;">
+			<div class="arrow"></div>
+			<div class="actions"><%= t(:'.new_section') %></div>
+		</div>
     <%= link_to '', [@project, :sections], :id => "goto_dashboard", :title => t(:".goto_dashboard")  %>
 		<div id="nav_sections">
     	<ul data-sortable="<%= reorder_project_sections_path(@project.id) %>">
