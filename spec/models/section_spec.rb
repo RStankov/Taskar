@@ -57,7 +57,7 @@ describe Section do
       
       it "should be inserted before 3" do
         create_section_before(@section_3)
-        p [@section_1, @section_2, @section, @section_3, @section_4].map(&:reload).collect(&:position)
+        
         should_have_order_of(@section_1, @section_2, @section, @section_3, @section_4)
       end
 
