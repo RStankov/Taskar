@@ -1,14 +1,15 @@
 Taskar.Sections.HeadToolTip = function(element){
   var tooltip = element.down('.tooltip').show(),
+      offset  = (tooltip.getWidth()/2).round(),
       arrow   = tooltip.down('.arrow'),
       hide    = Element.hide.curry(tooltip);
       
-  arrow.style.left = ((tooltip.getWidth() - arrow.getWidth()) / 2).round() + 'px';
+  arrow.style.left = (offset - (arrow.getWidth() / 2).round()) + 'px';
   
   tooltip.hide();
   
   element.on('mouseover', '.add_section', function(e, element){
-    tooltip.style.left = element.positionedOffset().left + 'px';
+    tooltip.style.left = (element.positionedOffset().left - offset) + 'px';
     tooltip.show();
   })
   
