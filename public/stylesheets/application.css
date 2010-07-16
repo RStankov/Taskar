@@ -1638,6 +1638,7 @@ header .actions a:hover {
   margin: 1px;
   padding: 10px;
   height: 45px;
+  width: 300px;
   float: left;
   
   border-radius: 5px;
