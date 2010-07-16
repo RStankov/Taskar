@@ -1113,19 +1113,19 @@ a.next_page:hover {
   overflow: visible;
 }
 
-#more_actions > span {
+#more_actions span {
   cursor: pointer;
   display: block;
   height: 15px;
-  padding: 0 10px;
-}
-
-#more_actions:hover > span {
-  color: #fff;
-  background-color: #00589D;
+  padding: 0 15px;
   border-radius: 5px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
+}
+
+#more_actions:hover span {
+  color: #fff;
+  background-color: #00589D;
 }
 
 #more_actions ul {
