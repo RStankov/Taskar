@@ -1697,3 +1697,57 @@ aside .aside_section a:hover {
   text-decoration: underline;
   color: #000;
 }
+
+
+.empty_dashboard {
+  text-shadow: #fff 1px 1px 1px;
+  background-color: #ECF3FE;
+  text-align: center;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 2px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  font-size: 14px;
+}
+
+.empty_dashboard h2 {
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.empty_dashboard a {
+  color: #000;
+  font-weight: bold;
+  text-decoration: none;
+  
+  margin: 0 15px;
+  padding: 5px 15px 5px 15px;
+  
+  box-shadow: 0px 0px 10px #33333;
+  
+  background: #fff;
+  background: -moz-linear-gradient(top, #FFFFFF, #E6E6E6);
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), to(#E6E6E6));
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 15px;
+  box-shadow: 0px 1px 4px #888;
+  -moz-box-shadow: 0px 1px 4px #888;
+  -webkit-box-shadow: 0px 1px 4px #888;
+}
+
+.empty_dashboard a:first-child {
+  margin-left: 0px;
+}
+
+.empty_dashboard a:hover {
+  background: -moz-linear-gradient(top, #E6E6E6, #FFFFFF);
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#E6E6E6), to(#FFFFFF));
+}
+
+.empty_dashboard a:active {
+  -box-shadow: 0px 1px 10px #888;
+  -moz-box-shadow: 0px 1px 10px #888;
+  -webkit-box-shadow: 0px 1px 10px #888;
+}
