@@ -10,3 +10,6 @@
 [submodule "vendor/sprockets/raphael/src"]
 	path = vendor/sprockets/raphael/src
 	url = git://github.com/DmitryBaranovskiy/raphael.git
+[submodule "vendor/plugins/rails_indexes"]
+	path = vendor/plugins/rails_indexes
+	url = git://github.com/eladmeidar/rails_indexes.git
