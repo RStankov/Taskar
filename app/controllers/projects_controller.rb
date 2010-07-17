@@ -1,4 +1,6 @@
 class ProjectsController < ApplicationController
+  layout "admin"
+
   before_filter :check_for_admin
   before_filter :get_project, :only => [:show, :edit, :update, :destroy, :complete]
   

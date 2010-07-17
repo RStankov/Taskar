@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  layout "projects"
+  layout "admin"
   
   filter_parameter_logging :password, :password_confirmation
   

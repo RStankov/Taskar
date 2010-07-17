@@ -17,8 +17,9 @@ bg:
       profile: "Профил"
       logout: "Изход"
     
-    projects:
-      title: "Проекти"
+    admin:
+      title_projects: ": Проекти"
+      title_users: ": Потребители"
       users: "Потребители (%{count})"
       new_user: "Добави потребител"
       manage_users: "Менажирай"
