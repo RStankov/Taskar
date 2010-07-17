@@ -29,4 +29,9 @@ describe ApplicationController do
       task.event.user.should == user
     end
   end
+
+  it "have rescue_from who will render 404 page and set 404 status" do
+    controller.should_receive(:render).with(:partial => "shared/not_found", :layout => "application", :status => 404);
+    controller.send(:record_not_found)
+  end
 end

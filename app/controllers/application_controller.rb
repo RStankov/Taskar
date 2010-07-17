@@ -6,6 +6,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :authenticate_user!
   
+  rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
+  
   protected 
     def deny_access
       if request.xhr?
@@ -14,7 +16,7 @@ class ApplicationController < ActionController::Base
         redirect_to root_path
       end
     end
-    
+
     def check_project_permissions
       unless @project.involves? current_user
         deny_access
@@ -29,5 +31,9 @@ class ApplicationController < ActionController::Base
 
     def activity(subject)
       Event.activity(current_user, subject)
+    end
+
+    def record_not_found
+      render :partial => "shared/not_found", :layout => "application", :status => 404
     end
 end
