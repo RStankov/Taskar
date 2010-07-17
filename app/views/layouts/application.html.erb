@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
 	  <%= csrf_meta_tag %>
-    <title>Taskar</title>
+    <title><%= @content_for_title ? "Taskar: #{@content_for_title}" : "Taskar" %></title>
   	<%= stylesheet_link_tag 'application' %>
   </head>
   <body>

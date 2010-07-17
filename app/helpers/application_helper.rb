@@ -14,6 +14,10 @@ module ApplicationHelper
     end
   end
   
+  def title(title)
+    '<h1>' + (@content_for_title = t(title, :default => title)) + '</h1>'
+  end
+  
   def javascript_response(&block)
     concat("try {" + capture(&block) + "} catch(e){ alert(e); }")
   end

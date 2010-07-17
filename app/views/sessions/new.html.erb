@@ -1,6 +1,6 @@
 <div id="login_box">
 	<header>
-		<h1><%= t 'sessions.title' %></h1>
+		<%= title 'sessions.title' %>
 	</header>
 	<% form_for resource_name, resource, :url => session_path(resource_name) do |f| %>
 		<%= '<p class="notice">' + notice + '</p>' if notice %>

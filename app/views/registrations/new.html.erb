@@ -1,5 +1,5 @@
 <header>
-	<h1><%=t 'devise.registrations.new' %></h1>
+	<%= title 'devise.registrations.new' %>
 </header>
 <div class="wrap">
 	<% form_for @user, :url => registration_path(resource_name), :html => { :class => 'action_form', :multipart => true} do |f| %>
