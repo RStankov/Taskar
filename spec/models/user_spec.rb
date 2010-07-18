@@ -79,6 +79,72 @@ describe User do
     end
   end
 
+  describe "send_unlock_instructions" do
+    it "should find a user to send unlock instructions, with correcy account/email" do
+      user = Factory(:user)
+      user.lock_access!
+          
+      unlock_user = User.send_unlock_instructions(:account_id => user.account_id, :email => user.email)
+      unlock_user.should === user
+    end
+
+    it "should return a new user if no email and account_id was found" do
+      unlock_user = User.send_unlock_instructions(:email => "invalid@email.com")
+      unlock_user.should be_new_record
+      unlock_user.errors.on(:account_id).should_not be_nil
+      
+      unlock_user = User.send_unlock_instructions(:account_id => 0)
+      unlock_user.should be_new_record
+      unlock_user.errors.on(:email).should_not be_nil
+      
+      unlock_user = User.send_unlock_instructions(:account_id => 0, :email => "invalid@email.com")
+      unlock_user.should be_new_record
+      unlock_user.errors.on_base.should == I18n.t('devise.record.invalid')
+    end
+    
+    %w(email account_id).each do |field|
+      it "should not find user only with valid #{field}" do
+        user = Factory(:user)
+        
+        unlock_user = User.send_unlock_instructions(field => user[field])
+        unlock_user.should be_new_record
+      end
+    end
+  end
+  
+  describe "send_reset_password_instructions" do
+    it "should find a user to send his reset password instructions, with correcy account/email" do
+      user = Factory(:user)
+      
+      recover_user = User.send_reset_password_instructions(:account_id => user.account_id, :email => user.email)
+      recover_user.should === user
+    end 
+
+    it "should return a new user if no email and account_id was found" do
+      recover_user = User.send_reset_password_instructions(:email => "invalid@email.com")
+      recover_user.should be_new_record
+      recover_user.errors.on(:account_id).should_not be_nil
+
+      recover_user = User.send_reset_password_instructions(:account_id => 0)
+      recover_user.should be_new_record
+      recover_user.errors.on(:email).should_not be_nil
+
+      recover_user = User.send_reset_password_instructions(:account_id => 0, :email => "invalid@email.com")
+      recover_user.should be_new_record
+      recover_user.errors.on_base.should == I18n.t('devise.record.invalid')
+    end
+
+    %w(email account_id).each do |field|
+      it "should not find user only with valid #{field}" do
+        user = Factory(:user)
+
+        recover_user = User.send_reset_password_instructions(field => user[field])
+        recover_user.should be_new_record
+      end
+    end
+  end
+
+
   it "should downcase the email address on save" do
     user = Factory.build(:user, :email => "BigCases@mail.com");
     user.save
