@@ -7,13 +7,12 @@ describe UsersController do
       
       controller.stub(:current_user).and_return @current_user
       @current_user.should_receive(:account).and_return mock_account
+      mock_account.stub(:users).and_return @users = [mock_user]
     end
 
     describe "on member action" do
       before do
-        users  = []
-        mock_account.should_receive(:users).and_return users
-        users.should_receive(:find).with("15").and_return mock_user
+        @users.should_receive(:find).with("15").and_return mock_user
       end
       
       describe "GET show" do
@@ -103,10 +102,6 @@ describe UsersController do
     end
     
     describe "on collection action" do
-      before do
-        mock_account.should_receive(:users).and_return @users = [mock_user]
-      end
-      
       describe "GET index" do
         before do
           get :index
