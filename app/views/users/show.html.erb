@@ -20,17 +20,17 @@
 		<% end %>
 		
 		<strong><%= User.human_attribute_name(:first_name) %>:</strong>
-	  <%= @user.first_name %>
+	  <%=h @user.first_name %>
 		<br />
 		<strong><%= User.human_attribute_name(:last_name) %>:</strong>
-	  <%= @user.last_name %>
+	  <%=h @user.last_name %>
 		<br />
 	  <strong><%= User.human_attribute_name(:email) %>:</strong>
-	  <%= @user.email %>
+	  <%=h @user.email %>
 	</p>
 
 	<% if @user.projects[0] %>
-		<h2><%=t :'users.projects', :name => @user.full_name %>:</h2>
+		<h2><%=t :'users.projects', :name => h(@user.full_name) %>:</h2>
 		<ul>
 		  <% @user.projects.each do |project| %>
 		    <li><%= link_to h(project.name), [project, :sections] %></li>

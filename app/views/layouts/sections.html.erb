@@ -69,7 +69,7 @@
       </form>
       <div id="user_card">
         <%= image_tag current_user.avatar.url %>
-        <strong><%= current_user.full_name %></strong>
+        <strong><%=h current_user.full_name %></strong>
 				<%= link_to t(:".tasks", :count => current_user.responsibilities_count(@project.id)), [@project, :tasks] %>
       </div>
       <div id="people_envolved">
@@ -85,7 +85,7 @@
           <li>
             <%= image_tag user.avatar.url(:aside), :alt => user.full_name %>
             <span class="people_info">              
-                <strong><%= user.full_name %></strong>
+                <strong><%=h user.full_name %></strong>
                 <%=t :".last_activity", :time => time_ago_in_words(user.last_active_at) %>
             </span>
           </li>

@@ -6,7 +6,7 @@
 		<h2><%=t '.active' %></h2>
 		<ul>
 			<% @projects.each do |project|%>
-				<li><%= link_to project.name, project %></li>
+				<li><%= link_to h(project.name), project %></li>
 			<% end %>
 		</ul>
 	<% end %>
@@ -14,7 +14,7 @@
 		<h2><%=t '.completed' %></h2>
 		<ul>
 			<% @completed.each do |project|%>
-				<li><%= link_to project.name, project %></li>
+				<li><%= link_to h(project.name), project %></li>
 			<% end %>
 		</ul>
 	<% end %>
