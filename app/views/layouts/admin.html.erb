@@ -15,14 +15,14 @@
     </article>
     <aside>
 			<div class="aside_section">
-        <h3><%=t :'.users', :count => User.count %></h3>
+        <h3><%=t :'.users', :count => account.users.size %></h3>
         <ul>
           <li><%= link_to t(:'.new_user'), new_user_path %></li>
           <li><%= link_to t(:'.manage_users'), users_path %></li>
         </ul>
       </div>
       <div class="aside_section">
-        <% @projects ||= Project.active.all %>
+        <% @projects ||= account.projects.active %>
         <h3><%=t :".current_projects", :count => @projects.size  %></h3>
         <ul>
           <% @projects.each do |project| %>
