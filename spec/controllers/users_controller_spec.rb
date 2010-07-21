@@ -45,13 +45,8 @@ describe UsersController do
         get :new
       end
 
-      it "assigns new user as @user" do
-        assigns[:user].new_record?.should be_true
-      end
-
-      it "renders new template" do
-        response.should render_template(:new)
-      end
+      it { assigns[:user].should be_new_record }
+      it { should render_template("new") }
     end
 
     describe "POST create" do
@@ -74,8 +69,8 @@ describe UsersController do
 
         post_create
 
-        assigns[:user].should == mock_user
-        response.should render_template(:new)
+        should assign_to(:user).with(mock_user)
+        should render_template("new")
       end
 
       it "should redirect to users page, when user is valid" do
@@ -83,8 +78,8 @@ describe UsersController do
 
         post_create
 
-        assigns[:user].should == mock_user
-        response.should redirect_to(user_url(mock_user))
+        should assign_to(:user).with(mock_user)
+        should redirect_to(user_url(mock_user))
       end
     end
 
@@ -117,8 +112,8 @@ describe UsersController do
 
         put_update
 
-        assigns[:user].should == mock_user
-        response.should render_template(:edit)
+        should assign_to(:user).with(mock_user)
+        should render_template("edit")
       end
 
       it "should redirect to users page, when user is valid" do
@@ -126,7 +121,8 @@ describe UsersController do
 
         put_update
 
-        response.should redirect_to(user_url(mock_user))   
+        should assign_to(:user).with(mock_user)
+        should redirect_to(user_url(mock_user))  
       end
     end
 
@@ -134,12 +130,11 @@ describe UsersController do
       before do
         mock_users_find_with "15"
         mock_user.should_receive(:destroy)
+
+        delete :destroy, :id => "15"
       end
 
-      it "destroys the requested user and redirects to users" do
-        delete :destroy, :id => "15"
-        response.should redirect_to(users_url)
-      end
+      it { should redirect_to(users_url) }
     end
 
     describe "PUT set_admin" do
