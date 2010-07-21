@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <%= csrf_meta_tag %>
-  <title><%= current_user.account.name + t(".title_#{controller_name}", :default => "") %></title>
+  <title><%= account.name + t(".title_#{controller_name}", :default => "") %></title>
   <%= stylesheet_link_tag 'application' %>
 	<link rel="shortcut icon" href="<%= path_to_image 'favicon.png' %>" type="image/x-icon" />
 </head>

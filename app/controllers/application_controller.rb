@@ -8,6 +8,8 @@ class ApplicationController < ActionController::Base
   
   rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
   
+  helper_method :account
+  
   protected 
     def deny_access
       if request.xhr?
@@ -35,5 +37,9 @@ class ApplicationController < ActionController::Base
 
     def record_not_found
       render :partial => "shared/not_found", :layout => "application", :status => 404
+    end
+    
+    def account
+      @account ||= current_user.account
     end
 end
