@@ -7,19 +7,18 @@ class UsersController < ApplicationController
   before_filter :get_user, :only => [:show, :edit, :update, :destroy, :set_admin]
   
   def index
-    @users = User.all
+    @users = account.users
   end
   
   def show
   end
   
   def new
-    @user = User.new
+    @user = account.users.build
   end
   
   def create
-    @user = User.new(params[:user])
-    @user.account = current_user.account
+    @user = account.users.build(params[:user])
     
     if @user.save
       redirect_to @user
@@ -56,6 +55,6 @@ class UsersController < ApplicationController
   
   private
     def get_user
-      @user = User.first(:conditions => {:id => params[:id]})
+      @user = account.users.find(params[:id])
     end
 end

@@ -4,40 +4,44 @@ describe UsersController do
   describe "with admin user" do
     before do
       sign_in @current_user = Factory(:user, :admin => true)
+      
+      controller.stub(:current_user).and_return @current_user
+      @current_user.should_receive(:account).and_return mock_account
     end
 
     describe "GET index" do
       before do
-        User.should_receive(:all).and_return([mock_user])
+        mock_account.should_receive(:users).and_return([mock_user])
         get :index
       end
 
-      it "assigns all user as @users" do
-        assigns[:users].should == [mock_user]
-      end
+      it { should assign_to(:users).with([mock_user]) }
+      it { should render_template("index") }
+    end
 
-      it "renders index template" do
-        response.should render_template(:index)
-      end
+    def mock_users_find_with(id)
+      users  = []
+      mock_account.should_receive(:users).and_return users
+      users.should_receive(:find).with(id).and_return mock_user
     end
 
     describe "GET show" do
       before do
-        User.should_receive(:first).with(:conditions => {:id => "15"}).and_return(mock_user)
+        mock_users_find_with "15"
+        
         get :show, :id => "15"
       end
 
-      it "assigns the requested user as @user" do
-        assigns[:user].should equal(mock_user)
-      end
-
-      it "renders show template" do
-        response.should render_template(:show)
-      end
+      it { should assign_to(:user).with(mock_user) }
+      it { should render_template("show") }
     end
 
     describe "GET new" do
       before do
+        users  = []
+        mock_account.should_receive(:users).and_return users
+        users.should_receive(:build).and_return User.new
+        
         get :new
       end
 
@@ -60,9 +64,9 @@ describe UsersController do
       end
 
       before do
-        User.should_receive(:new).with(user_params.stringify_keys).and_return(mock_user)
-        
-        mock_user.should_receive(:account=).with(@current_user.account)
+        users  = []
+        mock_account.should_receive(:users).and_return users
+        users.should_receive(:build).with(user_params.stringify_keys).and_return mock_user
       end
 
       it "should render new template when user is invalid" do
@@ -79,23 +83,20 @@ describe UsersController do
 
         post_create
 
+        assigns[:user].should == mock_user
         response.should redirect_to(user_url(mock_user))
       end
     end
 
     describe "GET edit" do
       before do
-        User.should_receive(:first).with(:conditions => {:id => "15"}).and_return(mock_user)
+        mock_users_find_with "15"
+        
         get :edit, :id => "15"
       end
 
-      it "assigns the requested user as @user" do
-        assigns[:user].should equal(mock_user)
-      end
-
-      it "renders edit template" do
-        response.should render_template(:edit)
-      end
+      it { should assign_to(:user).with(mock_user) }
+      it { should render_template("edit") }
     end
 
     describe "PUT update" do
@@ -108,7 +109,7 @@ describe UsersController do
       end
 
       before do
-        User.should_receive(:first).with(:conditions => {:id => "15"}).and_return(mock_user)
+        mock_users_find_with "15"
       end
 
       it "should render edit template when user is invalid" do
@@ -131,7 +132,7 @@ describe UsersController do
 
     describe "DELETE destroy" do
       before do
-        User.should_receive(:first).with(:conditions => {:id => "15"}).and_return(mock_user)
+        mock_users_find_with "15"
         mock_user.should_receive(:destroy)
       end
 
@@ -143,7 +144,7 @@ describe UsersController do
 
     describe "PUT set_admin" do
       before do
-        User.should_receive(:first).with(:conditions => {:id => "15"}).and_return(mock_user)
+        mock_users_find_with "15"
       end
 
       it "should set user admin field to param[:value]" do
@@ -154,7 +155,7 @@ describe UsersController do
       end
 
       it "should not allow the current user to change his admin status" do
-        controller.stub(:current_user).and_return(mock_user)
+        mock_user.should_receive(:==).with(@current_user).and_return true
         mock_user.stub(:admin?).and_return(true)
 
         mock_user.should_not_receive(:admin=)
@@ -169,7 +170,7 @@ describe UsersController do
 
         put :set_admin, :id => "15"
 
-        response.should redirect_to(user_url(mock_user))
+        should redirect_to(user_url(mock_user))
       end
     end
     
