@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe "/projects/edit.html.erb" do
   before(:each) do
+    sign_in Factory(:user)
     assigns[:project] = @project = stub_model(Project,
       :new_record? => false,
       :name => "value for name"
