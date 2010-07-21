@@ -5,23 +5,22 @@ class ProjectsController < ApplicationController
   before_filter :get_project, :only => [:show, :edit, :update, :destroy, :complete]
   
   def index
-    @projects  = Project.active
-    @completed = Project.completed
+    @projects  = account.projects.active
+    @completed = account.projects.completed
   end
 
   def show
   end
 
   def new
-    @project = Project.new
+    @project = account.projects.build
   end
 
   def edit
   end
 
   def create
-    @project = Project.new(params[:project])
-    @project.account = current_user.account
+    @project = account.projects.build(params[:project])
 
     if @project.save
       redirect_to @project
@@ -53,6 +52,6 @@ class ProjectsController < ApplicationController
   
   private
     def get_project
-      @project = Project.find(params[:id])
+      @project = account.projects.find(params[:id])
     end
 end
