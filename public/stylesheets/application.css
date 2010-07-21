@@ -1704,6 +1704,7 @@ aside .aside_section a:hover {
 .empty_dashboard h2 {
   font-size: 14px;
   margin-bottom: 20px;
+  text-align: left;
 }
 
 .empty_dashboard a {
