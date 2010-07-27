@@ -3,8 +3,7 @@ class CreateStatuses < ActiveRecord::Migration
     create_table :statuses do |t|
       t.integer :user_id
       t.integer :project_id
-      t.text :content
-
+      t.text :text
       t.timestamps
     end
     
