@@ -3,6 +3,7 @@ class Project < ActiveRecord::Base
   has_many :comments, :dependent => :destroy
   has_many :tasks, :dependent => :destroy
   has_many :sections, :dependent => :destroy
+  has_many :statuses, :dependent => :destroy
   has_many :participants, :class_name => "ProjectUser", :foreign_key => "project_id", :dependent => :destroy
   
   has_many :users, :through => :participants

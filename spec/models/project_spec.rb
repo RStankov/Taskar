@@ -12,6 +12,7 @@ describe Project do
   it { should have_many(:tasks) }
   it { should have_many(:comments) }
   it { should have_many(:events) }
+  it { should have_many(:statuses) }
   it { should belong_to(:account) }
 
   describe "involves?" do

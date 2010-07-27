@@ -24,6 +24,10 @@ module TaskarMocks
   end
   
   def mock_event(stubs={})
-    @mock_event ||= mock_model(Event)
+    @mock_event ||= mock_model(Event, stubs)
+  end
+  
+  def mock_status(stubs={})
+    @mock_status ||= mock_status(Status, stubs)
   end
 end
