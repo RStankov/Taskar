@@ -5,6 +5,7 @@ describe Status do
   
   it { should belong_to(:project) }
   it { should belong_to(:user) }
+  it { should have_one(:event) }
   it { should validate_presence_of(:project) }
   it { should validate_presence_of(:user) }
   it { should validate_presence_of(:text) }

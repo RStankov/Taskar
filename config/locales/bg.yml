@@ -166,6 +166,7 @@ bg:
     subject:
       task: "задача"
       comment: "коментар"
+      status: "статус"
     
     action:
       commented: "коментира"
