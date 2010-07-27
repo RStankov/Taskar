@@ -8,6 +8,7 @@ bg:
           comment: "Коментар"
           project_user: "Участие в проект"
           account: "Акаунт"
+          status: "Статус"
         
         attributes:
           project:
@@ -52,6 +53,9 @@ bg:
           project_user:
             user_id: "Потребител"
             project_id: "Проект"
+            
+          status:
+            text: "Статус"
           
         errors:
           tasks: 
