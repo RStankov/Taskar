@@ -206,6 +206,18 @@ describe User do
     end
   end
 
+  describe "new_status" do
+    it "should build new statu from project, assign user.id to it" do
+      project = Factory(:project)
+      user    = Factory(:user)
+      status  = user.new_status(project, {:text => "some status text"})
+      
+      status.text.should  == "some status text"
+      status.user_id.should == user.id
+      project.statuses.detect {|s| s == status}.should be_true
+    end
+  end
+
   describe "responsibilities_count" do
     it "should get the count of all responsibilities who are with status = 0" do
       user = Factory(:user)

@@ -47,6 +47,12 @@ class User < ActiveRecord::Base
     end
   end
   
+  def new_status(project, attributes = {})
+    project.statuses.build(attributes) do |status|
+      status.user_id = id
+    end
+  end
+    
   def responsibilities_count(project_id)
     @responsibilities_count ||= {}
     @responsibilities_count[project_id] ||= responsibilities.count :conditions => {:status => 0, :project_id => project_id}
