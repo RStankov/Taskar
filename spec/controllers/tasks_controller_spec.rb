@@ -7,6 +7,14 @@ describe TasksController do
     def controller_should_fire_event
       controller.should_receive(:activity).with(mock_task)
     end
+    
+    def redirect_to_section_url
+      redirect_to section_url(mock_section)
+    end
+
+    def redirect_to_task_url
+      redirect_to task_url(mock_task)
+    end
 
     describe "member action" do
       before do
@@ -14,29 +22,17 @@ describe TasksController do
       end
  
       describe "GET show" do
-        before do
-          get :show, :id => "1"
-        end
-
-        it "assigns the requested task as @task" do
-          assigns[:task].should == mock_task
-        end
-
-        it "assigns task's section as @section" do
-          assigns[:section].should == mock_section
-        end
-
-        it "assigns taks's section project as @project" do
-          assigns[:project].should == mock_project
-        end
+        before { get :show, :id => "1" }
+        
+        it { should assign_to(:task).with(mock_task) }
+        it { should assign_to(:section).with(mock_section) }
+        it { should assign_to(:project).with(mock_project) }
       end
 
       describe "GET edit" do
-        it "assigns the requested task as @task" do
-          get :edit, :id => "1"
-
-          assigns[:task].should equal(mock_task)
-        end
+        before { get :edit, :id => "1" }
+        
+        it { should assign_to(:task).with(mock_task) }
       end
 
       describe "PUT update" do
@@ -55,95 +51,67 @@ describe TasksController do
             controller_should_fire_event
           end
 
-          it "updates the requested task" do
-            put :update, params
+          describe "normal request" do
+            before { put :update, params }
+            
+            it { should assign_to(:task).with(mock_task) }
+            it { should redirect_to_task_url }
           end
-
-          it "assigns the requested task as @task" do
-            put :update, params
-            assigns[:task].should equal(mock_task)
-          end
-
-          it "renders show action if xhr" do
-            xhr :put, :update, params
-            response.should render_template("show")
-          end
-
-          it "redirects to tasks_url if not xhr" do
-            put :update, params
-            response.should redirect_to(task_url(mock_task))        
+          
+          describe "xhr request" do
+            before { xhr :put, :update, params }
+            
+            it { should assign_to(:task).with(mock_task) }
+            it { should render_template("show") }
           end
         end
 
         describe "with invalid params" do
           before do
             mock_task.should_receive(:update_attributes).with("these" => "params").and_return(false)
-          end
-
-          it "updates the requested task" do
+            
             put :update, params
           end
 
-          it "assigns the task as @task" do
-            put :update, params
-            assigns[:task].should equal(mock_task)
-          end
-
-          it "re-renders the 'edit' template" do
-            put :update, params
-            response.should render_template('edit')
-          end
+          it { should assign_to(:task).with(mock_task) }
+          it { should render_template('edit') }
         end
       end
 
       describe "DELETE destroy" do
         before do
-
           controller_should_fire_event
-
+          
           mock_task.should_receive(:destroy)
         end
-
-        def redirect_to_section_url
-          redirect_to(section_url(mock_section))
+        
+        describe "normal request" do
+          before { delete :destroy, :id => "1" }
+          
+          it { should assign_to(:task).with(mock_task) }
+          it { should redirect_to_section_url }
         end
-
-        it "destroys the requested task" do
-          delete :destroy, :id => "1"
-        end
-
-        it "redirects to the tasks list" do
-          delete :destroy, :id => "1"
-          response.should redirect_to_section_url
-        end
-
-        it "returns ok when this is xhr request" do
-          xhr :delete, :destroy, :id => "1"
-
-          response.should be_success
-          response.should_not redirect_to_section_url
+        
+        describe "xhr request" do
+          before { xhr :delete, :destroy, :id => "1" }
+          
+          it { should assign_to(:task).with(mock_task) }
+          it { should_not redirect_to_section_url }
         end
       end
 
       describe "PUT state" do
         before do          
           mock_task.stub!(:save).and_return true
-          mock_task.stub!(:state=)
-
-          controller_should_fire_event
-        end
-
-        it "updates state attribute" do
           mock_task.should_receive(:state=).with("fooo")
 
+          controller_should_fire_event
+          
           xhr :put, :state, :id => "1", :state => "fooo"
         end
 
-        it "returns ok" do
-          xhr :put, :state, :id => "1"
-
-          response.should be_success
-        end
+        it { should assign_to(:task).with(mock_task) }
+        it { response.should be_success }
       end
 
       describe "PUT archive" do
@@ -175,20 +143,19 @@ describe TasksController do
 
       describe "ensure_task_is_editable filter" do
         before do
-          Task.stub(:find).with("1").and_return(mock_task)
           mock_task.should_receive(:editable?).and_return(false)
         end
 
         it "should render :show action on xhr request" do
           xhr :get, :edit, :id => "1"
 
-          response.should render_template(:show)
+          should render_template(:show)
         end
 
         it "should redirect to @task on normal request" do
           get :edit, :id => "1"
 
-          response.should redirect_to(task_url(mock_task))
+          should redirect_to_task_url
         end
       end
     end
