@@ -8,6 +8,7 @@ class StatusesController < ApplicationController
   end
 
   def index
+    @statuses = @project.statuses.paginate(:page => params[:page], :per_page => 30)
   end
 
   private

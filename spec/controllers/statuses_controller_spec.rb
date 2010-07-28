@@ -9,6 +9,18 @@ describe StatusesController do
     def controller_should_fire_event
       controller.should_receive(:activity).with(mock_status)
     end
+    
+    describe "GET index" do
+      before do
+        mock_project.should_receive(:statuses).and_return @mock_statuses = [mock_status]
+        @mock_statuses.should_receive(:paginate).with(:page => "2", :per_page => 30).and_return @mock_statuses
+        
+        get :index, :project_id => "1", :page => "2"
+      end
+      
+      it { should assign_to(:statuses).with(@mock_statuses) }
+      it { should render_template("index") }
+    end
 
   end
   

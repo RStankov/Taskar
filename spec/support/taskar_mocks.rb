@@ -28,6 +28,6 @@ module TaskarMocks
   end
   
   def mock_status(stubs={})
-    @mock_status ||= mock_status(Status, stubs)
+    @mock_status ||= mock_model(Status, stubs)
   end
 end
