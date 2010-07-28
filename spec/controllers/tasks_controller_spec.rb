@@ -221,71 +221,43 @@ describe TasksController do
     end
     
     describe "Project collection action" do
+      before { Project.should_receive(:find).with("3").and_return(mock_project) }
     
       describe "GET index" do
         before do
-          Project.should_receive(:find).with("1").and_return(mock_project)
+          @current_user.should_receive(:responsibilities).and_return @mock_tasks = [mock_task]
+          @mock_tasks.should_receive(:opened_in_project).with(mock_project).and_return @mock_tasks
 
-          tasks = [mock_task]
-
-          @current_user.should_receive(:responsibilities).and_return(tasks)
-
-          tasks.should_receive(:opened_in_project).with(mock_project).and_return(tasks)
-
-          get :index, :project_id => "1"
+          get :index, :project_id => "3"
         end
 
-
-        it "should assign tasks as @tasks" do
-          assigns[:tasks].should == [mock_task]
-        end
-
-        it { should render_template(:index) }
+        it { should assign_to(:tasks).with(@mock_tasks) }
+        it { should render_template("index") }
       end
       
       describe "GET search" do
         before do
-          @tasks = [mock_task]
+          mock_project.should_receive(:tasks).and_return @mock_tasks = [mock_task]
 
-          Project.should_receive(:find).with("3").and_return(mock_project)
-          mock_project.should_receive(:tasks).and_return(@tasks)
-
-          @tasks.should_receive(:unarchived).and_return(@tasks)
-          @tasks.should_receive(:search).with("term").and_return(@tasks)
+          @mock_tasks.should_receive(:unarchived).and_return @mock_tasks
+          @mock_tasks.should_receive(:search).with("term").and_return @mock_tasks
 
           get :search, :project_id => "3", :ss => "term"
         end
-
-        it "should search for given :ss" do
-        end
-
-        it "should assign founded tasks as @tasks" do
-          assigns[:tasks].should == @tasks
-        end
-
-        it "should render search template" do
-          response.should render_template(:search)
-        end
+        
+        it { should assign_to(:tasks).with(@mock_tasks) }
+        it { should render_template("search") }
       end
 
       describe "PUT reorder" do
         before do
-          Project.should_receive(:find).with("3").and_return(mock_project)
-          mock_project.should_receive(:tasks).and_return(Task)
-        end
-
-        it "should reorder the given ids" do
-          Task.should_receive(:reorder).with(["1", "2", "3", "4"])
-
+          mock_project.should_receive(:tasks).and_return  mock_tasks = []
+          mock_tasks.should_receive(:reorder).with(["1", "2", "3", "4"])
+          
           xhr :put, :reorder, :project_id => "3", :items => ["1", "2", "3", "4"]
         end
-
-        it "should not render template" do
-          xhr :put, :reorder, :project_id => "3"
-
-          response.should_not render_template(:reorder)
-          response.should be_success
-        end
+        
+        it { should_not render_template("reorder") }
       end
       
     end
