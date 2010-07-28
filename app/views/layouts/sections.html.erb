@@ -71,6 +71,18 @@
         <%= image_tag current_user.avatar.url %>
         <strong><%=h current_user.full_name %></strong>
 				<%= link_to t(:".tasks", :count => current_user.responsibilities_count(@project.id)), [@project, :tasks] %>
+				
+        <% form_for [@project, Status.new], :html => {:class => "action_form tooltip", :style => "display: none;"} do |form| %>
+          <div class="arrow"></div>
+          <div class="form_content">
+            <%= form.label :text, "Какво правите в момента?"%>
+  			    <%= form.text_area :text  %>
+  			    <p class="buttons">
+  			      <%= form.submit "Сподели" %>
+  			      <input type="button" value="Откажи">
+  			    </p>
+  			  </div>
+  			<% end %>
       </div>
       <div id="people_envolved">
         <h3>
