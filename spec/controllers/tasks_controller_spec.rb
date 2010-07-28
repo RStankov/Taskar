@@ -9,11 +9,13 @@ describe TasksController do
     end
 
     describe "member action" do
-      
+      before do
+        Task.should_receive(:find).with("1").and_return mock_task(:editable? => true)
+      end
+ 
       describe "GET show" do
         before do
-          Task.stub(:find).with("37").and_return(mock_task)
-          get :show, :id => "37"
+          get :show, :id => "1"
         end
 
         it "assigns the requested task as @task" do
@@ -31,9 +33,7 @@ describe TasksController do
 
       describe "GET edit" do
         it "assigns the requested task as @task" do
-          Task.stub(:find).with("37").and_return(mock_task(:editable? => true))
-
-          get :edit, :id => "37"
+          get :edit, :id => "1"
 
           assigns[:task].should equal(mock_task)
         end
@@ -41,7 +41,6 @@ describe TasksController do
 
       describe "PUT update" do
         before do
-          Task.should_receive(:find).with("1").and_return(mock_task(:editable? => true))
           controller.should_receive(:ensure_task_is_editable)
         end
 
@@ -99,7 +98,6 @@ describe TasksController do
 
       describe "DELETE destroy" do
         before do
-          Task.should_receive(:find).with("37").and_return(mock_task)
 
           controller_should_fire_event
 
@@ -111,16 +109,16 @@ describe TasksController do
         end
 
         it "destroys the requested task" do
-          delete :destroy, :id => "37"
+          delete :destroy, :id => "1"
         end
 
         it "redirects to the tasks list" do
-          delete :destroy, :id => "37"
+          delete :destroy, :id => "1"
           response.should redirect_to_section_url
         end
 
         it "returns ok when this is xhr request" do
-          xhr :delete, :destroy, :id => "37"
+          xhr :delete, :destroy, :id => "1"
 
           response.should be_success
           response.should_not redirect_to_section_url
@@ -128,8 +126,8 @@ describe TasksController do
       end
 
       describe "PUT state" do
-        before do
-          Task.stub!(:find).with("5").and_return(mock_task(:save => true))
+        before do          
+          mock_task.stub!(:save).and_return true
           mock_task.stub!(:state=)
 
           controller_should_fire_event
@@ -138,11 +136,11 @@ describe TasksController do
         it "updates state attribute" do
           mock_task.should_receive(:state=).with("fooo")
 
-          xhr :put, :state, :id => "5", :state => "fooo"
+          xhr :put, :state, :id => "1", :state => "fooo"
         end
 
         it "returns ok" do
-          xhr :put, :state, :id => "5"
+          xhr :put, :state, :id => "1"
 
           response.should be_success
         end
@@ -150,7 +148,7 @@ describe TasksController do
 
       describe "PUT archive" do
         before do
-          Task.stub!(:find).with("5").and_return(mock_task(:save => true))
+          mock_task.stub!(:save).and_return true
           mock_task.stub!(:archived=)
 
           controller_should_fire_event
@@ -159,17 +157,17 @@ describe TasksController do
         it "should try to archive the task to true, when archived is true" do
           mock_task.should_receive(:archived=).with(true)
 
-          xhr :put, :archive, :id => "5", :archived => "true"
+          xhr :put, :archive, :id => "1", :archived => "true"
         end
 
         it "should try to archive the task to false, when archived is set to false" do
           mock_task.should_receive(:archived=).with(false)
 
-          xhr :put, :archive, :id => "5"
+          xhr :put, :archive, :id => "1"
         end
 
         it "should just head ok" do
-          xhr :put, :archive, :id => "5", :archived => "true"
+          xhr :put, :archive, :id => "1", :archived => "true"
 
           response.should be_success
         end
