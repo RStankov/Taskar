@@ -8,8 +8,8 @@ describe TasksController do
       controller.should_receive(:activity).with(mock_task)
     end
     
-    def redirect_to_section_url
-      redirect_to section_url(mock_section)
+    def redirect_to_section_url(params = {})
+      redirect_to section_url(mock_section, params)
     end
 
     def redirect_to_task_url
@@ -160,60 +160,68 @@ describe TasksController do
       end
     end
     
-    describe "collection action" do
+    describe "Section collection action" do
+      before { Section.stub(:find).with("2").and_return(mock_section) }
       
       describe "POST create" do
-        before do
-          Section.stub(:find).with("2").and_return(mock_section)
+        before { @current_user.should_receive(:new_task).with(mock_section, {'these' => 'params'}).and_return mock_task }
+        
+        def params
+          {:task => {:these => 'params'}, :section_id => "2"}
         end
-
+        
         describe "with valid params" do
           before do
-            @current_user.should_receive(:new_task).with(mock_section, {'these' => 'params'}).and_return(mock_task(:save => true))
+            mock_task.should_receive(:save).and_return true
 
             controller_should_fire_event
           end
-
-          def params
-            {:task => {:these => 'params'}, :section_id => "2"}
+          
+          describe "with norma request" do
+            before { post :create, params }
+            
+            it { should assign_to(:task).with(mock_task) }
+            it { should redirect_to_section_url(:anchor => "task_#{mock_task.id}") }
           end
-
-          it "assigns a newly created task as @task" do
-            post :create, params
-
-            assigns[:task].should equal(mock_task)
-          end
-
-          it "redirects to the created task" do
-            post :create, params
-
-            response.should redirect_to(section_url(mock_section, :anchor => "task_#{mock_task.id}"))
-          end
-
-          it "renders create.rjs on xhr request" do
-            xhr :post, :create, params
-
-            response.should render_template("create")
+          
+          describe "with xhr request" do
+            before { xhr :post, :create, params }
+            
+            it { should assign_to(:task).with(mock_task) }
+            it { should render_template("create") }
           end
         end
 
         describe "with invalid params" do
           before do
-            @current_user.should_receive(:new_task).with(mock_section, {'these' => 'params'}).and_return(mock_task(:save => false))
-            post :create, :task => {:these => 'params'}, :section_id => "2"
+            mock_task.should_receive(:save).and_return false
+            
+            post :create, params
           end
 
-          it "assigns a newly created but unsaved task as @task" do
-            assigns[:task].should equal(mock_task)
-          end
-
-          it "re-renders the 'new' template" do
-            response.should render_template(:_new)
-          end
+          it { should assign_to(:task).with(@task) }
+          it { should render_template("_new") }
         end
 
       end
+      
+      describe "GET archived" do
+        before do
+          mock_section.should_receive(:tasks).and_return @tasks = [mock_task]
+          @tasks.should_receive(:archived).and_return @tasks
+          
+          xhr :get, :archived, :section_id => "2"
+        end
 
+        it { should assign_to(:section).with(mock_section) }
+        it { should assign_to(:tasks).with(@tasks) }
+        it { should render_template("archived") }
+      end
+
+    end
+    
+    describe "Project collection action" do
+    
       describe "GET index" do
         before do
           Project.should_receive(:find).with("1").and_return(mock_project)
@@ -257,30 +265,6 @@ describe TasksController do
 
         it "should render search template" do
           response.should render_template(:search)
-        end
-      end
-
-      describe "GET archived" do
-        before do
-          @tasks = [mock_task]
-
-          Section.should_receive(:find).with("1").and_return(mock_section)
-          mock_section.should_receive(:tasks).and_return(@tasks)
-          @tasks.should_receive(:archived).and_return(@tasks)
-
-          xhr :get, :archived, :section_id => "1"
-        end
-
-        it "should assign the selected section as @section" do
-          assigns[:section] = mock_section
-        end
-
-        it "should get section archived items, and assign them as @tasks" do
-          assigns[:tasks] = @tasks
-        end
-
-        it "should render archived template" do
-          response.should render_template(:archived)
         end
       end
 
