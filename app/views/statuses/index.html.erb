@@ -1,16 +1,15 @@
 <header>
   <h1><%=t :'.title' %></h1>
 </header>
-<ul class="wrap">
+<ul class="wrap statuses">
   <% @statuses.each do |status| %>
-    <% content_tag_for(:li, status) do %>
+    <li>
       <%= image_tag status.user.avatar.url %>
       <div>
         <%= simple_format "<strong>#{h(status.user.full_name)}</strong> " + h(status.text) %>
         <%= time_tag(status.created_at) %>
       </div>
-    <% end %>
-  
+    </li>
   <% end %>
 </ul>
 <%= will_paginate(@statuses, :page_links => false, :previous_label => '', :next_label => '') %>
