@@ -10,6 +10,32 @@ describe StatusesController do
       controller.should_receive(:activity).with(mock_status)
     end
     
+    describe "POST create" do
+      before { @current_user.should_receive(:new_status).with(mock_project, {"these" => "params"}).and_return mock_status }
+      
+      describe "with valid data" do
+        before do
+          mock_status.should_receive(:save).and_return true
+          
+          xhr :post, :create, :project_id => "1", :status => {:these => "params"}
+        end
+        
+        it { should assign_to(:status).with(mock_status) }
+        it { should render_template("create")}
+      end
+      
+      describe "with invali data" do
+        before do
+          mock_status.should_receive(:save).and_return false
+
+          xhr :post, :create, :project_id => "1", :status => {:these => "params"}
+        end
+        
+        it { should assign_to(:status).with(mock_status) }
+        it { should render_template("create")}
+      end
+    end
+    
     describe "GET index" do
       before do
         mock_project.should_receive(:statuses).and_return @mock_statuses = [mock_status]

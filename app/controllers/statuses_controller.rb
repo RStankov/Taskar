@@ -5,6 +5,8 @@ class StatusesController < ApplicationController
   before_filter :check_project_permissions
   
   def create
+    @status = current_user.new_status(@project, params[:status])
+    @status.save
   end
 
   def index
