@@ -1,5 +1,8 @@
 <header>
   <h1><%=t :'.title' %></h1>
+  <ul class="actions">
+    <li><%= link_to t(".dashboard"), [@project, :sections] %></li>
+  </ul>
 </header>
 <ul class="wrap statuses">
   <% @statuses.each do |status| %>

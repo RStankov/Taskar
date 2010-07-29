@@ -767,6 +767,10 @@ section header h1 {
   overflow: hidden;
 }
 
+section header a {
+  float: right;
+}
+
 #sections_index h1, #statuses_index h1 {
   background: url(../images/i.png) 0px 0px no-repeat;
 }

@@ -1,5 +1,10 @@
 <header>
-  <h1><%=t :'.title' %></h1>
+  <h1>
+    <%=t :'.title' %>
+  </h1>
+  <ul class="actions">
+    <li><%= link_to t(".statuses"), [@project, :statuses] %></li>
+  </ul>
 </header>
 <table id="events" colspan="0" rowspan="0">
   <% date = nil %>

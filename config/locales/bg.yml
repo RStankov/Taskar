@@ -34,7 +34,7 @@ bg:
     sections:
       switch_to_project: "Отвори друг проект"
       all_projects: "Всички проекти"
-      goto_dashboard: "Табло"
+      goto_dashboard: "Събития"
       new_section: "Нова секция"
       archived_sections: "Архивирани секции"
       tasks:
@@ -96,6 +96,7 @@ bg:
       title: "Активност по проекта"
       previous: "Предишни"
       next: "Следващи"
+      statuses: "Статуси"
     
     show:
       confirm: "Сигурни ли сте че, искате да изтриете тази секция?"
@@ -185,3 +186,4 @@ bg:
   statuses:
     index:
       title: "Статуси на членовете на проекта"
+      dashboard: "Събития"
