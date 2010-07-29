@@ -92,12 +92,12 @@
           -->
         </h3>
         <ul class="people_extended">
-          <% @project.users.each do |user| %>
-          <li>
-            <%= image_tag user.avatar.url(:aside), :alt => user.full_name %>
+          <% @project.participants.each do |participant| %>
+          <li title="<%=h participant.status %>">
+            <%= image_tag participant.user.avatar.url(:aside), :alt => participant.user.full_name %>
             <span class="people_info">              
-                <strong><%=h user.full_name %></strong>
-                <%=t :".last_activity", :time => time_ago_in_words(user.last_active_at) %>
+                <strong><%=h participant.user.full_name %></strong>
+                <%=t :".last_activity", :time => time_ago_in_words(participant.user.last_active_at) %>
             </span>
           </li>
           <% end %>
