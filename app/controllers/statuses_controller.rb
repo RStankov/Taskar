@@ -10,6 +10,8 @@ class StatusesController < ApplicationController
     
     unless request.xhr?
       redirect_to [@project, :statuses]
+    else
+      head :ok
     end
   end
 

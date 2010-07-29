@@ -20,7 +20,8 @@ describe StatusesController do
           before { xhr :post, :create, :project_id => "1", :status => {:these => "params"} }
           
           it { should assign_to(:status).with(mock_status) }
-          it { should render_template("create") }
+          it { should_not render_template("create") }
+          it { response.should be_success }
         end
         
         describe "normal request" do
@@ -38,7 +39,8 @@ describe StatusesController do
           before { xhr :post, :create, :project_id => "1", :status => {:these => "params"} }
           
           it { should assign_to(:status).with(mock_status) }
-          it { should render_template("create") }
+          it { should_not render_template("create") }
+          it { response.should be_success }
         end
         
         describe "normal request" do
