@@ -19,6 +19,7 @@ textarea {
 
 a {
   color: #5C5C5C;
+  cursor: pointer;
 }
 
 a:hover {
