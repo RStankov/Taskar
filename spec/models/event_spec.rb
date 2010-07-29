@@ -26,8 +26,6 @@ describe Event do
     end
     
     it "should be 'commented' if subject is Comment" do
-      comment = Factory(:comment)
-      
       event_action_for(Factory(:comment)).should == "commented"
     end
     
@@ -53,6 +51,10 @@ describe Event do
         event_action_for(task).should == state
       end
     end
+  
+    it "should be 'shared' if subject is Status" do
+      event_action_for(Factory(:status)).should == "shared"
+    end
   end
   
   describe "info" do
@@ -70,13 +72,12 @@ describe Event do
       
       event.info.should == "comment task text"
     end
-  
-  
-    it "should be subject.name if subject is Section" do
-      task  = Factory(:task, :text => "task test")
-      event = Factory(:event, :subject => task)
+    
+    it "should be subject.text if subject is Status" do
+      status = Factory(:status, :text => "status text")
+      event  = Factory(:event, :subject => status)
       
-      event.info.should == "task test"
+      event.info.should == "status text"
     end
   end
 

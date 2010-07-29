@@ -40,8 +40,8 @@ class Event < ActiveRecord::Base
     
     def set_info
       self.info = case subject_type
-        when "Task"     then subject.try(:text) || ""
-        when "Comment"  then subject.try(:task).try(:text) || ""
+        when "Task", "Status"     then subject.try(:text) || ""
+        when "Comment"            then subject.try(:task).try(:text) || ""
       end
     end
     
@@ -50,6 +50,7 @@ class Event < ActiveRecord::Base
         self.action = subject.destroyed? ? "deleted" : case subject_type
           when "Comment" then "commented"
           when "Task"    then subject.archived? ? "archived" : subject.state
+          when "Status"  then "shared"
         end
       end
     end

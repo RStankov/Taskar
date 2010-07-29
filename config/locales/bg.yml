@@ -179,6 +179,7 @@ bg:
       completed: "завърши"
       rejected: "отхвърли"
       archived: "архивира"
+      shared: "сподели"
     
   
   statuses:
