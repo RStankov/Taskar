@@ -30,7 +30,7 @@ class Event < ActiveRecord::Base
   end
   
   def linkable?
-    action != "deleted"
+    action != "deleted" && subject_type != "Status"
   end
   
   protected

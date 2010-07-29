@@ -120,15 +120,20 @@ describe Event do
       @event = Event.new
     end
     
+    it "should return false if subject is Status" do
+      @event.subject = Status.new
+      @event.should_not be_linkable
+    end
+    
     it "should return false if action is deleted" do
       @event.action = "deleted"
-      @event.linkable?.should be_false
+      @event.should_not be_linkable
     end
     
     %w(commented opened completed rejected archived).each do |action|
       it "should return true if action is #{action}" do
         @event.action = action
-        @event.linkable?.should be_true
+        @event.should be_linkable
       end
     end
   end
