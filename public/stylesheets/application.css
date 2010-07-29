@@ -786,7 +786,7 @@ section header a {
 /*** EVENTS ***/
 
 #events {
-  padding: 20px;
+  padding: 0 20px;
   width: 100%;
   font-size: 12px;
 }
