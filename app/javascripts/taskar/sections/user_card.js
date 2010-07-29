@@ -1,7 +1,9 @@
 Taskar.Sections.UserCard = {
   'click': {
     'img': function(){
-      $('new_status').toggleWithEffect('appear', function(e){
+      var form = $('new_status');
+      form.down('textarea').setValue('').setStyle({backgroundColor: null});
+      form.toggleWithEffect('appear', function(e){
         e.element.visible() && e.element.down('textarea').setValue('').focus();
       });
     },
@@ -12,5 +14,8 @@ Taskar.Sections.UserCard = {
   'key:esc': function(){
     $('new_status').fade();
   },
-  'submit': Taskar.Sections.validateForm
+  'submit': Taskar.Sections.validateForm,
+  'ajax:post': function(){
+    $('new_status').fade();
+  }
 }
