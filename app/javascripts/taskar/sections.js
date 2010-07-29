@@ -1,10 +1,11 @@
 Taskar.Sections = {
   validateForm: function(e){
-    var input = e.findElement('form').down('input[type=text]');
+    var input = e.findElement('form').down('input[type=text],textarea');
     if (input.getValue().trim().length == 0){
       e.stop();
       Taskar.FX.shake(input, {distance: 2, turns: 2});
       
+      input.style.backgroundColor = null;
       input.highlight({startColor: Taskar.ERROR_COLOR});
       input.focus();
     }

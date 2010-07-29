@@ -11,5 +11,6 @@ Taskar.Sections.UserCard = {
   },
   'key:esc': function(){
     $('new_status').fade();
-  }
+  },
+  'submit': Taskar.Sections.validateForm
 }
