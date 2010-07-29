@@ -55,7 +55,7 @@ describe StatusesController do
     describe "GET index" do
       before do
         mock_project.should_receive(:statuses).and_return @mock_statuses = [mock_status]
-        @mock_statuses.should_receive(:paginate).with(:page => "2", :per_page => 30).and_return @mock_statuses
+        @mock_statuses.should_receive(:paginate).with(:page => "2", :per_page => 20, :order => "id DESC").and_return @mock_statuses
         
         get :index, :project_id => "1", :page => "2"
       end

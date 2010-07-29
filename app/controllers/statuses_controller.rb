@@ -16,7 +16,7 @@ class StatusesController < ApplicationController
   end
 
   def index
-    @statuses = @project.statuses.paginate(:page => params[:page], :per_page => 30)
+    @statuses = @project.statuses.paginate(:page => params[:page], :per_page => 20, :order => "id DESC")
   end
 
   private
