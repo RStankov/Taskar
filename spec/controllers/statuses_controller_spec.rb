@@ -14,7 +14,11 @@ describe StatusesController do
       before { @current_user.should_receive(:new_status).with(mock_project, {"these" => "params"}).and_return mock_status }
       
       describe "with valid data" do
-        before { mock_status.should_receive(:save).and_return true }
+        before do
+          mock_status.should_receive(:save).and_return true
+          
+          controller.should_receive(:activity).with mock_status
+        end
         
         describe "xhr request" do
           before { xhr :post, :create, :project_id => "1", :status => {:these => "params"} }

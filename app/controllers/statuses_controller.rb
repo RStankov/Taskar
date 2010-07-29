@@ -6,7 +6,10 @@ class StatusesController < ApplicationController
   
   def create
     @status = current_user.new_status(@project, params[:status])
-    @status.save
+    
+    if @status.save
+      activity @status
+    end
     
     unless request.xhr?
       redirect_to [@project, :statuses]
