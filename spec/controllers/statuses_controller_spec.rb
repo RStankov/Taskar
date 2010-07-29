@@ -14,25 +14,39 @@ describe StatusesController do
       before { @current_user.should_receive(:new_status).with(mock_project, {"these" => "params"}).and_return mock_status }
       
       describe "with valid data" do
-        before do
-          mock_status.should_receive(:save).and_return true
+        before { mock_status.should_receive(:save).and_return true }
+        
+        describe "xhr request" do
+          before { xhr :post, :create, :project_id => "1", :status => {:these => "params"} }
           
-          xhr :post, :create, :project_id => "1", :status => {:these => "params"}
+          it { should assign_to(:status).with(mock_status) }
+          it { should render_template("create") }
         end
         
-        it { should assign_to(:status).with(mock_status) }
-        it { should render_template("create")}
+        describe "normal request" do
+          before { post :create, :project_id => "1", :status => {:these => "params"} }
+
+          it { should assign_to(:status).with(mock_status) }
+          it { should redirect_to(project_statuses_url(mock_project)) }
+        end
       end
       
       describe "with invali data" do
-        before do
-          mock_status.should_receive(:save).and_return false
-
-          xhr :post, :create, :project_id => "1", :status => {:these => "params"}
+        before { mock_status.should_receive(:save).and_return false }
+        
+        describe "xhr request" do
+          before { xhr :post, :create, :project_id => "1", :status => {:these => "params"} }
+          
+          it { should assign_to(:status).with(mock_status) }
+          it { should render_template("create") }
         end
         
-        it { should assign_to(:status).with(mock_status) }
-        it { should render_template("create")}
+        describe "normal request" do
+          before { post :create, :project_id => "1", :status => {:these => "params"} }
+
+          it { should assign_to(:status).with(mock_status) }
+          it { should redirect_to(project_statuses_url(mock_project)) }
+        end
       end
     end
     
