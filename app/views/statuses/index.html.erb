@@ -1,2 +1,16 @@
-<h1>Statuses#index</h1>
-<p>Find me in app/views/statuses/index.html.erb</p>
+<header>
+  <h1><%=t :'.title' %></h1>
+</header>
+<ul class="wrap">
+  <% @statuses.each do |status| %>
+    <% content_tag_for(:li, status) do %>
+      <%= image_tag status.user.avatar.url %>
+      <div>
+        <%= simple_format "<strong>#{h(status.user.full_name)}</strong> " + h(status.text) %>
+        <%= time_tag(status.created_at) %>
+      </div>
+    <% end %>
+  
+  <% end %>
+</ul>
+<%= will_paginate(@statuses, :page_links => false, :previous_label => '', :next_label => '') %>

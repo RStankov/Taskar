@@ -62,7 +62,7 @@ bg:
       add_project: "Добавите нов проект"
       add_user: "Добавите нов потребител"
     
-    
+  
   sessions:
     title: "Вход"
   
@@ -106,7 +106,7 @@ bg:
       print: "Отпечатване"
     
   
-  tasks:    
+  tasks:
     empty_archive: "Няма архивирани задачи"
     task:
       more: "още"
@@ -125,6 +125,7 @@ bg:
         one: "Един файл"
         other: "%{count} Файлове"
       
+    
     show:
       task:
         normal: "Задача"
@@ -180,3 +181,6 @@ bg:
       archived: "архивира"
     
   
+  statuses:
+    index:
+      title: "Статуси на членовете на проекта"

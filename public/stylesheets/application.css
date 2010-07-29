@@ -766,7 +766,7 @@ section header h1 {
   overflow: hidden;
 }
 
-#sections_index h1 {
+#sections_index h1, #statuses_index h1 {
   background: url(../images/i.png) 0px 0px no-repeat;
 }
 
@@ -1791,4 +1791,28 @@ aside .aside_section a:hover {
   -box-shadow: 0px 1px 10px #888;
   -moz-box-shadow: 0px 1px 10px #888;
   -webkit-box-shadow: 0px 1px 10px #888;
+}
+
+.status {
+  position: relative;
+  border-bottom: 1px solid #C3C3C3;
+  padding: 10px;
+  clear: both;
+  min-height: 50px;
+}
+
+.status img {
+	float: left;
+	margin: 0 10px 10px 0;
+	border: 1px solid #eee;
+	padding: 4px;
+}
+
+.status div {
+	margin-left: 65px;
+}
+
+.status time {
+  font-size: 10px;
+  color: #5C5C5C;
 }
