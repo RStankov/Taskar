@@ -44,6 +44,9 @@ bg:
       
       people_in_project: "Участници в проекта"
       last_activity: "Последно активен преди %{time}"
+      status: 
+        label: "Какво правите в момента?"
+        share: "Сподели"
     
     dashboard:
       title: "Табло"
