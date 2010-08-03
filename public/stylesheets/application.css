@@ -564,6 +564,7 @@ aside {
   padding: 5%;
   position: absolute;
   width: 90%;
+  z-index: 1001;
 }
 
 #live_search a {
