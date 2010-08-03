@@ -1014,7 +1014,8 @@ a.next_page:hover {
   color: #00589D;
   cursor: pointer;
   font-size: 12px;
-  display: none;  
+  display: none; 
+  margin-left: -6px; 
 }
 
 .tasks_list .drag {
@@ -1046,6 +1047,15 @@ a.next_page:hover {
 .task p {
   overflow: hidden;
   height: 18px;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis; 
+  white-space: nowrap;
+}
+
+.task p.less {
+  white-space: normal;
+  text-overflow: none;
+  -o-text-overflow: none;
 }
 
 .opened .archive {

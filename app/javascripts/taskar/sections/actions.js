@@ -5,15 +5,14 @@ Taskar.Sections.Actions = {
     },
     '.more': function(e, element){
       var p = element.up('.task').down('p');
-      
       if (p.hasClassName('less')){
         p.morph('height:18px', function(){
           p.removeClassName('less');
           element.update(element.getAttribute('data-more'));
         });
       } else {
+        p.addClassName('less');
         p.morph('height:' + p.scrollHeight + 'px', function(){
-          p.addClassName('less');
           element.update(element.getAttribute('data-less'));
         });
       } 
@@ -135,9 +134,10 @@ Taskar.Sections.Actions = {
   mouseover: {
     '.task': function(e, element){
       var content = element.down('p');
+      
       if (content && !content._marked){
         content._marked = [1];
-        if (!(content.scrollHeight > content.getHeight() + 5)){
+        if (!(content.scrollHeight > content.getHeight() + 5 || content.scrollWidth > content.getWidth() + 5)){
           element.down('.more').hide();
         }
       }
