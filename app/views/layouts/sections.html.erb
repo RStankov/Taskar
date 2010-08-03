@@ -94,11 +94,11 @@
         </h3>
         <ul class="people_extended">
           <% @project.participants.each do |participant| %>
-          <li title="<%=h participant.status %>">
+          <li title="<%= participant.status && t(:".last_activity", :time => time_ago_in_words(participant.user.last_active_at)) %>">
             <%= image_tag participant.user.avatar.url(:aside), :alt => participant.user.full_name %>
             <span class="people_info">              
-                <strong><%=h participant.user.full_name %></strong>
-                <%=t :".last_activity", :time => time_ago_in_words(participant.user.last_active_at) %>
+              <strong><%=h participant.user.full_name %></strong>
+              <%= simple_format(h(participant.status)) || t(:".last_activity", :time => time_ago_in_words(participant.user.last_active_at)) %>
             </span>
           </li>
           <% end %>
