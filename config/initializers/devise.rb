@@ -45,7 +45,7 @@ Devise.setup do |config|
   # ==> Configuration for :timeoutable
   # The time you want to timeout the user session without activity. After this
   # time the user will be asked for credentials again.
-  config.timeout_in = 1.hour
+  # config.timeout_in = 1.hour
 
   # ==> Configuration for :lockable
   # Number of authentication tries before locking an account.
