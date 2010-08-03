@@ -727,6 +727,15 @@ aside {
   width: 7px;
 }
 
+#people_envolved p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  white-space: nowrap;
+  height: 20px;
+  width: 180px;
+}
+
 .people_extended li {
   height: 42px;
   line-height: 10px;
