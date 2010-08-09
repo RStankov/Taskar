@@ -9,9 +9,10 @@ describe AsideController do
         Project.should_receive(:find).with("1").and_return(mock_project)
         @current_user.should_receive(:responsibilities_count).with(mock_project.id).and_return(321)
         
-        get :index, :project_id => "1"
+        get :index, :project_id => "1", :format => "json"
         
-        response.body.should == { :responsibilities_count => I18n.t(:'layouts.sections.tasks', :count => 321) }.to_json
+        should assign_to(:responsibilities_count).with(321)
+        should render_template("index.json")
       end
     end
   end

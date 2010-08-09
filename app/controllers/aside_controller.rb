@@ -4,10 +4,11 @@ class AsideController < ApplicationController
   
   
   def index
-    count = current_user.responsibilities_count(@project.id)
-    render :json => {
-      :responsibilities_count => t(:'layouts.sections.tasks', :count => count)
-    }
+    @responsibilities_count = current_user.responsibilities_count(@project.id)
+    #count = current_user.responsibilities_count(@project.id)
+    #render :json => {
+    #  :responsibilities_count => t(:'layouts.sections.tasks', :count => count)
+    #}
   end
   
   private

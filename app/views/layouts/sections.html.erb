@@ -61,7 +61,7 @@
     <article id="<%= "#{controller_name}_#{action_name}" %>">
       <%= yield %>
     </article>
-    <aside id="section_aside" data-update-path="<%= project_aside_index_path(@project) %>">
+    <aside id="section_aside" data-update-path="<%= project_aside_index_path(@project, :format => :json) %>">
       <form id="live_search" action="<%= search_project_tasks_path(@project) %>" method="get">
         <input type="text" name="ss" value="" />
         <input type="submit" value="" />
