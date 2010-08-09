@@ -34,4 +34,15 @@ describe ApplicationController do
     controller.should_receive(:render).with(:partial => "shared/not_found", :layout => "application", :status => 404);
     controller.send(:record_not_found)
   end
+  
+  describe "#project_user" do
+    it "should get ProjectUser related to current_user and project, and should cache the result" do
+      controller.should_receive(:current_user).and_return mock_user(:id => 1)
+      controller.instance_variable_set "@project", mock_project(:id => 2)
+      
+      ProjectUser.should_receive(:find_by_user_id_and_project_id).with(1, 2).and_return mock_project_user
+      
+      controller.send(:project_user).should == mock_project_user
+    end
+  end
 end

@@ -11,6 +11,10 @@ module TaskarMocks
     @mock_project ||= mock_model(Project, stubs)
   end
   
+  def mock_project_user(stubs={})
+    @mock_project_user ||= mock_model(ProjectUser, {:project => mock_project, :user => mock_user}.merge(stubs))
+  end
+  
   def mock_section(stubs={})
     @mock_section ||= mock_model(Section, {:project => mock_project}.merge(stubs))
   end

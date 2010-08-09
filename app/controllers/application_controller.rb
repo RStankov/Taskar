@@ -42,4 +42,8 @@ class ApplicationController < ActionController::Base
     def account
       @account ||= current_user.account
     end
+    
+    def project_user
+      @project_user ||= ProjectUser.find_by_user_id_and_project_id(current_user.id, @project.id)
+    end
 end
