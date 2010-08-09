@@ -1,26 +1,28 @@
-Taskar.Sections.Aside = function(aside){
-  var url = aside.getAttribute('data-update-path');
-  
-  function updateAside(t){
-    var data  = t.responseJSON || {},
-        count = $('user_card').down('a');
-        
-    if (count.innerHTML != data.responsibilities_count){
-      count.morph('opacity:0', function(e){
-        count.update(data.responsibilities_count || '').morph('opacity:1');
+Taskar.Sections.Aside = {
+  initialize: function(element){
+    var url = element.getAttribute("data-update-path");
+    Ajax.Responders.register({
+      onComplete: function(request){
+        var method = request.options.method;
+        if (method == "post" || method == "put" || method == "delete"){
+          new Ajax.Request(url, { method: "get" })
+        }
+      }
+    });
+  },
+  updateContent: function(element, newHtml){
+    if (element.innerHTML != newHtml){
+      element.morph("opacity:0", function(e){
+        element.update(newHtml || "").morph("opacity:1");
       });
     }
+  },
+  updateResponsibilities: function(count){
+    this.updateContent($("user_card").down("a"), count);
+  },
+  updateParticipant: function(element, options){
+    element = $(element);
+    element.setAttribute("title", options.title || "");
+    this.updateContent(element.down('.status'), options.status);
   }
-  
-  Ajax.Responders.register({
-    onComplete: function(request){
-      var method = request.options.method;
-      if (method == 'post' || method == 'put' || method == 'delete'){
-        new Ajax.Request(url, {
-          method: 'get',
-          onComplete: updateAside
-        })
-      }
-    }
-  });
-}
+};
