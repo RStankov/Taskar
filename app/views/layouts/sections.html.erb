@@ -71,7 +71,7 @@
       <div id="user_card">
         <%= image_tag current_user.avatar.url %>
         <strong><%=h current_user.full_name %></strong>
-				<%= link_to t(:".tasks", :count => current_user.responsibilities_count(@project.id)), [@project, :tasks] %>
+				<%= link_to participant_task_count(current_user.responsibilities_count(@project.id)), [@project, :tasks] %>
         <% form_for [@project, Status.new], :html => {:class => "action_form tooltip", :style => "display: none;", "data-remote" => true} do |form| %>
           <div class="arrow"></div>
           <div class="form_content">

@@ -1,5 +1,5 @@
 <% javascript_response do %>
-  Taskar.Sections.Aside.updateResponsibilities(<%= @responsibilities_count %>);
+  Taskar.Sections.Aside.updateResponsibilities("<%= escape_javascript participant_task_count(@responsibilities_count) %>");
   <% @participants.each do |participant| %>
     Taskar.Sections.Aside.updateParticipant("<%= dom_id(participant) %>", {
       title:  "<%= escape_javascript participant_status_title(participant)  %>",
