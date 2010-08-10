@@ -9,18 +9,16 @@ describe SectionsController do
         Project.stub(:find).with("1").and_return(mock_project)
         mock_project.stub!(:events).and_return(@events = [mock_event])
         @events.should_receive(:paginate).with(:page => "1", :per_page => 30).and_return(@events)
+        
+        controller.stub!(:project_user).and_return mock_project_user
+        mock_project_user.should_receive :event_seen!
 
         get :index, :project_id => "1", :page => "1"
       end
 
-      it "assigns paginated events as @events" do
-        assigns[:events].should == @events
-      end
-     
-
-      it "assigns project as @project" do
-        assigns[:project].should == mock_project
-      end
+      it { should assign_to(:events).with(@events) }
+      it { should assign_to(:project).with(@project) }
+      it { should render_template("index") }
     end
 
     describe "GET show" do
