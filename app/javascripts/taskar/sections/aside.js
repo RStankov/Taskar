@@ -27,10 +27,12 @@ Taskar.Sections.Aside = {
   },
   updateEvents: function(count){
     var badget = $('notify_badge');
-    if (!count){
-      badget.hide();
-    } else {
-      badget.update(count).appear();
+    if (badget.innerHTML != count){
+      if (!count){
+        badget.hide();
+      } else {
+        badget.update(count).appear();
+      }
     }
   }
 };
