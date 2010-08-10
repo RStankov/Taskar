@@ -6,5 +6,5 @@
       status: "<%= escape_javascript participant_status(participant) %>"
     });
   <% end %>
-  // Taskar.Sections.Aside.updateEvents(<%= rand 20 %>);
+  Taskar.Sections.Aside.updateEvents(<%= @unseen_events_count %>);
 <% end %>

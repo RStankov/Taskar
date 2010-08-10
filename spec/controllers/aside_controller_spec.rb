@@ -5,18 +5,21 @@ describe AsideController do
     before { sign_with_project_user }
     
     describe "GET index" do
-      it "should render json with current user responsibilities_count" do
+      before do
         Project.should_receive(:find).with("1").and_return(mock_project)
         @current_user.should_receive(:responsibilities_count).with(mock_project.id).and_return(321)
         
-        mock_project.should_receive(:participants).and_return participants = [1,2,3]
+        controller.stub_chain(:project_user, :unseen_events, :count).and_return 4
+        
+        mock_project.should_receive(:participants).and_return @participants = [1,2,3]
         
         xhr :get, :index, :project_id => "1"
-        
-        should assign_to(:responsibilities_count).with(321)
-        should assign_to(:participants).with(participants)
-        should render_template("index.js")
       end
+      
+      it { should assign_to(:responsibilities_count).with(321) }
+      it { should assign_to(:unseen_events_count).with(4) }
+      it { should assign_to(:participants).with(@participants) }
+      it { should render_template("index.js") }      
     end
   end
   
