@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe SectionsHelper do
-  describe "new_section_link" do
+  describe "#new_section_link" do
     before do
       assigns[:project] = @project = mock_project
       
@@ -29,4 +29,27 @@ describe SectionsHelper do
     end
   end
 
+  describe "#participant_status_title" do
+    def mock_participant_with_status(status)
+      @participant ||= stub :status => status, :user => stub(:last_active_at => Time.now)
+    end
+    
+    it "returns nil if participant don't have status" do
+      helper.participant_status_title(mock_participant_with_status(nil)).should be_nil
+    end
+    
+    it "returns #participant_last_action if status is less than 100 chars" do
+      participant = mock_participant_with_status "123456"
+      helper.participant_status_title(participant).should == helper.participant_last_action(participant)
+    end
+    
+    it "returns participant.status + #participant_last_action" do
+      status      = "1" * 100 + "0"
+      participant = mock_participant_with_status status
+      returned    = helper.participant_status_title(participant)
+      
+      returned.should include_text(status)
+      returned.should include_text(helper.participant_last_action(participant))
+    end
+  end
 end

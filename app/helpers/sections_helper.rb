@@ -7,7 +7,6 @@ module SectionsHelper
     end
   end
   
-  
   def participant_task_count(count)
     t "layouts.sections.tasks", :count => count
   end
