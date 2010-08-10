@@ -14,6 +14,6 @@ class ProjectUser < ActiveRecord::Base
   end
   
   def unseen_events
-    Event.unseen id, last_seen_event_at || created_at
+    Event.unseen user_id, last_seen_event_at || created_at
   end    
 end
