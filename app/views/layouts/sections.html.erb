@@ -25,7 +25,7 @@
 			<div class="arrow"></div>
 			<div class="actions"><%= t(:'.new_section') %></div>
 		</div>
-		<a href="#" id="notify_badge" style="display: none;">1</a>
+		<%= link_to 0, [@project, :sections], :id => "notify_badge", :style => "display:none;" %>
     <%= link_to '', [@project, :sections], :id => "goto_dashboard", :title => t(:".goto_dashboard")  %>
 		<div id="nav_sections">
     	<ul data-sortable="<%= reorder_project_sections_path(@project.id) %>">
