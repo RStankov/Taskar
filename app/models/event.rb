@@ -14,6 +14,8 @@ class Event < ActiveRecord::Base
   
   before_validation :set_info, :set_action
   
+  named_scope :unseen, lambda { |user_id, last_seen| { :conditions => ["user_id != ? AND updated_at > ?", user_id, last_seen] }}
+  
   def self.activity(user, subject)
     event = find_or_initialize_by_subject_id_and_subject_type(subject.id, subject.class.name)
     event.updated_at = Time.now   # forces the record to be save, it's timestamp to be updated

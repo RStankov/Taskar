@@ -12,4 +12,8 @@ class ProjectUser < ActiveRecord::Base
   def event_seen!
     update_attribute :last_seen_event_at, current_time_from_proper_timezone
   end
+  
+  def unseen_events
+    Event.unseen id, last_seen_event_at || created_at
+  end    
 end
