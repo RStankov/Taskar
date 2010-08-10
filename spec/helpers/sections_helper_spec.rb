@@ -29,11 +29,11 @@ describe SectionsHelper do
     end
   end
 
+  def mock_participant_with_status(status)
+    @participant ||= stub :status => status, :user => stub(:last_active_at => Time.now)
+  end
+  
   describe "#participant_status_title" do
-    def mock_participant_with_status(status)
-      @participant ||= stub :status => status, :user => stub(:last_active_at => Time.now)
-    end
-    
     it "returns nil if participant don't have status" do
       helper.participant_status_title(mock_participant_with_status(nil)).should be_nil
     end
@@ -50,6 +50,18 @@ describe SectionsHelper do
       
       returned.should include_text(status)
       returned.should include_text(helper.participant_last_action(participant))
+    end
+  end
+  
+  describe "#participant_status_title" do
+    it "returns #participant_last_action if participant don't have status" do
+      perticipant = mock_participant_with_status nil
+      helper.participant_status(perticipant).should == helper.participant_last_action(perticipant)
+    end
+    
+    it "returns formated participent status" do
+      status = "1\n2\n3\n4\n5\n6"
+      helper.participant_status(mock_participant_with_status status).should == helper.simple_format(status)
     end
   end
 end
