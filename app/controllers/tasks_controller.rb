@@ -106,10 +106,6 @@ class TasksController < ApplicationController
       @section = Section.find(params[:section_id])
       @project = @section.project
     end
-    
-    def get_project
-      @project = Project.find(params[:project_id])
-    end   
 
     def ensure_task_is_editable
       unless @task.editable?

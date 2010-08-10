@@ -38,6 +38,10 @@ class ApplicationController < ActionController::Base
     def record_not_found
       render :partial => "shared/not_found", :layout => "application", :status => 404
     end
+  
+    def get_project
+      @project = Project.find(params[:project_id])
+    end
     
     def account
       @account ||= current_user.account

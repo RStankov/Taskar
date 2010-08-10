@@ -21,9 +21,4 @@ class StatusesController < ApplicationController
   def index
     @statuses = @project.statuses.paginate(:page => params[:page], :per_page => 20, :order => "id DESC")
   end
-
-  private
-    def get_project
-      @project = Project.find(params[:project_id])
-    end
 end

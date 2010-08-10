@@ -57,11 +57,7 @@ class SectionsController < ApplicationController
     redirect_to @section
   end
   
-  private
-    def get_project
-      @project = Project.find(params[:project_id])
-    end
-    
+  private    
     def get_section_and_project
       @section = Section.find(params[:id])
       @project = @section.project

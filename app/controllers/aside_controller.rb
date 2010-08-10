@@ -7,9 +7,4 @@ class AsideController < ApplicationController
     @unseen_events_count    = project_user.unseen_events.count
     @participants           = @project.participants
   end
-  
-  private
-    def get_project
-      @project = Project.find(params[:project_id])
-    end
 end
