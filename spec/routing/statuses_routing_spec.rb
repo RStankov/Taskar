@@ -9,5 +9,9 @@ describe StatusesController do
     it "recognizes and generates #index" do
       { :get => "/projects/1/statuses" }.should route_to(:controller => "statuses", :action => "index", :project_id => "1")
     end
+    
+    it "recognizes and generates #update" do
+      { :delete => "/projects/1/statuses/clear" }.should route_to(:controller => "statuses", :action => "clear", :project_id => "1")
+    end
   end
 end

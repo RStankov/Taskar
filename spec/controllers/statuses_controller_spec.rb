@@ -68,6 +68,25 @@ describe StatusesController do
       it { should render_template("index") }
     end
 
+    describe "DELETE clear" do
+      before do
+        controller.should_receive(:project_user).and_return mock_user
+        
+        mock_user.should_receive(:update_attribute).with(:status, "")
+      end
+      
+      it "should redirect on normal request" do
+        delete :clear, :project_id => "1"
+        
+        should redirect_to(project_statuses_url(mock_project))
+      end
+      
+      it "should just head :ok on xhr request" do
+        controller.should_receive(:head).with(:ok)
+        
+        xhr :delete, :clear, :project_id => "1"
+      end
+    end
   end
   
   describe "with user outside project" do
@@ -75,7 +94,8 @@ describe StatusesController do
     
     {
       :create     => 'post(:create, :project_id => "1")',
-      :index      => 'get(:index, :project_id =>"1")'
+      :index      => 'get(:index, :project_id =>"1")',
+      :clear      => 'delete(:clear, :project_id =>"1")'
     }.each do |(action, code)|
      it "should not allow #{action}, and redirect_to root_url" do
        eval code

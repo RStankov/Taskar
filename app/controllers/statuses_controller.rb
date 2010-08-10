@@ -11,14 +11,25 @@ class StatusesController < ApplicationController
       activity @status
     end
     
-    unless request.xhr?
-      redirect_to [@project, :statuses]
-    else
-      head :ok
-    end
+    redirect_or_head_ok
   end
 
   def index
     @statuses = @project.statuses.paginate(:page => params[:page], :per_page => 20, :order => "id DESC")
   end
+  
+  def clear 
+    project_user.update_attribute :status, ""
+    
+    redirect_or_head_ok
+  end
+  
+  private
+    def redirect_or_head_ok
+      unless request.xhr?
+        redirect_to [@project, :statuses]
+      else
+        head :ok
+      end
+    end
 end
