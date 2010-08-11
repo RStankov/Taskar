@@ -790,6 +790,7 @@ section header a {
   font-size: 10px;
   background-color: #ccc;
   height: 10px;
+  line-height: 8px;
 }
 
 #events span.task {
@@ -1291,6 +1292,7 @@ footer p {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   background: #1977c0;
+  background: -moz-linear-gradient(top, #76B7EF, #135F9F);
   background: -webkit-gradient(linear, 0% 0, 0% 100%, from(#76B7EF), color-stop(0.02, #1C87E3), to(#135F9F));
   font-size: 12px;
   text-shadow: rgba(0, 0, 0, 0.496094) 0px -1px 0px;
