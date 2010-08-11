@@ -26,6 +26,10 @@ a:hover {
   text-decoration: none;
 }
 
+a:active {
+  outline: 0;
+}
+
 header, nav, section, article, aside, footer {
   display: block;
 }
@@ -75,10 +79,6 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, dl {
   list-style-type: none;
   margin: 0;
   padding: 0;
-}
-
-a:active {
-  outline: 0;
 }
 
 img {
