@@ -1900,6 +1900,6 @@ aside .aside_section a:hover {
   white-space: nowrap;
   
   position: absolute;
-  top: 30px;
-  left: 30px;
+  top: 25px;
+  left: -10px;
 }
