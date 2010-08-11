@@ -35,7 +35,7 @@ header, nav, section, article, aside, footer {
   text-decoration: none;
 }
 
-input[type="button"]:hover, .cancel:hover {
+.cancel:hover {
   color: #FF0000;
 }
 
