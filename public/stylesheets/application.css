@@ -1878,6 +1878,30 @@ aside .aside_section a:hover {
   color: #5C5C5C;
 }
 
+.statuses a {
+  font-size: 12px;
+  text-decoration: none;
+  padding: 5px;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 0 0 0 5px;
+  position: absolute;
+  right: 0px;
+  top: 7px;
+  background: #fff;
+  color: #00589D;
+  display: none;
+}
+
+.statuses li:hover a {
+  display: block;
+}
+
+.statuses a:hover {
+  color: red;
+  text-decoration: underline;
+}
+
 #notify_badge {
   background-image: -webkit-gradient(linear, 0% 0, 0% 100%, from(#F66), color-stop(0.02, #D60000), color-stop(0.5, #DB0000), color-stop(0.51, #C00), to(#900));
   border: 2px solid white;
