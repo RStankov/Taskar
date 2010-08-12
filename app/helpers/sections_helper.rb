@@ -1,4 +1,16 @@
 module SectionsHelper
+  def section_is_dashboard?
+   (controller_name == "sections" || controller_name == "statuses") && action_name == "index"
+  end
+  
+  def section_is_tasks?
+    (controller_name == "sections" && action_name == "show") || controller_name == "tasks"
+  end
+  
+  def section_is_archive?
+    controller_name == "sections" && action_name == "archive"
+  end
+  
   def new_section_link(before = nil)
     before = before.id.to_s if before
     

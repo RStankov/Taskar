@@ -20,9 +20,9 @@
       </ul>
     </div>
     <nav id="nav_project">
-      <%= link_to t(".dashboard"), [@project, :sections] %>
-      <%= link_to t(".sections"), [@project, :sections] %>
-      <%= link_to t(".archive"), [@project, :sections] %>
+      <%= link_to t(".dashboard"), [@project, :sections], :class => section_is_dashboard? && "selected" %>
+      <%= link_to t(".sections"), [@project, :sections], :class => section_is_tasks? && "selected" %>
+      <%= link_to t(".archive"), [@project, :sections], :class => section_is_archive? && "selected" %>
     </nav>
   <% end %>
   <%= render "shared/header" %>
