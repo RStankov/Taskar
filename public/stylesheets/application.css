@@ -603,6 +603,7 @@ aside {
   background: none;
   right: 0px;
   bottom: -25px;
+  z-index: 1002;
 }
 
 #new_status .arrow {
