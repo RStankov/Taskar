@@ -225,15 +225,16 @@ img {
   font-size: 12px;
   font-weight: normal;
   margin-top: -5px;
+  position: relative;
 }
 
-#nav_project a:first-child {
+#nav_project span a:first-child {
   border-radius: 4px 0px 0 4px;
   -moz-border-radius: 4px 0px 0 4px;
   -webkit-border-radius: 4px 0px 0 4px;
 }
 
-#nav_project a {
+#nav_project span a {
   border: 1px solid #000;
   -moz-box-shadow: #33588B 0px 0px 1px 1px inset, rgba(255, 255, 255, 0.246094) 0px 1px 0px 0px;
   -webkit-box-shadow: #33588B 0px 0px 1px 1px inset, rgba(255, 255, 255, 0.246094) 0px 1px 0px 0px;
@@ -247,20 +248,50 @@ img {
   margin-left: -4px;
 }
 
-#nav_project a:hover {
+#nav_project span a:hover {
   background: #375185;
 }
 
-#nav_project a:active, #nav_project a.selected {
+#nav_project span a:active, #nav_project span a.selected {
   background: #233354;
   -moz-box-shadow: none;
   -webkit-box-shadow: none;
 }
 
-#nav_project a:last-child {
+#nav_project span a:last-child {
   border-radius: 0 4px 4px 0px;
   -moz-border-radius: 0 4px 4px 0px;
   -webkit-border-radius: 0 4px 4px 0px; 
+}
+
+#notify_badge {
+  background-image: -webkit-gradient(linear, 0% 0, 0% 100%, from(#F66), color-stop(0.02, #D60000), color-stop(0.5, #DB0000), color-stop(0.51, #C00), to(#900));
+  border: 2px solid white;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  box-shadow: #000 0px 1px 3px;
+  -moz-box-shadow: #000 0px 1px 3px;
+  -webkit-box-shadow: #000 0px 1px 3px;
+  color: #fff;
+  font-size: 8px;
+  font-weight: bold;
+  height: 15px;
+  line-height: 15px;
+  max-width: 20px;
+  min-width: 8px;
+  width: auto;
+  overflow: hidden;
+  padding: 1px 5px;
+  text-shadow: rgba(0, 0, 0, 0.496094) 0px -1px 0px;
+  text-decoration: none;
+  text-align: center;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis; 
+  white-space: nowrap;
+  position: absolute;
+  top: 10px;
+  left: -15px;
 }
 
 /*** MAIN NAVIGATION ***/
@@ -466,6 +497,7 @@ img {
 #nav_more_sections ul a:active {
   background-color: #9dbed9;
 }
+
 
 /*** SECTION ***/
 
@@ -1960,38 +1992,4 @@ aside .aside_section a:hover {
 .statuses a:hover {
   color: red;
   text-decoration: underline;
-}
-
-#notify_badge {
-  background-image: -webkit-gradient(linear, 0% 0, 0% 100%, from(#F66), color-stop(0.02, #D60000), color-stop(0.5, #DB0000), color-stop(0.51, #C00), to(#900));
-  border: 2px solid white;
-  
-  border-radius: 10px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  
-  box-shadow: #000 0px 1px 3px;
-  -moz-box-shadow: #000 0px 1px 3px;
-  -webkit-box-shadow: #000 0px 1px 3px;
-  
-  color: #fff;
-  font-size: 10px;
-  font-weight: bold;
-  height: 16px;
-  line-height: 15px;
-  max-width: 20px;
-  min-width: 8px;
-  width: auto;
-  overflow: hidden;
-  padding: 1px 5px;
-  text-shadow: rgba(0, 0, 0, 0.496094) 0px -1px 0px;
-  text-decoration: none;
-  text-align: center;
-  text-overflow: ellipsis;
-  -o-text-overflow: ellipsis; 
-  white-space: nowrap;
-  
-  position: absolute;
-  top: 25px;
-  left: -10px;
 }
