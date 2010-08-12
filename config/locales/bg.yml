@@ -46,6 +46,7 @@ bg:
       last_activity: "Последно активен преди %{time}"
       status: 
         label: "Какво правите в момента?"
+        clear: "изчисти статуса си"
         share: "Сподели"
     
     dashboard:
