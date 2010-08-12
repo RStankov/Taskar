@@ -97,8 +97,8 @@ img {
   margin-bottom: 20px;
   padding: 5px 20px 0 15px;
   height: 28px;
-  background: #2D343A;
-  background: -moz-linear-gradient(top, #4E5B65 0.02, #2D343A);
+  background: #243455;
+  background: -moz-linear-gradient(top, #3B547E, #243455);
   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#3B547E), to(#243455), color-stop(.2,#364F82));
   border-bottom: 1px solid #4E5B65;
   text-align: center;
@@ -235,6 +235,8 @@ img {
   border: 1px solid #000;
   -moz-box-shadow: #33588B 0px 0px 1px 1px inset, rgba(255, 255, 255, 0.246094) 0px 1px 0px 0px;
   -webkit-box-shadow: #33588B 0px 0px 1px 1px inset, rgba(255, 255, 255, 0.246094) 0px 1px 0px 0px;
+  background: #3B547E;
+  background: -moz-linear-gradient(top, #3B547E, #243455);
   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#33588B), to(#233354), color-stop(.2,#3E5A94));
   color: #fff;
   text-decoration: none;
@@ -244,7 +246,8 @@ img {
 }
 
 #nav_project a:hover, #nav_project a.selected {
-  background: #3E5A94;
+  background: #375185;
+  -moz-box-shadow: none;
   -webkit-box-shadow: none;
 }
 
