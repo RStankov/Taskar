@@ -1,7 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :users, :member => {:set_admin => :put}
   map.resources :projects, :member => {:complete => :put} do |projects|
-    projects.resources :statuses, :only => [:create, :index], :collection => {:clear => :delete}
+    projects.resources :statuses, :only => [:create, :index, :destroy], :collection => {:clear => :delete}
     projects.resources :aside, :only => :index
     projects.resources :tasks, :collection => {:reorder => :put, :search => :get}, :only => [:index]
     projects.resources :sections, :shallow => true, :collection => {:reorder => :put}, :member => {:archive => :put} do |sections|

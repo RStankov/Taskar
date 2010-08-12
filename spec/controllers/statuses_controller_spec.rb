@@ -87,6 +87,26 @@ describe StatusesController do
         xhr :delete, :clear, :project_id => "1"
       end
     end
+
+    describe "DELETE status" do
+      before do
+        @current_user.stub_chain(:statuses, :find => mock_status)
+        
+        mock_status.should_receive(:destroy)
+      end
+      
+      it "should redirect on normal request" do
+        delete :destroy, :project_id => "1", :id => "1"
+
+        should redirect_to(project_statuses_url(mock_project))
+      end
+
+      it "should just head :ok on xhr request" do
+        controller.should_receive(:head).with(:ok)
+
+        xhr :delete, :destroy, :project_id => "1", :id => "1"
+      end
+    end
   end
   
   describe "with user outside project" do

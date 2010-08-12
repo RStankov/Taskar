@@ -13,5 +13,9 @@ describe StatusesController do
     it "recognizes and generates #update" do
       { :delete => "/projects/1/statuses/clear" }.should route_to(:controller => "statuses", :action => "clear", :project_id => "1")
     end
+    
+    it "recognizes and generates #destroy" do
+      { :delete => "/projects/1/statuses/1" }.should route_to(:controller => "statuses", :action => "destroy", :project_id => "1", :id => "1")
+    end
   end
 end

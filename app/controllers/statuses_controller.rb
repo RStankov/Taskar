@@ -24,6 +24,13 @@ class StatusesController < ApplicationController
     redirect_or_head_ok
   end
   
+  def destroy
+    @status = current_user.statuses.find(params[:id])
+    @status.destroy
+    
+    redirect_or_head_ok
+  end
+  
   private
     def redirect_or_head_ok
       unless request.xhr?
