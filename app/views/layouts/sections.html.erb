@@ -100,7 +100,12 @@
   	      <% @project.sections.unarchived.each do |section| %>
   	        <% content_tag_for(:li, section) do %>
   	            <%= link_to h(section.name), section, :class => @section == section && "selected" %>
-  	            <%= link_to "&nbsp;", new_project_section_path(@project, :before => section.id), :class => "add_section" %>
+  	            <% link_to new_project_section_path(@project, :before => section.id), :class => "add_section" do %>
+  	              <div class="tooltip">
+              			<div class="arrow"></div>
+              			<div class="actions"><%= t(:'.new_section') %></div>
+              		</div>
+  	            <% end %>
   	        <% end %>
   	      <% end %>
   	    </ul>

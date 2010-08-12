@@ -1996,11 +1996,29 @@ aside .aside_section a:hover {
 .sections .add_section {
   display: block;
   height: 5px;
-  margin-bottom: 1px;
+  position:relative;
 }
 
-.sections .add_section:hover {
-  margin-bottom: 0px;
-  border-bottom: 1px dotted #000;
-  text-decoration: none;
+.sections .add_section .tooltip {
+  display: none;
+}
+
+.sections .add_section:hover .tooltip {
+  display: block;
+}
+
+.sections .add_section .tooltip {
+  top: -13px;
+  left: -90px;
+}
+
+.sections .add_section .tooltip .arrow {
+  right: -4px;
+  top: 9px;
+  width: 10px;
+  height: 10px;
+}
+
+.sections .add_section .actions {
+  font-size: 10px;
 }
