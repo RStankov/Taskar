@@ -14,6 +14,14 @@ Taskar.Sections.NewStatus = {
   'key:esc': function(){
     $('new_status').fade();
   },
+  'keyup': {
+    'textarea': function(e, element){
+      if (e.keyCode == Event.KEY_RETURN && e.shiftKey && element.form){
+        e.stop();
+        element.fire('ajax:' + $(element.form).request().options.method)
+      }
+    }
+  },
   'submit': Taskar.Sections.validateForm,
   'ajax:post': function(){
     $('new_status').fade();
