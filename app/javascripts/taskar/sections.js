@@ -39,4 +39,4 @@ Taskar.Sections = {
 //= require "sections/init_task_list"
 //= require "sections/comments"
 //= require "sections/aside"
-//= require "sections/user_card"
+//= require "sections/new_status"

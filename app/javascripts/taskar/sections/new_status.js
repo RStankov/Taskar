@@ -1,4 +1,4 @@
-Taskar.Sections.UserCard = {
+Taskar.Sections.NewStatus = {
   'click': {
     'img': function(){
       var form = $('new_status');

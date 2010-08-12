@@ -9,7 +9,7 @@ CD3.Behaviors({
   '#sections_show':       Taskar.Sections.Actions,
   '#tasks_index':         Taskar.Sections.Actions,
   '#section_aside':       Taskar.Sections.Aside.initialize,
-  '#user_card':           Taskar.Sections.UserCard,
+  '#user_card':           Taskar.Sections.NewStatus,
   '#tasks':               Taskar.Sections.initTaskList,
   '#tasks_show':          Taskar.Sections.Comments,
   '#live_search':         Taskar.UI.LiveSearch.Form,
