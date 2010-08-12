@@ -1155,6 +1155,7 @@ a.next_page:hover {
   padding-top: 4px;
   position: relative;
   text-align: center;
+  z-index: 1001;
 }
 
 #more_actions:hover {
