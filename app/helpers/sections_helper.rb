@@ -16,7 +16,7 @@ module SectionsHelper
   end
   
   def participant_status_title(participant)
-    if participant.status
+    unless participant.status.blank?
       if participant.status.size < 100
         participant_last_action participant
       else
@@ -26,10 +26,10 @@ module SectionsHelper
   end
   
   def participant_status(participant)
-    if participant.status
-      simple_format h(participant.status)
-    else  
+    if participant.status.blank?
       participant_last_action participant
+    else
+      simple_format h(participant.status)
     end
   end
 end

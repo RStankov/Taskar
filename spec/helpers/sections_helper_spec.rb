@@ -55,7 +55,7 @@ describe SectionsHelper do
   
   describe "#participant_status_title" do
     it "returns #participant_last_action if participant don't have status" do
-      perticipant = mock_participant_with_status nil
+      perticipant = mock_participant_with_status ""
       helper.participant_status(perticipant).should == helper.participant_last_action(perticipant)
     end
     
