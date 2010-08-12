@@ -32,6 +32,9 @@ bg:
       manage_projects: "Всички проекти"
     
     sections:
+      dashboard: "Табло"
+      sections: "Задачи"
+      archive: "Архив"
       switch_to_project: "Отвори друг проект"
       all_projects: "Всички проекти"
       goto_dashboard: "Събития"

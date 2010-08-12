@@ -1,7 +1,7 @@
 <header id="header">
+  <%= yield(:header) || "#{current_user.try(:account).try(:name)} " + link_to(t('layouts.dashboard.title'), root_path, :id => 'nav_dashboard') %>
   <p id="nav_account">
     <%= link_to t(:"layouts.general.profile"), edit_user_registration_path %> | 
     <%= link_to t(:"layouts.general.logout"), destroy_user_session_path %>
   </p>
-  <%= yield(:header) || "#{current_user.try(:account).try(:name)} " + link_to(t('layouts.dashboard.title'), root_path, :id => 'nav_dashboard') %>
 </header>

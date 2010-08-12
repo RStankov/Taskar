@@ -8,7 +8,8 @@
 	<link rel="shortcut icon" href="<%= path_to_image 'favicon.png' %>" type="image/x-icon" />
 </head>
 <body>
-  <% content_for :header do %><%= @project.name  %>
+  <% content_for :header do %>
+    <h2><%= @project.name  %></h2>
     <div id="nav_projects">
       <span><%= t :".switch_to_project" %></span>
       <ul>
@@ -18,6 +19,11 @@
         <li><%= link_to t(:".all_projects"), root_path %></li>
       </ul>
     </div>
+    <nav id="nav_project">
+      <%= link_to t(".dashboard"), [@project, :sections] %>
+      <%= link_to t(".sections"), [@project, :sections] %>
+      <%= link_to t(".archive"), [@project, :sections] %>
+    </nav>
   <% end %>
   <%= render "shared/header" %>
   <nav id="nav_main">
