@@ -1893,7 +1893,6 @@ aside .aside_section a:hover {
   color: #000;
 }
 
-
 .empty_dashboard {
   text-shadow: #fff 1px 1px 1px;
   background-color: #ECF3FE;
@@ -1992,4 +1991,16 @@ aside .aside_section a:hover {
 .statuses a:hover {
   color: red;
   text-decoration: underline;
+}
+
+.sections .add_section {
+  display: block;
+  height: 5px;
+  margin-bottom: 1px;
+}
+
+.sections .add_section:hover {
+  margin-bottom: 0px;
+  border-bottom: 1px dotted #000;
+  text-decoration: none;
 }

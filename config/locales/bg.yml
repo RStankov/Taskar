@@ -33,11 +33,12 @@ bg:
     
     sections:
       dashboard: "Табло"
-      sections: "Задачи"
+      task_list: "Задачи"
       archive: "Архив"
       switch_to_project: "Отвори друг проект"
       all_projects: "Всички проекти"
       goto_dashboard: "Събития"
+      sections: "Секции"
       new_section: "Нова секция"
       archived_sections: "Архивирани секции"
       tasks:
