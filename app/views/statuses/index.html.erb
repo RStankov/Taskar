@@ -4,13 +4,13 @@
     <li><%= link_to t(".dashboard"), [@project, :sections] %></li>
   </ul>
 </header>
-<ul class="wrap statuses">
+<ul class="wrap statuses" id="statuses_list">
   <% @statuses.each do |status| %>
     <li>
       <%= image_tag status.user.avatar.url %>
       <div>
         <%= simple_format "<strong>#{h(status.user.full_name)}</strong> " + h(status.text) %>
-        <%= link_to t(:delete), [@project, status], "data-method" => "delete", "data-confirm" => t(:confirm) if status.user == current_user %>
+        <%= link_to t(:delete), [@project, status], "data-remote" => true, "data-method" => "delete", "data-confirm" => t(:confirm) if status.user == current_user %>
         <%= time_tag(status.created_at) %>
       </div>
     </li>
