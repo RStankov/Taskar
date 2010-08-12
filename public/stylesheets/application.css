@@ -88,14 +88,17 @@ img {
 /*** HEADER ***/
 
 #header {
-  background-color: #5c5c5c;
-  box-shadow: 0px 10px 10px -10px #888;
-  -moz-box-shadow: 0px 10px 10px -10px #888;
-  -webkit-box-shadow: 0px 10px 10px -10px #888;
+  box-shadow: 0px 0px 5px #000;
+  -moz-box-shadow: 0px 0px 5px #000;
+  -webkit-box-shadow: 0px 0px 5px #000;
   color: #fff;
+  text-shadow: 0px 1px 0px #000;
   margin-bottom: 20px;
   padding: 5px 20px 0 15px;
   height: 23px;
+  background: #2D343A;
+  background: -webkit-gradient(linear, 0% 0, 0% 100%, from(#7E8E9B), color-stop(0.02, #4E5B65), to(#2D343A));
+  border-bottom: 1px solid #4E5B65;
 }
 
 #nav_dashboard {
@@ -131,6 +134,7 @@ img {
 }
 
 #nav_projects:hover span {
+  text-shadow: none;
   background-color: #fff;
   border-radius: 5px 5px 0 0;
   -moz-border-radius: 5px 5px 0 0;
@@ -140,6 +144,7 @@ img {
 }
 
 #nav_projects ul {
+  text-shadow: none;
   background-color: #fff;
   border-radius: 0 0 5px 5px;
   -moz-border-radius: 0 0 5px 5px;
@@ -189,11 +194,12 @@ img {
 
 #nav_account a {
   color: #fff;
-  padding: 0 5px;
+  padding: 2px 5px;
   text-decoration: none;
 }
 
 #nav_account a:hover {
+  text-shadow: none;
   background-color: #fff;
   border-radius: 3px;
   -moz-border-radius: 3px;
