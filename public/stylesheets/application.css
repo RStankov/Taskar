@@ -199,6 +199,7 @@ img {
 
 #nav_account {
   float: right;
+  display: inline-block;
   font-size: 11px;
   line-height: 20px;
 }
