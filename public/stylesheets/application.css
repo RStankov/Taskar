@@ -1973,8 +1973,8 @@ aside .aside_section a:hover {
   font-size: 12px;
   text-decoration: none;
   padding: 5px;
-  border-radius: 5px;
-  -moz-border-radius: 5px;
+  border-radius: 0 0 0 5px;
+  -moz-border-radius: 0 0 0 5px;
   -webkit-border-radius: 0 0 0 5px;
   position: absolute;
   right: 0px;
@@ -1993,9 +1993,21 @@ aside .aside_section a:hover {
   text-decoration: underline;
 }
 
-.sections .add_section {
+.sections a {
+  padding: 2px 5px;
   display: block;
-  height: 5px;
+}
+
+.sections .selected {
+  background: #5C5C5C;
+  color: #EEE;
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+}
+
+.sections .add_section {
+  height: 4px;
   position:relative;
 }
 
