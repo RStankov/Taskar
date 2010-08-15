@@ -97,17 +97,7 @@
       <div class="aside_section sections">
         <h3><%= t :".sections" %></h3>
         <ul>
-  	      <% @project.sections.unarchived.each do |section| %>
-  	        <% content_tag_for(:li, section) do %>
-  	            <%= link_to h(section.name), section, :class => @section == section && "selected" %>
-  	            <% link_to new_project_section_path(@project, :before => section.id), :class => "add_section" do %>
-  	              <div class="tooltip">
-              			<div class="arrow"></div>
-              			<div class="actions"><%= t(:'.new_section') %></div>
-              		</div>
-  	            <% end %>
-  	        <% end %>
-  	      <% end %>
+  	      <%= render @project.sections.unarchived %>
   	    </ul>
   	    <% form_for [@project, Section.new], :html => {:style => "display:none;"} do |form|  %>
           <%= form.text_field :name, :autocomplete => "off", :placeholder => Section.human_attribute_name(:name) %>
