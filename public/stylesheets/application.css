@@ -1993,11 +1993,8 @@ aside .aside_section a:hover {
   text-decoration: underline;
 }
 
-.sections {
-  list-style-type: none;
-  padding: 0px;
-  list-style-type: none;
-  margin: 0;
+.sections ul {
+  margin-left: -10px;
 }
 
 .sections h3 {
@@ -2008,35 +2005,25 @@ aside .aside_section a:hover {
   padding: 15px 0 10px;
 }
 
-.sections a {
-  padding: 5px 10px;
+.sections .link {
   display: block;
   font-size: 12px;
   text-decoration: none;
+  border-radius: 0 4px 4px 0;
+  -moz-border-radius:  0 4px 4px 0;
+  -webkit-border-radius: 0 4px 4px 0;
+  padding: 5px 20px;
 }
 
-.sections a:hover {
-  color: #00589D;
-}
-
-.sections .selected {
+.sections .link:hover, .sections .selected {
+  color: #eee;
   background: #5C5C5C;
-  color: #EEE;
-  border-radius: 3px;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 0 3px 3px 0;
-  margin-left: -10px;
-  padding-left: 20px;
-}
-
-.sections .selected:hover {
-  color: #EEE;
-  text-decoration: none;
 }
 
 .sections .add_section {
   height: 3px;
-  width: 40px;
+  width: 60px;
+  display:block;
   padding: 0px;
   position:relative;
 }
