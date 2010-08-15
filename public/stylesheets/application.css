@@ -2008,6 +2008,7 @@ aside .aside_section a:hover {
 
 .sections .add_section {
   height: 4px;
+  width: 10px;
   position:relative;
 }
 
