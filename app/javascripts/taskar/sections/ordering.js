@@ -2,8 +2,8 @@ Taskar.Sections.Ordering = function(element){
   var sort = new Taskar.Dnd.Sortable(element.parentNode, {
     item:       '.section',
     handle:     false,
-    moveX:      true,
-    moveY:      false,
+    moveX:      false,
+    moveY:      true,
     autostart:  false
   });
   

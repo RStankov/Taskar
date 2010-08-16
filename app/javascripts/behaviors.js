@@ -1,11 +1,6 @@
 CD3.Behaviors({
-  '#nav_main':            Taskar.Sections.HeadToolTip,
-  '#nav_sections ul':     function(){
-                            Taskar.Sections.Slider(this);
-                            Taskar.Sections.Ordering(this);
-//                            Taskar.Sections.NewForm(this);
-                          },
   '#sections':            function(){
+                            Taskar.Sections.Ordering(this);
                             Taskar.Sections.NewForm(this);
                           },
   '#section_title':       Taskar.Sections.Title,
