@@ -1993,11 +1993,11 @@ aside .aside_section a:hover {
   text-decoration: underline;
 }
 
-.sections ul {
+#sections ul {
   margin-left: -10px;
 }
 
-.sections h3 {
+#sections h3 {
   border-top: 1px solid #D7D7D7;
   font-size: 14px;
   font-weight: normal;
@@ -2005,7 +2005,7 @@ aside .aside_section a:hover {
   padding: 15px 0 10px;
 }
 
-.sections .link {
+#sections .link {
   display: block;
   font-size: 12px;
   text-decoration: none;
@@ -2015,12 +2015,12 @@ aside .aside_section a:hover {
   padding: 5px 20px;
 }
 
-.sections .link:hover, .sections .selected {
+#sections .link:hover, .sections .selected {
   color: #eee;
   background: #5C5C5C;
 }
 
-.sections .add_section {
+#sections .add_section {
   height: 3px;
   width: 60px;
   display:block;
@@ -2028,26 +2028,26 @@ aside .aside_section a:hover {
   position:relative;
 }
 
-.sections .add_section .tooltip {
+#sections .add_section .tooltip {
   display: none;
 }
 
-.sections .add_section:hover .tooltip {
+#sections .add_section:hover .tooltip {
   display: block;
 }
 
-.sections .add_section .tooltip {
+#sections .add_section .tooltip {
   top: -13px;
   left: -90px;
 }
 
-.sections .add_section .tooltip .arrow {
+#sections .add_section .tooltip .arrow {
   right: -4px;
   top: 9px;
   width: 10px;
   height: 10px;
 }
 
-.sections .add_section .actions {
+#sections .add_section .actions {
   font-size: 10px;
 }
