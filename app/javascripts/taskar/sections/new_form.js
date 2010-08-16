@@ -5,20 +5,15 @@ Taskar.Sections.NewForm = function(container){
   container.on('submit',    'form',               Taskar.Sections.validateForm);
   
   var form    = $('new_section'),
-      restore = container.style.width,
-      width   = (parseInt(container.style.width) + 248) + 'px',
-      appear  = new S2.FX.Style(form, {
-        before: function(e){ form.setStyle({ width: '0px', opacity: 0.0 }); },
-        after:  function(e){ form.down('input[type=text]').focus(); }
-      });
+      appear  = new S2.FX.SlideDown(form, function(e){ form.down('input[type=text]').focus(); });
   
   function show(e, element){
     e && e.preventDefault();
     
-    form.down('form').reset();
+    form.reset();
     form.down('input[name*=insert_before]').setValue(element.getAttribute('data-before'));
       
-    if (element.previous() == form && form.visible()){
+    if (element.next() == form && form.visible()){
       return;
     }
     
@@ -26,21 +21,17 @@ Taskar.Sections.NewForm = function(container){
   
     element.hide()
     element.show.bind(element).defer();
-    element.insert({before: form});
+    element.insert({after: form});
     
-    container.style.width = width;
-    
-    form.show();
-    
-    appear.play(null, {style: 'opacity:1; width:' + form.getWidth() + 'px'});
+    appear.play();
   }
   
   function hide(){
     form.hide();
-    container.style.width = restore;
   }
-  
+  /*
   if (container.select('.section').length == 0){
     show(null, container.down('.add_section'));
   }
+  */
 };
