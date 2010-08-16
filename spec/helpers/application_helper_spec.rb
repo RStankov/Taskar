@@ -70,4 +70,22 @@ describe ApplicationHelper do
       helper.csrf_meta_tag.should have_tag("meta[name=csrf-token][content=bar]")
     end    
   end
+
+  describe "tooltip" do
+    it "contains .tooltip" do
+      helper.tooltip("foo").should have_tag(".tooltip")
+    end
+    
+    it "contains .tooltip .arrow" do
+      helper.tooltip("foo").should have_tag(".tooltip .arrow")
+    end
+    
+    it "contains .tooltip .actions" do
+      helper.tooltip("foo").should have_tag(".tooltip .actions")
+    end
+    
+    it "contains the given text" do
+      helper.tooltip("given text").should have_tag(".tooltip .actions", :text => "given text")
+    end
+  end
 end

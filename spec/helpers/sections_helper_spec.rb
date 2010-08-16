@@ -6,8 +6,8 @@ describe SectionsHelper do
     before do
       assigns[:project] = @project = mock_project
       
-      helper.stub(:t).and_return("")
-      helper.should_receive :tooltip
+      helper.stub(:t).and_return ""
+      helper.stub(:tooltip).and_return ""
     end
     
     it "return a.add_section" do
