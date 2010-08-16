@@ -88,6 +88,7 @@
   	        <% content_tag_for(:li, section) do %>
                 <%= new_section_link section %>
                 <%= link_to h(section.name), section, :class => "link " + (@section == section && "selected").to_s %>
+                <input type="button" class="drag" title="<%=t :dnd %>" />
             <% end %>
           <% end %>
   	      <li><%= new_section_link %></li>
