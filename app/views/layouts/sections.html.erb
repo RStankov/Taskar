@@ -32,8 +32,9 @@
   <nav id="nav_main">
     <%= link_to '', [@project, :sections], :id => "goto_dashboard", :title => t(:".goto_dashboard")  %>
 		<div id="nav_sections">
-    	<ul data-sortable="<%= reorder_project_sections_path(@project.id) %>">
+    	<ul>
 	      <% @project.sections.unarchived.each do |section| %>
+	        <%= new_section_link(section) %>
 	        <% content_tag_for(:li, section) do %>
 	            <%= link_to h(section.name), section, :class => @section == section ? "selected" : nil %>
 	        <% end %>
@@ -82,7 +83,7 @@
       </div>
       <div id="sections">
         <h3><%= t :".sections" %></h3>
-        <ul>
+        <ul data-sortable="<%= reorder_project_sections_path(@project.id) %>">
   	      <% @project.sections.unarchived.each do |section| %>
   	        <% content_tag_for(:li, section) do %>
                 <%= new_section_link section %>

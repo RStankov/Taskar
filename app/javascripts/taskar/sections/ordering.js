@@ -1,18 +1,14 @@
-Taskar.Sections.Ordering = function(element){
-  var sort = new Taskar.Dnd.Sortable(element.parentNode, {
-    item:       '.section',
-    handle:     false,
-    moveX:      false,
-    moveY:      true,
-    autostart:  false
-  });
-  
-  element.select('.add_section').each(function(add){
-    (add.next('.section') || element).store('add_section', add);
-  });
+Taskar.Sections.Ordering = function(sections){
+  var element = sections.down('ul'),
+      sort    = new Taskar.Dnd.Sortable(element.parentNode, {
+                  item:       '.section',
+                  handle:     false,
+                  moveX:      false,
+                  moveY:      true,
+                  autostart:  false
+                });
   
   var trace = false;
-  
   element.on('mousedown', '.section', function(e){
     e.preventDefault();
     trace = true;
@@ -40,11 +36,6 @@ Taskar.Sections.Ordering = function(element){
   element.observe('drag:finish', function(e){
     disable.stop.defer();
     e.findElement().removeClassName('dragging');
-    
-    element.insert({bottom: element.retrieve('add_section')});
-    element.select('.section').each(function(section){
-      section.insert({ before: section.retrieve('add_section') });
-    });
   });
   
   element.observe('order:updated', function(e){
