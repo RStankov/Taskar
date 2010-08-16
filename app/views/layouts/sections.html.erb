@@ -30,20 +30,14 @@
   <% end %>
   <%= render "shared/header" %>
   <nav id="nav_main">
-		<div class="tooltip" style="display: none;">
-			<div class="arrow"></div>
-			<div class="actions"><%= t(:'.new_section') %></div>
-		</div>
     <%= link_to '', [@project, :sections], :id => "goto_dashboard", :title => t(:".goto_dashboard")  %>
 		<div id="nav_sections">
     	<ul data-sortable="<%= reorder_project_sections_path(@project.id) %>">
 	      <% @project.sections.unarchived.each do |section| %>
-	        <%= new_section_link(section) %>
 	        <% content_tag_for(:li, section) do %>
 	            <%= link_to h(section.name), section, :class => @section == section ? "selected" : nil %>
 	        <% end %>
 	      <% end %>
-	      <%= new_section_link %>
 	    </ul>
 		</div>
     <div id="nav_more_sections">
