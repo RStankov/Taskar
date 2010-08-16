@@ -2015,7 +2015,7 @@ aside .aside_section a:hover {
   padding: 5px 20px;
 }
 
-#sections .link:hover, .sections .selected {
+#sections .link:hover, #sections .selected {
   color: #eee;
   background: #5C5C5C;
 }
