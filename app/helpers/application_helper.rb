@@ -35,4 +35,13 @@ module ApplicationHelper
       %(<meta name="csrf-param" content="#{h(request_forgery_protection_token)}"/>\n<meta name="csrf-token" content="#{h(form_authenticity_token)}"/>)
     end
   end
+  
+  def tooltip(content)
+    <<-TOOL_TIP
+    <div class="tooltip">
+			<div class="arrow"></div>
+			<div class="actions">#{content}</div>
+		</div>
+		TOOL_TIP
+  end
 end

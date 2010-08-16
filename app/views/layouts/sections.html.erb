@@ -97,7 +97,13 @@
       <div id="sections">
         <h3><%= t :".sections" %></h3>
         <ul>
-  	      <%= render @project.sections.unarchived %>
+  	      <% @project.sections.unarchived.each do |section| %>
+  	        <% content_tag_for(:li, section) do %>
+                <%= new_section_link section %>
+                <%= link_to h(section.name), section, :class => "link " + (@section == section && "selected").to_s %>
+            <% end %>
+          <% end %>
+  	      <li><%= new_section_link %></li>
   	    </ul>
   	    <% form_for [@project, Section.new], :html => {:style => "display:none;"} do |form|  %>
           <%= form.text_field :name, :autocomplete => "off", :placeholder => Section.human_attribute_name(:name) %>
@@ -112,7 +118,7 @@
           <!--
           <button class="list_extended"></button>
           <button class="list_images list_on"></button>
-          -->
+          -->   
         </h3>
         <ul class="people_extended">
           <% @project.participants.each do |participant| %>
