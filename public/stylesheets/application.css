@@ -70,12 +70,6 @@ header, nav, section, article, aside, footer {
   -webkit-box-shadow:0px 0px 10px green;
 }
 
-#nav_main, footer {
-  border-radius: 10px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-}
-
 h1, h2, h3, h4, h5, h6, p, ul, ol, dl {
   list-style-type: none;
   margin: 0;
@@ -296,208 +290,72 @@ img {
 
 /*** MAIN NAVIGATION ***/
 
-#nav_main {
-  background-color: #fff;
-  height: 40px;
-  margin: 0 auto;
-  width: 980px;
+#sections ul {
+  margin-left: -10px;
+}
+
+#sections li {
   position: relative;
 }
 
-#goto_dashboard {
-  background: #eee url(../images/sprite.png) 13px -16px no-repeat;
-  border-radius: 10px 0 0 10px;
-  -moz-border-radius: 10px 0 0 10px;
-  -webkit-border-radius: 10px 0 0 10px;
+#sections li:hover .drag {
   display: block;
-  float: left;
-  height: 40px;
-  width: 40px;
 }
 
-#goto_dashboard:hover {
-  background-position: 13px -49px;
-}
-
-#new_section {
-  overflow: hidden;
-}
-
-#new_section form {
-  width: 240px;
-}
-
-#nav_sections {
-  width: 900px;
-  height: 40px;
-  overflow: hidden;
-  float: left;
+#sections h3 {
+  border-top: 1px solid #D7D7D7;
   font-size: 14px;
+  font-weight: normal;
+  margin: 0;
+  padding: 15px 0 10px;
 }
 
-#nav_sections li {
+#sections .link {
   display: block;
-  float: left;
-  height: 30px;
-  padding: 5px 0;
-}
-
-#nav_sections .dragging {
-  box-shadow: 0px 10px 20px -10px #888;
-  -moz-box-shadow: 0px 10px 20px -10px #888;
-  -webkit-box-shadow: 0px 15px 20px -10px #888;
-}
-
-#nav_sections .section a {
-  border-radius: 10px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  color: #00589d;
-  float: left;
-  font-weight: bold;
-  line-height: 32px;
-  max-height: 30px;
-  padding: 0 15px;
-  text-decoration: none;
-}
-
-#nav_sections .section a:hover {
-  background-color: #00589d;
-  color: #fff;
-}
-
-#nav_sections .section a:active {
-  background-color: #9dbed9;
-}
-
-#nav_sections .section .selected {
-  background-color: #5c5c5c;
-  color: #fff;
-}
-
-#nav_sections .add_section {
-  border-radius: 4px;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-  overflow: visible;
-  text-align: center;
-  width: 5px;
-}
-
-#nav_sections li:hover.add_section {
-  background-color: #9dbed9;
-  cursor: pointer;
-}
-
-#nav_sections .add_section a {
-  display: block;
-  width: 100%;
-  height: 100%;
-  text-decoration: none;
-}
-
-#nav_sections form {
-  background-color: #eee;
-  border-radius: 10px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  height: 22px;
-  padding: 4px;
-}
-
-#nav_sections input[type="text"] {
-  border-radius: 5px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border: 1px solid #d7d7d7;
   font-size: 12px;
-  margin-right: 5px;
-  width: 100px;
-}
-
-#nav_sections input[type="text"]:hover {
-  border-color: #b7b7b7;
-}
-
-#nav_sections input[type="text"]:focus {
-  border-color: #008fff;
-  box-shadow: 0px 0px 2px #999;
-  -moz-box-shadow: 0px 0px 2px #999;
-  -webkit-box-shadow: 0px 0px 2px #999;
-}
-
-#nav_more_sections {
-  background-color: #eee;
-  border-radius: 0 10px 10px 0;
-  -moz-border-radius: 0 10px 10px 0;
-  -webkit-border-radius: 0 10px 10px 0;
-  display: block;
-  float: right;
-  height: 40px;
-  overflow: visible;
-  position: relative;
-  width: 40px;
-}
-
-#nav_more_sections span {
-  background: url(../images/sprite.png) 13px -89px no-repeat;
-  display: block;
-  cursor: pointer;
-  height: 40px;
-  width: 40px;
-}
-
-#nav_more_sections:hover {
-  border-bottom-right-radius: 0;
-  -moz-border-bottom-right-radius: 0;
-  -webkit-border-bottom-right-radius: 0;
-}
-
-#nav_more_sections:hover span {
-  background-position: 13px -121px;
-}
-
-#nav_more_sections ul {
-  background: #eee;
-  border-radius: 0 0 10px 10px;
-  -moz-border-radius: 0 0 10px 10px;
-  -webkit-border-radius: 0 0 10px 10px;
-  box-shadow: 0 5px 5px #aeaeae;
-  -moz-box-shadow: 0 5px 5px #aeaeae;
-  -webkit-box-shadow: 0 5px 5px #aeaeae;
-  display: none;
-  font-size: 14px;
-  font-weight: bold;
-  padding: 5px;
-  position: absolute;
-  right: 0;
-  top: 40px;
-  z-index: 9999;
-}
-
-#nav_more_sections:hover ul {
-  display: block;
-}
-
-#nav_more_sections ul a {
-  border-radius: 10px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  color: #4b4b4b;
-  display: block;
-  padding: 5px 10px;
   text-decoration: none;
+  border-radius: 0 4px 4px 0;
+  -moz-border-radius:  0 4px 4px 0;
+  -webkit-border-radius: 0 4px 4px 0;
+  padding: 5px 20px;
 }
 
-#nav_more_sections ul a:hover {
-  background-color: #00589d;
-  color: #fff;
+#sections li:hover .link, #sections .selected {
+  color: #eee;
+  background: #5C5C5C;
 }
 
-#nav_more_sections ul a:active {
-  background-color: #9dbed9;
+#sections .add_section {
+  height: 3px;
+  width: 60px;
+  display:block;
+  padding: 0px;
+  position:relative;
 }
 
+#sections .add_section .tooltip {
+  display: none;
+}
+
+#sections .add_section:hover .tooltip {
+  display: block;
+}
+
+#sections .add_section .tooltip {
+  top: -13px;
+  left: -90px;
+}
+
+#sections .add_section .arrow {
+  right: -4px;
+  top: 9px;
+  width: 10px;
+  height: 10px;
+}
+
+#sections .add_section .actions {
+  font-size: 10px;
+}
 
 /*** SECTION ***/
 
@@ -1318,6 +1176,9 @@ footer {
   margin: 0 auto;
   padding: 10px 10px 10px 14px;
   width: 956px;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
 }
 
 footer p {
@@ -1696,19 +1557,6 @@ input[type="button"], .cancel {
   }
 }
 
-#nav_main .tooltip {
-  top: 50px;
-}
-
-#nav_main .tooltip .arrow {
-  left: 5px;
-  top: -2px;
-}
-
-#nav_main .actions {
-  font-size: 10px;
-}
-
 /*** APPLICATION LAYOUT ***/
 #outside_box {
 	border-radius: 5px;
@@ -1999,71 +1847,4 @@ aside .aside_section a:hover {
 .statuses a:hover {
   color: red;
   text-decoration: underline;
-}
-
-#sections ul {
-  margin-left: -10px;
-}
-
-#sections li {
-  position: relative;
-}
-
-#sections li:hover .drag {
-  display: block;
-}
-
-#sections h3 {
-  border-top: 1px solid #D7D7D7;
-  font-size: 14px;
-  font-weight: normal;
-  margin: 0;
-  padding: 15px 0 10px;
-}
-
-#sections .link {
-  display: block;
-  font-size: 12px;
-  text-decoration: none;
-  border-radius: 0 4px 4px 0;
-  -moz-border-radius:  0 4px 4px 0;
-  -webkit-border-radius: 0 4px 4px 0;
-  padding: 5px 20px;
-}
-
-#sections li:hover .link, #sections .selected {
-  color: #eee;
-  background: #5C5C5C;
-}
-
-#sections .add_section {
-  height: 3px;
-  width: 60px;
-  display:block;
-  padding: 0px;
-  position:relative;
-}
-
-#sections .add_section .tooltip {
-  display: none;
-}
-
-#sections .add_section:hover .tooltip {
-  display: block;
-}
-
-#sections .add_section .tooltip {
-  top: -13px;
-  left: -90px;
-}
-
-#sections .add_section .arrow {
-  right: -4px;
-  top: 9px;
-  width: 10px;
-  height: 10px;
-}
-
-#sections .add_section .actions {
-  font-size: 10px;
 }

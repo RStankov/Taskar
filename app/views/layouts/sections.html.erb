@@ -29,29 +29,6 @@
     </nav>
   <% end %>
   <%= render "shared/header" %>
-  <nav id="nav_main">
-    <%= link_to '', [@project, :sections], :id => "goto_dashboard", :title => t(:".goto_dashboard")  %>
-		<div id="nav_sections">
-    	<ul>
-	      <% @project.sections.unarchived.each do |section| %>
-	        <%= new_section_link(section) %>
-	        <% content_tag_for(:li, section) do %>
-	            <%= link_to h(section.name), section, :class => @section == section ? "selected" : nil %>
-	        <% end %>
-	      <% end %>
-	    </ul>
-		</div>
-    <div id="nav_more_sections">
-      <% if @project.sections.archived[0] %>
-        <span title="<%=t :'.archived_sections' %>"></span>
-        <ul>
-          <% @project.sections.archived.each do |section| %>
-          <li><%= link_to section.name, section, :class => @section == section && 'selected' %></li>
-          <% end %>
-        </ul>
-      <% end %>
-    </div>
-  </nav>
   <section>
     <article id="<%= "#{controller_name}_#{action_name}" %>">
       <%= yield %>
