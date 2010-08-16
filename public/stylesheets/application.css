@@ -1091,17 +1091,25 @@ a.next_page:hover {
   margin-left: -6px; 
 }
 
-.tasks_list .drag {
+.tasks_list .drag, #sections .drag {
   background: url(../images/sprite.png) -28px -63px no-repeat;
   display: none;
   height: 13px;
   position: absolute;
-  right: 10px;
-  top: 12px;
   width: 13px;
 }
 
-.task .drag:hover {
+.tasks_list .drag {
+  right: 10px;
+  top: 12px;
+}
+
+#sections .drag {
+  top: 9px;
+  right: 9px;
+}
+
+.task .drag:hover, #sections .drag:hover {
   background-position: -28px -103px;
 }
 
@@ -1997,6 +2005,14 @@ aside .aside_section a:hover {
   margin-left: -10px;
 }
 
+#sections li {
+  position: relative;
+}
+
+#sections li:hover .drag {
+  display: block;
+}
+
 #sections h3 {
   border-top: 1px solid #D7D7D7;
   font-size: 14px;
@@ -2015,7 +2031,7 @@ aside .aside_section a:hover {
   padding: 5px 20px;
 }
 
-#sections .link:hover, #sections .selected {
+#sections li:hover .link, #sections .selected {
   color: #eee;
   background: #5C5C5C;
 }
@@ -2041,7 +2057,7 @@ aside .aside_section a:hover {
   left: -90px;
 }
 
-#sections .add_section .tooltip .arrow {
+#sections .add_section .arrow {
   right: -4px;
   top: 9px;
   width: 10px;
