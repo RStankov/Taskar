@@ -12,25 +12,27 @@ Taskar.Sections.NewSection = function(container){
     
     form.down('form').reset();
     form.down('input[name*=insert_before]').setValue(element.getAttribute('data-before'));
-      
-    if (element.previous() == form && form.visible()){
-      return;
-    }
     
-    form.hide();
+    if (form.visible()){
+      element.previous() == form || form.slideUp(showBefore.curry(element));
+    } else {
+      showBefore(element);
+    }
+  }
   
+  function showBefore(element){
     element.hide()
     element.show.bind(element).defer();
     element.up('li').insert({before: form});
     
-    appear.play();
+    appear.play();    
   }
   
   function hide(){
-    form.slideUp();
+    form.slideUp('fast');
   }
   
   if (container.select('.section').length == 0){
-    show(null, container.down('.add_section'));
+    showBefore(container.down('.add_section'));
   }
 };
