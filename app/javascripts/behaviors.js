@@ -1,7 +1,7 @@
 CD3.Behaviors({
   '#sections':            function(){
                             Taskar.Sections.Ordering(this);
-                            Taskar.Sections.NewForm(this);
+                            Taskar.Sections.NewSection(this);
                           },
   '#section_title':       Taskar.Sections.Title,
   '#sections_show':       Taskar.Sections.Actions,

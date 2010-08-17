@@ -30,7 +30,7 @@ Taskar.Sections = {
   }
 };
 
-//= require "sections/new_form"
+//= require "sections/new_section"
 //= require "sections/ordering"
 //= require "sections/actions"
 //= require "sections/title"
