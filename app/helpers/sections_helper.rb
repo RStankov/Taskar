@@ -4,7 +4,7 @@ module SectionsHelper
   end
   
   def section_is_tasks?
-    (controller_name == "sections" && action_name == "show") || controller_name == "tasks"
+    @section && !@section.archived?
   end
   
   def section_is_archive?

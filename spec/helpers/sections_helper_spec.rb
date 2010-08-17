@@ -81,5 +81,29 @@ describe SectionsHelper do
       end
     end
     
+    describe "#section_is_tasks?" do
+      before { assigns[:section] = mock_section }
+      
+      after { assigns[:section] = nil }
+      
+      it "returns true if section is assigned and it is not archived" do
+        mock_section.stub(:archived?).and_return false
+        
+        helper.section_is_tasks?.should be_true
+      end
+      
+      it "returns false if section is assigned but is archived" do
+        mock_section.stub(:archived?).and_return true
+        
+        helper.section_is_tasks?.should be_false
+      end
+      
+      
+      it "returns false if section is not assigned" do
+        assigns[:section] = nil
+        
+        helper.section_is_tasks?.should be_false
+      end
+    end
   end
 end
