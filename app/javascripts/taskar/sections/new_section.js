@@ -1,5 +1,6 @@
 Taskar.Sections.NewSection = function(container){
   container.on('click',     '.add_section',       show);
+  container.on('click',     'h3 a',               showLast)
   container.on('click',     'input[type=button]', hide);
   container.on('key:esc',   'form',               hide);
   container.on('submit',    'form',               Taskar.Sections.validateForm);
@@ -14,7 +15,7 @@ Taskar.Sections.NewSection = function(container){
     form.down('input[name*=insert_before]').setValue(element.getAttribute('data-before'));
     
     if (form.visible()){
-      element.previous() == form || form.slideUp(showBefore.curry(element));
+      element.up('li').previous() == form || form.slideUp(showBefore.curry(element));
     } else {
       showBefore(element);
     }
@@ -26,6 +27,10 @@ Taskar.Sections.NewSection = function(container){
     element.up('li').insert({before: form});
     
     appear.play();    
+  }
+  
+  function showLast(e){
+    show(e, container.select('.add_section').last());
   }
   
   function hide(){
