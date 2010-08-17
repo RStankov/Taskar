@@ -14,8 +14,10 @@ module ApplicationHelper
     end
   end
   
-  def title(title)
-    '<h1>' + (@content_for_title = t(title, :default => title)) + '</h1>'
+  def title(page_title)
+    page_title = t(page_title, :default => page_title)
+    content_for :title, page_title
+    "<h1>#{page_title}</h1>"
   end
   
   def javascript_response(&block)

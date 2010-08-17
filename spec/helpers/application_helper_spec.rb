@@ -14,6 +14,7 @@ describe ApplicationHelper do
   describe "title" do
     before do
       helper.stub(:t).with("foo", :default => "foo").and_return "bar"
+      assigns[:content_for_title] = nil
     end
     
     it "should pass title to 't' helper" do
@@ -26,7 +27,6 @@ describe ApplicationHelper do
       helper.title("foo")
       
       assigns[:content_for_title].should == "bar"
-      
     end
     
     it "should return t(title) wrapped in h1" do
