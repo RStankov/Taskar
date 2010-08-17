@@ -27,7 +27,7 @@ Taskar.Sections.NewSection = function(container){
   }
   
   function hide(){
-    form.hide();
+    form.slideUp();
   }
   
   if (container.select('.section').length == 0){
