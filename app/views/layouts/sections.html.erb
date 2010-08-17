@@ -69,13 +69,15 @@
             <% end %>
           <% end %>
   	      <li><%= new_section_link %></li>
+  	      <li id="new_section" style="display: none;">
+      	    <% form_for [@project, Section.new], :html => {:id => nil} do |form|  %>
+              <%= form.text_field :name, :autocomplete => "off", :placeholder => Section.human_attribute_name(:name) %>
+              <%= form.hidden_field :insert_before %>
+              <%= form.submit t(:create) %>
+              <input type="button" value="<%= t(:cancel) %>" />
+            <% end %>
+          </li>
   	    </ul>
-  	    <% form_for [@project, Section.new], :html => {:style => "display:none;"} do |form|  %>
-          <%= form.text_field :name, :autocomplete => "off", :placeholder => Section.human_attribute_name(:name) %>
-          <%= form.hidden_field :insert_before %>
-          <%= form.submit t(:create) %>
-          <input type="button" value="<%= t(:cancel) %>" />
-        <% end %>
       </div>
       <div id="people_envolved">
         <h3>
