@@ -310,6 +310,38 @@ img {
   padding: 15px 0 10px;
 }
 
+#sections h3 a {
+  display: inline-block;
+  float: right;
+  text-align: center;
+  text-decoration: none;
+  font-family: tahoma, verdana,  arial, sans-serif;
+  font-size: 14px;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #b7b7b7;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  margin-right: 5px;
+}
+
+#sections h3 a:hover {
+  color: #375185;
+  background: #EEEEEE;
+  background: -moz-linear-gradient(top, #EEEEEE, #D7D7D7);
+  background: -webkit-gradient(linear, 0% 0, 0% 100%, from(#EEEEEE), to(#D7D7D7));
+  box-shadow: 0px 0px 5px #D7D7D7;
+  -moz-box-shadow: 0px 0px 5px #D7D7D7;
+  -webkit-box-shadow: 0px 0px 5px #D7D7D7;
+}
+
+#sections h3 a:active {
+  background: #D7D7D7;
+  background: -moz-linear-gradient(top, #D7D7D7, #EEEEEE);
+  background: -webkit-gradient(linear, 0% 0, 0% 100%, from(#D7D7D7), to(#EEEEEE));
+}
+
 #sections .link {
   display: block;
   font-size: 12px;

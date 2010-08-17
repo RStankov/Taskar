@@ -59,7 +59,7 @@
   			<% end %>
       </div>
       <div id="sections">
-        <h3><%= t :".sections" %></h3>
+        <h3><%= t :".sections" %><%= link_to "+", [:new, @project, :section], :title => t(".new_section") %></h3>
         <ul data-sortable="<%= reorder_project_sections_path(@project.id) %>">
   	      <% @project.sections.unarchived.each do |section| %>
   	        <% content_tag_for(:li, section) do %>
