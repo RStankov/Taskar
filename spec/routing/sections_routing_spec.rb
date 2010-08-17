@@ -37,5 +37,9 @@ describe SectionsController do
     it "recognizes and generates #archive" do
       { :put => "/sections/1/archive" }.should route_to(:controller => "sections", :action => "archive", :id => "1") 
     end
+
+    it "recognizes and generates #tasks" do
+      { :get => "projects/1/sections/tasks" }.should route_to(:controller => "sections", :action => "tasks", :project_id => "1") 
+    end
   end
 end

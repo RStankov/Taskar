@@ -256,6 +256,30 @@ describe SectionsController do
         response.should redirect_to(section_url(mock_section))
       end
     end
+
+    describe "GET tasks, with at least one section in the project" do
+      before do
+        Project.stub(:find).with("1").and_return mock_project
+        
+        mock_project.stub_chain :sections, :unarchived, :first => mock_section
+        
+        get :tasks, :project_id => "1"
+      end
+      
+      it { should redirect_to(section_url(mock_section))}
+    end
+    
+    describe "GET tasks, without section in the project " do
+      before do
+        Project.stub(:find).with("1").and_return mock_project
+        
+        mock_project.stub_chain :sections, :unarchived, :first => nil
+        
+        get :tasks, :project_id => "1"
+      end
+      
+      it { should redirect_to(new_project_section_url(mock_project)) }
+    end
   end
   
   describe "with user outside project" do
@@ -279,7 +303,8 @@ describe SectionsController do
       :index      => 'get(:index, :project_id => "1")',
       :create     => 'post(:create, :project_id => "1")',
       :new        => 'get(:new, :project_id => "1")',
-      :reorder    => 'put(:reorder, :project_id => "1")'
+      :reorder    => 'put(:reorder, :project_id => "1")',
+      :tasks      => 'get(:tasks, :project_id => "1")'
     }.each do |(action, code)|
      it "should not allow #{action}, and redirect_to root_url" do
        Project.should_receive(:find).with("1").and_return(mock_project)

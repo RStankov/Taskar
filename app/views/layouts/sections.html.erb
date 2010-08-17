@@ -23,7 +23,7 @@
   		<%= link_to 0, [@project, :sections], :id => "notify_badge", :style => "display: none;" %>
   		<span>
         <%= link_to t(".dashboard"), [@project, :sections], :class => section_is_dashboard? && "selected" %>
-        <%= link_to t(".task_list"), [@project, :sections], :class => section_is_tasks? && "selected" %>
+        <%= link_to t(".task_list"), [:tasks, @project, :sections], :class => section_is_tasks? && "selected" %>
         <%= link_to t(".archive"), [@project, :sections], :class => section_is_archive? && "selected" %>
       </span>
     </nav>
