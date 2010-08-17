@@ -38,6 +38,8 @@ Taskar.Sections.NewSection = function(container){
   }
   
   if (container.select('.section').length == 0){
-    showBefore(container.down('.add_section'));
+    if (!$('sections_new')){
+      showBefore(container.down('.add_section'));
+    }
   }
 };
