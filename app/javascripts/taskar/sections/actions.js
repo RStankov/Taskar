@@ -78,11 +78,13 @@ Taskar.Sections.Actions = {
       element.removeClassName('dragging');
     }
   },
-  'order:updated': function(e){
-    new Ajax.Request(e.findElement('#tasks').getAttribute('data-sortable'), {
-      method:     'put',
-      parameters: e.memo.sortable.serialize('items[]')
-    });
+  'order:updated': {
+    '[data-sortable]': function(e, element){
+      new Ajax.Request(element.getAttribute('data-sortable'), {
+        method:     'put',
+        parameters: e.memo.sortable.serialize('items[]')
+      });
+    }
   },
   'ajax:post': {
     '#new_task': function(e){
