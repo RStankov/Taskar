@@ -10,6 +10,7 @@ CD3.Behaviors({
   '#user_card':           Taskar.Sections.NewStatus,
   '#tasks':               Taskar.Sections.initTaskList,
   '#tasks_show':          Taskar.Sections.Comments,
+  'body':                 Taskar.Dnd.Sortable.AjaxSave,
   '#live_search':         Taskar.UI.LiveSearch.Form,
   '#statuses_list:ajax:delete': function(e){ Taskar.FX.dropOut(e.findElement('li'), function(e){e.element.remove()}); },
   '#scroll_to_top:click': function(e){

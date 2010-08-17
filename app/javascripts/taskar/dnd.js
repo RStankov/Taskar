@@ -208,3 +208,13 @@ Taskar.Dnd.Sortable.Ghost = {
     this.ghost = false;
   }
 };
+
+Taskar.Dnd.Sortable.AjaxSave = function(root, items){
+  items || (items = 'items[]')
+  root.on('order:updated', '[data-sortable]', function(e, element){
+    new Ajax.Request(element.getAttribute('data-sortable'), {
+      method:     'put',
+      parameters: e.memo.sortable.serialize(items)
+    });
+  });
+}
