@@ -29,9 +29,8 @@ Taskar.Sections.NewSection = function(container){
   function hide(){
     form.hide();
   }
-  /*
+  
   if (container.select('.section').length == 0){
     show(null, container.down('.add_section'));
   }
-  */
 };
