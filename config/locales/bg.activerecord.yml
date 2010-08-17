@@ -16,7 +16,7 @@ bg:
             account_id: "Акаунт"
           
           section:
-            name: "Име"
+            name: "Име на секцията"
             position: "Позиция"
           
           task:

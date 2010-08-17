@@ -71,10 +71,12 @@
   	      <li><%= new_section_link %></li>
   	      <li id="new_section" style="display: none;">
       	    <% form_for [@project, Section.new], :html => {:id => nil} do |form|  %>
-              <%= form.text_field :name, :autocomplete => "off", :placeholder => Section.human_attribute_name(:name) %>
+     	        <%= form.label :name %>
+              <%= form.text_field :name, :autocomplete => "off" %>
               <%= form.hidden_field :insert_before %>
-              <%= form.submit t(:create) %>
-              <input type="button" value="<%= t(:cancel) %>" />
+              <%= form.submit t(:create), :class => "submit_button" %>
+              <%= t :or %>
+              <input type="button" value="<%= t(:cancel) %>" class="cancel" />
             <% end %>
           </li>
   	    </ul>

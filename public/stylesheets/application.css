@@ -333,7 +333,7 @@ img {
   position:relative;
 }
 
-#sections .add_section .tooltip {
+#sections .tooltip {
   display: none;
 }
 
@@ -341,20 +341,51 @@ img {
   display: block;
 }
 
-#sections .add_section .tooltip {
+#sections .tooltip {
   top: -13px;
   left: -90px;
+  z-index: 1003;
 }
 
-#sections .add_section .arrow {
+#sections .arrow {
   right: -4px;
   top: 9px;
   width: 10px;
   height: 10px;
 }
 
-#sections .add_section .actions {
+#sections .actions {
   font-size: 10px;
+}
+
+#new_section {
+  margin: 5px 0px 5px 10px;
+  padding: 10px;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border: 1px solid #D7D7D7;
+  font-size: 12px;
+  background: #EEEEEE;
+  background: -moz-linear-gradient(top, #EEEEEE, #D7D7D7);
+  background: -webkit-gradient(linear, 0% 0, 0% 100%, from(#EEEEEE), to(#D7D7D7));
+}
+
+#new_section input[type=text] {
+  display: block;
+  margin: 5px 0;
+  width: 160px;
+  border: 1px solid #b7b7b7;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  font-size: 12px;
+  padding: 4px 25px 4px 10px;
+}
+
+#new_section label {
+  font-weight: bold;
+  text-shadow: #fff 1px 1px 1px;
 }
 
 /*** SECTION ***/
@@ -1252,7 +1283,7 @@ footer p {
   width: 150px;
 }
 
-.action_form input[type="submit"] {
+.action_form input[type="submit"], .submit_button {
   color: #fff;
   border: 1px solid #135F9F;
   border-radius: 5px;
@@ -1267,14 +1298,14 @@ footer p {
   margin-right: 5px;
 }
 
-.action_form input[type="submit"]:hover {
+.action_form input[type="submit"]:hover, .submit_button:hover {
   border: 1px solid #002E52;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
   -moz-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
 }
 
-.action_form input[type="submit"]:active {
+.action_form input[type="submit"]:active, .submit_button:active {
   background: #1977c0;
   background: -moz-linear-gradient(top, #00589D, #1977c0);
   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#00589D), to(#1977C0), color-stop(1,#1977C0));
