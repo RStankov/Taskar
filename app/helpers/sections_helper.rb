@@ -8,7 +8,7 @@ module SectionsHelper
   end
   
   def section_is_archive?
-    controller_name == "sections" && action_name == "archive"
+    (@section && @section.archived?) || (controller_name == "sections" && action_name == "archived")
   end
   
   def new_section_link(before = nil)
