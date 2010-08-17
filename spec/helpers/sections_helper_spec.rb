@@ -60,4 +60,26 @@ describe SectionsHelper do
       helper.participant_status(mock_participant_with_status status).should == helper.simple_format(status)
     end
   end
+
+  context "section checker" do
+    def controller_and_action(controller_name, action_name)
+      helper.stub(:controller_name).and_return controller_name
+      helper.stub(:action_name).and_return action_name
+    end
+    
+    describe "#section_is_dashboard?" do
+      it "returns true on sections#index" do
+        controller_and_action "sections", "index"
+        
+        helper.section_is_dashboard?.should be_true
+      end
+
+      it "returns true on statuses#index" do
+        controller_and_action "statuses", "index"
+        
+        helper.section_is_dashboard?.should be_true
+      end
+    end
+    
+  end
 end
