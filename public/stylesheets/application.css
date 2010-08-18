@@ -1588,12 +1588,12 @@ input[type="button"], .cancel {
 @media all and (max-width:1199px){
   .task .tooltip {
     right: -140px;
-    top: 0px;
+    top: -8px;
     display: none;
     min-width: 130px;
   }
 
-  .task .tooltip .arrow {
+  .task .arrow {
     left: -5px;
     top: 10px;
   }
@@ -1610,12 +1610,12 @@ input[type="button"], .cancel {
 @media all and (min-width:1200px){
   .task .tooltip {
     left: -135px;
-    top: -2px;
+    top: -8px;
     display: none;
     min-width: 130px;
   }
 
-  .task .tooltip .arrow {
+  .task .arrow {
     right: -5px;
     top: 10px;
   }
