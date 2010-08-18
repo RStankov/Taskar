@@ -7,7 +7,7 @@ html, body {
 
 body, input, textarea, select {
   color: #5c5c5c;
-  font-family: arial, tahoma, verdana, sans-serif;
+  font-family: 'Helvetica', arial, tahoma, verdana, sans-serif;
 }
 
 input[type="submit"], input[type="button"] {
