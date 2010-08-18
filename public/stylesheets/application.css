@@ -968,12 +968,13 @@ a.next_page:hover {
 }
 
 .tasks_list .task {
-  padding: 10px 10px 5px;
+  padding: 5px 10px;
   position: relative;
-  margin-bottom: 5px;
+  margin-bottom: 4px;
   border-radius: 5px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
+  font-size: 14px;
 }
 
 .tasks_list li:hover.task {
@@ -982,21 +983,6 @@ a.next_page:hover {
 
 .tasks_list .rejected p, .tasks_list .rejected .checkbox, .tasks_list .completed p, .tasks_list .completed .checkbox {
   opacity: 0.6;
-}
-
-.checkbox {
-  background: #5C5C5C;
-  border-radius: 5px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  color: #eee;
-  cursor: pointer;
-  display: inline-block;
-  float: left;
-  font-size: 16px;
-  height: 16px;
-  margin: 1px 5px 0 0;
-  width: 16px;
 }
 
 .tasks_list p {
@@ -1025,8 +1011,8 @@ a.next_page:hover {
 }
 
 .tasks_list .drag {
-  right: 10px;
-  top: 12px;
+  right: 7px;
+  top: 7px;
 }
 
 #sections .drag {
@@ -1036,6 +1022,21 @@ a.next_page:hover {
 
 .task .drag:hover, #sections .drag:hover {
   background-position: -28px -103px;
+}
+
+.checkbox {
+  background: #5C5C5C;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  color: #eee;
+  cursor: pointer;
+  display: inline-block;
+  float: left;
+  font-size: 16px;
+  height: 14px;
+  margin: 1px 5px 0 0;
+  width: 14px;
 }
 
 .checkbox.completed:after {
@@ -1050,9 +1051,13 @@ a.next_page:hover {
   margin: -2px 0 0 3px;
 }
 
+.task strong {
+  font-size: 12px;
+}
+
 .task p {
   overflow: hidden;
-  height: 18px;
+  height: 15px;
   text-overflow: ellipsis;
   -o-text-overflow: ellipsis; 
   white-space: nowrap;
