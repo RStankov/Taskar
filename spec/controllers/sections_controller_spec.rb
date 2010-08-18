@@ -71,7 +71,7 @@ describe SectionsController do
 
         it { should assign_to(:project).with(mock_project)          }
         it { should assign_to(:section).with(mock_section)          }
-        it { should redirect_to(project_sections_url(mock_project)) }
+        it { should redirect_to(tasks_project_sections_url(mock_project)) }
       end
 
       describe "PUT archive" do

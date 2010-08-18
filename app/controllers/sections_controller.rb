@@ -41,7 +41,7 @@ class SectionsController < ApplicationController
   def destroy
     @section.destroy
     
-    redirect_to project_sections_path(@section.project)
+    redirect_to [:tasks, @project, :sections]
   end
   
   def reorder
