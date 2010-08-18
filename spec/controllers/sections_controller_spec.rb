@@ -4,281 +4,177 @@ describe SectionsController do
   describe "with project user" do
     before { sign_with_project_user }
     
-    describe "GET index" do
-      before do
-        Project.stub(:find).with("1").and_return(mock_project)
-        mock_project.stub!(:events).and_return(@events = [mock_event])
-        @events.should_receive(:paginate).with(:page => "1", :per_page => 30).and_return(@events)
-        
-        controller.stub!(:project_user).and_return mock_project_user
-        mock_project_user.should_receive :event_seen!
+    context "member action" do
+      before { Section.stub(:find).with("1").and_return mock_section }     
+       
+      describe "GET show" do
+        before { mock_section.should_receive(:current_tasks).and_return [mock_task] }
 
-        get :index, :project_id => "1", :page => "1"
-      end
-
-      it { should assign_to(:events).with(@events) }
-      it { should assign_to(:project).with(@project) }
-      it { should render_template("index") }
-    end
-
-    describe "GET show" do
-      before do
-        Section.stub(:find).with("37").and_return(mock_section(:archived? => false))
-        mock_section.should_receive(:current_tasks).and_return([mock_task])
-      end
-      
-      describe "normal format" do
-        before do          
-          get :show, :id => "37"
-        end
-        
-        it "assigns the requested section as @section" do
-          assigns[:section].should == mock_section
-        end
-
-        it "assigns project as @project" do
-          assigns[:project].should == mock_project
-        end
-        
-        it "assigns current tasks as @tasks" do
-          assigns[:tasks].should == [mock_task]
-        end
-        
-        it { should render_template("show.html") }
-      end
-      
-      describe "print version" do
-        before do
-          get :show, :id => "37", :format => "print"
-        end
-        
-        it "assigns the requested section as @section" do
-          assigns[:section].should == mock_section
-        end
-
-        it "assigns project as @project" do
-          assigns[:project].should == mock_project
-        end
-        
-        it "assigns current tasks as @tasks" do
-          assigns[:tasks].should == [mock_task]
-        end
-        
-        it { should render_template("show.print") }
-      end
-
-    end
-
-    describe "GET new" do
-      before do
-        Project.stub(:find).with("1").and_return(mock_project)
-        mock_project.should_receive(:sections).and_return(Section)
-
-        Section.stub(:build).and_return(mock_section)
-
-        get :new, :project_id => "1"
-      end
-
-      it "assigns a new section as @section" do
-        assigns[:section].should equal(mock_section)
-      end
-
-      it "assigns project as @project" do
-        assigns[:project].should == mock_project
-      end
-    end
-
-    describe "GET edit" do
-      before do
-        Section.stub(:find).with("37").and_return(mock_section)
-        get :edit, :id => "37"
-      end
-
-      it "assigns the requested section as @section" do
-        assigns[:section].should == mock_section
-      end
-
-      it "assigns project as @project" do
-        assigns[:project].should == mock_project
-      end
-    end
-
-    describe "POST create" do
-      before do
-        Project.stub(:find).with("1").and_return(mock_project)
-        mock_project.should_receive(:sections).and_return(Section)
-      end
-
-      describe "with valid params" do
-        before do
-          Section.stub(:build).with({'these' => 'params'}).and_return(mock_section(:save => true))
+        context "normal format" do
+          before { get :show, :id => "1" }
           
-          post :create, :section => {:these => 'params'}, :project_id => "1"
+          it { should assign_to(:project).with(mock_project) }
+          it { should assign_to(:section).with(mock_section) }
+          it { should assign_to(:tasks).with([mock_task])    }
+          it { should render_template("show.html")           }
         end
 
-        it "assigns a newly created section as @section" do
-          assigns[:section].should equal(mock_section)
+        context "print version" do
+          before { get :show, :id => "1", :format => "print" }
+          
+          it { should assign_to(:section).with(mock_section) }
+          it { should assign_to(:project).with(mock_project) }
+          it { should assign_to(:tasks).with([mock_task])    }
+          it { should render_template("show.print")         }
         end
 
-        it "redirects to the created section" do
-          response.should redirect_to(section_url(mock_section))
-        end
-
-        it "assigns project as @project" do
-          assigns[:project].should == mock_project
-        end
       end
-
-      describe "with invalid params" do
-        before do
-          Section.stub(:build).with({'these' => 'params'}).and_return(mock_section(:save => false))
-          post :create, :section => {:these => 'params'}, :project_id => "1"
-        end
-
-        it "assigns a newly created but unsaved section as @section" do
-          assigns[:section].should equal(mock_section)
-        end
-
-        it "re-renders the 'new' template" do
-          response.should render_template('new')
-        end
-
-        it "assigns project as @project" do
-          assigns[:project].should == mock_project
-        end
+      
+      describe "GET edit" do
+        before { get :edit, :id => "1" }
+        
+        it { should assign_to(:project).with(mock_project) }
+        it { should assign_to(:section).with(mock_section) }
+        it { should render_template("edit.html")           }
       end
-
-    end
-
-    describe "PUT update" do
-      describe "with valid params" do
+      
+      describe "PUT update, with valid params" do
         before do
-          Section.should_receive(:find).with("1").and_return(mock_section)
-          mock_section.should_receive(:update_attributes).with({'these' => 'params'}).and_return(true)
+          mock_section.should_receive(:update_attributes).with({'these' => 'params'}).and_return true
 
           put :update, :id => "1", :section => {:these => 'params'}
         end
-
-        it "updates the requested section" do
-        end
-
-        it "assigns the requested section as @section" do
-          assigns[:section].should equal(mock_section)
-        end
-
-        it "redirects to the section" do
-          response.should redirect_to(section_url(mock_section))
-        end
-
-        it "assigns project as @project" do
-          assigns[:project].should == mock_project
-        end
+        
+        it { should assign_to(:project).with(mock_project) }
+        it { should assign_to(:section).with(mock_section) }
+        it { should redirect_to(section_url(mock_section)) }
       end
 
-      describe "with invalid params" do
+      describe "PUT update, with invalid params" do
         before do
-          Section.should_receive(:find).with("37").and_return(mock_section)
-          mock_section.should_receive(:update_attributes).with({'these' => 'params'}).and_return(false)
+          mock_section.should_receive(:update_attributes).with({'these' => 'params'}).and_return false
 
-          put :update, :id => "37", :section => {:these => 'params'}
+          put :update, :id => "1", :section => {:these => 'params'}
+        end
+        
+        it { should assign_to(:project).with(mock_project) }
+        it { should assign_to(:section).with(mock_section) }
+        it { should render_template("edit.html")           }
+      end
+
+      describe "DELETE destroy" do
+        before do
+          mock_section.should_receive(:destroy)
+
+          delete :destroy, :id => "1"        
         end
 
-        it "assigns the section as @section" do
-          assigns[:section].should equal(mock_section)
+        it { should assign_to(:project).with(mock_project)          }
+        it { should assign_to(:section).with(mock_section)          }
+        it { should redirect_to(project_sections_url(mock_project)) }
+      end
+
+      describe "PUT archive" do
+        before do
+          mock_section.should_receive(:save)
+          mock_section.should_receive(:archived=).with "true"
+          
+          put :archive, :id => "1", :archive => "true"
         end
-
-        it "re-renders the 'edit' template" do
-          response.should render_template(:edit)
-        end
-
-        it "assigns project as @project" do
-          assigns[:project].should == mock_project
-        end
-      end
-
-    end
-
-    describe "DELETE destroy" do
-      before do
-        Section.should_receive(:find).with("1").and_return(mock_section)
-        mock_section.should_receive(:destroy)
         
-        delete :destroy, :id => "1"        
+        it { should redirect_to(section_url(mock_section)) }
       end
-
-      it "destroys the requested section" do
-      end
-
-      it "redirects to the sections list" do
-        response.should redirect_to(project_sections_url(mock_project))
-      end
-
-      it "assigns project as @project" do
-        assigns[:project].should == mock_project
-      end
-    end
-
-    describe "PUT reorder" do
-      before do
-        Project.should_receive(:find).with("1").and_return(mock_project)
-        mock_project.should_receive(:sections).and_return(Section)
-      end
-
-      it "should call reorder the given ids" do
-        Section.should_receive(:reorder).with(["1", "2", "3", "4"])
-
-        xhr :put, :reorder, :project_id => "1", :items => ["1", "2", "3", "4"]
-      end
-
-      it "should not render template" do
-        xhr :put, :reorder, :project_id => "1"
-
-        response.should_not render_template(:reorder)
-        response.should be_success
-      end
-    end
-  
-    describe "PUT archive" do
-      before do
-        Section.stub!(:find).with("1").and_return(mock_section(:save => nil))
-        mock_section.stub!(:archived=)
-      end
-      
-      it "should set archived= to params[:archive]" do
-        mock_section.should_receive(:archived=).with("true")
-        
-        put :archive, :id => "1", :archive => "true"
-      end
-      
-      it "should redirect to archived section" do
-        put :archive, :id => "1", :archive => "true"
-        
-        response.should redirect_to(section_url(mock_section))
-      end
-    end
-
-    describe "GET tasks, with at least one section in the project" do
-      before do
-        Project.stub(:find).with("1").and_return mock_project
-        
-        mock_project.stub_chain :sections, :unarchived, :first => mock_section
-        
-        get :tasks, :project_id => "1"
-      end
-      
-      it { should redirect_to(section_url(mock_section))}
+    
     end
     
-    describe "GET tasks, without section in the project " do
-      before do
-        Project.stub(:find).with("1").and_return mock_project
-        
-        mock_project.stub_chain :sections, :unarchived, :first => nil
-        
-        get :tasks, :project_id => "1"
+    context "Project section action" do
+      before { Project.stub(:find).with("1").and_return mock_project }
+      
+      describe "GET index" do
+        before do
+          mock_project.stub!(:events).and_return @events = [mock_event]
+          @events.should_receive(:paginate).with(:page => "1", :per_page => 30).and_return @events
+
+          controller.stub!(:project_user).and_return mock_project_user
+          mock_project_user.should_receive :event_seen!
+
+          get :index, :project_id => "1", :page => "1"
+        end
+
+        it { should assign_to(:events).with(@events) }
+        it { should assign_to(:project).with(@project) }
+        it { should render_template("index") }
       end
       
-      it { should redirect_to(new_project_section_url(mock_project)) }
+      describe "GET new" do
+        before do
+          mock_project.stub_chain :sections, :build => mock_section
+
+          get :new, :project_id => "1"
+        end
+        
+        it { should assign_to(:project).with(mock_project) }
+        it { should assign_to(:section).with(mock_section) }
+        it { should render_template("new")                 }
+      end
+
+      describe "POST create, with valid params" do
+        before do
+          mock_project.should_receive(:sections).and_return Section
+          Section.stub(:build).with({'these' => 'params'}).and_return mock_section(:save => true)
+
+          post :create, :section => {:these => 'params'}, :project_id => "1"
+        end
+
+        it { should assign_to(:project).with(mock_project) }
+        it { should assign_to(:section).with(mock_section) }
+        it { should redirect_to(section_url(mock_section)) }
+      end
+
+      describe "POST create, with invalid params" do
+        before do
+          mock_project.should_receive(:sections).and_return Section
+          Section.stub(:build).with({'these' => 'params'}).and_return mock_section(:save => false)
+
+          post :create, :section => {:these => 'params'}, :project_id => "1"
+        end
+
+        it { should assign_to(:project).with(mock_project)  }
+        it { should assign_to(:section).with(mock_section)  }
+        it { should render_template('new')                  }
+      end
+  
+      describe "GET tasks, with at least one section in the project" do
+        before do
+          mock_project.stub_chain :sections, :unarchived, :first => mock_section
+
+          get :tasks, :project_id => "1"
+        end
+
+        it { should redirect_to(section_url(mock_section))}
+      end
+
+      describe "GET tasks, without section in the project " do
+        before do
+          mock_project.stub_chain :sections, :unarchived, :first => nil
+
+          get :tasks, :project_id => "1"
+        end
+
+        it { should redirect_to(new_project_section_url(mock_project)) }
+      end
+  
+      describe "PUT reorder" do
+        before do
+          mock_project.should_receive(:sections).and_return Section
+          Section.should_receive(:reorder).with ["1", "2", "3", "4"]
+          
+          xhr :put, :reorder, :project_id => "1", :items => ["1", "2", "3", "4"]
+        end
+
+        it { should_not render_template("reorder") }
+        it { response.should be_success }
+      end
     end
   end
   
