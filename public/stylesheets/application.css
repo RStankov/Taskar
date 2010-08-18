@@ -839,6 +839,10 @@ section header a {
   opacity: 0.6;
 }
 
+#events .archived {
+  opacity: 0.5;
+}
+
 #events .deleted, #events .rejected {
   opacity: 0.6;
   text-decoration: line-through;
