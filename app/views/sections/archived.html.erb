@@ -4,9 +4,15 @@
   </h1>
 </header>
 <div id="content">
-  <ul>
-    <% @sections.each do |section| %>
-      <li><%= link_to section.name, section %> <small>(<%=t "layouts.sections.tasks", :count => section.tasks.size %>)</small></li>
-    <% end%>
-  </ul>
+  <% if @sections.size == 0%>
+    <div class="empty_dashboard">
+  		<h2><%= t "sections.empty_archive" %></h2>
+  	</div>
+  <% else %>
+    <ul>
+      <% @sections.each do |section| %>
+        <li><%= link_to section.name, section %> <small>(<%=t "layouts.sections.tasks", :count => section.tasks.size %>)</small></li>
+      <% end%>
+    </ul>
+  <% end %>
 </div>
