@@ -44,7 +44,7 @@ bg:
       archived_sections: "Архивирани секции"
       tasks:
         one: "Една задача"
-        zero: "Нямате задачи"
+        zero: "Няма задачи"
         other: "%{count} задачи"
       
       people_in_project: "Участници в проекта"
