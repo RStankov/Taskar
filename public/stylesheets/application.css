@@ -1822,7 +1822,7 @@ aside .aside_section a:hover {
   color: #000;
 }
 
-.empty_dashboard {
+.help_notice {
   text-shadow: #fff 1px 1px 1px;
   background-color: #ECF3FE;
   text-align: center;
@@ -1834,13 +1834,13 @@ aside .aside_section a:hover {
   font-size: 14px;
 }
 
-.empty_dashboard h2 {
+.help_notice h2 {
   font-size: 14px;
   margin-bottom: 20px;
   text-align: left;
 }
 
-.empty_dashboard a {
+.help_notice a {
   color: #000;
   font-weight: bold;
   text-decoration: none;
@@ -1859,16 +1859,16 @@ aside .aside_section a:hover {
   -webkit-box-shadow: 0px 1px 4px #888;
 }
 
-.empty_dashboard a:first-child {
+.help_notice a:first-child {
   margin-left: 0px;
 }
 
-.empty_dashboard a:hover {
+.help_notice a:hover {
   background: -moz-linear-gradient(top, #E6E6E6, #FFFFFF);
   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#E6E6E6), to(#FFFFFF));
 }
 
-.empty_dashboard a:active {
+.help_notice a:active {
   -box-shadow: 0px 1px 10px #888;
   -moz-box-shadow: 0px 1px 10px #888;
   -webkit-box-shadow: 0px 1px 10px #888;

@@ -6,7 +6,7 @@
 <%= '<div class="wrap"><p class="alert">' + alert + '</p></div>' if alert %>
 
 <% if @projects.empty? %>
-	<div class="empty_dashboard">
+	<div class="help_notice">
 		<% if current_user.admin? %>
 			<h2><%= t '.empty_admin', :account_name => @current_user.account.name %></h2>
 			<%= link_to t('.add_project'), new_project_path %> <%= t :or %> <%= link_to t('.add_user'), new_user_path %>

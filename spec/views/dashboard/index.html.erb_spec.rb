@@ -8,7 +8,7 @@ describe "/dashboard/index" do
     
     render
     
-    response.should have_tag('.empty_dashboard')
+    response.should have_tag('.help_notice')
     response.should_not have_tag('#events')
   end
   
@@ -17,7 +17,7 @@ describe "/dashboard/index" do
         
     render
     
-    response.should_not have_tag('.empty_dashboard')
+    response.should_not have_tag('.help_notice')
     response.should have_tag('#events')
   end
 end
