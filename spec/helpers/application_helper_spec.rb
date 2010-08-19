@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe ApplicationHelper do
-  describe "link_to_delete" do
+  describe "#link_to_delete" do
     it "should add data-method=delete" do
       helper.link_to_delete('foo', 'bar').should have_tag('a[data-method=delete][href=bar]', 'foo')
     end
@@ -11,7 +11,7 @@ describe ApplicationHelper do
     end  
   end
   
-  describe "title" do
+  describe "#title" do
     before do
       helper.stub(:t).with("foo", :default => "foo").and_return "bar"
       assigns[:content_for_title] = nil
@@ -34,13 +34,13 @@ describe ApplicationHelper do
     end
   end
   
-  describe "copywrite" do
+  describe "#copywrite" do
     it "returns the t(:copywrite) with the current year" do
       helper.copywrite.should == t(:'copywrite', :year => Time.now.year)
     end
   end
   
-  describe "time_tag" do
+  describe "#time_tag" do
     it "returns html5 time tag datetime/title attributes" do
       time     = Time.now
       text     = t(:before, :time => helper.time_ago_in_words(time))
@@ -50,7 +50,7 @@ describe ApplicationHelper do
     end
   end
   
-  describe "csrf_meta_tag" do
+  describe "#csrf_meta_tag" do
     before do
       helper.stub!(:protect_against_forgery?).and_return(true)
       helper.stub!(:request_forgery_protection_token).and_return("foo")
@@ -71,7 +71,7 @@ describe ApplicationHelper do
     end    
   end
 
-  describe "tooltip" do
+  describe "#tooltip" do
     it "contains .tooltip" do
       helper.tooltip("foo").should have_tag(".tooltip")
     end
