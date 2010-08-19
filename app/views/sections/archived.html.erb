@@ -3,3 +3,10 @@
     <%=t "layouts.sections.archive" %>
   </h1>
 </header>
+<div id="content">
+  <ul>
+    <% @sections.each do |section| %>
+      <li><%= link_to section.name, section %> <small>(<%=t "layouts.sections.tasks", :count => section.tasks.size %>)</small></li>
+    <% end%>
+  </ul>
+</div>
