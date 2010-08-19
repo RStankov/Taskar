@@ -38,8 +38,12 @@
     <%= render "tasks/new_task" %>
   </ul>
   <ul id="section_footer">
-    <li><input type="button" value="<%=t :'.add_task' %>" class="add"></li>
-    <li><input type="button" value="<%=t :'.toggle_archive' %>" class="toggle_archived" data-url="<%= archived_section_tasks_path(@section) %>"></li>
+    <li><button class="add"><%=t :'.add_task' %></button></li>
+    <li>
+        <button class="toggle_archived" data-url="<%= archived_section_tasks_path(@section) %>">
+          <span><%=t :'.toggle_archive' %></span>
+        </button>
+    </li>
     <li id="more_actions">
       <span><%=t :'.more' %></span>
       <ul>

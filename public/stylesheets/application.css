@@ -5,7 +5,7 @@ html, body {
   -webkit-background-clip: padding-box;
 }
 
-body, input, textarea, select {
+body, input, textarea, select, button {
   color: #5c5c5c;
   font-family: 'Helvetica', arial, tahoma, verdana, sans-serif;
 }
@@ -29,6 +29,11 @@ a:hover {
 
 a:active {
   outline: 0;
+}
+
+button {
+  background: none;
+  border: 0px;
 }
 
 header, nav, section, article, aside, footer {
@@ -1140,16 +1145,35 @@ a.next_page:hover {
   padding: 0 20px 0 20px;
 }
 
-#section_footer input[type="button"] {
+#section_footer button {
   padding: 4px 10px 4px 10px;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
 }
 
-#section_footer input[type="button"]:hover {
+#section_footer .add {
+  margin: 1px;
+}
+
+.toggle_archived {
+  margin: 1px;
+}
+
+#section_footer button:hover, .toggle_archived.selected, .toggle_archived.loading {
   color: #fff;
-  background-color: #00589D;
-  border-radius: 5px;
-   -moz-border-radius: 5px;
-   -webkit-border-radius: 5px;
+  border: 1px solid #135F9F;
+  margin: 0px;
+  background: #1977c0;
+  background: -moz-linear-gradient(top, #76B7EF, #135F9F);
+  background: -webkit-gradient(linear, 0% 0, 0% 100%, from(#76B7EF), color-stop(0.02, #1C87E3), to(#135F9F));
+  text-shadow: rgba(0, 0, 0, 0.496094) 0px -1px 0px;
+}
+
+#section_footer button:active {
+  background: #00589D;
+  background: -moz-linear-gradient(top, #00589D, #1977c0);
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#00589D), to(#1977C0), color-stop(1,#1977C0));
 }
 
 #section_footer li {
@@ -1160,21 +1184,13 @@ a.next_page:hover {
   float: right;
 }
 
-.toggle_archived {
+.toggle_archived span {
   display: inline-block;
   width: 50px;
-  border-radius: 5px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
 }
 
-.toggle_archived.selected {
-  color: #fff;
-  background-color: #00589D;
-}
-
-.toggle_archived.loading {
-  background: url(../images/loader_archive.gif) #00589D center no-repeat;
+.toggle_archived.loading span {
+  background: url(../images/loaders/archive.gif) center no-repeat;
   text-indent: -9999px;
 }
 
