@@ -38,7 +38,11 @@ module ApplicationHelper
     end
   end
   
-  def tooltip(content)
+  def tooltip(content = nil, &block)
+    if block_given? && !content
+      content = capture(&block)
+    end
+    
     <<-TOOL_TIP
     <div class="tooltip">
 			<div class="arrow"></div>

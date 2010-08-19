@@ -87,5 +87,9 @@ describe ApplicationHelper do
     it "contains the given text" do
       helper.tooltip("given text").should have_tag(".tooltip .actions", :text => "given text")
     end
+  
+    it "accepts block and captures it" do
+      helper.tooltip { "text from the block"}.should have_tag(".tooltip .actions", :text => "text from the block")
+    end
   end
 end
