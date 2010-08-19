@@ -49,7 +49,7 @@ describe SectionsHelper do
     end
   end
   
-  describe "#participant_status_title" do
+  describe "#participant_status" do
     it "returns #participant_last_action if participant don't have status" do
       perticipant = mock_participant_with_status ""
       helper.participant_status(perticipant).should == helper.participant_last_action(perticipant)
