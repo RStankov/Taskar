@@ -3,12 +3,12 @@
     <%=t :'.title' %>
   </h1>
   <ul class="actions">
-    <li><%= link_to t(".statuses"), [@project, :statuses] %></li>
+    <li><%= link_to t(".statuses"), [@project, :statuses] if @project %></li>
   </ul>
 </header>
 <table id="events" colspan="0" rowspan="0">
   <% date = nil %>
-  <% @events.each do |event| %>
+  <% @events && @events.each do |event| %>
     <% unless event.updated_at.to_date == date %>
       <tr>
         <th colspan="4"><h2><%=l date = event.updated_at.to_date, :format => :long %></h2></th>
@@ -28,4 +28,4 @@
     </tr>
   <% end %>
 </table>
-<%= will_paginate(@events, :page_links => false, :previous_label => '', :next_label => '') %>
+<%= will_paginate(@events, :page_links => false, :previous_label => '', :next_label => '') if @events %>
