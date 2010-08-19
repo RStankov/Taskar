@@ -1,5 +1,5 @@
 class SectionsController < ApplicationController
-  before_filter :get_project, :only => [:index, :new, :create, :reorder, :tasks]
+  before_filter :get_project, :only => [:index, :new, :create, :reorder, :tasks, :archived]
   before_filter :get_section_and_project, :only => [:show, :edit, :update, :destroy, :archive]
   before_filter :check_project_permissions
   
@@ -55,6 +55,10 @@ class SectionsController < ApplicationController
     @section.save
     
     redirect_to @section
+  end
+  
+  def archived
+    @sections = @project.sections.archived
   end
   
   def tasks

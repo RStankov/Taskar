@@ -175,6 +175,18 @@ describe SectionsController do
         it { should_not render_template("reorder") }
         it { response.should be_success }
       end
+    
+      describe "GET archived" do
+        before do
+          mock_project.stub_chain :sections, :archived => [mock_section]
+          
+          get :archived, :project_id => "1"
+        end
+        
+        it { should assign_to(:project).with(mock_project)     }
+        it { should assign_to(:sections).with([mock_section])  }
+        it { should render_template("archived")                } 
+      end
     end
   end
   
@@ -200,7 +212,8 @@ describe SectionsController do
       :create     => 'post(:create, :project_id => "1")',
       :new        => 'get(:new, :project_id => "1")',
       :reorder    => 'put(:reorder, :project_id => "1")',
-      :tasks      => 'get(:tasks, :project_id => "1")'
+      :tasks      => 'get(:tasks, :project_id => "1")',
+      :archived   => 'get(:archived, :project_id => "1")'
     }.each do |(action, code)|
      it "should not allow #{action}, and redirect_to root_url" do
        Project.should_receive(:find).with("1").and_return(mock_project)
