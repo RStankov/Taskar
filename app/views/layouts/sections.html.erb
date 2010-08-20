@@ -10,7 +10,7 @@
 <body>
   <% content_for :header do %>
     <h2><%= @project.name  %></h2>
-    <div id="nav_projects">
+    <nav id="nav_projects">
       <span><%= t :".switch_to_project" %></span>
       <ul>
         <% current_user.projects.active(:limit => 10).each do |project| %>
@@ -18,7 +18,7 @@
         <% end %>
         <li><%= link_to t(:".all_projects"), root_path %></li>
       </ul>
-    </div>
+    </nav>
     <nav id="nav_project">
   		<%= link_to 0, [@project, :sections], :id => "notify_badge", :style => "display: none;" %>
   		<span>
