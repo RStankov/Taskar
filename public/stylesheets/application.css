@@ -946,10 +946,9 @@ a.next_page:hover {
 }
 
 .tasks_list .task {
-  padding: 5px 10px;
+  padding: 6px 6px 6px 6px;
   position: relative;
-  margin-bottom: 4px;
-  font-size: 14px;
+  font-size: 16px;
   border-bottom: 1px solid #eee;
 }
 
@@ -959,11 +958,6 @@ a.next_page:hover {
 
 .tasks_list .rejected p, .tasks_list .rejected .checkbox, .tasks_list .completed p, .tasks_list .completed .checkbox {
   opacity: 0.6;
-}
-
-.tasks_list p {
-  display: inline-block;
-  max-width: 615px;
 }
 
 .tasks_list .rejected p {
@@ -987,8 +981,8 @@ a.next_page:hover {
 }
 
 .tasks_list .drag {
-  right: 7px;
-  top: 7px;
+  right: 10px;
+  top: 10px;
 }
 
 #sections .drag {
@@ -1010,21 +1004,15 @@ a.next_page:hover {
   float: left;
   font-size: 14px;
   height: 16px;
-  margin: 2px 5px 0 0;
   width: 16px;
-  
-  box-shadow: 0px 0px 1px #5C5C5C;
-  -moz-box-shadow: 0px 0px 1px #5C5C5C;
-  -webkit-box-shadow: 0px 0px 1px #5C5C5C;
   border: 1px solid #C7C7C7;
   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), to(#EEEEEE), color-stop(.9,#E0E0E0));
-
 }
 
 .checkbox:hover {
-  box-shadow: 0px 0px 2px #5C5C5C;
-  -moz-box-shadow: 0px 0px 2px #5C5C5C;
-  -webkit-box-shadow: 0px 0px 2px #5C5C5C;
+  box-shadow: 0px 0px 1px #5C5C5C;
+  -moz-box-shadow: 0px 0px 1px #5C5C5C;
+  -webkit-box-shadow: 0px 0px 1px #5C5C5C;
 }
 
 .checkbox.completed, .checkbox.rejected {
@@ -1046,16 +1034,21 @@ a.next_page:hover {
   margin: -2px 0 0 4px;
 }
 
+/* TODO */
 .task strong {
   font-size: 12px;
+  display: none;
 }
 
 .task p {
-  overflow: hidden;
-  height: 15px;
   text-overflow: ellipsis;
   -o-text-overflow: ellipsis; 
   white-space: nowrap;
+  display: inline-block;
+  max-width: 615px;
+  overflow: hidden;
+  height: 16px;
+  margin: 2px 0 0 5px;
 }
 
 .task p.less {
@@ -1528,8 +1521,8 @@ input[type="button"], .cancel {
 
 @media all and (max-width:1199px){
   .task .tooltip {
-    right: -140px;
-    top: -8px;
+    right: -135px;
+    top: -6px;
     display: none;
     min-width: 130px;
   }
@@ -1550,8 +1543,8 @@ input[type="button"], .cancel {
 
 @media all and (min-width:1200px){
   .task .tooltip {
-    left: -135px;
-    top: -8px;
+    left: -138px;
+    top: -6px;
     display: none;
     min-width: 130px;
   }
