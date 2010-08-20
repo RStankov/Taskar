@@ -946,9 +946,9 @@ a.next_page:hover {
 }
 
 .tasks_list .task {
-  padding: 6px 6px 6px 6px;
+  padding: 8px;
   position: relative;
-  font-size: 16px;
+  font-size: 12px;
   border-bottom: 1px solid #eee;
 }
 
@@ -1047,7 +1047,7 @@ a.next_page:hover {
   display: inline-block;
   max-width: 615px;
   overflow: hidden;
-  height: 16px;
+  height: 14px;
   margin: 2px 0 0 5px;
 }
 
@@ -1057,6 +1057,8 @@ a.next_page:hover {
   -o-text-overflow: none;
 }
 
+/* TODO */
+/*
 .opened .archive {
   display: none;
 }
@@ -1074,6 +1076,7 @@ a.next_page:hover {
 .archive:hover {
   background-position: -52px -226px;
 }
+*/
 
 #archived_tasks {
   margin-top: 10px;
