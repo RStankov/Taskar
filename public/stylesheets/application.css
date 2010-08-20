@@ -433,12 +433,6 @@ article {
   vertical-align: top;
 }
 
-/*** PERSONAL ***/
-/*
-.personal {
-  background-color: #f8f8f8;
-}
-*/
 /*** ASIDE ***/
 
 aside {
@@ -956,11 +950,10 @@ a.next_page:hover {
   background-color: #ECF3FE;
 }
 
-.tasks_list .rejected p, .tasks_list .rejected .checkbox, .tasks_list .completed p, .tasks_list .completed .checkbox {
+.tasks_list .rejected p span, .tasks_list .completed p span, .tasks_list .rejected .archive, .tasks_list .completed .archive {
   opacity: 0.6;
 }
-
-.tasks_list .rejected p {
+.tasks_list .rejected span {
   text-decoration: line-through;
 }
 
@@ -1033,11 +1026,18 @@ a.next_page:hover {
   font-size: 10px;
   font-weight: normal;
   text-decoration: none;
-  padding: 2px 6px;
+  padding: 2px 8px;
   border-radius: 10px;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
   background: #eee;
+  color: #858585;
+}
+
+.personal strong {
+  color: #fff;
+  background: #9FBEDC;
+  text-shadow: #6B9BC5 1px 0px 0px;
 }
 
 .task p {
