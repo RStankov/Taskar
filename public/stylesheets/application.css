@@ -1052,6 +1052,10 @@ section header a {
   border-top: 1px solid #EEE;
 }
 
+#archived_tasks .checkbox {
+  opacity: 0.6;  
+}
+
 #archived_tasks .task .edit, .task.completed .edit, .task.rejected .edit {
   display: none;
 }
