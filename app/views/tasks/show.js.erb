@@ -2,11 +2,7 @@
   (function(){
     var element = $('task_content');
     if (element){
-			(element = element.down('div')).morph({
-				change: function(){
-					element.update("<%= escape_javascript(render 'content') %>");
-				}
-			});
+      element.update("<%= escape_javascript(render 'content') %>");
       $('task_title').update("<%= escape_javascript(task_description(@task)) %>");
     } else {
       element = $('task_<%= @task.id %>');
