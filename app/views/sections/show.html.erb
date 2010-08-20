@@ -12,12 +12,7 @@
     <% end %>
   </ul>
   <ul id="section_footer">
-		<li id="more_actions">
-      <span><%=t :'.more' %></span>
-      <ul>
-				<li><%= link_to t('.print'), section_path(@section, :format => 'print') %></li>
-      </ul>
-    </li>
+    <li><%= link_to t('.print'), section_path(@section, :format => 'print'), :target => "_blank" %></li>
   </ul>
 <% else %>
   <header id="section_title">
