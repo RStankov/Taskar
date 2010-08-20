@@ -969,7 +969,7 @@ a.next_page:hover {
   cursor: pointer;
   font-size: 12px;
   display: none; 
-  margin-left: -6px; 
+  margin-left: -6px;
 }
 
 .tasks_list .drag, #sections .drag {
@@ -1171,7 +1171,7 @@ a.next_page:hover {
 
 .toggle_archived span {
   display: inline-block;
-  width: 50px;
+  width: 32px;
 }
 
 .toggle_archived.loading span {

@@ -45,6 +45,8 @@ Taskar.Sections.Actions = {
       });
     },
     '.toggle_archived': function(e, element){
+      e.stop();
+      
       var archive = $('archived_tasks');
       if (archive){
         element.toggleClassName('selected');
