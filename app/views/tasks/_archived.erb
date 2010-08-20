@@ -8,8 +8,7 @@
 	</div>
   <%= task_state_checkbox(task) %>
   <p>
-    <% if task.responsible_party %><strong><%= task.responsible_party.full_name %></strong><% end %>
     <%=h task.text %>
+    <% if task.responsible_party %><strong><%= task.responsible_party.full_name %></strong><% end %>
   </p>
-	<%= content_tag :span, t('tasks.task.more'), :class => 'more', 'data-more' => t('tasks.task.more'), 'data-less' => t('tasks.task.less') %>
 <% end %>

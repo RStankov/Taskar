@@ -3,20 +3,6 @@ Taskar.Sections.Actions = {
     'input.cancel': function(e, element){
       e.findElement('li').slideUp();
     },
-    '.more': function(e, element){
-      var p = element.up('.task').down('p');
-      if (p.hasClassName('less')){
-        p.morph('height:18px', function(){
-          p.removeClassName('less');
-          element.update(element.getAttribute('data-more'));
-        });
-      } else {
-        p.addClassName('less');
-        p.morph('height:' + p.scrollHeight + 'px', function(){
-          element.update(element.getAttribute('data-less'));
-        });
-      } 
-    },
     '.add': function(e, element){
       e.stop();
       
@@ -125,18 +111,6 @@ Taskar.Sections.Actions = {
     },
     '#new_task': function(e){
       e.findElement('li').slideUp();
-    }
-  },
-  mouseover: {
-    '.task': function(e, element){
-      var content = element.down('p');
-      
-      if (content && !content._marked){
-        content._marked = [1];
-        if (!(content.scrollHeight > content.getHeight() + 5 || content.scrollWidth > content.getWidth() + 5)){
-          element.down('.more').hide();
-        }
-      }
     }
   },
   'keyup': {
