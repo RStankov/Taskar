@@ -1254,7 +1254,7 @@ footer p {
 }
 
 .action_form .buttons {
-  border-top: 1px dotted #C3C3C3;
+  border-top: 1px dashed #C3C3C3;
   padding-top: 10px;
   margin-top: 10px;
   color: #5C5C5C;
@@ -1315,7 +1315,7 @@ input[type="button"], .cancel {
 }
 
 .error_messages {
-  border-bottom: 1px dotted red;
+  border-bottom: 1px dashed red;
   margin-bottom: 10px;
   padding: 10px;
   color: #CC0000;
