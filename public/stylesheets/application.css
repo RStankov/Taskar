@@ -1001,11 +1001,11 @@ a.next_page:hover {
   color: #eee;
   cursor: pointer;
   display: inline-block;
-  float: left;
   font-size: 14px;
   height: 16px;
   width: 16px;
   border: 1px solid #C7C7C7;
+  background: -moz-linear-gradient(top, #FFFFFF, #EEEEEE);
   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), to(#EEEEEE), color-stop(.9,#E0E0E0));
 }
 
@@ -1025,13 +1025,13 @@ a.next_page:hover {
 .checkbox.completed:after {
   content: "✔";
   display: inline-block;
-  margin: -2px 0 0 3px;
+  margin-left: 3px;
 }
 
 .checkbox.rejected:after {
   content: "✘";
   display: inline-block;
-  margin: -2px 0 0 4px;
+  margin-left: 4px;
 }
 
 /* TODO */
@@ -1048,7 +1048,7 @@ a.next_page:hover {
   max-width: 615px;
   overflow: hidden;
   height: 14px;
-  margin: 2px 0 0 5px;
+  margin: 0 0 0 5px;
 }
 
 .task p.less {
