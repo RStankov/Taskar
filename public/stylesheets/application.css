@@ -1060,19 +1060,21 @@ a.next_page:hover {
   -o-text-overflow: none;
 }
 
-/* TODO */
-
 .opened .archive {
   display: none;
 }
 
 .completed .archive, .rejected .archive {
-  display: inline-block;
+  display: block;
+  float: left;
+  margin-right: 2px;
 }
 
 .archive {
   width: 12px;
   height: 13px;
+  top: -1px;
+  position: relative;
   background: url(../images/i.png) 0px -226px no-repeat;
 }
 
