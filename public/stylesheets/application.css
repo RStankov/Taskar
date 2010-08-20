@@ -1061,7 +1061,7 @@ a.next_page:hover {
 }
 
 /* TODO */
-/*
+
 .opened .archive {
   display: none;
 }
@@ -1072,14 +1072,13 @@ a.next_page:hover {
 
 .archive {
   width: 12px;
-  height: 14px;
+  height: 13px;
   background: url(../images/i.png) 0px -226px no-repeat;
 }
 
 .archive:hover {
   background-position: -52px -226px;
 }
-*/
 
 #archived_tasks {
   margin-top: 10px;
