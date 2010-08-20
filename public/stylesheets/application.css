@@ -434,11 +434,11 @@ article {
 }
 
 /*** PERSONAL ***/
-
+/*
 .personal {
   background-color: #f8f8f8;
 }
-
+*/
 /*** ASIDE ***/
 
 aside {
@@ -949,10 +949,8 @@ a.next_page:hover {
   padding: 5px 10px;
   position: relative;
   margin-bottom: 4px;
-  border-radius: 5px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
   font-size: 14px;
+  border-bottom: 1px solid #eee;
 }
 
 .tasks_list li:hover.task {
@@ -1003,31 +1001,49 @@ a.next_page:hover {
 }
 
 .checkbox {
-  background: #5C5C5C;
-  border-radius: 5px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
   color: #eee;
-  text-shadow: #fff 0px 0px 4px;
   cursor: pointer;
   display: inline-block;
   float: left;
-  font-size: 12px;
-  height: 14px;
-  margin: 1px 5px 0 0;
-  width: 14px;
+  font-size: 14px;
+  height: 16px;
+  margin: 2px 5px 0 0;
+  width: 16px;
+  
+  box-shadow: 0px 0px 1px #5C5C5C;
+  -moz-box-shadow: 0px 0px 1px #5C5C5C;
+  -webkit-box-shadow: 0px 0px 1px #5C5C5C;
+  border: 1px solid #C7C7C7;
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), to(#EEEEEE), color-stop(.9,#E0E0E0));
+
+}
+
+.checkbox:hover {
+  box-shadow: 0px 0px 2px #5C5C5C;
+  -moz-box-shadow: 0px 0px 2px #5C5C5C;
+  -webkit-box-shadow: 0px 0px 2px #5C5C5C;
+}
+
+.checkbox.completed, .checkbox.rejected {
+  background: #135F9F;
+  border: 1px solid #135F9F;
+  background: -moz-linear-gradient(top, #6BA6D9, #135F9F);
+  background: -webkit-gradient(linear, 0% 0, 0% 100%, from(#6BA6D9), to(#135F9F));
 }
 
 .checkbox.completed:after {
   content: "✔";
   display: inline-block;
-  margin: -2px 0 0 2px;
+  margin: -2px 0 0 3px;
 }
 
 .checkbox.rejected:after {
   content: "✘";
   display: inline-block;
-  margin: -2px 0 0 3px;
+  margin: -2px 0 0 4px;
 }
 
 .task strong {
@@ -1555,6 +1571,7 @@ input[type="button"], .cancel {
 }
 
 /*** APPLICATION LAYOUT ***/
+
 #outside_box {
 	border-radius: 5px;
 	-webkit-border-radius: 5px;
