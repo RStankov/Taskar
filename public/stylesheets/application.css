@@ -302,14 +302,6 @@ img {
   display: block;
 }
 
-#sections h3 {
-  border-top: 1px solid #D7D7D7;
-  font-size: 14px;
-  font-weight: normal;
-  margin: 0;
-  padding: 15px 0 10px;
-}
-
 #sections h3 a {
   display: inline-block;
   float: right;
@@ -655,20 +647,6 @@ aside {
 }
 
 /*** People on this project ***/
-
-#people_envolved h3 {
-  border-top: 1px solid #D7D7D7;
-  font-size: 14px;
-  font-weight: normal;
-  margin: 0;
-  padding: 15px 0 10px;
-}
-
-#people_envolved ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
 
 .people_images li {
   display: inline-block;
@@ -1743,12 +1721,18 @@ header .actions a:active {
   color: #CC0000;
 }
 
-aside .aside_section h3 {
-  border-bottom: 1px solid #D7D7D7;
+aside h3 {
+  border-top: 1px solid #D7D7D7;
   font-size: 14px;
   font-weight: normal;
   margin: 0;
-  padding: 15px 0 5px;
+  padding: 15px 0 10px;
+  text-shadow: 0 -1px #fff, 1px 0 #fff, 0 1px #fff, -1px 0 #fff;
+}
+
+aside .aside_section h3 {
+  border-top: none;
+  border-bottom: 1px solid #D7D7D7;
 }
 
 aside .aside_section ul {
