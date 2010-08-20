@@ -1004,6 +1004,9 @@ a.next_page:hover {
   font-size: 14px;
   height: 16px;
   width: 16px;
+  position: absolute;
+  top: 7px;
+  left: 7px;
   border: 1px solid #C7C7C7;
   background: -moz-linear-gradient(top, #FFFFFF, #EEEEEE);
   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), to(#EEEEEE), color-stop(.9,#E0E0E0));
@@ -1048,7 +1051,7 @@ a.next_page:hover {
   max-width: 615px;
   overflow: hidden;
   height: 14px;
-  margin: 0 0 0 5px;
+  margin: 2px 0 0 22px;
 }
 
 .task p.less {
