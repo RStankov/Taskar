@@ -84,7 +84,7 @@ Taskar.Dnd = (function(){
       return;
     }
     
-    element.fire('drag:finish', { element: element });
+    element.fire('drag:finish', { element: element, originalEvent: e });
     
     element.setStyle(original);
     

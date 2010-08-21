@@ -64,6 +64,12 @@ Taskar.Sections.Actions = {
   'drag:finish': {
     '.tasks_list': function(e, element){
       element.removeClassName('dragging');
+    },
+    '.task': function(e, element){
+      var section = e.memo.originalEvent.findElement('.section');
+      if (section){
+      //  console.log(section.extractId(), element.extractId());
+      }
     }
   },
   'ajax:post': {
