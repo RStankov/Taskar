@@ -32,6 +32,33 @@ describe Task do
     task.errors.on_base.should == I18n.t('activerecord.errors.tasks.archived_section')
   end
   
+  describe "section_id changes" do
+    it "should not allow to set section_id to section from other project" do
+      task = Factory :task
+      section = Factory :section, :project => Factory(:project)
+      
+      section.project_id.should_not == task.project_id
+
+      task.section_id = section.id
+
+      task.should_not be_valid
+      task.should have(1).error_on(:section_id)
+      task.save.should be_false
+    end
+    
+    it "should allow to set section to section from the current project" do
+      task = Factory :task
+      section = Factory :section, :project => task.project
+      
+      section.project_id.should == task.project_id
+      
+      task.section_id = section.id
+      
+      task.should be_valid
+      task.save.should be_true
+    end
+  end
+  
   context "acts_as_list" do
     before do
       @section = Factory(:section)

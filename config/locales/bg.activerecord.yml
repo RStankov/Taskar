@@ -60,6 +60,7 @@ bg:
         errors:
           tasks: 
             archived_section: "Не може да се добавя задача в архивирана секция"
+            cant_change_project: "Не може да се променя проекта на задача"
           
           comments:
             archived_task: "Не може да се коментира архивирана задача"
