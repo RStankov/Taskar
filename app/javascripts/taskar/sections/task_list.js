@@ -1,4 +1,4 @@
-Taskar.Sections.initTaskList = function(element){
+Taskar.Sections.TaskList = function(element){
   if (!element.down('.task')){
     $('new_task').show().down('textarea').highlight().focus();
   }

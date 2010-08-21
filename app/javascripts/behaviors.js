@@ -8,7 +8,7 @@ CD3.Behaviors({
   '#tasks_index':         Taskar.Sections.Actions,
   '#section_aside':       Taskar.Sections.Aside.initialize,
   '#user_card':           Taskar.Sections.NewStatus,
-  '#tasks':               Taskar.Sections.initTaskList,
+  '#tasks':               Taskar.Sections.TaskList,
   '#tasks_show':          Taskar.Sections.Comments,
   'body':                 Taskar.Dnd.Sortable.AjaxSave,
   '#live_search':         Taskar.UI.LiveSearch.Form,
