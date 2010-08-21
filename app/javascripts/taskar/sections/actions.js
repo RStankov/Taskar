@@ -67,8 +67,12 @@ Taskar.Sections.Actions = {
     },
     '.task': function(e, element){
       var section = e.memo.originalEvent.findElement('.section');
-      if (section){
-      //  console.log(section.extractId(), element.extractId());
+      if (section && !section.down('.selected')){
+        new Ajax.Request(element.getAttribute('data-change-section'), {
+          method:     'put',
+          parameters: {section_id: section.extractId()}
+        });
+        element.remove();
       }
     }
   },
