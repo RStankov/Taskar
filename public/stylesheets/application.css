@@ -1086,15 +1086,7 @@ section header a {
   display: block;
 }
 
-.tasks_list.dragging .tooltip, .tasks_list.dragging .drag {
-  visibility: hidden;
-}
-
-.static .add {
-  display: none;
-}
-
-.static .task .drag {
+.dragging .tooltip, .dragging .drag, .dragging .add, .static .add, .static .drag {
   visibility: hidden;
 }
 
