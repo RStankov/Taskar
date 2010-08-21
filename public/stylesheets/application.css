@@ -356,7 +356,7 @@ img {
 
 #sections .add_section {
   height: 3px;
-  width: 60px;
+  width: 80px;
   display:block;
   padding: 0px;
   position:relative;
@@ -368,6 +368,10 @@ img {
 
 #sections .add_section:hover .tooltip {
   display: block;
+  -webkit-animation-name: bounce-scale;
+  -webkit-animation-duration: 0.1s;
+  -webkit-animation-iteration-count: 1;
+  -webkit-transform-origin: middle right;
 }
 
 #sections .tooltip {
