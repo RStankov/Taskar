@@ -91,5 +91,9 @@ describe ApplicationHelper do
     it "accepts block and captures it" do
       helper.tooltip { "text from the block"}.should have_tag(".tooltip .actions", :text => "text from the block")
     end
+  
+    it "accepts hash of attributes as secord argument" do
+      helper.tooltip("given text", :style => "display:none").should have_tag(".tooltip[style=display:none]", :text => "given text")
+    end 
   end
 end
