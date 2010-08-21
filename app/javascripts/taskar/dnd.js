@@ -22,6 +22,15 @@ events (sortable)
 Taskar.Dnd = (function(){
   var element, original, options, offset, style;
 
+  function fireEvent(eventName, e){
+    return element.fire('drag:' + eventName, {
+      element:        element,
+      originalEvent:  e,
+      x:		          e.pointerX(),
+      y:		          e.pointerY()  
+    })
+  }
+
   function start(drag, e, givenOptions){
     e.stop();
   
@@ -46,11 +55,13 @@ Taskar.Dnd = (function(){
       y: e.pointerY() - cumulativeOffset[1]
     };
     
-    element.fire('drag:before', { element: element });
+    if (fireEvent('before', e).stopped){
+      return false;
+    }
 
-    element.absolutize();// style.position = 'absolute'; // 
-
-    element.fire('drag:start', { element: element });
+    element.absolutize();
+    
+    fireEvent('start', e); 
 
     document.observe('mousemove', move);
     document.observe('mouseup', end);
@@ -71,11 +82,9 @@ Taskar.Dnd = (function(){
     if (options.moveX != false) element.style.left = position.x + 'px';
     if (options.moveY != false) element.style.top  = position.y + 'px';
     
-    element.fire('drag:move', {
-      x:		   e.pointerX(),
-      y:		   e.pointerY(),
-      element: element
-    });
+    if (fireEvent('move', e).stopped){
+      end(e);
+    }
   }
 
   function end(e){
@@ -84,7 +93,7 @@ Taskar.Dnd = (function(){
       return;
     }
     
-    element.fire('drag:finish', { element: element, originalEvent: e });
+    fireEvent('finish', e);
     
     element.setStyle(original);
     
