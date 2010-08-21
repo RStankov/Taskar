@@ -140,6 +140,17 @@ describe TasksController do
           response.should be_success
         end
       end
+      
+      describe "PUT section" do
+        before do
+          mock_task.should_receive(:update_attribute).with(:section_id, "2")
+          
+          put :section, :id => "1", :section_id => "2"
+        end
+        
+        it { should_not render_template("secrion") }
+        it { response.should be_success }
+      end
 
       describe "ensure_task_is_editable filter" do
         before do
@@ -272,7 +283,8 @@ describe TasksController do
       :update     => 'put(:update, :id => "1")',
       :destroy    => 'delete(:destroy, :id => "1")',
       :state      => 'put(:state, :id => "1")',
-      :archive    => 'put(:archive, :id => "1")'
+      :archive    => 'put(:archive, :id => "1")',
+      :section    => 'put(:section, :id => "1")'
     }.each do |(action, code)|
       it "should not allow #{action}, and redirect_to root_url" do
         Task.should_receive(:find).with("1").and_return(mock_task)

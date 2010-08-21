@@ -5,7 +5,7 @@ ActionController::Routing::Routes.draw do |map|
     projects.resources :aside, :only => :index
     projects.resources :tasks, :collection => {:reorder => :put, :search => :get}, :only => [:index]
     projects.resources :sections, :shallow => true, :collection => {:reorder => :put, :tasks => :get, :archived => :get}, :member => {:archive => :put} do |sections|
-      sections.resources :tasks, :shallow => true, :except => [:new, :index], :member => {:state => :put, :archive => :put}, :collection => {:archived => :get} do |tasks|
+      sections.resources :tasks, :shallow => true, :except => [:new, :index], :member => {:state => :put, :archive => :put, :section => :put}, :collection => {:archived => :get} do |tasks|
         tasks.resources :comments, :shallow => true, :except => [:index, :new]
       end
     end

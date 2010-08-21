@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   layout "sections"
   
-  before_filter :get_task_and_project, :only => [:show, :edit, :update, :destroy, :state, :archive]
+  before_filter :get_task_and_project, :only => [:show, :edit, :update, :destroy, :state, :archive, :section]
   before_filter :get_section_and_project, :only => [:create, :archived]
   before_filter :get_project, :only => [:index, :search, :reorder]
   before_filter :check_project_permissions
@@ -96,6 +96,12 @@ class TasksController < ApplicationController
     render :layout => false
   end
 
+  def section
+    @task.update_attribute :section_id, params[:section_id]
+    
+    head :ok
+  end
+  
   private
     def get_task_and_project
       @task    = Task.find(params[:id])

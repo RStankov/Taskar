@@ -30,9 +30,13 @@ describe TasksController do
       { :put => "/tasks/1/state" }.should route_to(:controller => "tasks", :action => "state", :id => "1") 
     end
     
-     it "recognizes and generates #archive" do
-        { :put => "/tasks/1/archive" }.should route_to(:controller => "tasks", :action => "archive", :id => "1") 
-      end
+    it "recognizes and generates #archive" do
+      { :put => "/tasks/1/archive" }.should route_to(:controller => "tasks", :action => "archive", :id => "1") 
+    end
+    
+    it "recognizes and generates #section" do
+      { :put => "/tasks/1/section" }.should route_to(:controller => "tasks", :action => "section", :id => "1") 
+    end
     
     it "recognizes and generates #search" do
       { :get => "projects/3/tasks/search" }.should route_to(:controller => "tasks", :action => "search", :project_id => "3")
