@@ -928,18 +928,16 @@ section header a {
 }
 
 .tasks_list .task {
-  padding: 8px;
   position: relative;
   font-size: 12px;
   border-bottom: 1px solid #eee;
 }
 
 .task_wrapper {
-  margin: -8px;
   padding: 8px;
 }
 
-.task_wrapper:hover, #new_task:hover {
+.task_wrapper:hover, .task_wrapper.with_form {
   background-color: #ECF3FE;
 }
 
@@ -1103,10 +1101,6 @@ section header a {
 #archived_tasks_empty {
   font-size: 14px;
   color: #5C5C5C;
-}
-
-#new_task {
-  padding: 8px;
 }
 
 /*** SECTIONS/SHOW FOOTER ***/

@@ -1,19 +1,21 @@
-<% form_for task, :html => {:class => 'action_form', :id => nil, :'data-remote' => true} do |form| %>
-  <%= render 'shared/error_messages', :target => form.object %>
-  <%= form.label :text, t(:'.text') %>
-  <%= form.text_area :text, :cols => nil, :rows => nil %>
-  <%= form.label :responsible_party_id, t(:'.responsible_party') %>
-  <%= form.select :responsible_party_id, [['---------------' , '']] + @project.users.map {|p| [p.full_name, p.id]} %>
-  <div class="buttons">
-    <% if form.object.new_record? %>
-      <%= form.submit t(:'tasks.form.create') %>
-      <%=t :or %>
-      <input type="button" value="<%=t :'tasks.form.stop' %>" class="cancel">
-      <%= form.hidden_field :insert_after %>
-    <% else %>
-      <%= form.submit t(:'tasks.form.update') %>
-      <%=t :or %>
-      <%= link_to t(:'tasks.form.cancel'), task, :class => "cancel", "data-remote" => true %>
-    <% end %>
-  </div>
-<% end %>
+<div class="task_wrapper">
+  <% form_for task, :html => {:class => 'action_form', :id => nil, :'data-remote' => true} do |form| %>
+    <%= render 'shared/error_messages', :target => form.object %>
+    <%= form.label :text, t(:'.text') %>
+    <%= form.text_area :text, :cols => nil, :rows => nil %>
+    <%= form.label :responsible_party_id, t(:'.responsible_party') %>
+    <%= form.select :responsible_party_id, [['---------------' , '']] + @project.users.map {|p| [p.full_name, p.id]} %>
+    <div class="buttons">
+      <% if form.object.new_record? %>
+        <%= form.submit t(:'tasks.form.create') %>
+        <%=t :or %>
+        <input type="button" value="<%=t :'tasks.form.stop' %>" class="cancel">
+        <%= form.hidden_field :insert_after %>
+      <% else %>
+        <%= form.submit t(:'tasks.form.update') %>
+        <%=t :or %>
+        <%= link_to t(:'tasks.form.cancel'), task, :class => "cancel", "data-remote" => true %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
