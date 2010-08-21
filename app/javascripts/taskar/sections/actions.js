@@ -130,14 +130,6 @@ Taskar.Sections.Actions = {
       e.findElement('li').slideUp();
     }
   },
-  'keyup': {
-    'textarea': function(e, element){
-      if (e.keyCode == Event.KEY_RETURN && e.shiftKey && element.form){
-        e.stop();
-        element.fire('ajax:' + $(element.form).request().options.method)
-      }
-    }
-  },
   'task:archive_changed': function(e){
     var archive = $('archived_tasks');
     archive && $('archived_tasks_empty')[archive.getElementsByTagName('li').length == 1 ? 'show' : 'hide']();
