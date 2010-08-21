@@ -144,6 +144,7 @@ describe TasksController do
       describe "PUT section" do
         before do
           mock_task.should_receive(:update_attribute).with(:section_id, "2")
+          mock_task.should_receive(:move_to_top)
           
           put :section, :id => "1", :section_id => "2"
         end

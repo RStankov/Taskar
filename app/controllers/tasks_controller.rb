@@ -98,6 +98,7 @@ class TasksController < ApplicationController
 
   def section
     @task.update_attribute :section_id, params[:section_id]
+    @task.move_to_top
     
     head :ok
   end
