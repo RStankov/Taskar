@@ -61,11 +61,18 @@ Taskar.Sections.Actions = {
       element.addClassName('dragging');
     }
   },
+  'drag:move': {
+    '.task': function(e, element){
+      Taskar.UI.InfoBubble.move(e.memo.originalEvent);
+    }
+  },
   'drag:finish': {
     '.tasks_list': function(e, element){
       element.removeClassName('dragging');
     },
     '.task': function(e, element){
+      Taskar.UI.InfoBubble.hide(e.memo.originalEvent);
+      
       var section = e.memo.originalEvent.findElement('.section');
       if (section && !section.down('.selected')){
         new Ajax.Request(element.getAttribute('data-change-section'), {

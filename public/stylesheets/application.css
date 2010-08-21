@@ -1824,9 +1824,6 @@ aside .aside_section a:hover {
   font-size: 12px;
   text-decoration: none;
   padding: 5px;
-  border-radius: 0 0 0 5px;
-  -moz-border-radius: 0 0 0 5px;
-  -webkit-border-radius: 0 0 0 5px;
   position: absolute;
   right: 0px;
   top: 7px;
@@ -1842,4 +1839,16 @@ aside .aside_section a:hover {
 .statuses a:hover {
   color: red;
   text-decoration: underline;
+}
+
+#info_bubble {
+  position:   absolute;
+  background: #000;
+  padding: 10px;
+  color: #fff;
+  font-size: 10px;
+  
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
 }
