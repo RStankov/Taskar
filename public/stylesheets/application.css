@@ -349,6 +349,11 @@ img {
   background: #5C5C5C;
 }
 
+#sections .hover {
+  color: #eee;
+  background: #4564A3;
+}
+
 #sections .add_section {
   height: 3px;
   width: 60px;
