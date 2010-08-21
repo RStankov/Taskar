@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
     end
 
     def check_project_permissions
-      unless @project.involves? current_user
+      unless @project && @project.involves?(current_user)
         deny_access
       end
     end
