@@ -63,7 +63,7 @@ Taskar.Sections.Actions = {
   },
   'drag:move': {
     '.task': function(e, element){
-      Taskar.UI.InfoBubble.move(e.memo.originalEvent);
+      Taskar.UI.HoverBubble.move(e.memo.originalEvent);
     }
   },
   'drag:finish': {
@@ -71,7 +71,7 @@ Taskar.Sections.Actions = {
       element.removeClassName('dragging');
     },
     '.task': function(e, element){
-      Taskar.UI.InfoBubble.hide(e.memo.originalEvent);
+      Taskar.UI.HoverBubble.hide(e.memo.originalEvent);
       
       var section = e.memo.originalEvent.findElement('.section');
       if (section && !section.down('.selected')){

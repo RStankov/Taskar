@@ -1,5 +1,5 @@
-Taskar.UI.InfoBubble = (function(UI){  
-  var InfoBubble = Class.create({
+Taskar.UI.HoverBubble = (function(UI){  
+  var Widget = Class.create({
     initialize: function(element, e){
       this.element        = $(element);
       this.hoverElement   = null;
@@ -36,26 +36,26 @@ Taskar.UI.InfoBubble = (function(UI){
     }
   });
   
-  function moveBubble(e){
+  function createWidget(e){
+    this.instance = new Widget('info_bubble', e);
+    this.move     = moveWidget;
+  }
+  
+  function moveWidget(e){
     this.instance.positionate(e);
   }
   
-  function createBubble(e){
-    this.instance = new InfoBubble('info_bubble', e);
-    this.move     = moveBubble;
-  }
-  
-  var widget = {
+  var controller = {
     instance: null,
-    move:     createBubble,
+    move:     createWidget,
     hide:     function(){
       if (this.instance){
         this.instance.destroy();
         this.instance = null;
-        this.move = createBubble;
+        this.move = createWidget;
       }
     }
   };
   
-  return widget;
+  return controller;
 })();
