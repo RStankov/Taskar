@@ -1023,6 +1023,7 @@ section header a {
   -webkit-border-radius: 10px;
   background: #eee;
   color: #858585;
+  white-space: nowrap;
 }
 
 .personal strong {
