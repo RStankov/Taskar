@@ -1,13 +1,15 @@
 Taskar.UI.HoverBubble = (function(UI){  
   var Widget = Class.create({
-    initialize: function(element, e){
+    initialize: function(element, showOn, hoverOn, e){
       this.element        = $(element);
       this.hoverElement   = null;
+      this.showOn         = showOn;
+      this.hoverOn        = hoverOn;
       this.positionate(e);
     },
     positionate: function(e){
-      if (e.findElement('aside')){
-        this.hover(e.findElement('.link:not(.selected)'));
+      if (e.findElement(this.showOn)){
+        this.hoverOn && this.hover(e.findElement(this.hoverOn));
         this.element.setStyle({
           display:  'block',
           top:      e.pointerY() + 20 + 'px',
@@ -37,7 +39,7 @@ Taskar.UI.HoverBubble = (function(UI){
   });
   
   function createWidget(e){
-    this.instance = new Widget('info_bubble', e);
+    this.instance = new Widget('info_bubble', 'aside', '.link:not(.selected)', e);
     this.move     = moveWidget;
   }
   
