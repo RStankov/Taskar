@@ -6,29 +6,40 @@ Taskar.Sections.Actions = {
     '.add': function(e, element){
       e.stop();
       
-      var newTask = $('new_task');
-  
-        
-      var before = element.getAttribute('data-after'), 
-          scroll = false;
-      if (before){
-        element.up('.task').insert({after: newTask});
+      function insertBefore(){
+        var before = element.getAttribute('data-after'),
+            scroll = false;
+
+        if (before){
+          task.insert({after: newTask});
+        } else {
+          $('tasks').insert({bottom: newTask});
+          scroll = true;
+        }
+
+        Taskar.Sections.resetTaskForm(newTask.down('form'), before);
+
+        newTask.slideDown(function(e){
+          e.element.down('textarea').focus();
+          scroll && new Taskar.FX.ScrollTo(e.element);
+        });
+      }
+      
+      element.hide()
+      element.show.bind(element).defer();
+      
+      var newTask  = $('new_task'),
+          task     = element.up('.task');
+    
+      if (!newTask.visible()){
+        insertBefore();
       } else {
-        $('tasks').insert({bottom: newTask});
-        scroll = true;
+        if (task && task.next() == newTask){  
+          newTask.down('textarea').focus();
+        } else {
+          newTask.slideUp(insertBefore);
+        }
       }
-
-      Taskar.Sections.resetTaskForm(newTask.down('form'), before);
-
-      if (newTask.visible()){
-        newTask.down('textarea').focus();
-        return scroll && new Taskar.FX.ScrollTo(newTask);
-      }
-
-      newTask.slideDown(function(e){
-        e.element.down('textarea').focus();
-        scroll && new Taskar.FX.ScrollTo(e.element);
-      });
     },
     '.toggle_archived': function(e, element){
       e.stop();
