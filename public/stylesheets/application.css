@@ -377,7 +377,6 @@ img {
 #sections .tooltip {
   top: -13px;
   left: -90px;
-  z-index: 1003;
 }
 
 #sections .arrow {
@@ -547,7 +546,7 @@ aside {
   padding: 5%;
   position: absolute;
   width: 90%;
-  z-index: 1001;
+  z-index: 2;
 }
 
 #live_search a {
@@ -613,7 +612,7 @@ aside {
   background: none;
   right: 0px;
   bottom: -25px;
-  z-index: 1002;
+  z-index: 3;
 }
 
 #new_status .arrow {
@@ -1469,7 +1468,7 @@ input[type="button"], .cancel {
 }
 
 .tooltip {
-  z-index: 100;
+  z-index: 4;
   position: absolute;
 }
 
@@ -1545,6 +1544,7 @@ input[type="button"], .cancel {
     border-radius: 4px 10px 10px 4px;
     -moz-border-radius: 4px 10px 10px 4px;
     -webkit-border-radius: 4px 10px 10px 4px;
+    -webkit-transform-origin: top left;
   }
   
   .insert_at .pointer {
@@ -1582,6 +1582,7 @@ input[type="button"], .cancel {
     border-radius: 10px 4px 4px 10px;
 	  -moz-border-radius: 10px 4px 4px 10px;
 	  -webkit-border-radius: 10px 4px 4px 10px;
+    -webkit-transform-origin: top right;
   }
   
   .insert_at .pointer {
@@ -1603,10 +1604,10 @@ input[type="button"], .cancel {
   -webkit-animation-name: bounce-scale;
   -webkit-animation-duration: 0.2s;
   -webkit-animation-iteration-count: 1;
-  -webkit-transform-origin: top right;
 }
 
 .insert_at {
+  z-index: 4;
   display: none;
   color: #eee;
   padding: 5px 10px;
