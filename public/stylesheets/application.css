@@ -935,7 +935,12 @@ section header a {
   border-bottom: 1px solid #eee;
 }
 
-.tasks_list li:hover.task, #new_task:hover {
+.task_wrapper {
+  margin: -8px;
+  padding: 8px;
+}
+
+.task_wrapper:hover, #new_task:hover {
   background-color: #ECF3FE;
 }
 
@@ -1080,7 +1085,7 @@ section header a {
   background-position: -52px -240px;
 }
 
-.tasks_list li:hover.task .drag {
+.task_wrapper:hover .drag {
   display: block;
 }
 
@@ -1523,18 +1528,33 @@ input[type="button"], .cancel {
     top: 10px;
   }
   
-  .tasks_list li:hover.task .tooltip {
+  .task_wrapper:hover .tooltip {
     display: block;
     -webkit-animation-name: bounce-scale;
     -webkit-animation-duration: 0.2s;
     -webkit-animation-iteration-count: 1;
     -webkit-transform-origin: top left;
   }
+  
+  .task .add {
+    right: -20px;
+  }
+  
+  .insert_at {
+    right: -100px;
+    border-radius: 4px 10px 10px 4px;
+    -moz-border-radius: 4px 10px 10px 4px;
+    -webkit-border-radius: 4px 10px 10px 4px;
+  }
+  
+  .insert_at .pointer {
+    left: -6px;
+  }
 }
 
 @media all and (min-width:1200px){
   .task .tooltip {
-    left: -138px;
+    left: -134px;
     top: -6px;
     display: none;
     min-width: 130px;
@@ -1545,13 +1565,74 @@ input[type="button"], .cancel {
     top: 10px;
   }
   
-  .tasks_list li:hover.task .tooltip {
+  .task_wrapper:hover .tooltip {
     display: block;
     -webkit-animation-name: bounce-scale;
     -webkit-animation-duration: 0.2s;
     -webkit-animation-iteration-count: 1;
     -webkit-transform-origin: top right;
   }
+
+  .task .add {
+    left: -20px;
+  }
+  
+  .insert_at {
+    left: -100px;
+    border-radius: 10px 4px 4px 10px;
+	  -moz-border-radius: 10px 4px 4px 10px;
+	  -webkit-border-radius: 10px 4px 4px 10px;
+  }
+  
+  .insert_at .pointer {
+    right: -6px;
+  }
+}
+
+.task .add {
+  display: block;
+  width: 20px;
+  height: 10px;
+  bottom: 0px;
+  position: absolute;
+  text-decoration: none;
+}
+
+.task .add:hover .insert_at {
+  display: block;
+  -webkit-animation-name: bounce-scale;
+  -webkit-animation-duration: 0.2s;
+  -webkit-animation-iteration-count: 1;
+  -webkit-transform-origin: top right;
+}
+
+.insert_at {
+  display: none;
+  color: #eee;
+  padding: 5px 10px;
+  background: #000;
+  font-size: 12px;
+  position: absolute;
+  bottom: -12px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.insert_at .pointer {
+  position: absolute;
+  top: 5px;
+  width: 12px;
+  height: 12px;
+  background: #000;
+  border: 1px solid #000;
+  -moz-transform-origin: center;
+  -webkit-transform-origin: center;
+  -moz-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 /*** APPLICATION LAYOUT ***/
