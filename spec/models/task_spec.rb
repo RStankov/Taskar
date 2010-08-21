@@ -32,7 +32,7 @@ describe Task do
     task.errors.on_base.should == I18n.t('activerecord.errors.tasks.archived_section')
   end
   
-  describe "acts_as_list" do
+  context "acts_as_list" do
     before do
       @section = Factory(:section)
     end
@@ -90,7 +90,7 @@ describe Task do
       
     end
   
-    describe "reorder" do
+    describe "#reorder" do
       before do
         @task_1 = create_next_task
         @task_2 = create_next_task
@@ -150,7 +150,7 @@ describe Task do
     end
   end
 
-  describe "state" do
+  describe "#state" do
     def task_with_status(status)
       Task.new do |task|
         task.status = status
@@ -188,7 +188,7 @@ describe Task do
     end
   end
   
-  describe "search" do
+  describe "#search" do
     it "should find :all with :conditions => text like '%ss%'" do
       ss = "search term"
       
@@ -211,7 +211,7 @@ describe Task do
     end
   end
  
-  describe "archived" do
+  describe "#archived" do
     before do
       @task = Factory(:task)
     end
@@ -273,7 +273,7 @@ describe Task do
     end
   end
 
-  describe "editable?" do
+  describe "#editable?" do
     before do
       @task = Task.new
     end
@@ -291,7 +291,7 @@ describe Task do
     end
   end
 
-  describe "opened_in_project" do
+  describe ".opened_in_project" do
     it "should return opened tasks in a project" do
       project = Factory(:project)
       section = Factory(:section, :project => project)
