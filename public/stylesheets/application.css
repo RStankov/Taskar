@@ -163,8 +163,17 @@ body > footer {
   -webkit-border-radius: 10px;
 }
 
-body > footer p {
-  display: inline;
+#scroll_to_top {
+  background: url(../images/sprite.png) 4px -173px no-repeat;
+  cursor: pointer;
+  display: block;
+  float: right;
+  height: 14px;
+  width: 20px;
+}
+
+#scroll_to_top:hover {
+  background-position: 4px -203px;
 }
 
 /*** LOGIN BOX ***/
@@ -1666,18 +1675,7 @@ article footer > li:last-child {
 
 /*** APPLICATION LAYOUT ***/
 
-#scroll_to_top {
-  background: url(../images/sprite.png) 4px -173px no-repeat;
-  cursor: pointer;
-  display: block;
-  float: right;
-  height: 14px;
-  width: 20px;
-}
 
-#scroll_to_top:hover {
-  background-position: 4px -203px;
-}
 
 #outside_box {
 	border-radius: 5px;
