@@ -274,13 +274,13 @@ body > footer p {
   position: relative;
 }
 
-#nav_project span a:first-child {
+#nav_project a:first-child {
   border-radius: 4px 0px 0 4px;
   -moz-border-radius: 4px 0px 0 4px;
   -webkit-border-radius: 4px 0px 0 4px;
 }
 
-#nav_project span a {
+#nav_project a {
   border: 1px solid #000;
   -moz-box-shadow: #33588B 0px 0px 1px 1px inset, rgba(255, 255, 255, 0.246094) 0px 1px 0px 0px;
   -webkit-box-shadow: #33588B 0px 0px 1px 1px inset, rgba(255, 255, 255, 0.246094) 0px 1px 0px 0px;
@@ -294,17 +294,17 @@ body > footer p {
   margin-left: -4px;
 }
 
-#nav_project span a:hover {
+#nav_project a:hover {
   background: #375185;
 }
 
-#nav_project span a:active, #nav_project span a.selected {
+#nav_project a:active, #nav_project a.selected {
   background: #233354;
   -moz-box-shadow: none;
   -webkit-box-shadow: none;
 }
 
-#nav_project span a:last-child {
+#nav_project a:last-child {
   border-radius: 0 4px 4px 0px;
   -moz-border-radius: 0 4px 4px 0px;
   -webkit-border-radius: 0 4px 4px 0px; 
