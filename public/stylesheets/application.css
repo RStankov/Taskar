@@ -167,6 +167,26 @@ body > footer p {
   display: inline;
 }
 
+/*** LOGIN BOX ***/
+
+#login_box form {
+  padding: 20px;
+}
+
+#login_box input[type="text"], #login_box input[type="password"], #login_box select {
+  font-size: 18px;
+  width: 98%;
+  margin: 10px 0 10px 0;
+}
+
+#login_box input[type="submit"] {
+  display: block;
+  padding: 5px;
+  margin-top: 10px;
+  font-size: 14px;
+  width: 100px;
+}
+
 /*** TOP NAVIGATION ***/
 
 #nav_dashboard {
@@ -1676,27 +1696,6 @@ article footer > li:last-child {
 
 .devise_links a:hover {
   text-decoration: underline;
-}
-
-/*** SESSION/NEW ***/
-
-#login_box input[type="text"], #login_box input[type="password"], #login_box select {
-  font-size: 18px;
-  width: 98%;
-}
-
-#login_box form {
-  padding: 20px;
-}
-
-#login_box p {
-  margin-bottom: 10px;
-}
-
-#login_box input[type="submit"] {
-  padding: 5px;
-  font-size: 14px;
-  width: 100px;
 }
 
 header .actions {
