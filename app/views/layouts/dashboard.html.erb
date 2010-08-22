@@ -15,15 +15,15 @@
     </article>
     <aside>
       <% if current_user.admin? %>
-      <div class="aside_section">
+      <section>
         <h3><%=t :".manage"  %></h3>
         <ul>
           <li><%= link_to t(:'users.title'), users_path %></li>
           <li><%= link_to t(:'projects.index.title'), projects_path %></li>
         </ul>
-      </div>
+      </section>
       <% end %>
-      <div class="aside_section">
+      <section>
         <h3><%=t :".current_projects", :count => @projects.size  %></h3>
         <ul>
           <% @projects.each do |project| %>
@@ -32,7 +32,7 @@
           </li>
           <% end %>
         </ul>
-      </div>
+      </section>
     </aside>
   </section>
   <%= render "shared/footer" %>

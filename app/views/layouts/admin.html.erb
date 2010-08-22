@@ -14,14 +14,14 @@
       <%= yield %>
     </article>
     <aside>
-			<div class="aside_section">
+			<section>
         <h3><%=t :'.users', :count => account.users.size %></h3>
         <ul>
           <li><%= link_to t(:'.new_user'), new_user_path %></li>
           <li><%= link_to t(:'.manage_users'), users_path %></li>
         </ul>
-      </div>
-      <div class="aside_section">
+      </section>
+      <section>
         <% @projects ||= account.projects.active %>
         <h3><%=t :".current_projects", :count => @projects.size  %></h3>
         <ul>
@@ -31,7 +31,7 @@
         </ul>
 				<%= link_to t(:'.new_project'), new_project_path %><br />
 				<%= link_to t(:'.manage_projects'), projects_path %>
-      </div>
+      </section>
     </aside>
   </section>
   <%= render "shared/footer" %>
