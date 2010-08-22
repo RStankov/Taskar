@@ -428,22 +428,6 @@ body > footer p {
   -webkit-transform-origin: top right;
 }
 
-#sections .tooltip {
-  top: -13px;
-  left: -90px;
-}
-
-#sections .arrow {
-  right: -4px;
-  top: 9px;
-  width: 10px;
-  height: 10px;
-}
-
-#sections .actions {
-  font-size: 10px;
-}
-
 #new_section {
   margin: 5px 0px 5px 10px;
   padding: 10px;
