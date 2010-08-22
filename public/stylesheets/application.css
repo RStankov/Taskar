@@ -547,7 +547,7 @@ body > footer p {
   color: #00589d;
 }
 
-/*** USER CARD ***/
+/*** USER CARD / NEW STATUS ***/
 
 #user_card {
   font-size: 12px;
@@ -586,7 +586,6 @@ body > footer p {
 }
 
 #new_status {
-  background: none;
   right: 0px;
   bottom: -25px;
   z-index: 3;
@@ -598,7 +597,7 @@ body > footer p {
   
 }
 
-#new_status .form_content {
+#new_status section {
   position: absolute;
   right: 0px;  
   padding: 10px;
@@ -623,6 +622,11 @@ body > footer p {
   float: right;
   margin-top: 5px;
   font-size: 16px;
+}
+
+#new_status input[type="button"]:hover {
+  color: #FF0000;
+  text-decoration: underline;
 }
 
 /*** People on this project ***/

@@ -48,14 +48,14 @@
 				<%= link_to t(".status.clear"), [:clear, @project, :statuses], "data-method" => "delete", "data-remote" => true %>
         <% form_for [@project, Status.new], :html => {:class => "action_form tooltip", :style => "display: none;", "data-remote" => true} do |form| %>
           <div class="arrow"></div>
-          <div class="form_content">
+          <section>
             <%= form.label :text, t(".status.label") %>
   			    <%= form.text_area :text  %>
   			    <p class="buttons">
   			      <%= form.submit t(".status.share") %>
   			      <input type="button" value="<%= t :cancel %>">
   			    </p>
-  			  </div>
+  			  </section>
   			<% end %>
       </div>
       <div id="sections">
