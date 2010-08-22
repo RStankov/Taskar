@@ -29,6 +29,11 @@ input[type="submit"], input[type="button"] {
   cursor: pointer;
 }
 
+input[type="button"] {
+  background: none;
+  border: 0;
+}
+
 textarea {
     resize: none;
 }
@@ -1211,12 +1216,6 @@ article footer > li:last-child {
   background: #1977c0;
   background: -moz-linear-gradient(top, #00589D, #1977c0);
   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#00589D), to(#1977C0), color-stop(1,#1977C0));
-}
-
-input[type="button"] {
-  background: none;
-  border: 0;
-  color: #5c5c5c;
 }
 
 .action_form .cancel {
