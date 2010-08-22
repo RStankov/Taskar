@@ -82,7 +82,7 @@ img {
 
 /*** HEADER ***/
 
-#header {
+body > header {
   box-shadow: 0px 0px 5px #000;
   -moz-box-shadow: 0px 0px 5px #000;
   -webkit-box-shadow: 0px 0px 5px #000;
@@ -98,7 +98,7 @@ img {
   text-align: center;
 }
 
-#header h2 {
+body > header h2 {
   display: inline-block;
   font-weight: normal;
   font-size: 16px;
@@ -424,7 +424,7 @@ img {
 
 /*** SECTION ***/
 
-section {
+body > section {
   display: table;
   margin: 15px auto;
   min-height: 200px;
@@ -1151,7 +1151,7 @@ section header a {
 
 /*** FOOTER ***/
 
-footer {
+body > footer {
   background-color: #e2e2e2;
   color: #b8b8b8;
   font-size: 11px;
@@ -1164,7 +1164,7 @@ footer {
   -webkit-border-radius: 10px;
 }
 
-footer p {
+body > footer p {
   display: inline;
 }
 
