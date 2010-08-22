@@ -15,7 +15,7 @@ describe "/sections/show.html.erb" do
     render
     
     response.should have_tag('#tasks')
-    response.should have_tag('#section_footer')
+    response.should have_tag('footer')
   end
   
   it "should render archived tasks and no forms" do
@@ -24,8 +24,8 @@ describe "/sections/show.html.erb" do
     render
     
     response.should_not have_tag('#tasks')
-    response.should_not have_tag('#section_footer .add')
-    response.should_not have_tag('#section_footer .more')
+    response.should_not have_tag('footer .add')
+    response.should_not have_tag('footer .more')
     response.should have_tag('.tasks_list')
   end
 end

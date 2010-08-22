@@ -61,7 +61,7 @@ Taskar.Sections.Actions = {
         onComplete: function(t){
           element.removeClassName('loading');
           element.addClassName('selected');
-          e.findElement('ul').insert({ after: t.responseText });
+          e.findElement('footer').insert({ after: t.responseText });
           $('archived_tasks').hide().slideDown(function(e){ new Taskar.FX.ScrollTo(element); })
         }
       });

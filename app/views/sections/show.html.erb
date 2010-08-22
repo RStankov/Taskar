@@ -11,9 +11,9 @@
       <%= render "tasks/archived", :task => task %>
     <% end %>
   </ul>
-  <ul id="section_footer">
+  <footer>
     <li><%= link_to t('.print'), section_path(@section, :format => 'print'), :target => "_blank" %></li>
-  </ul>
+  </footer>
 <% else %>
   <header id="section_title">
     <h1>
@@ -32,7 +32,7 @@
     <%= render @tasks %>
     <%= render "tasks/new_task" %>
   </ul>
-  <ul id="section_footer">
+  <footer>
     <li><a href="#" class="add"><%=t :'.add_task' %></a></li>
     <li>
         <a href="#" class="toggle_archived" data-url="<%= archived_section_tasks_path(@section) %>">
@@ -40,5 +40,5 @@
         </a>
     </li>
     <li><%= link_to t('.print'), section_path(@section, :format => 'print'), :target => "_blank" %></li>
-  </ul>
+  </footer>
 <% end %>

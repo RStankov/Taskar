@@ -28,6 +28,6 @@
     </tr>
   <% end %>
 </table>
-<div id="section_footer">
-  <%= will_paginate @events, :page_links => false, :previous_label => t(:previous_page), :next_label => t(:next_page), :separator => "|" if @events %>
-</div>
+<footer class="pagination">
+  <%= will_paginate @events, :page_links => false, :previous_label => t(:previous_page), :next_label => t(:next_page), :separator => "|", :container => false if @events %>
+</footer>
