@@ -885,6 +885,109 @@ article header a {
   color: #2c2c2c;
 }
 
+/*** ACTION FORM ***/
+
+.action_form {
+  padding: 13px 15px;
+  position: relative;
+  background-color: #eee;
+  font-size: 14px;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+}
+
+.action_form p {
+  padding-bottom: 5px;
+}
+
+.action_form label {
+  text-shadow: #fff 1px 1px 1px;
+  color: #5C5C5C;
+}
+
+.action_form h3 {
+  text-shadow: #fff 1px 1px 1px;
+  color: #5C5C5C;
+  margin: 10px 0 10px 0;
+}
+
+.action_form textarea {
+  display: block;
+  width: 100%;
+  height: 100px;
+  margin: 10px 0 10px 0;
+}
+
+.action_form .buttons {
+  border-top: 1px dashed #C3C3C3;
+  padding-top: 10px;
+  margin-top: 10px;
+  color: #5C5C5C;
+  font-size: 12;
+}
+
+.action_form input[type="text"], .action_form input[type="password"] {
+  width: 300px;
+}
+
+.action_form select {
+  width: 150px;
+}
+
+.action_form input[type="submit"], .submit_button {
+  color: #fff;
+  border: 1px solid #135F9F;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  background: #1977c0;
+  background: -moz-linear-gradient(top, #76B7EF, #135F9F);
+  background: -webkit-gradient(linear, 0% 0, 0% 100%, from(#76B7EF), color-stop(0.02, #1C87E3), to(#135F9F));
+  font-size: 12px;
+  text-shadow: rgba(0, 0, 0, 0.496094) 0px -1px 0px;
+  padding: 4px 8px;
+  margin-right: 5px;
+}
+
+.action_form input[type="submit"]:hover, .submit_button:hover {
+  border: 1px solid #002E52;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
+}
+
+.action_form input[type="submit"]:active, .submit_button:active {
+  background: #1977c0;
+  background: -moz-linear-gradient(top, #00589D, #1977c0);
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#00589D), to(#1977C0), color-stop(1,#1977C0));
+}
+
+.action_form .cancel {
+  font-size: 12px;
+  margin-left: 5px;
+  padding: 0;
+  color: #F00;
+  text-decoration: none;
+}
+
+.action_form .cancel:hover {
+  text-decoration: underline;
+  color: #FF0000;
+}
+
+.error_messages {
+  border-bottom: 1px dashed red;
+  margin-bottom: 10px;
+  padding: 10px;
+  color: #CC0000;
+  font-size: 12px;
+}
+
+.fieldWithErrors textarea, .fieldWithErrors input, .fieldWithErrors select {
+  border: 2px solid #ff9999;
+}
+
 /*** SECTIONS/SHOW TASKS LISTS ***/
 
 .tasks_list {
@@ -1134,113 +1237,6 @@ article footer > li:last-child {
 
 #scroll_to_top:hover {
   background-position: 4px -203px;
-}
-
-/*** ACTION FORM ***/
-
-.wrap {
-  padding: 0 20px 20px;
-}
-
-.action_form {
-  padding: 13px 15px;
-  position: relative;
-  background-color: #eee;
-  font-size: 14px;
-  border-radius: 4px;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-}
-
-.action_form p {
-  padding-bottom: 5px;
-}
-
-.action_form label {
-  text-shadow: #fff 1px 1px 1px;
-  color: #5C5C5C;
-}
-
-.action_form h3 {
-  text-shadow: #fff 1px 1px 1px;
-  color: #5C5C5C;
-  margin: 10px 0 10px 0;
-}
-
-.action_form textarea {
-  display: block;
-  width: 100%;
-  height: 100px;
-  margin: 10px 0 10px 0;
-}
-
-.action_form .buttons {
-  border-top: 1px dashed #C3C3C3;
-  padding-top: 10px;
-  margin-top: 10px;
-  color: #5C5C5C;
-  font-size: 12;
-}
-
-.action_form input[type="text"], .action_form input[type="password"] {
-  width: 300px;
-}
-
-.action_form select {
-  width: 150px;
-}
-
-.action_form input[type="submit"], .submit_button {
-  color: #fff;
-  border: 1px solid #135F9F;
-  border-radius: 5px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  background: #1977c0;
-  background: -moz-linear-gradient(top, #76B7EF, #135F9F);
-  background: -webkit-gradient(linear, 0% 0, 0% 100%, from(#76B7EF), color-stop(0.02, #1C87E3), to(#135F9F));
-  font-size: 12px;
-  text-shadow: rgba(0, 0, 0, 0.496094) 0px -1px 0px;
-  padding: 4px 8px;
-  margin-right: 5px;
-}
-
-.action_form input[type="submit"]:hover, .submit_button:hover {
-  border: 1px solid #002E52;
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
-  -moz-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
-  -webkit-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
-}
-
-.action_form input[type="submit"]:active, .submit_button:active {
-  background: #1977c0;
-  background: -moz-linear-gradient(top, #00589D, #1977c0);
-  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#00589D), to(#1977C0), color-stop(1,#1977C0));
-}
-
-.action_form .cancel {
-  font-size: 12px;
-  margin-left: 5px;
-  padding: 0;
-  color: #F00;
-  text-decoration: none;
-}
-
-.action_form .cancel:hover {
-  text-decoration: underline;
-  color: #FF0000;
-}
-
-.error_messages {
-  border-bottom: 1px dashed red;
-  margin-bottom: 10px;
-  padding: 10px;
-  color: #CC0000;
-  font-size: 12px;
-}
-
-.fieldWithErrors textarea, .fieldWithErrors input, .fieldWithErrors select {
-  border: 2px solid #ff9999;
 }
 
 /*** TASKS/SHOW ***/
@@ -1909,3 +1905,8 @@ aside .aside_section a:hover {
   background-color: #fff;
   border-color: #D7D7D7;
 }
+
+.wrap {
+  padding: 0 20px 20px;
+}
+
