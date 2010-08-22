@@ -782,20 +782,39 @@ body > footer {
 
 /*** PEOPLE ON PROJECT ***/
 
-.people_images li {
-  display: inline-block;
-  height: 32px;
-  margin: 0 0 5px;
-  position: relative;
-  width: 32px;
-}
-
-.people_images img {
-  max-width: 100%;
-}
-
 #people_envolved .people_info {
   font-size: 11px;
+}
+
+#people_envolved p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  white-space: nowrap;
+  height: 20px;
+  width: 180px;
+}
+
+#people_envolved strong {
+  display: block;
+  font-size: 12px;
+  padding-bottom: 2px;
+}
+
+.people_extended li {
+  height: 42px;
+  line-height: 10px;
+}
+
+.people_extended img {
+  float: left;
+  margin-right: 10px;
+  max-width: 32px;
+  border: 1px solid #ccc;
+}
+
+.list_images {
+  background-position: -28px 3px;
 }
 
 .people_images li .people_info {
@@ -812,6 +831,18 @@ body > footer {
   white-space: nowrap;
 }
 
+.people_images li {
+  display: inline-block;
+  height: 32px;
+  margin: 0 0 5px;
+  position: relative;
+  width: 32px;
+}
+
+.people_images img {
+  max-width: 100%;
+}
+
 .people_images li:hover .people_info {
   display: block;
 }
@@ -826,33 +857,6 @@ body > footer {
   width: 7px;
 }
 
-#people_envolved p {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  -o-text-overflow: ellipsis;
-  white-space: nowrap;
-  height: 20px;
-  width: 180px;
-}
-
-.people_extended li {
-  height: 42px;
-  line-height: 10px;
-}
-
-.people_extended img {
-  float: left;
-  margin-right: 10px;
-  max-width: 32px;
-  border: 1px solid #ccc;
-}
-
-#people_envolved strong {
-  display: block;
-  font-size: 12px;
-  padding-bottom: 2px;
-}
-
 .list_images, .list_extended {
   background-image: url(../images/sprite.png);
   border: 1px solid transparent;
@@ -864,10 +868,6 @@ body > footer {
   height: 17px;
   margin-right: 2px;
   width: 19px;
-}
-
-.list_images {
-  background-position: -28px 3px;
 }
 
 .list_extended {
