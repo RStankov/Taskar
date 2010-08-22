@@ -38,18 +38,12 @@ module ApplicationHelper
     end
   end
   
-  def tooltip(content = nil, options = {}, &block)
-    if block_given? && !content
-      content = capture(&block)
-    end
-    
-    attributes = tag_options({:class => "tooltip"}.merge options)
-    
+  def insert_at(content = nil)
     <<-TOOL_TIP
-    <div #{attributes}>
-			<div class="arrow"></div>
-			<div class="actions">#{content}</div>
-		</div>
+    <div class="insert_at">
+      #{content}
+      <div class="pointer"></div>
+    </div>
 		TOOL_TIP
   end
 end

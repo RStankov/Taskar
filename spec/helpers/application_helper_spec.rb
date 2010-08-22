@@ -71,29 +71,17 @@ describe ApplicationHelper do
     end    
   end
 
-  describe "#tooltip" do
-    it "contains .tooltip" do
-      helper.tooltip("foo").should have_tag(".tooltip")
+  describe "#insert_at" do
+    it "contains .insert_at" do
+      helper.insert_at("foo").should have_tag(".insert_at")
     end
     
-    it "contains .tooltip .arrow" do
-      helper.tooltip("foo").should have_tag(".tooltip .arrow")
+    it "contains .insert_at .pointer" do
+      helper.insert_at("foo").should have_tag(".insert_at .pointer")
     end
-    
-    it "contains .tooltip .actions" do
-      helper.tooltip("foo").should have_tag(".tooltip .actions")
-    end
-    
+        
     it "contains the given text" do
-      helper.tooltip("given text").should have_tag(".tooltip .actions", :text => "given text")
+      helper.insert_at("given text").should have_tag(".insert_at", :text => "given text")
     end
-  
-    it "accepts block and captures it" do
-      helper.tooltip { "text from the block"}.should have_tag(".tooltip .actions", :text => "text from the block")
-    end
-  
-    it "accepts hash of attributes as secord argument" do
-      helper.tooltip("given text", :style => "display:none").should have_tag(".tooltip[style=display:none]", :text => "given text")
-    end 
   end
 end

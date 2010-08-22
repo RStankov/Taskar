@@ -15,7 +15,7 @@ module SectionsHelper
     before = before.id.to_s if before
     href   = new_project_section_path(@project, :before => before)
     
-		link_to tooltip(t "layouts.sections.new_section"), href, :class => "add_section", "data-before" => before
+    link_to insert_at(t "layouts.sections.new_section"), href, :class => "add_section", "data-before" => before
   end
   
   def participant_task_count(count)

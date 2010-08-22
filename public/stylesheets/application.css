@@ -362,16 +362,16 @@ img {
   position:relative;
 }
 
-#sections .tooltip {
+#sections .insert_at {
   display: none;
 }
 
-#sections .add_section:hover .tooltip {
+#sections .add_section:hover .insert_at {
   display: block;
   -webkit-animation-name: bounce-scale;
   -webkit-animation-duration: 0.1s;
   -webkit-animation-iteration-count: 1;
-  -webkit-transform-origin: middle right;
+  -webkit-transform-origin: top right;
 }
 
 #sections .tooltip {
