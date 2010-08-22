@@ -340,7 +340,7 @@ body > footer p {
   left: -15px;
 }
 
-/*** MAIN NAVIGATION ***/
+/*** SECTIONS NAVIGATION ***/
 
 #sections ul {
   margin-left: -10px;
@@ -456,33 +456,6 @@ body > footer p {
 #new_section label {
   font-weight: bold;
   text-shadow: #fff 1px 1px 1px;
-}
-
-
-.list_images, .list_extended {
-  background-image: url(../images/sprite.png);
-  border: 1px solid transparent;
-  border-radius: 5px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  cursor: pointer;
-  float: right;
-  height: 17px;
-  margin-right: 2px;
-  width: 19px;
-}
-
-.list_images {
-  background-position: -28px 3px;
-}
-
-.list_extended {
-  background-position: -29px -27px;
-}
-
-.list_extended:hover, .list_images:hover, .list_on {
-  background-color: #fff;
-  border-color: #D7D7D7;
 }
 
 /*** LIVE SEARCH ***/
@@ -1915,4 +1888,30 @@ aside .aside_section a:hover {
   border-radius: 5px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
+}
+
+.list_images, .list_extended {
+  background-image: url(../images/sprite.png);
+  border: 1px solid transparent;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  cursor: pointer;
+  float: right;
+  height: 17px;
+  margin-right: 2px;
+  width: 19px;
+}
+
+.list_images {
+  background-position: -28px 3px;
+}
+
+.list_extended {
+  background-position: -29px -27px;
+}
+
+.list_extended:hover, .list_images:hover, .list_on {
+  background-color: #fff;
+  border-color: #D7D7D7;
 }
