@@ -1154,6 +1154,7 @@ header .actions a:active {
 /*** ACTION FORM ***/
 
 .action_form {
+  clear: both;
   padding: 13px 15px;
   position: relative;
   background-color: #eee;
