@@ -1026,7 +1026,7 @@ article header a {
   opacity: 0.6;
 }
 
-.tasks_list .rejected span {
+.tasks_list .rejected p span {
   text-decoration: line-through;
 }
 
