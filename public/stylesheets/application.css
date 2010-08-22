@@ -56,13 +56,12 @@ a:active {
   padding: 10px;
   margin-bottom: 15px;
   background: #fff;
-  padding-bottom: 20px;
   border-radius: 10px;
   -moz-border-radius: 10px;
-  -webkit-border-radius: 5px;
-  box-shadow: inset 0px 0px 10px red;
-  -moz-box-shadow: inset 0px 0px 10px red;
-  -webkit-box-shadow: inset 0px 0px 4px red;
+  -webkit-border-radius: 10px;
+  box-shadow: 0px 0px 10px red;
+  -moz-box-shadow: 0px 0px 10px red;
+  -webkit-box-shadow: 0px 0px 10px red;
 }
 
 .notice {
