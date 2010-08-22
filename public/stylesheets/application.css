@@ -1,13 +1,28 @@
+/*** BASE ELEMENTS ***/
+
 html, body {
   background-color: #dadada;
   margin: 0;
   padding: 0;
-  -webkit-background-clip: padding-box;
 }
 
 body, input, textarea, select {
   color: #5c5c5c;
   font-family: 'Helvetica', arial, tahoma, verdana, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, p, ul, ol, dl {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  border: 0;
+}
+
+header, nav, section, article, aside, footer {
+  display: block;
 }
 
 input[type="submit"], input[type="button"] {
@@ -29,10 +44,6 @@ a:hover {
 
 a:active {
   outline: 0;
-}
-
-header, nav, section, article, aside, footer {
-  display: block;
 }
 
 .cancel {
@@ -70,16 +81,6 @@ header, nav, section, article, aside, footer {
   -webkit-box-shadow:0px 0px 10px green;
 }
 
-h1, h2, h3, h4, h5, h6, p, ul, ol, dl {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-img {
-  border: 0;
-}
-
 /*** HEADER ***/
 
 body > header {
@@ -104,6 +105,36 @@ body > header h2 {
   font-size: 16px;
   float: left;
 }
+
+/*** SECTION ***/
+
+body > section {
+  display: table;
+  margin: 15px auto;
+  min-height: 200px;
+  width: 980px;
+}
+
+/*** FOOTER ***/
+
+body > footer {
+  background-color: #e2e2e2;
+  color: #b8b8b8;
+  font-size: 11px;
+  height: 14px;
+  margin: 0 auto;
+  padding: 10px 10px 10px 14px;
+  width: 956px;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+}
+
+body > footer p {
+  display: inline;
+}
+
+/*** TOP NAVIGATION ***/
 
 #nav_dashboard {
   text-decoration: none;
@@ -420,15 +451,6 @@ body > header h2 {
 #new_section label {
   font-weight: bold;
   text-shadow: #fff 1px 1px 1px;
-}
-
-/*** SECTION ***/
-
-body > section {
-  display: table;
-  margin: 15px auto;
-  min-height: 200px;
-  width: 980px;
 }
 
 /*** ARTICLE ***/
@@ -1147,25 +1169,6 @@ section header a {
 .toggle_archived.loading span {
   background: url(../images/loaders/archive.gif) center no-repeat;
   text-indent: -9999px;
-}
-
-/*** FOOTER ***/
-
-body > footer {
-  background-color: #e2e2e2;
-  color: #b8b8b8;
-  font-size: 11px;
-  height: 14px;
-  margin: 0 auto;
-  padding: 10px 10px 10px 14px;
-  width: 956px;
-  border-radius: 10px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-}
-
-body > footer p {
-  display: inline;
 }
 
 #scroll_to_top {
