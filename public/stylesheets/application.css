@@ -1532,20 +1532,7 @@ article footer > li:last-child {
   text-indent: -9999px;
 }
 
-#scroll_to_top {
-  background: url(../images/sprite.png) 4px -173px no-repeat;
-  cursor: pointer;
-  display: block;
-  float: right;
-  height: 14px;
-  width: 20px;
-}
-
-#scroll_to_top:hover {
-  background-position: 4px -203px;
-}
-
-/*** TASKS/SHOW ***/
+/*** SHOW TASK ***/
 
 #task_title, #tasks_index h1 {
   background: url(../images/i.png) 0px -76px no-repeat;
@@ -1556,11 +1543,6 @@ article footer > li:last-child {
   margin-top: -10px;
   padding: 20px;
   position: relative;
-}
-
-#task_content p {
-  margin-top: -2px;
-  margin-left: 24px;
 }
 
 #task_content .content {
@@ -1578,7 +1560,7 @@ article footer > li:last-child {
   right: 0px;
   font-size: 11px;
   background: #fff;
-  padding: 10px 10px 10px 0;
+  padding: 8px 10px 8px 0;
   border-top-left-radius: 5px;
   -moz-border-top-left-radius: 5px;
   -webkit-border-top-left-radius: 5px;
@@ -1613,11 +1595,8 @@ article footer > li:last-child {
 #comments h3 {
   background:  url(../images/i.png) 0px -100px no-repeat;
   padding-left: 35px;
+  margin-bottom: 13px;
   height: 23px;
-}
-
-#comments ul {
-  margin-top: 10px;
 }
 
 .comment {
@@ -1667,7 +1646,6 @@ article footer > li:last-child {
 
 .comment .edit, .comment .delete {
   padding: 3px;
-  border: 0;
   border-radius: 5px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -1683,7 +1661,6 @@ article footer > li:last-child {
 
 #new_comment {
   margin: 10px;
-  padding: 10px;
 }
 
 #new_comment label {
@@ -1694,6 +1671,19 @@ article footer > li:last-child {
 }
 
 /*** APPLICATION LAYOUT ***/
+
+#scroll_to_top {
+  background: url(../images/sprite.png) 4px -173px no-repeat;
+  cursor: pointer;
+  display: block;
+  float: right;
+  height: 14px;
+  width: 20px;
+}
+
+#scroll_to_top:hover {
+  background-position: 4px -203px;
+}
 
 #outside_box {
 	border-radius: 5px;
