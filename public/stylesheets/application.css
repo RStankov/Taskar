@@ -255,14 +255,14 @@ body > footer p {
   color: #fff;
   padding: 2px 5px;
   text-decoration: none;
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
 }
 
 #nav_account a:hover {
   text-shadow: none;
   background-color: #fff;
-  border-radius: 3px;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
   color: #000;
 }
 
