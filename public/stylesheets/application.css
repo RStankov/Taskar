@@ -1541,11 +1541,16 @@ article footer > li:last-child {
 
 #task_content {
   position: relative;
+  margin-bottom: 10px;
   padding: 10px;
   background: #ECF3FE;
   border-radius: 5px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
+}
+
+#task_content p {
+  margin-left: 20px;
 }
 
 #task_content .task_wrapper {
@@ -1583,11 +1588,6 @@ article footer > li:last-child {
 #task_content .delete:hover {
   text-decoration: underline;
   color: #C00;
-}
-
-#comments {
-  margin: 10px;
-  padding: 10px;
 }
 
 #comments h3 {
@@ -1657,11 +1657,7 @@ article footer > li:last-child {
   color: #FF0000;
 }
 
-#new_comment {
-  margin: 10px;
-}
-
-#new_comment label {
+#new_comment_label {
   background:  url(../images/i.png) 0px -128px no-repeat;
   padding: 4px 0 0 40px;
   height: 23px;

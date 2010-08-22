@@ -5,15 +5,13 @@
   <div id="task_content">
     <%= render "content" %>
   </div>
-</div>
-<div id="comments"<%= ' style="display: none;"' if @task.comments.size == 0 %>>
-  <h3><%=t :'.comments', :count => '<span id="comments_count">' + @task.comments.size.to_s + '</span>' %></h3>
-  <ul>
-    <%= render @task.comments %>
-  </ul>
-</div>
-<% unless @task.archived? %>
-	<div id="new_comment">
+  <div id="comments"<%= ' style="display: none;"' if @task.comments.size == 0 %>>
+    <h3><%=t :'.comments', :count => '<span id="comments_count">' + @task.comments.size.to_s + '</span>' %></h3>
+    <ul>
+      <%= render @task.comments %>
+    </ul>
+  </div>
+  <% unless @task.archived? %>
    	<%= render "comments/new_form" %>
-	</div>
-<% end %>
+  <% end %>
+</div>
