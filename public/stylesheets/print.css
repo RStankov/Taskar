@@ -1,16 +1,9 @@
-* {
+body {
+  margin: 0 auto;
+  width: 780px;
   color: #000;
   font-family: Arial, Helvetica, Verdana;
   font-size: 12px;
-}
-
-html, body {
-  margin: 0 auto;
-  padding: 0;
-}
-
-body {
-  width: 780px;
 }
 
 h1 {
@@ -31,21 +24,23 @@ ul {
 
 li {
   border-bottom: 1px solid #eee;
-  padding: 10px;
+  padding: 10px 10px 10px 30px;
+  position: relative;
 }
 
 .checkbox {
   border: 1px solid #000;
-  display: inline-block;
+  display: block;
+  position: absolute;
   height: 15px;
   width: 15px;
-  position: relative;
-  top: -1px;
+  top: 8px;
+  left: 10px;
 }
 
 .checkbox.completed:after {
   content: "✔";
-  margin: -2px 0 0 1px;
+  margin: -2px 0 0 3px;
 }
 
 .checkbox.rejected:after {
