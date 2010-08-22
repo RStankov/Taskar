@@ -81,7 +81,7 @@ a:active {
   -webkit-box-shadow:0px 0px 10px green;
 }
 
-/*** HEADER ***/
+/*** MAIN HEADER ***/
 
 body > header {
   box-shadow: 0px 0px 5px #000;
@@ -106,7 +106,7 @@ body > header h2 {
   float: left;
 }
 
-/*** SECTION ***/
+/*** MAIN SECTION ***/
 
 body > section {
   display: table;
@@ -115,7 +115,28 @@ body > section {
   width: 980px;
 }
 
-/*** FOOTER ***/
+article {
+  background-color: #fff;
+  border-radius: 10px 0 0 10px;
+  -moz-border-radius: 10px 0 0 10px;
+  -webkit-border-radius: 10px 0 0 10px;
+  display: table-cell;
+  padding-bottom: 20px;
+  vertical-align: top;
+}
+
+aside {
+  background-color: #eee;
+  border-radius: 0 10px 10px 0;
+  -moz-border-radius: 0 10px 10px 0;
+  -webkit-border-radius: 0 10px 10px 0;
+  display: table-cell;
+  padding: 10px;
+  vertical-align: top;
+  width: 220px;
+}
+
+/*** MAIN FOOTER ***/
 
 body > footer {
   background-color: #e2e2e2;
@@ -453,30 +474,6 @@ body > footer p {
   text-shadow: #fff 1px 1px 1px;
 }
 
-/*** ARTICLE ***/
-
-article {
-  background-color: #fff;
-  border-radius: 10px 0 0 10px;
-  -moz-border-radius: 10px 0 0 10px;
-  -webkit-border-radius: 10px 0 0 10px;
-  display: table-cell;
-  padding-bottom: 20px;
-  vertical-align: top;
-}
-
-/*** ASIDE ***/
-
-aside {
-  background-color: #eee;
-  border-radius: 0 10px 10px 0;
-  -moz-border-radius: 0 10px 10px 0;
-  -webkit-border-radius: 0 10px 10px 0;
-  display: table-cell;
-  padding: 10px;
-  vertical-align: top;
-  width: 220px;
-}
 
 .list_images, .list_extended {
   background-image: url(../images/sprite.png);
