@@ -822,7 +822,7 @@ body > footer {
 
 /*** MAIN ARTICLE HEADER ***/
 
-article header {
+header {
   border-top-left-radius: 5px;
   -moz-border-top-left-radius: 5px;
   -webkit-border-top-left-radius: 5px;
@@ -832,15 +832,6 @@ article header {
   padding: 15px 10px 10px 20px;
   margin-bottom: 20px;
   position: relative;
-}
-
-article header h1 {
-  font-size: 18px;
-  padding-top: 3px;
-  padding-left: 35px;
-  vertical-align: middle;
-  height: 22px;
-  overflow: hidden;
 }
 
 article header a {
@@ -857,6 +848,16 @@ article header a {
 
 #section_title h1.archived {
   background: url(../images/i.png) 0px -52px no-repeat;
+}
+
+h1 {
+  font-size: 18px;
+  padding-top: 3px;
+  padding-left: 35px;
+  vertical-align: middle;
+  height: 22px;
+  overflow: hidden;
+	text-shadow: 1px 1px 1px #fff;
 }
 
 header .actions {
@@ -1731,21 +1732,15 @@ article footer > li:last-child {
   font-size: 16px;
 }
 
-/*** APPLICATION LAYOUT ***/
-
+/*** OUTSIDE_BOX ***/
 
 #outside_box {
 	border-radius: 5px;
 	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	box-shadow: 3px 3px 4px #DDDDDD;
-	-moz-box-shadow: 3px 3px 4px #DDDDDD;
-	-webkit-box-shadow: 3px 3px 4px #DDDDDD;
-	
+	-moz-border-radius: 5px;  
 	background-color:#FFFFFF;
 	font-size: 14px;
 	width: 500px;
-	
 	margin: 25px auto 30px;
 }
 
@@ -1755,17 +1750,10 @@ article footer > li:last-child {
 
 #outside_box h1 {
   text-align: center;
-	font-size: 18px;
-	padding: 20px 20px 10px;
-	text-shadow: 1px 1px 1px #FFFFFF;
-	border-radius: 5px 5px 0 0;
-	-webkit-border-radius: 5px 5px 0 0;
-	-moz-border-radius: 5px 5px 0 0;
-	
-  box-shadow: 0px 10px 10px -10px #888;
-  -moz-box-shadow: 0px 10px 10px -10px #888;
-  -webkit-box-shadow: 0px 10px 10px -10px #888;
+  padding: 0px;
 }
+
+/** TODO **/
 
 #content {
   padding: 0 20px 20px;
@@ -1852,7 +1840,7 @@ aside .aside_section a:hover {
 }
 
 #info_bubble {
-  position:   absolute;
+  position: absolute;
   background: #000;
   padding: 10px;
   color: #fff;
