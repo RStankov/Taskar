@@ -880,7 +880,7 @@ article header a {
   top: 16px;
 }
 
-#section_title form input[type="text"] {
+#section_title input[type="text"] {
   border: 1px solid #b7b7b7;
   border-radius: 10px;
   -moz-border-radius: 10px;
@@ -891,11 +891,11 @@ article header a {
   width: 300px;
 }
 
-#section_title form input[type="text"]:hover {
+#section_title input[type="text"]:hover {
   border-color: #7e7e7e;
 }
 
-#section_title form input[type="text"]:focus {
+#section_title input[type="text"]:focus {
   border-color: #008fff;
   box-shadow: 0px 0px 4px #999;
   -moz-box-shadow: 0px 0px 4px #999;
