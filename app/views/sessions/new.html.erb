@@ -2,7 +2,7 @@
 	<header>
 		<%= title 'sessions.title' %>
 	</header>
-	<% form_for resource_name, resource, :url => session_path(resource_name) do |f| %>
+	<% form_for resource_name, resource, :url => session_path(resource_name), :html => { :class => "action_form" } do |f| %>
 		<%= '<p class="notice">' + notice + '</p>' if notice %>
 	  <%= '<p class="alert">' + alert + '</p>' if alert %>
 		<%= f.label :email %>
@@ -12,7 +12,9 @@
 	  <%= f.label :account_id %>
 	  <%= f.select :account_id, [['---------------' , '']] + Account.all.map {|a| [a.name, a.id]} %>
 	  <%= f.check_box :remember_me %> <%= f.label :remember_me %>
-	  <%= f.submit t('devise.sessions.link'), :class => 'submit_button' %>
+	  <div class="buttons">
+	    <%= f.submit t('devise.sessions.link') %>
+	  </div>
 	<% end %>	
 	<%= render :partial => "shared/devise_links" %>
 </div>

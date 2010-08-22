@@ -56,12 +56,13 @@ a:active {
   padding: 10px;
   margin-bottom: 15px;
   background: #fff;
+  padding-bottom: 20px;
   border-radius: 10px;
   -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  box-shadow: 0px 0px 10px red;
-  -moz-box-shadow: 0px 0px 10px red;
-  -webkit-box-shadow: 0px 0px 10px red;
+  -webkit-border-radius: 5px;
+  box-shadow: inset 0px 0px 10px red;
+  -moz-box-shadow: inset 0px 0px 10px red;
+  -webkit-box-shadow: inset 0px 0px 4px red;
 }
 
 .notice {
@@ -170,7 +171,7 @@ body > footer p {
 /*** LOGIN BOX ***/
 
 #login_box form {
-  padding: 20px;
+  margin: 20px;
 }
 
 #login_box input[type="text"], #login_box input[type="password"], #login_box select {
@@ -179,12 +180,10 @@ body > footer p {
   margin: 10px 0 10px 0;
 }
 
+
 #login_box input[type="submit"] {
-  display: block;
-  padding: 5px;
-  margin-top: 10px;
+  padding: 5px 20px;
   font-size: 14px;
-  width: 100px;
 }
 
 /*** TOP NAVIGATION ***/
