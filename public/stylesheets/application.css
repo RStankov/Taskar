@@ -46,15 +46,6 @@ a:active {
   outline: 0;
 }
 
-.cancel {
-  font-size: 12px;
-  text-decoration: none;
-}
-
-.cancel:hover {
-  color: #FF0000;
-}
-
 .alert {
   color: red;
   padding: 10px;
@@ -1222,13 +1213,14 @@ article footer > li:last-child {
   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#00589D), to(#1977C0), color-stop(1,#1977C0));
 }
 
-input[type="button"], .cancel {
+input[type="button"] {
   background: none;
   border: 0;
   color: #5c5c5c;
 }
 
 .action_form .cancel {
+  font-size: 12px;
   margin-left: 5px;
   padding: 0;
   color: #F00;
@@ -1237,6 +1229,7 @@ input[type="button"], .cancel {
 
 .action_form .cancel:hover {
   text-decoration: underline;
+  color: #FF0000;
 }
 
 .error_messages {
