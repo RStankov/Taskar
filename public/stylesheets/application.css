@@ -604,6 +604,11 @@ body > footer {
   padding: 4px 25px 4px 10px;
 }
 
+#new_section input[type="button"]:hover {
+  color: #ff0000;
+  text-decoration: underline;
+}
+
 #new_section label {
   font-weight: bold;
   text-shadow: #fff 1px 1px 1px;
