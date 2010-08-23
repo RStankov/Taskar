@@ -85,7 +85,10 @@ class TasksController < ApplicationController
   end
   
   def search
-    @tasks = @project.tasks.unarchived.search(params[:ss])
+    search_proxy = @project.tasks.unarchived.search(params[:ss])
+    
+    @tasks = search_proxy.limit 20
+    @total = search_proxy.count
     
     render :layout => false
   end

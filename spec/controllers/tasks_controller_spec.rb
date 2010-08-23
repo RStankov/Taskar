@@ -249,10 +249,12 @@ describe TasksController do
       
       describe "GET search" do
         before do
-          mock_project.should_receive(:tasks).and_return @mock_tasks = [mock_task]
+          mock_project.stub_chain :tasks, :unarchived => proxy = "some object"
+          
+          proxy.should_receive(:search).with("term").and_return @mock_tasks = [mock_task]
 
-          @mock_tasks.should_receive(:unarchived).and_return @mock_tasks
-          @mock_tasks.should_receive(:search).with("term").and_return @mock_tasks
+          @mock_tasks.should_receive(:limit).with(20).and_return @mock_tasks
+          @mock_tasks.should_receive(:count).and_return @mock_tasks
 
           get :search, :project_id => "3", :ss => "term"
         end

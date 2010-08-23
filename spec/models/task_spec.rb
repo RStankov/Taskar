@@ -216,18 +216,10 @@ describe Task do
   end
   
   describe "#search" do
-    it "should find :all with :conditions => text like '%ss%'" do
+    it "should be named_scope :conditions => text like '%ss%'" do
       ss = "search term"
       
-      Task.should_receive(:find).with(:all, :conditions => ["text LIKE :ss", {:ss => "%#{ss.gsub(' ', '%')}%"}], :limit => 20)
-      Task.search(ss)
-    end
-    
-    it "should have limit as second argument" do
-      ss = "search term"
-
-      Task.should_receive(:find).with(:all, :conditions => ["text LIKE :ss", {:ss => "%#{ss.gsub(' ', '%')}%"}], :limit => 100)
-      Task.search(ss, 100)
+      Task.search(ss).proxy_options[:conditions].should == ["text LIKE :ss", {:ss => "%#{ss.gsub(' ', '%')}%"}]
     end
     
     it "should find all containing the given text" do

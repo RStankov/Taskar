@@ -18,6 +18,7 @@ class Task < ActiveRecord::Base
   acts_as_list :scope => :section
   
   include Taskar::List::Model
+  include Taskar::NamedScopes
   
   before_validation_on_create :inherit_section_project 
   
@@ -27,6 +28,7 @@ class Task < ActiveRecord::Base
   named_scope :archived,          :conditions => { :archived => true  }, :order => "position DESC"
   named_scope :unarchived,        :conditions => { :archived => false }, :order => "position ASC"
   named_scope :opened_in_project, lambda { |project| {:conditions => {:project_id => project.id, :status => 0}} }
+  named_scope :search,            lambda { |ss|      {:conditions => ["text LIKE :ss", {:ss => "%#{ss.gsub(' ', '%')}%"}]} }
   
   STATES = {
     -1 => "rejected",
@@ -40,10 +42,6 @@ class Task < ActiveRecord::Base
   
   def state=(state)
     self.status = STATES.index(state) unless archived?
-  end
-  
-  def self.search(ss, limit = 20)
-    find :all, :conditions => ["text LIKE :ss", {:ss => "%#{ss.gsub(' ', '%')}%"}], :limit => limit
   end
   
   def archived=(archived)
