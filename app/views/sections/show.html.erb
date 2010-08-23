@@ -24,7 +24,8 @@
     </h1>
     <% form_for @section, :html => {:style => "display:none;"} do |form| %>
       <%= form.text_field :name, :placeholder => Section.human_attribute_name(:name) %>
-      <%= form.submit t(:update) %>
+      <%= form.submit t(:update), :class => "submit_button" %>
+      <%= t :or %>
       <input type="button" value="<%=t :cancel %>" />
     <% end %>
   </header>

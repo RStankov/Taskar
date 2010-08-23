@@ -1156,6 +1156,17 @@ header .actions a:active {
   color: #2c2c2c;
 }
 
+#section_title input[type="button"] {
+  margin-left: 2px;
+  padding: 0px;
+  font-size: 14px;
+}
+
+#section_title input[type="button"]:hover {
+  color: #ff0000;
+  text-decoration: underline;
+}
+
 /*** ACTION FORM ***/
 
 .action_form {
