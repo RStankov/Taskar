@@ -1,7 +1,10 @@
-<% unless @tasks.size > 0 %>
-  <li><%= t(:'tasks.show.no_results_found') %></li>
+<% if @total == 0 %>
+  <li class="unselectable"><%= t "tasks.show.no_results_found" %></li>
 <% else %>
   <% @tasks.each do |task| %>
     <li><%= link_to highlight(h(truncate(task.text)), h(params[:ss]).split(' ').compact, :highlighter => '<strong>\1</strong>'), task %></li>
+  <% end %>
+  <% if @total > @limit %>
+    <li class="unselectable"><%= t "tasks.show.more_results", :count => @total - @limit %></li>
   <% end %>
 <% end %>

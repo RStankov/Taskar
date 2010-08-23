@@ -253,12 +253,16 @@ describe TasksController do
           
           proxy.should_receive(:search).with("term").and_return @mock_tasks = [mock_task]
 
-          @mock_tasks.should_receive(:limit).with(20).and_return @mock_tasks
-          @mock_tasks.should_receive(:count).and_return @mock_tasks
+          @limit = 20
+
+          @mock_tasks.should_receive(:limit).with(@limit).and_return @mock_tasks
+          @mock_tasks.should_receive(:count).and_return 120
 
           get :search, :project_id => "3", :ss => "term"
         end
         
+        it { should assign_to(:limit).with(@limit) }
+        it { should assign_to(:total).with(120) }
         it { should assign_to(:tasks).with(@mock_tasks) }
         it { should render_template("search") }
       end
