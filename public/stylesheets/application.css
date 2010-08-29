@@ -421,7 +421,7 @@ body > footer {
   position: relative;
 }
 
-#nav_project a:first-child {
+#nav_project span a:first-child {
   border-bottom-left-radius: 4px 4px;
   border-bottom-left-radius: 4px 4px;
   border-top-left-radius: 4px 4px;
@@ -436,7 +436,7 @@ body > footer {
   -webkit-border-top-left-radius: 4px 4px;
 }
 
-#nav_project a:last-child {
+#nav_project span a:last-child {
   border-bottom-right-radius: 4px 4px;
   border-bottom-right-radius: 4px 4px;
   border-top-right-radius: 4px 4px;
@@ -451,7 +451,7 @@ body > footer {
   -webkit-border-top-right-radius: 4px 4px;
 }
 
-#nav_project a {
+#nav_project span a {
   border: 1px solid #000;
   -moz-box-shadow: #33588B 0px 0px 1px 1px inset, rgba(255, 255, 255, 0.246094) 0px 1px 0px 0px;
   -webkit-box-shadow: #33588B 0px 0px 1px 1px inset, rgba(255, 255, 255, 0.246094) 0px 1px 0px 0px;
@@ -465,11 +465,11 @@ body > footer {
   margin-left: -4px;
 }
 
-#nav_project a:hover {
+#nav_project span a:hover {
   background: #375185;
 }
 
-#nav_project a:active, #nav_project a.selected {
+#nav_project span a:active, #nav_project a.selected {
   background: #233354;
   -moz-box-shadow: none;
   -webkit-box-shadow: none;
