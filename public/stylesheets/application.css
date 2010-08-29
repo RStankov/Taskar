@@ -262,6 +262,10 @@ body > footer {
   font-size: 14px;
 }
 
+.help_notice.left_text {
+  text-align: left;
+}
+
 .help_notice h2 {
   font-size: 14px;
   margin-bottom: 20px;
