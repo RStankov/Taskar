@@ -1,9 +1,14 @@
 <% if @section.archived? %>
   <header id="section_title">
-    <h1 class="archived">
+    <h1 class="archived">      
+      <div class="tooltip">
+    		<div class="arrow"></div>
+    		<div class="tooltip_actions">
+          <%= link_to_delete t(:delete), @section, :class => "delete", :confirm => t(:'.confirm') %>
+    		</div>
+    	</div>
       <%=h @section.name %>
       <%= link_to "", archive_section_path(@section, :archive => false), :class => "unarchive", :'data-method' => 'put' %>
-      <%= link_to_delete t(:delete), @section, :class => "delete", :confirm => t(:'.confirm') %>
     </h1>
   </header>
   <ul class="tasks_list static">
@@ -17,10 +22,15 @@
 <% else %>
   <header id="section_title">
     <h1>
+      <div class="tooltip">
+    		<div class="arrow"></div>
+    		<div class="tooltip_actions">
+          <%= link_to t(:edit), [:edit, @section], :class => "edit" %>
+          <%= link_to_delete t(:delete), @section, :class => "delete", :confirm => t(:'.confirm') %>
+    		</div>
+    	</div>
       <%=h @section.name %>
       <%= link_to "", archive_section_path(@section, :archive => true), :class => "archive", :'data-method' => 'put' %>
-      <%= link_to t(:edit), [:edit, @section], :class => "edit" %>
-      <%= link_to_delete t(:delete), @section, :class => "delete", :confirm => t(:'.confirm') %>
     </h1>
     <% form_for @section, :html => {:style => "display:none;"} do |form| %>
       <%= form.text_field :name, :placeholder => Section.human_attribute_name(:name) %>
