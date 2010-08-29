@@ -593,6 +593,18 @@ body > footer {
   -webkit-transform-origin: top right;
 }
 
+.add_section .insert_at {
+  left: -100px;
+  border-radius: 10px 4px 4px 10px;
+  -moz-border-radius: 10px 4px 4px 10px;
+  -webkit-border-radius: 10px 4px 4px 10px;
+  -webkit-transform-origin: top right;
+}
+
+.add_section .pointer {
+  right: -6px;
+}
+
 #sections .drag {
   top: 5px;
   right: 9px;
@@ -1402,7 +1414,7 @@ header .actions a:active {
     right: -20px;
   }
   
-  .insert_at {
+  .task .insert_at {
     right: -100px;
     border-radius: 4px 10px 10px 4px;
     -moz-border-radius: 4px 10px 10px 4px;
@@ -1410,7 +1422,7 @@ header .actions a:active {
     -webkit-transform-origin: top left;
   }
   
-  .insert_at .pointer {
+  .task .insert_at .pointer {
     left: -6px;
   }
 }
@@ -1440,7 +1452,7 @@ header .actions a:active {
     left: -20px;
   }
   
-  .insert_at {
+  .task .insert_at {
     left: -100px;
     border-radius: 10px 4px 4px 10px;
 	  -moz-border-radius: 10px 4px 4px 10px;
