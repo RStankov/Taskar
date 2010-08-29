@@ -930,7 +930,7 @@ h1 {
 	text-shadow: 1px 1px 1px #fff;
 }
 
-header {
+section header {
   border-top-left-radius: 5px;
   -moz-border-top-left-radius: 5px;
   -webkit-border-top-left-radius: 5px;
