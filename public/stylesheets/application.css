@@ -761,8 +761,11 @@ body > footer {
 }
 
 #user_card strong {
-  display: block;
   font-size: 14px;
+  font-weight: normal;
+  margin: 0;
+  display: block;
+  text-shadow: 0 -1px #fff, 1px 0 #fff, 0 1px #fff, -1px 0 #fff;
 }
 
 #new_status {
