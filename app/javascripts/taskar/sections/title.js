@@ -13,6 +13,7 @@ Taskar.Sections.Title = function(section){
   
   function show(e){
     e.stop();
+    e.findElement('.tooltip').hideForASecond();
     
     head.morph('opacity: 0.0');
     form.appear(function(){
