@@ -4,13 +4,38 @@ describe DashboardController do
   before { sign_in Factory(:user) }
 
   describe "GET 'index'" do
-    before do
-      controller.stub_chain :current_user, :projects, :active => [mock_project]
-      
-      get :index
+    context "when there are more than 1 projects" do
+      before do
+        controller.stub_chain :current_user, :projects, :active => @mock_projects = [mock_project, mock_project]
+
+        get :index
+      end
+
+      it { should assign_to(:projects).with(@mock_projects) }
+      it { should render_template("index") }
     end
     
-    it { should assign_to(:projects).with([mock_project]) }
-    it { should render_template("index") }
+    context "when there is one project and user is admin" do
+      before do
+        controller.stub_chain :current_user, :projects, :active => @mock_projects = [mock_project]
+        controller.stub_chain :current_user, :admin? => true
+        
+        get :index
+      end
+
+      it { should assign_to(:projects).with(@mock_projects) }
+      it { should render_template("index") }
+    end
+    
+    context "when thre is one project and user is not admin" do
+      before do
+        controller.stub_chain :current_user, :projects, :active => @mock_projects = [mock_project]
+        controller.stub_chain :current_user, :admin? => false
+        
+        get :index
+      end
+      
+      it { should redirect_to(project_sections_url(mock_project)) }
+    end
   end
 end
