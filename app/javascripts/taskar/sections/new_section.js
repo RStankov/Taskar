@@ -22,8 +22,7 @@ Taskar.Sections.NewSection = function(container){
   }
   
   function showBefore(element){
-    element.hide()
-    element.show.bind(element).defer();
+    element.hideForASecond();
     element.up('li').insert({before: form});
     
     appear.play();    
