@@ -98,7 +98,7 @@ a:active {
 body > header {
   box-shadow: 0px 0px 5px #000;
   -moz-box-shadow: 0px 0px 5px #000;
-  -webkit-box-shadow: 0px 0px 5px #000;
+  -webkit-box-shadow: -2px 0px 5px #000;
   color: #eee;
   text-shadow: 0px 1px 0px #000;
   margin-bottom: 20px;
@@ -109,6 +109,7 @@ body > header {
   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#3B547E), to(#243455), color-stop(.2,#364F82));
   border-bottom: 1px solid #4E5B65;
   text-align: center;
+  min-width: 950px;
 }
 
 body > header h2 {
