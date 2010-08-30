@@ -2,12 +2,5 @@
   <h1><%=t :'sections.edit_section' %></h1>
 </header>
 <div class="wrap">
-  <% form_for @section, :html => {:class => 'action_form', :id => nil} do |f| %>
-    <%= render 'shared/error_messages', :target => f.object %>
-    <%= f.label :name %>
-    <%= f.text_field :name, :autofocus => true %>
-    <div class="buttons">
-      <%= f.submit t(:update) %>
-    </div>
-  <% end %>
+	<%= render "form", :section => @section %>
 </div>

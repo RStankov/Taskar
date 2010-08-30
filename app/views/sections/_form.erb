@@ -1,0 +1,9 @@
+<% form_for section, :html => {:class => 'action_form', :id => nil} do |f| %>
+  <%= render 'shared/error_messages', :target => f.object %>
+  <%= f.label :name %>
+  <%= f.text_field :name, :autofocus => true %>
+  <%= f.hidden_field :insert_before, :value => params[:insert_before] if params[:insert_before] %>
+  <div class="buttons">
+    <%= f.submit t(:update) %>
+  </div>
+<% end %>
