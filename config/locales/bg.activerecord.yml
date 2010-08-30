@@ -18,6 +18,7 @@ bg:
           section:
             name: "Име на секцията"
             position: "Позиция"
+            text: "Описание"
           
           task:
             text: "Текста на задачата"

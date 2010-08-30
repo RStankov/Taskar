@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Section do
-  it_should_allow_mass_assignment_only_of :name, :insert_before
+  it_should_allow_mass_assignment_only_of :name, :text, :insert_before
   
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:project) }
