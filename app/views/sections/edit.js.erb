@@ -1,0 +1,7 @@
+<% javascript_response do %>
+	$('section_title').slideUp({
+		after: function(e){
+			e.element.update("<%= escape_javascript(render "form", :section => @section, :remote => true) %>").slideDown();
+		}
+	});
+<% end %>

@@ -32,7 +32,11 @@ class SectionsController < ApplicationController
 
   def update
     if @section.update_attributes(params[:section])
-      redirect_to @section
+      if request.xhr?
+        render :action => "show"
+      else
+        redirect_to @section
+      end
     else
       render :action => "edit"
     end

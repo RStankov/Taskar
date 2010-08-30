@@ -1,0 +1,11 @@
+<h1>
+  <div class="tooltip">
+		<div class="arrow"></div>
+		<div class="tooltip_actions">
+      <%= link_to t(:edit), [:edit, @section], "data-remote" => true %>
+      <%= link_to_delete t(:delete), @section, :class => "delete", :confirm => t(:'.confirm') %>
+		</div>
+	</div>
+  <%=h @section.name %>
+  <%= link_to "", archive_section_path(@section, :archive => true), :class => "archive", :'data-method' => 'put' %>
+</h1>

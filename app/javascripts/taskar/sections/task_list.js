@@ -6,7 +6,8 @@ Taskar.Sections.TaskList = function(element){
   
   if (element){
     function checkForArchiveButton(){
-      $('section_title').down('a.archive')[element.down('li.task') ? 'hide' : 'show']();
+	    var archive = $('section_title').down('a.archive');
+	    archive && archive[element.down('li.task') ? 'hide' : 'show']();
     }
     
     $('section_title').observe('mouseenter', checkForArchiveButton);
