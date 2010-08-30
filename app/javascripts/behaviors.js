@@ -3,7 +3,7 @@ CD3.Behaviors({
                             Taskar.Sections.Ordering(this);
                             Taskar.Sections.NewSection(this);
                           },
-//  '#section_title':       Taskar.Sections.Title,
+  '#section_title':       Taskar.Sections.Title,
   '#sections_show':       Taskar.Sections.Actions,
   '#tasks_index':         Taskar.Sections.Actions,
   '#section_aside':       Taskar.Sections.Aside.initialize,
