@@ -1,4 +1,5 @@
-<% form_for section, :html => {:class => 'action_form', :id => nil, "data-remote" => defined?(remote) ? true : nil} do |f| %>
+<% remote_form = defined?(remote) ? true : nil %>
+<% form_for section, :html => {:class => 'action_form', :id => nil, "data-remote" => remote_form } do |f| %>
   <%= render 'shared/error_messages', :target => f.object %>
   <%= f.label :name %>
   <%= f.text_field :name, :autofocus => true %>
@@ -7,5 +8,9 @@
   <%= f.hidden_field :insert_before, :value => params[:insert_before] if params[:insert_before] %>
   <div class="buttons">
     <%= f.submit t(:update) %>
+		<% if remote_form %>
+		    <%=t :or %>
+    		<%= link_to t(:'cancel'), section, :class => "cancel", "data-remote" => true %>
+		<% end %>
   </div>
 <% end %>
