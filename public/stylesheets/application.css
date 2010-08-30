@@ -1192,6 +1192,10 @@ header:hover .tooltip {
   margin: 10px 0 10px 0;
 }
 
+.action_form input[type=text] {
+  display: block;
+}
+
 .action_form textarea {
   display: block;
   width: 100%;

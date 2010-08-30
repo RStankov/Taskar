@@ -2,6 +2,8 @@
   <%= render 'shared/error_messages', :target => f.object %>
   <%= f.label :name %>
   <%= f.text_field :name, :autofocus => true %>
+	<%= f.label :text %>
+	<%= f.text_area :text %>
   <%= f.hidden_field :insert_before, :value => params[:insert_before] if params[:insert_before] %>
   <div class="buttons">
     <%= f.submit t(:update) %>
