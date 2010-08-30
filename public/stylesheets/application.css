@@ -51,30 +51,25 @@ a:active {
   outline: 0;
 }
 
+.alert, .notice {
+  color: #000;
+  margin: 0 0 12px;
+  padding: 5px;
+  text-align: center;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
 .alert {
-  color: red;
-  padding: 10px;
-  margin-bottom: 15px;
-  background: #fff;
-  border-radius: 10px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  box-shadow: 0px 0px 10px red;
-  -moz-box-shadow: 0px 0px 10px red;
-  -webkit-box-shadow: 0px 0px 10px red;
+  background-color: #fcc;
+  border: 1px solid #f00;
+  color: #f00;
 }
 
 .notice {
-  color: green;
-  padding: 10px;
-  margin-bottom: 15px;
-  background: #fff;  
-  border-radius: 3px;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 10px;
-  box-shadow:0px 0px 10px green;
-  -moz-box-shadow:0px 0px 10px green;
-  -webkit-box-shadow:0px 0px 10px green;
+  background-color: #ffc;
+  border: 1px solid #ddd18e;
 }
 
 @-webkit-keyframes bounce-scale {
