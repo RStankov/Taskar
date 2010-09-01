@@ -1932,6 +1932,10 @@ article footer > li:last-child {
   text-decoration: underline;
 }
 
+.project ul {
+  display: none;
+}
+
 /*** CONTENT DISPLAY ***/
 
 #content {
