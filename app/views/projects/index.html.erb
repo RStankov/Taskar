@@ -6,7 +6,19 @@
 		<h2><%=t '.active' %></h2>
 		<ul>
 			<% @projects.each do |project|%>
-				<li><%= link_to h(project.name), project %></li>
+				<li class="project">
+					 <ul>
+							<% if project.tasks.size > 0%>
+								<% {:rejected => 'red', :completed => 'green', :opened => 'blue'}.each do |(stats, color)| %>
+									<li data-color="<%= color %>">
+										<strong><%= stats %></strong>
+										<em><%= project.tasks.send(stats).size %></em>
+									</li>
+								<% end %>
+							<% end %>
+		      </ul>
+					<%= link_to h(project.name), project %>
+				</li>
 			<% end %>
 		</ul>
 	<% end %>

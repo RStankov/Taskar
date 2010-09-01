@@ -1894,6 +1894,24 @@ article footer > li:last-child {
   color: #CC0000;
 }
 
+/*** PROJECT LIST ***/
+
+.project {
+  float: left;
+  width: 160px;
+  height: 200px;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  margin: 5px 5px 0 0;
+}
+
+.project a {
+  display: block;
+  text-align: center;
+}
+
 /*** CONTENT DISPLAY ***/
 
 #content {
