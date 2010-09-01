@@ -14,6 +14,12 @@ module ApplicationHelper
     end
   end
   
+  def nl2br(text)
+    text.gsub!(/\r\n?/, "\n")  # \r\n and \r -> \n
+    text.gsub!(/\n/, '<br />') # 1 newline   -> brt
+    text
+  end
+  
   def title(page_title)
     page_title = t(page_title, :default => page_title)
     content_for :title, page_title
