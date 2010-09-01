@@ -29,7 +29,7 @@
     <%= render "title" %>
   </header>
 	<% unless @section.text.blank? %>
-		<p class="text">
+		<p class="text" id="section_text">
 			<%=nl2br @section.text %>
 		</p>
 	<% end %>

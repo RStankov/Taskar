@@ -5,5 +5,13 @@
 				element.update("<%= escape_javascript(render "title") %>");
 			}
 		});
+		<% unless @section.text.blank? %>
+			element.insert({
+				after: new Element('p', {className: 'text', id: 'section_text'})
+								.update("<%= escape_javascript nl2br(@section.text) %>")
+								.hide()
+								.slideDown()
+			});
+		<% end %>
 	})($('section_title'));
 <% end %>
