@@ -17,6 +17,11 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, dl {
   padding: 0;
 }
 
+hr {
+  clear: both;
+  border: 0px;
+}
+
 img {
   border: 0;
 }
@@ -1898,18 +1903,33 @@ article footer > li:last-child {
 
 .project {
   float: left;
-  width: 160px;
-  height: 200px;
-  border: 1px solid #eee;
+  width: 148px;
+  height: 170px;
+  border: 4px solid #fff;
+  padding: 4px;
   border-radius: 5px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
-  margin: 5px 5px 0 0;
+  margin: 5px;
+  -webkit-transition: all 0.2s ease-out;
+  background: #fff;
+  opacity: 0.8;
+}
+
+.project:hover {
+  border-color: #eee;
+  opacity: 1;
+  -webkit-transform: scale(1.1);
 }
 
 .project a {
   display: block;
   text-align: center;
+  text-decoration: none;
+}
+
+.project a:hover {
+  text-decoration: underline;
 }
 
 /*** CONTENT DISPLAY ***/
