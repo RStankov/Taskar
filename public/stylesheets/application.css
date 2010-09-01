@@ -1827,6 +1827,10 @@ article footer > li:last-child {
   color: #FF0000;
 }
 
+.comment p {
+  font-size: 14px;
+}
+
 #new_comment_label {
   background:  url(../images/i.png) 0px -128px no-repeat;
   padding: 4px 0 0 40px;
