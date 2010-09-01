@@ -33,11 +33,7 @@ Graphics.createPieChart = function(container){
       .path("M29.124,12.75c-0.004-2.208-1.792-3.997-3.999-4V8.749H12.868c-0.505-1.622-2.011-2.808-3.805-2.811H6.188c-2.208,0.002-3.997,1.792-4.001,4v14.188c0.004,2.206,1.793,3.995,4.001,3.999h18.938c2.205-0.004,3.995-1.793,3.999-3.999V12.75zM6.188,7.937h2.875c1.046-0.004,1.917,0.834,1.983,1.876l0.058,0.937h14.022c1.093,0.002,1.997,0.906,1.999,2v0.495c-0.591-0.345-1.268-0.557-2-0.558H6.187c-0.732,0.001-1.41,0.214-2,0.559V9.937C4.19,8.843,5.094,7.939,6.188,7.937zM25.125,26.125H6.188c-1.093-0.002-1.997-0.908-2.001-2v-7.438h0.001c0.002-1.095,0.906-1.999,2-2.001h18.938c1.093,0.002,1.991,0.901,2,1.991v7.447C27.122,25.219,26.218,26.123,25.125,26.125z")    
       .attr({fill: "#000", stroke: "none"})
       .translate(60, 60)
-      .scale(4, 4)
-      .mouseover(mouseover2)
-      .mousemove(mousemove)
-      .mouseout(mouseout2)
-      .title = "No tasks"
+      .scale(4, 4);
   
     seeder.insert({before: holder})
     seeder.remove();
@@ -61,24 +57,11 @@ Graphics.createPieChart = function(container){
     }).show();
   }
   
-  function mouseover2(e){    
-    this.animate({scale: [4.4, 4.4, center, center]}, 500, "elastic");
-    $('info_bubble').update(this.title).setStyle({
-      top:  Event.pointerY(e) + 20 + 'px',
-      left: Event.pointerX(e) + 10 + 'px'
-    }).show();
-  }
-  
   function mousemove(e){
      $('info_bubble').setStyle({
         top:  Event.pointerY(e) + 20 + 'px',
         left: Event.pointerX(e) + 10 + 'px'
       });
-  }
-  
-  function mouseout2(){
-    this.animate({scale: [4, 4, center, center]}, 500, "elastic");
-    $('info_bubble').hide();
   }
 
   function mouseout(){
