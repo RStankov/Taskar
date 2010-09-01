@@ -47,7 +47,7 @@ Taskar.UI.HoverBubble = (function(UI){
     this.instance.positionate(e);
   }
   
-  var controller = {
+  return {
     instance: null,
     move:     createWidget,
     hide:     function(){
@@ -58,6 +58,4 @@ Taskar.UI.HoverBubble = (function(UI){
       }
     }
   };
-  
-  return controller;
 })();
