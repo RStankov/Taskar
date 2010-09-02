@@ -1,13 +1,17 @@
 <li class="project">
-	 <ul>
-			<% if project.tasks.size > 0%>
+	<% link_to project do %>
+		<% if project.tasks.size > 0%>
+		 <ul>
 				<% {:opened => 'blue', :completed => 'green', :rejected => 'red'}.each do |(stats, color)| %>
 					<li data-color="<%= color %>">
 						<strong><%= stats %></strong>
 						<em><%= project.tasks.send(stats).size %></em>
 					</li>
 				<% end %>
-			<% end %>
-  </ul>
-	<%= link_to h(project.name), project %>
+		  </ul>
+		<% else %>
+			<strong>0 задачи</strong>
+		<% end %>
+		<span><%= project.name %></span>
+	<% end %>
 </li>
