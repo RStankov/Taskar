@@ -1,5 +1,5 @@
 <header>
-	<h1><%=h @project.name %></h1>
+	<h1 id="project_title"><%=h @project.name %></h1>
 	<ul class="actions">
 		<li>
 			<% link_to complete_project_path(@project, :complete => !@project.completed?), :'data-method' => "put" do %>

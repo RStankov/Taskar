@@ -951,6 +951,14 @@ body > footer {
   background: url(../images/headers.png) 0px -288px no-repeat;
 }
 
+#project_title {
+  background: url(../images/headers.png) 0px -32px no-repeat;
+}
+
+#projects_title {
+  background: url(../images/headers.png) 0px -96px no-repeat;
+}
+
 /*** ARTICLE HEADER ***/
 
 article header a {

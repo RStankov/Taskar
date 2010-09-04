@@ -1,5 +1,8 @@
 <header>
-	<h1><%=t '.title' %></h1>
+	<h1 id="projects_title"><%=t '.title' %></h1>
+	<ul class="actions">
+		<%= link_to t(:'layouts.admin.new_project'), new_project_path %>
+	</ul>
 </header>
 <div class="wrap">
 	<% if @projects[0] %>
