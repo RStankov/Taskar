@@ -1,10 +1,35 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe TasksStats do
+  def mock_subject(stats = {})
+    subject = Object.new
+    TasksStats::STATS.each do |(type, color)|
+      subject.stub_chain :tasks, type, :size => stats.delete(type) || 0
+    end
+    subject
+  end
+  
   describe "#needed?" do
-    it "should be false if 0 tasks are associated"
-    it "should be false if only one type of tasks are associated"
-    it "should be true if there are 2 or more type of tasks"
+    it "should be false if 0 tasks are associated" do
+      subject = mock_subject
+      
+      TasksStats.new(subject).should_not be_needed
+    end
+    
+    it "should be false if only one type of tasks are associated" do
+      subject = mock_subject :completed => 10
+      
+      TasksStats.new(subject).should_not be_needed
+    end
+    it "should be true if there are 2 or more type of tasks" do
+      subject = mock_subject :rejected => 11, :opened => 12
+      
+      TasksStats.new(subject).should be_needed
+      
+      subject = mock_subject :completed => 44, :opened => 42, :rejected => 4
+      
+      TasksStats.new(subject).should be_needed
+    end
   end
   
   describe "#empty_text" do
