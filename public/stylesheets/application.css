@@ -917,11 +917,7 @@ body > footer {
   border-color: #D7D7D7;
 }
 
-/*** MAIN ARTICLE HEADER ***/
-
-article header a {
-  float: right;
-}
+/*** ARTICLE HEADER IMAGES ***/
 
 #sections_index h1, #statuses_index h1 {
   background: url(../images/i.png) 0px 0px no-repeat;
@@ -933,6 +929,17 @@ article header a {
 
 #section_title h1.archived {
   background: url(../images/i.png) 0px -52px no-repeat;
+}
+
+#task_title, #tasks_index h1 {
+  background: url(../images/i.png) 0px -76px no-repeat;
+  font-size: 16px;
+}
+
+/*** ARTICLE HEADER ***/
+
+article header a {
+  float: right;
 }
 
 h1 {
@@ -1708,11 +1715,6 @@ article footer > li:last-child {
 }
 
 /*** SHOW TASK ***/
-
-#task_title, #tasks_index h1 {
-  background: url(../images/i.png) 0px -76px no-repeat;
-  font-size: 16px;
-}
 
 #task_content {
   position: relative;
