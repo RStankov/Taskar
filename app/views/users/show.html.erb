@@ -1,5 +1,5 @@
 <header>
-	<h1><%=h @user.full_name %></h1>
+	<h1 id="user_title"><%=h @user.full_name %></h1>
 	<ul class="actions">
 	<% unless current_user == @user || @user.owned_account %>
 		<li>

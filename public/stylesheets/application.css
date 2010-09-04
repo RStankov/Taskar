@@ -943,6 +943,14 @@ body > footer {
   background: url(../images/headers.png) 0px -128px no-repeat;
 }
 
+#users_title {
+  background: url(../images/headers.png) 0px -320px no-repeat;
+}
+
+#user_title {
+  background: url(../images/headers.png) 0px -288px no-repeat;
+}
+
 /*** ARTICLE HEADER ***/
 
 article header a {
