@@ -381,18 +381,29 @@ body > footer {
 }
 
 #nav_projects a {
-  border-radius: 10px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
   color: #095da0;
   display: block;
-  padding: 10px;
+  padding: 7px;
   margin: 1px;
   text-decoration: none;
 }
 
-#nav_projects a:hover {
+#nav_projects .all_projects {
+  background: white;
+  font-size: 12px;
+  font-weight: normal;
+  margin-top: 7px;
+  padding: 0px 7px;
+}
+
+#nav_projects a:not(.all_projects):hover {
   background-color: #e9e9e9;
+}
+
+#nav_projects a:hover {
   color: #5c5c5c;
 }
 
