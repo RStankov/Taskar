@@ -33,10 +33,22 @@ describe TasksStats do
   end
   
   describe "#empty_text" do
-    it "should be tasks_stats.empty.tasks if no tasks are presented"
+    it "should be tasks_stats.empty.tasks if no tasks are presented" do
+      stats = TasksStats.new(mock_subject)
+      stats.should_not be_needed
+      stats.empty_text.should == I18n.t("tasks_stats.empty.tasks")
+    end
     
     TasksStats::STATS.each do |(type, color)|
-      it "should be tasks_stats.empty.#{type} if only #{type} tasks are presented"
+      it "should be tasks_stats.empty.#{type} if only #{type} tasks are presented" do
+        stats = TasksStats.new(mock_subject type => 1)
+        stats.should_not be_needed
+        stats.empty_text.should == I18n.t("tasks_stats.empty.#{type}", :count => 1)
+        
+        stats = TasksStats.new(mock_subject type => 10)
+        stats.should_not be_needed
+        stats.empty_text.should == I18n.t("tasks_stats.empty.#{type}", :count => 10)
+      end
     end
   end
   

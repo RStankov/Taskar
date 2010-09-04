@@ -199,3 +199,22 @@ bg:
     index:
       title: "Статуси на членовете на проекта"
       dashboard: "Събития"
+    
+  
+  tasks_stats:
+    empty:
+      tasks: "0 задачи"
+      opened:
+        one: "1 задача"
+        other: "%{count} задачи"
+      
+      rejected:
+          one: "1 отхвърлена задача"
+          other: "%{count} отхвърлени задачи"
+      
+      completed:
+          one: "1 завършена задача"
+          other: "%{count} завършени задачи"
+      
+    
+  
