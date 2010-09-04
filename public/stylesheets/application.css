@@ -933,12 +933,14 @@ body > footer {
 
 #task_title {
   background: url(../images/headers.png) 0px 0px no-repeat;
-  font-size: 16px;
 }
 
 #tasks_index h1 {
   background: url(../images/headers.png) 0px -64px no-repeat;
-  font-size: 16px;
+}
+
+#dashboard_title {
+  background: url(../images/headers.png) 0px -128px no-repeat;
 }
 
 /*** ARTICLE HEADER ***/
