@@ -33,7 +33,7 @@ class TasksStats
   
   def stats
     @statistics.each do |(type, size)|
-      yield Chunk.new(type, size, text_for(type), STATS[size])
+      yield Chunk.new(type, size, text_for(type), STATS[type])
     end
   end
 end

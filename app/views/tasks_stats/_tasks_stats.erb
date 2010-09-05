@@ -1,0 +1,12 @@
+<% unless tasks_stats.needed? %>
+	<strong><%= tasks_stats.empty_text %></strong>
+<% else %>
+	<ul>
+		<% tasks_stats.stats do |stat| %>
+			<li data-color="<%= stat.color %>">
+				<strong><%= stat.text %></strong>
+				<em><%= stat.size %></em>
+			</li>
+		<% end %>
+  </ul>
+<% end %>

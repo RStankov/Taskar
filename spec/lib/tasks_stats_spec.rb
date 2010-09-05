@@ -94,7 +94,7 @@ describe TasksStats do
       tasks_stats.stats do |stat|
         stats[stat.type].should_not be_nil
         
-        stat.color.should == stat.color
+        stat.color.should == stats[stat.type]
         stat.text.should  == tasks_stats.text_for(stat.type)
         stat.size.should  == 1
       end
