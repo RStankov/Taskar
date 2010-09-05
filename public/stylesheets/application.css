@@ -684,7 +684,7 @@ body > footer {
 }
 
 #live_search input[type="submit"] {
-  background: url(../images/sprite.png) 0 -398px no-repeat;
+  background: url(../images/sprite.png) 0 -430px no-repeat;
   border: 0;
   position: absolute;
   right: 4px;
@@ -694,7 +694,7 @@ body > footer {
 }
 
 #live_search input[type="submit"]:hover {
-  background-position: 0 -414px;
+  background-position: 0 -446px;
 }
 
 #live_search img {
@@ -949,7 +949,7 @@ body > footer {
 }
 
 #users_title {
-  background: url(../images/sprite.png) 0px -320px no-repeat;
+  background: url(../images/sprite.png) 0px -319px no-repeat;
 }
 
 #user_title {
@@ -1314,7 +1314,7 @@ header:hover .tooltip {
 }
 
 .tasks_list .drag, #sections .drag {
-  background: url(../images/sprite.png) 0px -366px no-repeat;
+  background: url(../images/sprite.png) 0px -398px no-repeat;
   display: none;
   height: 16px;
   width: 16px;
@@ -1322,7 +1322,7 @@ header:hover .tooltip {
 }
 
 .drag:hover, #sections .drag:hover {
-  background-position: 0px -382px;
+  background-position: 0px -414px;
 }
 
 .tasks_list .drag {
@@ -1552,11 +1552,11 @@ header:hover .tooltip {
 .archive {
   width: 12px;
   height: 13px;
-  background: url(../images/sprite.png) 0px -430px no-repeat;
+  background: url(../images/sprite.png) 0px -462px no-repeat;
 }
 
 .archive:hover {
-  background-position: 0px -444px;
+  background-position: 0px -476px;
 }
 
 #archived_tasks {
@@ -1577,11 +1577,11 @@ header:hover .tooltip {
   width: 18px;
   height: 14px;
   display: inline-block;
-  background: url(../images/sprite.png) 0px -457px no-repeat;
+  background: url(../images/sprite.png) 0px -489px no-repeat;
 }
 
 #archived_tasks .archive:hover, .unarchive:hover {
-  background-position: -0px -471px;
+  background-position: -0px -503px;
 }
 
 #archived_tasks_empty {
@@ -1795,7 +1795,7 @@ article footer > li:last-child {
 }
 
 #comments h3 {
-  background:  url(../images/sprite.png) 0px -320px no-repeat;
+  background:  url(../images/sprite.png) 0px -352px no-repeat;
   padding-left: 35px;
   margin-bottom: 13px;
   height: 23px;
@@ -1866,7 +1866,7 @@ article footer > li:last-child {
 }
 
 #new_comment_label {
-  background:  url(../images/sprite.png) 0px -343px no-repeat;
+  background:  url(../images/sprite.png) 0px -375px no-repeat;
   padding: 4px 0 0 40px;
   height: 23px;
   font-size: 16px;
