@@ -11,8 +11,7 @@
 	  <li><%= link_to_delete t(:delete), @project, :confirm => t(:'projects.confirm') %></li>
 	</ul>
 </header>
-
-<div id="content">
+<div class="wrap">
 	<% if @project.users[0] %>
 		<h2 class="statistics"><%=t :'projects.participants' %> (<%= @project.users.size %>)</h2>
 		<ul>
@@ -25,10 +24,17 @@
 	
 	<% if @project.sections[0] %>
 	<h2 class="statistics"><%=t :'projects.sections' %> (<%= @project.sections.size  %>)</h2>
+
 	<ul>
 	  <% @project.sections.each do |section| %>
-	    <li><%= link_to h(section.name), section %><%= " <small>(#{t('projects.archived_section')})</small>" if section.archived? %></li>
-	  <% end %>
+			<li class="tasks_stats">
+				<% link_to section do %>
+					<%= render TasksStats.new(section)  %>
+					<span><%= section.name %></span>
+					<%= "<small>#{t('projects.archived_section')}</small>" if section.archived? %>
+				<% end %>
+			</li>
+	 <% end %>
 	</ul>
 	<% end %>
 </div>

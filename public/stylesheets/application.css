@@ -1936,7 +1936,7 @@ article footer > li:last-child {
   color: #CC0000;
 }
 
-/*** PROJECT LIST ***/
+/*** TASKS STATISTICS ***/
 
 h2.statistics {
   font-size: 16px;
@@ -1945,11 +1945,12 @@ h2.statistics {
   border-bottom: 1px solid #eee;
 }
 
-.project {
+.tasks_stats {
   float: left;
   width: 148px;
   height: 170px;
   border: 4px solid #fff;
+  overflow: hidden;
   padding: 4px;
   border-radius: 15px;
   -moz-border-radius: 15px;
@@ -1965,18 +1966,18 @@ h2.statistics {
   position: relative;
 }
 
-.project:hover {
+.tasks_stats:hover {
   border-color: #eee;
   opacity: 1;
   -moz-transform: scale(1.1);
   -webkit-transform: scale(1.1);
 }
 
-.project a {
+.tasks_stats a {
   text-decoration: none;
 }
 
-.project span {
+.tasks_stats span {
   display: block;
   position: absolute;
   bottom: 10px;
@@ -1984,18 +1985,36 @@ h2.statistics {
   right: 0px;
 }
 
-.project span:hover {
+.tasks_stats span:hover {
   text-decoration: underline;
 }
 
-.project strong {
+.tasks_stats strong {
   font-size: 24px;
   display: block;
   padding: 30px 0;
 }
 
-.project ul {
+.tasks_stats ul {
   display: none;
+}
+
+.tasks_stats small {
+  -webkit-transform: rotate(45deg) translate(25px, -10px);
+	-webkit-box-shadow: inset 0px 0px 0px 1px #fff;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#AA0000), to(#CC0000), color-stop(.6,#DD0000));
+	text-shadow: 0px 1px 10px #000;
+	font-size: 10px;
+	border: 1px solid #CC0000;
+	display: block;
+	padding: 4px;
+	color: #fff;
+	font-weight: bold;
+	text-align: center;
+	width: 80px;
+	position: absolute;
+	top: 0px;
+	right: 0px;
 }
 
 /*** CONTENT DISPLAY ***/

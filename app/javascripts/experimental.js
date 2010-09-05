@@ -95,4 +95,4 @@ Graphics.createPieChart = function(container){
   seeder.remove();
 };
 
-$$('li.project').each(Graphics.createPieChart);
+$$('li.tasks_stats').each(Graphics.createPieChart);
