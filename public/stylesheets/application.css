@@ -1955,7 +1955,9 @@ h2.statistics {
   -moz-border-radius: 15px;
   -webkit-border-radius: 15px;
   margin: 5px;
+  -moz-transition: all 0.2s ease-out;
   -webkit-transition: all 0.2s ease-out;
+  -moz-box-shadow: inset 0px 0px 0px 1px #eee;
   -webkit-box-shadow: inset 0px 0px 0px 1px #eee;
   background: #fff;
   opacity: 0.8;
@@ -1966,6 +1968,7 @@ h2.statistics {
 .project:hover {
   border-color: #eee;
   opacity: 1;
+  -moz-transform: scale(1.1);
   -webkit-transform: scale(1.1);
 }
 
