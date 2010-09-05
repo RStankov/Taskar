@@ -202,18 +202,18 @@ bg:
     
   
   tasks_stats:
-    empty: "0 задачи"
+    empty: "<br />0<br />задачи"
     opened:
-      one: "1 задача"
-      other: "%{count} задачи"
+      one: "<br />1<br />задача"
+      other: "<br />%{count}<br />задачи"
     
     rejected:
-        one: "1 отхвърлена задача"
-        other: "%{count} отхвърлени задачи"
+        one: "1<br />отхвърлена<br />задача"
+        other: "%{count}<br />отхвърлени<br />задачи"
     
     completed:
-        one: "1 завършена задача"
-        other: "%{count} завършени задачи"
+        one: "1<br />завършена<br />задача"
+        other: "%{count}<br />завършени<br />задачи"
     
     
   
