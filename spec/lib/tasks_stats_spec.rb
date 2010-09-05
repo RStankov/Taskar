@@ -36,31 +36,72 @@ describe TasksStats do
     it "should be tasks_stats.empty.tasks if no tasks are presented" do
       stats = TasksStats.new(mock_subject)
       stats.should_not be_needed
-      stats.empty_text.should == I18n.t("tasks_stats.empty.tasks")
+      stats.empty_text.should == I18n.t("tasks_stats.empty")
     end
     
     TasksStats::STATS.each do |(type, color)|
       it "should be tasks_stats.empty.#{type} if only #{type} tasks are presented" do
         stats = TasksStats.new(mock_subject type => 1)
         stats.should_not be_needed
-        stats.empty_text.should == I18n.t("tasks_stats.empty.#{type}", :count => 1)
+        stats.empty_text.should == I18n.t("tasks_stats.#{type}", :count => 1)
         
         stats = TasksStats.new(mock_subject type => 10)
         stats.should_not be_needed
-        stats.empty_text.should == I18n.t("tasks_stats.empty.#{type}", :count => 10)
+        stats.empty_text.should == I18n.t("tasks_stats.#{type}", :count => 10)
       end
     end
   end
   
   describe "#text_for" do
     TasksStats::STATS.each do |(type, color)|
-      it "should be tasks_stats.text.#{type} for :#{type}"
+      it "should be tasks_stats.text.#{type} for :#{type}" do
+        stats = TasksStats.new(mock_subject type => 1)
+        stats.should_not be_needed
+        stats.text_for(type).should == I18n.t("tasks_stats.#{type}", :count => 1)
+        
+        stats = TasksStats.new(mock_subject type => 10)
+        stats.should_not be_needed
+        stats.text_for(type).should == I18n.t("tasks_stats.#{type}", :count => 10) 
+      end
     end
   end
   
   describe "#stats" do
-    it "should iterate throw all avaliable stats"
-    it "should not iterate throw 0 stats"
-    it "should give text, number, color"
+    it "should iterate throw all avaliable stats" do 
+      calls = 0
+      
+      TasksStats.new(mock_subject :completed => 1, :rejected => 1, :opened => 1).stats do
+        calls += 1
+      end
+      
+      calls.should == 3
+    end
+    
+    it "should not iterate throw 0 stats" do
+      calls = 0
+      
+      TasksStats.new(mock_subject).stats do
+        calls += 1
+      end
+      
+      calls.should == 0
+    end
+    
+    it "should give text, number, color" do
+      stats = TasksStats::STATS
+      tasks_stats = TasksStats.new(mock_subject :completed => 1, :rejected => 1, :opened => 1)
+      
+      tasks_stats.stats do |stat|
+        stats[stat.type].should_not be_nil
+        
+        stat.color.should == stat.color
+        stat.text.should  == tasks_stats.text_for(stat.type)
+        stat.size.should  == 1
+      end
+      
+      TasksStats::STATS.each do |(type, color)|
+        
+      end
+    end
   end
 end
