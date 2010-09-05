@@ -5,4 +5,5 @@ var Taskar = {
 //= require "taskar/fx"
 //= require "taskar/dnd"
 //= require "taskar/ui"
+//= require "taskar/graphics"
 //= require "taskar/sections"

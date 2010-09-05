@@ -1,3 +1,4 @@
+//= require <raphael-min>
 //= require <prototype>
 //= require <s2>
 
@@ -12,5 +13,3 @@ var CD3 = {};
 //= require "behaviors"
 
 Taskar.UI.StateCheckboxObserver();
-
-//= require "experimental"
