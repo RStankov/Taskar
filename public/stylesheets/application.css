@@ -684,17 +684,17 @@ body > footer {
 }
 
 #live_search input[type="submit"] {
-  background: url(../images/sprite.png) 0 -396px no-repeat;
+  background: url(../images/sprite.png) 0 -398px no-repeat;
   border: 0;
   position: absolute;
   right: 4px;
-  top: 5px;
-  width: 16px;
-  height: 16px;
+  top: 6px;
+  width: 15px;
+  height: 14px;
 }
 
 #live_search input[type="submit"]:hover {
-  background-position: 0 -412px;
+  background-position: 0 -414px;
 }
 
 #live_search img {
