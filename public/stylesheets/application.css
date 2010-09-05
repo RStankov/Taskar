@@ -683,30 +683,24 @@ body > footer {
   -webkit-box-shadow: 0px 0px 4px #999;
 }
 
-#live_search input[type="submit"], #live_search input[type="reset"] {
-  background: url(../images/sprite.png) 0 -243px no-repeat;
+#live_search input[type="submit"] {
+  background: url(../images/sprite.png) 0 -396px no-repeat;
   border: 0;
   position: absolute;
   right: 4px;
   top: 5px;
+  width: 16px;
+  height: 16px;
 }
 
 #live_search input[type="submit"]:hover {
-  background-position: 0 -278px;
-}
-
-#live_search input[type="reset"] {
-  background-position: 0 -313px;
-}
-
-#live_search input[type="reset"]:hover {
-  background-position: 0 -348px;
+  background-position: 0 -412px;
 }
 
 #live_search img {
   position: absolute;
-  right: 6px;
-  top: 5px;
+  right: 4px;
+  top: 6px;
 }
 
 #live_search ul {
@@ -897,7 +891,7 @@ body > footer {
 }
 
 .people_images .people_info span {
-  background: url(../images/sprite.png) 0 0 no-repeat;
+  background: url(../images/sprite_old.png) 0 0 no-repeat;
   bottom: -4px;
   display: block;
   height: 4px;
@@ -907,7 +901,7 @@ body > footer {
 }
 
 .list_images, .list_extended {
-  background-image: url(../images/sprite.png);
+  background-image: url(../images/sprite_old.png);
   border: 1px solid transparent;
   border-radius: 5px;
   -moz-border-radius: 5px;
@@ -931,43 +925,43 @@ body > footer {
 /*** ARTICLE HEADER IMAGES ***/
 
 #sections_index h1, #statuses_index h1 {
-  background: url(../images/headers.png) 0px -192px no-repeat;
+  background: url(../images/sprite.png) 0px -192px no-repeat;
 }
 
 #section_title h1 {
-  background: url(../images/headers.png) 0px -256px no-repeat;
+  background: url(../images/sprite.png) 0px -256px no-repeat;
 }
 
 #section_title h1.archived {
-  background: url(../images/headers.png) 0px -224px no-repeat;
+  background: url(../images/sprite.png) 0px -224px no-repeat;
 }
 
 #task_title {
-  background: url(../images/headers.png) 0px 0px no-repeat;
+  background: url(../images/sprite.png) 0px 0px no-repeat;
 }
 
 #tasks_index h1 {
-  background: url(../images/headers.png) 0px -64px no-repeat;
+  background: url(../images/sprite.png) 0px -64px no-repeat;
 }
 
 #dashboard_title {
-  background: url(../images/headers.png) 0px -128px no-repeat;
+  background: url(../images/sprite.png) 0px -128px no-repeat;
 }
 
 #users_title {
-  background: url(../images/headers.png) 0px -320px no-repeat;
+  background: url(../images/sprite.png) 0px -320px no-repeat;
 }
 
 #user_title {
-  background: url(../images/headers.png) 0px -288px no-repeat;
+  background: url(../images/sprite.png) 0px -288px no-repeat;
 }
 
 #project_title {
-  background: url(../images/headers.png) 0px -32px no-repeat;
+  background: url(../images/sprite.png) 0px -32px no-repeat;
 }
 
 #projects_title {
-  background: url(../images/headers.png) 0px -96px no-repeat;
+  background: url(../images/sprite.png) 0px -96px no-repeat;
 }
 
 /*** ARTICLE HEADER ***/
@@ -1320,11 +1314,15 @@ header:hover .tooltip {
 }
 
 .tasks_list .drag, #sections .drag {
-  background: url(../images/sprite.png) -28px -63px no-repeat;
+  background: url(../images/sprite.png) 0px -366px no-repeat;
   display: none;
-  height: 13px;
+  height: 16px;
+  width: 16px;
   position: absolute;
-  width: 13px;
+}
+
+.drag:hover, #sections .drag:hover {
+  background-position: 0px -382px;
 }
 
 .tasks_list .drag {
@@ -1346,10 +1344,6 @@ header:hover .tooltip {
 
 .dragging .tooltip, .dragging .drag, .dragging .add, .static .add, .static .drag {
   visibility: hidden;
-}
-
-.task .drag:hover, #sections .drag:hover {
-  background-position: -28px -103px;
 }
 
 .task p {
@@ -1558,13 +1552,11 @@ header:hover .tooltip {
 .archive {
   width: 12px;
   height: 13px;
-  top: -1px;
-  position: relative;
-  background: url(../images/i.png) 0px -226px no-repeat;
+  background: url(../images/sprite.png) 0px -430px no-repeat;
 }
 
 .archive:hover {
-  background-position: -52px -226px;
+  background-position: 0px -444px;
 }
 
 #archived_tasks {
@@ -1585,11 +1577,11 @@ header:hover .tooltip {
   width: 18px;
   height: 14px;
   display: inline-block;
-  background: url(../images/i.png) 0px -240px no-repeat;
+  background: url(../images/sprite.png) 0px -457px no-repeat;
 }
 
 #archived_tasks .archive:hover, .unarchive:hover {
-  background-position: -52px -240px;
+  background-position: -0px -471px;
 }
 
 #archived_tasks_empty {
@@ -1803,7 +1795,7 @@ article footer > li:last-child {
 }
 
 #comments h3 {
-  background:  url(../images/i.png) 0px -100px no-repeat;
+  background:  url(../images/sprite.png) 0px -320px no-repeat;
   padding-left: 35px;
   margin-bottom: 13px;
   height: 23px;
@@ -1874,7 +1866,7 @@ article footer > li:last-child {
 }
 
 #new_comment_label {
-  background:  url(../images/i.png) 0px -128px no-repeat;
+  background:  url(../images/sprite.png) 0px -343px no-repeat;
   padding: 4px 0 0 40px;
   height: 23px;
   font-size: 16px;
