@@ -2000,8 +2000,11 @@ h2.statistics {
 }
 
 .tasks_stats small {
+  -moz-transform: rotate(45deg) translate(25px, -10px);
   -webkit-transform: rotate(45deg) translate(25px, -10px);
+	-moz-box-shadow: inset 0px 0px 0px 1px #fff;
 	-webkit-box-shadow: inset 0px 0px 0px 1px #fff;
+	background: -moz-linear-gradient(top, #AA0000, #CC0000);
 	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#AA0000), to(#CC0000), color-stop(.6,#DD0000));
 	text-shadow: 0px 1px 10px #000;
 	font-size: 10px;
