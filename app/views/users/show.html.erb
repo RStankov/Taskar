@@ -30,7 +30,7 @@
 	</p>
 
 	<% if @user.projects[0] %>
-		<h2><%=t :'users.projects', :name => h(@user.full_name) %>:</h2>
+		<h2 class="statistics"><%=t :'users.projects', :name => h(@user.full_name) %> (<%= @user.projects.size %>)</h2>
 		<ul>
 		  <% @user.projects.each do |project| %>
 		    <li><%= link_to h(project.name), [project, :sections] %></li>
