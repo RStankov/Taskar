@@ -12,25 +12,16 @@ Taskar.Graphics = {
   	}
   },
   createPieChart: (function(){
+    var tooltip = Taskar.UI.TooltipBubble;
+    
     function mouseover(e){
+      tooltip.show(e, this.title);
       this.animate({scale: this.paper.overScale}, 500, "elastic");
-
-      $('info_bubble').update(this.title).setStyle({
-        top:  Event.pointerY(e) + 20 + 'px',
-        left: Event.pointerX(e) + 10 + 'px'
-      }).show();
-    }
-
-    function mousemove(e){
-       $('info_bubble').setStyle({
-          top:  Event.pointerY(e) + 20 + 'px',
-          left: Event.pointerX(e) + 10 + 'px'
-        });
     }
 
     function mouseout(){
+      tooltip.show(e, this.title);
       this.animate({scale: this.paper.outScale}, 500, "elastic");
-      $('info_bubble').hide();
     }
   
     function createPieChart(seeder){
@@ -66,7 +57,7 @@ Taskar.Graphics = {
             "stroke-width": 1,
           })
           .hover(mouseover, mouseout)
-          .mousemove(mousemove)
+          .mousemove(tooltip.move)
           .title = labels[index];
       
         return path;
