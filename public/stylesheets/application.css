@@ -1938,6 +1938,13 @@ article footer > li:last-child {
 
 /*** PROJECT LIST ***/
 
+h2.statistics {
+  font-size: 16px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
 .project {
   float: left;
   width: 148px;

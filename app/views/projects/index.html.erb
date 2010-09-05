@@ -6,14 +6,14 @@
 </header>
 <div class="wrap">
 	<% if @projects[0] %>
-		<h2><%=t '.active' %></h2>
+		<h2 class="statistics"><%=t '.active' %> (<%= @projects.size %>)</h2>
 		<ul>
 			<%= render @projects %>
 		</ul>
+		<hr />
 	<% end %>
-	<hr />
 	<% if @completed[0] %>
-		<h2><%=t '.completed' %></h2>
+		<h2 class="statistics"><%=t '.completed' %> (<%= @completed.size %>)</h2>
 		<ul>
 			<%= render @completed %>
 		</ul>
