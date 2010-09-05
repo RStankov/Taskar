@@ -70,8 +70,13 @@ describe ProjectsController do
       end
       
       describe "GET show" do
-        before { get :show, :id => "1" }
+        before do
+          mock_project.stub_chain :sections, :order => [mock_section]
+          
+          get :show, :id => "1"
+        end
         
+        it { should assign_to(:sections).with([mock_section]) }
         it { should assign_to(:project).with(mock_project) }
         it { should render_template("show") }
       end

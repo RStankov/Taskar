@@ -2,13 +2,11 @@ require 'spec_helper'
 
 describe "/projects/show.html.erb" do
   before(:each) do    
-    assigns[:project] = @project = stub_model(Project,
-      :name => "value for name"
-    )
+    assigns[:project]  = Factory(:project) 
+    assigns[:sections] = [Factory(:section)]
   end
 
-  it "renders attributes in <p>" do
+  it "renders" do
     render
-    response.should have_text(/value\ for\ name/)
   end
 end

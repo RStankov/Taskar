@@ -21,12 +21,10 @@
 		</ul>
 		<hr />
 	<% end %>
-	
-	<% if @project.sections[0] %>
-	<h2 class="statistics"><%=t :'projects.sections' %> (<%= @project.sections.size  %>)</h2>
-
+	<% if @sections[0] %>
+	<h2 class="statistics"><%=t :'projects.sections' %> (<%= @sections.size  %>)</h2>
 	<ul>
-	  <% @project.sections.each do |section| %>
+	  <% @sections.each do |section| %>
 			<li class="tasks_stats">
 				<% link_to section do %>
 					<%= render TasksStats.new(section)  %>

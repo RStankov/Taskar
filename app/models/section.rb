@@ -13,6 +13,7 @@ class Section < ActiveRecord::Base
   acts_as_list :scope => :project
 
   include Taskar::List::Model
+  include Taskar::NamedScopes
   
   named_scope :archived,   :conditions => { :archived => true  }, :order => "position DESC"
   named_scope :unarchived, :conditions => { :archived => false }, :order => "position ASC"

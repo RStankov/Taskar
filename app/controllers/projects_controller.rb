@@ -10,6 +10,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    @sections = @project.sections.order("position ASC")
   end
 
   def new
