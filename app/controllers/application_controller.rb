@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
       if request.xhr?
         head :forbidden
       else
-        redirect_to root_path
+        redirect_to root_path, :alert => I18n.t(:deny_access)
       end
     end
 

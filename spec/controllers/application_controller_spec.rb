@@ -5,7 +5,7 @@ describe ApplicationController do
     it "should redirect_to root_path" do
       controller.stub!(:request).and_return(mock(Object, :xhr? => false))
       controller.stub!(:root_path).and_return("root_path")
-      controller.should_receive(:redirect_to).with("root_path")
+      controller.should_receive(:redirect_to).with("root_path", :alert => I18n.t(:deny_access))
       
       controller.send(:deny_access)
     end
