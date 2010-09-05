@@ -20,7 +20,7 @@ Taskar.Graphics = {
     }
 
     function mouseout(){
-      tooltip.show(e, this.title);
+      tooltip.hide();
       this.animate({scale: this.paper.outScale}, 500, "elastic");
     }
   
