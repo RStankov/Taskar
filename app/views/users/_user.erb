@@ -1,0 +1,11 @@
+<li>
+  <%= image_tag user.avatar.url %>
+	<span>
+  	<strong><%= link_to h(user.full_name), user %></strong><br />
+    <small><%= user.email %></small>
+    <% if user.admin? %>
+      <br />
+			<em>(<%=t :'activerecord.attributes.user.admin' %>)</em>
+    <% end %>
+	</span>
+</li>
