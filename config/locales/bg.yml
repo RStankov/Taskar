@@ -121,20 +121,10 @@ bg:
     move_into_section: "Пуснете задачата върху избрана секция<br />зада я преместите там."
     empty_archive: "Няма архивирани задачи"
     task:
-      more: "още"
-      less: "скрий"
       confirm: "Сигурни ли сте, че искате да изтриете тази задача?"
       comments:
         one: "Един коментар"
-        other: "%{count} Коментара"
-      
-      subtasks:
-        one: "Една подзадача"
-        other: "%{count} Подзадачи"
-      
-      files:
-        one: "Един файл"
-        other: "%{count} Файлове"
+        other: "%{count} коментара"
       
     
     show:

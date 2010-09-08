@@ -1,0 +1,210 @@
+bg: 
+  project: "Project"
+  copywrite: "© %{year} Radoslav Stankov"
+  scroll_to_top: "Scroll to top"
+  create: "Create"
+  cancel: "Cancel"
+  edit: "Edit"
+  view: "Open"
+  update: "Save"
+  delete: "Delete"
+  confirm: "Are you sure?"
+  before: "before %{time}"
+  back: "back"
+  or: "or"
+  dnd: "Drag"
+  previous_page: "Previous page"
+  next_page: "Next page"
+  deny_access: "You don't have access to this project"
+  not_found: "The page you were looking for doesn't exist"
+  not_found_explanation_l1: "You may have mistyped the address or the page may have moved."
+  not_found_explanation_l2: 'Or just press the "<em>Back</em>" button on your browser.'
+  layouts:
+    general:
+      profile: "Profile"
+      logout: "Logout"
+    
+    admin:
+      title_projects: ": Projects"
+      title_users: ": Users"
+      users: "Users (%{count})"
+      new_user: "create user"
+      manage_users: "Menage"
+      current_projects: "Active projects (%{count})"
+      project_settings: "setting"
+      new_project: "Create new project"
+      manage_projects: "All projects"
+    
+    sections:
+      dashboard: "Dashboard"
+      task_list: "Tasks"
+      archive: "Archive"
+      switch_to_project: "Open other project"
+      all_projects: "All projects"
+      goto_dashboard: "Events"
+      sections: "Sections"
+      new_section: "Create section"
+      archived_sections: "Archived sections"
+      tasks:
+        one: "One task"
+        zero: "No tasks"
+        other: "%{count} tasks"
+      
+      people_in_project: "Project participants"
+      last_activity: "Last active on %{time}"
+      status: 
+        label: "What are you doing?"
+        clear: "clear status"
+        share: "Share"
+    
+    dashboard:
+      title: "Dashboard"
+      manage: "Manage"
+      current_projects: "Your projects (%{count})"      
+    
+  
+  dashboard:
+    index: 
+      header: "Latest activity across your projects"
+      empty: "You don't participate in any projects"
+      empty_admin: 'There are no active projects, Like administrator of "<em>%{account_name}</em>" you can create:'
+      add_project: "Create new project"
+      add_user: "Create new user"
+    
+  
+  sessions:
+    title: "Login"
+  
+  projects:
+    participants: "Project participants"
+    sections: "Sections"
+    archived_section: "archived section"
+    confirm: "Are you sure, you wan't to delete this project?"
+    new_project: "Create project"
+    edit_project: "Edit project"
+    completed: "Completed"
+    index: 
+      title: "Project"
+      active: "Active projects"
+      completed: "Completed projects"
+    
+  
+  users:
+    title: "Users"
+    new_user: "Create user"
+    edit_user: "Edit user"
+    change_password: "Change password"
+    confirm: "Are you sure, you want to delete this user"
+    projects: "%{name}'s projects"
+    admin: "Administrator"
+  
+  sections:
+    new_section: "Create section"
+    edit_section: "Edit section"
+    empty_archive: "There aren't any archived sections.<br />To archive the section, first archive all tasks in it. <br />And then click the archive button, next to the section name."
+    index:
+      title: "Project activity"
+      previous: "Previous"
+      next: "Next"
+      statuses: "Statuses"
+    
+    show:
+      confirm: "Are you sure, you want to delete this section?"
+      add_task: "Add task"
+      toggle_archive: "Archive"
+      archive: "Archive"
+      more: "Actions"
+      print: "Print"
+    
+  
+  tasks:
+    move_into_section: "Drop the task over the selected section<br />to move it there"
+    empty_archive: "There aren't no archived tasks"
+    task:
+      confirm: "Are you sure, you want to delete this task?"
+      comments:
+        one: "One comment"
+        other: "%{count} comments"
+      
+    
+    show:
+      task:
+        normal: "Task"
+        archived: "Archived task"
+      
+      description: 
+        short: "from %{from} on %{on}"
+        responsible: "from %{from} for %{to} on %{on}"
+        same: "from and for %{from} on %{on}"
+        full: "from %{from} for %{to} on %{on} due %{due}"
+      
+      comments: "Comments <small>(%{count})</small>"
+      no_results_found: "No tasks found"
+      more_results: 
+        one: "+ one result"
+        other: "+ %{count} results"
+    
+    index:
+      title: "Tasks assign to you"
+    
+    form:
+      text: "Task text:"
+      create: "Create task"
+      update: "Update task"
+      stop: "hide"
+      cancel: "cancel"
+      responsible_party: "Responsible party:"
+    
+  
+  comments:
+    preview: "Preview"
+    comment:
+      editable_for: "editable for %{minutes} minutes" 
+      confirm: "Are you sure, you want to delete this comment"
+    
+    new_form:
+      title: "New comment"
+      submit: "Comment"
+    
+    edit_form:
+      submit: "Change comment"
+    
+  
+  events:
+    subject:
+      task: "task"
+      comment: "comment"
+      status: "status"
+    
+    action:
+      commented: "commented"
+      deleted: "deleted"
+      opened: "opened"
+      completed: "completed"
+      rejected: "rejected"
+      archived: "archived"
+      shared: "shared"
+    
+  
+  statuses:
+    index:
+      title: "Project participants's statuses"
+      dashboard: "Events"
+    
+  
+  tasks_stats:
+    empty: "0 tasks"
+    opened:
+      one: "1 task"
+      other: "%{count} tasks"
+    
+    rejected:
+        one: "1 rejected task"
+        other: "%{count} rejected tasks"
+    
+    completed:
+        one: "1 completed task"
+        other: "%{count} completed tasks"
+    
+    
+  
