@@ -78,7 +78,7 @@ bg:
     distance_in_words:
       half_a_minute: "по-малко от минута"
       less_than_x_seconds:
-        one: "по-малко от %{count} секунди"
+        one: "по-малко от %{count} секундa"
         few: "по-малко от %{count} секунди"
         many: "по-малко от %{count} секунди"
         other: "по-малко от %{count} секунди"
@@ -108,7 +108,7 @@ bg:
         many: "%{count} дни"
         other: "%{count} дена"
       about_x_months:
-        one: "около %{count} месеца"
+        one: "около %{count} месец"
         few: "около %{count} месеца"
         many: "около %{count} месеца"
         other: "около %{count} месеца"
