@@ -1,6 +1,6 @@
 <li class="tasks_stats">
 	<% link_to project do %>
 		<%= render TasksStats.new(project)  %>
-		<span><%= project.name %></span>
+		<%= tasks_stats_subject_name(project)  %>
 	<% end %>
 </li>
