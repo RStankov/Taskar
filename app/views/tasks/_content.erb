@@ -3,4 +3,4 @@
 	<%= link_to_delete t(:delete), @task, :class => "delete", :confirm => t(:'tasks.task.confirm') %>
 </div>
 <%= task_state_checkbox(@task) %>
-<%= simple_format h(@task.text) %>
+<%= simple_format auto_link(h(@task.text)) %>

@@ -14,7 +14,7 @@
     <%= task_state_checkbox(task) %>
     <p>
       <%= link_to '', archive_task_path(task, :archived => !task.archived?), :class => "archive", "data-remote" => true, "data-method" => "put" %>
-      <span><%=h task.text %></span>
+      <span><%= auto_link h(task.text) %></span>
       <% if task.responsible_party %><strong><%=h task.responsible_party.full_name %></strong><% end %>
     </p>
     <input type="button" class="drag" title="<%=t :dnd %>" />
