@@ -1,6 +1,6 @@
 class Event < ActiveRecord::Base
   belongs_to :user, :touch => :last_active_at
-  belongs_to :project
+  belongs_to :project, :touch => true
   belongs_to :subject, :polymorphic => true
   
   attr_readonly :project_id

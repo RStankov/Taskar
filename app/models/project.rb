@@ -16,9 +16,9 @@ class Project < ActiveRecord::Base
   attr_accessible :name, :user_ids
   attr_readonly :account_id
   
-  named_scope :active,    :conditions => { :completed => false  }
-  named_scope :completed, :conditions => { :completed => true   }
-  
+  named_scope :active,    :conditions => { :completed => false  }, :order => "updated_at DESC"
+  named_scope :completed, :conditions => { :completed => true   }, :order => "updated_at DESC"
+    
   def involves?(user)
     users.include? user
   end
