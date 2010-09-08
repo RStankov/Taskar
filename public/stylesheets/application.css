@@ -694,7 +694,7 @@ body > footer {
   height: 14px;
 }
 
-#live_search input[type="submit"]:hover {
+#live_search input[type="submit"]:hover, #live_search input[type="submit"]:focus {
   background-position: 0 -446px;
 }
 
@@ -819,7 +819,7 @@ body > footer {
   font-size: 16px;
 }
 
-#new_status input[type="button"]:hover {
+#new_status input[type="button"]:hover, #new_status input[type="button"]:focus {
   color: #FF0000;
   text-decoration: underline;
 }
