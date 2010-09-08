@@ -1,0 +1,67 @@
+bg:
+    activerecord:
+        models:
+          project: "Project"
+          section: "Section"
+          task: "Task"
+          user: "User"
+          comment: "Comment"
+          project_user: "Participat"
+          account: "Account"
+          status: "Status"
+        
+        attributes:
+          project:
+            name: "Name"
+            account_id: "Account"
+          
+          section:
+            name: "Section name"
+            position: "Position"
+            text: "Description"
+          
+          task:
+            text: "Task text"
+            status: "Status"
+            position: "Position"
+            project: "Project"
+            section: "Section"
+            user: "Creator"
+          
+          user:
+            email: "E-mail"
+            first_name: "Name"
+            last_name: "Family"
+            full_name: "Name"
+            password: "Password"
+            password_confirmation: "Confirm password"
+            current_password: "Current password"
+            reset_password_token: "Password reset token"
+            avatar: "Photo"
+            admin: "Administrator"
+            remember_me: "Remember me"
+            account_id: "Account"
+          
+          comment:
+            task_id: "Task"
+            user_id: "User"
+            text: "Text"
+          
+          account:
+            name: "Account name"
+            owner_id: "Owner"
+          
+          project_user:
+            user_id: "User"
+            project_id: "Project"
+            
+          status:
+            text: "Status"
+          
+        errors:
+          tasks: 
+            archived_section: "You can't add new task on archived section"
+            cant_change_project: "You can't change the project for the task"
+          
+          comments:
+            archived_task: "You can't comment on archived task"
