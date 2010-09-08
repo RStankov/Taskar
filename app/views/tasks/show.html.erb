@@ -2,7 +2,7 @@
   <h1 id="task_title"><%=t ".task.#{@task.archived ? 'archived' : 'normal'}"  %> <%= task_description(@task) %></h1>
 </header>
 <div class="wrap">
-  <div id="task_content">
+  <div id="task_content" class="task <%= @task.state %>">
     <%= render "content" %>
   </div>
   <div id="comments"<%= ' style="display: none;"' if @task.comments.size == 0 %>>
