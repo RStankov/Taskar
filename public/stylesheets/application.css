@@ -476,8 +476,9 @@ body > footer {
   margin-left: -4px;
 }
 
-#nav_project span a:hover {
+#nav_project span a:hover, #nav_project span a:focus {
   background: #375185;
+  outline: none;
 }
 
 #nav_project span a:active, #nav_project a.selected {
