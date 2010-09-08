@@ -1020,7 +1020,7 @@ header .actions a {
   border: 1px solid #B3B3B3;
 }
 
-header .actions a:hover {
+header .actions a:hover, header .actions a:focus {
   background: #ececec;
   background: -moz-linear-gradient(top, #ffffff, #ececec);
   background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ececec));
