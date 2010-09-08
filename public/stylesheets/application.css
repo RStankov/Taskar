@@ -681,6 +681,7 @@ body > footer {
   box-shadow: 0px 0px 4px #999;
   -moz-box-shadow: 0px 0px 4px #999;
   -webkit-box-shadow: 0px 0px 4px #999;
+  outline: none;
 }
 
 #live_search input[type="submit"] {
