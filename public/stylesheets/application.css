@@ -429,10 +429,11 @@ body > footer {
   -webkit-border-radius: 3px;
 }
 
-#nav_account a:hover {
+#nav_account a:hover, #nav_account a:focus {
   text-shadow: none;
   background-color: #fff;
   color: #000;
+  outline: none;
 }
 
 #nav_project {
