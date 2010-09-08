@@ -645,7 +645,7 @@ body > footer {
   padding: 4px 25px 4px 10px;
 }
 
-#new_section input[type="button"]:hover {
+#new_section input[type="button"]:hover, #new_section input[type="button"]:focus {
   color: #ff0000;
   text-decoration: underline;
 }
@@ -1253,10 +1253,13 @@ header:hover .tooltip {
   text-shadow: rgba(0, 0, 0, 0.496094) 0px -1px 0px;
   padding: 4px 8px;
   margin-right: 5px;
+  -moz-transition: all 0.1s ease-out;
+  -webkit-transition: all 0.1s ease-out;
 }
 
-.action_form input[type="submit"]:hover, .submit_button:hover {
+.action_form input[type="submit"]:hover, .action_form input[type="submit"]:focus, .submit_button:hover {
   border: 1px solid #002E52;
+  outline: none;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
   -moz-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
@@ -1276,7 +1279,7 @@ header:hover .tooltip {
   text-decoration: none;
 }
 
-.action_form .cancel:hover {
+.action_form .cancel:hover, .action_form .cancel:focus {
   text-decoration: underline;
   color: #FF0000;
 }
