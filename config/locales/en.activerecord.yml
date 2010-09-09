@@ -1,4 +1,4 @@
-bg:
+en:
     activerecord:
         models:
           project: "Project"

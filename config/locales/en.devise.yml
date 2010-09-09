@@ -1,4 +1,4 @@
-bg:
+en:
   devise:
     record:
       invalid: 'Invalid email/password or account.'
