@@ -981,6 +981,7 @@ h1 {
   vertical-align: middle;
   height: 30px;
   overflow: hidden;
+  text-shadow: #CCC 1px 1px 1px;
 }
 
 section header {
