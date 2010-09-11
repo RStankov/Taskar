@@ -674,6 +674,7 @@ body > footer {
   font-size: 12px;
   padding: 4px 25px 4px 10px;
   width: 190px;
+  background: #fff;
 }
 
 #live_search input[type="text"]:hover {
@@ -705,7 +706,7 @@ body > footer {
 #live_search img {
   position: absolute;
   right: 4px;
-  top: 6px;
+  top: 5px;
 }
 
 #live_search ul {
