@@ -205,9 +205,8 @@ body > footer {
 
 #scroll_to_top {
   text-decoration: none;
-  font-size: 6px;
+  font-size: 14px;
   float: right;
-  padding: 5px 5px 0 0;
   color: #B8B8B8;
 }
 
@@ -236,7 +235,7 @@ body > footer {
 
 .bottom_links {
   border-top: 1px solid #eee;
-  padding: 20px; 
+  padding: 20px;
   height: 18px;
 }
 
@@ -283,7 +282,7 @@ body > footer {
   color: #000;
   font-weight: bold;
   text-decoration: none;
-  
+
   margin: 0 15px;
   padding: 5px 15px 5px 15px;
 
@@ -511,7 +510,7 @@ body > footer {
   text-decoration: none;
   text-align: center;
   text-overflow: ellipsis;
-  -o-text-overflow: ellipsis; 
+  -o-text-overflow: ellipsis;
   white-space: nowrap;
   position: absolute;
   top: 10px;
@@ -792,12 +791,12 @@ body > footer {
 #new_status .arrow {
   right: 185px;
   top: 4px;
-  
+
 }
 
 #new_status section {
   position: absolute;
-  right: 0px;  
+  right: 0px;
   padding: 10px;
   border-radius: 10px;
   -moz-border-radius: 10px;
@@ -1009,7 +1008,7 @@ header .actions a {
   text-decoration: none;
   background: #d9d9d9;
   background: -moz-linear-gradient(top, #ffffff, #d9d9d9);
-  background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#d9d9d9)); 
+  background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#d9d9d9));
   text-shadow: 1px 1px 1px #fff;
   color: #000;
   font-size: 14px;
@@ -1036,7 +1035,7 @@ header .actions a:active {
 header .tooltip {
   display: none;
 }
-  
+
 header:hover .tooltip {
   display: block;
   -webkit-animation-name: bounce-scale;
@@ -1399,7 +1398,7 @@ header:hover .tooltip {
     left: -5px;
     top: 10px;
   }
-  
+
   .task_wrapper:hover .tooltip {
     display: block;
     -webkit-animation-name: bounce-scale;
@@ -1407,11 +1406,11 @@ header:hover .tooltip {
     -webkit-animation-iteration-count: 1;
     -webkit-transform-origin: top left;
   }
-  
+
   .task .add {
     right: -20px;
   }
-  
+
   .task .insert_at {
     right: -100px;
     border-radius: 4px 10px 10px 4px;
@@ -1419,21 +1418,21 @@ header:hover .tooltip {
     -webkit-border-radius: 4px 10px 10px 4px;
     -webkit-transform-origin: top left;
   }
-  
+
   .task .insert_at .pointer {
     left: -6px;
   }
-  
+
   header:hover .tooltip {
     -webkit-transform-origin: top left;
   }
-  
+
   header .tooltip {
     z-index: 4;
     right: -74px;
     top: 10px;
   }
-  
+
   header .arrow {
     left: -5px;
     top: 7px;
@@ -1452,7 +1451,7 @@ header:hover .tooltip {
     right: -5px;
     top: 10px;
   }
-  
+
   .task_wrapper:hover .tooltip {
     display: block;
     -webkit-animation-name: bounce-scale;
@@ -1464,7 +1463,7 @@ header:hover .tooltip {
   .task .add {
     left: -20px;
   }
-  
+
   .task .insert_at {
     left: -100px;
     border-radius: 10px 4px 4px 10px;
@@ -1472,20 +1471,20 @@ header:hover .tooltip {
 	  -webkit-border-radius: 10px 4px 4px 10px;
     -webkit-transform-origin: top right;
   }
-  
+
   .insert_at .pointer {
     right: -6px;
   }
-  
+
   header:hover .tooltip {
     -webkit-transform-origin: top right;
   }
-  
+
   header .tooltip {
     left: -80px;
     top: 10px;
   }
-  
+
   header .arrow {
     right: -5px;
     top: 7px;
@@ -1574,7 +1573,7 @@ header:hover .tooltip {
 }
 
 #archived_tasks .checkbox {
-  opacity: 0.6;  
+  opacity: 0.6;
 }
 
 #archived_tasks .task .edit, .task.completed .edit, .task.rejected .edit {
@@ -1885,7 +1884,7 @@ article footer > li:last-child {
 #outside_box {
 	border-radius: 5px;
 	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;  
+	-moz-border-radius: 5px;
 	background-color:#FFFFFF;
 	font-size: 14px;
 	width: 500px;
