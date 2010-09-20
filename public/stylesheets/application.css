@@ -1652,9 +1652,14 @@ header:hover .tooltip {
   color: #00589D;
 }
 
-.tooltip .loading {
+.edit {
+  width: 50px;
+  display:inline-block;
+}
+
+.edit.loading {
   text-indent: -1000px;
-  background: url(/images/loaders/archive.gif) 2px 2px no-repeat;
+  background: url(/images/loaders/archive.gif) center no-repeat;
 }
 
 .insert_at {

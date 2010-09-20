@@ -6,8 +6,8 @@ CD3.Behaviors({
                               element.getElements().invoke('disable');
                             }
                           },
-    '.tooltip a':         function(e, element){
-                              element.addClassName('loading');  
+    '.edit':              function(e, element){
+                            element.addClassName('loading');  
                           }
   },
   '#sections':            function(){
