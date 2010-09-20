@@ -10,13 +10,13 @@ Taskar.Sections = {
       input.focus();
     }
   },
-  resetTaskForm: function(form, before){
+  resetTaskForm: function(form, before, dontPersistResponsible){
     var resposible    = form.down('select[name*=responsible_party_id]'),
         previousValue = resposible && resposible.getValue();
     
     this.resetForm(form);
     
-    resposible && resposible.setValue(previousValue);
+    !dontPersistResponsible && resposible && resposible.setValue(previousValue);
     
     if (before !== false){
       form.down('input[name*=insert_after]').setValue(before || null);

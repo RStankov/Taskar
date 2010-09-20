@@ -17,7 +17,7 @@ Taskar.Sections.Actions = {
           scroll = true;
         }
 
-        Taskar.Sections.resetTaskForm(newTask.down('form'), before);
+        Taskar.Sections.resetTaskForm(newTask.down('form'), before, true);
 
         newTask.slideDown(function(e){
           e.element.down('textarea').focus();
