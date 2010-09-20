@@ -1,14 +1,15 @@
 class CommentsController < ApplicationController
   before_filter :get_comment_and_project, :except => [:create]
-  before_filter :get_task_and_project, :only => [:create] 
+  before_filter :get_task_and_project, :only => [:create]
   before_filter :check_project_permissions
   before_filter :ensure_comment_is_editable, :only => [:edit, :update, :destroy]
-  
+
   def show
     redirect_to_comment unless request.xhr?
   end
-  
+
   def edit
+    redirect_to_comment unless request.xhr?
   end
 
   def create
@@ -31,23 +32,23 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment.destroy
-    
+
     event
-    
+
     redirect_to @comment.task unless request.xhr?
   end
-  
-  private 
+
+  private
     def get_comment_and_project
       @comment = Comment.find(params[:id])
       @project = @comment.project
     end
-    
+
     def get_task_and_project
       @task = Task.find(params[:task_id])
       @project = @task.project
     end
-    
+
     def ensure_comment_is_editable
       unless @comment.editable_by?(current_user)
         if request.xhr?
@@ -68,7 +69,7 @@ class CommentsController < ApplicationController
 
     def render_or_redirect_after_event
       event
-      
+
       if request.xhr?
         render :action => "show"
       else

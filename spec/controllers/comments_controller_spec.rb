@@ -3,11 +3,11 @@ require 'spec_helper'
 describe CommentsController do
   describe "with project user" do
     before { sign_with_project_user }
-    
+
     def controller_should_fire_event
       controller.should_receive(:activity).with(mock_comment)
     end
-  
+
     describe "GET show" do
       before do
         Comment.should_receive(:find).with("1").and_return(mock_comment)
@@ -32,7 +32,7 @@ describe CommentsController do
     describe "POST create" do
       before do
         Task.should_receive(:find).with("1").and_return(mock_task)
-        
+
         controller.current_user.should_receive(:new_comment).with(mock_task, {"these" => "params"}).and_return(mock_comment)
       end
 
@@ -42,22 +42,22 @@ describe CommentsController do
 
           controller_should_fire_event
         end
-        
+
         it "assigns a newly created comment as @comment" do
           post :create, :comment => {:these => 'params'}, :task_id => "1"
-          
+
           assigns[:comment].should equal(mock_comment)
         end
 
         it "redirects to the created comment" do
           post :create, :comment => {:these => 'params'}, :task_id => "1"
-          
+
           response.should redirect_to(task_url(mock_comment.task, :anchor => "comment_#{mock_comment.id}"))
         end
-        
+
         it "should render show action if xhr request" do
           xhr :post, :create, :comment => {:these => 'params'}, :task_id => "1"
-          
+
           response.should render_template(:show)
         end
       end
@@ -80,20 +80,24 @@ describe CommentsController do
 
     end
 
-    describe "GET edit" do 
+    describe "GET edit" do
       before do
         Comment.should_receive(:find).with("1").and_return(mock_comment)
         mock_comment.stub!(:editable_by?).and_return(true)
-
-        get :edit, :id => "1"
       end
 
-      it "assigns comment as @comment" do
-        assigns[:comment].should == mock_comment
+      context "" do
+        before { get :edit, :id => "1" }
+
+        it { should assign_to(:comment).with(mock_comment) }
+        it { should redirect_to(task_url(mock_comment.task, :anchor => "comment_#{mock_comment.id}")) }
       end
 
-      it "renders edit template" do
-        response.should render_template(:edit)
+      context "xhr" do
+        before { xhr :get, :edit, :id => "1" }
+
+        it { should assign_to(:comment).with(mock_comment) }
+        it { should render_template("edit.js") }
       end
     end
 
@@ -110,7 +114,7 @@ describe CommentsController do
       describe "with valid params" do
         before do
           mock_comment.should_receive(:update_attributes).with({'these' => 'params'}).and_return(true)
-          
+
           controller_should_fire_event
         end
 
@@ -160,7 +164,7 @@ describe CommentsController do
       before do
         Comment.should_receive(:find).with("37").and_return(mock_comment(:destroy => true, :editable_by? => false))
         mock_comment.stub!(:editable_by?).and_return(true)
-        
+
         controller_should_fire_event
       end
 
@@ -236,10 +240,10 @@ describe CommentsController do
     end
 
   end
-  
+
   describe "with user outside project" do
     before { sign_with_user_outside_the_project }
-    
+
     {
       :show       => 'get(:show, :id => "1")',
       :edit       => 'get(:edit, :id => "1")',
@@ -248,17 +252,17 @@ describe CommentsController do
     }.each do |(action, code)|
       it "should not allow #{action}, and redirect_to root_url" do
         Comment.should_receive(:find).with("1").and_return(mock_comment)
-        
+
         eval code
       end
     end
-    
+
     {
       :create     => 'post(:create, :task_id => "1")',
     }.each do |(action, code)|
      it "should not allow #{action}, and redirect_to root_url" do
        Task.should_receive(:find).with("1").and_return(mock_task)
-      
+
        eval code
      end
     end
