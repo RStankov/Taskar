@@ -37,6 +37,10 @@ Taskar.Sections = {
     
     form.removeClassName('loading');
     form.getElements().invoke('enable');
+  },
+  cancelAction: function(e, element){
+    var cancel = element.down('.cancel');
+    cancel && cancel.request() && cancel.fire('ajax:after');
   }
 };
 

@@ -133,10 +133,7 @@ Taskar.Sections.Actions = {
     }
   },
   'key:esc': {
-    '.task': function(e, element){
-      var cancel = element.down('.cancel');
-      cancel && cancel.request();
-    },
+    '.task': Taskar.Sections.cancelAction,
     '#new_task': function(e){
       e.findElement('li').slideUp();
     }
