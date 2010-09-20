@@ -8,182 +8,165 @@ describe CommentsController do
       controller.should_receive(:activity).with(mock_comment)
     end
 
-    describe "GET show" do
+    def mock_comment_url
+      task_url(mock_comment.task, :anchor => "comment_#{mock_comment.id}")
+    end
+
+    context "member action" do
       before do
-        Comment.should_receive(:find).with("1").and_return(mock_comment)
+        Comment.should_receive(:find).with("1").and_return mock_comment
+        mock_comment.stub(:editable_by?).and_return true
       end
 
-      it "assign retrieved comment as @comment" do
-        get :show, :id => "1"
-        assigns[:comment].should == mock_comment
+      describe "GET show" do
+        context "" do
+          before { get :show, :id => "1" }
+
+          it { should assign_to(:comment).with(mock_comment) }
+          it { should redirect_to(mock_comment_url) }
+        end
+
+        context "xhr" do
+          before { xhr :get, :show, :id => "1" }
+
+          it { should assign_to(:comment).with(mock_comment) }
+          it { should render_template('show') }
+        end
       end
 
-      it "renders show action on xhr" do
-        xhr :get, :show, :id => "1"
-        response.should render_template('show')
+      describe "GET edit" do
+        context "" do
+          before { get :edit, :id => "1" }
+
+          it { should assign_to(:comment).with(mock_comment) }
+          it { should redirect_to(task_url(mock_comment.task, :anchor => "comment_#{mock_comment.id}")) }
+        end
+
+        context "xhr" do
+          before { xhr :get, :edit, :id => "1" }
+
+          it { should assign_to(:comment).with(mock_comment) }
+          it { should render_template("edit.js") }
+        end
       end
 
-      it "redirects to comment page on non xhr request" do
-        get :show, :id => "1"
-        response.should redirect_to(task_url(mock_comment.task, :anchor => "comment_#{mock_comment.id}"))
+      describe "PUT update" do
+        def params
+          {:id => "1", :comment => {:these => 'params'}}
+        end
+
+        context "with valid params" do
+          before do
+            mock_comment.should_receive(:update_attributes).with({'these' => 'params'}).and_return(true)
+
+            controller_should_fire_event
+          end
+
+          context "" do
+            before { put :update, params }
+
+            it { should assign_to(:comment).with(mock_comment) }
+            it { should redirect_to(mock_comment_url) }
+          end
+
+          context "xhr" do
+            before { xhr :put, :update, params }
+
+            it { should assign_to(:comment).with(mock_comment) }
+            it { should render_template("show.js") }
+          end
+        end
+
+        context "with invalid params" do
+          before do
+            mock_comment.should_receive(:update_attributes).with({'these' => 'params'}).and_return(false)
+          end
+
+          context "" do
+            before { put :update, params }
+
+            it { should assign_to(:comment).with(mock_comment) }
+            it { should redirect_to(mock_comment_url) }
+          end
+
+          context "xhr" do
+            before { xhr :put, :update, params }
+
+            it { should assign_to(:comment).with(mock_comment) }
+            it { should render_template("edit.js") }
+          end
+        end
+
       end
+
+      describe "DELETE destroy" do
+        before do
+          mock_comment.should_receive(:destroy)
+
+          controller_should_fire_event
+        end
+
+        it "redirects after destroy on normal request" do
+          delete :destroy, :id => "1"
+          should redirect_to(task_url(mock_comment.task))
+        end
+
+        it "it render tempalte on xhr request " do
+          xhr :delete, :destroy, :id => "1"
+          should render_template("destroy.js")
+        end
+      end
+
     end
 
     describe "POST create" do
       before do
-        Task.should_receive(:find).with("1").and_return(mock_task)
+        Task.should_receive(:find).with("1").and_return mock_task
 
-        controller.current_user.should_receive(:new_comment).with(mock_task, {"these" => "params"}).and_return(mock_comment)
+        controller.current_user.should_receive(:new_comment).with(mock_task, {"these" => "params"}).and_return mock_comment
       end
 
-      describe "with valid params" do
+      context "with valid params" do
         before do
-          mock_comment.stub!(:save).and_return(true)
+          mock_comment.stub(:save).and_return true
 
           controller_should_fire_event
         end
 
-        it "assigns a newly created comment as @comment" do
-          post :create, :comment => {:these => 'params'}, :task_id => "1"
+        context "" do
+          before { post :create, :comment => {:these => 'params'}, :task_id => "1" }
 
-          assigns[:comment].should equal(mock_comment)
+          it { should assign_to(:comment).with(mock_comment) }
+          it { should redirect_to(mock_comment_url) }
         end
 
-        it "redirects to the created comment" do
-          post :create, :comment => {:these => 'params'}, :task_id => "1"
+        context "xhr" do
+          before { xhr :post, :create, :comment => {:these => 'params'}, :task_id => "1" }
 
-          response.should redirect_to(task_url(mock_comment.task, :anchor => "comment_#{mock_comment.id}"))
-        end
 
-        it "should render show action if xhr request" do
-          xhr :post, :create, :comment => {:these => 'params'}, :task_id => "1"
-
-          response.should render_template(:show)
+          it { should assign_to(:comment).with(mock_comment) }
+          it { should render_template("show.js") }
         end
       end
 
-      describe "with invalid params" do
-        before do
-          mock_comment.stub!(:save).and_return(false)
+      context "with invalid params" do
+        before { mock_comment.stub(:save).and_return false }
 
-          post :create, :comment => {:these => 'params'}, :task_id => "1"
+        context "" do
+          before { post :create, :comment => {:these => 'params'}, :task_id => "1" }
+
+          it { should assign_to(:comment).with(mock_comment) }
+          it { should redirect_to(mock_comment_url) }
         end
 
-        it "assigns a newly created but unsaved comment as @comment" do
-          assigns[:comment].should equal(mock_comment)
-        end
+        context "xhr" do
+          before { xhr :post, :create, :comment => {:these => 'params'}, :task_id => "1" }
 
-        it "re-renders the 'new' template" do
-          response.should render_template('new')
-        end
-      end
-
-    end
-
-    describe "GET edit" do
-      before do
-        Comment.should_receive(:find).with("1").and_return(mock_comment)
-        mock_comment.stub!(:editable_by?).and_return(true)
-      end
-
-      context "" do
-        before { get :edit, :id => "1" }
-
-        it { should assign_to(:comment).with(mock_comment) }
-        it { should redirect_to(task_url(mock_comment.task, :anchor => "comment_#{mock_comment.id}")) }
-      end
-
-      context "xhr" do
-        before { xhr :get, :edit, :id => "1" }
-
-        it { should assign_to(:comment).with(mock_comment) }
-        it { should render_template("edit.js") }
-      end
-    end
-
-    describe "PUT update" do
-      before do
-        Comment.should_receive(:find).with("1").and_return(mock_comment)
-        mock_comment.stub!(:editable_by?).and_return(true)
-      end
-
-      def params
-        {:id => "1", :comment => {:these => 'params'}}
-      end
-
-      describe "with valid params" do
-        before do
-          mock_comment.should_receive(:update_attributes).with({'these' => 'params'}).and_return(true)
-
-          controller_should_fire_event
-        end
-
-        it "updates the requested comment" do
-          xhr :put, :update, params
-        end
-
-        it "assigns the requested comment as @comment" do
-          xhr :put, :update, params
-          assigns[:comment].should equal(mock_comment)
-        end
-
-        it "renders show action if this is xhr request" do
-          xhr :put, :update, params
-          response.should render_template('show')
-        end
-
-        it "redirects to the comment if not xhr request" do
-          put :update, params
-          response.should redirect_to(task_url(mock_comment.task, :anchor => "comment_#{mock_comment.id}"))
+          it { should assign_to(:comment).with(mock_comment) }
+          it { should render_template("new.js") }
         end
       end
 
-      describe "with invalid params" do
-        before do
-          mock_comment.should_receive(:update_attributes).with({'these' => 'params'}).and_return(false)
-        end
-
-        it "updates the requested comment" do
-          put :update, params
-        end
-
-        it "assigns the comment as @comment" do
-          put :update, params
-          assigns[:comment].should equal(mock_comment)
-        end
-
-        it "re-renders the 'edit' template" do
-          put :update, params
-          response.should render_template('edit')
-        end
-      end
-
-    end
-
-    describe "DELETE destroy" do
-      before do
-        Comment.should_receive(:find).with("37").and_return(mock_comment(:destroy => true, :editable_by? => false))
-        mock_comment.stub!(:editable_by?).and_return(true)
-
-        controller_should_fire_event
-      end
-
-      it "destroys the requested comment (if it's editable)" do
-        mock_comment.should_receive(:editable_by?).and_return(true)
-        mock_comment.should_receive(:destroy)
-        delete :destroy, :id => "37"
-      end
-
-      it "redirects to the comments list" do
-        delete :destroy, :id => "37"
-        response.should redirect_to(task_url(mock_comment.task))
-      end
-
-      it "returns ok when this is xhr request" do
-        xhr :delete, :destroy, :id => "37"
-
-        response.should render_template(:destroy)
-      end
     end
 
     describe "get_comment_and_ensure_its_editable filter (with not editable comment)" do

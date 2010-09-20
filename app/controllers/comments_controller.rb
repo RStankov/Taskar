@@ -17,16 +17,20 @@ class CommentsController < ApplicationController
 
     if @comment.save
       render_or_redirect_after_event
-    else
+    elsif request.xhr?
       render :action => "new"
+    else
+      redirect_to_comment
     end
   end
 
   def update
     if @comment.update_attributes(params[:comment])
       render_or_redirect_after_event
-    else
+    elsif request.xhr?
       render :action => "edit"
+    else
+      redirect_to_comment
     end
   end
 
