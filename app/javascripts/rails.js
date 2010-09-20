@@ -28,9 +28,11 @@
   function handleRemote(e, element){
     if (!e.stopped){
       e.stop();
-      var request = element.request();
-      element.fire('ajax:' + request.options.method);
-      element.fire('ajax:after');
+      if (!element.fire('ajax:before').stopped){
+        var request = element.request();
+        element.fire('ajax:' + request.options.method);
+        element.fire('ajax:after');
+      }
     }
   }
 

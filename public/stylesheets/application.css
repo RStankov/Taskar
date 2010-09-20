@@ -1652,6 +1652,11 @@ header:hover .tooltip {
   color: #00589D;
 }
 
+.tooltip .loading {
+  text-indent: -1000px;
+  background: url(/images/loaders/archive.gif) 2px 2px no-repeat;
+}
+
 .insert_at {
   z-index: 4;
   display: none;
