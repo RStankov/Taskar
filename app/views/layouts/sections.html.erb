@@ -48,7 +48,7 @@
 				<%= link_to participant_task_count(current_user.responsibilities_count(@project.id)), [@project, :tasks] %>
 				<br />
 				<%= link_to t(".status.clear"), [:clear, @project, :statuses], "data-method" => "delete", "data-remote" => true %>
-        <% form_for [@project, Status.new], :html => {:class => "action_form tooltip", :style => "display: none;", "data-remote" => true} do |form| %>
+        <% form_for [@project, Status.new], :html => {:class => "action_form tooltip", :style => "display: none;", "data-remote" => true, "data-disable" => false} do |form| %>
           <div class="arrow"></div>
           <section>
             <%= form.label :text, t(".status.label") %>
@@ -90,13 +90,13 @@
             <!--
             <button class="list_extended"></button>
             <button class="list_images list_on"></button>
-            -->   
+            -->
           </h3>
           <ul class="people_extended">
             <% @project.participants.each do |participant| %>
               <% content_tag_for :li, participant, :title => participant_status_title(participant) do %>
                 <%= image_tag participant.user.avatar.url(:aside), :alt => participant.user.full_name %>
-                <span class="people_info">              
+                <span class="people_info">
                   <strong><%=h participant.user.full_name %></strong>
                   <span class="status"><%= participant_status participant %></span>
                 </span>

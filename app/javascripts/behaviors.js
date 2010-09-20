@@ -1,8 +1,10 @@
 CD3.Behaviors({
   'body:ajax:after': {
     '.action_form':       function(e, element){
-                            element.addClassName('loading');
-                            element.getElements().invoke('disable');
+                            if (element.getAttribute('data-disable') !== 'false'){
+                              element.addClassName('loading');
+                              element.getElements().invoke('disable');
+                            }
                           }
   },
   '#sections':            function(){
