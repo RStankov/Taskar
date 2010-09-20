@@ -1,21 +1,19 @@
-Taskar.Sections.NewStatus = {
-  'click': {
-    'img': function(){
-      var form = $('new_status');
-      form.down('textarea').setValue('').setStyle({backgroundColor: null});
-      form.toggleWithEffect('appear', function(e){
-        e.element.visible() && e.element.down('textarea').setValue('').focus();
-      });
-    },
-    'input[type=button]': function(){
-      $('new_status').fade();
-    }
-  },
-  'key:esc': function(){
-    $('new_status').fade();
-  },
-  'submit': Taskar.Sections.validateForm,
-  'ajax:post': function(){
-    $('new_status').fade();
+Taskar.Sections.NewStatus = function(userCard){
+  var form = $('new_status');
+  
+  function hide(){
+    form.fade();
   }
-}
+  
+  userCard.down('img').observe('click', function(){
+    form.down('textarea').setValue('').setStyle({backgroundColor: null});
+    form.toggleWithEffect('appear', function(e){
+      e.element.visible() && e.element.down('textarea').setValue('').focus();
+    });
+  });
+  
+  form.observe('submit', Taskar.Sections.validateForm);
+  form.observe('key:esc', hide);
+  form.observe('ajax:post', hide);
+  form.down('input[type=button]').observe('click', hide);
+};
