@@ -1300,6 +1300,11 @@ header:hover .tooltip {
   border: 2px solid #ff9999;
 }
 
+.action_form.loading .buttons {
+  text-indent: -1000px;
+  background: url(/images/loaders/action_form.gif) 0px 15px no-repeat;
+}
+
 /*** ТASKS LISTS / TASK ***/
 
 .tasks_list {

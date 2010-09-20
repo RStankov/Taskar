@@ -1,4 +1,10 @@
 CD3.Behaviors({
+  'body:ajax:after': {
+    '.action_form':       function(e, element){
+                            element.addClassName('loading');
+                            element.getElements().invoke('disable');
+                          }
+  },
   '#sections':            function(){
                             Taskar.Sections.Ordering(this);
                             Taskar.Sections.NewSection(this);
