@@ -34,6 +34,9 @@ Taskar.Sections = {
         element.replace(element.down());
       });
     }
+    
+    form.removeClassName('loading');
+    form.getElements().invoke('enable');
   }
 };
 
