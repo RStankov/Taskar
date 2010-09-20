@@ -1259,9 +1259,6 @@ header:hover .tooltip {
   text-shadow: rgba(0, 0, 0, 0.496094) 0px -1px 0px;
   padding: 4px 8px;
   margin-right: 5px;
-  -moz-transition: all 0.1s ease-out;
-  -webkit-transition: all 0.1s ease-out;
-  -o-transition: all 0.1s ease-out;
 }
 
 .action_form input[type="submit"]:hover, .action_form input[type="submit"]:focus, .submit_button:hover {
