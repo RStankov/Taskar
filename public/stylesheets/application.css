@@ -1657,6 +1657,11 @@ header:hover .tooltip {
   display:inline-block;
 }
 
+.tooltip .edit {
+  width: 60px;
+  display: block;
+}
+
 .edit.loading {
   text-indent: -1000px;
   background: url(/images/loaders/archive.gif) center no-repeat;
