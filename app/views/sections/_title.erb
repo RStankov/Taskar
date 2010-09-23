@@ -6,6 +6,6 @@
       <%= link_to_delete t(:delete), @section, :class => "delete", :confirm => t(:'.confirm') %>
 		</div>
 	</div>
-  <%=h @section.name %>
+  <%= @section.name %>
   <%= link_to "", archive_section_path(@section, :archive => true), :class => "archive", :'data-method' => 'put' %>
 </h1>

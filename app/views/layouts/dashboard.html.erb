@@ -19,7 +19,7 @@
         <ul>
           <% @projects.each do |project| %>
           <li>
-              <strong><%= link_to h(project.name), [project, :sections] %></strong>
+              <strong><%= link_to project.name, [project, :sections] %></strong>
           </li>
           <% end %>
         </ul>

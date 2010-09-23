@@ -1,13 +1,13 @@
 <% if @section.archived? %>
   <header id="section_title">
-    <h1 class="archived">      
+    <h1 class="archived">
       <div class="tooltip">
     		<div class="arrow"></div>
     		<div class="tooltip_actions">
           <%= link_to_delete t(:delete), @section, :class => "delete", :confirm => t(:'.confirm') %>
     		</div>
     	</div>
-      <%=h @section.name %>
+      <%= @section.name %>
       <%= link_to "", archive_section_path(@section, :archive => false), :class => "unarchive", :'data-method' => 'put' %>
     </h1>
   </header>

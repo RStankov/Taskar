@@ -26,7 +26,7 @@
         <h3><%=t :".current_projects", :count => @projects.size  %></h3>
         <ul>
           <% @projects.each do |project| %>
-          <li><%= link_to h(project.name), project %></li>
+          <li><%= link_to project.name, project %></li>
           <% end %>
         </ul>
 				<%= link_to t(:'.new_project'), new_project_path %><br />

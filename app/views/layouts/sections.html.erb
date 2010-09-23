@@ -44,7 +44,7 @@
       </form>
       <div id="user_card">
         <%= image_tag current_user.avatar.url %>
-        <strong><%=h current_user.full_name %></strong>
+        <strong><%= current_user.full_name %></strong>
 				<%= link_to participant_task_count(current_user.responsibilities_count(@project.id)), [@project, :tasks] %>
 				<br />
 				<%= link_to t(".status.clear"), [:clear, @project, :statuses], "data-method" => "delete", "data-remote" => true %>
@@ -66,7 +66,7 @@
   	      <% @project.sections.unarchived.each do |section| %>
   	        <% content_tag_for(:li, section) do %>
                 <%= new_section_link section %>
-                <%= link_to h(section.name), section, :class => "link " + (@section == section && "selected").to_s %>
+                <%= link_to section.name, section, :class => "link " + (@section == section && "selected").to_s %>
                 <input type="button" class="drag" title="<%=t :dnd %>" />
             <% end %>
           <% end %>
@@ -97,7 +97,7 @@
               <% content_tag_for :li, participant, :title => participant_status_title(participant) do %>
                 <%= image_tag participant.user.avatar.url(:aside), :alt => participant.user.full_name %>
                 <span class="people_info">
-                  <strong><%=h participant.user.full_name %></strong>
+                  <strong><%= participant.user.full_name %></strong>
                   <span class="status"><%= participant_status participant %></span>
                 </span>
               <% end %>

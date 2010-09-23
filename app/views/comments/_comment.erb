@@ -2,7 +2,7 @@
   <%= image_tag comment.user.avatar.url %>
   <div>
     <h4>
-      <%= link_to h(comment.user.full_name), comment %>
+      <%= link_to comment.user.full_name, comment %>
       <%= time_tag(comment.updated_at) %>
     </h4>
     <%= simple_format auto_link(h(comment.text)) %>
