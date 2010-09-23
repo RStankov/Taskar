@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Taskar::Application.config.secret_token = '52e514075beefa573e89e98f9e460fbab45d938981243c6dd186884a045218d34c16a2d6a6240b270d13b37dd67df47a32a605d73d602e45f37a59f1176f8fb1'
+Taskar::Application.config.secret_token = '3e32bfd39684f94fdea2b69782bda35d55aea112313e8044499cd994317ac6f49ec2da34f37de92d7a321111984d5063ad47a5a37bca855abaef9f8fef92961c'

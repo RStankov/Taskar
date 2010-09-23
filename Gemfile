@@ -1,11 +1,11 @@
-source :gemcutter
+source "http://rubygems.org"
 
-gem "rails",              "2.3.9"
+gem "rails",              "3.0.0"
 gem "sqlite3-ruby",                    :require => "sqlite3"
 
 gem "paperclip",          "2.3.3"
 gem "will_paginate",      "2.3.11"
-gem "devise",             "1.0.7"
+gem "devise",             "1.1.2"
 
 gem "sprockets"
 gem "acts_as_list"
@@ -13,7 +13,7 @@ gem "acts_as_list"
 gem "erubis",             "2.6.6"
 
 group :development do
-
+  gem "capistrano"
 end
 
 group :test do
