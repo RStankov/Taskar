@@ -27,7 +27,7 @@ module ApplicationHelper
   end
 
   def javascript_response(&block)
-    concat "try {" + capture(&block) + "} catch(e){ alert(e); }"
+    concat raw("try {" + capture(&block) + "} catch(e){ alert(e); }")
   end
 
   def copywrite
