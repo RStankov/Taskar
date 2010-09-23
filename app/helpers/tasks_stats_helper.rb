@@ -1,6 +1,10 @@
 module TasksStatsHelper
   MAX_SUBJECT_LENGTH_NAME = 30
-  
+
+  def tasks_stats(subject)
+    render(TasksStats.new(subject)) + tasks_stats_subject_name(subject)
+  end
+
   def tasks_stats_subject_name(subject)
     if subject.name && subject.name.mb_chars.length > MAX_SUBJECT_LENGTH_NAME
       content_tag "span", truncate(subject.name, :length => MAX_SUBJECT_LENGTH_NAME), :title => subject.name

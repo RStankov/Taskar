@@ -25,8 +25,7 @@
 	  <% @sections.each do |section| %>
 			<li class="tasks_stats">
 				<% link_to section do %>
-					<%= render TasksStats.new(section)  %>
-					<%= tasks_stats_subject_name(section) %>
+					<%= tasks_stats(section)  %>
 					<%= raw "<small>#{t('projects.archived_section')}</small>" if section.archived? %>
 				<% end %>
 			</li>
