@@ -9,7 +9,7 @@
     <li>
       <%= image_tag status.user.avatar.url %>
       <div>
-        <%= simple_format "<strong>#{h(status.user.full_name)}</strong> " + h(status.text) %>
+        <%= simple_format raw("<strong>#{h(status.user.full_name)}</strong> " + h(status.text)) %>
         <%= link_to t(:delete), [@project, status], "data-remote" => true, "data-method" => "delete", "data-confirm" => t(:confirm) if status.user == current_user %>
         <%= time_tag(status.created_at) %>
       </div>
