@@ -7,17 +7,6 @@ RAILS_GEM_VERSION = '2.3.8' unless defined? RAILS_GEM_VERSION
 require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
-  config.gem 'webrat'
-  config.gem 'rspec', :lib => 'spec'
-  config.gem "rspec-rails", :lib => false, :version => ">= 1.2.0"
-  config.gem 'thoughtbot-shoulda', :lib => false
-  config.gem 'thoughtbot-factory_girl', :lib => 'factory_girl'
-  config.gem 'thoughtbot-paperclip', :lib => 'paperclip'
-  config.gem 'will_paginate', :version => '~> 2.3.11'
-  config.gem 'devise', :version => '1.0.7'
-  config.gem 'sprockets'
-  config.gem 'acts_as_list'
-  
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
   # -- all .rb files in that directory are automatically loaded.
