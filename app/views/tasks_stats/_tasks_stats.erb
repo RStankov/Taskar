@@ -1,5 +1,5 @@
 <% unless tasks_stats.needed? %>
-	<strong><%= tasks_stats.empty_text.gsub(" ", "<br />") %></strong>
+	<strong><%= raw tasks_stats.empty_text.gsub(" ", "<br />") %></strong>
 <% else %>
 	<ul>
 		<% tasks_stats.stats do |stat| %>

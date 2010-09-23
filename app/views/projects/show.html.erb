@@ -27,7 +27,7 @@
 				<% link_to section do %>
 					<%= render TasksStats.new(section)  %>
 					<%= tasks_stats_subject_name(section) %>
-					<%= "<small>#{t('projects.archived_section')}</small>" if section.archived? %>
+					<%= raw "<small>#{t('projects.archived_section')}</small>" if section.archived? %>
 				<% end %>
 			</li>
 	 <% end %>
