@@ -2,8 +2,8 @@
   <h1 id="dashboard_title"><%=t :'.header' %></h1>
 </header>
 
-<%= '<div class="wrap"><p class="notice">' + notice + '</p></div>' if notice %>
-<%= '<div class="wrap"><p class="alert">' + alert + '</p></div>' if alert %>
+<%= raw '<div class="wrap"><p class="notice">' + notice + '</p></div>' if notice %>
+<%= raw '<div class="wrap"><p class="alert">' + alert + '</p></div>' if alert %>
 
 <% if @projects.empty? %>
 	<div class="help_notice">
@@ -29,7 +29,7 @@
 		        <% else %>
 		          <%= truncate(event.info, :length => 65) %>
 		        <% end %>
-		      </td>  
+		      </td>
 		        <td class="action"><%=t "events.action.#{event.action}" %></td>
 		        <td class="user"><%= event.user.full_name %></td>
 		    </tr>

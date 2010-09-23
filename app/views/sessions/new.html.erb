@@ -3,8 +3,8 @@
 		<%= title 'sessions.title' %>
 	</header>
 	<% form_for resource_name, resource, :url => session_path(resource_name), :html => { :class => "action_form" } do |f| %>
-		<%= '<p class="notice">' + notice + '</p>' if notice %>
-	  <%= '<p class="alert">' + alert + '</p>' if alert %>
+		<%= raw '<p class="notice">' + notice + '</p>' if notice %>
+	  <%= raw '<p class="alert">' + alert + '</p>' if alert %>
 		<%= f.label :email %>
 	  <%= f.text_field :email %>
 	  <%= f.label :password %>
@@ -15,6 +15,6 @@
 	  <div class="buttons">
 	    <%= f.submit t('devise.sessions.link') %>
 	  </div>
-	<% end %>	
+	<% end %>
 	<%= render :partial => "shared/devise_links" %>
 </div>
