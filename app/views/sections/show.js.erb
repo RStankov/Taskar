@@ -2,13 +2,13 @@
 	(function(element){
 		element.morph({
 			change: function(){
-				element.update("<%= escape_javascript(render "title") %>");
+				element.update("<%= raw escape_javascript(render "title") %>");
 			}
 		});
 		<% unless @section.text.blank? %>
 			element.insert({
 				after: new Element('p', {className: 'text', id: 'section_text'})
-								.update("<%= escape_javascript nl2br(auto_link(@section.text)) %>")
+								.update("<%= raw escape_javascript(nl2br(auto_link(@section.text))) %>")
 								.hide()
 								.slideDown()
 			});

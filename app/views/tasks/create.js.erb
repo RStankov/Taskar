@@ -1,7 +1,7 @@
 <% javascript_response do %>
   (function(){
     <% if higher_item = @task.higher_item %>
-      var content = "<%= escape_javascript(render @task) %>",
+      var content = "<%= raw escape_javascript(render @task) %>",
           before  = $("task_<%= @task.higher_item.id %>");
       if (before){
         before.insert({after: content});
@@ -9,7 +9,7 @@
         $("new_task").insert({before: content});
       }
     <% else %>
-      $("tasks").insert({top: "<%= escape_javascript(render @task) %>"});
+      $("tasks").insert({top: "<%= raw escape_javascript(render @task) %>"});
     <% end %>
     $("task_<%= @task.id %>").hide().slideDown(function(e){
       new Taskar.FX.ScrollTo(e.element);

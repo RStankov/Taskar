@@ -1,4 +1,4 @@
 <% javascript_response do %>
-  $('new_task').replace("<%= escape_javascript(render "new_task") %>");
+  $('new_task').replace("<%= raw escape_javascript(render "new_task") %>");
   $('new_task').show().highlight({startColor: Taskar.ERROR_COLOR}).down('textarea').focus();
 <% end %>

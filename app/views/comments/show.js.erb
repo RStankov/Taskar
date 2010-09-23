@@ -1,8 +1,8 @@
 <% javascript_response do %>
   (function(){
-    var content = "<%= escape_javascript(render @comment) %>",
+    var content = "<%= raw escape_javascript(render @comment) %>",
         comment = $('comment_<%= @comment.id %>');
-        
+
     if (comment){
 			comment.morph({
 				change: function(){
