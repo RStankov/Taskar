@@ -11,7 +11,7 @@ Taskar::Application.routes.draw do |map|
     end
   end
 
-  #map.devise_for :users, :as => "sign", :path_names => {:sign_in => "in", :sign_out => "out", :sign_up => "up"}
+  devise_for :users, :as => "sign", :path_names => {:sign_in => "in", :sign_out => "out", :sign_up => "up"}
 
   SprocketsApplication.routes(map)
 
