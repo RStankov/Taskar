@@ -24,7 +24,7 @@ module ApplicationHelper
   def title(page_title)
     page_title = t(page_title, :default => page_title)
     content_for :title, page_title
-    "<h1>#{page_title}</h1>".html_safe!
+    "<h1>#{page_title}</h1>".html_safe
   end
 
   def javascript_response(&block)
@@ -40,12 +40,12 @@ module ApplicationHelper
   end
 
   def time_tag(time)
-    %(<time datetime="#{time.rfc2822}" title="#{l(time, :format => :long)}">#{t(:before, :time => time_ago_in_words(time))}</time>).html_safe!
+    %(<time datetime="#{time.rfc2822}" title="#{l(time, :format => :long)}">#{t(:before, :time => time_ago_in_words(time))}</time>).html_safe
   end
 
   def csrf_meta_tag
     if protect_against_forgery?
-      %(<meta name="csrf-param" content="#{h(request_forgery_protection_token)}"/>\n<meta name="csrf-token" content="#{h(form_authenticity_token)}"/>).html_safe!
+      %(<meta name="csrf-param" content="#{h(request_forgery_protection_token)}"/>\n<meta name="csrf-token" content="#{h(form_authenticity_token)}"/>).html_safe
     end
   end
 
@@ -53,6 +53,6 @@ module ApplicationHelper
     %(<div class="insert_at">
       #{content}
       <div class="pointer"></div>
-    </div>).html_safe!
+    </div>).html_safe
   end
 end
