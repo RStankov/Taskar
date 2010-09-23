@@ -1,11 +1,11 @@
 <% javascript_response do %>
 	(function(){
-		$('section_title').slideUp({
+		$("section_title").slideUp({
 			after: function(e){
-				e.element.update("<%= raw escape_javascript(render "form", :section => @section, :remote => true) %>").slideDown();
+				e.element.update(<%= javascript_string_from_partial "form", :section => @section, :remote => true %>).slideDown();
 			}
 		});
-		var text = $('section_text');
-    text && text.removeWithEffect('slideUp');
+		var text = $("section_text");
+    text && text.removeWithEffect("slideUp");
 	})();
 <% end %>

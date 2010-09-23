@@ -2,12 +2,12 @@
   (function(element){
 		element.morph({
 			change: function(){
-		    element.update("<%= raw escape_javascript(render "form", :task => @task) %>");
+		    element.update(<%= javascript_string_from_partial "form", :task => @task %>);
 			},
 			after: function(){
 				element.highlight();
-				element.down('textarea').focus();
+				element.down("textarea").focus();
 			}
 		});
-  })($('task_<%= @task.id %>') || $('task_content'));
+  })($("<%= dom_id @task %>") || $("task_content"));
 <% end %>

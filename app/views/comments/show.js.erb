@@ -1,7 +1,7 @@
 <% javascript_response do %>
   (function(){
-    var content = "<%= raw escape_javascript(render @comment) %>",
-        comment = $('comment_<%= @comment.id %>');
+    var content = <%= javascript_string_from_partial @comment %>,
+        comment = $("<%= dom_id @comment %>");
 
     if (comment){
 			comment.morph({
@@ -10,10 +10,10 @@
 				}
 			});
     } else {
-      Taskar.Sections.resetForm($('new_comment'));
-      $('comments').show().down('ul').insert({bottom: content});
-      $('comment_<%= @comment.id %>').hide().slideDown();
-      $('comments_count').update("<%= @comment.task.comments.count %>");
+      Taskar.Sections.resetForm($("new_comment"));
+      $("comments").show().down("ul").insert({bottom: content});
+      $("<%= dom_id @comment %>").hide().slideDown();
+      $("comments_count").update("<%= @comment.task.comments.count %>");
     }
   })();
 <% end %>

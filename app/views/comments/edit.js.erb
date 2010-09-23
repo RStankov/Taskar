@@ -2,12 +2,12 @@
   (function(element){
 		element.morph({
 			change: function(){
-	    	element.update("<%= raw escape_javascript(render "edit_form") %>");
+	    	element.update(<%= javascript_string_from_partial "edit_form" %>);
 			},
 			after: function(){
 	    	element.highlight();
-		    element.down('textarea').focus();
+		    element.down("textarea").focus();
 			}
 		})
-  })($('comment_<%= @comment.id %>'));
+  })($("<%= dom_id @comment %>"));
 <% end %>

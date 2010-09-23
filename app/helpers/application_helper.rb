@@ -31,6 +31,10 @@ module ApplicationHelper
     concat raw("try {" + capture(&block) + "} catch(e){ alert(e); }")
   end
 
+  def javascript_string_from_partial(partial, options = {})
+    raw '"' + escape_javascript(render(partial, options)) + '"'
+  end
+
   def copywrite
     t(:'copywrite', :year => Time.now.year)
   end
