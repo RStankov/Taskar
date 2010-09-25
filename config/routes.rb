@@ -54,7 +54,7 @@ Taskar::Application.routes.draw do
 
   devise_for :users, :path => "sign", :path_names => {:sign_in => "in", :sign_out => "out", :sign_up => "up"}
 
-  #SprocketsApplication.routes(self)
+  SprocketsApplication.routes(self)
 
   root :to => "dashboard#index"
 end
