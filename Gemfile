@@ -20,7 +20,7 @@ end
 
 group :test do
   gem "autotest"
-  gem "rspec-rails",      ">= 2.0.0.beta.22"
-  gem "shoulda",          ">=2.11.3"
-  gem "factory_girl",     ">=1.2.2"
+  gem "rspec-rails",        ">= 2.0.0.beta.22"
+  gem "shoulda",            ">=2.11.3"
+  gem "factory_girl_rails", ">= 1.0.0"
 end
