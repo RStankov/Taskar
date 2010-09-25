@@ -4,7 +4,7 @@
 <div class="wrap">
 	<% form_for @user, :url => registration_path(resource_name), :html => { :class => 'action_form', :multipart => true} do |f| %>
 	  <%= render 'shared/error_messages', :target => f.object %>
-		
+
 	  <p><%= f.label :email %></p>
 	  <p><%= f.text_field :email %></p>
 
@@ -19,18 +19,18 @@
 
 	  <p><%= f.label :last_name  %></p>
 	  <p><%= f.text_field :last_name  %></p>
-  
+
 		<% f.fields_for :owned_account, @user.owned_account || Account.new do |account| %>
 			<p><%= account.label :name, "Име на фирмата ви" %></p>
 			<p><%= account.text_field :name %></p>
 		<% end %>
-			
+
 	  <p><%= f.label :avatar %></p>
 	  <p><%= f.file_field :avatar %></p>
-	
+
 		<div class="buttons">
       <%= f.submit t('devise.registrations.register') %>
 	  </div>
 	<% end %>
 </div>
-<%= render :partial => "shared/devise_links" %>
+<%= render :partial => "devise/shared/links" %>
