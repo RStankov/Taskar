@@ -18,20 +18,19 @@ class Task < ActiveRecord::Base
   acts_as_list :scope => :section
 
   include Taskar::List::Model
-  include Taskar::NamedScopes
 
   before_validation :inherit_section_project, :on => :create
 
   validate :ensure_section_is_not_archived, :on => :create
   validate :project_id_on_new_section, :on => :update
 
-  named_scope :archived,          :conditions => { :archived => true  }, :order => "position DESC"
-  named_scope :unarchived,        :conditions => { :archived => false }, :order => "position ASC"
-  named_scope :rejected,          :conditions => { :status => -1 }
-  named_scope :opened,            :conditions => { :status =>  0 }
-  named_scope :completed,         :conditions => { :status =>  1 }
-  named_scope :opened_in_project, lambda { |project| {:conditions => {:project_id => project.id, :status => 0}} }
-  named_scope :search,            lambda { |ss|      {:conditions => ["text LIKE :ss", {:ss => "%#{ss.gsub(' ', '%')}%"}]} }
+  scope :archived,          where(:archived => true  ).order("position DESC")
+  scope :unarchived,        where(:archived => false ).order("position ASC")
+  scope :rejected,          where(:status => -1)
+  scope :opened,            where(:status =>  0)
+  scope :completed,         where(:status =>  1)
+  scope :opened_in_project, lambda { |project| where(:project_id => project.id, :status => 0) }
+  scope :search,            lambda { |ss|      where("text LIKE ?", "%#{ss.gsub(' ', '%')}%") }
 
   STATES = {
     -1 => "rejected",
