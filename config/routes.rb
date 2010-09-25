@@ -18,7 +18,7 @@ Taskar::Application.routes.draw do
 
     resources :aside, :only => :index
 
-    resources :tasks, :only => [:index] do
+    resources :tasks, :only => :index do
       collection do
         put :reorder
         get :search
