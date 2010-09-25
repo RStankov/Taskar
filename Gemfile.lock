@@ -64,6 +64,7 @@ GEM
     net-ssh (2.0.23)
     net-ssh-gateway (1.0.1)
       net-ssh (>= 1.99.1)
+    nokogiri (1.4.3.1)
     paperclip (2.3.3)
       activerecord
       activesupport
@@ -108,6 +109,10 @@ GEM
     tzinfo (0.3.23)
     warden (0.10.7)
       rack (>= 1.0.0)
+    webrat (0.7.1)
+      nokogiri (>= 1.2.0)
+      rack (>= 1.0)
+      rack-test (>= 0.5.3)
     will_paginate (2.3.11)
 
 PLATFORMS
@@ -126,4 +131,5 @@ DEPENDENCIES
   shoulda (>= 2.11.3)
   sprockets
   sqlite3-ruby
+  webrat
   will_paginate (= 2.3.11)

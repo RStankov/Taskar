@@ -14,7 +14,8 @@ describe ApplicationHelper do
   describe "#title" do
     before do
       helper.stub(:t).with("foo", :default => "foo").and_return "bar"
-      assigns[:content_for_title] = nil
+
+      helper.content_for(:title) { "" }
     end
 
     it "should pass title to 't' helper" do
@@ -26,7 +27,7 @@ describe ApplicationHelper do
     it "should save t(title) to @content_for_title variable" do
       helper.title("foo")
 
-      assigns[:content_for_title].should == "bar"
+      helper.content_for(:title).should == "bar"
     end
 
     it "should return t(title) wrapped in h1" do
@@ -52,15 +53,15 @@ describe ApplicationHelper do
 
   describe "#insert_at" do
     it "contains .insert_at" do
-      helper.insert_at("foo").should have_tag(".insert_at")
+      helper.insert_at("foo").should have_selector(".insert_at")
     end
 
     it "contains .insert_at .pointer" do
-      helper.insert_at("foo").should have_tag(".insert_at .pointer")
+      helper.insert_at("foo").should have_selector(".insert_at .pointer")
     end
 
     it "contains the given text" do
-      helper.insert_at("given text").should have_tag(".insert_at", :text => "given text")
+      helper.insert_at("given text").should have_selector(".insert_at", :content => "given text")
     end
   end
 end

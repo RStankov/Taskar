@@ -19,6 +19,7 @@ group :development do
 end
 
 group :test do
+  gem "webrat"
   gem "autotest"
   gem "rspec-rails",        ">= 2.0.0.beta.22"
   gem "shoulda",            ">=2.11.3"
