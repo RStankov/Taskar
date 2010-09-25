@@ -1,5 +1,3 @@
-require "taskar/auth/model"
-
 class User < ActiveRecord::Base
   include Taskar::Auth::Model
 
