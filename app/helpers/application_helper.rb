@@ -28,7 +28,7 @@ module ApplicationHelper
   end
 
   def javascript_response(&block)
-    concat raw("try {" + capture(&block) + "} catch(e){ alert(e); }")
+    raw "try {" + capture(&block) + "} catch(e){ alert(e); }"
   end
 
   def javascript_string_from_partial(partial, options = {})
