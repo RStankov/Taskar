@@ -1,10 +1,10 @@
 require 'spec_helper'
 
 describe "/sections/index.html.erb" do
-  it "should renders" do
-    assigns[:events]  = [ Factory(:event) ].paginate
-    assigns[:project] = mock_project
-    
-    render
+  before do
+    assign :events,  [ Factory(:event) ].paginate
+    assign :project, mock_project
   end
+
+  it { render }
 end

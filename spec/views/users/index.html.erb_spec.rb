@@ -2,10 +2,8 @@ require 'spec_helper'
 
 describe "/users/index" do
   before do
-    assigns[:users] = @users = [Factory(:user)]
+    assign :users, [Factory(:user)]
   end
 
-  it "renders" do
-    render
-  end
+  it { render }
 end

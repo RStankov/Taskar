@@ -49,4 +49,8 @@ module ApplicationHelper
       <div class="pointer"></div>
     </div>).html_safe
   end
+
+  def account
+    @account ||= current_user.account
+  end
 end

@@ -2,10 +2,8 @@ require 'spec_helper'
 
 describe "/users/edit" do
   before do
-    assigns[:user] = @user = Factory(:user)
+    assign :user, Factory(:user)
   end
 
-  it "renders" do
-    render
-  end
+  it { render }
 end

@@ -1,31 +1,31 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe "/sections/show.html.erb" do
   before do
-    sign_in Factory(:user) 
-        
-    assigns[:section] = @section = Factory(:section)
-    assigns[:project] = @project = @section.project
-    assigns[:tasks]   = @tasks   = [Factory(:task)]
+    sign_in Factory(:user)
+
+    assign :section, @section = Factory(:section)
+    assign :project, @project = @section.project
+    assign :tasks,   @tasks   = [Factory(:task)]
   end
 
   it "should render active tasks"  do
-    @section.stub!(:archive?).and_return(false)    
-    
+    @section.stub!(:archive?).and_return false
+
     render
-    
-    response.should have_tag('#tasks')
-    response.should have_tag('footer')
+
+    rendered.should have_selector("#tasks")
+    rendered.should have_selector("footer")
   end
-  
+
   it "should render archived tasks and no forms" do
-    @section.stub!(:archived?).and_return(true)
-    
+    @section.stub!(:archived?).and_return true
+
     render
-    
-    response.should_not have_tag('#tasks')
-    response.should_not have_tag('footer .add')
-    response.should_not have_tag('footer .more')
-    response.should have_tag('.tasks_list')
+
+    rendered.should_not have_selector("#tasks")
+    rendered.should_not have_selector("footer .add")
+    rendered.should_not have_selector("footer .more")
+    rendered.should have_selector(".tasks_list")
   end
 end

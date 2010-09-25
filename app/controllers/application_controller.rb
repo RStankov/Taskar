@@ -5,12 +5,10 @@ class ApplicationController < ActionController::Base
   helper :all
   protect_from_forgery
   before_filter :authenticate_user!
-  
+
   rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
-  
-  helper_method :account
-  
-  protected 
+
+  protected
     def deny_access
       if request.xhr?
         head :forbidden
@@ -38,15 +36,15 @@ class ApplicationController < ActionController::Base
     def record_not_found
       render :partial => "shared/not_found", :layout => "application", :status => 404
     end
-  
+
     def get_project
       @project = Project.find(params[:project_id])
     end
-    
+
     def account
       @account ||= current_user.account
     end
-    
+
     def project_user
       @project_user ||= ProjectUser.find_by_user_id_and_project_id(current_user.id, @project.id)
     end

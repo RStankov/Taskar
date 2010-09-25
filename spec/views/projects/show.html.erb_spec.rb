@@ -1,12 +1,10 @@
 require 'spec_helper'
 
 describe "/projects/show.html.erb" do
-  before(:each) do    
-    assigns[:project]  = Factory(:project) 
-    assigns[:sections] = [Factory(:section)]
+  before(:each) do
+    assign :project,  Factory(:project)
+    assign :sections, [Factory(:section)]
   end
 
-  it "renders" do
-    render
-  end
+  it { render }
 end

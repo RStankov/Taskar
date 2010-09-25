@@ -1,13 +1,11 @@
 require 'spec_helper'
 
 describe "/comments/show.js.erb" do
-  before do    
-    assigns[:comment] = Factory(:comment)
-    
-    template.stub!(:current_user).and_return(Factory(:user))
+  before do
+    sign_in Factory(:user)
+
+    assign :comment, Factory(:comment)
   end
 
-  it "should render" do
-    render
-  end
+  it { render }
 end

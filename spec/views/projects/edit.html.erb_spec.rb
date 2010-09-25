@@ -3,17 +3,17 @@ require 'spec_helper'
 describe "/projects/edit.html.erb" do
   before(:each) do
     sign_in Factory(:user)
-    assigns[:project] = @project = stub_model(Project,
-      :new_record? => false,
-      :name => "value for name"
+
+    assign :account, Factory(:account)
+    assign :project, @project = stub_model(Project,
+      :new_record?  => false,
+      :name         => "value for name"
     )
   end
 
   it "renders the edit project form" do
     render
 
-    response.should have_tag("form[action=#{project_path(@project)}][method=post]") do
-      with_tag('input#project_name[name=?]', "project[name]")
-    end
+    rendered.should have_selector("form[action=\"#{project_path(@project)}\"][method=post]")
   end
 end

@@ -1,23 +1,25 @@
 require 'spec_helper'
 
-describe "/dashboard/index" do  
-  it "should render empty dashboard message" do
+describe "/dashboard/index" do
+  before do
     sign_in Factory(:user)
-    
-    assigns[:projects] = []
-    
-    render
-    
-    response.should have_tag('.help_notice')
-    response.should_not have_tag('#events')
   end
-  
-  it "should render events table if projects exists" do
-    assigns[:projects] = [ Factory(:project) ]
-        
+
+  it "should render empty dashboard message" do
+    assign :projects, []
+
     render
-    
-    response.should_not have_tag('.help_notice')
-    response.should have_tag('#events')
+
+    rendered.should have_selector('.help_notice')
+    rendered.should_not have_selector('#events')
+  end
+
+  it "should render events table if projects exists" do
+    assign :projects, [ Factory(:project) ]
+
+    render
+
+    rendered.should_not have_selector('.help_notice')
+    rendered.should have_selector('#events')
   end
 end

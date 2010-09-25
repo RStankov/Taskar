@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe "/aside/index.js.erb" do
   before do
-    assigns[:responsibilities_count]  = 1234
-    assigns[:participants] = []
+    assign :responsibilities_count, 1234
+    assign :participants, []
   end
 
   it { render }
