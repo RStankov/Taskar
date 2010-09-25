@@ -2,7 +2,7 @@
 	<header>
 		<%= title 'sessions.title' %>
 	</header>
-	<% form_for resource_name, resource, :url => session_path(resource_name), :html => { :class => "action_form" } do |f| %>
+	<%= form_for resource_name, resource, :url => session_path(resource_name), :html => { :class => "action_form" } do |f| %>
 		<%= raw '<p class="notice">' + notice + '</p>' if notice %>
 	  <%= raw '<p class="alert">' + alert + '</p>' if alert %>
 		<%= f.label :email %>

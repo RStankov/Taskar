@@ -1,5 +1,5 @@
 <% remote_form = defined?(remote) ? true : nil %>
-<% form_for section, :html => {:class => 'action_form', :id => nil, "data-remote" => remote_form } do |f| %>
+<%= form_for section, :html => {:class => 'action_form', :id => nil, "data-remote" => remote_form } do |f| %>
   <%= render 'shared/error_messages', :target => f.object %>
   <%= f.label :name %>
   <%= f.text_field :name, :autofocus => true %>

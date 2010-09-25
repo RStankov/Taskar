@@ -1,4 +1,4 @@
-<% content_tag_for(:li, task, "data-change-section" => section_task_path(task), :class => task.state + (current_user.id == task.responsible_party_id ? ' personal' : '')) do %>
+<%= content_tag_for(:li, task, "data-change-section" => section_task_path(task), :class => task.state + (current_user.id == task.responsible_party_id ? ' personal' : '')) do %>
   <a href="#" class="add" data-after="<%= task.id %>">
     <%= insert_at t("sections.show.add_task") %>
   </a>

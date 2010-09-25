@@ -1,5 +1,5 @@
 <div class="task_wrapper">
-  <% form_for task, :html => {:class => 'action_form', :id => nil, :'data-remote' => true} do |form| %>
+  <%= form_for task, :html => {:class => 'action_form', :id => nil, :'data-remote' => true} do |form| %>
     <%= render 'shared/error_messages', :target => form.object %>
     <%= form.label :text, t(:'.text') %>
     <%= form.text_area :text, :cols => nil, :rows => nil %>

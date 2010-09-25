@@ -2,7 +2,7 @@
 	<h1 id="project_title"><%= @project.name %></h1>
 	<ul class="actions">
 		<li>
-			<% link_to complete_project_path(@project, :complete => !@project.completed?), :'data-method' => "put" do %>
+			<%= link_to complete_project_path(@project, :complete => !@project.completed?), :'data-method' => "put" do %>
 	   		<%= check_box_tag '', '', @project.completed? %> <%=t :'projects.completed' %>
 	 		<% end %>
 		</li>
@@ -24,7 +24,7 @@
 	<ul>
 	  <% @sections.each do |section| %>
 			<li class="tasks_stats">
-				<% link_to section do %>
+				<%= link_to section do %>
 					<%= tasks_stats(section)  %>
 					<%= raw "<small>#{t('projects.archived_section')}</small>" if section.archived? %>
 				<% end %>

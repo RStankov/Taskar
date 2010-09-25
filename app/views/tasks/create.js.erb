@@ -1,4 +1,4 @@
-<% javascript_response do %>
+<%= javascript_response do %>
   (function(){
     <% if higher_item = @task.higher_item %>
       var content = <%= javascript_string_from_partial @task %>,

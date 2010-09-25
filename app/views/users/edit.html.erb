@@ -5,16 +5,16 @@
 <%= render "form" %>
 
 <div class="wrap">
-	<% form_for @user, :html => {:multipart => true, :class => 'action_form'} do |f| %>
+	<%= form_for @user, :html => {:multipart => true, :class => 'action_form'} do |f| %>
 		<h2><%=t :'users.change_password' %></h2>
-		
-	  <%= render 'shared/error_messages', :target => f.object if @user.errors.on(:password) %>
+
+	  <%= render 'shared/error_messages', :target => f.object if !@user.errors[:password].empty? %>
 	  <p><%= f.label :password %></p>
 	  <p><%= f.password_field :password %></p>
 
 	  <p><%= f.label :password_confirmation %></p>
 	  <p><%= f.password_field :password_confirmation %></p>
-  	
+
 		<div class="actions">
 	  	<%= f.submit t(:update) %>
 		</div>

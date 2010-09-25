@@ -1,4 +1,4 @@
-<% javascript_response do %>
+<%= javascript_response do %>
   $('comments_count').update("<%= @comment.task.comments.count %>");
   <% if @comment.task.comments.count == 0 %>
   $('comments').slideUp("fast");

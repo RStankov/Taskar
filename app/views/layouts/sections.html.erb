@@ -8,7 +8,7 @@
 	<link rel="shortcut icon" href="<%= path_to_image 'favicon.png' %>" type="image/x-icon" />
 </head>
 <body>
-  <% content_for :header do %>
+  <%= content_for :header do %>
     <h2><%= @project.name  %></h2>
 		<% if current_user.projects.active.size > 1 %>
 	    <nav id="nav_projects">
@@ -48,7 +48,7 @@
 				<%= link_to participant_task_count(current_user.responsibilities_count(@project.id)), [@project, :tasks] %>
 				<br />
 				<%= link_to t(".status.clear"), [:clear, @project, :statuses], "data-method" => "delete", "data-remote" => true %>
-        <% form_for [@project, Status.new], :html => {:class => "action_form tooltip", :style => "display: none;", "data-remote" => true, "data-disable" => false} do |form| %>
+        <%= form_for [@project, Status.new], :html => {:class => "action_form tooltip", :style => "display: none;", "data-remote" => true, "data-disable" => false} do |form| %>
           <div class="arrow"></div>
           <section>
             <%= form.label :text, t(".status.label") %>
@@ -64,15 +64,15 @@
         <h3><%= t :".sections" %><%= link_to "+", [:new, @project, :section], :title => t(".new_section") %></h3>
         <ul data-sortable="<%= reorder_project_sections_path(@project.id) %>">
   	      <% @project.sections.unarchived.each do |section| %>
-  	        <% content_tag_for(:li, section) do %>
-                <%= new_section_link section %>
-                <%= link_to section.name, section, :class => "link " + (@section == section && "selected").to_s %>
-                <input type="button" class="drag" title="<%=t :dnd %>" />
+  	        <%= content_tag_for(:li, section) do %>
+              <%= new_section_link section %>
+              <%= link_to section.name, section, :class => "link " + (@section == section && "selected").to_s %>
+              <input type="button" class="drag" title="<%=t :dnd %>" />
             <% end %>
           <% end %>
   	      <li><%= new_section_link %></li>
   	      <li id="new_section" style="display: none;">
-      	    <% form_for [@project, Section.new], :html => {:id => nil} do |form|  %>
+      	    <%= form_for [@project, Section.new], :html => {:id => nil} do |form|  %>
      	        <%= form.label :name %>
               <%= form.text_field :name, :autocomplete => "off" %>
               <%= form.hidden_field :insert_before %>
@@ -93,8 +93,8 @@
             -->
           </h3>
           <ul class="people_extended">
-            <% @project.participants.each do |participant| %>
-              <% content_tag_for :li, participant, :title => participant_status_title(participant) do %>
+            <%= @project.participants.each do |participant| %>
+              <%= content_tag_for :li, participant, :title => participant_status_title(participant) do %>
                 <%= image_tag participant.user.avatar.url(:aside), :alt => participant.user.full_name %>
                 <span class="people_info">
                   <strong><%= participant.user.full_name %></strong>

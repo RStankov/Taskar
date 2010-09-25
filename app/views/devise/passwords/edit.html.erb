@@ -2,7 +2,7 @@
 	<%= title 'devise.passwords.change_title' %>
 </header>
 <div class="wrap">
-	<% form_for resource_name, resource, :url => password_path(resource_name), :html => { :method => :put, :class => 'action_form' } do |f| %>
+	<%= form_for resource_name, resource, :url => password_path(resource_name), :html => { :method => :put, :class => 'action_form' } do |f| %>
 	  <%= render 'shared/error_messages', :target => f.object %>
 	  <%= f.hidden_field :reset_password_token %>
 

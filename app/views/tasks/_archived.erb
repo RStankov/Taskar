@@ -1,4 +1,4 @@
-<% content_tag_for(:li, task, :class => task.state + (current_user.id == task.responsible_party_id ? ' personal' : '')) do %>
+<%= content_tag_for(:li, task, :class => task.state + (current_user.id == task.responsible_party_id ? ' personal' : '')) do %>
   <div class="task_wrapper">
   	<div class="tooltip">
   		<div class="arrow"></div>

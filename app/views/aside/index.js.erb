@@ -1,4 +1,4 @@
-<% javascript_response do %>
+<%= javascript_response do %>
   Taskar.Sections.Aside.updateResponsibilities("<%= escape_javascript participant_task_count(@responsibilities_count) %>");
   <% @participants.each do |participant| %>
     Taskar.Sections.Aside.updateParticipant("<%= dom_id(participant) %>", {

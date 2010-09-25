@@ -2,7 +2,7 @@
 	<%= title 'devise.registrations.new' %>
 </header>
 <div class="wrap">
-	<% form_for @user, :url => registration_path(resource_name), :html => { :class => 'action_form', :multipart => true} do |f| %>
+	<%= form_for @user, :url => registration_path(resource_name), :html => { :class => 'action_form', :multipart => true} do |f| %>
 	  <%= render 'shared/error_messages', :target => f.object %>
 
 	  <p><%= f.label :email %></p>
@@ -20,7 +20,7 @@
 	  <p><%= f.label :last_name  %></p>
 	  <p><%= f.text_field :last_name  %></p>
 
-		<% f.fields_for :owned_account, @user.owned_account || Account.new do |account| %>
+		<%= f.fields_for :owned_account, @user.owned_account || Account.new do |account| %>
 			<p><%= account.label :name, "Име на фирмата ви" %></p>
 			<p><%= account.text_field :name %></p>
 		<% end %>

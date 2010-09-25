@@ -1,4 +1,4 @@
-<% javascript_response do %>
+<%= javascript_response do %>
   (function(){
     var content = <%= javascript_string_from_partial @comment %>,
         comment = $("<%= dom_id @comment %>");
