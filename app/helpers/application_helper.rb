@@ -43,12 +43,6 @@ module ApplicationHelper
     %(<time datetime="#{time.rfc2822}" title="#{l(time, :format => :long)}">#{t(:before, :time => time_ago_in_words(time))}</time>).html_safe
   end
 
-  def csrf_meta_tag
-    if protect_against_forgery?
-      %(<meta name="csrf-param" content="#{h(request_forgery_protection_token)}"/>\n<meta name="csrf-token" content="#{h(form_authenticity_token)}"/>).html_safe
-    end
-  end
-
   def insert_at(content = nil)
     %(<div class="insert_at">
       #{content}
