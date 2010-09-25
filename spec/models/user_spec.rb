@@ -12,7 +12,7 @@ describe User do
     it { should have_one(:owned_account) }
     it { should belong_to(:account) }
   end
-  
+
   describe "validation" do
     it_should_allow_mass_assignment_only_of :email, :first_name, :last_name, :password, :password_confirmation, :avatar, :owned_account_attributes, :remember_me
 
@@ -29,14 +29,14 @@ describe User do
 
     it { should validate_presence_of(:password) }
     it { should ensure_length_of(:password).is_at_least(6).is_at_most(20) }
-    
+
     it { User.should have_attached_file(:avatar) }
 
     it "should have password confirmation error" do
      user = Factory.build(:user, :password => '123456', :password_confirmation => 'blqkblqk')
 
      user.valid?.should be_false
-     user.errors.on(:password).should_not be_nil
+     user.errors[:password].should_not be_empty
     end
 
     it "should not have password confirmation error" do
@@ -84,7 +84,7 @@ describe User do
     it "should find a user to send unlock instructions, with correcy account/email" do
       user = Factory(:user)
       user.lock_access!
-          
+
       unlock_user = User.send_unlock_instructions(:account_id => user.account_id, :email => user.email)
       unlock_user.should === user
     end
@@ -93,33 +93,33 @@ describe User do
       unlock_user = User.send_unlock_instructions(:email => "invalid@email.com")
       unlock_user.should be_new_record
       unlock_user.errors.on(:account_id).should_not be_nil
-      
+
       unlock_user = User.send_unlock_instructions(:account_id => 0)
       unlock_user.should be_new_record
       unlock_user.errors.on(:email).should_not be_nil
-      
+
       unlock_user = User.send_unlock_instructions(:account_id => 0, :email => "invalid@email.com")
       unlock_user.should be_new_record
       unlock_user.errors.on_base.should == I18n.t('devise.record.invalid')
     end
-    
+
     %w(email account_id).each do |field|
       it "should not find user only with valid #{field}" do
         user = Factory(:user)
-        
+
         unlock_user = User.send_unlock_instructions(field => user[field])
         unlock_user.should be_new_record
       end
     end
   end
-  
+
   describe "send_reset_password_instructions" do
     it "should find a user to send his reset password instructions, with correcy account/email" do
       user = Factory(:user)
-      
+
       recover_user = User.send_reset_password_instructions(:account_id => user.account_id, :email => user.email)
       recover_user.should === user
-    end 
+    end
 
     it "should return a new user if no email and account_id was found" do
       recover_user = User.send_reset_password_instructions(:email => "invalid@email.com")
@@ -152,16 +152,16 @@ describe User do
     user.email.should == "bigcases@mail.com"
   end
 
-  it "should have full_name witch is first_name + last_name" do 
+  it "should have full_name witch is first_name + last_name" do
     user = Factory.build(:user, {:first_name => 'Radoslav', :last_name => 'Stankov'})
     user.full_name.should == "Radoslav Stankov"
   end
-  
+
   it "should have short_name witch is first_name + first letter of the last_name" do
     user = Factory.build(:user, {:first_name => 'Radoslav', :last_name => 'Stankov'})
     user.short_name.should == "Radoslav S."
   end
-  
+
   describe "admin?" do
     it "should not be changable for account owner" do
       user               = Factory(:user, :admin => true)
@@ -170,36 +170,36 @@ describe User do
       user.admin = false
       user.admin.should be_true
     end
-    
+
     it "should be changable for non account owner" do
         user = Factory(:user, :admin => true)
 
         user.admin = false
         user.admin.should be_false
-        
+
         user.admin = true
         user.admin.should be_true
     end
   end
-  
+
   describe "new_comment" do
     it "should build new comment from task, assign user.id to it" do
       task = Factory(:task)
       user = Factory(:user)
       comment = user.new_comment(task, {:text => "comment text"})
-      
+
       comment.text.should  == "comment text"
       comment.user_id.should == user.id
       task.comments.detect {|c| c == comment}.should be_true
     end
   end
-  
+
   describe "new_task" do
     it "should build new coment from section, assign user.id to it" do
       section = Factory(:section)
       user    = Factory(:user)
       task    = user.new_task(section, {:text => "comment text"})
-      
+
       task.text.should  == "comment text"
       task.user_id.should == user.id
       section.tasks.detect {|t| t == task}.should be_true
@@ -211,7 +211,7 @@ describe User do
       project = Factory(:project)
       user    = Factory(:user)
       status  = user.new_status(project, {:text => "some status text"})
-      
+
       status.text.should  == "some status text"
       status.user_id.should == user.id
       project.statuses.detect {|s| s == status}.should be_true
@@ -221,17 +221,17 @@ describe User do
   describe "responsibilities_count" do
     it "should get the count of all responsibilities who are with status = 0" do
       user = Factory(:user)
-      
+
       section_1 = Factory(:section)
-      
+
       (1..1).each { Factory(:task, :section => section_1, :responsible_party => user, :status => -1) }
       (1..2).each { Factory(:task, :section => section_1, :responsible_party => user, :status =>  1) }
       (1..3).each { Factory(:task, :section => section_1, :responsible_party => user, :status =>  0) }
-      
+
       section_2 = Factory(:section)
-      
+
       (1..4).each { Factory(:task, :section => section_2, :responsible_party => user, :status =>  0) }
-      
+
       user.responsibilities_count(section_1.project_id).should == 3
       user.responsibilities_count(section_2.project_id).should == 4
     end
@@ -240,41 +240,41 @@ describe User do
   describe "owned_account" do
     before :each do
       @account_name = Factory.build(:account).name
-      
+
       @user                          = User.new Factory.attributes_for(:user)
       @user.owned_account_attributes = {:name => @account_name}
       @user.save.should be_true
     end
-    
+
     it "should be created with user on user creation" do
       @user.owned_account.name.should == @account_name
     end
-    
+
     it "should be same as user's account" do
       @user.owned_account.should == @user.account
     end
-    
+
     it "should have user as owner" do
       @user.reload
       @user.owned_account.owner.should == @user
       @user.account.owner.should == @user
     end
-    
+
     it "should make this user admin" do
       @user.admin?.should be_true
     end
-    
+
     it "should be nil if account is assign to user" do
       account = Factory(:account)
-      
+
       user                          = User.new Factory.attributes_for(:user)
       user.owned_account_attributes = {:name => Factory.build(:account).name}
       user.account                  = account
-      
+
       user.save.should be_true
       user.reload
       user.owned_account.should be_nil
-      user.account.should == account 
+      user.account.should == account
       user.admin?.should be_false
     end
   end

@@ -24,7 +24,8 @@ class User < ActiveRecord::Base
   attr_readonly :account_id
 
   accepts_nested_attributes_for :owned_account, :reject_if => :cant_assign_own_account
-  before_validation_on_create :assign_own_account
+
+  before_validation :assign_own_account, :on => :create
   after_create :assign_as_account_owner
 
   def full_name

@@ -26,7 +26,7 @@ module Taskar
     config.time_zone = "UTC"
     config.i18n.default_locale = :bg
     config.encoding = "utf-8"
-    config.filter_parameters += [:password]
+    config.filter_parameters += [:password, :password_confirmation]
     config.action_mailer.default_url_options = { :host => "taskar.rstankov.com" }
   end
 end
