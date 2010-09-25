@@ -4,7 +4,7 @@ gem "rails",              "3.0.0"
 gem "sqlite3-ruby",                    :require => "sqlite3"
 
 gem "paperclip",          "2.3.3"
-gem "will_paginate",      "2.3.11"
+gem "will_paginate",      "3.0.pre2"
 gem "devise",             "1.1.2"
 
 gem "sprockets"
