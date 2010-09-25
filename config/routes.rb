@@ -1,19 +1,60 @@
-Taskar::Application.routes.draw do |map|
-  map.resources :users, :member => {:set_admin => :put}
-  map.resources :projects, :member => {:complete => :put} do |projects|
-    projects.resources :statuses, :only => [:create, :index, :destroy], :collection => {:clear => :delete}
-    projects.resources :aside, :only => :index
-    projects.resources :tasks, :collection => {:reorder => :put, :search => :get}, :only => [:index]
-    projects.resources :sections, :shallow => true, :collection => {:reorder => :put, :tasks => :get, :archived => :get}, :member => {:archive => :put} do |sections|
-      sections.resources :tasks, :shallow => true, :except => [:new, :index], :member => {:state => :put, :archive => :put, :section => :put}, :collection => {:archived => :get} do |tasks|
-        tasks.resources :comments, :shallow => true, :except => [:index, :new]
+Taskar::Application.routes.draw do
+  resources :users do
+    member do
+      put :set_admin
+    end
+  end
+
+  resources :projects do
+    member do
+      put :complete
+    end
+
+    resources :statuses, :only => [:create, :index, :destroy] do
+      collection do
+        delete :clear
+      end
+    end
+
+    resources :aside, :only => :index
+
+    resources :tasks, :only => [:index] do
+      collection do
+        put :reorder
+        get :search
+      end
+    end
+
+    resources :sections, :shallow => true do
+      member do
+        put :archive
+      end
+
+      collection do
+        put :reorder
+        get :tasks
+        get :archived
+      end
+
+      resources :tasks, :shallow => true, :except => [:new, :index] do
+        member do
+          put :state
+          put :archive
+          put :section
+        end
+
+        collection do
+          get :archived
+        end
+
+        resources :comments, :shallow => true, :except => [:index, :new]
       end
     end
   end
 
-  devise_for :users, :as => "sign", :path_names => {:sign_in => "in", :sign_out => "out", :sign_up => "up"}
+  devise_for :users, :path => "sign", :path_names => {:sign_in => "in", :sign_out => "out", :sign_up => "up"}
 
-  SprocketsApplication.routes(map)
+  #SprocketsApplication.routes(self)
 
-  map.root :controller => "dashboard", :action => "index"
+  root :to => "dashboard#index"
 end
