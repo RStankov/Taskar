@@ -24,7 +24,7 @@ module ApplicationHelper
   def title(page_title)
     page_title = t(page_title, :default => page_title)
     content_for :title, page_title
-    "<h1>#{page_title}</h1>".html_safe
+    raw "<h1>#{page_title}</h1>"
   end
 
   def javascript_response(&block)
@@ -40,14 +40,14 @@ module ApplicationHelper
   end
 
   def time_tag(time)
-    %(<time datetime="#{time.rfc2822}" title="#{l(time, :format => :long)}">#{t(:before, :time => time_ago_in_words(time))}</time>).html_safe
+    raw %(<time datetime="#{time.rfc2822}" title="#{l(time, :format => :long)}">#{t(:before, :time => time_ago_in_words(time))}</time>)
   end
 
   def insert_at(content = nil)
-    %(<div class="insert_at">
+    raw %(<div class="insert_at">
       #{content}
       <div class="pointer"></div>
-    </div>).html_safe
+    </div>)
   end
 
   def account
