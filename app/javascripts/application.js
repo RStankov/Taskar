@@ -1,6 +1,6 @@
 //= require <raphael-min>
 //= require <prototype>
-//= require <s2>
+//= require "s2"
 
 var CD3 = {};
 

@@ -215,10 +215,9 @@ describe Task do
   end
 
   describe "#search" do
-    it "should be named_scope :conditions => text like '%ss%'" do
+    it "should have where conditions - text like '%ss%'" do
       ss = "search term"
-
-      Task.search(ss).proxy_options[:conditions].should == ["text LIKE :ss", {:ss => "%#{ss.gsub(' ', '%')}%"}]
+      Task.search(ss).where_values.should == ["text LIKE '%search%term%'"]
     end
 
     it "should find all containing the given text" do
