@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe DashboardController do
+  subject { controller }
+
   before { sign_in Factory(:user) }
 
   describe "GET 'index'" do
@@ -12,29 +14,27 @@ describe DashboardController do
       end
 
       it { should assign_to(:projects).with(@mock_projects) }
-      it { should render_template("index") }
     end
-    
+
     context "when there is one project and user is admin" do
       before do
         controller.stub_chain :current_user, :projects, :active => @mock_projects = [mock_project]
         controller.stub_chain :current_user, :admin? => true
-        
+
         get :index
       end
 
       it { should assign_to(:projects).with(@mock_projects) }
-      it { should render_template("index") }
     end
-    
-    context "when thre is one project and user is not admin" do
+
+    context "when there is one project and user is not admin" do
       before do
         controller.stub_chain :current_user, :projects, :active => @mock_projects = [mock_project]
         controller.stub_chain :current_user, :admin? => false
-        
+
         get :index
       end
-      
+
       it { should redirect_to(project_sections_url(mock_project)) }
     end
   end

@@ -1,10 +1,12 @@
 require 'spec_helper'
 
 describe UsersController do
+  subject { controller }
+
   describe "with admin user" do
     before do
       sign_in @current_user = Factory(:user, :admin => true)
-      
+
       controller.stub(:current_user).and_return @current_user
       @current_user.should_receive(:account).and_return mock_account
       mock_account.stub(:users).and_return @users = [mock_user]
@@ -14,7 +16,7 @@ describe UsersController do
       before do
         @users.should_receive(:find).with("15").and_return mock_user
       end
-      
+
       describe "GET show" do
         before do
           get :show, :id => "15"
@@ -39,7 +41,7 @@ describe UsersController do
         end
 
         def put_update(params = {})
-          put :update, {:id => 15, :user => user_params}.merge(params)
+          put :update, {:id => "15", :user => user_params}.merge(params)
         end
 
         it "should render edit template when user is invalid" do
@@ -57,7 +59,7 @@ describe UsersController do
           put_update
 
           should assign_to(:user).with(mock_user)
-          should redirect_to(user_url(mock_user))  
+          should redirect_to(user_url(mock_user))
         end
       end
 
@@ -100,7 +102,7 @@ describe UsersController do
       end
 
     end
-    
+
     describe "on collection action" do
       describe "GET index" do
         before do
@@ -110,7 +112,7 @@ describe UsersController do
         it { should assign_to(:users).with(@users) }
         it { should render_template("index") }
       end
-      
+
       describe "GET new" do
         before do
           @users.should_receive(:build).and_return User.new
@@ -121,7 +123,7 @@ describe UsersController do
         it { assigns[:user].should be_new_record }
         it { should render_template("new") }
       end
-      
+
       describe "POST create" do
         def user_params
           {:these => "params"}
@@ -155,14 +157,14 @@ describe UsersController do
       end
     end
   end
-  
+
   describe "with normal user" do
     before do
       sign_in Factory(:user)
-      
+
       ensure_deny_access_is_called
     end
-    
+
     {
       :index      => 'get(:index)',
       :show       => 'get(:show, :id => "1")',

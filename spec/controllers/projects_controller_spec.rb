@@ -1,18 +1,20 @@
 require 'spec_helper'
 
 describe ProjectsController do
+  subject { controller }
+
   describe "with admin user" do
     before do
       sign_in @current_user = Factory(:user, :admin => true)
-      
+
       controller.stub(:current_user).and_return @current_user
       @current_user.should_receive(:account).and_return mock_account
       mock_account.stub(:projects).and_return @projects = [mock_project]
     end
-    
+
     describe "on collection action" do
       describe "GET index" do
-        before do      
+        before do
           @projects.should_receive(:completed).and_return([@completed = mock(Project)])
           @projects.should_receive(:active).and_return([@active = mock(Project)])
 
@@ -23,14 +25,14 @@ describe ProjectsController do
         it { should assign_to(:completed).with([@completed]) }
         it { should render_template("index") }
       end
-      
+
       describe "GET new" do
-        before do          
+        before do
           @projects.should_receive(:build).and_return mock_project
-          
+
           get :new
         end
-        
+
         it { should assign_to(:project).with(mock_project) }
         it { should render_template("new") }
       end
@@ -39,14 +41,14 @@ describe ProjectsController do
         before do
           @projects.should_receive(:build).with({'these' => 'params'}).and_return mock_project
         end
-        
+
         describe "with valid params" do
           before do
             mock_project.stub(:save).and_return true
-            
+
             post :create, :project => {:these => 'params'}
           end
-          
+
           it { should assign_to(:project).with(mock_project) }
           it { should redirect_to(project_url(mock_project)) }
         end
@@ -54,28 +56,28 @@ describe ProjectsController do
         describe "with invalid params" do
           before do
             mock_project.stub(:save).and_return false
-            
+
             post :create, :project => {:these => 'params'}
           end
-          
+
           it { should assign_to(:project).with(mock_project) }
           it { should render_template("new") }
         end
       end
     end
-    
+
     describe "on member action" do
       before do
         @projects.should_receive(:find).with("1").and_return mock_project
       end
-      
+
       describe "GET show" do
         before do
           mock_project.stub_chain :sections, :order => [mock_section]
-          
+
           get :show, :id => "1"
         end
-        
+
         it { should assign_to(:sections).with([mock_section]) }
         it { should assign_to(:project).with(mock_project) }
         it { should render_template("show") }
@@ -83,7 +85,7 @@ describe ProjectsController do
 
       describe "GET edit" do
         before { get :edit, :id => "1" }
-        
+
         it { should assign_to(:project).with(mock_project) }
         it { should render_template("edit") }
       end
@@ -115,7 +117,7 @@ describe ProjectsController do
           mock_project.should_receive(:destroy)
           delete :destroy, :id => "1"
         end
-        
+
         it { should redirect_to(projects_url) }
       end
 
@@ -142,7 +144,7 @@ describe ProjectsController do
         it do
           put :complete, :id => "1", :complete => "foo"
 
-          should redirect_to(project_url(mock_project)) 
+          should redirect_to(project_url(mock_project))
         end
       end
     end
@@ -151,10 +153,10 @@ describe ProjectsController do
   describe "with normal user" do
     before do
       sign_in Factory(:user)
-      
+
       ensure_deny_access_is_called
     end
-    
+
     {
       :index      => 'get(:index)',
       :show       => 'get(:show, :id => "1")',

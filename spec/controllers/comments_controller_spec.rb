@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe CommentsController do
+  subject { controller }
+
   describe "with project user" do
     before { sign_with_project_user }
 
@@ -46,7 +48,7 @@ describe CommentsController do
           before { xhr :get, :edit, :id => "1" }
 
           it { should assign_to(:comment).with(mock_comment) }
-          it { should render_template("edit.js") }
+          it { should render_template("edit") }
         end
       end
 
@@ -73,7 +75,7 @@ describe CommentsController do
             before { xhr :put, :update, params }
 
             it { should assign_to(:comment).with(mock_comment) }
-            it { should render_template("show.js") }
+            it { should render_template("show") }
           end
         end
 
@@ -93,7 +95,7 @@ describe CommentsController do
             before { xhr :put, :update, params }
 
             it { should assign_to(:comment).with(mock_comment) }
-            it { should render_template("edit.js") }
+            it { should render_template("edit") }
           end
         end
 
@@ -113,7 +115,7 @@ describe CommentsController do
 
         it "it render tempalte on xhr request " do
           xhr :delete, :destroy, :id => "1"
-          should render_template("destroy.js")
+          should render_template("destroy")
         end
       end
 
@@ -145,7 +147,7 @@ describe CommentsController do
 
 
           it { should assign_to(:comment).with(mock_comment) }
-          it { should render_template("show.js") }
+          it { should render_template("show") }
         end
       end
 
@@ -163,7 +165,7 @@ describe CommentsController do
           before { xhr :post, :create, :comment => {:these => 'params'}, :task_id => "1" }
 
           it { should assign_to(:comment).with(mock_comment) }
-          it { should render_template("new.js") }
+          it { should render_template("new") }
         end
       end
 

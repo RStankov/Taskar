@@ -31,7 +31,7 @@ class TasksController < ApplicationController
         render
       end
     else
-      render :partial => "new"
+      render :partial => "new.js"
     end
   end
 
@@ -45,7 +45,7 @@ class TasksController < ApplicationController
         redirect_to @task
       end
     else
-      render :action => "edit"
+      render :action => "edit.js"
     end
   end
 

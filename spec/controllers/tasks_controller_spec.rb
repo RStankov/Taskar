@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe TasksController do
+  subject { controller }
+
   describe "with project user" do
     before { sign_with_project_user }
 
@@ -41,7 +43,7 @@ describe TasksController do
           before { xhr :get, :edit, :id => "1" }
 
           it { should assign_to(:task).with(mock_task) }
-          it { should render_template("edit.js") }
+          it { should render_template("edit") }
         end
       end
 
