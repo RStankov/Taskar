@@ -3,7 +3,7 @@
 		<div class="arrow"></div>
 		<div class="tooltip_actions">
       <%= link_to t(:edit), [:edit, @section], :class => "edit", "data-remote" => true %>
-      <%= link_to_delete t(:delete), @section, :class => "delete", :confirm => t(:'.confirm') %>
+      <%= link_to_delete t(:delete), @section, :class => "delete", :confirm => t(:'sections.show.confirm') %>
 		</div>
 	</div>
   <%= @section.name %>
