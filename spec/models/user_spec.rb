@@ -92,15 +92,15 @@ describe User do
     it "should return a new user if no email and account_id was found" do
       unlock_user = User.send_unlock_instructions(:email => "invalid@email.com")
       unlock_user.should be_new_record
-      unlock_user.errors.on(:account_id).should_not be_nil
+      unlock_user.errors[:account_id].should_not be_empty
 
       unlock_user = User.send_unlock_instructions(:account_id => 0)
       unlock_user.should be_new_record
-      unlock_user.errors.on(:email).should_not be_nil
+      unlock_user.errors[:email].should_not be_empty
 
       unlock_user = User.send_unlock_instructions(:account_id => 0, :email => "invalid@email.com")
       unlock_user.should be_new_record
-      unlock_user.errors.on_base.should == I18n.t('devise.record.invalid')
+      unlock_user.errors[:base].should == [I18n.t('devise.record.invalid')]
     end
 
     %w(email account_id).each do |field|
@@ -124,15 +124,15 @@ describe User do
     it "should return a new user if no email and account_id was found" do
       recover_user = User.send_reset_password_instructions(:email => "invalid@email.com")
       recover_user.should be_new_record
-      recover_user.errors.on(:account_id).should_not be_nil
+      recover_user.errors[:account_id].should_not be_empty
 
       recover_user = User.send_reset_password_instructions(:account_id => 0)
       recover_user.should be_new_record
-      recover_user.errors.on(:email).should_not be_nil
+      recover_user.errors[:email].should_not be_empty
 
       recover_user = User.send_reset_password_instructions(:account_id => 0, :email => "invalid@email.com")
       recover_user.should be_new_record
-      recover_user.errors.on_base.should == I18n.t('devise.record.invalid')
+      recover_user.errors[:base].should == [I18n.t('devise.record.invalid')]
     end
 
     %w(email account_id).each do |field|
