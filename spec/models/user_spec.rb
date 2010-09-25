@@ -52,31 +52,25 @@ describe User do
       @user     = Factory(:user, :account => @account)
     end
 
-    it "should authenticate with correct" do
-      User.authenticate(:account_id  => @account.id, :email => @user.email, :password => @user.password).should == @user
+    it "should find_for_authentication with correct" do
+      User.find_for_authentication(:account_id  => @account.id, :email => @user.email).should == @user
     end
 
-    it "should authenticate with incorect password" do
-      User.authenticate(:account_id  => @account.id, :email => @user.email, :password => "foo_#{@user.password}").should be_nil
+
+    it "should find_for_authentication with account / correct email (no case sensative)" do
+      User.find_for_authentication(:account_id  => @account.id, :email => @user.email).should == @user
+      User.find_for_authentication(:account_id  => @account.id, :email => @user.email.upcase).should == @user
     end
 
-    it "should authenticate with correct email (no case sensative) / password" do
-      User.authenticate(:account_id  => @account.id, :email => @user.email, :password => @user.password).should == @user
-      User.authenticate(:account_id  => @account.id, :email => @user.email.upcase, :password => @user.password).should == @user
+    it "should not find_for_authentication with incorrect account / email" do
+      User.find_for_authentication(:account_id  => @account.id, :email => @user.email + 'test').should be_nil
+      User.find_for_authentication(:account_id  => @account.id + 2, :email => @user.email).should be_nil
     end
 
-    it "should not authenticate with incorrect email / password / account" do
-      User.authenticate(:email => @user.email, :password => @user.password + 'something').should be_nil
-      User.authenticate(:email => @user.email + 'test', :password => @user.password).should be_nil
-      User.authenticate(:account_id  => @account.id, :email => @user.email, :password => @user.password + 'something').should be_nil
-      User.authenticate(:account_id  => @account.id, :email => @user.email + 'test', :password => @user.password).should be_nil
-      User.authenticate(:account_id  => @account.id + 2, :email => @user.email, :password => @user.password).should be_nil
-    end
-
-    it "should authenticate with same password after update" do
-      User.authenticate(:account_id  => @account.id, :email => @user.email, :password => @user.password).should == @user
+    it "should find_for_authentication with same password after update" do
+      User.find_for_authentication(:account_id  => @account.id, :email => @user.email).should == @user
       @user.update_attributes(:first_name => "new first name", :last_name => "new last name").should be_true
-      User.authenticate(:account_id  => @account.id, :email => @user.email, :password => @user.password).should == @user
+      User.find_for_authentication(:account_id  => @account.id, :email => @user.email).should == @user
     end
   end
 

@@ -9,7 +9,7 @@ module Taskar
       end
 
       module ClassMethods
-        def authenticate(conditions)
+        def find_for_authentication(conditions)
           conditions[:email].downcase! if conditions[:email]
           super(conditions)
         end
