@@ -3,8 +3,10 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 describe TasksStats do
   def mock_subject(stats = {})
     subject = Object.new
+
+    subject.stub(:tasks).and_return tasks = Object.new
     TasksStats::STATS.each do |(type, color)|
-      subject.stub_chain :tasks, type, :size => stats.delete(type) || 0
+      tasks.stub_chain(type, :size).and_return stats.delete(type) || 0
     end
     subject
   end
