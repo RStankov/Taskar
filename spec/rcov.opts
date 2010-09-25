@@ -1,2 +1,4 @@
 --exclude "spec/*,gems/*"
+--color
+--format progress
 --rails

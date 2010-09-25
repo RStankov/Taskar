@@ -14,12 +14,13 @@ gem "erubis",             "2.6.6"
 
 group :development do
   gem "capistrano"
+  gem "autotest"
+  gem "rspec-rails",      ">= 2.0.0.beta.22"
 end
 
 group :test do
-  gem "webrat",           ">=0.6.0"
-  gem "rspec-rails",      ">=1.3.2"
-  gem "rspec",            ">=1.3.0",   :require => "spec"
+  gem "autotest"
+  gem "rspec-rails",      ">= 2.0.0.beta.22"
   gem "shoulda",          ">=2.11.3"
   gem "factory_girl",     ">=1.2.2"
 end

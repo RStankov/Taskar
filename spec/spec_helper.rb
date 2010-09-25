@@ -1,24 +1,24 @@
-# This file is copied to ~/spec when you run 'ruby script/generate rspec'
-# from the project root directory.
+# This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'test'
+require File.expand_path("../../config/environment", __FILE__)
+require 'rspec/rails'
 
-require File.dirname(__FILE__) + "/../config/environment" unless defined?(RAILS_ROOT)
-require 'spec/autorun'
-require 'spec/rails'
+# Requires supporting ruby files with custom matchers and macros, etc,
+# in spec/support/ and its subdirectories.
+Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
-# Requires supporting files with custom matchers and macros, etc,
-# in ./support/ and its subdirectories.
-Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
-
-# add thoughtbot's shoulda / factory girl / paperclip matchers
 require 'shoulda'
 require 'factory_girl'
 require 'paperclip/matchers'
 
-Spec::Runner.configure do |config|
+RSpec.configure do |config|
+  config.mock_with :rspec
+  config.use_transactional_fixtures = true
+
   config.include Paperclip::Shoulda::Matchers
   config.include Taskar::Auth::SpecHelper
-  config.extend Taskar::SpecHelper
   config.include ControllerMacros
   config.include TaskarMocks
+
+  config.extend Taskar::SpecHelper
 end
