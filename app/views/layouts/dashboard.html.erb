@@ -14,16 +14,18 @@
       <%= yield %>
     </article>
     <aside>
-      <section>
-        <h3><%=t :".current_projects", :count => @projects.size  %></h3>
-        <ul>
-          <% @projects.each do |project| %>
-          <li>
-              <strong><%= link_to project.name, [project, :sections] %></strong>
-          </li>
-          <% end %>
-        </ul>
-      </section>
+      <% if @projects.size > 0 %>
+        <section>
+          <h3><%=t :".current_projects", :count => @projects.size  %></h3>
+          <ul>
+            <% @projects.each do |project| %>
+            <li>
+                <strong><%= link_to project.name, [project, :sections] %></strong>
+            </li>
+            <% end %>
+          </ul>
+        </section>
+      <% end %>
     </aside>
   </section>
   <%= render "shared/footer" %>
