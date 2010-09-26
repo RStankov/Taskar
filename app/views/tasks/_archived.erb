@@ -3,8 +3,8 @@
   	<div class="tooltip">
   		<div class="arrow"></div>
   		<div class="actions">
-  			<%= link_to t(:'tasks.task.comments', :count => task.comments.size), task %>
-  			<%= link_to t(:delete), task, :class => "delete", "data-remote" => true, "data-method" => "delete", "data-confirm" => t(:'.confirm') %>
+  			<%= link_to t("tasks.task.comments", :count => task.comments.size), task %>
+  			<%= link_to t(:delete), task, :class => "delete", "data-remote" => true, "data-method" => "delete", "data-confirm" => t("tasks.task.confirm") %>
   		</div>
   	</div>
     <%= task_state_checkbox(task) %>
