@@ -5,7 +5,7 @@
   <div id="task_content" class="task <%= @task.state %>">
     <%= render "content" %>
   </div>
-  <div id="comments"<%= ' style="display: none;"' if @task.comments.size == 0 %>>
+  <div id="comments"<%= raw ' style="display: none;"' if @task.comments.size == 0 %>>
     <h3><%= raw t(:'.comments', :count => '<span id="comments_count">' + @task.comments.size.to_s + '</span>') %></h3>
     <ul>
       <%= render @task.comments %>
