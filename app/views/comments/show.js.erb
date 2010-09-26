@@ -4,11 +4,7 @@
         comment = $("<%= dom_id @comment %>");
 
     if (comment){
-			comment.morph({
-				change: function(){
-	      	comment.replace(content);
-				}
-			});
+			comment.replaceWithEffect(content);
     } else {
       Taskar.Sections.resetForm($("new_comment"));
       $("comments").show().down("ul").insert({bottom: content});

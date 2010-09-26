@@ -5,7 +5,7 @@
       element.update().highlight();
       $("task_title").update("<%= escape_javascript(task_description(@task)) %>");
     } else {
-			$("<%= dom_id @task %>").transform(<%= javascript_string_from_partial @task %>);
+			$("<%= dom_id @task %>").replaceWithEffect(<%= javascript_string_from_partial @task %>);
     }
   })();
 <% end %>

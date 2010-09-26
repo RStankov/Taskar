@@ -20,6 +20,15 @@ Element.addMethods({
 
 		return $(element).effect(effect, options);
 	},
+	replaceWithEffect: function(element, content){
+		element = $(element);
+		element.morph({
+			change: function(){
+	    	element.replace(content);
+			}
+		});
+		return element;
+	},
 	transform: function(element, content){
 		element = $(element);
 		element.morph({
