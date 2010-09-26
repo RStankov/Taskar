@@ -29,13 +29,13 @@ Element.addMethods({
 		});
 		return element;
 	},
-	transform: function(element, content){
+	transform: function(element, content, noAfter){
 		element = $(element);
 		element.morph({
 			change: function(){
 	    	element.update(content);
 			},
-			after: function(){
+			after: noAfter ? Prototype.emptyFunction : function(){
 	    	element.highlight();
 				var textarea = element.down("textarea");
 				textarea && textarea.focus();

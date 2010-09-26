@@ -1,10 +1,6 @@
 <%= javascript_response do %>
 	(function(element){
-		element.morph({
-			change: function(){
-				element.update(<%= javascript_string_from_partial "title" %>);
-			}
-		});
+		element.transform(<%= javascript_string_from_partial "title" %>, true);
 		<% unless @section.text.blank? %>
 			element.insert({
 				after: new Element("p", {className: "text", id: "section_text"})
