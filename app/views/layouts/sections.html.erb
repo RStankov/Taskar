@@ -9,18 +9,20 @@
 </head>
 <body>
   <%= content_for :header do %>
-    <h2><%= @project.name  %></h2>
-		<% if current_user.projects.active.size > 1 %>
-	    <nav id="nav_projects">
-	      <span><%= t :".switch_to_project" %></span>
-	      <ul>
-	        <% current_user.projects.active(:limit => 10).each do |project| %>
-	        <li><%= link_to project.name, [project, :sections], :class => @project == project && "selected" %></li>
-	        <% end %>
-	        <li><%= link_to t(:".all_projects"), root_path, :class => "all_projects" %></li>
-	      </ul>
-	    </nav>
-		<% end %>
+    <h2>
+      <%= @project.name  %>
+  		<% if current_user.projects.active.size > 1 %>
+  	    <nav id="nav_projects">
+  	      <span><%= t :".switch_to_project" %></span>
+  	      <ul>
+  	        <% current_user.projects.active(:limit => 10).each do |project| %>
+  	        <li><%= link_to project.name, [project, :sections], :class => @project == project && "selected" %></li>
+  	        <% end %>
+  	        <li><%= link_to t(:".all_projects"), root_path, :class => "all_projects" %></li>
+  	      </ul>
+  	    </nav>
+  		<% end %>
+		</h2>
     <nav id="nav_project">
   		<%= link_to 0, [@project, :sections], :id => "notify_badge", :style => "display: none;" %>
   		<span>
