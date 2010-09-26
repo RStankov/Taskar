@@ -443,8 +443,6 @@ body > footer {
 #nav_project {
   display: inline-block;
   font-size: 12px;
-  font-weight: normal;
-  margin-top: -5px;
   position: relative;
 }
 
