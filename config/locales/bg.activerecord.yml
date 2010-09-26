@@ -9,17 +9,17 @@ bg:
           project_user: "Участие в проект"
           account: "Акаунт"
           status: "Статус"
-        
+
         attributes:
           project:
             name: "Име"
             account_id: "Акаунт"
-          
+
           section:
             name: "Име на секцията"
             position: "Позиция"
             text: "Описание"
-          
+
           task:
             text: "Текста на задачата"
             status: "Статус"
@@ -27,7 +27,7 @@ bg:
             project: "Проект"
             section: "Секция"
             user: "Създател"
-          
+
           user:
             email: "E-майл"
             first_name: "Име"
@@ -41,28 +41,29 @@ bg:
             admin: "Администратор"
             remember_me: "Запомни ме"
             account_id: "Акаунт"
-          
+            owned_account:
+              name: "Име на фирма"
+
           comment:
             task_id: "Задача"
             user_id: "Потребител"
             text: "Текст"
-          
+
           account:
             name: "Име на фирмата"
             owner_id: "Собственик"
-          
+
           project_user:
             user_id: "Потребител"
             project_id: "Проект"
-            
+
           status:
             text: "Статус"
-          
+
         errors:
-          tasks: 
+          tasks:
             archived_section: "Не може да се добавя задача в архивирана секция"
             cant_change_project: "Не може да се променя проекта на задача"
-          
+
           comments:
             archived_task: "Не може да се коментира архивирана задача"
-        
