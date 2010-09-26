@@ -228,6 +228,11 @@ body > footer {
   margin: 10px 0 10px 0;
 }
 
+#user_box input[type="file"] {
+	width: 98%;
+  margin: 10px 0 10px 0;
+}
+
 #user_box input[type="submit"] {
   padding: 5px 20px;
   font-size: 14px;
