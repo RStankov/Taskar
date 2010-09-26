@@ -72,7 +72,7 @@ GEM
     rack (1.2.1)
     rack-mount (0.6.13)
       rack (>= 1.0.0)
-    rack-test (0.5.5)
+    rack-test (0.5.6)
       rack (>= 1.0)
     rails (3.0.0)
       actionmailer (= 3.0.0)
@@ -119,9 +119,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  acts_as_list
-  autotest
-  capistrano
+  acts_as_list (~> 0.1.2)
+  autotest (~> 4.3.2)
+  capistrano (~> 2.5.19)
   devise (= 1.1.2)
   erubis (= 2.6.6)
   factory_girl_rails (>= 1.0.0)
@@ -129,7 +129,7 @@ DEPENDENCIES
   rails (= 3.0.0)
   rspec-rails (>= 2.0.0.beta.22)
   shoulda (>= 2.11.3)
-  sprockets
+  sprockets (~> 1.0.2)
   sqlite3-ruby
-  webrat
+  webrat (~> 0.7.1)
   will_paginate (= 3.0.pre2)
