@@ -24,7 +24,7 @@ bg:
       updated: 'Вашата парола беше променена успешно.'
       forgot_title: "Забравена парола?"
       change_title: "Промяна на паролата"
-      send_instructions_button: "Изпрати ми инструкции за промяна на паролата"
+      send_instructions_button: "Изпрати"
       update_button: "Промени паролата ми"
 
     registrations:

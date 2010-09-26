@@ -24,7 +24,7 @@ en:
       updated: 'Your password was changed successfully. You are now signed in.'
       forgot_title: 'Forgotten password?'
       change_title: 'Change your password'
-      send_instructions_button: 'Send password change instructions'
+      send_instructions_button: 'Send'
       update_button: 'Change password'
 
     registrations:
