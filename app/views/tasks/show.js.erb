@@ -1,18 +1,12 @@
 <%= javascript_response do %>
   (function(){
-    var element = $('task_content');
+    var element = $("task_content");
     if (element){
-      element.update(<%= javascript_string_from_partial "content" %>);
-      $('task_title').update("<%= escape_javascript(task_description(@task)) %>");
+      element.update().highlight();
+      $("task_title").update("<%= escape_javascript(task_description(@task)) %>");
     } else {
-      element = $('<%= dom_id @task %>');
-			element.morph({
-				change: function(){
-	      	element.replace(<%= javascript_string_from_partial @task %>);
-				}
-			})
+			$("<%= dom_id @task %>").transform(<%= javascript_string_from_partial @task %>);
     }
-    element.highlight();
   })();
 <% end %>
 
