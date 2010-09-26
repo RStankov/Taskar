@@ -216,19 +216,19 @@ body > footer {
   outline: none;
 }
 
-/*** LOGIN BOX ***/
+/*** USER BOX ***/
 
-#login_box form {
+#user_box form {
   margin: 20px;
 }
 
-#login_box input[type="text"], #login_box input[type="password"], #login_box select {
+#user_box input[type="text"], #user_box input[type="password"], #user_box select {
   font-size: 18px;
   width: 98%;
   margin: 10px 0 10px 0;
 }
 
-#login_box input[type="submit"] {
+#user_box input[type="submit"] {
   padding: 5px 20px;
   font-size: 14px;
 }
