@@ -68,8 +68,8 @@ en:
       header: "Latest activity across your projects"
       empty: "You don't participate in any projects"
       empty_admin: 'There are no active projects, Like administrator of "<em>%{account_name}</em>" you can create:'
-      add_project: "Create new project"
-      add_user: "Create new user"
+      add_project: "New project"
+      add_user: "New user"
 
 
   sessions:
