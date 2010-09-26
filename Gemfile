@@ -22,6 +22,7 @@ group :test do
   gem "webrat", "~>0.7.1"
   gem "autotest", "~>4.3.2"
   gem "rspec-rails", ">=2.0.0.beta.22"
+  gem "rcov", ">=0.9.9"
   gem "shoulda", ">=2.11.3"
   gem "factory_girl_rails", ">=1.0.0"
 end
