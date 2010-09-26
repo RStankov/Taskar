@@ -8,7 +8,7 @@ en:
       signed_in: Signed in successfully.'
       signed_out: 'Signed out successfully.'
 
-    devise.failure:
+    failure:
       unauthenticated: 'You need to sign in or sign up before continuing.'
       unconfirmed: 'You have to confirm your account before continuing.'
       locked: 'Your account is locked. Check your e-mail for the unlock instructions.'
