@@ -8,10 +8,10 @@
 <% if @projects.empty? %>
 	<div class="help_notice">
 		<% if current_user.admin? %>
-			<h2><%= t '.empty_admin', :account_name => @current_user.account.name %></h2>
+			<h2><%= raw t('.empty_admin', :account_name => @current_user.account.name) %></h2>
 			<%= link_to t('.add_project'), new_project_path %> <%= t :or %> <%= link_to t('.add_user'), new_user_path %>
 		<% else %>
-			<h2><%= t '.empty' %></h2>
+			<h2><%= raw t('.empty') %></h2>
 		<% end%>
 	</div>
 <% else %>
