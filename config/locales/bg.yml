@@ -1,4 +1,4 @@
-bg: 
+bg:
   project: "Проект"
   copywrite: '© %{year} Радослав Станков'
   scroll_to_top: "Нагоре"
@@ -23,7 +23,7 @@ bg:
     general:
       profile: "Профил"
       logout: "Изход"
-    
+
     admin:
       title_projects: ": Проекти"
       title_users: ": Потребители"
@@ -34,7 +34,7 @@ bg:
       project_settings: "настройки"
       new_project: "Добави нов проект"
       manage_projects: "Всички проекти"
-    
+
     sections:
       dashboard: "Табло"
       task_list: "Задачи"
@@ -49,32 +49,32 @@ bg:
         one: "Една задача"
         zero: "Няма задачи"
         other: "%{count} задачи"
-      
+
       people_in_project: "Участници в проекта"
       last_activity: "Последно активен преди %{time}"
-      status: 
+      status:
         label: "Какво правите в момента?"
         clear: "изчисти статуса си"
         share: "Сподели"
-    
+
     dashboard:
       title: "Табло"
       manage: "Менажирай"
-      current_projects: "Проекти в които участвате (%{count})"      
-    
-  
+      current_projects: "Проекти в които участвате (%{count})"
+
+
   dashboard:
-    index: 
+    index:
       header: "Последни дейстивя по проектите, в който участвате"
       empty: "В момента не участвате в активни проекти"
       empty_admin: 'В момента нямате активни поекти, Като администратор на "<em>%{account_name}</em>" вие може да добавите:'
       add_project: "Добавите нов проект"
       add_user: "Добавите нов потребител"
-    
-  
+
+
   sessions:
     title: "Вход"
-  
+
   projects:
     participants: "Участници в проекта"
     sections: "Секции"
@@ -83,12 +83,12 @@ bg:
     new_project: "Нов проект"
     edit_project: "Промяна на прект"
     completed: "Завършен"
-    index: 
+    index:
       title: "Проекти"
       active: "Активни проекти"
       completed: "Завършени проекти"
-    
-  
+
+
   users:
     title: "Потребители"
     new_user: "Нов потребител"
@@ -97,7 +97,7 @@ bg:
     confirm: "Сигурни ли сте, че искате да изтриете този потребител"
     projects: "Проекти, в който участва %{name}"
     admin: "Администратор"
-  
+
   sections:
     new_section: "Нова секция"
     edit_section: "Промяна на секция"
@@ -107,7 +107,7 @@ bg:
       previous: "Предишни"
       next: "Следващи"
       statuses: "Статуси"
-    
+
     show:
       confirm: "Сигурни ли сте че, искате да изтриете тази секция?"
       add_task: "Добави задача"
@@ -115,8 +115,8 @@ bg:
       archive: "Архив"
       more: "Действия"
       print: "Отпечатване"
-    
-  
+
+
   tasks:
     move_into_section: "Пуснете задачата върху избрана секция<br />зада я преместите там."
     empty_archive: "Няма архивирани задачи"
@@ -125,28 +125,28 @@ bg:
       comments:
         one: "Един коментар"
         other: "%{count} коментара"
-      
-    
+
+
     show:
       task:
         normal: "Задача"
         archived: "Архивирана задача"
-      
-      description: 
-        short: "от %{from} преди %{on}"
-        responsible: "от %{from} за %{to} преди %{on}"
-        same: "от и за %{from} преди %{on}"
-        full: "от %{from} за %{to} преди %{on} до %{due}"
-      
+
+      description:
+        short: "%{task} от %{from} преди %{on}"
+        responsible: "%{task} от %{from} за %{to} преди %{on}"
+        same: "%{task} от и за %{from} преди %{on}"
+        full: "%{task} от %{from} за %{to} преди %{on} до %{due}"
+
       comments: "Коментари <small>(%{count})</small>"
       no_results_found: "Няма намерени задачи"
-      more_results: 
+      more_results:
         one: "+ един резултат"
         other: "+ %{count} резултата"
-    
+
     index:
       title: "Задачи за вас"
-    
+
     form:
       text: "Какво има да се прави:"
       create: "Добави задачата"
@@ -154,28 +154,28 @@ bg:
       stop: "скрий формата"
       cancel: "откажи промените"
       responsible_party: "Трябва да се свърши от:"
-    
-  
+
+
   comments:
     preview: "Преглед"
     comment:
-      editable_for: "редактируем за oще %{minutes} минути" 
+      editable_for: "редактируем за oще %{minutes} минути"
       confirm: "Сигурни ли сте, че искате да изтриете този коментар"
-    
+
     new_form:
       title: "Нов коментар"
       submit: "Коментирай"
-    
+
     edit_form:
       submit: "Промени коментара"
-    
-  
+
+
   events:
     subject:
       task: "задача"
       comment: "коментар"
       status: "статус"
-    
+
     action:
       commented: "коментира"
       deleted: "изтри"
@@ -184,27 +184,27 @@ bg:
       rejected: "отхвърли"
       archived: "архивира"
       shared: "сподели"
-    
-  
+
+
   statuses:
     index:
       title: "Статуси на членовете на проекта"
       dashboard: "Събития"
-    
-  
+
+
   tasks_stats:
     empty: "0 задачи"
     opened:
       one: "1 задача"
       other: "%{count} задачи"
-    
+
     rejected:
         one: "1 отхвърлена задача"
         other: "%{count} отхвърлени задачи"
-    
+
     completed:
         one: "1 завършена задача"
         other: "%{count} завършени задачи"
-    
-    
-  
+
+
+

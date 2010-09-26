@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe TasksHelper do
   describe "task_state_checkbox" do
@@ -68,40 +68,40 @@ describe TasksHelper do
 
   describe "task_description" do
     before do
-      mock_user(:full_name => 'Radoslav Stankov')
+      mock_user(:full_name => "Radoslav Stankov")
       mock_task(:created_at => Time.now - 1.week, :responsible_party => nil)
     end
 
-    def task_description
+    def task_description(stubs = {})
+      stubs.each { |method, value| mock_task.stub(method).and_return(value)  }
       helper.task_description(mock_task)
     end
 
-    def expected(name, options = {})
+    def expected(task_type, name, options = {})
       t(:"tasks.show.description.#{name}", {
+        :task => t("tasks.show.task.#{task_type}"),
         :from => mock_user.full_name,
         :on   => helper.time_ago_in_words(mock_task.created_at)
       }.merge(options))
     end
 
     it "should return short version if task have only creator and created at" do
-      task_description.should == expected(:short)
+      task_description(:archived => false).should == expected(:normal, :short)
+      task_description(:archived => true).should == expected(:archived, :short)
     end
 
     it "should return responsible if there is responsible party" do
-      mock_task.stub!(:responsible_party).and_return(mock(User, :full_name => 'Dobromir Raynov'))
+      mock_task.stub!(:responsible_party).and_return(mock(User, :full_name => "Metodi Stankov"))
 
-      task_description.should == expected(:responsible, :to => 'Dobromir Raynov')
+      task_description(:archived => false).should == expected(:normal, :responsible, :to => "Metodi Stankov")
+      task_description(:archived => true).should == expected(:archived, :responsible, :to => "Metodi Stankov")
     end
 
     it "should return same if responsible party is same as creator" do
       mock_task.stub!(:responsible_party).and_return(mock_user)
 
-      task_description.should == expected(:same)
+      task_description(:archived => false).should == expected(:normal, :same)
+      task_description(:archived => true).should == expected(:archived, :same)
     end
-
-    # TODO: when due is added to task
-    #it "returns tasks description in p" do
-    #  helper.task_description(mock_task).should == expected(:full, :to => 'Някой друг', :due => '10.05.2010')
-    #end
   end
 end

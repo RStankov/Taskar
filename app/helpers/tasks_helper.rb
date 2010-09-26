@@ -11,6 +11,7 @@ module TasksHelper
   def task_description(task)
     name    = "short"
     options = {
+      :task => t("tasks.show.task.#{task.archived ? 'archived' : 'normal'}"),
       :from => task.user.full_name,
       :on   => time_ago_in_words(task.created_at)
     }

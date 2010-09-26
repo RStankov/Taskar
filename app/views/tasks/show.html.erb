@@ -1,5 +1,5 @@
 <header>
-  <h1 id="task_title"><%=t ".task.#{@task.archived ? 'archived' : 'normal'}"  %> <%= task_description(@task) %></h1>
+  <h1 id="task_title"><%= task_description(@task) %></h1>
 </header>
 <div class="wrap">
   <div id="task_content" class="task <%= @task.state %>">
