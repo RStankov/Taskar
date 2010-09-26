@@ -6,7 +6,7 @@
 	 	<li><%= link_to t('devise.registrations.link'), new_registration_path(resource_name) %> |</li>
 	<% end %>
 	<% if devise_mapping.lockable? && controller_name != 'unlocks' %>
-		<li><%= link_to t('devise.unlocks.link'), new_unlock_path(resource_name) %><%= " |" unless controller_name = "passwords"  %></li>
+		<li><%= link_to t('devise.unlocks.link'), new_unlock_path(resource_name) %><%= " |" unless controller_name == "passwords"  %></li>
 	<% end %>
 	<% if devise_mapping.recoverable? && controller_name != 'passwords' %>
 	  <li><%= link_to t('devise.passwords.link'), new_password_path(resource_name) %></li>
