@@ -1,4 +1,4 @@
 <ul id="archived_tasks" class="tasks_list static">
   <%= render @tasks %>
-	<li id="archived_tasks_empty"<%= 'style="display: none"' if @tasks.size > 0 %>><%=t 'tasks.empty_archive' %></li>
+	<li id="archived_tasks_empty"<%= raw ' style="display: none"' if @tasks.size > 0 %>><%=t 'tasks.empty_archive' %></li>
 </ul>
