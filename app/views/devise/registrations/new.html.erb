@@ -1,36 +1,28 @@
-<header>
-	<%= title 'devise.registrations.new' %>
-</header>
-<div class="wrap">
+<div id="login_box">
+  <header>
+  	<%= title 'devise.registrations.new' %>
+  </header>
 	<%= form_for @user, :url => registration_path(resource_name), :html => { :class => 'action_form', :multipart => true} do |f| %>
 	  <%= render 'shared/error_messages', :target => f.object %>
-
-	  <p><%= f.label :email %></p>
-	  <p><%= f.text_field :email %></p>
-
-	  <p><%= f.label :password %></p>
-	  <p><%= f.password_field :password %></p>
-
-	  <p><%= f.label :password_confirmation %></p>
-	  <p><%= f.password_field :password_confirmation %></p>
-
-	  <p><%= f.label :first_name  %></p>
-	  <p><%= f.text_field :first_name  %></p>
-
-	  <p><%= f.label :last_name  %></p>
-	  <p><%= f.text_field :last_name  %></p>
-
+	  <%= f.label :email %>
+	  <%= f.text_field :email %>
+	  <%= f.label :password %>
+	  <%= f.password_field :password %>
+	  <%= f.label :password_confirmation %>
+	  <%= f.password_field :password_confirmation %>
+	  <%= f.label :first_name  %>
+	  <%= f.text_field :first_name  %>
+	  <%= f.label :last_name  %>
+	  <%= f.text_field :last_name  %>
 		<%= f.fields_for :owned_account, @user.owned_account || Account.new do |account| %>
-			<p><%= account.label :name, "Име на фирмата ви" %></p>
-			<p><%= account.text_field :name %></p>
+			<%= account.label :name, "Име на фирмата ви" %>
+			<%= account.text_field :name %>
 		<% end %>
-
-	  <p><%= f.label :avatar %></p>
-	  <p><%= f.file_field :avatar %></p>
-
+	  <%= f.label :avatar %>
+	  <%= f.file_field :avatar %>
 		<div class="buttons">
       <%= f.submit t('devise.registrations.register') %>
 	  </div>
 	<% end %>
+  <%= render "devise/shared/links" %>
 </div>
-<%= render :partial => "devise/shared/links" %>
