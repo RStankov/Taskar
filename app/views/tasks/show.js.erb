@@ -5,7 +5,7 @@
       element.update(<%= javascript_string_from_partial "content" %>);
       $('task_title').update("<%= escape_javascript(task_description(@task)) %>");
     } else {
-      element = $('task_<%= @task.id %>');
+      element = $('<%= dom_id @task %>');
 			element.morph({
 				change: function(){
 	      	element.replace(<%= javascript_string_from_partial @task %>);
