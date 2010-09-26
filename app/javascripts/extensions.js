@@ -15,9 +15,23 @@ Element.addMethods({
   },
   removeWithEffect: function(element, effect, options){
 		options = S2.FX.parseOptions(options);
-		options.after = options.after ? 
+		options.after = options.after ?
 		  options.after.wrap(function(callback,e){ callback(e); Element.remove(e.element); }) : function(e){ Element.remove(e.element); };
 
 		return $(element).effect(effect, options);
+	},
+	transform: function(element, content){
+		element = $(element);
+		element.morph({
+			change: function(){
+	    	element.update(content);
+			},
+			after: function(){
+	    	element.highlight();
+				var textarea = element.down("textarea");
+				textarea && textarea.focus();
+			}
+		});
+		return element;
 	}
 });

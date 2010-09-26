@@ -1,13 +1,3 @@
 <%= javascript_response do %>
-  (function(element){
-		element.morph({
-			change: function(){
-		    element.update(<%= javascript_string_from_partial "form", :task => @task %>);
-			},
-			after: function(){
-				element.highlight();
-				element.down("textarea").focus();
-			}
-		});
-  })($("<%= dom_id @task %>") || $("task_content"));
+	($("<%= dom_id @task %>") || $("task_content")).transform(<%= javascript_string_from_partial "form", :task => @task %>);
 <% end %>
