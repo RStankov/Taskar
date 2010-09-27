@@ -112,12 +112,7 @@ body > header {
   min-width: 950px;
 	position: relative;
 }
-/*
-body > header > div {
-	left: 10px;
-	position: absolute;
-}
-*/
+
 body > header h2 {
   display: inline-block;
   font-weight: normal;
