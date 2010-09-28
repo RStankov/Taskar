@@ -10,8 +10,6 @@ gem "devise", "1.1.2"
 gem "sprockets", "~>1.0.2"
 gem "acts_as_list", "~>0.1.2"
 
-gem "erubis", "2.6.6"
-
 group :development do
   gem "capistrano", "~>2.5.19"
   gem "autotest", "~>4.3.2"

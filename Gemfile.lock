@@ -124,7 +124,6 @@ DEPENDENCIES
   autotest (~> 4.3.2)
   capistrano (~> 2.5.19)
   devise (= 1.1.2)
-  erubis (= 2.6.6)
   factory_girl_rails (>= 1.0.0)
   paperclip (= 2.3.3)
   rails (= 3.0.0)
