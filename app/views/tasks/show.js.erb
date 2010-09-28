@@ -2,7 +2,7 @@
   (function(){
     var element = $("task_content");
     if (element){
-      element.update().highlight();
+      element.update(<%= javascript_string_from_partial "content" %>).highlight();
       $("task_title").update("<%= escape_javascript(task_description(@task)) %>");
     } else {
 			$("<%= dom_id @task %>").replaceWithEffect(<%= javascript_string_from_partial @task %>);
