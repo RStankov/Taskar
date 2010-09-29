@@ -144,6 +144,7 @@ article {
   display: table-cell;
   padding-bottom: 20px;
   vertical-align: top;
+	height: 550px;
 }
 
 /*** MAIN ASIDE ***/
