@@ -5,7 +5,7 @@ describe "/sections/edit.html.erb" do
     assign :project, @project = stub_model(Project)
     assign :section, @section = stub_model(Section,
       :new_record?  => false,
-      :project      => 1,
+      :project      => @project,
       :name         => "value for name",
       :position     => 1
     )
