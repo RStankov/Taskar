@@ -152,7 +152,7 @@ module Devise
 
       def set_account_id_from_domain
        if params[:user]
-         params[:user][:account_id] = Account.find_id_by_name(params[:domain])
+         params[:user][:account_id] = Account.find_id_by_domain(params[:domain])
        end
       end
     end

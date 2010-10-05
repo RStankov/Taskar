@@ -15,8 +15,8 @@ class Account < ActiveRecord::Base
   has_many :users,    :dependent => :destroy
   has_many :projects, :dependent => :destroy
 
-  def self.find_id_by_name(name)
-    if name && account = where(:name => name).first
+  def self.find_id_by_domain(domain)
+    if domain.present? && account = where(:domain => domain.downcase).first
       account.id
     end
   end

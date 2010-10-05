@@ -25,18 +25,23 @@ describe Account do
       account.domain.should == "title_cased"
     end
 
-    describe "#find_id_by_name" do
-      it "should find account id for given name" do
+    describe "#find_id_by_domain" do
+      it "should find account id for given domain" do
         account = Factory(:account)
-        Account.find_id_by_name(account.name).should == account.id
+        Account.find_id_by_domain(account.domain).should == account.id
       end
 
-      it "should return nil if name is nil" do
-        Account.find_id_by_name(nil).should be_nil
+      it "should be case insensitive" do
+        account = Factory(:account)
+        Account.find_id_by_domain(account.domain.upcase).should == account.id
+      end
+
+      it "should return nil if domain is nil" do
+        Account.find_id_by_domain(nil).should be_nil
       end
 
       it "should return nil if account doesn't exists" do
-        Account.find_id_by_name("not - existing - name").should be_nil
+        Account.find_id_by_domain("not - existing - name").should be_nil
       end
     end
 end
