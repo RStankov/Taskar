@@ -9,8 +9,7 @@
 	  <%= f.text_field :email %>
 	  <%= f.label :password %>
 	  <%= f.password_field :password %>
-	  <%= f.label :domain, "Domain" %><br />
-	  <input type="text" name="domain" id="domain" value="<%= params[:domain] %>" style="width: 200px; display: inline;" />.taskarapp.com<br />
+	  <%= render "devise/shared/domain" %>
 	  <%= f.check_box :remember_me %> <%= f.label :remember_me %>
 	  <div class="buttons">
 	    <%= f.submit t('devise.sessions.link') %>

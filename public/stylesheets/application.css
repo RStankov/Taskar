@@ -241,6 +241,19 @@ body > footer {
   font-size: 14px;
 }
 
+.domain_fields label {
+  display: block;
+  font-size: 14px;
+}
+
+.domain_fields {
+  font-size: 24px;
+}
+
+#user_domain {
+  display: inline;
+}
+
 .bottom_links {
   border-top: 1px solid #eee;
   padding: 20px;
