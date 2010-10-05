@@ -11,7 +11,7 @@ class Account < ActiveRecord::Base
   has_many :projects, :dependent => :destroy
 
   def self.find_id_by_name(name)
-    if account = where(:name => name).first
+    if name && account = where(:name => name).first
       account.id
     end
   end

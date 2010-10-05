@@ -16,7 +16,11 @@ describe Account do
         Account.find_id_by_name(account.name).should == account.id
       end
 
-      it "should return nil if accunt doesn't exists" do
+      it "should return nil if name is nil" do
+        Account.find_id_by_name(nil).should be_nil
+      end
+
+      it "should return nil if account doesn't exists" do
         Account.find_id_by_name("not - existing - name").should be_nil
       end
     end
