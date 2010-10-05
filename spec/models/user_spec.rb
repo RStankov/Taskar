@@ -74,7 +74,7 @@ describe User do
     end
   end
 
-  describe "send_unlock_instructions" do
+  describe "#send_unlock_instructions" do
     it "should find a user to send unlock instructions, with correcy account/email" do
       user = Factory(:user)
       user.lock_access!
@@ -107,7 +107,7 @@ describe User do
     end
   end
 
-  describe "send_reset_password_instructions" do
+  describe "#send_reset_password_instructions" do
     it "should find a user to send his reset password instructions, with correcy account/email" do
       user = Factory(:user)
 
@@ -139,7 +139,6 @@ describe User do
     end
   end
 
-
   it "should downcase the email address on save" do
     user = Factory.build(:user, :email => "BigCases@mail.com");
     user.save
@@ -156,7 +155,7 @@ describe User do
     user.short_name.should == "Radoslav S."
   end
 
-  describe "admin?" do
+  describe "#admin?" do
     it "should not be changable for account owner" do
       user               = Factory(:user, :admin => true)
       user.owned_account = Factory(:account)
@@ -176,7 +175,7 @@ describe User do
     end
   end
 
-  describe "new_comment" do
+  describe "#new_comment" do
     it "should build new comment from task, assign user.id to it" do
       task = Factory(:task)
       user = Factory(:user)
@@ -188,7 +187,7 @@ describe User do
     end
   end
 
-  describe "new_task" do
+  describe "#new_task" do
     it "should build new coment from section, assign user.id to it" do
       section = Factory(:section)
       user    = Factory(:user)
@@ -200,7 +199,7 @@ describe User do
     end
   end
 
-  describe "new_status" do
+  describe "#new_status" do
     it "should build new statu from project, assign user.id to it" do
       project = Factory(:project)
       user    = Factory(:user)
@@ -212,7 +211,7 @@ describe User do
     end
   end
 
-  describe "responsibilities_count" do
+  describe "#responsibilities_count" do
     it "should get the count of all responsibilities who are with status = 0" do
       user = Factory(:user)
 
@@ -233,15 +232,23 @@ describe User do
 
   describe "owned_account" do
     before :each do
-      @account_name = Factory.build(:account).name
+      account = Factory.build(:account)
+
+      @account_name   = account.name
+      @account_domain = account.domain
 
       @user                          = User.new Factory.attributes_for(:user)
-      @user.owned_account_attributes = {:name => @account_name}
+      @user.owned_account_attributes = {:name => @account_name, :domain => @account_domain}
       @user.save.should be_true
+      @user.should_not be_new_record
     end
 
-    it "should be created with user on user creation" do
+    it "should be created with name on user creation" do
       @user.owned_account.name.should == @account_name
+    end
+
+    it "should be created with domain on user creation" do
+      @user.owned_account.domain.should == @account_domain
     end
 
     it "should be same as user's account" do

@@ -250,6 +250,10 @@ body > footer {
   font-size: 24px;
 }
 
+.domain_fields .field_with_errors {
+  display: inline-block;
+}
+
 #user_domain {
   display: inline;
 }
