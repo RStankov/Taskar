@@ -140,3 +140,21 @@ Devise.setup do |config|
   #   manager.default_strategies(:scope => :user).unshift :twitter_oauth
   # end
 end
+
+require 'devise/controllers/internal_helpers'
+
+module Devise
+  module Controllers
+    module InternalHelpers
+      def self.included(base)
+        base.before_filter :set_account_id_from_domain
+      end
+
+      def set_account_id_from_domain
+       if params[:user]
+         params[:user][:account_id] = Account.find_id_by_name(params[:domain])
+       end
+      end
+    end
+  end
+end
