@@ -52,6 +52,8 @@ Taskar::Application.routes.draw do
     end
   end
 
+  match "issues" => "issues#create", :via => :post
+
   devise_for :users, :path => "sign", :path_names => {:sign_in => "in", :sign_out => "out", :sign_up => "up"}
 
   match "sprockets.js" => "sprockets#show"

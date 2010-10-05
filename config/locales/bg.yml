@@ -22,6 +22,7 @@ bg:
   layouts:
     general:
       profile: "Профил"
+      feedback: "Обратна връзка"
       logout: "Изход"
 
     admin:

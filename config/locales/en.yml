@@ -22,6 +22,7 @@ en:
   layouts:
     general:
       profile: "Profile"
+      feedback: "Feedback"
       logout: "Logout"
 
     admin:
