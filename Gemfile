@@ -23,4 +23,6 @@ group :test do
   gem "rcov", ">=0.9.9"
   gem "shoulda", ">=2.11.3"
   gem "factory_girl_rails", ">=1.0.0"
+  gem "ZenTest"
+  gem "autotest-notification"
 end
