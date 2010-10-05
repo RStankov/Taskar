@@ -5,10 +5,7 @@ describe "/projects/new.html.erb" do
     sign_in Factory(:user)
 
     assign :account, Factory(:account)
-    assign :project, stub_model(Project,
-      :new_record? => true,
-      :name        => "value for name"
-    )
+    assign :project, Project.new
   end
 
   it "renders new project form" do
