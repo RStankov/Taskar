@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
     end
 
     def record_not_found
-      render :partial => "shared/not_found", :layout => "application", :status => 404
+      render :action => "shared/not_found", :layout => "application", :status => 404
     end
 
     def get_project
