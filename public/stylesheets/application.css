@@ -441,6 +441,7 @@ body > footer {
 	right: 10px;
   display: inline-block;
   line-height: 20px;
+  font-size: 11px;
 }
 
 #nav_account a, #manage_projects {
