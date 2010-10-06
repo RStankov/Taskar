@@ -41,6 +41,7 @@ bg:
       task_list: "Задачи"
       archive: "Архив"
       switch_to_project: "Отвори друг проект"
+      manage_projects: "менажирай"
       all_projects: "Всички проекти"
       goto_dashboard: "Събития"
       sections: "Секции"

@@ -21,6 +21,8 @@
   	        <li><%= link_to t(:".all_projects"), root_path, :class => "all_projects" %></li>
   	      </ul>
   	    </nav>
+  	  <% elsif current_user.admin? %>
+  	    <%= link_to t(".manage_projects"), projects_path, :id => "manage_projects" %>
   		<% end %>
 		</h2>
     <nav id="nav_project">

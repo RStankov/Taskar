@@ -440,20 +440,20 @@ body > footer {
   position: absolute;
 	right: 10px;
   display: inline-block;
-  font-size: 11px;
   line-height: 20px;
 }
 
-#nav_account a {
+#nav_account a, #manage_projects {
   color: #fff;
   padding: 2px 5px;
   text-decoration: none;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
   border-radius: 3px;
+  font-size: 11px;
 }
 
-#nav_account a:hover, #nav_account a:focus {
+#nav_account a:hover, #nav_account a:focus, #manage_projects:hover, #manage_projects:focus {
   text-shadow: none;
   background-color: #fff;
   color: #000;
