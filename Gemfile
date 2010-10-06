@@ -9,6 +9,8 @@ gem "devise", "1.1.2"
 gem "sprockets", "~>1.0.2"
 gem "acts_as_list", "~>0.1.2"
 
+gem "hoptoad_notifier"
+
 group :development do
   gem "sqlite3-ruby", :require => "sqlite3"
   gem "capistrano", "~>2.5.19"
