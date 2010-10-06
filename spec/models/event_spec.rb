@@ -20,6 +20,82 @@ describe Event do
     event.project_id.should  == task.project_id
   end
 
+  describe ".unseen_from" do
+    it "should expect project_user and take :project_id, :user_id and :last_seen_event_at if exists or :created_at" do
+      project_user = mock_model(ProjectUser)
+      project_user.should_receive(:project_id).and_return 1
+      project_user.should_receive(:user_id).and_return 1
+      project_user.should_receive(:last_seen_event_at).and_return Time.now
+      project_user.should_not_receive(:created_at)
+
+      Event.unseen_from(project_user)
+    end
+
+    it "should expect project_user and take :project_id, :user_id and :created_at if :last_seen_event_at don't exists" do
+      project_user = mock_model(ProjectUser)
+      project_user.should_receive(:project_id).and_return 1
+      project_user.should_receive(:user_id).and_return 1
+      project_user.should_receive(:last_seen_event_at).and_return nil
+      project_user.should_receive(:created_at)
+
+      Event.unseen_from(project_user)
+    end
+
+    def mark_events_after(time, *events)
+      Event.update_all ["updated_at = ?", time], ["id IN (?)", events.collect(&:id)]
+    end
+
+    it "should show all unseen events for this user" do
+      last_seen = Time.now
+      project = Factory(:project)
+
+      # should not be unseen events
+      Factory(:event, :project => project)                              # event in same project, but before user date
+
+      project_user = Factory(:project_user, :project => project)
+      project_user.should_not be_new_record
+
+      other_user = Factory(:project_user)
+      other_user.should_not be_new_record
+
+      # should not be unseen events
+      unneeded_event_1 = Factory(:event)                                                   # unrelated event
+      unneeded_event_2 = Factory(:event, :user => project_user.user)                       # event by the same user
+      unneeded_event_3 = Factory(:event, :user => project_user.user, :project => project)  # event by the same user in the same project
+
+      # should see those events
+      unseen_event_1 = Factory(:event, :project => project)
+      unseen_event_2 = Factory(:event, :project => project)
+
+      mark_events_after last_seen + 5.minutes, unneeded_event_1, unneeded_event_2, unneeded_event_3
+      mark_events_after last_seen + 5.minutes, unseen_event_1, unseen_event_2
+
+      Event.unseen_from(other_user).should == []
+      Event.unseen_from(project_user).should == [unseen_event_1, unseen_event_2].map(&:reload)
+
+      # mark events as seen
+      last_seen += 6.minutes
+
+      project_user.update_attribute :last_seen_event_at, last_seen
+      other_user.update_attribute   :last_seen_event_at, last_seen
+
+      # should not be unseen events
+      unneeded_event_4 = Factory(:event)                                                   # unrelated event
+      unneeded_event_5 = Factory(:event, :user => project_user.user)                       # event by the same user
+      unneeded_event_6 = Factory(:event, :user => project_user.user, :project => project)  # event by the same user in the same project
+
+      # should see those events
+      unseen_event_3 = Factory(:event, :project => project)
+      unseen_event_4 = Factory(:event, :project => project)
+
+      mark_events_after last_seen + 5.minutes, unneeded_event_4, unneeded_event_5, unneeded_event_6
+      mark_events_after last_seen + 5.minutes, unseen_event_3, unseen_event_4
+
+      Event.unseen_from(other_user).should == []
+      Event.unseen_from(project_user).should == [unseen_event_3, unseen_event_4].map(&:reload)
+    end
+  end
+
   describe "#action" do
     def event_action_for(subject)
       Factory(:event, :subject => subject).action

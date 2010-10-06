@@ -14,7 +14,9 @@ class Event < ActiveRecord::Base
 
   before_validation :set_info, :set_action
 
-  scope :unseen, lambda { |user_id, last_seen| where "user_id != ? AND updated_at > ?", user_id, last_seen }
+  def self.unseen_from(project_user)
+    where "project_id = ? AND user_id != ? AND updated_at > ?", project_user.project_id, project_user.user_id, project_user.last_seen_event_at || project_user.created_at
+  end
 
   def self.activity(user, subject)
     event = find_or_initialize_by_subject_id_and_subject_type(subject.id, subject.class.name)
