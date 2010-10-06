@@ -23,7 +23,11 @@ module SectionsHelper
   end
 
   def participant_last_action(participant)
-    t "layouts.sections.last_activity", :time => time_ago_in_words(participant.user.last_active_at)
+    if participant.user.last_active_at
+      t "layouts.sections.last_activity", :time => time_ago_in_words(participant.user.last_active_at)
+    else
+      ""
+    end
   end
 
   def participant_status_title(participant)

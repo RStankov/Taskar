@@ -25,8 +25,8 @@ describe SectionsHelper do
     end
   end
 
-  def mock_participant_with_status(status)
-    @participant ||= stub :status => status, :user => stub(:last_active_at => Time.now)
+  def mock_participant_with_status(status, last_active_at = Time.now)
+    @participant ||= stub :status => status, :user => stub(:last_active_at => last_active_at)
   end
 
   describe "#participant_status_title" do
@@ -58,6 +58,12 @@ describe SectionsHelper do
     it "returns formated participent status" do
       status = "1\n2\n3\n4\n5\n6"
       helper.participant_status(mock_participant_with_status status).should == helper.simple_format(status)
+    end
+  end
+
+  describe "#participant_last_action" do
+    it "should return empty string if no action was preformed" do
+      helper.participant_last_action(mock_participant_with_status("foo", nil)).should == ""
     end
   end
 
