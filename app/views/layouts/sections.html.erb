@@ -95,7 +95,7 @@
             -->
           </h3>
           <ul class="people_extended">
-            <%= @project.participants.each do |participant| %>
+            <% @project.participants.each do |participant| %>
               <%= content_tag_for :li, participant, :title => participant_status_title(participant) do %>
                 <%= image_tag participant.user.avatar.url(:aside), :alt => participant.user.full_name %>
                 <span class="people_info">
