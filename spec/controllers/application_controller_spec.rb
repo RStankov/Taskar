@@ -47,4 +47,29 @@ describe ApplicationController do
       controller.send(:project_user).should == mock_project_user
     end
   end
+
+  describe "#set_locale" do
+    it "should not try to set locale if current_user is nil" do
+      I18n.should_not_receive(:locale=)
+
+      controller.stub!(:current_user).and_return nil
+      controller.__send__(:set_locale)
+    end
+
+    it "should not try to set locale if current_user.locale is not in I18n.available_locales" do
+      I18n.should_not_receive(:locale=)
+
+      controller.stub!(:current_user).and_return mock_model(User, :locale => "#{I18n.available_locales.first}_not_existing")
+      controller.__send__(:set_locale)
+    end
+
+    it "should try to set locale to current_user.locale if it exists and it in I18n.available_locales" do
+      locale = I18n.available_locales.last.to_s
+
+      I18n.should_receive(:locale=).with(locale.to_sym)
+
+      controller.stub!(:current_user).and_return mock_model(User, :locale => locale)
+      controller.__send__(:set_locale)
+    end
+  end
 end

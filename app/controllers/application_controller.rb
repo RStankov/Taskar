@@ -3,11 +3,19 @@
 class ApplicationController < ActionController::Base
   helper :all
   protect_from_forgery
+
   before_filter :authenticate_user!
+  before_filter :set_locale
 
   rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
 
   protected
+    def set_locale
+      if current_user && I18n.available_locales.include?(current_user.locale.try(:to_sym))
+        I18n.locale = current_user.locale.to_sym
+      end
+    end
+
     def deny_access
       if request.xhr?
         head :forbidden
