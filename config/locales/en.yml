@@ -125,6 +125,7 @@ en:
     task:
       confirm: "Are you sure, you want to delete this task?"
       comments:
+        zero: "Add comment"
         one: "One comment"
         other: "%{count} comments"
 
