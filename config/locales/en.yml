@@ -167,7 +167,7 @@ en:
 
     new_form:
       title: "New comment"
-      submit: "Comment"
+      submit: "Add comment"
 
     edit_form:
       submit: "Change comment"
