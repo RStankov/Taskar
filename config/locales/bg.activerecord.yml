@@ -41,6 +41,7 @@ bg:
             admin: "Администратор"
             remember_me: "Запомни ме"
             account_id: "Акаунт"
+            locale: "Език"
             owned_account:
               name: "Име на фирма"
 

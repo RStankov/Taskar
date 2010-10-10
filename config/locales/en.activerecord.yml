@@ -41,6 +41,7 @@ en:
             admin: "Administrator"
             remember_me: "Remember me"
             account_id: "Account"
+            locale: "Language"
             owned_account:
               name: "Account name"
 
