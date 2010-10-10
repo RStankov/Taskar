@@ -64,4 +64,26 @@ describe ApplicationHelper do
       helper.insert_at("given text").should have_selector(".insert_at", :content => "given text")
     end
   end
+
+  describe "#nl2br" do
+    it "should replace the new lines with <br>" do
+      helper.nl2br("line 1\nline 2\nline 3").should == "line 1<br />line 2<br />line 3"
+    end
+
+    it "should escape the given input" do
+      helper.nl2br("<div>\n<img>").should == "&lt;div&gt;<br />&lt;img&gt;"
+    end
+
+    it "should catch \\r\\n" do
+      helper.nl2br("line 1\r\nline 2").should == "line 1<br />line 2"
+    end
+
+    it "should allow several empty lines" do
+      helper.nl2br("line 1\n\nline 2\n\nline 3").should == "line 1<br /><br />line 2<br /><br />line 3"
+    end
+
+    it "should be html_safe?" do
+      helper.nl2br("text").should be_html_safe
+    end
+  end
 end
