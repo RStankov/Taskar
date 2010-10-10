@@ -3,7 +3,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 describe ApplicationController do
   subject { controller }
 
-  describe "deny_access" do
+  describe "#deny_access" do
     it "should redirect_to root_path" do
       controller.stub!(:request).and_return(mock(Object, :xhr? => false))
       controller.stub!(:root_path).and_return("root_path")
@@ -20,7 +20,7 @@ describe ApplicationController do
     end
   end
 
-  describe "event" do
+  describe "#event" do
     it "should create user activity" do
       user = Factory(:user)
       task = Factory(:task)
