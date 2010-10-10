@@ -210,4 +210,8 @@ en:
         other: "%{count} completed tasks"
 
 
-
+  aside:
+    unseen_events:
+      zero: "No events"
+      one: "1 new event"
+      other: "%{count} new event"

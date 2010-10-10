@@ -27,13 +27,13 @@ Taskar.Sections.Aside = {
       this.updateContent(element.down('.status'), options.status);
     }
   },
-  updateEvents: function(count){
+  updateEvents: function(count, title){
     var badget = $('notify_badge');
     if (badget.innerHTML != count){
       if (!count){
         badget.hide();
       } else {
-        badget.update(count).appear();
+        badget.update(count).writeAttribute("title", title).appear();
       }
     }
   }
