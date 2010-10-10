@@ -18,10 +18,13 @@
         <section>
           <h3><%=t :".current_projects", :count => @projects.size  %></h3>
           <ul>
+            <% account_id = nil%>
             <% @projects.each do |project| %>
-            <li>
-                <strong><%= link_to project.name, [project, :sections] %></strong>
-            </li>
+            <% unless account_id == project.account_id  %>
+              <% account_id = project.account_id %>
+              <li class="title"><%= project.account.name  %></li>
+            <% end %>
+            <li><strong><%= link_to project.name, [project, :sections] %></strong></li>
             <% end %>
           </ul>
         </section>

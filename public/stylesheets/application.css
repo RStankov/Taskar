@@ -175,10 +175,15 @@ aside section h3 {
 }
 
 aside section ul {
-  list-style-type: none;
   margin: 0;
   padding: 10px 20px;
   list-style: circle;
+}
+
+aside section .title {
+  list-style: none;
+  margin-left: -20px;
+  padding: 5px 0;
 }
 
 aside section a {

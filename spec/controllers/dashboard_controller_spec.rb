@@ -11,7 +11,7 @@ describe DashboardController do
   describe "GET 'index'" do
     context "when there are more than 1 projects" do
       before do
-        @current_user.stub_chain :projects, :active => @mock_projects = [mock_project, mock_project]
+        @current_user.stub_chain :projects, :active, :order => @mock_projects = [mock_project, mock_project]
 
         get :index
       end
@@ -21,7 +21,7 @@ describe DashboardController do
 
     context "when there is one project and user is admin" do
       before do
-        @current_user.stub_chain :projects, :active => @mock_projects = [mock_project]
+        @current_user.stub_chain :projects, :active, :order => @mock_projects = [mock_project]
         @current_user.stub(:admin?).and_return true
 
         get :index
@@ -32,7 +32,7 @@ describe DashboardController do
 
     context "when there is one project and user is not admin" do
       before do
-        @current_user.stub_chain :projects, :active => @mock_projects = [mock_project]
+        @current_user.stub_chain :projects, :active, :order => @mock_projects = [mock_project]
         @current_user.stub(:admin?).and_return false
 
         get :index
