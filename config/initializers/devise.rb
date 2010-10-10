@@ -20,7 +20,7 @@ Devise.setup do |config|
   # authenticating an user, both parameters are required. Remember that those
   # parameters are used only when authenticating and not when retrieving from
   # session. If you need permissions, you should implement that in a before filter.
-  config.authentication_keys = [ :email, :account_id ]
+  # config.authentication_keys = :email
 
   # Tell if authentication through request.params is enabled. True by default.
   # config.params_authenticatable = true
@@ -139,22 +139,4 @@ Devise.setup do |config|
   #   end
   #   manager.default_strategies(:scope => :user).unshift :twitter_oauth
   # end
-end
-
-require 'devise/controllers/internal_helpers'
-
-module Devise
-  module Controllers
-    module InternalHelpers
-      def self.included(base)
-        base.before_filter :set_account_id_from_domain
-      end
-
-      def set_account_id_from_domain
-       if params[:user]
-         params[:user][:account_id] = Account.find_id_by_domain(params[:domain])
-       end
-      end
-    end
-  end
 end
