@@ -15,10 +15,9 @@ module ApplicationHelper
   end
 
   def nl2br(text)
-    text = h(text)
     text.gsub!(/\r\n?/, "\n")  # \r\n and \r -> \n
     text.gsub!(/\n/, '<br />') # 1 newline   -> br
-    text
+    raw text
   end
 
   def title(page_title)

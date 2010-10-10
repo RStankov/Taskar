@@ -4,7 +4,7 @@
 		<% unless @section.text.blank? %>
 			element.insert({
 				after: new Element("p", {className: "text", id: "section_text"})
-								.update("<%= raw escape_javascript(nl2br(auto_link(@section.text))) %>")
+								.update("<%= raw escape_javascript(section_text) %>")
 								.hide()
 								.slideDown()
 			});

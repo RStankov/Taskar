@@ -143,4 +143,36 @@ describe SectionsHelper do
       end
     end
   end
+
+  describe "@section_text" do
+    before do
+      assign :section, mock_section
+
+      helper.stub(:nl2br) { |value| value }
+    end
+
+    it "should nl2br @section.text" do
+      mock_section.stub(:text) { "line 1\nline 2\n" }
+
+      helper.should_receive(:nl2br).with("line 1\nline 2\n")
+      helper.section_text
+    end
+
+    it "should auto_link @section.text" do
+      mock_section.stub(:text) { "update http://rstankov.com" }
+      helper.section_text.should == 'update <a href="http://rstankov.com">http://rstankov.com</a>'
+    end
+
+    it "should be html_safe" do
+      mock_section.stub(:text) { "some text" }
+
+      helper.section_text.should be_html_safe
+    end
+
+    it "should be escaped" do
+      mock_section.stub(:text) { '<a href="javascript:alert()">click</a><div>' }
+
+      helper.section_text.should == '&lt;a href=&quot;javascript:alert()&quot;&gt;click&lt;/a&gt;&lt;div&gt;'
+    end
+  end
 end

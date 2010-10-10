@@ -30,6 +30,10 @@ module SectionsHelper
     end
   end
 
+  def section_text
+    nl2br(auto_link(h(@section.text)))
+  end
+
   def participant_status_title(participant)
     unless participant.status.blank?
       if participant.status.size < 100

@@ -13,7 +13,7 @@
   </header>
 	<% unless @section.text.blank? %>
 		<p class="text">
-			<%= nl2br auto_link(@section.text) %>
+			<%= section_text %>
 		</p>
 	<% end %>
   <ul class="tasks_list static">
@@ -30,7 +30,7 @@
   </header>
 	<% unless @section.text.blank? %>
 		<p class="text" id="section_text">
-			<%=nl2br auto_link(@section.text) %>
+			<%= section_text %>
 		</p>
 	<% end %>
   <ul id="tasks" class="tasks_list" data-sortable="<%= reorder_project_tasks_path(@section.project, @section)  %>">
