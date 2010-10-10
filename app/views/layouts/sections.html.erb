@@ -15,7 +15,7 @@
   	    <nav id="nav_projects">
   	      <span><%= t :".switch_to_project" %></span>
   	      <ul>
-  	        <% current_user.projects.active(:limit => 10).each do |project| %>
+  	        <% current_user.projects.order(:account_id).active(:limit => 10).each do |project| %>
   	        <li><%= link_to project.name, [project, :sections], :class => @project == project && "selected" %></li>
   	        <% end %>
   	        <li><%= link_to t(:".all_projects"), root_path, :class => "all_projects" %></li>
