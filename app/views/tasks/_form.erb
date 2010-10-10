@@ -9,7 +9,7 @@
       <% if form.object.new_record? %>
         <%= form.submit t(:'tasks.form.create') %>
         <%=t :or %>
-        <input type="button" value="<%=t :'tasks.form.stop' %>" class="cancel">
+        <input type="button" value="<%=t :'tasks.form.cancel' %>" class="cancel">
         <%= form.hidden_field :insert_after %>
       <% else %>
         <%= form.submit t(:'tasks.form.update') %>
