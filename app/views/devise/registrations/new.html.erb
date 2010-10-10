@@ -7,16 +7,25 @@
 	  <h3>1. Създайте Taskar акаунт</h3>
 	  <%= f.label :email %>
 	  <%= f.text_field :email %>
+
 	  <%= f.label :password %>
 	  <%= f.password_field :password %>
+
 	  <%= f.label :password_confirmation %>
 	  <%= f.password_field :password_confirmation %>
+
 	  <%= f.label :first_name  %>
 	  <%= f.text_field :first_name  %>
+
 	  <%= f.label :last_name  %>
 	  <%= f.text_field :last_name  %>
+
+    <%= f.label :locale %>
+	  <%= f.select :locale, {"Български език" => "bg", "English language" => "en"} %>
+
 	  <%= f.label :avatar %>
 	  <%= f.file_field :avatar %>
+
 		<%= f.fields_for :owned_account, @user.owned_account || Account.new do |account| %>
 			<%= account.label :name, "Име на фирмата ви" %>
 			<%= account.text_field :name %>
@@ -28,6 +37,7 @@
   		  .taskarapp.com
   		</div>
 		<% end %>
+
 		<div class="buttons">
       <%= f.submit t('devise.registrations.register') %>
 	  </div>

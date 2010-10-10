@@ -18,11 +18,11 @@
 	  <%= f.label :last_name  %>
 	  <%= f.text_field :last_name  %>
 
+    <%= f.label :locale %>
+	  <%= f.select :locale, {"Български език" => "bg", "English language" => "en"} %>
+
 	  <%= f.label :avatar %>
 	  <%= f.file_field :avatar %>
-
-	  <%= f.label :locale %>
-	  <%= f.select :locale, {"Български език" => "bg", "English language" => "en"} %>
 
 		<%= f.label :password %>
 	  <%= f.password_field :password %>
