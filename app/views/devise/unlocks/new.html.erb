@@ -6,7 +6,6 @@
 		<%= render "shared/error_messages", :target => f.object %>
 	  <%= f.label :email %>
 	  <%= f.text_field :email %>
-	  <%= render "devise/shared/domain" %>
 	  <%= f.submit t("devise.unlocks.submit") %>
 	<% end %>
 	<%= render "devise/shared/links" %>

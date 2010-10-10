@@ -17,7 +17,7 @@ describe User do
     it_should_allow_mass_assignment_only_of :email, :first_name, :last_name, :password, :password_confirmation, :avatar, :owned_account_attributes, :remember_me, :locale
 
     it { should validate_presence_of(:email) }
-    it { Factory(:user).should validate_uniqueness_of(:email).scoped_to(:account_id) }
+    it { Factory(:user).should validate_uniqueness_of(:email) }
     it { should_not allow_value('not valid address').for(:email) }
     it { should_not allow_value('domain.com').for(:email) }
     it { should_not allow_value('some@domain').for(:email) }
@@ -60,89 +60,23 @@ describe User do
     end
 
     it "should find_for_authentication with correct" do
-      User.find_for_authentication(:account_id  => @account.id, :email => @user.email).should == @user
+      User.find_for_authentication(:email => @user.email).should == @user
     end
 
 
     it "should find_for_authentication with account / correct email (no case sensative)" do
-      User.find_for_authentication(:account_id  => @account.id, :email => @user.email).should == @user
-      User.find_for_authentication(:account_id  => @account.id, :email => @user.email.upcase).should == @user
+      User.find_for_authentication(:email => @user.email).should == @user
+      User.find_for_authentication(:email => @user.email.upcase).should == @user
     end
 
     it "should not find_for_authentication with incorrect account / email" do
-      User.find_for_authentication(:account_id  => @account.id, :email => @user.email + 'test').should be_nil
-      User.find_for_authentication(:account_id  => @account.id + 2, :email => @user.email).should be_nil
+      User.find_for_authentication(:email => @user.email + 'test').should be_nil
     end
 
     it "should find_for_authentication with same password after update" do
-      User.find_for_authentication(:account_id  => @account.id, :email => @user.email).should == @user
+      User.find_for_authentication(:email => @user.email).should == @user
       @user.update_attributes(:first_name => "new first name", :last_name => "new last name").should be_true
-      User.find_for_authentication(:account_id  => @account.id, :email => @user.email).should == @user
-    end
-  end
-
-  describe "#send_unlock_instructions" do
-    it "should find a user to send unlock instructions, with correcy account/email" do
-      user = Factory(:user)
-      user.lock_access!
-
-      unlock_user = User.send_unlock_instructions(:account_id => user.account_id, :email => user.email)
-      unlock_user.should === user
-    end
-
-    it "should return a new user if no email and account_id was found" do
-      unlock_user = User.send_unlock_instructions(:email => "invalid@email.com")
-      unlock_user.should be_new_record
-      unlock_user.errors[:account_id].should_not be_empty
-
-      unlock_user = User.send_unlock_instructions(:account_id => 0)
-      unlock_user.should be_new_record
-      unlock_user.errors[:email].should_not be_empty
-
-      unlock_user = User.send_unlock_instructions(:account_id => 0, :email => "invalid@email.com")
-      unlock_user.should be_new_record
-      unlock_user.errors[:base].should == [I18n.t('devise.record.invalid')]
-    end
-
-    %w(email account_id).each do |field|
-      it "should not find user only with valid #{field}" do
-        user = Factory(:user)
-
-        unlock_user = User.send_unlock_instructions(field => user[field])
-        unlock_user.should be_new_record
-      end
-    end
-  end
-
-  describe "#send_reset_password_instructions" do
-    it "should find a user to send his reset password instructions, with correcy account/email" do
-      user = Factory(:user)
-
-      recover_user = User.send_reset_password_instructions(:account_id => user.account_id, :email => user.email)
-      recover_user.should === user
-    end
-
-    it "should return a new user if no email and account_id was found" do
-      recover_user = User.send_reset_password_instructions(:email => "invalid@email.com")
-      recover_user.should be_new_record
-      recover_user.errors[:account_id].should_not be_empty
-
-      recover_user = User.send_reset_password_instructions(:account_id => 0)
-      recover_user.should be_new_record
-      recover_user.errors[:email].should_not be_empty
-
-      recover_user = User.send_reset_password_instructions(:account_id => 0, :email => "invalid@email.com")
-      recover_user.should be_new_record
-      recover_user.errors[:base].should == [I18n.t('devise.record.invalid')]
-    end
-
-    %w(email account_id).each do |field|
-      it "should not find user only with valid #{field}" do
-        user = Factory(:user)
-
-        recover_user = User.send_reset_password_instructions(field => user[field])
-        recover_user.should be_new_record
-      end
+      User.find_for_authentication(:email => @user.email).should == @user
     end
   end
 
