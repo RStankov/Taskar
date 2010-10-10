@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101005215633) do
+ActiveRecord::Schema.define(:version => 20101010112829) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -145,6 +145,7 @@ ActiveRecord::Schema.define(:version => 20101005215633) do
     t.integer  "failed_attempts",                     :default => 0
     t.string   "unlock_token"
     t.datetime "locked_at"
+    t.string   "locale",               :limit => 2
   end
 
   add_index "users", ["id"], :name => "index_users_on_id"
