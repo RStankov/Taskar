@@ -40,7 +40,7 @@ input[type="button"] {
 }
 
 textarea {
-    resize: none;
+    resize: vertical;
 }
 
 a {
@@ -441,7 +441,7 @@ body > footer {
 	right: 10px;
   display: inline-block;
   line-height: 20px;
-  font-size: 11px;
+  font-size: 11px;f
 }
 
 #nav_account a, #manage_projects {
@@ -1925,6 +1925,10 @@ article footer > li:last-child {
   padding: 4px 0 0 40px;
   height: 23px;
   font-size: 16px;
+}
+
+#new_comment textarea, .comment textarea {
+  height: 150px;
 }
 
 /*** OUTSIDE BOX ***/
