@@ -5,4 +5,11 @@ Taskar.Sections.Ordering = function(element){
     moveX:      false,
     moveY:      true
   });
+
+  element.observe('drag:finish', function(e){
+    e.memo.element.setStyle({
+      width:  null,
+      height: null
+    });
+  });
 };
