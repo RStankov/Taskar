@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <%= csrf_meta_tag %>
-  <title><%= account.name + t(".title_#{controller_name}", :default => "") %></title>
+  <title><%= @account.name + t(".title_#{controller_name}", :default => "") %></title>
   <%= stylesheet_link_tag 'application' %>
 	<%= favicon_link_tag "favicon.png" %>
 </head>
@@ -15,14 +15,14 @@
     </article>
     <aside>
 			<section>
-        <h3><%=t :'.users', :count => account.users.size %></h3>
+        <h3><%=t :'.users', :count => @account.users.size %></h3>
         <ul>
           <li><%= link_to t(:'.new_user'), new_user_path %></li>
           <li><%= link_to t(:'.manage_users'), users_path %></li>
         </ul>
       </section>
       <section>
-        <% @projects ||= account.projects.active %>
+        <% @projects ||= @account.projects.active %>
         <h3><%=t :".current_projects", :count => @projects.size  %></h3>
         <ul>
           <% @projects.each do |project| %>

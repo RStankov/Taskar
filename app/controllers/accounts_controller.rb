@@ -1,4 +1,6 @@
 class AccountsController < ApplicationController
+  layout "admin"
+
   before_filter :get_account
 
   def show
