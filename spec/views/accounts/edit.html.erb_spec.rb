@@ -1,9 +1,8 @@
 require 'spec_helper'
 
-describe "/users/edit" do
+describe "accounts/edit.html.erb" do
   before do
     assign :account, Factory(:account)
-    assign :user, Factory(:user)
   end
 
   it { render }

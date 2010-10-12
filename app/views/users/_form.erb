@@ -1,5 +1,5 @@
 <div class="wrap">
-	<%= form_for @user, :html => {:multipart => true, :class => 'action_form'} do |f| %>
+	<%= form_for [@account, @user], :html => {:multipart => true, :class => 'action_form'} do |f| %>
 		<%= render 'shared/error_messages', :target => f.object if @user.new_record? || @user.errors[:password].empty? %>
 
 	  <p><%= f.label :email %></p>

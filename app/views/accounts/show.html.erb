@@ -1,0 +1,16 @@
+<header>
+	<h1 id="project_title">Account Info</h1>
+	<ul class="actions">
+		<li><%= link_to t(:edit), [:edit, @account] %></li>
+	</ul>
+</header>
+<%= raw '<div class="wrap"><p class="notice">' + notice + '</p></div>' if notice %>
+<div id="content">
+  <p>
+    <% if @account.owner %>
+      <strong>Owner</strong>: <%= @account.owner.full_name %><br>
+    <% end %>
+    <strong>Name</strong>: <%= @account.name %>
+  </p>
+</div>
+

@@ -19,7 +19,7 @@ describe UsersController do
 
       describe "GET show" do
         before do
-          get :show, :id => "15"
+          get :show, :id => "15", :account_id => 1
         end
 
         it { should assign_to(:user).with(mock_user) }
@@ -28,7 +28,7 @@ describe UsersController do
 
       describe "GET edit" do
         before do
-          get :edit, :id => "15"
+          get :edit, :id => "15", :account_id => 1
         end
 
         it { should assign_to(:user).with(mock_user) }
@@ -41,7 +41,7 @@ describe UsersController do
         end
 
         def put_update(params = {})
-          put :update, {:id => "15", :user => user_params}.merge(params)
+          put :update, {:id => "15", :user => user_params, :account_id => 1}.merge(params)
         end
 
         it "should render edit template when user is invalid" do
@@ -67,7 +67,7 @@ describe UsersController do
         before do
           mock_user.should_receive(:destroy)
 
-          delete :destroy, :id => "15"
+          delete :destroy, :id => "15", :account_id => 1
         end
 
         it { should redirect_to(users_url) }
@@ -78,7 +78,7 @@ describe UsersController do
           mock_user.should_receive(:admin=).with(true)
           mock_user.should_receive(:save)
 
-          put :set_admin, :id => "15", :admin => true
+          put :set_admin, :id => "15", :account_id => 1, :admin => true
         end
 
         it "should not allow the current user to change his admin status" do
@@ -95,7 +95,7 @@ describe UsersController do
           mock_user.stub!(:admin=)
           mock_user.stub!(:save)
 
-          put :set_admin, :id => "15"
+          put :set_admin, :id => "15", :account_id => 1
 
           should redirect_to(user_url(mock_user))
         end
@@ -106,7 +106,7 @@ describe UsersController do
     describe "on collection action" do
       describe "GET index" do
         before do
-          get :index
+          get :index, :account_id => 1
         end
 
         it { should assign_to(:users).with(@users) }
@@ -117,7 +117,7 @@ describe UsersController do
         before do
           @users.should_receive(:build).and_return User.new
 
-          get :new
+          get :new, :account_id => 1
         end
 
         it { assigns[:user].should be_new_record }
@@ -130,7 +130,7 @@ describe UsersController do
         end
 
         def post_create(params = {})
-          post :create, {:user => user_params}.merge(params)
+          post :create, {:user => user_params, :account_id => 1}.merge(params)
         end
 
         before do
@@ -166,14 +166,14 @@ describe UsersController do
     end
 
     {
-      :index      => 'get(:index)',
-      :show       => 'get(:show, :id => "1")',
+      :index      => 'get(:index, :account_id => "1")',
+      :show       => 'get(:show, :id => "1", :account_id => "1")',
       :new        => 'get(:new)',
       :create     => 'post(:create)',
-      :edit       => 'get(:edit, :id => "1")',
-      :update     => 'put(:update, :id => "1")',
-      :destroy    => 'delete(:destroy, :id => "1")',
-      :set_admin  => 'put(:set_admin, :id => "1")'
+      :edit       => 'get(:edit, :id => "1", :account_id => "1")',
+      :update     => 'put(:update, :id => "1", :account_id => "1")',
+      :destroy    => 'delete(:destroy, :id => "1", :account_id => "1")',
+      :set_admin  => 'put(:set_admin, :id => "1", :account_id => "1")'
     }.each do |(action, code)|
       it "should not allow #{action}, and redirect_to root_url" do
         eval code
