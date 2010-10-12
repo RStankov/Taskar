@@ -19,6 +19,6 @@ class AccountsController < ApplicationController
 
   private
     def get_account
-      @account = Account.find(params[:id])
+      @account = current_user.owned_accounts.find(params[:id])
     end
 end

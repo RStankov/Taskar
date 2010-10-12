@@ -8,7 +8,8 @@ describe AccountsController do
 
   describe "member action" do
     before do
-      Account.stub(:find).with("1").and_return mock_account
+      @current_user.stub(:owned_accounts).and_return owned_accounts = []
+      owned_accounts.stub(:find).with("1").and_return mock_account
     end
 
     describe "GET 'show'" do
