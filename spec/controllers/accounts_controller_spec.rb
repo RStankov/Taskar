@@ -34,7 +34,7 @@ describe AccountsController do
 
         should assign_to(:account).with(mock_account)
         should set_the_flash
-        should redirect_to(root_url)
+        should redirect_to(account_url(mock_account))
       end
 
       it "should not update account if data is not valid" do

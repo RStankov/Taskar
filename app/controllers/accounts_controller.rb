@@ -11,7 +11,7 @@ class AccountsController < ApplicationController
 
   def update
     if @account.update_attributes(params[:account])
-      redirect_to root_path, :notice => "Account info updated succesfully"
+      redirect_to @account, :notice => "Account info updated succesfully"
     else
       render "edit"
     end

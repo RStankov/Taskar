@@ -4,6 +4,7 @@
 		<li><%= link_to t(:edit), [:edit, @account] %></li>
 	</ul>
 </header>
+<%= raw '<div class="wrap"><p class="notice">' + notice + '</p></div>' if notice %>
 <div id="content">
   <p>
     <% if @account.owner %>

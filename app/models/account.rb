@@ -1,9 +1,6 @@
 class Account < ActiveRecord::Base
   belongs_to :owner, :class_name => "User"
 
-  validates_presence_of :name, :domain
-  validates_uniqueness_of :name, :domain
-
   validates :name,    :presence => true, :uniqueness => true
   validates :domain,  :presence => true, :uniqueness => true, :format => /^[a-z_0-9]+$/
 
