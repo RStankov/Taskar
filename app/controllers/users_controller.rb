@@ -1,25 +1,26 @@
 class UsersController < ApplicationController
   layout "admin"
 
+  before_filter :get_account
   before_filter :check_for_admin
   before_filter :get_user, :only => [:show, :edit, :update, :destroy, :set_admin]
 
   def index
-    @users = account.users
+    @users = @account.users
   end
 
   def show
   end
 
   def new
-    @user = account.users.build
+    @user = @account.users.build
   end
 
   def create
-    @user = account.users.build(params[:user])
+    @user = @account.users.build(params[:user])
 
     if @user.save
-      redirect_to @user
+      redirect_to [@account, @user]
     else
       render :action => 'new'
     end
@@ -30,7 +31,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update_attributes(params[:user])
-      redirect_to @user
+      redirect_to [@account, @user]
     else
       render :action => 'edit'
     end
@@ -39,7 +40,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
 
-    redirect_to :users
+    redirect_to [@account, :users]
   end
 
   def set_admin
@@ -48,11 +49,15 @@ class UsersController < ApplicationController
       @user.save
     end
 
-    redirect_to @user
+    redirect_to [@account, @user]
   end
 
   private
+    def get_account
+      @account = Account.find(params[:account_id])
+    end
+
     def get_user
-      @user = account.users.find(params[:id])
+      @user = @account.users.find(params[:id])
     end
 end
