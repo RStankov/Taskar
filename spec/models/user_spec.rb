@@ -9,6 +9,7 @@ describe User do
     it { should have_many(:responsibilities) }
     it { should have_many(:events) }
     it { should have_many(:statuses) }
+    it { should have_many(:owned_accounts) }
     it { should have_one(:owned_account) }
     it { should belong_to(:account) }
   end
