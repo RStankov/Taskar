@@ -8,8 +8,8 @@
   	 		<% end %>
   		</li>
 	  <% end %>
-		<li><%= link_to t(:edit), [:edit, @user] %></li>
-		<li><%= link_to_delete t(:delete), @user, :confirm => t(:'users.confirm') %></li>
+		<li><%= link_to t(:edit), [:edit, @account, @user] %></li>
+		<li><%= link_to_delete t(:delete), [@account, @user], :confirm => t(:'users.confirm') %></li>
 	</ul>
 </header>
 

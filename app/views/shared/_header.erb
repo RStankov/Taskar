@@ -6,13 +6,13 @@
   </nav>
   <% if content_for? :header %>
     <%= yield(:header) %>
-  <% else %>
-    <h2><%= account.name  %></h2>
+  <% elsif @account %>
+    <h2><%= @account.name  %></h2>
     <nav id="nav_project">
       <span>
         <%= link_to t("layouts.dashboard.title"), :root, :class => controller_name == "dashboard" && "selected" %>
         <% if current_user.admin? %>
-          <%= link_to t("users.title"), :users, :class => controller_name == "users" && "selected" %>
+          <%= link_to t("users.title"), [@account, :users], :class => controller_name == "users" && "selected" %>
           <%= link_to t("projects.index.title"), :projects, :class => controller_name == "projects" && "selected" %>
         <% end %>
       </span>

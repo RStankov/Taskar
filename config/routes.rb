@@ -1,9 +1,9 @@
 Taskar::Application.routes.draw do
-  resources :accounts, :only => [:show, :edit, :update]
-
-  resources :users do
-    member do
-      put :set_admin
+  resources :accounts, :only => [:show, :edit, :update] do
+    resources :users do
+      member do
+        put :set_admin
+      end
     end
   end
 

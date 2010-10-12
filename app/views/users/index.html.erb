@@ -1,7 +1,7 @@
 <header>
 	<h1 id="users_title"><%=t :'users.title' %></h1>
 	<ul class="actions">
-		<%= link_to t(:'layouts.admin.new_user'), new_user_path %>
+		<%= link_to t(:'layouts.admin.new_user'), [:new, @account, :user] %>
 	</ul>
 </header>
 <div class="wrap">
