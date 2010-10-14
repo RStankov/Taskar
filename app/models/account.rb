@@ -24,7 +24,7 @@ class Account < ActiveRecord::Base
       true
     else
       account_user = account_users.find_by_user_id(user.id)
-      account_user && account_user.admin?
+      account_user && account_user.admin
     end
   end
 
