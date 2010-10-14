@@ -16,6 +16,7 @@ describe Account do
     it { should allow_value('pixel_depo').for(:domain) }
     it { should allow_value('1301').for(:domain) }
 
+    it { should have_many(:account_users) }
     it { should have_many(:users) }
     it { should have_many(:projects) }
 

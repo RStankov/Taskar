@@ -9,7 +9,8 @@ class Account < ActiveRecord::Base
 
   before_validation :normalize_domain, :on => :create
 
-  has_many :users,    :dependent => :destroy
+  has_many :users, :through => :account_users
+  has_many :account_users, :dependent => :destroy
   has_many :projects, :dependent => :destroy
 
   def self.find_id_by_domain(domain)

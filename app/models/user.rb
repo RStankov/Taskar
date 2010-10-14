@@ -18,10 +18,13 @@ class User < ActiveRecord::Base
   has_many :project_participations, :class_name => "ProjectUser", :foreign_key => "user_id", :dependent => :destroy
   has_many :projects, :through => :project_participations
 
-  has_one :owned_account, :class_name => "Account", :foreign_key => "owner_id" # deprecated
+  has_many :owned_accounts, :class_name => "Account", :foreign_key => "owner_id", :dependent => :destroy
 
-  has_many :owned_accounts, :class_name => "Account", :foreign_key => "owner_id"
+  has_many :account_users, :dependent => :destroy
+  has_many :accounts, :through => :account_users
 
+  # deprecated
+  has_one :owned_account, :class_name => "Account", :foreign_key => "owner_id"
   belongs_to :account
 
   attr_readonly :account_id
