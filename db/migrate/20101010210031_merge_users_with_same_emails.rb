@@ -15,7 +15,7 @@ class MergeUsersWithSameEmails < ActiveRecord::Migration
           duplicate.owned_account.update_attribute :owner_id, user.id
         end
 
-        AccountUser.create :account_id => duplicate.id, :user_id => user.id
+        AccountUser.create :account_id => duplicate.account_id, :user_id => user.id
 
         duplicate.destroy
 
