@@ -19,6 +19,15 @@ class Account < ActiveRecord::Base
     end
   end
 
+  def admin?(user)
+    if owner_id == user.id
+      true
+    else
+      account_user = account_users.find_by_user_id(user.id)
+      account_user && account_user.admin?
+    end
+  end
+
   protected
     def normalize_domain
       unless domain.blank?

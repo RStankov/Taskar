@@ -26,6 +26,35 @@ describe Account do
       account.domain.should == "title_cased"
     end
 
+    describe "#admin?" do
+      before do
+        @account_user = AccountUser.new
+        @account_user.user    = @user    = Factory(:user)
+        @account_user.account = @account = Factory(:account)
+      end
+
+      it "should be false if account_user.admin is false" do
+        @account_user.update_attribute :admin, false
+
+        @account.admin?(@user).should be_false
+      end
+
+      it "should be true if account_user.admin is true" do
+        @account_user.update_attribute :admin, true
+
+        @account.admin?(@user).should be_true
+      end
+
+      it "should be false if account_user doesn't exists at all" do
+        @account.admin?(@user).should be_false
+      end
+
+      it "should be true if owner is same as user, independent of account_user" do
+        @account.owner_id = @user.id
+        @account.admin?(@user).should be_true
+      end
+    end
+
     describe "#find_id_by_domain" do
       it "should find account id for given domain" do
         account = Factory(:account)
