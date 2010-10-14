@@ -5,7 +5,7 @@
 <%= render "form" %>
 
 <div class="wrap">
-	<%= form_for @user, :html => {:multipart => true, :class => 'action_form'} do |f| %>
+	<%= form_for [@account, @user], :html => {:multipart => true, :class => 'action_form'} do |f| %>
 		<h2><%=t :'users.change_password' %></h2>
 
 	  <%= render 'shared/error_messages', :target => f.object if !@user.errors[:password].empty? %>
