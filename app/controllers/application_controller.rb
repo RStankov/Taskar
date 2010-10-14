@@ -30,6 +30,12 @@ class ApplicationController < ActionController::Base
       end
     end
 
+    # deprected
+    def account
+      @account ||= current_user.account
+    end
+
+    # deprecated
     def check_for_admin
       unless current_user.admin?
         deny_access
@@ -46,10 +52,6 @@ class ApplicationController < ActionController::Base
 
     def get_project
       @project = Project.find(params[:project_id])
-    end
-
-    def account
-      @account ||= current_user.account
     end
 
     def project_user
