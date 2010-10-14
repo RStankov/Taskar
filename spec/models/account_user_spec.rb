@@ -9,7 +9,7 @@ describe AccountUser do
   it { should validate_presence_of(:account) }
   it { Factory(:account_user).should validate_uniqueness_of(:user_id).scoped_to(:account_id) }
 
-  describe "admin" do
+  describe "#admin?" do
     it "should be just the normal admin column, if account owner is not the current user" do
       account_user = AccountUser.new
       account_user.admin = true
