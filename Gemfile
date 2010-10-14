@@ -1,6 +1,6 @@
 source "http://rubygems.org"
 
-gem "rails", "3.0.0"
+gem "rails", "3.0.1"
 
 gem "paperclip", "2.3.3"
 gem "will_paginate", "3.0.pre2"
