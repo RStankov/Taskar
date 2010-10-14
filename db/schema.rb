@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(:version => 20101010210031) do
     t.integer  "account_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "admin"
   end
 
   add_index "account_users", ["account_id"], :name => "index_account_users_on_account_id"

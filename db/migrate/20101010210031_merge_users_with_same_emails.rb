@@ -1,5 +1,7 @@
 class MergeUsersWithSameEmails < ActiveRecord::Migration
   def self.up
+    add_column :account_users, :admin, :boolean
+
     User.group(:email).each do |user|
       p "merge - #{user.email} (#{user.id})"
 
@@ -7,6 +9,7 @@ class MergeUsersWithSameEmails < ActiveRecord::Migration
       account = AccountUser.new
       account.account_id = user.account_id
       account.user_id = user.id
+      account.admin = user.admin
       account.save
 
       User.where(:email => user.email).where("id != ?", user.id).each do |duplicate|
@@ -25,16 +28,17 @@ class MergeUsersWithSameEmails < ActiveRecord::Migration
         account = AccountUser.new
         account.account_id = duplicate.account_id
         account.user_id = user.id
+        account.admin = duplicate.admin
         account.save
 
         duplicate.destroy
 
         p "clean - #{duplicate.id}"
       end
-
     end
   end
 
   def self.down
+    drop_column :account_users, :admin, :boolean
   end
 end
