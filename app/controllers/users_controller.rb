@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   layout "admin"
 
   before_filter :get_account
-  before_filter :check_for_admin
+  before_filter :check_for_account_admin
   before_filter :get_user, :only => [:show, :edit, :update, :destroy, :set_admin]
 
   def index
@@ -55,6 +55,12 @@ class UsersController < ApplicationController
   private
     def get_account
       @account = Account.find(params[:account_id])
+    end
+
+    def check_for_account_admin
+      unless @account.admin? current_user
+        deny_access
+      end
     end
 
     def get_user

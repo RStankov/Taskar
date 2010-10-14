@@ -3,15 +3,17 @@ require 'spec_helper'
 describe UsersController do
   subject { controller }
 
+  before do
+    sign_in @current_user = Factory(:user)
+
+    controller.stub(:current_user).and_return @current_user
+
+    Account.stub(:find).with("1").and_return mock_account
+  end
+
   describe "with admin user" do
     before do
-      sign_in @current_user = Factory(:user, :admin => true)
-
-      Account.stub(:find).with("1").and_return mock_account
-
-#     controller.stub(:current_user).and_return @current_user
-#     @current_user.should_receive(:account).and_return mock_account
-
+      mock_account.should_receive(:admin?).with(@current_user).and_return true
       mock_account.stub(:users).and_return @users = [mock_user]
     end
 
@@ -153,9 +155,9 @@ describe UsersController do
     end
   end
 
-  describe "with normal user" do
+  describe "with not-admin user" do
     before do
-      sign_in Factory(:user)
+      mock_account.should_receive(:admin?).with(@current_user).and_return false
 
       ensure_deny_access_is_called
     end
