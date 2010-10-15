@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
 	  <%= csrf_meta_tag %>
-    <title><%= @content_for_title ? "Taskar: #{@content_for_title}" : "Taskar" %></title>
+    <title><%= content_for?(:title) ? "#{yield :title} | Taskar" : "Taskar" %></title>
   	<%= stylesheet_link_tag 'application' %>
     <%= favicon_link_tag "favicon.png" %>
   </head>
