@@ -30,18 +30,6 @@ class ApplicationController < ActionController::Base
       end
     end
 
-    # deprected
-    def account
-      @account ||= current_user.account
-    end
-
-    # deprecated
-    def check_for_admin
-      unless current_user.admin?
-        deny_access
-      end
-    end
-
     def activity(subject)
       Event.activity(current_user, subject)
     end

@@ -49,6 +49,7 @@ module ApplicationHelper
     </div>)
   end
 
+  # deprecated
   def account
     @account ||= current_user.account
   end
