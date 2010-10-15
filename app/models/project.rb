@@ -16,10 +16,19 @@ class Project < ActiveRecord::Base
   attr_accessible :name, :user_ids
   attr_readonly :account_id
 
+  before_save :validate_user_ids
+
   scope :active,    where(:completed => false).order("updated_at DESC")
   scope :completed, where(:completed => true).order("updated_at DESC")
 
   def involves?(user)
     users.include? user
   end
+
+  private
+    def validate_user_ids
+      if user_ids.size > 0
+        self.user_ids = user_ids.find_all { |user_id| account.users.exists? user_id }
+      end
+    end
 end

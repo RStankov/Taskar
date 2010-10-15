@@ -30,4 +30,42 @@ describe Project do
       @project.involves?(@user).should be_false
     end
   end
+
+  describe "#user_ids" do
+    it "should allow users from project account to be project participents" do
+      account = Factory(:account)
+      user_ids = (1..3).map { Factory(:user) }.map &:id
+
+      user_ids.each do |user_id|
+        AccountUser.create :account => account, :user_id => user_id
+      end
+
+      project = Factory(:project, :account => account, :user_ids => user_ids)
+      project.should_not be_new_record
+      project.users.count.should == 3
+    end
+
+    it "should not allow users from other accounts to be added to project participents" do
+      user_ids = (1..3).map { Factory(:user) }.map &:id
+
+      project = Factory(:project, :user_ids => user_ids)
+      project.should_not be_new_record
+      project.users.count.should == 0
+    end
+
+    it "should allow only user from project account and reject the others" do
+      account = Factory(:account)
+      account_user_ids = (1..2).map { Factory(:user) }.map &:id
+
+      account_user_ids.each do |user_id|
+        AccountUser.create :account => account, :user_id => user_id
+      end
+
+      user_ids = (1..4).map { Factory(:user) }.map &:id
+
+      project = Factory(:project, :account => account, :user_ids => (user_ids + account_user_ids).shuffle)
+      project.should_not be_new_record
+      project.users.count.should == 2
+    end
+  end
 end
