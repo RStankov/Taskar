@@ -28,6 +28,12 @@ class Account < ActiveRecord::Base
     end
   end
 
+  def set_admin_status(user, status)
+    if account_user = account_users.find_by_user_id(user.id)
+      account_user.update_attribute(:admin, status)
+    end
+  end
+
   protected
     def normalize_domain
       unless domain.blank?

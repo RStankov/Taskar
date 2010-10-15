@@ -55,6 +55,31 @@ describe Account do
       end
     end
 
+    describe "#set_admin_status" do
+      it "should set AccountUser#admin? the given user" do
+        account = Factory(:account)
+        user = Factory(:user)
+
+        Factory(:account_user, :user => user, :account => account)
+
+        account.admin?(user).should be_false
+
+        account.set_admin_status(user, true)
+        account.admin?(user).should be_true
+
+        account.set_admin_status(user, false)
+        account.admin?(user).should be_false
+      end
+
+      it "should do noting if user is not connected to the account" do
+        account = Factory(:account)
+        user = Factory(:user)
+
+        account.set_admin_status(user, true)
+        account.admin?(user).should be_false
+      end
+    end
+
     describe "#find_id_by_domain" do
       it "should find account id for given domain" do
         account = Factory(:account)

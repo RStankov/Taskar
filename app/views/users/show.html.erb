@@ -3,7 +3,7 @@
 	<ul class="actions">
 	  <% unless current_user == @user || @user.owned_account %>
 		  <li>
-  			<%= link_to set_admin_account_user_path(@account, @user, :admin => !@user.admin?), :method => "put" do %>
+  			<%= link_to set_admin_account_user_path(@account, @user, :admin => !@account.admin?(@user)), :method => "put" do %>
   	   		<%= check_box_tag '', '', @user.admin? %> <%=t :'users.admin' %>
   	 		<% end %>
   		</li>
