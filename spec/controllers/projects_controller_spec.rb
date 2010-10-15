@@ -18,7 +18,7 @@ describe ProjectsController do
           @projects.should_receive(:completed).and_return([@completed = mock(Project)])
           @projects.should_receive(:active).and_return([@active = mock(Project)])
 
-          get :index
+          get :index, :account_id => "1"
         end
 
         it { should assign_to(:projects).with([@active]) }
@@ -30,7 +30,7 @@ describe ProjectsController do
         before do
           @projects.should_receive(:build).and_return mock_project
 
-          get :new
+          get :new, :account_id => "1"
         end
 
         it { should assign_to(:project).with(mock_project) }
@@ -46,18 +46,18 @@ describe ProjectsController do
           before do
             mock_project.stub(:save).and_return true
 
-            post :create, :project => {:these => 'params'}
+            post :create, :account_id => "1", :project => {:these => 'params'}
           end
 
           it { should assign_to(:project).with(mock_project) }
-          it { should redirect_to(project_url(mock_project)) }
+          it { should redirect_to(account_project_url(mock_account, mock_project)) }
         end
 
         describe "with invalid params" do
           before do
             mock_project.stub(:save).and_return false
 
-            post :create, :project => {:these => 'params'}
+            post :create, :account_id => "1", :project => {:these => 'params'}
           end
 
           it { should assign_to(:project).with(mock_project) }
@@ -68,14 +68,14 @@ describe ProjectsController do
 
     describe "on member action" do
       before do
-        @projects.should_receive(:find).with("1").and_return mock_project
+        @projects.should_receive(:find).with("2").and_return mock_project
       end
 
       describe "GET show" do
         before do
           mock_project.stub_chain :sections, :order => [mock_section]
 
-          get :show, :id => "1"
+          get :show, :account_id => "1", :id => "2"
         end
 
         it { should assign_to(:sections).with([mock_section]) }
@@ -84,7 +84,7 @@ describe ProjectsController do
       end
 
       describe "GET edit" do
-        before { get :edit, :id => "1" }
+        before { get :edit, :account_id => "1", :id => "2" }
 
         it { should assign_to(:project).with(mock_project) }
         it { should render_template("edit") }
@@ -94,17 +94,17 @@ describe ProjectsController do
         describe "with valid params" do
           before do
             mock_project.should_receive(:update_attributes).with({'these' => 'params'}).and_return true
-            put :update, :id => "1", :project => {:these => 'params'}
+            put :update, :account_id => "1", :id => "2", :project => {:these => 'params'}
           end
 
           it { should assign_to(:project).with(mock_project) }
-          it { should redirect_to(project_url(mock_project)) }
+          it { should redirect_to(account_project_url(mock_account, mock_project)) }
         end
 
         describe "with invalid params" do
           before do
             mock_project.should_receive(:update_attributes).with({'these' => 'params'}).and_return false
-            put :update, :id => "1", :project => {:these => 'params'}
+            put :update, :account_id => "1", :id => "2", :project => {:these => 'params'}
           end
 
           it { should assign_to(:project).with(mock_project) }
@@ -115,10 +115,10 @@ describe ProjectsController do
       describe "DELETE destroy" do
         before do
           mock_project.should_receive(:destroy)
-          delete :destroy, :id => "1"
+          delete :destroy, :account_id => "1", :id => "2"
         end
 
-        it { should redirect_to(projects_url) }
+        it { should redirect_to(account_projects_url(mock_account)) }
       end
 
       describe "PUT complete" do
@@ -131,20 +131,20 @@ describe ProjectsController do
           mock_project.should_receive(:completed=).with(true)
           mock_project.should_receive(:save)
 
-          put :complete, :id => "1", :complete => "foo"
+          put :complete, :account_id => "1", :id => "2", :complete => "foo"
         end
 
         it "should set completed flag to project to false" do
           mock_project.should_receive(:completed=).with(false)
           mock_project.should_receive(:save)
 
-          put :complete, :id => "1"
+          put :complete, :account_id => "1", :id => "2"
         end
 
         it do
-          put :complete, :id => "1", :complete => "foo"
+          put :complete, :account_id => "1", :id => "2", :complete => "foo"
 
-          should redirect_to(project_url(mock_project))
+          should redirect_to(account_project_url(mock_account, mock_project))
         end
       end
     end
@@ -158,14 +158,14 @@ describe ProjectsController do
     end
 
     {
-      :index      => 'get(:index)',
-      :show       => 'get(:show, :id => "1")',
-      :new        => 'get(:new)',
-      :create     => 'post(:create)',
-      :edit       => 'get(:edit, :id => "1")',
-      :update     => 'put(:update, :id => "1")',
-      :destroy    => 'delete(:destroy, :id => "1")',
-      :complete   => 'put(:complete, :id=>"1")'
+      :index      => 'get(:index, :account_id => "1")',
+      :show       => 'get(:show, :account_id => "1", :id => "2")',
+      :new        => 'get(:new, :account_id => "1")',
+      :create     => 'post(:create, :account_id => "1")',
+      :edit       => 'get(:edit, :account_id => "1", :id => "2")',
+      :update     => 'put(:update, :account_id => "1", :id => "2")',
+      :destroy    => 'delete(:destroy, :account_id => "1", :id => "2")',
+      :complete   => 'put(:complete, :account_id => "1", :id=>"2")'
     }.each do |(action, code)|
       it "should not allow #{action}, and redirect_to root_url" do
         eval code
