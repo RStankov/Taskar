@@ -131,7 +131,7 @@ describe UsersController do
         end
 
         before do
-          @users.should_receive(:build).with(user_params.stringify_keys).and_return mock_user
+          User.should_receive(:new).with(user_params.stringify_keys).and_return mock_user
         end
 
         it "should render new template when user is invalid" do
@@ -144,6 +144,8 @@ describe UsersController do
         end
 
         it "should redirect to users page, when user is valid" do
+          AccountUser.should_receive(:create).with(:user => mock_user, :account => mock_account)
+
           mock_user.should_receive(:save).and_return(true)
 
           post_create

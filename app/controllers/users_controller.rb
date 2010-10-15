@@ -17,9 +17,11 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = @account.users.build(params[:user])
+    @user = User.new(params[:user])
 
     if @user.save
+      AccountUser.create(:user => @user, :account => @account)
+
       redirect_to [@account, @user]
     else
       render :action => 'new'
