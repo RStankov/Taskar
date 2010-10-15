@@ -5,13 +5,15 @@ Taskar::Application.routes.draw do
         put :set_admin
       end
     end
+
+    resources :projects do
+      member do
+        put :complete
+      end
+    end
   end
 
-  resources :projects do
-    member do
-      put :complete
-    end
-
+  resources :projects, :only => [] do
     resources :statuses, :only => [:create, :index, :destroy] do
       collection do
         delete :clear
