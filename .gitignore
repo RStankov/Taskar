@@ -10,3 +10,4 @@ db/backups/**/*
 public/files/**/*
 public/system/**/*
 coverage/*
+.bundle/**/*
