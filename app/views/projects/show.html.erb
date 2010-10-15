@@ -2,13 +2,13 @@
 	<h1 id="project_title"><%= @project.name %></h1>
 	<ul class="actions">
 		<li>
-			<%= link_to complete_project_path(@project, :complete => !@project.completed?), :'data-method' => "put" do %>
+			<%= link_to complete_account_project_path(@account, @project, :complete => !@project.completed?), :method => "put" do %>
 	   		<%= check_box_tag '', '', @project.completed? %> <%=t :'projects.completed' %>
 	 		<% end %>
 		</li>
 	  <li><%= link_to t(:view), project_sections_path(@project) %></li>
-	  <li><%= link_to t(:edit), edit_project_path(@project) %></li>
-	  <li><%= link_to_delete t(:delete), @project, :confirm => t(:'projects.confirm') %></li>
+	  <li><%= link_to t(:edit), [:edit, @account, @project] %></li>
+	  <li><%= link_to t(:delete), [@account, @project], :confirm => t(:'projects.confirm'), :method => "delete" %></li>
 	</ul>
 </header>
 <div class="wrap">

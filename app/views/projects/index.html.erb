@@ -1,7 +1,7 @@
 <header>
 	<h1 id="projects_title"><%=t '.title' %></h1>
 	<ul class="actions">
-		<%= link_to t(:'layouts.admin.new_project'), new_project_path %>
+		<%= link_to t(:'layouts.admin.new_project'), [:new, @account, :project] %>
 	</ul>
 </header>
 <div class="wrap">

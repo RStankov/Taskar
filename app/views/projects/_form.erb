@@ -1,5 +1,5 @@
 <div class="wrap">
-	<%= form_for @project, :html => {:class => 'action_form'} do |f| %>
+	<%= form_for [@account, @project], :html => {:class => 'action_form'} do |f| %>
 	  <%= render 'shared/error_messages', :target => f.object %>
 	  <p>
 	    <%= f.label :name %><br />
@@ -19,9 +19,9 @@
 	  </p>
 	  <div class="buttons">
 	    <% if @project.new_record? %>
-	      <%= f.submit t(:create) %> | <%= link_to t(:cancel), projects_path %>
+	      <%= f.submit t(:create) %> | <%= link_to t(:cancel), [@account, :projects] %>
 	    <% else %>
-	      <%= f.submit t(:update) %> | <%= link_to t(:cancel), @project %>
+	      <%= f.submit t(:update) %> | <%= link_to t(:cancel), [@account, @project] %>
 	    <% end %>
 	  </div>
 	<% end %>
