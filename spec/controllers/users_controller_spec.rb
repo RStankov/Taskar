@@ -72,8 +72,7 @@ describe UsersController do
 
       describe "PUT set_admin" do
         it "should set user admin field to param[:value]" do
-          mock_user.should_receive(:admin=).with(true)
-          mock_user.should_receive(:save)
+          mock_account.should_receive(:set_admin_status).with(mock_user, true)
 
           put :set_admin, :account_id => "1", :id => "2", :admin => true
         end
@@ -82,15 +81,13 @@ describe UsersController do
           mock_user.should_receive(:==).with(@current_user).and_return true
           mock_user.stub(:admin?).and_return(true)
 
-          mock_user.should_not_receive(:admin=)
-          mock_user.should_not_receive(:save)
+          mock_account.should_not_receive(:set_admin_status)
 
           put :set_admin, :account_id => "1", :id => "2", :admin => true
         end
 
         it "should redirect to user page" do
-          mock_user.stub!(:admin=)
-          mock_user.stub!(:save)
+          mock_account.should_receive(:set_admin_status)
 
           put :set_admin, :account_id => "1", :id => "2"
 

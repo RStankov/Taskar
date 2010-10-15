@@ -47,8 +47,7 @@ class UsersController < ApplicationController
 
   def set_admin
     unless @user == current_user
-      @user.admin = params[:admin]
-      @user.save
+      @account.set_admin_status(@user, params[:admin])
     end
 
     redirect_to [@account, @user]
