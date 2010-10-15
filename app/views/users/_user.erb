@@ -3,7 +3,7 @@
 	<span>
   	<strong><%= link_to user.full_name, [@account, user] %></strong><br />
     <small><%= user.email %></small>
-    <% if user.admin? %>
+    <% if @account.admin?(user) %>
       <br />
 			<em>(<%=t :'activerecord.attributes.user.admin' %>)</em>
     <% end %>
