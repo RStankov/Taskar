@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101010210031) do
+ActiveRecord::Schema.define(:version => 20101015232603) do
 
   create_table "account_users", :force => true do |t|
     t.integer  "user_id"
@@ -28,11 +28,8 @@ ActiveRecord::Schema.define(:version => 20101010210031) do
     t.integer  "owner_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "domains"
-    t.string   "domain"
   end
 
-  add_index "accounts", ["domain"], :name => "index_accounts_on_domain"
   add_index "accounts", ["id"], :name => "index_accounts_on_id"
 
   create_table "comments", :force => true do |t|
