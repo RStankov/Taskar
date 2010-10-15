@@ -48,9 +48,4 @@ module ApplicationHelper
       <div class="pointer"></div>
     </div>)
   end
-
-  # deprecated
-  def account
-    @account ||= current_user.account
-  end
 end
