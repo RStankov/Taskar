@@ -2,12 +2,10 @@ require 'spec_helper'
 
 describe "/users/show" do
   before do
-    @user = Factory(:user)
-
     assign :account, Factory(:account)
-    assign :user, @user
+    assign :user, Factory(:user)
 
-    sign_in @user
+    sign_in Factory(:user)
   end
 
   it "renders" do
