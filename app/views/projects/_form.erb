@@ -9,7 +9,7 @@
 	    <h3><%=t :'projects.participants' %></h3>
 	    <%= hidden_field_tag "project[user_ids][]", nil, :id => nil %>
 	    <ul>
-	      <% account.users.each do |user| %>
+	      <% @account.users.each do |user| %>
 	        <li>
 	          <%= check_box_tag "project[user_ids][]", user.id, @project.users.all.include?(user), :id => "project_user_#{user.id}" %>
 	          <%= label_tag "project_user_#{user.id}", user.full_name %>
