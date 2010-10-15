@@ -3,12 +3,17 @@ require 'spec_helper'
 describe ProjectsController do
   subject { controller }
 
+  before do
+    sign_in @current_user = Factory(:user)
+
+    controller.stub(:current_user).and_return @current_user
+
+    Account.stub(:find).with("1").and_return mock_account
+  end
+
   describe "with admin user" do
     before do
-      sign_in @current_user = Factory(:user, :admin => true)
-
-      controller.stub(:current_user).and_return @current_user
-      @current_user.should_receive(:account).and_return mock_account
+      mock_account.should_receive(:admin?).with(@current_user).and_return true
       mock_account.stub(:projects).and_return @projects = [mock_project]
     end
 
@@ -152,7 +157,7 @@ describe ProjectsController do
 
   describe "with normal user" do
     before do
-      sign_in Factory(:user)
+      mock_account.should_receive(:admin?).with(@current_user).and_return false
 
       ensure_deny_access_is_called
     end
