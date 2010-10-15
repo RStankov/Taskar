@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <%= csrf_meta_tag %>
-  <title><%= account.name %>: <%=t :'.title' %></title>
+  <title><%= current_user.full_name %>: <%=t :'.title' %></title>
   <%= stylesheet_link_tag 'application' %>
 	<%= favicon_link_tag "favicon.png" %>
 </head>
