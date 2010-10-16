@@ -177,23 +177,14 @@ describe User do
 
   describe "owned_account" do
     before :each do
-      account = Factory.build(:account)
-
-      @account_name   = account.name
-      @account_domain = account.domain
-
       @user                          = User.new Factory.attributes_for(:user)
-      @user.owned_account_attributes = {:name => @account_name, :domain => @account_domain}
+      @user.owned_account_attributes = {:name => @account_name = Factory.build(:account).name }
       @user.save.should be_true
       @user.should_not be_new_record
     end
 
     it "should be created with name on user creation" do
       @user.owned_account.name.should == @account_name
-    end
-
-    it "should be created with domain on user creation" do
-      @user.owned_account.domain.should == @account_domain
     end
 
     it "should be same as user's account" do
