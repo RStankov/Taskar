@@ -1,5 +1,5 @@
 class AccountUser < ActiveRecord::Base
-  extend ActiveSupport::Memoizable
+#  extend ActiveSupport::Memoizable
 
   belongs_to :account
   belongs_to :user
@@ -9,9 +9,9 @@ class AccountUser < ActiveRecord::Base
 
   attr_readonly :project_id, :user_id
 
-  def admin?
-    admin || (account && account.owner_id == user_id)
-  end
-
-  memoize :admin?
+#  def admin?
+#    admin || (account && account.owner_id == user_id)
+#  end
+#
+#  memoize :admin?
 end
