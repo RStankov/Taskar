@@ -10,7 +10,7 @@ describe Account do
   it { should have_many(:account_users) }
   it { should have_many(:users) }
   it { should have_many(:projects) }
-
+  it { should have_many(:invitations) }
 
   describe "#admin?" do
     before do

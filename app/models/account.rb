@@ -10,6 +10,7 @@ class Account < ActiveRecord::Base
   has_many :users, :through => :account_users
   has_many :account_users, :dependent => :destroy
   has_many :projects, :dependent => :destroy
+  has_many :invitations, :dependent => :destroy
 
   def admin?(user)
     if owner_id == user.id
