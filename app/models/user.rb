@@ -61,12 +61,6 @@ class User < ActiveRecord::Base
     @responsibilities_count[project_id] ||= responsibilities.count :conditions => {:status => 0, :project_id => project_id}
   end
 
-  def admin=(value)
-    if value || !owned_account
-      super(value)
-    end
-  end
-
   private
     def cant_assign_own_account
       !new_record?
