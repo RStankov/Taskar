@@ -1,6 +1,4 @@
 class User < ActiveRecord::Base
-  include Taskar::Auth::Model
-
   attr_accessible             :email, :password, :password_confirmation, :first_name, :last_name, :avatar, :owned_account_attributes, :remember_me, :locale
 
   validates_presence_of       :first_name, :last_name
@@ -23,11 +21,14 @@ class User < ActiveRecord::Base
   has_many :account_users, :dependent => :destroy
   has_many :accounts, :through => :account_users
 
+  devise   :database_authenticatable, :lockable, :recoverable, :rememberable, :trackable, :validatable, :registerable
+
   # deprecated
   has_one :owned_account, :class_name => "Account", :foreign_key => "owner_id"
 
   accepts_nested_attributes_for :owned_account, :reject_if => :cant_assign_own_account
 
+  before_save  :downcase_email
   after_create :assign_as_account_owner
 
   def full_name
@@ -61,7 +62,16 @@ class User < ActiveRecord::Base
     @responsibilities_count[project_id] ||= responsibilities.count :conditions => {:status => 0, :project_id => project_id}
   end
 
+  def self.find_for_authentication(conditions)
+    conditions[:email].downcase! if conditions[:email]
+    super(conditions)
+  end
+
   private
+    def downcase_email
+      self.email = email.to_s.downcase
+    end
+
     def password_required?
       !persisted? || password.present? || password_confirmation.present?
     end
