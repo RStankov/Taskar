@@ -48,6 +48,7 @@ describe Devise::RegistrationsController do
 
     describe "GET 'edit'" do
       before { get :edit }
+
       it { should render_template("edit") }
     end
 
@@ -89,6 +90,52 @@ describe Devise::RegistrationsController do
       before { delete :destroy }
 
       it { should redirect_to(root_url) }
+    end
+  end
+
+  describe "#is_password_required" do
+    def set_params(params)
+      controller.stub(:params).with(params)
+    end
+
+    def is_password_required
+      controller.__send__(:is_password_required)
+    end
+
+    it "should be false params[:user] is not set" do
+      is_password_required.should be_false
+    end
+
+    it "should be true if params[:user][:password] is presented" do
+      set_params :user => {:password => "1"}
+
+      is_password_required.should be_true
+    end
+
+    it "should be true if params[:user][:password_confirmation] is presented" do
+      set_params :user => {:password_confirmation => "1"}
+
+      is_password_required.should be_true
+    end
+
+    it "should be true if params[:email] is diffent from current users email" do
+      set_params :user => {:email => "foo@bar.com"}
+
+      controller.stub(:current_user).with mock_user(:email => "some@other.email")
+
+      is_password_required.should be_true
+    end
+
+    it "should be false if params[:user] is presented, but :password, :password_confirmation are not" do
+      set_params :user => {:fist_name => "foo"}
+
+      is_password_required.should be_true
+
+      set_params :user => {:email => "user@mail.com"}
+
+      controller.stub(:current_user).with mock_user(:email => "user@mail.com")
+
+      is_password_required.should be_true
     end
   end
 end

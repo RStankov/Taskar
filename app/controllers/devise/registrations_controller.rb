@@ -35,7 +35,8 @@ class Devise::RegistrationsController < ApplicationController
 
   protected
     def is_password_required
-      data = params[:user]
-      data && ( data[:password].present? || data[:password_confirmation].present? || data[:email] != current_user.email )
+      return false unless data = params[:user]
+
+      data[:password].present? || data[:password_confirmation].present? || (data[:email] && data[:email] != current_user.email)
     end
 end
