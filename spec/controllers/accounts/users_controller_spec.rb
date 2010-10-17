@@ -5,10 +5,10 @@ describe Accounts::UsersController do
 
   before do
     sign_in @current_user = Factory(:user)
-
     controller.stub(:current_user).and_return @current_user
 
-    Account.stub(:find).with("1").and_return mock_account
+    @current_user.stub(:accounts).and_return accounts = []
+    accounts.stub(:find).with("1").and_return mock_account
   end
 
   describe "with admin user" do

@@ -1,8 +1,4 @@
-class Accounts::ProjectsController < ApplicationController
-  layout "admin"
-
-  before_filter :get_account
-  before_filter :check_for_account_admin
+class Accounts::ProjectsController < Accounts::BaseController
   before_filter :get_project, :only => [:show, :edit, :update, :destroy, :complete]
 
   def index
@@ -27,7 +23,7 @@ class Accounts::ProjectsController < ApplicationController
     if @project.save
       redirect_to [@account, @project]
     else
-      render :action => "new"
+      render "new"
     end
   end
 
@@ -35,7 +31,7 @@ class Accounts::ProjectsController < ApplicationController
     if @project.update_attributes(params[:project])
       redirect_to [@account, @project]
     else
-      render :action => "edit"
+      render "edit"
     end
   end
 
@@ -53,16 +49,6 @@ class Accounts::ProjectsController < ApplicationController
   end
 
   private
-    def get_account
-      @account = Account.find(params[:account_id])
-    end
-
-    def check_for_account_admin
-      unless @account.admin? current_user
-        deny_access
-      end
-    end
-
     def projects
       @account.projects
     end

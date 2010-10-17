@@ -1,8 +1,4 @@
-class Accounts::UsersController < ApplicationController
-  layout "admin"
-
-  before_filter :get_account
-  before_filter :check_for_account_admin
+class Accounts::UsersController < Accounts::BaseController
   before_filter :get_user, :only => [:show, :edit, :update, :destroy, :set_admin]
 
   def index
@@ -24,7 +20,7 @@ class Accounts::UsersController < ApplicationController
 
       redirect_to [@account, @user]
     else
-      render :action => 'new'
+      render "new"
     end
   end
 
@@ -35,7 +31,7 @@ class Accounts::UsersController < ApplicationController
     if @user.update_attributes(params[:user])
       redirect_to [@account, @user]
     else
-      render :action => 'edit'
+      render "edit"
     end
   end
 
@@ -54,16 +50,6 @@ class Accounts::UsersController < ApplicationController
   end
 
   private
-    def get_account
-      @account = Account.find(params[:account_id])
-    end
-
-    def check_for_account_admin
-      unless @account.admin? current_user
-        deny_access
-      end
-    end
-
     def get_user
       @user = @account.users.find(params[:id])
     end

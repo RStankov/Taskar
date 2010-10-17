@@ -1,8 +1,4 @@
-class Accounts::AccountsController < ApplicationController
-  layout "admin"
-
-  before_filter :get_account
-
+class Accounts::AccountsController < Accounts::BaseController
   def show
   end
 
@@ -17,8 +13,8 @@ class Accounts::AccountsController < ApplicationController
     end
   end
 
-  private
-    def get_account
-      @account = current_user.owned_accounts.find(params[:id])
+  protected
+    def account_id
+      params[:id]
     end
 end
