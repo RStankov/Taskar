@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Devise::RegistrationsController do
+describe Auth::RegistrationsController do
   subject { controller }
 
   context "new user" do
@@ -29,12 +29,25 @@ describe Devise::RegistrationsController do
       it "should clean passwords, and render 'edit', with invalid data" do
         User.should_recieve(:new).with("these" => "params").and_return mock_user(:save => true)
 
-        controller.should_recieve(:clean_up_passwords).with(mock_user)
+        mock_user.should_recieve(:clean_up_passwords)
 
         post :create, :user => {"these" => "params"}
 
         should assign_to(:user).with(mock_user)
         should render_template("new")
+      end
+    end
+
+    {
+      :new       => 'get(:new)',
+      :create    => 'post(:create)'
+    }.each do |(action, code)|
+      it "should redirect the logged user to root_path" do
+        sign_in Factory(:user)
+
+        eval code
+
+        should redirect_to(:root_path)
       end
     end
   end
@@ -79,6 +92,8 @@ describe Devise::RegistrationsController do
         current_user.should_receive(:update_attributes).with("these" => "params").and_return false
 
         controller.stub(:is_password_required).and_return false
+
+        mock_user.should_recieve(:clean_up_passwords)
 
         post :update, :user => {"these" => "params"}
 
