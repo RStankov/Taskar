@@ -17,6 +17,7 @@ describe DashboardController do
       end
 
       it { should assign_to(:projects).with(@mock_projects) }
+      it { should render_template("index") }
     end
 
     context "when there is one project and user is admin" do
@@ -28,6 +29,7 @@ describe DashboardController do
       end
 
       it { should assign_to(:projects).with(@mock_projects) }
+      it { should render_template("index") }
     end
 
     context "when there is one project and user is not admin" do
