@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101017142210) do
+ActiveRecord::Schema.define(:version => 20101017151553) do
 
   create_table "account_users", :force => true do |t|
     t.integer  "user_id"
@@ -148,7 +148,6 @@ ActiveRecord::Schema.define(:version => 20101017142210) do
     t.datetime "avatar_updated_at"
     t.integer  "comments_count",                      :default => 0
     t.datetime "last_active_at"
-    t.integer  "account_id"
     t.integer  "failed_attempts",                     :default => 0
     t.string   "unlock_token"
     t.datetime "locked_at"
