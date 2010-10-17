@@ -8,7 +8,7 @@
   <%= favicon_link_tag "favicon.png" %>
 </head>
 <body>
-  <%= content_for :header do %>
+  <%= header do %>
     <h2>
       <%= @project.name  %>
   		<% unless current_user.projects.active.size > 1 %>
@@ -34,7 +34,6 @@
       </span>
     </nav>
   <% end %>
-  <%= render "shared/header" %>
   <section>
     <article id="<%= "#{controller_name}_#{action_name}" %>">
       <%= yield %>

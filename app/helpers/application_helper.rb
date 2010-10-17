@@ -48,4 +48,11 @@ module ApplicationHelper
       <div class="pointer"></div>
     </div>)
   end
+
+  def header(&block)
+    if block_given?
+      content_for :header, &block
+    end
+    render "shared/header"
+  end
 end
