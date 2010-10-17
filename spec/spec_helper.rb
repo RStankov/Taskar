@@ -16,9 +16,9 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
 
   config.include Paperclip::Shoulda::Matchers
-  config.include Taskar::Auth::SpecHelper
   config.include ControllerMacros
   config.include TaskarMocks
+  config.include Devise::TestHelpers
 
   config.extend Taskar::SpecHelper
 end
