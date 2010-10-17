@@ -2,10 +2,12 @@ require 'spec_helper'
 
 describe "/dashboard/index" do
   before do
-    sign_in Factory(:user)
+    sign_in @current_user = Factory(:user)
   end
 
   it "should render empty dashboard message" do
+    Factory(:account_user, :user => @current_user)
+
     assign :projects, []
 
     render
