@@ -153,7 +153,7 @@ describe User do
     end
   end
 
-  describe "owned_account" do
+  describe "#owned_account" do
     before do
       @user                          = User.new( Factory.attributes_for(:user) )
       @user.owned_account_attributes = {:name => @account_name = Factory.build(:account).name }
@@ -175,4 +175,35 @@ describe User do
       @user.accounts.first.owner.should == @user
     end
   end
+
+  describe "#password_required?" do
+    it "should be true for new records" do
+      user = User.new
+      user.send(:password_required?).should be_true
+    end
+
+    it "should be true if password is presented" do
+      user = User.find(Factory(:user).id)
+      user.password = "1"
+      user.send(:password_required?).should be_true
+    end
+
+    it "should be true if password_confirmation is presented" do
+      user = User.find(Factory(:user).id)
+      user.password_confirmation = "2"
+      user.send(:password_required?).should be_true
+    end
+
+    it "should be false for existing records with no password/password_confirmation" do
+      user = User.find(Factory(:user).id)
+
+      user.send(:password_required?).should be_false
+
+      user.first_name = "foo"
+      user.last_name = "bar"
+      user.email = "foo@bar.com"
+      user.send(:password_required?).should be_false
+    end
+  end
+
 end

@@ -62,6 +62,10 @@ class User < ActiveRecord::Base
   end
 
   private
+    def password_required?
+      !persisted? || password.present? || password_confirmation.present?
+    end
+
     def cant_assign_own_account
       !new_record?
     end
