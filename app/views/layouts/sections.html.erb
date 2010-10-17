@@ -11,7 +11,7 @@
   <%= content_for :header do %>
     <h2>
       <%= @project.name  %>
-  		<% if current_user.projects.active.size > 1 %>
+  		<% unless current_user.projects.active.size > 1 %>
   	    <nav id="nav_projects">
   	      <span><%= t :".switch_to_project" %></span>
   	      <ul>
@@ -21,7 +21,9 @@
   	        <li><%= link_to t(:".all_projects"), root_path, :class => "all_projects" %></li>
   	      </ul>
   	    </nav>
-  	    <%= link_to t(".manage_projects"), projects_path, :id => "manage_projects" %>
+  	  <% else %>
+  	    <%= link_to t(".manage_projects"), root_path, :id => "back_to_dashboard" %>
+  	  <% end %>
 		</h2>
     <nav id="nav_project">
   		<%= link_to 0, [@project, :sections], :id => "notify_badge", :style => "display: none;" %>

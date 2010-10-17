@@ -41,7 +41,7 @@ en:
       task_list: "Tasks"
       archive: "Archive"
       switch_to_project: "Open other project"
-      manage_projects: "manage"
+      manage_projects: "index"
       all_projects: "All projects"
       goto_dashboard: "Events"
       sections: "Sections"

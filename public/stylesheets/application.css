@@ -449,7 +449,7 @@ body > footer {
   font-size: 11px;f
 }
 
-#nav_account a, #manage_projects {
+#nav_account a, #back_to_dashboard {
   color: #fff;
   padding: 2px 5px;
   text-decoration: none;
@@ -459,7 +459,7 @@ body > footer {
   font-size: 11px;
 }
 
-#nav_account a:hover, #nav_account a:focus, #manage_projects:hover, #manage_projects:focus {
+#nav_account a:hover, #nav_account a:focus, #back_to_dashboard:hover, #back_to_dashboard:focus {
   text-shadow: none;
   background-color: #fff;
   color: #000;
