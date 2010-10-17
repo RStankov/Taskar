@@ -1,19 +1,19 @@
 <header>
-	<h1 id="projects_title"><%=t '.title' %></h1>
+	<h1 id="projects_title"><%=t "projects.index" %></h1>
 	<ul class="actions">
-		<%= link_to t(:'layouts.admin.new_project'), [:new, @account, :project] %>
+		<%= link_to t("layouts.accounts.new_project"), [:new, @account, :project] %>
 	</ul>
 </header>
 <div class="wrap">
 	<% if @projects[0] %>
-		<h2 class="statistics"><%=t '.active' %> (<%= @projects.size %>)</h2>
+		<h2 class="statistics"><%=t "projects.active" %> (<%= @projects.size %>)</h2>
 		<ul>
 			<%= render @projects %>
 		</ul>
 		<hr />
 	<% end %>
 	<% if @completed[0] %>
-		<h2 class="statistics"><%=t '.completed' %> (<%= @completed.size %>)</h2>
+		<h2 class="statistics"><%=t "projects.active" %> (<%= @completed.size %>)</h2>
 		<ul>
 			<%= render @completed %>
 		</ul>

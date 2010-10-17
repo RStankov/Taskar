@@ -25,7 +25,7 @@ bg:
       feedback: "Обратна връзка"
       logout: "Изход"
 
-    admin:
+    accounts:
       title_projects: ": Проекти"
       title_users: ": Потребители"
       users: "Потребители (%{count})"
@@ -77,6 +77,9 @@ bg:
   sessions:
     title: "Вход"
 
+  accounts:
+    updated: "Информацията за акаунта променена"
+
   projects:
     participants: "Участници в проекта"
     sections: "Секции"
@@ -85,10 +88,9 @@ bg:
     new_project: "Нов проект"
     edit_project: "Промяна на прект"
     completed: "Завършен"
-    index:
-      title: "Проекти"
-      active: "Активни проекти"
-      completed: "Завършени проекти"
+    index: "Проекти"
+    active: "Активни проекти"
+    completed: "Завършени проекти"
 
 
   users:

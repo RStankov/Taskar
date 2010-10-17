@@ -25,7 +25,7 @@ en:
       feedback: "Feedback"
       logout: "Logout"
 
-    admin:
+    accounts:
       title_projects: ": Projects"
       title_users: ": Users"
       users: "Users (%{count})"
@@ -77,6 +77,9 @@ en:
   sessions:
     title: "Login"
 
+  accounts:
+    updated: "Account information updated successfully"
+
   projects:
     participants: "Project participants"
     sections: "Sections"
@@ -85,10 +88,9 @@ en:
     new_project: "Create project"
     edit_project: "Edit project"
     completed: "Completed"
-    index:
-      title: "Project"
-      active: "Active projects"
-      completed: "Completed projects"
+    index: "Project"
+    active: "Active projects"
+    completed: "Completed projects"
 
 
   users:
