@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101017151553) do
+ActiveRecord::Schema.define(:version => 20101017231510) do
 
   create_table "account_users", :force => true do |t|
     t.integer  "user_id"
@@ -56,6 +56,22 @@ ActiveRecord::Schema.define(:version => 20101017151553) do
 
   add_index "events", ["id"], :name => "index_events_on_id"
   add_index "events", ["subject_type"], :name => "index_events_on_subject_type"
+
+  create_table "invitations", :force => true do |t|
+    t.integer  "account_id"
+    t.string   "email"
+    t.string   "token"
+    t.datetime "send_at"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "message"
+    t.boolean  "rejected"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "invitations", ["account_id"], :name => "index_invitations_on_account_id"
+  add_index "invitations", ["email"], :name => "index_invitations_on_email"
 
   create_table "issues", :force => true do |t|
     t.integer  "user_id"
