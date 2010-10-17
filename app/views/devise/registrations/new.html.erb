@@ -2,7 +2,7 @@
   <header>
   	<%= title 'devise.registrations.new' %>
   </header>
-	<%= form_for @user, :url => registration_path(resource_name), :html => { :class => 'action_form', :multipart => true} do |f| %>
+	<%= form_for @user, :url => new_user_registration_path, :html => { :class => 'action_form', :multipart => true} do |f| %>
 	  <%= render 'shared/error_messages', :target => f.object %>
 	  <%= f.label :email %>
 	  <%= f.text_field :email %>

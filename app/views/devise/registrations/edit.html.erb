@@ -2,7 +2,8 @@
   <header>
   	<%= title 'devise.registrations.profile' %>
   </header>
-	<%= form_for @user, :url => registration_path(resource_name), :html => { :class => 'action_form', :method => :put, :multipart => true } do |f| %>
+  <%= raw '<div class="wrap"><p class="notice">' + notice + '</p></div>' if notice %>
+	<%= form_for current_user, :url => user_registration_path, :html => { :class => 'action_form', :method => :put, :multipart => true , :id => nil} do |f| %>
 	  <%= render 'shared/error_messages', :target => f.object %>
 
 		<p><strong><%= t 'devise.registrations.confirm_password' %></strong></p>
