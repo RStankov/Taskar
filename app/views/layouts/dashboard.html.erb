@@ -22,7 +22,7 @@
         </span>
       </nav>
     <% elsif current_user.admin_in_accounts.size > 1 %>
-      <h2>
+      <h2><%= current_user.full_name %>
         <nav id="nav_projects">
   	      <span><%= t :".accounts" %></span>
   	      <ul>
