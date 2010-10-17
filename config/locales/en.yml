@@ -63,6 +63,7 @@ en:
       title: "Dashboard"
       manage: "Manage"
       current_projects: "Your projects (%{count})"
+      accounts: "accounts"
 
 
   dashboard:

@@ -6,17 +6,20 @@
 <%= raw '<div class="wrap"><p class="alert">' + alert + '</p></div>' if alert %>
 
 <% if @projects.empty? %>
-	  <% current_user.account_users.each do |account_user| %>
-  	  <div class="help_notice">
-      	<% if account_user.admin? || account_user.account.owner_id = current_user.id %>
-    			<h2><%= raw t('.empty_admin', :account_name => account_user.account.name) %></h2>
-    			<%= link_to t('.add_project'), [:new, account_user.account, :project] %> <%= t :or %>
-    			<%= link_to t('.add_user'), [:new, account_user.account, :user] %>
-    		<% else %>
-    			<h2><%= raw t('.empty') %></h2>
-    		<% end%>
-    	</div>
-	  <% end %>
+  <div class="help_notice">
+    <% if current_user.admin_in_accounts.empty? %>
+      <%= raw t('.empty') %>
+    <% else %>
+	    <% current_user.admin_in_accounts.each do |account| %>
+        <h2><%= raw t('.empty_admin', :account_name => account.name) %></h2>
+      	<%= link_to t('.add_project'), [:new, account, :project] %> <%= t :or %>
+      	<%= link_to t('.add_user'), [:new, account, :user] %>
+      	<br />
+      	<hr />
+      	<br />
+  	  <% end %>
+  	<% end %>
+  </div>
 <% else %>
 	<table id="events" colspan="0" rowspan="0" width="99%">
 		<% @projects.each do |project| %>

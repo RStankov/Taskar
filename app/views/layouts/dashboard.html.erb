@@ -8,7 +8,34 @@
 	<%= favicon_link_tag "favicon.png" %>
 </head>
 <body>
-  <%= render "shared/header" %>
+  <%= header do %>
+    <% if current_user.admin_in_accounts.size == 1 %>
+      <% account = current_user.admin_in_accounts.first %>
+      <h2><%= account.name  %></h2>
+      <nav id="nav_project">
+        <span>
+          <%= link_to t("layouts.dashboard.title"), :root, :class => controller_name == "dashboard" && "selected" %>
+          <% if account.admin?(current_user) %>
+            <%= link_to t("users.title"), [account, :users], :class => controller_name == "users" && "selected" %>
+            <%= link_to t("projects.index"), [account, :projects], :class => controller_name == "projects" && "selected" %>
+          <% end %>
+        </span>
+      </nav>
+    <% elsif current_user.admin_in_accounts.size > 1 %>
+      <h2>
+        <nav id="nav_projects">
+  	      <span><%= t :".accounts" %></span>
+  	      <ul>
+  	        <% current_user.admin_in_accounts.each do |account| %>
+              <li><%= link_to account.name, account %></li>
+  	        <% end %>
+  	      </ul>
+  	    </nav>
+      </h2>
+    <% elsif current_user.accounts.size == 1 %>
+      <h2><%= current_user.accounts.first.name %></h2>
+    <% end %>
+  <% end %>
   <section>
     <article>
       <%= yield %>
