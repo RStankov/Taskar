@@ -52,14 +52,15 @@ describe ApplicationController do
     it "should not try to set locale if current_user is nil" do
       I18n.should_not_receive(:locale=)
 
+      controller.stub(:user_signed_in?).and_return false
       controller.__send__(:set_locale)
     end
 
     it "should not try to set locale if current_user.locale is not in I18n.available_locales" do
       I18n.should_not_receive(:locale=)
 
-      controller.stub(:user_signed_in).and_return true
-      controller.stub(:current_user).and_return mock_model(User, :locale => "#{I18n.available_locales.first}_not_existing")
+      controller.stub(:user_signed_in?).and_return true
+      controller.stub(:current_user).and_return mock_user(:locale => "#{I18n.available_locales.first}_not_existing")
       controller.__send__(:set_locale)
     end
 
@@ -68,8 +69,8 @@ describe ApplicationController do
 
       I18n.should_receive(:locale=).with(locale.to_sym)
 
-      controller.stub(:user_signed_in).and_return true
-      controller.stub(:current_user).and_return mock_model(User, :locale => locale)
+      controller.stub(:user_signed_in?).and_return true
+      controller.stub(:current_user).and_return mock_user(:locale => locale)
       controller.__send__(:set_locale)
     end
   end
