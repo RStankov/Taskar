@@ -2,8 +2,8 @@
   <header>
   	<%= title 'devise.registrations.profile' %>
   </header>
-  <%= raw '<div class="wrap"><p class="notice">' + notice + '</p></div>' if notice %>
 	<%= form_for current_user, :url => user_registration_path, :html => { :class => 'action_form', :method => :put, :multipart => true , :id => nil} do |f| %>
+	  <%= raw '<p class="notice">' + notice + '</p>' if notice %>
 	  <%= render 'shared/error_messages', :target => f.object %>
 
 	  <%= f.label :first_name  %>

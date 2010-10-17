@@ -4,9 +4,11 @@ describe Auth::RegistrationsController do
   subject { controller }
 
   context "new user" do
+    before { controller.stub(:user_signed_in?).and_return false }
+
     describe "GET 'new'" do
       before do
-        User.should_recieve(:new).and_return mock_user
+        User.should_receive(:new).and_return mock_user
 
         get :new
       end
@@ -17,7 +19,7 @@ describe Auth::RegistrationsController do
 
     describe "POST 'create'" do
       it "should create new user, and redirect with notice to root_path, with valid data" do
-        User.should_recieve(:new).with("these" => "params").and_return mock_user(:save => true)
+        User.should_receive(:new).with("these" => "params").and_return mock_user(:save => true)
 
         post :create, :user => {"these" => "params"}
 
@@ -27,9 +29,9 @@ describe Auth::RegistrationsController do
       end
 
       it "should clean passwords, and render 'edit', with invalid data" do
-        User.should_recieve(:new).with("these" => "params").and_return mock_user(:save => true)
+        User.should_receive(:new).with("these" => "params").and_return mock_user(:save => false)
 
-        mock_user.should_recieve(:clean_up_passwords)
+        mock_user.should_receive(:clean_up_passwords)
 
         post :create, :user => {"these" => "params"}
 
@@ -37,18 +39,18 @@ describe Auth::RegistrationsController do
         should render_template("new")
       end
     end
+  end
 
-    {
-      :new       => 'get(:new)',
-      :create    => 'post(:create)'
-    }.each do |(action, code)|
-      it "should redirect the logged user to root_path" do
-        sign_in Factory(:user)
+ {
+    :new       => 'get(:new)',
+    :create    => 'post(:create)'
+  }.each do |(action, code)|
+    it "should redirect the logged user to root_path when try to access #{action}" do
+      sign_in Factory(:user)
 
-        eval code
+      eval code
 
-        should redirect_to(:root_path)
-      end
+      should redirect_to(:root)
     end
   end
 
@@ -67,33 +69,33 @@ describe Auth::RegistrationsController do
 
     describe "PUT 'update'" do
       it "should update_attributes of current_user, if is_password_required is false" do
-        current_user.should_receive(:update_attributes).with("these" => "params").and_return true
+        @current_user.should_receive(:update_attributes).with("these" => "params").and_return true
 
         controller.stub(:is_password_required).and_return false
 
         post :update, :user => {"these" => "params"}
 
         should set_the_flash.to(I18n.t("devise.registrations.updated"))
-        should redirect_to(user_registration_path)
+        should redirect_to(edit_user_registration_url)
       end
 
       it "should update_with_password of current_user, if is_password_required is true" do
-        current_user.should_receive(:update_with_password).with("these" => "params").and_return true
+        @current_user.should_receive(:update_with_password).with("these" => "params").and_return true
 
         controller.stub(:is_password_required).and_return true
 
         post :update, :user => {"these" => "params"}
 
         should set_the_flash.to(I18n.t("devise.registrations.updated"))
-        should redirect_to(user_registration_path)
+        should redirect_to(edit_user_registration_url)
       end
 
       it "should render 'edit' page if user have error" do
-        current_user.should_receive(:update_attributes).with("these" => "params").and_return false
+        @current_user.should_receive(:update_attributes).with("these" => "params").and_return false
 
         controller.stub(:is_password_required).and_return false
 
-        mock_user.should_recieve(:clean_up_passwords)
+        @current_user.should_receive(:clean_up_passwords)
 
         post :update, :user => {"these" => "params"}
 
@@ -110,7 +112,7 @@ describe Auth::RegistrationsController do
 
   describe "#is_password_required" do
     def set_params(params)
-      controller.stub(:params).with(params)
+      controller.stub(:params).and_return params
     end
 
     def is_password_required
@@ -133,10 +135,10 @@ describe Auth::RegistrationsController do
       is_password_required.should be_true
     end
 
-    it "should be true if params[:email] is diffent from current users email" do
+    it "should be true if params[:email] is different from current users email" do
       set_params :user => {:email => "foo@bar.com"}
 
-      controller.stub(:current_user).with mock_user(:email => "some@other.email")
+      controller.stub(:current_user).and_return mock_user(:email => "some@other.email")
 
       is_password_required.should be_true
     end
@@ -144,13 +146,13 @@ describe Auth::RegistrationsController do
     it "should be false if params[:user] is presented, but :password, :password_confirmation are not" do
       set_params :user => {:fist_name => "foo"}
 
-      is_password_required.should be_true
+      is_password_required.should be_false
 
       set_params :user => {:email => "user@mail.com"}
 
-      controller.stub(:current_user).with mock_user(:email => "user@mail.com")
+      controller.stub(:current_user).and_return mock_user(:email => "user@mail.com")
 
-      is_password_required.should be_true
+      is_password_required.should be_false
     end
   end
 end

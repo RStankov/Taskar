@@ -5,15 +5,15 @@ describe ApplicationController do
 
   describe "#deny_access" do
     it "should redirect_to root_path" do
-      controller.stub!(:request).and_return(mock(Object, :xhr? => false))
-      controller.stub!(:root_path).and_return("root_path")
+      controller.stub(:request).and_return(mock(Object, :xhr? => false))
+      controller.stub(:root_path).and_return("root_path")
       controller.should_receive(:redirect_to).with("root_path", :alert => I18n.t(:deny_access))
 
       controller.send(:deny_access)
     end
 
     it "should head forbidden on xhr request" do
-      controller.stub!(:request).and_return(mock(Object, :xhr? => true))
+      controller.stub(:request).and_return(mock(Object, :xhr? => true))
       controller.should_receive(:head).with(:forbidden)
 
       controller.send(:deny_access)
@@ -52,14 +52,14 @@ describe ApplicationController do
     it "should not try to set locale if current_user is nil" do
       I18n.should_not_receive(:locale=)
 
-      controller.stub!(:current_user).and_return nil
       controller.__send__(:set_locale)
     end
 
     it "should not try to set locale if current_user.locale is not in I18n.available_locales" do
       I18n.should_not_receive(:locale=)
 
-      controller.stub!(:current_user).and_return mock_model(User, :locale => "#{I18n.available_locales.first}_not_existing")
+      controller.stub(:user_signed_in).and_return true
+      controller.stub(:current_user).and_return mock_model(User, :locale => "#{I18n.available_locales.first}_not_existing")
       controller.__send__(:set_locale)
     end
 
@@ -68,7 +68,8 @@ describe ApplicationController do
 
       I18n.should_receive(:locale=).with(locale.to_sym)
 
-      controller.stub!(:current_user).and_return mock_model(User, :locale => locale)
+      controller.stub(:user_signed_in).and_return true
+      controller.stub(:current_user).and_return mock_model(User, :locale => locale)
       controller.__send__(:set_locale)
     end
   end

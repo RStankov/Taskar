@@ -1,5 +1,7 @@
 class Auth::RegistrationsController < ApplicationController
   skip_before_filter :authenticate_user!, :only => [ :new, :create ]
+  skip_before_filter :set_locale, :only => [ :new, :create ]
+
   prepend_before_filter :require_no_authentication, :only => [ :new, :create ]
 
   def new
@@ -13,7 +15,7 @@ class Auth::RegistrationsController < ApplicationController
       redirect_to :root, :notice => t("devise.registrations.signed_up")
     else
       @user.clean_up_passwords
-      render :new
+      render "new"
     end
   end
 
@@ -22,10 +24,10 @@ class Auth::RegistrationsController < ApplicationController
 
   def update
     if is_password_required ? current_user.update_with_password(params[:user]) : current_user.update_attributes(params[:user])
-      redirect_to user_registration_path, :notice => t("devise.registrations.updated")
+      redirect_to edit_user_registration_path, :notice => t("devise.registrations.updated")
     else
       current_user.clean_up_passwords
-      render :edit
+      render "edit"
     end
   end
 
@@ -36,7 +38,7 @@ class Auth::RegistrationsController < ApplicationController
   protected
     def require_no_authentication
       if user_signed_in?
-        redirect_to root_path
+        redirect_to :root
       end
     end
 
@@ -45,8 +47,14 @@ class Auth::RegistrationsController < ApplicationController
     end
 
     def is_password_required
-      return false unless data = params[:user]
+      unless data = params[:user]
+        return false
+      end
 
-      data[:password].present? || data[:password_confirmation].present? || (data[:email] && data[:email] != current_user.email)
+      if data[:password].present? || data[:password_confirmation].present?
+        return true
+      end
+
+      data[:email] && data[:email] != current_user.email
     end
 end
