@@ -197,10 +197,6 @@ describe User do
       @user.account.owner.should == @user
     end
 
-    it "should make this user admin" do
-      @user.admin?.should be_true
-    end
-
     it "should be nil if account is assign to user" do
       account = Factory(:account)
 
@@ -212,7 +208,6 @@ describe User do
       user.reload
       user.owned_account.should be_nil
       user.account.should == account
-      user.admin?.should be_false
     end
   end
 end

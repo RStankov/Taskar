@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101015232603) do
+ActiveRecord::Schema.define(:version => 20101017142210) do
 
   create_table "account_users", :force => true do |t|
     t.integer  "user_id"
@@ -147,7 +147,6 @@ ActiveRecord::Schema.define(:version => 20101015232603) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.integer  "comments_count",                      :default => 0
-    t.boolean  "admin"
     t.datetime "last_active_at"
     t.integer  "account_id"
     t.integer  "failed_attempts",                     :default => 0
