@@ -15,7 +15,6 @@ describe User do
 
     # deprecated
     it { should have_one(:owned_account) }
-    it { should belong_to(:account) }
   end
 
   describe "validation" do
@@ -59,8 +58,7 @@ describe User do
 
   describe "authentication" do
     before do
-      @account  = Factory(:account)
-      @user     = Factory(:user, :account => @account)
+      @user = Factory(:user)
     end
 
     it "should find_for_authentication with correct" do
@@ -176,8 +174,8 @@ describe User do
   end
 
   describe "owned_account" do
-    before :each do
-      @user                          = User.new Factory.attributes_for(:user)
+    before do
+      @user                          = User.new( Factory.attributes_for(:user) )
       @user.owned_account_attributes = {:name => @account_name = Factory.build(:account).name }
       @user.save.should be_true
       @user.should_not be_new_record
@@ -187,27 +185,14 @@ describe User do
       @user.owned_account.name.should == @account_name
     end
 
-    it "should be same as user's account" do
-      @user.owned_account.should == @user.account
+    it "should be in this account" do
+      @user.accounts.should include(@user.owned_account)
     end
 
     it "should have user as owner" do
       @user.reload
       @user.owned_account.owner.should == @user
-      @user.account.owner.should == @user
-    end
-
-    it "should be nil if account is assign to user" do
-      account = Factory(:account)
-
-      user                          = User.new Factory.attributes_for(:user)
-      user.owned_account_attributes = {:name => Factory.build(:account).name}
-      user.account                  = account
-
-      user.save.should be_true
-      user.reload
-      user.owned_account.should be_nil
-      user.account.should == account
+      @user.accounts.first.owner.should == @user
     end
   end
 end

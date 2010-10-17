@@ -25,13 +25,9 @@ class User < ActiveRecord::Base
 
   # deprecated
   has_one :owned_account, :class_name => "Account", :foreign_key => "owner_id"
-  belongs_to :account
-
-  attr_readonly :account_id
 
   accepts_nested_attributes_for :owned_account, :reject_if => :cant_assign_own_account
 
-  before_validation :assign_own_account, :on => :create
   after_create :assign_as_account_owner
 
   def full_name
@@ -65,7 +61,7 @@ class User < ActiveRecord::Base
     @responsibilities_count[project_id] ||= responsibilities.count :conditions => {:status => 0, :project_id => project_id}
   end
 
-  def admin= value
+  def admin=(value)
     if value || !owned_account
       super(value)
     end
@@ -76,21 +72,12 @@ class User < ActiveRecord::Base
       !new_record?
     end
 
-    def assign_own_account
-      if owned_account
-        if account
-          self.owned_account = nil
-        else
-          self.account = owned_account
-          self.admin   = true
-        end
-      end
-    end
-
     def assign_as_account_owner
       if owned_account
         owned_account.owner = self
         owned_account.save
+
+        account_users.create(:account => owned_account, :admin => true)
       end
     end
 end
