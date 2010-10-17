@@ -1,4 +1,4 @@
-class AccountsController < ApplicationController
+class Accounts::AccountsController < ApplicationController
   layout "admin"
 
   before_filter :get_account

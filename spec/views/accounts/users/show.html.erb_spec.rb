@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "/users/show" do
+describe "/accounts/users/show" do
   before do
     assign :account, Factory(:account)
     assign :user, Factory(:user)

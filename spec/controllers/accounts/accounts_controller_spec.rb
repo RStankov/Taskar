@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe AccountsController do
+describe Accounts::AccountsController do
   before do
     sign_in @current_user = Factory(:user)
     controller.stub(:current_user).and_return @current_user

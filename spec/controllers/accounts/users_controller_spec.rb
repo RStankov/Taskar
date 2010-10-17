@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe UsersController do
+describe Accounts::UsersController do
   subject { controller }
 
   before do

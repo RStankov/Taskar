@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ProjectsController do
+describe Accounts::ProjectsController do
   subject { controller }
 
   before do

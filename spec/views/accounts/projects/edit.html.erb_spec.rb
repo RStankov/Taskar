@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "/projects/edit.html.erb" do
+describe "/accounts/projects/edit.html.erb" do
   before(:each) do
     sign_in Factory(:user)
 
