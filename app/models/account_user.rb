@@ -8,10 +8,4 @@ class AccountUser < ActiveRecord::Base
   validates_uniqueness_of :user_id, :scope => :account_id
 
   attr_readonly :project_id, :user_id
-
-#  def admin?
-#    admin || (account && account.owner_id == user_id)
-#  end
-#
-#  memoize :admin?
 end
