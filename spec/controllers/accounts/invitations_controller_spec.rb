@@ -1,7 +1,11 @@
 require 'spec_helper'
 
 describe Accounts::InvitationsController do
-  before { sign_up_and_mock_account }
+  before do
+    sign_up_and_mock_account
+
+    mock_account.stub(:invitations).and_return @inviations = []
+  end
 
   describe "with admin user" do
     before do
@@ -9,30 +13,58 @@ describe Accounts::InvitationsController do
     end
 
     describe "GET 'new'" do
-      it "should be successful" do
-        get "new", :account_id => "1", :id => "2"
-        response.should be_success
+      it "should display new invitation form" do
+        Invitation.should_receive(:new).and_return mock_invitation
+
+        get "new", :account_id => "1"
+
+        should assign_to(:invitation).with(mock_invitation)
+        should render_template("new")
       end
     end
 
-    describe "GET 'create'" do
-      it "should be successful" do
-        post "create", :account_id => "1", :id => "2"
-        response.should be_success
+    describe "POST 'create'" do
+      before do
+        @inviations.should_receive(:build).with("these" => "params").and_return mock_invitation
+      end
+
+      it "should create new invitation, and redirect to users, on valid data" do
+        mock_invitation.should_receive(:save).and_return true
+
+        post "create", :account_id => "1", :invitation => {"these" => "params"}
+
+        should assign_to(:invitation).with(mock_invitation)
+        should redirect_to([mock_account, :users])
+      end
+
+      it "should render 'new' form, on invaild data" do
+        mock_invitation.should_receive(:save).and_return false
+
+        post "create", :account_id => "1", :invitation => {"these" => "params"}
+
+        should assign_to(:invitation).with(mock_invitation)
+        should render_template("new")
       end
     end
 
-    describe "GET 'update'" do
+    describe "PUT 'update'" do
       it "should be successful" do
+        # TODO
         get "update", :account_id => "1", :id => "2"
+
         response.should be_success
       end
     end
 
-    describe "GET 'destroy'" do
-      it "should be successful" do
+    describe "DELETE 'destroy'" do
+      it "should be destroy invitation and redirect" do
+        @inviations.should_receive(:find).with("2").and_return mock_invitation
+
+        mock_invitation.should_receive(:destroy)
+
         get "destroy", :account_id => "1", :id => "2"
-        response.should be_success
+
+        should redirect_to([mock_account, :users])
       end
     end
   end
