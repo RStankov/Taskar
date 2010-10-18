@@ -34,7 +34,7 @@ describe Comment do
     comment.errors[:base].should == [I18n.t('activerecord.errors.comments.archived_task')]
   end
 
-  describe "editable_by?" do
+  describe "#editable_by?" do
     before do
       @comment = Factory(:comment)
     end
@@ -54,7 +54,7 @@ describe Comment do
     end
   end
 
-  describe "editable_for" do
+  describe "#editable_for" do
     before do
       @comment = Factory(:comment)
     end
