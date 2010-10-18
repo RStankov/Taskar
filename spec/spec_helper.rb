@@ -18,7 +18,7 @@ RSpec.configure do |config|
   config.include Paperclip::Shoulda::Matchers
   config.include ControllerMacros
   config.include TaskarMocks
-  config.include Devise::TestHelpers
+  config.include Taskar::DeviseTestHelpers
 
   config.extend Taskar::SpecHelper
 end
