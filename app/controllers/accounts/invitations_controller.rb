@@ -1,4 +1,4 @@
-class Accounts::InvitationsController < ApplicationController
+class Accounts::InvitationsController < Accounts::BaseController
   def new
   end
 
