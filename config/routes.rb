@@ -1,5 +1,7 @@
 Taskar::Application.routes.draw do
   resources :accounts, :controller => "accounts/accounts", :only => [:show, :edit, :update] do
+    resources :invitations, :controller => "accounts/invitations", :only => [:new, :create, :update, :destroy]
+
     resources :users, :controller => "accounts/users" do
       member do
         put :set_admin
