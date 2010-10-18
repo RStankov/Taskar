@@ -1,3 +1,5 @@
+require "digest/sha1"
+
 class Invitation < ActiveRecord::Base
   belongs_to :account
 
@@ -15,6 +17,6 @@ class Invitation < ActiveRecord::Base
 
   protected
     def generate_token
-      self.token = "[invitation-token-#{Time.now}-#{email}-#{rand(100)}]"
+      self.token = Digest::SHA1.hexdigest("[invitation-token-#{Time.now}-#{email}-#{rand(100)}]")
     end
 end
