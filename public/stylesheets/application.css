@@ -999,6 +999,10 @@ body > footer {
   background: url(../images/sprite.png) 0px -96px no-repeat;
 }
 
+#account_title {
+	background: url(../images/sprite.png) 0px -518px no-repeat;
+}
+
 /*** ARTICLE HEADER ***/
 
 article header a {
