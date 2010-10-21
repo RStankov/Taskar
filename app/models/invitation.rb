@@ -15,6 +15,10 @@ class Invitation < ActiveRecord::Base
 
   before_validation :check_for_duplicate_account_user, :generate_token, :on => :create
 
+  def full_name
+    @full_name ||= "#{first_name} #{last_name}"
+  end
+
   protected
     def check_for_duplicate_account_user
       if account && account.users.find_by_email(email.to_s.downcase)

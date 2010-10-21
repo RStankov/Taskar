@@ -24,6 +24,13 @@ describe Invitation do
     invitation.errors[:email].first.should == I18n.t("activerecord.errors.invitations.account_exists")
   end
 
+  describe "#full_name" do
+    it "should be first_name + last_name" do
+      invitation = Factory.build(:invitation, {:first_name => 'Radoslav', :last_name => 'Stankov'})
+      invitation.full_name.should == "Radoslav Stankov"
+    end
+  end
+
   describe "#generate_token" do
     it "should be genereated of sha1 of [invitation-token-{Time.now}-{email}-{rand(100)}]" do
       invate = Factory.build(:invitation)
