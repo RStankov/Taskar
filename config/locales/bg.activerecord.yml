@@ -9,6 +9,7 @@ bg:
           project_user: "Участие в проект"
           account: "Акаунт"
           status: "Статус"
+          invitation: "Покана"
 
         attributes:
           project:
@@ -60,6 +61,12 @@ bg:
 
           status:
             text: "Статус"
+
+          invitation:
+            email: "E-майл"
+            first_name: "Име"
+            last_name: "Фамилия"
+            message: "Допълнително съобщение"
 
         errors:
           tasks:

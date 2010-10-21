@@ -9,6 +9,7 @@ en:
           project_user: "Participat"
           account: "Account"
           status: "Status"
+          invitation: "Invitation"
 
         attributes:
           project:
@@ -60,6 +61,12 @@ en:
 
           status:
             text: "Status"
+
+          invitation:
+            email: "E-mail address"
+            first_name: "Fist name"
+            last_name: "Last name"
+            message: "Additional message"
 
         errors:
           tasks:

@@ -1,2 +1,28 @@
-<h1>Accounts::Invitations#new</h1>
-<p>Find me in app/views/accounts/invitations/new.html.erb</p>
+<header>
+	<h1 id="invitation_title"><%=t "invitations.new_user", :account => @account.name %></h1>
+</header>
+<div class="wrap">
+	<%= form_for [@account, @invitation], :html => {:multipart => true, :class => 'action_form'} do |f| %>
+		<%= render 'shared/error_messages', :target => f.object %>
+
+	  <p><%= f.label :email %></p>
+	 	<p><%= f.text_field :email %></p>
+
+	  <p><%= f.label :first_name  %></p>
+	  <p><%= f.text_field :first_name  %></p>
+
+	  <p><%= f.label :last_name  %></p>
+	  <p><%= f.text_field :last_name  %></p>
+
+    <p><%= f.label :message, raw(t("invitations.message")) %></p>
+	  <p><%= f.text_area :message %></p>
+
+	  <div class="buttons">
+	    <%= raw t("invitations.note") %>
+	  </div>
+
+	  <div class="buttons">
+      <%= f.submit t(:create) %> <%= t :or  %> <%= link_to t(:cancel), [@account, :users], :class => "cancel" %>
+	  </div>
+	<% end %>
+</div>

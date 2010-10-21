@@ -1,5 +1,10 @@
 require 'spec_helper'
 
-describe "invitations/new.html.erb" do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe "accounts/invitations/new.html.erb" do
+  before do
+    assign :account, Factory.stub(:account)
+    assign :invitation, Invitation.new
+  end
+
+  it { render }
 end
