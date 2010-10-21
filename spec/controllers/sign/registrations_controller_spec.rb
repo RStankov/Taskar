@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Auth::RegistrationsController do
+describe Sign::RegistrationsController do
   subject { controller }
 
   context "new user" do

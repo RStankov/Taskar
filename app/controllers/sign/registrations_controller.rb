@@ -1,4 +1,4 @@
-class Auth::RegistrationsController < ApplicationController
+class Sign::RegistrationsController < ApplicationController
   skip_before_filter :authenticate_user!, :only => [ :new, :create ]
   skip_before_filter :set_locale, :only => [ :new, :create ]
 
