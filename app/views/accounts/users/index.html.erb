@@ -1,11 +1,20 @@
 <header>
-	<h1 id="users_title"><%=t :'users.title' %></h1>
+	<h1 id="users_title"><%=t "users.title" %></h1>
 	<ul class="actions">
-		<%= link_to t(:'layouts.accounts.new_user'), [:new, @account, :invitation] %>
+		<%= link_to t("layouts.accounts.new_user"), [:new, @account, :invitation] %>
 	</ul>
 </header>
 <div class="wrap">
 	<ul id="users_list">
 	  <%= render @users %>
 	</ul>
+	<% unless @invitations.empty? %>
+    <hr />
+	  <h2 class="statistics"><%=t "users.invitations", :count => @invitations.size %></h2>
+	  <% @invitations.each do |invitation| %>
+	    <%= invitation.full_name %>
+	    (<%= invitation.email %>)
+	    <%= link_to t(:delete), [@account, invitation], :method => :delete, :confirm => t(:confirm) %>
+	  <% end %>
+	<% end %>
 </div>
