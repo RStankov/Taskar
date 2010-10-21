@@ -1003,10 +1003,6 @@ body > footer {
 	background: url(../images/sprite.png) 0px -518px no-repeat;
 }
 
-#invitation_title {
-	background: url(../images/sprite.png) 0px -548px no-repeat;
-}
-
 /*** ARTICLE HEADER ***/
 
 article header a {

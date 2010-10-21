@@ -22,6 +22,5 @@ images:
     "public/images/sprite/icons/lock_hover.png",
     "public/images/sprite/icons/unlock.png",
     "public/images/sprite/icons/unlock_hover.png",
-    ["public/images/sprite/headers/account.png",       32, 32],
-    ["public/images/sprite/headers/invitations.png",   32, 32]
+    ["public/images/sprite/headers/account.png",       32, 32]
   ]
