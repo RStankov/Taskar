@@ -61,10 +61,13 @@ describe Accounts::UsersController do
     end
 
     describe "GET index" do
-      it "shows all users" do
+      it "shows all users and invitations" do
+        mock_account.should_receive(:invitations).and_return [mock_invitation]
+
         get :index, :account_id => "1"
 
         should assign_to(:users).with(@users)
+        should assign_to(:invitations).with([mock_invitation])
         should render_template("index")
       end
     end

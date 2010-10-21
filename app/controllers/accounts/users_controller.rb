@@ -3,6 +3,7 @@ class Accounts::UsersController < Accounts::BaseController
 
   def index
     @users = @account.users
+    @invitations = @account.invitations
   end
 
   def show
