@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101017231510) do
+ActiveRecord::Schema.define(:version => 20101021213411) do
 
   create_table "account_users", :force => true do |t|
     t.integer  "user_id"
@@ -170,6 +170,7 @@ ActiveRecord::Schema.define(:version => 20101017231510) do
     t.string   "locale",               :limit => 2
   end
 
+  add_index "users", ["email"], :name => "index_users_on_email"
   add_index "users", ["id"], :name => "index_users_on_id"
 
 end
