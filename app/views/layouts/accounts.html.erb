@@ -31,7 +31,7 @@
 			<section>
         <h3><%=t :'.users', :count => @account.users.size %></h3>
         <ul>
-          <li><%= link_to t(:'.new_user'), [:new, @account, :user] %></li>
+          <li><%= link_to t(:'.new_user'), [:new, @account, :invitation] %></li>
           <li><%= link_to t(:'.manage_users'), [@account, :users] %></li>
         </ul>
       </section>

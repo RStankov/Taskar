@@ -13,7 +13,7 @@
 	    <% current_user.admin_in_accounts.each do |account| %>
         <h2><%= raw t('.empty_admin', :account_name => account.name) %></h2>
       	<%= link_to t('.add_project'), [:new, account, :project] %> <%= t :or %>
-      	<%= link_to t('.add_user'), [:new, account, :user] %>
+      	<%= link_to t('.add_user'), [:new, account, :invitation] %>
       	<br />
       	<hr />
       	<br />
