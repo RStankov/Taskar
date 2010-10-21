@@ -13,9 +13,15 @@ class Invitation < ActiveRecord::Base
 
   attr_accessible :email, :first_name, :last_name, :message
 
-  before_validation :generate_token, :on => :create
+  before_validation :check_for_duplicate_account_user, :generate_token, :on => :create
 
   protected
+    def check_for_duplicate_account_user
+      if account && account.users.find_by_email(email.to_s.downcase)
+        errors[:email] << I18n.t("activerecord.errors.invitations.account_exists")
+      end
+    end
+
     def generate_token
       self.token = Digest::SHA1.hexdigest("[invitation-token-#{Time.now}-#{email}-#{rand(100)}]")
     end

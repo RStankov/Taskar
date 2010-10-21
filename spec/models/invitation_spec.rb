@@ -15,6 +15,15 @@ describe Invitation do
   it { should_not allow_value('some@domain').for(:email) }
   it { should allow_value('some@domain.com').for(:email) }
 
+  it "should not allow user who already is in this account to be added twice" do
+    account_user = Factory(:account_user)
+    invitation   = Factory.build(:invitation, :account => account_user.account, :email => account_user.user.email)
+
+    invitation.save.should be_false
+    invitation.should have(1).error_on(:email)
+    invitation.errors[:email].first.should == I18n.t("activerecord.errors.invitations.account_exists")
+  end
+
   describe "#generate_token" do
     it "should be genereated of sha1 of [invitation-token-{Time.now}-{email}-{rand(100)}]" do
       invate = Factory.build(:invitation)
