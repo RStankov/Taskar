@@ -1,0 +1,25 @@
+sprite: "public/images/sprite.png"
+images:
+  [
+    ["public/images/sprite/headers/book_open.png",     32, 32],
+    ["public/images/sprite/headers/cabinet.png",       32, 32],
+    ["public/images/sprite/headers/clipboard.png",     32, 32],
+    ["public/images/sprite/headers/copy.png",          32, 32],
+    ["public/images/sprite/headers/dashboard.png",     32, 32],
+    ["public/images/sprite/headers/edit.png",          32, 32],
+    ["public/images/sprite/headers/entry_feed.png",    32, 32],
+    ["public/images/sprite/headers/file.png",          32, 32],
+    ["public/images/sprite/headers/file_new.png",      32, 32],
+    ["public/images/sprite/headers/user.png",          32, 32],
+    ["public/images/sprite/headers/users.png",         32, 32],
+    "public/images/sprite/headers/comments.png",
+    "public/images/sprite/headers/comment_new.png",
+    "public/images/sprite/icons/drag.png",
+    "public/images/sprite/icons/drag_hover.png",
+    "public/images/sprite/icons/search.png",
+    "public/images/sprite/icons/search_hover.png",
+    "public/images/sprite/icons/lock.png",
+    "public/images/sprite/icons/lock_hover.png",
+    "public/images/sprite/icons/unlock.png",
+    "public/images/sprite/icons/unlock_hover.png"
+  ]
