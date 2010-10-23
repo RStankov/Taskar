@@ -19,6 +19,13 @@ class Invitation < ActiveRecord::Base
     @full_name ||= "#{first_name} #{last_name}"
   end
 
+  def user
+    @user ||= User.find_by_email(email) || User.new do |user|
+      user.first_name = first_name
+      user.last_name  = last_name
+    end
+  end
+
   protected
     def check_for_duplicate_account_user
       if account && account.users.find_by_email(email.to_s.downcase)
