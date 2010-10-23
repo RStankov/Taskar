@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "devise/invitations/show.html.erb" do
-  before { assign :invitation, Factory(:invitation) }
+  before { assign :invitation, Factory.stub(:invitation, :account => Factory.stub(:account, :owner => Factory.stub(:user))) }
 
   it { render }
 end
