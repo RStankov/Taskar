@@ -1,2 +1,34 @@
-<h1>Sign::Invitations#show</h1>
-<p>Find me in app/views/sign/invitations/show.html.erb</p>
+<div id="user_box">
+  <header>
+    <%= title "Покана" %>
+  </header>
+  <p style="padding-left: 20px;">
+    <%= "Здравейте, #{@invitation.full_name}"  %><br />
+    <%= @invitation.account.owner.full_name  %> ви покани да участавете в акаунта на "<em><%= @invitation.account.name %></em>".<br />
+    От вас се иска само да попълните полетата по-долу.
+  </p>
+
+  <% if @invitation.user.new_record? %>
+    <%= form_for @invitation.user, :url => user_registration_path, :html => { :class => 'action_form', :multipart => true} do |f| %>
+  	  <%= render 'shared/error_messages', :target => f.object %>
+
+  	  <%= f.label :password %>
+  	  <%= f.password_field :password %>
+
+  	  <%= f.label :password_confirmation %>
+  	  <%= f.password_field :password_confirmation %>
+
+      <%= f.label :locale %>
+  	  <%= f.select :locale, {"Български език" => "bg", "English language" => "en"} %>
+
+  	  <%= f.label :avatar %>
+  	  <%= f.file_field :avatar %>
+
+  		<div class="buttons">
+        <%= f.submit t('devise.registrations.register') %>
+  	  </div>
+  	<% end %>
+  <% else %>
+    #TODO
+  <% end %>
+</div>
