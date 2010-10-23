@@ -61,7 +61,11 @@ Taskar::Application.routes.draw do
   devise_for :users, :controllers => { :registrations => "sign/registrations" }, :path => "sign", :path_names => {:sign_in => "in", :sign_out => "out", :sign_up => "up"}
 
   namespace :sign do
-    resources :invitations, :only => [:show, :update, :destroy]
+    resources :invitations, :only => [:show, :update, :destroy] do
+      member_scope do
+        post :create_user
+      end
+    end
   end
 
   match "issues" => "issues#create", :via => :post
