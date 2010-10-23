@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101021213411) do
+ActiveRecord::Schema.define(:version => 20101023180414) do
 
   create_table "account_users", :force => true do |t|
     t.integer  "user_id"
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(:version => 20101021213411) do
 
   add_index "invitations", ["account_id"], :name => "index_invitations_on_account_id"
   add_index "invitations", ["email"], :name => "index_invitations_on_email"
+  add_index "invitations", ["token"], :name => "index_invitations_on_token"
 
   create_table "issues", :force => true do |t|
     t.integer  "user_id"
