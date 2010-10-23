@@ -8,7 +8,7 @@ class Sign::InvitationsController < ApplicationController
   end
 
   def update
-    if process_user(params[:user])
+    if @invitation.accept(params[:user])
       sign_in @invitation.user
       redirect_to :root, :notice => t("devise.invitations.complete")
     else
@@ -24,14 +24,6 @@ class Sign::InvitationsController < ApplicationController
     def get_invitation
       unless @invitation = Invitation.find_by_token(params[:id])
         render "not_found", :status => 404
-      end
-    end
-
-    def process_user(params)
-      if @invitation.user.new_record?
-        @invitation.create_user(params)
-      else
-        @invitation.user.valid_password? params[:password]
       end
     end
 

@@ -71,17 +71,17 @@ describe Invitation do
     end
   end
 
-  describe "#create_user" do
+  describe "#accept" do
     it "should use Invitation#user method" do
       invitation = Factory(:invitation)
       invitation.should_receive(:user).at_least(1).times.and_return User.new
-      invitation.create_user
+      invitation.accept({})
     end
 
-    it "should accept hash of :password, :password_confirmation, :locale, :avatar" do
+    it "should accept hash of :password, :password_confirmation, :locale, :avatar (for new_user)" do
       invitation = Factory(:invitation)
 
-      invitation.create_user(:first_name => "no first", :last_name => "no last", :password => "password", :password_confirmation => "password_confirmation", :locale => "locale", :avatar => "avatar")
+      invitation.accept(:first_name => "no first", :last_name => "no last", :password => "password", :password_confirmation => "password_confirmation", :locale => "locale", :avatar => "avatar")
       invitation.user.password.should == "password"
       invitation.user.password_confirmation.should == "password_confirmation"
       invitation.user.locale.should == "locale"
@@ -94,27 +94,37 @@ describe Invitation do
       invitation.stub(:user).and_return user = Factory.build(:user)
       user.should_receive(:save).and_return false
 
-      invitation.create_user.should be_false
-    end
-
-    it "should return false if user is existing user" do
-       invitation = Factory(:invitation)
-       invitation.stub(:user).and_return user = Factory(:user)
-
-       invitation.create_user.should be_false
+      invitation.accept({}).should be_false
     end
 
     it "should return true if user is created succesfully" do
       invitation = Factory(:invitation)
 
       invitation.user.should be_new_record
-      invitation.create_user(Factory.attributes_for(:user)).should be_true
+      invitation.accept(Factory.attributes_for(:user)).should be_true
       invitation.user.should_not be_new_record
+    end
+
+    it "should return false if user is existing user, and password is invalid" do
+       invitation = Factory(:invitation)
+       invitation.stub(:user).and_return user = Factory(:user)
+
+       invitation.accept({}).should be_false
+       invitation.accept(:password => 23242).should be_false
+    end
+
+    it "should return true if user is existing, and password is valid" do
+      invitation = Factory(:invitation)
+      invitation.stub(:user).and_return user = Factory(:user)
+
+      user.should_receive(:valid_password?).with("valid").and_return true
+
+      invitation.accept(:password => "valid").should be_true
     end
 
     it "should connect newly created user with invitation account" do
       invitation = Factory(:invitation)
-      invitation.create_user(Factory.attributes_for(:user)).should be_true
+      invitation.accept(Factory.attributes_for(:user)).should be_true
 
       AccountUser.find_by_account_id_and_user_id(invitation.account_id, invitation.user.id).should_not be_nil
     end
@@ -122,10 +132,10 @@ describe Invitation do
     it "should delete this invitation if user attributes are valid" do
       invitation = Factory(:invitation)
 
-      invitation.create_user.should be_false
+      invitation.accept({}).should be_false
       invitation.should_not be_destroyed
 
-      invitation.create_user(Factory.attributes_for(:user)).should be_true
+      invitation.accept(Factory.attributes_for(:user)).should be_true
       invitation.should be_destroyed
     end
   end

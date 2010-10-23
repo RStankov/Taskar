@@ -24,7 +24,7 @@ describe Sign::InvitationsController do
 
   describe "PUT 'update'" do
     it "should sign_in @invitation.user and redirect to root if #process_user is true" do
-      controller.should_receive(:process_user).with("these" => "params").and_return true
+      mock_invitation.should_receive(:accept).with("these" => "params").and_return true
       controller.should_receive(:sign_in).with(mock_user)
 
       put :update, :id => "token_value", :user => {"these" => "params"}
@@ -34,7 +34,7 @@ describe Sign::InvitationsController do
     end
 
     it "should sign_in @invitation.user and redirect to root if #process_user is true" do
-      controller.should_receive(:process_user).with("these" => "params").and_return false
+      mock_invitation.should_receive(:accept).with("these" => "params").and_return false
 
       put :update, :id => "token_value", :user => {"these" => "params"}
 
@@ -50,26 +50,6 @@ describe Sign::InvitationsController do
       get 'destroy', :id => "token_value"
 
       response.should be_success
-    end
-  end
-
-  describe "#process_user" do
-    before do
-      controller.instance_variable_set "@invitation", mock_invitation
-    end
-
-    it "should try to create new user if invitation user is new" do
-      mock_user.should_receive(:new_record?).and_return true
-      mock_invitation.should_receive(:create_user).with("params").and_return "result from trying to create user"
-
-      controller.send(:process_user, "params").should == "result from trying to create user"
-    end
-
-    it "should validate user password if invitation user is existing user" do
-      mock_user.should_receive(:new_record?).and_return false
-      mock_user.should_receive(:valid_password?).with("password").and_return "result form veryfing user"
-
-      controller.send(:process_user, :password => "password").should == "result form veryfing user"
     end
   end
 end

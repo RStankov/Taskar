@@ -27,17 +27,8 @@ class Invitation < ActiveRecord::Base
     end
   end
 
-  def create_user(params = {})
-    unless user.new_record?
-      return false
-    end
-
-    user.locale                 = params[:locale]
-    user.avatar                 = params[:avatar]
-    user.password               = params[:password]
-    user.password_confirmation  = params[:password_confirmation]
-
-    unless user.save
+  def accept(params)
+    unless create_or_authenticate_user(params)
       return false
     end
 
@@ -49,6 +40,18 @@ class Invitation < ActiveRecord::Base
   end
 
   protected
+    def create_or_authenticate_user(params = {})
+      unless user.new_record?
+        return user.valid_password?(params[:password])
+      end
+
+      user.locale                 = params[:locale]
+      user.avatar                 = params[:avatar]
+      user.password               = params[:password]
+      user.password_confirmation  = params[:password_confirmation]
+      user.save
+    end
+
     def check_for_duplicate_account_user
       if account && account.users.find_by_email(email.to_s.downcase)
         errors[:email] << I18n.t("activerecord.errors.invitations.account_exists")
