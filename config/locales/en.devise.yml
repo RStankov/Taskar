@@ -53,6 +53,8 @@ en:
       instructions_sign_in: "You have account, already so you only need to enter your password."
       accept: "Accept invitation"
       invalid_password: "Invalid password"
+      not_found: "The invitation you are looking for doesn't exists"
+      not_found_help: 'It could be deleted from the sender or it could already be accepted. Please contact the person from whom you expect <a href="/">Taskar</a> invitation or <a href="%{registration}">register</a>  your self from this <a href="%{registration}">address</a>.'
 
     mailer:
       confirmation_instructions:
