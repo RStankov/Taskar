@@ -63,10 +63,70 @@ describe Invitation do
       invitation.user.should be_new_record
     end
 
-    it "should pre populate new user with inviations first_name, last_name" do
+    it "should pre populate new user with inviations email, first_name, last_name" do
       invitation = Factory(:invitation, :first_name => "inviation.first_name", :last_name => "inviation.last_name")
+      invitation.user.email.should == invitation.email
       invitation.user.first_name.should == "inviation.first_name"
       invitation.user.last_name.should  == "inviation.last_name"
+    end
+  end
+
+  describe "#create_user" do
+    it "should use Invitation#user method" do
+      invitation = Factory(:invitation)
+      invitation.should_receive(:user).at_least(1).times.and_return User.new
+      invitation.create_user
+    end
+
+    it "should accept hash of :password, :password_confirmation, :locale, :avatar" do
+      invitation = Factory(:invitation)
+
+      invitation.create_user(:first_name => "no first", :last_name => "no last", :password => "password", :password_confirmation => "password_confirmation", :locale => "locale", :avatar => "avatar")
+      invitation.user.password.should == "password"
+      invitation.user.password_confirmation.should == "password_confirmation"
+      invitation.user.locale.should == "locale"
+      invitation.user.first_name.should_not == "no first"
+      invitation.user.last_name.should_not == "no last"
+    end
+
+    it "should return false if user is invalid" do
+      invitation = Factory(:invitation)
+      invitation.stub(:user).and_return user = Factory.build(:user)
+      user.should_receive(:save).and_return false
+
+      invitation.create_user.should be_false
+    end
+
+    it "should return false if user is existing user" do
+       invitation = Factory(:invitation)
+       invitation.stub(:user).and_return user = Factory(:user)
+
+       invitation.create_user.should be_false
+    end
+
+    it "should return true if user is created succesfully" do
+      invitation = Factory(:invitation)
+
+      invitation.user.should be_new_record
+      invitation.create_user(Factory.attributes_for(:user)).should be_true
+      invitation.user.should_not be_new_record
+    end
+
+    it "should connect newly created user with invitation account" do
+      invitation = Factory(:invitation)
+      invitation.create_user(Factory.attributes_for(:user)).should be_true
+
+      AccountUser.find_by_account_id_and_user_id(invitation.account_id, invitation.user.id).should_not be_nil
+    end
+
+    it "should delete this invitation if user attributes are valid" do
+      invitation = Factory(:invitation)
+
+      invitation.create_user.should be_false
+      invitation.should_not be_destroyed
+
+      invitation.create_user(Factory.attributes_for(:user)).should be_true
+      invitation.should be_destroyed
     end
   end
 end

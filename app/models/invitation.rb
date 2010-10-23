@@ -21,9 +21,31 @@ class Invitation < ActiveRecord::Base
 
   def user
     @user ||= User.find_by_email(email) || User.new do |user|
+      user.email      = email
       user.first_name = first_name
       user.last_name  = last_name
     end
+  end
+
+  def create_user(params = {})
+    unless user.new_record?
+      return false
+    end
+
+    user.locale                 = params[:locale]
+    user.avatar                 = params[:avatar]
+    user.password               = params[:password]
+    user.password_confirmation  = params[:password_confirmation]
+
+    unless user.save
+      return false
+    end
+
+    AccountUser.create(:account_id => account_id, :user_id => user.id)
+
+    destroy
+
+    true
   end
 
   protected
