@@ -13,9 +13,5 @@ describe Accounts::InvitationsController do
     it "recognizes and generates #update" do
       { :put => "accounts/1/invitations/2" }.should route_to(:controller => "accounts/invitations", :action => "update", :id => "2", :account_id => "1")
     end
-
-    it "recognizes and generates #destroy" do
-      { :delete => "accounts/1/invitations/2" }.should route_to(:controller => "accounts/invitations", :action => "destroy", :id => "2", :account_id => "1")
-    end
   end
 end

@@ -16,10 +16,6 @@ class Sign::InvitationsController < ApplicationController
     end
   end
 
-  def destroy
-    render :action => "show"
-  end
-
   protected
     def get_invitation
       unless @invitation = Invitation.find_by_token(params[:id])

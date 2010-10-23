@@ -42,14 +42,4 @@ describe Sign::InvitationsController do
       should render_template("show")
     end
   end
-
-  describe "GET 'destroy'" do
-    it "should be successful" do
-      Invitation.should_receive(:find_by_token).with("token_value").and_return mock_invitation
-
-      get 'destroy', :id => "token_value"
-
-      response.should be_success
-    end
-  end
 end
