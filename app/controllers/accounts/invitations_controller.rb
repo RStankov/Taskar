@@ -14,7 +14,7 @@ class Accounts::InvitationsController < Accounts::BaseController
   end
 
   def update
-
+    render :nothing => true
   end
 
   def destroy
