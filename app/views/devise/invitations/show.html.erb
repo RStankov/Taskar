@@ -1,17 +1,19 @@
 <div id="user_box">
   <header>
-    <%= title "Покана" %>
+    <%= title t("devise.invitations.title", :sender => @invitation.account.owner.full_name) %>
   </header>
   <p style="padding-left: 20px;">
-    <%= "Здравейте, #{@invitation.full_name}"  %><br />
-    <%= @invitation.account.owner.full_name  %> ви покани да участавете в акаунта на "<em><%= @invitation.account.name %></em>".<br />
-    От вас се иска само да попълните полетата по-долу.
+    <%= t("devise.invitations.hi", :name => @invitation.full_name) %>
   </p>
-
+  <p style="padding: 10px 0 0 20px;">
+    <%= raw t("devise.invitations.note", :sender => @invitation.account.owner.full_name, :account => @invitation.account.name) %>
+  </p>
   <% if @invitation.user.new_record? %>
-    <%= form_for @invitation.user, :url => user_registration_path, :html => { :class => 'action_form', :multipart => true} do |f| %>
+    <p style="padding-left: 20px;">
+      <%= t("devise.invitations.instructions_register") %>
+    </p>
+    <%= form_for @invitation.user, :url => sign_invitation_path(@invitation.token), :html => { :id => nil, :class => 'action_form', :multipart => true, :method => :put} do |f| %>
   	  <%= render 'shared/error_messages', :target => f.object %>
-
   	  <%= f.label :password %>
   	  <%= f.password_field :password %>
 
@@ -25,10 +27,12 @@
   	  <%= f.file_field :avatar %>
 
   		<div class="buttons">
-        <%= f.submit t('devise.registrations.register') %>
+        <%= f.submit t("devise.invitations.accept") %>
   	  </div>
   	<% end %>
   <% else %>
-    #TODO
+    <p style="padding-left: 20px;">
+      <%= t("devise.invitations.instructions_sign_in") %>
+    </p>
   <% end %>
 </div>

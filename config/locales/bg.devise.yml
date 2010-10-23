@@ -44,6 +44,15 @@ bg:
       send_instructions: "Ще поличите инстркиции за оключване на вашия е-майл адрес"
       unlocked: "Вашия акаунт беше успешно отключен"
 
+    invitations:
+      complete: "Поканата приета успешно. Добре дошли!"
+      title: "Покана от %{sender}"
+      hi: "Здравейте %{name}"
+      note: '%{sender} ви покани да участавете в акаунта на "<em>%{account}</em>".'
+      instructions_register: "От вас се иска само да попълните полетата по-долу."
+      instructions_sign_in: "Тъй като вече имате акаунт в системата от вас се иска само да си въведете паролата."
+      accept: "Приемете поканата"
+
     mailer:
         confirmation_instructions:
             subject: 'Confirmation instructions'
