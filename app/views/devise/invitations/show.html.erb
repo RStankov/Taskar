@@ -8,11 +8,11 @@
   <p style="padding: 10px 0 0 20px;">
     <%= raw t("devise.invitations.note", :sender => @invitation.account.owner.full_name, :account => @invitation.account.name) %>
   </p>
-  <% if @invitation.user.new_record? %>
-    <p style="padding-left: 20px;">
-      <%= t("devise.invitations.instructions_register") %>
-    </p>
-    <%= form_for @invitation.user, :url => sign_invitation_path(@invitation.token), :html => { :id => nil, :class => 'action_form', :multipart => true, :method => :put} do |f| %>
+  <%= form_for @invitation.user, :url => sign_invitation_path(@invitation.token), :html => { :class => 'action_form', :multipart => true, :method => :put, :id => nil} do |f| %>
+    <% if @invitation.user.new_record? %>
+      <p style="padding-bottom: 15px;">
+        <%= t("devise.invitations.instructions_register") %>
+      </p>
   	  <%= render 'shared/error_messages', :target => f.object %>
   	  <%= f.label :password %>
   	  <%= f.password_field :password %>
@@ -25,14 +25,17 @@
 
   	  <%= f.label :avatar %>
   	  <%= f.file_field :avatar %>
-
-  		<div class="buttons">
-        <%= f.submit t("devise.invitations.accept") %>
-  	  </div>
+    <% else %>
+  	  <%= f.label :password, t("devise.invitations.instructions_sign_in") %>
+        <% if params.has_key? :user %>
+          <ol class="error_messages">
+            <li><%= t("devise.invitations.invalid_password") %></li>
+          </ol>
+        <% end %>
+  	  <%= f.password_field :password %>
   	<% end %>
-  <% else %>
-    <p style="padding-left: 20px;">
-      <%= t("devise.invitations.instructions_sign_in") %>
-    </p>
+		<div class="buttons">
+      <%= f.submit t("devise.invitations.accept") %>
+	  </div>
   <% end %>
 </div>

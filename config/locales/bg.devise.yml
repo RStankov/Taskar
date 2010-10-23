@@ -52,6 +52,7 @@ bg:
       instructions_register: "От вас се иска само да попълните полетата по-долу."
       instructions_sign_in: "Тъй като вече имате акаунт в системата от вас се иска само да си въведете паролата."
       accept: "Приемете поканата"
+      invalid_password: "Невалидна парола"
 
     mailer:
         confirmation_instructions:
