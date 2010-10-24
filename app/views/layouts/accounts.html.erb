@@ -11,11 +11,15 @@
   <%= header do %>
     <h2>
       <%= @account.name  %>
-      <%= render "shared/accounts" if current_user.admin_in_accounts.size > 1 %>
+      <% if current_user.admin_in_accounts.size > 1 %>
+        <%= render "shared/accounts" %>
+      <% else %>
+  	    <%= link_to t("layouts.dashboard.back_to_dashboard"), root_path, :id => "back_to_dashboard" %>
+  	  <% end %>
     </h2>
     <nav id="nav_project">
       <span>
-        <%= link_to t("layouts.dashboard.title"), @account, :class => controller_name == "dashboard" && "selected" %>
+        <%= link_to t("layouts.dashboard.title"), @account, :class => controller_name == "accounts" && "selected" %>
         <%= link_to t("users.title"), [@account, :users], :class => (controller_name == "users" || controller_name == "invitations") && "selected" %>
         <%= link_to t("projects.index"), [@account, :projects], :class => controller_name == "projects" && "selected" %>
       </span>
