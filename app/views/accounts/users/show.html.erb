@@ -1,15 +1,17 @@
 <header>
 	<h1 id="user_title"><%= @user.full_name %></h1>
-	<ul class="actions">
-	  <% unless current_user == @user || @user.owned_account %>
-		  <li>
+  <% unless @user.id == @account.owner_id || current_user == @user%>
+  	<ul class="actions">
+  	  <li>
   			<%= link_to set_admin_account_user_path(@account, @user, :admin => !@account.admin?(@user)), :method => "put" do %>
   	   		<%= check_box_tag '', '', @account.admin?(@user) %> <%=t :'users.admin' %>
   	 		<% end %>
   		</li>
-	  <% end %>
-		<li><%= link_to_delete t(:delete), [@account, @user], :confirm => t(:'users.confirm') %></li>
-	</ul>
+  	  <% unless @account.admin?(@user) %>
+  		  <li><%= link_to_delete t(:delete), [@account, @user], :confirm => t(:'users.confirm') %></li>
+  		<% end %>
+  	</ul>
+	<% end %>
 </header>
 
 <div id="content">
