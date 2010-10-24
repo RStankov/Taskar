@@ -6,6 +6,7 @@ describe Accounts::AccountsController do
   describe "with admin user" do
     before do
       mock_account.should_receive(:admin?).with(@current_user).and_return true
+      mock_account.stub(:owner_id).stub(:owner_id).and_return 0
     end
 
     describe "GET 'show'" do
@@ -20,13 +21,29 @@ describe Accounts::AccountsController do
       end
     end
 
+    {
+      :edit       => 'get(:edit, :id => "1")',
+      :update     => 'put(:update, :id => "1")'
+    }.each do |(action, code)|
+      it "should not allow #{action}, and redirect_to root_url" do
+        ensure_deny_access_is_called
+        eval code
+      end
+    end
+  end
+
+  describe "with account owner" do
+    before do
+      mock_account.should_receive(:admin?).with(@current_user).and_return true
+      mock_account.stub(:owner_id).and_return @current_user.id
+    end
+
     describe "GET 'edit'" do
       before { get "edit", :id => "1" }
 
       it { should assign_to(:account).with(mock_account) }
       it { should render_template("edit") }
     end
-
 
     describe "PUT update" do
       before do

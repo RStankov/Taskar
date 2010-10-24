@@ -1,8 +1,10 @@
 <header>
 	<h1 id="account_title"><%= @account.name %></h1>
-	<ul class="actions">
-		<li><%= link_to t(:edit), [:edit, @account] %></li>
-	</ul>
+	<% if @account.owner_id == current_user.id %>
+	  <ul class="actions">
+		  <li><%= link_to t(:edit), [:edit, @account] %></li>
+	  </ul>
+	<% end %>
 </header>
 <%= raw '<div class="wrap"><p class="notice">' + notice + '</p></div>' if notice %>
 

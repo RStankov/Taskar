@@ -1,4 +1,6 @@
 class Accounts::AccountsController < Accounts::BaseController
+  before_filter :allow_only_account_owner, :only => [:edit, :update]
+
   def show
     @projects = @account.projects.active
   end
@@ -18,5 +20,11 @@ class Accounts::AccountsController < Accounts::BaseController
   protected
     def account_id
       params[:id]
+    end
+
+    def allow_only_account_owner
+      if @account.owner_id != current_user.id
+        deny_access
+      end
     end
 end

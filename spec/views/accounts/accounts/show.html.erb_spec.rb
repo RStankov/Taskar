@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe "/accounts/accounts/show.html.erb" do
   before do
+    sign_in Factory(:user)
+
     assign :account, Factory.stub(:account)
   end
 
