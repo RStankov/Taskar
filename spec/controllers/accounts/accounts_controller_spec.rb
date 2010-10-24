@@ -9,10 +9,15 @@ describe Accounts::AccountsController do
     end
 
     describe "GET 'show'" do
-      before { get "show", :id => "1" }
+      it "should show accounts projects events" do
+        mock_account.stub_chain :projects, :active => [mock_project, mock_project]
 
-      it { should assign_to(:account).with(mock_account) }
-      it { should render_template("show") }
+        get "show", :id => "1"
+
+        should assign_to(:projects).with([mock_project, mock_project])
+        should assign_to(:account).with(mock_account)
+        should render_template("show")
+      end
     end
 
     describe "GET 'edit'" do

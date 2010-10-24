@@ -1,5 +1,6 @@
 class Accounts::AccountsController < Accounts::BaseController
   def show
+    @projects = @account.projects.active
   end
 
   def edit

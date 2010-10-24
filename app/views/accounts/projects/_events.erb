@@ -1,0 +1,21 @@
+<table id="events" colspan="0" rowspan="0" width="99%">
+	<% @projects[0..4].each do |project| %>
+	  <tr>
+      <th colspan="4"><h2><%= link_to project.name, [project, :sections] %></h2></th>
+    </tr>
+    <% project.events.all(:limit => 10).each do |event| %>
+	    <tr>
+	      <td><span class="<%= event.type  %>"><%=t "events.subject.#{event.type}" %></span></td>
+	      <td class="<%= event.action %>" title="<%= t(:before, :time => time_ago_in_words(event.updated_at)) %>">
+	        <% if event.linkable?%>
+	          <%= link_to truncate(event.info, :length => 65), event.url_options %>
+	        <% else %>
+	          <%= truncate(event.info, :length => 65) %>
+	        <% end %>
+	      </td>
+	      <td class="action"><%=t "events.action.#{event.action}" %></td>
+	      <td class="user"><%= event.user.full_name %></td>
+	    </tr>
+		<% end %>
+  <% end %>
+</table>
