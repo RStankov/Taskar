@@ -22,17 +22,17 @@ describe Accounts::UsersController do
 
           should assign_to(:projects).with(active_projects)
           should assign_to(:user).with(mock_user)
-          should set_the_flash
           should render_template("show")
         end
       end
 
       describe "DELETE destroy" do
         it "should destroy all of account_user and project_users of that user" do
-          mock_account.should_receive(:remove_user).with(mock_user)
+          mock_account.should_receive(:remove_user).with(mock_user).and_return true
 
           delete :destroy, :account_id => "1", :id => "2"
 
+          should set_the_flash
           should redirect_to(account_users_url(mock_account))
         end
       end
