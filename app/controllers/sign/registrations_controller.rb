@@ -12,6 +12,7 @@ class Sign::RegistrationsController < ApplicationController
     @user = User.new(params[:user])
 
     if @user.save
+      sign_in @user
       redirect_to :root, :notice => t("devise.registrations.signed_up")
     else
       @user.clean_up_passwords

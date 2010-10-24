@@ -7,19 +7,21 @@ describe Sign::RegistrationsController do
     before { controller.stub(:user_signed_in?).and_return false }
 
     describe "GET 'new'" do
-      before do
+      it "should render new form" do
         User.should_receive(:new).and_return mock_user
 
         get :new
-      end
 
-      it { should assign_to(:user).with(mock_user) }
-      it { should render_template("new") }
+        should assign_to(:user).with(mock_user)
+        should render_template("new")
+      end
     end
 
     describe "POST 'create'" do
       it "should create new user, and redirect with notice to root_path, with valid data" do
         User.should_receive(:new).with("these" => "params").and_return mock_user(:save => true)
+
+        controller.should_receive(:sign_in).with(mock_user)
 
         post :create, :user => {"these" => "params"}
 
