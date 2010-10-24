@@ -15,7 +15,7 @@
     </h2>
     <nav id="nav_project">
       <span>
-        <%= link_to t("layouts.dashboard.title"), :root, :class => controller_name == "dashboard" && "selected" %>
+        <%= link_to t("layouts.dashboard.title"), @account, :class => controller_name == "dashboard" && "selected" %>
         <%= link_to t("users.title"), [@account, :users], :class => (controller_name == "users" || controller_name == "invitations") && "selected" %>
         <%= link_to t("projects.index"), [@account, :projects], :class => controller_name == "projects" && "selected" %>
       </span>

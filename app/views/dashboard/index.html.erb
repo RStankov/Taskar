@@ -8,12 +8,12 @@
 <% if @projects.empty? %>
   <div class="help_notice">
     <% if current_user.admin_in_accounts.empty? %>
-      <%= raw t('.empty') %>
+      <%= raw t('dashboard.index.empty') %>
     <% else %>
 	    <% current_user.admin_in_accounts.each do |account| %>
-        <h2><%= raw t('.empty_admin', :account_name => account.name) %></h2>
-      	<%= link_to t('.add_project'), [:new, account, :project] %> <%= t :or %>
-      	<%= link_to t('.add_user'), [:new, account, :invitation] %>
+        <h2><%= raw t('dashboard.index.empty_admin', :account_name => account.name) %></h2>
+      	<%= link_to t('dashboard.index.add_project'), [:new, account, :project] %> <%= t :or %>
+      	<%= link_to t('dashboard.index.add_user'), [:new, account, :invitation] %>
       	<br />
       	<hr />
       	<br />

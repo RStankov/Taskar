@@ -5,4 +5,13 @@
 	</ul>
 </header>
 <%= raw '<div class="wrap"><p class="notice">' + notice + '</p></div>' if notice %>
-<%= render "accounts/projects/events" %>
+
+<% if @projects.empty? %>
+  <div class="help_notice">
+    <h2><%= raw t('dashboard.index.empty_admin', :account_name => @account.name) %></h2>
+    <%= link_to t('dashboard.index.add_project'), [:new, @account, :project] %> <%= t :or %>
+    <%= link_to t('dashboard.index.add_user'), [:new, @account, :invitation] %>
+  </div>
+<% else %>
+  <%= render "accounts/projects/events" %>
+<% end %>
