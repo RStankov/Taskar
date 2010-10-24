@@ -65,4 +65,104 @@ describe Account do
       account.admin?(user).should be_false
     end
   end
+
+  describe "#set_user_projects" do
+    before do
+      @account = Factory(:account)
+      @user    = Factory(:user)
+    end
+
+    def user_should_be_involved_in(projects)
+      projects = [projects] unless projects.is_a? Array
+      projects.map(&:reload).each do |project|
+        project.involves?(@user).should be_true
+        ProjectUser.where(:user_id => @user.id, :project_id => project.id).count.should == 1
+      end
+    end
+
+    def user_should_not_be_involved_in(projects)
+      projects = [projects] unless projects.is_a? Array
+      projects.map(&:reload).each do |project|
+        project.involves?(@user).should be_false
+        ProjectUser.where(:user_id => @user.id, :project_id => project.id).count.should == 0
+      end
+    end
+
+    it "should set project_users connecting the user and the projects" do
+      projects = (0..2).map { Factory(:project, :account_id => @account.id) }
+
+      @account.set_user_projects(@user, projects.map(&:id).map(&:to_s))
+
+      user_should_be_involved_in projects
+    end
+
+    it "should accept only project_ids from the account" do
+      account_projects = (0..2).map { Factory(:project, :account_id => @account.id) }
+      other_projects   = (0..2).map { Factory(:project) }
+
+      @account.set_user_projects(@user, (account_projects + other_projects).map(&:id).map(&:to_s))
+
+      user_should_be_involved_in account_projects
+      user_should_not_be_involved_in other_projects
+    end
+
+    it "should leave any existing project_users connecting the user and the projects" do
+      projects = (0..2).map { Factory(:project, :account_id => @account.id) }
+
+      project_user = Factory(:project_user, :project_id => projects[0].id, :user_id => @user.id)
+
+      user_should_be_involved_in projects[0]
+
+      @account.set_user_projects(@user, projects.map(&:id).map(&:to_s))
+
+      user_should_be_involved_in projects
+
+      ProjectUser.where(:id => project_user.id).first.should_not be_nil
+    end
+
+    it "should destroy any existing project_users connecting the user and other not completed projects from this account" do
+      previous_projects = (0..2).map { Factory(:project, :account_id => @account.id) }.each do |project|
+        Factory(:project_user, :project_id => project.id, :user_id => @user.id)
+      end
+
+      user_should_be_involved_in previous_projects
+
+      new_projects = (0..2).map { Factory(:project, :account_id => @account.id) }
+
+      @account.set_user_projects(@user, new_projects.map(&:id).map(&:to_s))
+
+      user_should_not_be_involved_in previous_projects
+      user_should_be_involved_in new_projects
+    end
+
+    it "should not touch project_users outside the account" do
+      outside_projects = (0..2).map { Factory(:project) }.each do |project|
+        Factory(:project_user, :project_id => project.id, :user_id => @user.id)
+      end
+
+      user_should_be_involved_in outside_projects
+
+      projects = (0..2).map { Factory(:project, :account_id => @account.id) }
+
+      @account.set_user_projects(@user, projects.map(&:id).map(&:to_s))
+
+      user_should_be_involved_in projects
+      user_should_be_involved_in outside_projects
+    end
+
+    it "should not touch project_users on completed projects" do
+      completed_projects = (0..2).map { Factory(:project, :account_id => @account.id, :completed => true) }.each do |project|
+        Factory(:project_user, :project_id => project.id, :user_id => @user.id)
+      end
+
+      user_should_be_involved_in completed_projects
+
+      projects = (0..2).map { Factory(:project, :account_id => @account.id) }
+
+      @account.set_user_projects(@user, projects.map(&:id).map(&:to_s))
+
+      user_should_be_involved_in projects
+      user_should_be_involved_in completed_projects
+    end
+  end
 end
