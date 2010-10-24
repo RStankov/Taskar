@@ -224,7 +224,7 @@ describe Event do
     end
 
     it "should return hash with controller = subject_type.downcase.pluralize" do
-      @options[:controller].should == 'tasks'
+      @options[:controller].should == "/tasks"
     end
 
     it "should return hash with action = :show " do

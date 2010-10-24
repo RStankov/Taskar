@@ -30,7 +30,7 @@ class Event < ActiveRecord::Base
   end
 
   def url_options
-    {:controller => type.pluralize, :action => :show, :id => subject_id}
+    {:controller => "/" + type.pluralize, :action => :show, :id => subject_id}
   end
 
   def linkable?
