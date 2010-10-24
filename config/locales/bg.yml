@@ -108,6 +108,9 @@ bg:
     projects: "Проекти, в който участва %{name}"
     change_projects: "промени проектите"
     admin: "Администратор"
+    flash:
+      removed: "Потребителя, изтрит успешно."
+      remove_admin: "Администратори, не могат да се изтриват."
 
   sections:
     new_section: "Нова секция"

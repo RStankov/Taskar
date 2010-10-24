@@ -4,6 +4,8 @@
 		<%= link_to t("layouts.accounts.new_user"), [:new, @account, :invitation] %>
 	</ul>
 </header>
+<%= raw '<div class="wrap"><p class="notice">' + notice + '</p></div>' if notice %>
+<%= raw '<div class="wrap"><p class="alert">' + alert + '</p></div>' if alert %>
 <div class="wrap">
 	<ul id="users_list">
 	  <%= render @users %>

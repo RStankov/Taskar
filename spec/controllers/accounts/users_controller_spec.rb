@@ -22,6 +22,7 @@ describe Accounts::UsersController do
 
           should assign_to(:projects).with(active_projects)
           should assign_to(:user).with(mock_user)
+          should set_the_flash
           should render_template("show")
         end
       end

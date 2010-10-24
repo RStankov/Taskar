@@ -107,6 +107,9 @@ en:
     projects: "%{name}'s projects"
     change_projects: "change projects"
     admin: "Administrator"
+    flash:
+      removed: "User deleted succesfully."
+      remove_admin: "Administrators could not be deleted."
 
   sections:
     new_section: "Create section"
