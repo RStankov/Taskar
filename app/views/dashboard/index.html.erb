@@ -22,7 +22,7 @@
   </div>
 <% else %>
 	<table id="events" colspan="0" rowspan="0" width="99%">
-		<% @projects.each do |project| %>
+		<% @projects[0..4].each do |project| %>
 		  <tr>
 	      <th colspan="4"><h2><%= link_to project.name, [project, :sections] %></h2></th>
 	    </tr>
