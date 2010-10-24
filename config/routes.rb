@@ -48,6 +48,7 @@ Taskar::Application.routes.draw do
     resources :users, :controller => "accounts/users", :except => [:new, :create, :edit, :update] do
       member do
         put :set_admin
+        put :set_projects
       end
     end
 

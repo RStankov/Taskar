@@ -61,6 +61,15 @@ describe Accounts::UsersController do
         end
       end
 
+      describe "PUT set_projects" do
+        it "should set projects of user and redirect" do
+          mock_account.should_receive(:set_user_projects).with(mock_user, ["1", "2", "3"])
+
+          put :set_projects, :account_id => "1", :id => "2", :project_ids => ["1", "2", "3"]
+
+          should redirect_to(account_user_url(mock_account, mock_user))
+        end
+      end
     end
 
     describe "GET index" do
@@ -84,10 +93,11 @@ describe Accounts::UsersController do
     end
 
     {
-      :index      => 'get(:index, :account_id => "1")',
-      :show       => 'get(:show, :account_id => "1", :id => "1")',
-      :destroy    => 'delete(:destroy, :account_id => "1", :id => "1")',
-      :set_admin  => 'put(:set_admin, :account_id => "1", :id => "1")'
+      :index        => 'get(:index, :account_id => "1")',
+      :show         => 'get(:show, :account_id => "1", :id => "1")',
+      :destroy      => 'delete(:destroy, :account_id => "1", :id => "1")',
+      :set_admin    => 'put(:set_admin, :account_id => "1", :id => "1")',
+      :set_projects => 'put(:set_projects, :account_id => "1", :id => "1")'
     }.each do |(action, code)|
       it "should not allow #{action}, and redirect_to root_url" do
         eval code

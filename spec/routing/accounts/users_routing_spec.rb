@@ -17,5 +17,9 @@ describe Accounts::UsersController do
     it "recognizes and generates #set_admin" do
       { :put => "accounts/1/users/2/set_admin" }.should route_to(:controller => "accounts/users", :action => "set_admin", :id => "2", :account_id => "1")
     end
+
+    it "recognizes and generates #set_admin" do
+      { :put => "accounts/1/users/2/set_projects" }.should route_to(:controller => "accounts/users", :action => "set_projects", :id => "2", :account_id => "1")
+    end
   end
 end

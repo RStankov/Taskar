@@ -88,6 +88,12 @@ describe Account do
       end
     end
 
+    it "should handle nil and no array values" do
+      @account.set_user_projects(@user, nil)
+      @account.set_user_projects(@user, "string")
+      @account.set_user_projects(@user, {:hash => "value"})
+    end
+
     it "should set project_users connecting the user and the projects" do
       projects = (0..2).map { Factory(:project, :account_id => @account.id) }
 

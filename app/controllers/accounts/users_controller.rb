@@ -1,5 +1,5 @@
 class Accounts::UsersController < Accounts::BaseController
-  before_filter :get_user, :only => [:show, :destroy, :set_admin]
+  before_filter :get_user, :only => [:show, :destroy, :set_admin, :set_projects]
 
   def index
     @users = @account.users
@@ -20,6 +20,12 @@ class Accounts::UsersController < Accounts::BaseController
     unless @user == current_user
       @account.set_admin_status(@user, params[:admin])
     end
+
+    redirect_to [@account, @user]
+  end
+
+  def set_projects
+    @account.set_user_projects(@user, params[:project_ids])
 
     redirect_to [@account, @user]
   end
