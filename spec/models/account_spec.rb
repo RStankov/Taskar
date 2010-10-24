@@ -171,4 +171,72 @@ describe Account do
       user_should_be_involved_in completed_projects
     end
   end
+
+  describe "#remove_user" do
+    before do
+      @account = Factory(:account)
+      @user    = Factory(:user)
+    end
+
+    it "should destroy user's account user (only of this account)" do
+      AccountUser.create :account_id => @account.id, :user_id => @user.id
+
+      2.times { Factory(:account_user, :account_id => @account.id )}
+      2.times { Factory(:account_user, :user_id => @user.id ) }
+
+      @user.reload.should have(3).account_users
+      @account.reload.should have(3).account_users
+
+      @account.reload.users.should include(@user)
+
+      @account.remove_user(@user).should be_true
+
+      @user.reload.should have(2).account_users
+      @account.reload.should have(2).account_users
+
+      @account.reload.users.should_not include(@user)
+    end
+
+    it "should destroy user's project_users (only of this account)" do
+      project_1 = Factory(:project, :account_id => @account.id)
+      project_2 = Factory(:project, :account_id => @account.id)
+
+      ProjectUser.create :project_id => project_1.id, :user_id => @user
+      ProjectUser.create :project_id => project_2.id, :user_id => @user
+
+      2.times { Factory(:project_user, :project_id => project_1.id )}
+      2.times { Factory(:project_user, :project_id => project_2.id )}
+      2.times { Factory(:project_user, :user_id => @user.id ) }
+
+      @user.reload.should have(4).projects
+      project_1.reload.should have(3).users
+      project_2.reload.should have(3).users
+
+      @user.projects.should include(project_1)
+      @user.projects.should include(project_2)
+
+      project_1.reload.users.should include(@user)
+      project_2.reload.users.should include(@user)
+
+      @account.remove_user(@user).should be_true
+
+      @user.reload.should have(2).projects
+      project_1.reload.should have(2).users
+      project_2.reload.should have(2).users
+
+      @user.projects.should_not include(project_1)
+      @user.projects.should_not include(project_2)
+
+      project_1.reload.users.should_not include(@user)
+      project_2.reload.users.should_not include(@user)
+    end
+
+    it "should not be able to destroy the admin? users" do
+      AccountUser.create :account_id => @account.id, :user_id => @user.id
+      @account.stub(:admin?).with(@user).and_return true
+      @account.reload.users.should include(@user)
+      @account.remove_user(@user).should be_false
+      @account.reload.users.should include(@user)
+    end
+  end
 end

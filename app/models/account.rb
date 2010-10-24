@@ -31,8 +31,7 @@ class Account < ActiveRecord::Base
     return unless project_ids.is_a? Array
 
     project_ids = project_ids.find_all { |project_id| projects.exists? project_id }.map &:to_i
-    project_users = ProjectUser.joins(:project).where("projects.account_id" => id, "projects.completed" => false, :user_id => user.id)
-    project_users.reject! do |project_user|
+    project_users = project_user_relation(user).where("projects.completed" => false).reject do |project_user|
       if project_ids.include? project_user.project_id
         project_ids.delete(project_user.project_id)
         true
@@ -44,4 +43,23 @@ class Account < ActiveRecord::Base
       ProjectUser.create(:user_id => user.id, :project_id => project_id)
     end
   end
+
+  def remove_user(user)
+    if admin? user
+      return false
+    end
+
+    if account_user = account_users.find_by_user_id(user.id)
+      account_user.destroy
+    end
+
+    project_user_relation(user).map &:destroy
+
+    true
+  end
+
+  private
+    def project_user_relation(user)
+      ProjectUser.joins(:project).where("projects.account_id" => id, :user_id => user.id)
+    end
 end
