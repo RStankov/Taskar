@@ -47,7 +47,7 @@ describe Accounts::ProjectsController do
           end
 
           it { should assign_to(:project).with(mock_project) }
-          it { should redirect_to(account_project_url(mock_account, mock_project)) }
+          it { should redirect_to(tasks_project_sections_url(mock_project)) }
         end
 
         describe "with invalid params" do

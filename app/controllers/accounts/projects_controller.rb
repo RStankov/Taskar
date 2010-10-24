@@ -21,7 +21,7 @@ class Accounts::ProjectsController < Accounts::BaseController
     @project = projects.build(params[:project])
 
     if @project.save
-      redirect_to [@account, @project]
+      redirect_to [:tasks, @project, :sections]
     else
       render "new"
     end
