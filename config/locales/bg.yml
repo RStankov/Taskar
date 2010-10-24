@@ -1,6 +1,6 @@
 bg:
   project: "Проект"
-  copywrite: '© %{year} Радослав Станков'
+  copywrite: '© Taskar %{year} Радослав Станков'
   scroll_to_top: "Нагоре"
   create: "Добави"
   cancel: "Откажи"

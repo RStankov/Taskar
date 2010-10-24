@@ -1,6 +1,6 @@
 en:
   project: "Project"
-  copywrite: "© %{year} Radoslav Stankov"
+  copywrite: "© Taskar %{year} Radoslav Stankov"
   scroll_to_top: "Scroll to top"
   create: "Create"
   cancel: "Cancel"
