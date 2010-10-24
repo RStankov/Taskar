@@ -11,7 +11,7 @@
   <%= header do %>
     <h2>
       <%= @project.name  %>
-  		<% unless current_user.projects.active.size > 1 %>
+  		<% if current_user.projects.active.size > 1 %>
   	    <nav id="nav_projects">
   	      <span><%= t :".switch_to_project" %></span>
   	      <ul>
