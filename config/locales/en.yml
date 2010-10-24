@@ -104,6 +104,7 @@ en:
     invitations: "User invitations(%{count})"
     confirm: "Are you sure, you want to delete this user"
     projects: "%{name}'s projects"
+    change_projects: "change projects"
     admin: "Administrator"
 
   sections:
