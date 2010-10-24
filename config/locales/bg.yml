@@ -64,6 +64,7 @@ bg:
       manage: "Менажирай"
       current_projects: "Проекти в които участвате (%{count})"
       accounts: "акаунти"
+      back_to_dashboard: "лично табло"
 
 
   dashboard:

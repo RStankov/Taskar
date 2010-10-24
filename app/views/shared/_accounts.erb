@@ -4,5 +4,6 @@
     <% current_user.admin_in_accounts.each do |account| %>
       <li><%= link_to account.name, account %></li>
     <% end %>
+    <li><%= link_to t("layouts.dashboard.back_to_dashboard"), root_path, :id => "back_to_dashboard" %></li>
   </ul>
 </nav>

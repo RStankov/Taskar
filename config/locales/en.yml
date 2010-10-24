@@ -64,6 +64,7 @@ en:
       manage: "Manage"
       current_projects: "Your projects (%{count})"
       accounts: "accounts"
+      back_to_dashboard: "back to dashboard"
 
 
   dashboard:
