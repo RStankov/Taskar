@@ -11,7 +11,7 @@ class Accounts::UsersController < Accounts::BaseController
   end
 
   def destroy
-    @user.destroy
+    @account.remove_user @user
 
     redirect_to [@account, :users]
   end

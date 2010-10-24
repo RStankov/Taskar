@@ -27,13 +27,13 @@ describe Accounts::UsersController do
       end
 
       describe "DELETE destroy" do
-        before do
-          mock_user.should_receive(:destroy)
+        it "should destroy all of account_user and project_users of that user" do
+          mock_account.should_receive(:remove_user).with(mock_user)
 
           delete :destroy, :account_id => "1", :id => "2"
-        end
 
-        it { should redirect_to(account_users_url(mock_account)) }
+          should redirect_to(account_users_url(mock_account))
+        end
       end
 
       describe "PUT set_admin" do
