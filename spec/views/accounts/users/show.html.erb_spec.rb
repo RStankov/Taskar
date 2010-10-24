@@ -2,13 +2,12 @@ require 'spec_helper'
 
 describe "/accounts/users/show" do
   before do
-    assign :account, Factory(:account)
-    assign :user, Factory(:user)
+    assign :account, Factory.stub(:account)
+    assign :user, Factory.stub(:user)
+    assign :projects, [Factory.stub(:project)]
 
     sign_in Factory(:user)
   end
 
-  it "renders" do
-    render
-  end
+  it { render }
 end

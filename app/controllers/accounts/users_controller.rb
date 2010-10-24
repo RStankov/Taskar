@@ -7,6 +7,7 @@ class Accounts::UsersController < Accounts::BaseController
   end
 
   def show
+    @projects = @account.projects.active
   end
 
   def destroy

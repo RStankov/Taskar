@@ -31,8 +31,11 @@
 	<% if @user.projects[0] %>
 		<h2 class="statistics"><%=t :'users.projects', :name => h(@user.full_name) %> (<%= @user.projects.size %>)</h2>
 		<ul>
-		  <% @user.projects.each do |project| %>
-		    <li><%= link_to project.name, [project, :sections] %></li>
+		  <% @projects.each do |project| %>
+		    <li>
+		      <%= check_box_tag "project_ids[]", @user.id, project.involves?(@user), :id => "project_ids_#{project.id}" %>
+		      <%= label_tag "project_ids_#{project.id}", project.name %>
+		    </li>
 		  <% end %>
 		</ul>
 	<% end %>

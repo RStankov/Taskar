@@ -15,12 +15,15 @@ describe Accounts::UsersController do
       end
 
       describe "GET show" do
-        before do
-          get :show, :account_id => "1", :id => "2"
-        end
+        it "should display user information" do
+          mock_account.stub_chain :projects, :active => active_projects = [mock_project]
 
-        it { should assign_to(:user).with(mock_user) }
-        it { should render_template("show") }
+          get :show, :account_id => "1", :id => "2"
+
+          should assign_to(:projects).with(active_projects)
+          should assign_to(:user).with(mock_user)
+          should render_template("show")
+        end
       end
 
       describe "DELETE destroy" do
