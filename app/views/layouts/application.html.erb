@@ -8,7 +8,7 @@
     <%= favicon_link_tag "favicon.png" %>
   </head>
   <body>
-  	<%= header %>
+  	<%= header if current_user %>
 		<section id="outside_box">
     	<%= yield %>
 		</section>
