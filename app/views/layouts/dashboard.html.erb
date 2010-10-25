@@ -16,15 +16,21 @@
     <aside>
       <% if @projects.size > 0 %>
         <section>
-          <h3><%=t :".current_projects", :count => @projects.size  %></h3>
+          <h3><%=t :".current_projects", :count => current_user.projects.active.count  %></h3>
           <ul>
-            <% account_id = nil%>
-            <% @projects.each do |project| %>
-            <% unless account_id == project.account_id  %>
-              <% account_id = project.account_id %>
-              <li class="title"><%= project.account.name  %></li>
-            <% end %>
-            <li><strong><%= link_to project.name, [project, :sections] %></strong></li>
+            <% if current_user.accounts.size == 1 %>
+              <% @projects.each do |project| %>
+                <li><strong><%= link_to project.name, [project, :sections] %></strong></li>
+              <% end %>
+            <% else %>
+              <% account_id = nil%>
+              <% current_user.projects.where(:completed => false).order("account_id").each do |project| %>
+              <% unless account_id == project.account_id  %>
+                <% account_id = project.account_id %>
+                <li class="title"><%= project.account.name  %></li>
+              <% end %>
+              <li><strong><%= link_to project.name, [project, :sections] %></strong></li>
+              <% end %>
             <% end %>
           </ul>
         </section>

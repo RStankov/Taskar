@@ -9,13 +9,13 @@ describe DashboardController do
   end
 
   describe "GET 'index'" do
-    before do
-      @current_user.stub_chain :projects, :active, :order => @mock_projects = [mock_project]
+    it "should display the recent projects" do
+      @current_user.stub_chain :projects, :active, :limit => @mock_projects = [mock_project]
 
       get :index
-    end
 
-    it { should assign_to(:projects).with(@mock_projects) }
-    it { should render_template("index") }
+      should assign_to(:projects).with(@mock_projects)
+      should render_template("index")
+    end
   end
 end
