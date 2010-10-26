@@ -1079,6 +1079,20 @@ header:hover .tooltip {
   -webkit-animation-iteration-count: 1;
 }
 
+/*** CHANGES ***/
+
+#changes {
+  width: 800px;
+}
+
+#changes #events td:first-child {
+  width: 80px;
+}
+
+#changes #events td:first-child span {
+  background-color: #00589D;
+}
+
 /*** EVENTS ***/
 
 #events {
