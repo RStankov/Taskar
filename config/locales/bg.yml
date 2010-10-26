@@ -12,6 +12,7 @@ bg:
   before: "преди %{time}"
   back: "обратно"
   or: "или"
+  changes: "Промени"
   dnd: "Хвани"
   previous_page: "Предишна страница"
   next_page: "Следваща страница"

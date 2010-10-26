@@ -12,6 +12,7 @@ en:
   before: "before %{time}"
   back: "back"
   or: "or"
+  changes: "Changes"
   dnd: "Drag"
   previous_page: "Previous page"
   next_page: "Next page"

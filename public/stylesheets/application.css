@@ -211,6 +211,16 @@ body > footer {
   border-radius: 10px;
 }
 
+body > footer a {
+  color: #b8b8b8;
+  text-decoration: none;
+}
+
+body > footer a:hover {
+  color: #b8b8b8;
+  text-decoration: underline;
+}
+
 #scroll_to_top {
   text-decoration: none;
   font-size: 14px;
