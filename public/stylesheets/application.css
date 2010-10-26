@@ -1095,6 +1095,10 @@ header:hover .tooltip {
   width: 800px;
 }
 
+#changes #events {
+  margin-bottom: 20px;
+}
+
 #changes #events td:first-child {
   width: 80px;
 }
