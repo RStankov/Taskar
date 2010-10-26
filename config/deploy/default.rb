@@ -4,7 +4,7 @@ namespace :deploy do
     update
     restart
   end
-  
+
   desc <<-DESC
     Deploy and run pending migrations. This will work similarly to the
     `deploy' task, but will also run any pending migrations (via the
@@ -19,7 +19,7 @@ namespace :deploy do
     migrate
     restart
   end
-  
+
   desc <<-DESC
     [internal] Touches up the released code. This is called by update_code
     after the basic deploy finishes. It assumes a Rails project was deployed,
@@ -38,23 +38,29 @@ namespace :deploy do
       run "find #{asset_paths} -exec touch -t #{stamp} {} ';'; true", :env => { "TZ" => "UTC" }
     end
   end
-  
+
   desc "Symlink system files & set revision info"
   task :symlink, :except => { :no_release => true } do
     run [
-      "rm -rf #{current_path}/log #{current_path}/public/system #{current_path}/tmp/pids",
+      "rm -rf #{current_path}/log #{current_path}/public/system #{current_path}/tmp/pids #{current_path}/.htaccess",
       "mkdir -p #{current_path}/public",
       "mkdir -p #{current_path}/tmp",
-      "ln -s #{shared_path}/log    #{current_path}/log",
-      "ln -s #{shared_path}/system #{current_path}/public/system",
-      "ln -s #{shared_path}/pids   #{current_path}/tmp/pids"
+      "ln -s #{shared_path}/log       #{current_path}/log",
+      "ln -s #{shared_path}/system    #{current_path}/public/system",
+      "ln -s #{shared_path}/pids      #{current_path}/tmp/pids",
+      "ln -s #{shared_path}/htaccess  #{current_path}/.htaccess"
     ].join(" && ")
   end
-  
+
   desc "Do nothing (since we have no releases directory)"
   task :cleanup do
   end
-  
+
+  desc "Setup shared files (htaccess)"
+  task :setup_shared do
+    run 'echo "PassengerMinInstances 3" > #{shared_path}/htaccess'
+  end
+
   task :restart, :roles => :app, :except => { :no_release => true } do
     run "touch #{File.join(current_path,'tmp','restart.txt')}"
   end
