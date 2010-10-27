@@ -2028,13 +2028,12 @@ article footer > li:last-child {
   display: inline-block;
   padding: 10px;
   height: 30px;
-  width: 300px;
-  float: left;
+  display: block;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
   border: 1px solid #eee;
-  margin-right: 10px;
+  margin-bottom: 10px;
 }
 
 #invitations_list li:hover em {
