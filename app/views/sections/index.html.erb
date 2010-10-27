@@ -20,7 +20,7 @@
         <% if event.linkable?%>
           <%= link_to h(truncate(event.info, :length => 65)), event.url_options %>
         <% else %>
-          <%= h(truncate(event.info, :length => 65) %>
+          <%= h(truncate(event.info, :length => 65)) %>
         <% end %>
       </td>
         <td class="action"><%=t "events.action.#{event.action}" %></td>
