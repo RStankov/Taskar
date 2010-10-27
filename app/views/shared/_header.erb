@@ -23,10 +23,10 @@
       <h2><%= current_user.full_name %>
         <%= render "shared/accounts" %>
       </h2>
-    <% elsif current_user.accounts.size == 1 %>
+    <% elsif current_user.accounts.first %>
       <h2>
         <%= current_user.accounts.first.name %>
-        <%= link_to t("layouts.dashboard.back_to_dashboard"), root_path, :id => "back_to_dashboard" if controller_name == "dashboard" %>
+        <%= link_to t("layouts.dashboard.back_to_dashboard"), root_path, :id => "back_to_dashboard" if controller_name != "dashboard" %>
       </h2>
     <% end %>
   <% end %>
