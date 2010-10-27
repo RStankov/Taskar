@@ -4,7 +4,7 @@ en:
       invalid: 'Invalid email/password or account.'
 
     sessions:
-      link: 'Вход'
+      link: 'Login'
       signed_in: Signed in successfully.'
       signed_out: 'Signed out successfully.'
 
