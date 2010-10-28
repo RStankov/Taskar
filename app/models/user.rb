@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_many :comments, :dependent => :destroy
   has_many :tasks, :dependent => :destroy
   has_many :statuses, :dependent => :destroy
+  has_many :issues
 
   has_many :responsibilities, :class_name => "Task", :foreign_key => "responsible_party_id"
 

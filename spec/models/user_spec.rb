@@ -12,6 +12,7 @@ describe User do
     it { should have_many(:owned_accounts) }
     it { should have_many(:account_users) }
     it { should have_many(:accounts) }
+    it { should have_many(:issues) }
 
     # deprecated
     it { should have_one(:owned_account) }

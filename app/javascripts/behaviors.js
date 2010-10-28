@@ -7,7 +7,7 @@ CD3.Behaviors({
                             }
                           },
     '.edit':              function(e, element){
-                            element.addClassName('loading');  
+                            element.addClassName('loading');
                           }
   },
   '#sections':            function(){
@@ -21,14 +21,17 @@ CD3.Behaviors({
   '#user_card':           Taskar.Sections.NewStatus,
   '#tasks':               Taskar.Sections.TaskList,
   '#tasks_show':          Taskar.Sections.Comments,
+  '#feedback':            Taskar.Sections.IssueForm,
   'body':                 Taskar.Dnd.Sortable.AjaxSave,
   '#live_search':         Taskar.UI.LiveSearch.Form,
   'li.tasks_stats ul':    Taskar.Graphics.createPieChart,
   '#statuses_list:ajax:delete': function(e){ Taskar.FX.dropOut(e.findElement('li'), function(e){e.element.remove()}); },
   '#scroll_to_top:click': function(e){
                             e.stop();
-                            var element, id = this.getAttribute('href').split('#').last();
 
-                            if (element = $(id)) new Taskar.FX.ScrollTo(element, function(){ location.hash = id; });
+                            var id      = this.getAttribute('href').split('#').last(),
+                                element = $(id);
+
+                            element && new Taskar.FX.ScrollTo(element, function(){ location.hash = id; });
                           }
 });

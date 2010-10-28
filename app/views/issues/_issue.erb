@@ -1,0 +1,13 @@
+<div class="window" id="feedback_form" style="display: none;">
+  <div class="arrow"></div>
+  <%= form_for issue, :html => {:class => "action_form", "data-remote" => true, "data-disable" => false} do |form| %>
+      <%= form.label :description %>
+      <%= form.text_area :description  %>
+      <p class="buttons">
+        <%= form.submit t(:share) %>
+        <%=t :or %>
+        <input type="button" value="<%= t :cancel %>" class="cancel">
+      </p>
+      <input type="hidden" name="issue[url]" value="<%= request.request_uri %>">
+  <% end %>
+</div>

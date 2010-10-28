@@ -68,6 +68,9 @@ bg:
             last_name: "Фамилия"
             message: "Допълнително съобщение"
 
+          issue:
+            description: "Имате въпрос, предложение или проблем?"
+
         errors:
           tasks:
             archived_section: "Не може да се добавя задача в архивирана секция"

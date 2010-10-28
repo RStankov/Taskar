@@ -68,6 +68,9 @@ en:
             last_name: "Last name"
             message: "Additional message"
 
+          issue:
+            description: "Having question, idea or problem?"
+
         errors:
           tasks:
             archived_section: "You can't add new task on archived section"
