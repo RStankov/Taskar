@@ -1,6 +1,6 @@
 <div class="window" id="feedback_form" style="display: none;">
   <div class="arrow"></div>
-  <%= form_for issue, :html => {:class => "action_form", "data-remote" => true, "data-disable" => false} do |form| %>
+  <%= form_for Issue.new, :html => {:class => "action_form", "data-remote" => true, "data-disable" => false} do |form| %>
       <%= form.label :description %>
       <%= form.text_area :description  %>
       <p class="buttons">
