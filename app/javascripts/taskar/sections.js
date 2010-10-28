@@ -52,4 +52,4 @@ Taskar.Sections = {
 //= require "sections/comments"
 //= require "sections/aside"
 //= require "sections/new_status"
-//= require "sections/issue_form"
+//= require "sections/feedback"

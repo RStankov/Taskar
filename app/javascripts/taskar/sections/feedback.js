@@ -1,4 +1,4 @@
-Taskar.Sections.IssueForm = function(element){
+Taskar.Sections.Feedback = function(element){
   var appear = Taskar.UI.WindowForm("feedback_form");
   element.observe("click", function(e){
     e.stop();

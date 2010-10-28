@@ -21,7 +21,7 @@ CD3.Behaviors({
   '#user_card':           Taskar.Sections.NewStatus,
   '#tasks':               Taskar.Sections.TaskList,
   '#tasks_show':          Taskar.Sections.Comments,
-  '#feedback':            Taskar.Sections.IssueForm,
+  '#feedback':            Taskar.Sections.Feedback,
   'body':                 Taskar.Dnd.Sortable.AjaxSave,
   '#live_search':         Taskar.UI.LiveSearch.Form,
   'li.tasks_stats ul':    Taskar.Graphics.createPieChart,
