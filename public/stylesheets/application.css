@@ -833,7 +833,6 @@ body > footer a:hover {
 #new_status .arrow {
   right: 185px;
   top: 4px;
-
 }
 
 #new_status section {
@@ -850,22 +849,6 @@ body > footer a:hover {
 #new_status textarea {
   height: 60px;
   width: 332px;
-}
-
-#new_status input[type="submit"] {
-  float: left;
-  font-size: 16px;
-}
-
-#new_status input[type="button"] {
-  float: right;
-  margin-top: 5px;
-  font-size: 16px;
-}
-
-#new_status input[type="button"]:hover, #new_status input[type="button"]:focus {
-  color: #FF0000;
-  text-decoration: underline;
 }
 
 /*** PEOPLE ON PROJECT ***/

@@ -58,7 +58,8 @@
   			    <%= form.text_area :text  %>
   			    <p class="buttons">
   			      <%= form.submit t(".status.share") %>
-  			      <input type="button" value="<%= t :cancel %>">
+              <%=t :or %>
+              <input type="button" value="<%= t :cancel %>" class="cancel">
   			    </p>
   			  </section>
   			<% end %>
