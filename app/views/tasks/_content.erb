@@ -8,7 +8,7 @@
 	</div>
 	<div class="task_text">
     <%= task_state_checkbox(@task) %>
-    <%= simple_format task_archive_button(@task) + " " + auto_link(h(@task.text)) %>
+    <%= task_archive_button(@task) %> <%= nl2br auto_link(h(@task.text)) %>
   </div>
   <div class="task_description">
     <%= task_description(@task) %>
