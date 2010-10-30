@@ -145,6 +145,7 @@ article {
   padding-bottom: 20px;
   vertical-align: top;
 	height: 550px;
+  font-family: verdana, 'Helvetica', arial, tahoma, sans-serif;
 }
 
 /*** MAIN ASIDE ***/
@@ -1430,7 +1431,7 @@ header:hover .tooltip {
   visibility: hidden;
 }
 
-.task p {
+.task .task_short_text {
   margin: 2px 15px 0 22px;
 }
 
@@ -1476,7 +1477,7 @@ header:hover .tooltip {
     top: 10px;
   }
 
-  .task_wrapper:hover .tooltip {
+  .task:hover .tooltip {
     display: block;
     -webkit-animation-name: bounce-scale;
     -webkit-animation-duration: 0.2s;
@@ -1529,7 +1530,7 @@ header:hover .tooltip {
     top: 10px;
   }
 
-  .task_wrapper:hover .tooltip {
+  .task:hover .tooltip {
     display: block;
     -webkit-animation-name: bounce-scale;
     -webkit-animation-duration: 0.2s;
@@ -1712,6 +1713,10 @@ header:hover .tooltip {
   color: #fff;
 }
 
+.tooltip_actions {
+  padding-right: 20px;
+}
+
 .tooltip a {
   text-decoration: none;
   padding-right: 5px;
@@ -1721,16 +1726,6 @@ header:hover .tooltip {
 
 .tooltip a:hover {
   color: #00589D;
-}
-
-.edit {
-  width: 50px;
-  display:inline-block;
-}
-
-.tooltip .edit {
-  width: 60px;
-  display: block;
 }
 
 .edit.loading {
@@ -1845,56 +1840,24 @@ article footer > li:last-child {
 }
 
 /*** SHOW TASK ***/
-
-#task_content {
+.task {
   position: relative;
-  margin-bottom: 10px;
-  padding: 6px 10px;
-  background: #ECF3FE;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
 }
 
-#task_content p {
-  margin-left: 20px;
+.task_text {
+  position: relative;
+  padding: 5px 10px 10px 30px;
+  font-size: 16px;
+  background-color: #ECF3FE;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  text-shadow: white 1px 1px 1px;
 }
 
-#task_content .task_wrapper {
-  padding: 0px;
-}
-
-#task_content .actions {
-  position: absolute;
-  bottom: 0px;
-  right: 0px;
-  font-size: 11px;
-  background: #fff;
-  padding: 5px 10px 5px 0;
-  -moz-border-top-left-radius: 5px;
-  -webkit-border-top-left-radius: 5px;
-  border-top-left-radius: 5px;
-  display: none;
-}
-
-#task_content:hover .actions {
-  display: block;
-}
-
-#task_content .actions a {
-  color: #00589D;
-  text-decoration: none;
-  margin-left: 10px;
-}
-
-#task_content .edit:hover {
-  text-decoration: underline;
-  color: #014577;
-}
-
-#task_content .delete:hover {
-  text-decoration: underline;
-  color: #C00;
+.task_description {
+  padding: 10px 0;
+  font-size: 12px;
 }
 
 #comments h3 {

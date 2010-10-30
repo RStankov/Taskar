@@ -1,6 +1,16 @@
-<div class="actions">
-	<%= link_to t(:edit), [:edit, @task], :class => "edit", :'data-remote' => true unless @task.archived? %>
-	<%= link_to_delete t(:delete), @task, :class => "delete", :confirm => t(:'tasks.task.confirm') %>
-</div>
-<%= task_state_checkbox(@task) %>
-<%= simple_format auto_link(h(@task.text)) %>
+<%= content_tag_for(:div, @task, :class => @task.state) do %>
+  <div class="tooltip">
+		<div class="arrow"></div>
+		<div class="actions">
+			<%= link_to t(:edit), [:edit, @task], :class => "edit", "data-remote" => true %>
+			<%= link_to t(:delete), @task, :class => "delete", "data-method" => "delete", "data-confirm" => t("tasks.confirm") %>
+		</div>
+	</div>
+	<div class="task_text">
+    <%= task_state_checkbox(@task) %>
+    <%= simple_format task_archive_button(@task) + " " + auto_link(h(@task.text)) %>
+  </div>
+  <div class="task_description">
+    <%= task_description(@task) %>
+  </div>
+<% end %>

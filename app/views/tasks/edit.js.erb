@@ -1,3 +1,3 @@
 <%= javascript_response do %>
-	($("<%= dom_id @task %>") || $("task_content")).transform(<%= javascript_string_from_partial "form", :task => @task %>);
+  $("<%= dom_id @task %>").transform(<%= javascript_string_from_partial "form", :task => @task %>);
 <% end %>

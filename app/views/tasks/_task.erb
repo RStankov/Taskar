@@ -8,13 +8,13 @@
   		<div class="actions">
   			<%= link_to t(:'.comments', :count => task.comments.size), task %>
   			<%= link_to t(:edit), [:edit, task], :class => "edit", "data-remote" => true %>
-  			<%= link_to t(:delete), task, :class => "delete", "data-remote" => true, "data-method" => "delete", "data-confirm" => t(:'.confirm') %>
+  			<%= link_to t(:delete), task, :class => "delete", "data-remote" => true, "data-method" => "delete", "data-confirm" => t("tasks.confirm") %>
   		</div>
   	</div>
     <%= task_state_checkbox(task) %>
-    <p>
-      <%= link_to '', archive_task_path(task, :archived => !task.archived?), :class => "archive", "data-remote" => true, "data-method" => "put" %>
-      <span><%= raw auto_link h(task.text) %></span>
+    <p class="task_short_text">
+      <%= task_archive_button(task) %>
+      <span><%= raw auto_link(h(task.text)) %></span>
       <% if task.responsible_party %><strong><%= task.responsible_party.full_name %></strong><% end %>
     </p>
     <input type="button" class="drag" title="<%=t :dnd %>" />

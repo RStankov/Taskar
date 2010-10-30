@@ -1,12 +1,6 @@
 <%= javascript_response do %>
-  (function(){
-    var element = $("task_content");
-    if (element){
-      element.update(<%= javascript_string_from_partial "content" %>).highlight();
-      $("task_title").update("<%= escape_javascript(task_description(@task)) %>");
-    } else {
-			$("<%= dom_id @task %>").replaceWithEffect(<%= javascript_string_from_partial @task %>);
-    }
-  })();
+  $("<%= dom_id @task %>").replaceWithEffect(
+    $("task_title") ? <%= javascript_string_from_partial "content" %> : <%= javascript_string_from_partial @task %>
+  );
 <% end %>
 

@@ -1,10 +1,8 @@
 <header>
-  <h1 id="task_title"><%= task_description(@task) %></h1>
+  <h1 id="task_title"><%= @section.name %></h1>
 </header>
 <div class="wrap">
-  <div id="task_content" class="task <%= @task.state %>">
-    <%= render "content" %>
-  </div>
+  <%= render "content" %>
   <div id="comments"<%= raw ' style="display: none;"' if @task.comments.size == 0 %>>
     <h3><%= raw t(:'.comments', :count => '<span id="comments_count">' + @task.comments.size.to_s + '</span>') %></h3>
     <ul>

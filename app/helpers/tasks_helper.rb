@@ -8,6 +8,10 @@ module TasksHelper
     "<span #{attributes}></span>".html_safe
   end
 
+  def task_archive_button(task)
+    link_to '', archive_task_path(task, :archived => !task.archived?), :class => "archive", "data-remote" => true, "data-method" => "put"
+  end
+
   def task_description(task)
     name    = "short"
     options = {
