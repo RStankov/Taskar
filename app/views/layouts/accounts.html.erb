@@ -39,7 +39,7 @@
       </section>
       <section>
         <% @projects ||= @account.projects.active %>
-        <h3><%=t :".current_projects", :count => @projects.size  %></h3>
+        <h3><%=t ".current_projects", :count => @projects.size  %></h3>
         <ul>
           <% @projects.each do |project| %>
           <li><%= link_to project.name, [@account, project] %></li>

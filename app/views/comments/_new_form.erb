@@ -1,8 +1,8 @@
-<%= form_for [@task, @comment || Comment.new], :html => {:class => "action_form", :"data-remote" => true} do |form| %>
+<%= form_for [@task, @comment || Comment.new], :html => {:class => "action_form", "data-remote" => true } do |form| %>
   <%= render "shared/error_messages", :target => form.object %>
-  <%= form.label :text, t(:".title"), :id => "new_comment_label" %>
+  <%= form.label :text, t(".title"), :id => "new_comment_label" %>
   <%= form.text_area :text %>
   <div class="buttons">
-    <%= form.submit t(:'.submit')%>
+    <%= form.submit t(".submit")%>
   </div>
 <% end %>

@@ -16,7 +16,7 @@
     <aside>
       <% if @projects.size > 0 %>
         <section>
-          <h3><%=t :".current_projects", :count => current_user.projects.active.count  %></h3>
+          <h3><%=t ".current_projects", :count => current_user.projects.active.count  %></h3>
           <ul>
             <% if current_user.accounts.size == 1 %>
               <% @projects.each do |project| %>
