@@ -1572,15 +1572,13 @@ header:hover .tooltip {
   color: #eee;
   cursor: pointer;
   display: inline-block;
-  font-size: 14px;
   height: 16px;
   width: 16px;
   position: absolute;
   top: 7px;
   left: 7px;
   border: 1px solid #C7C7C7;
-  background: -moz-linear-gradient(top, #FFFFFF, #EEEEEE);
-  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), to(#EEEEEE), color-stop(.9,#E0E0E0));
+  background: url(../images/sprite.png) 0px -550px no-repeat;
 }
 
 .checkbox:hover {
@@ -1595,23 +1593,14 @@ header:hover .tooltip {
   box-shadow: inset 0px 0px 3px #5C5C5C;
 }
 
-.checkbox.completed, .checkbox.rejected {
-  background: #135F9F;
+.checkbox.completed {
   border: 1px solid #135F9F;
-  background: -moz-linear-gradient(top, #6BA6D9, #135F9F);
-  background: -webkit-gradient(linear, 0% 0, 0% 100%, from(#6BA6D9), to(#135F9F));
+  background-position: 0px -566px;
 }
 
-.checkbox.completed:after {
-  content: "✔";
-  display: inline-block;
-  margin-left: 3px;
-}
-
-.checkbox.rejected:after {
-  content: "✘";
-  display: inline-block;
-  margin-left: 4px;
+.checkbox.rejected {
+  border: 1px solid #135F9F;
+  background-position: 0px -582px;
 }
 
 .personal strong {

@@ -22,5 +22,8 @@ images:
     "public/images/sprite/icons/lock_hover.png",
     "public/images/sprite/icons/unlock.png",
     "public/images/sprite/icons/unlock_hover.png",
-    ["public/images/sprite/headers/account.png",       32, 32]
+    ["public/images/sprite/headers/account.png",       32, 32],
+    "public/images/sprite/checkbox/opened.png",
+    "public/images/sprite/checkbox/completed.png",
+    "public/images/sprite/checkbox/rejected.png"
   ]
