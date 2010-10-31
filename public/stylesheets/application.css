@@ -1397,7 +1397,7 @@ header:hover .tooltip {
 @media all and (max-width:1199px){
   .task .tooltip {
     right: -135px;
-    top: -6px;
+    top: -2px;
     display: none;
     min-width: 130px;
   }
@@ -1450,7 +1450,7 @@ header:hover .tooltip {
 @media all and (min-width:1200px){
   .task .tooltip {
     left: -134px;
-    top: -6px;
+    top: -3px;
     display: none;
     min-width: 130px;
   }
