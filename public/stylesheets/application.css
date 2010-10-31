@@ -1856,8 +1856,11 @@ article footer > li:last-child {
 }
 
 .task_description {
-  padding: 10px 0;
-  font-size: 12px;
+  padding-top: 10px;
+  padding-bottom: 15px;
+  font-size: 10px;
+  text-align: right;
+  color: gray;
 }
 
 #comments h3 {
