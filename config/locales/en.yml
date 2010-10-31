@@ -47,9 +47,8 @@ en:
       manage_projects: "index"
       all_projects: "All projects"
       goto_dashboard: "Events"
-      sections: "Sections"
-      new_section: "Create section"
-      archived_sections: "Archived sections"
+      sections: "Current Tasks"
+      new_section: "Create tasklist"
       tasks:
         one: "One task"
         zero: "No tasks"
@@ -87,8 +86,8 @@ en:
 
   projects:
     participants: "Project participants"
-    sections: "Sections"
-    archived_section: "archived section"
+    sections: "Tasklists"
+    archived_section: "archived"
     confirm: "Are you sure, you wan't to delete this project?"
     new_project: "Create project"
     edit_project: "Edit project"
@@ -115,9 +114,9 @@ en:
       remove_admin: "Administrators could not be deleted."
 
   sections:
-    new_section: "Create section"
-    edit_section: "Edit section"
-    empty_archive: "There aren't any archived sections.<br />To archive the section, first archive all tasks in it. <br />And then click the archive button, next to the section name."
+    new_section: "Create tasklist"
+    edit_section: "Edit tasklist"
+    empty_archive: "There aren't any archived tasklists.<br />To archive the tasklist, first archive all tasks in it. <br />And then click the archive button, next to the tasklist name."
     index:
       title: "Project activity"
       previous: "Previous"
@@ -125,7 +124,7 @@ en:
       statuses: "Statuses"
 
     show:
-      confirm: "Are you sure, you want to delete this section?"
+      confirm: "Are you sure, you want to delete this tasklist?"
       add_task: "Add task"
       toggle_archive: "Archive"
       archive: "Archive"
@@ -134,7 +133,7 @@ en:
 
 
   tasks:
-    move_into_section: "Drop the task over the selected section<br />to move it there"
+    move_into_section: "Drop the task over the selected tasklist<br />to move it there"
     empty_archive: "There aren't no archived tasks"
     confirm: "Are you sure, you want to delete this task?"
     from_section: 'Task from "%{section}"'

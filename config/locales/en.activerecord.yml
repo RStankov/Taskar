@@ -2,7 +2,7 @@ en:
     activerecord:
         models:
           project: "Project"
-          section: "Section"
+          section: "Tasklist"
           task: "Task"
           user: "User"
           comment: "Comment"
@@ -17,7 +17,7 @@ en:
             account_id: "Account"
 
           section:
-            name: "Section name"
+            name: "Tasklist name"
             position: "Position"
             text: "Description"
 
@@ -26,7 +26,7 @@ en:
             status: "Status"
             position: "Position"
             project: "Project"
-            section: "Section"
+            section: "Tasklist"
             user: "Creator"
 
           user:
@@ -73,7 +73,7 @@ en:
 
         errors:
           tasks:
-            archived_section: "You can't add new task on archived section"
+            archived_section: "You can't add new task on archived tasklist"
             cant_change_project: "You can't change the project for the task"
 
           comments:

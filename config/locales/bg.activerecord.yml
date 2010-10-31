@@ -2,7 +2,7 @@ bg:
     activerecord:
         models:
           project: "Проект"
-          section: "Секция"
+          section: "Списък"
           task: "Задача"
           user: "Потребител"
           comment: "Коментар"
@@ -17,7 +17,7 @@ bg:
             account_id: "Акаунт"
 
           section:
-            name: "Име на секцията"
+            name: "Име на списък"
             position: "Позиция"
             text: "Описание"
 
@@ -26,7 +26,7 @@ bg:
             status: "Статус"
             position: "Позиция"
             project: "Проект"
-            section: "Секция"
+            section: "Списък"
             user: "Създател"
 
           user:
@@ -73,7 +73,7 @@ bg:
 
         errors:
           tasks:
-            archived_section: "Не може да се добавя задача в архивирана секция"
+            archived_section: "Не може да се добавя задача в архивиран списък"
             cant_change_project: "Не може да се променя проекта на задача"
 
           comments:
