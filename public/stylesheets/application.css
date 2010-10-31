@@ -1614,13 +1614,11 @@ header:hover .tooltip {
 }
 
 .completed .archive, .rejected .archive {
-  display: block;
-  float: left;
-  margin-right: 2px;
+  display: inline-block;
 }
 
 .archive {
-  width: 12px;
+  width: 10px;
   height: 13px;
   background: url(../images/sprite.png) 0px -462px no-repeat;
 }
