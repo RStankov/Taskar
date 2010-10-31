@@ -1974,6 +1974,7 @@ article footer > li:last-child {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
+  line-height: 98%;
 }
 
 #users_list li:hover {
