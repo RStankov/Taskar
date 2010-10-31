@@ -57,6 +57,10 @@ class Task < ActiveRecord::Base
     status == 0
   end
 
+  def toggle_archived
+    update_attribute :archived, !archived
+  end
+
   protected
     def inherit_section_project
       self.project = section.try(:project)

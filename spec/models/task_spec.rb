@@ -322,4 +322,20 @@ describe Task do
       Task.opened_in_project(project).should == [task]
     end
   end
+
+  describe "#toggle_archived" do
+    it "should call update attribute with true if archived is false" do
+      task = Factory.build(:task, :archived => false, :status => 1)
+      task.should_not be_archived
+      task.should_receive(:update_attribute).with(:archived, true)
+      task.toggle_archived
+    end
+
+    it "should call update attribute with false if archived is true" do
+      task = Factory.build(:task, :archived => true, :status => 1)
+      task.should be_archived
+      task.should_receive(:update_attribute).with(:archived, false)
+      task.toggle_archived
+    end
+  end
 end
