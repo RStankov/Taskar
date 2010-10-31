@@ -1,6 +1,8 @@
 class Sign::RegistrationsController < ApplicationController
   skip_before_filter :authenticate_user!, :only => [ :new, :create ]
   skip_before_filter :set_locale, :only => [ :new, :create ]
+  
+  before_filter :set_locale_from_param
 
   prepend_before_filter :require_no_authentication, :only => [ :new, :create ]
 
