@@ -1831,7 +1831,7 @@ article footer > li:last-child {
 
 .task_text {
   position: relative;
-  padding: 5px 10px 10px 30px;
+  padding: 6px 10px 10px 30px;
   font-size: 16px;
   background-color: #ECF3FE;
   -moz-border-radius: 2px;
