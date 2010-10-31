@@ -18,11 +18,11 @@
   	        <% current_user.projects.order(:account_id).active(:limit => 10).each do |project| %>
   	        <li><%= link_to project.name, [project, :sections], :class => @project == project && "selected" %></li>
   	        <% end %>
-  	        <li><%= link_to t(".all_projects"), root_path, :class => "all_projects" %></li>
+  	        <li><%= link_to t("layouts.dashboard.back_to_dashboard"), root_path, :id => "back_to_dashboard" %></li>
   	      </ul>
   	    </nav>
   	  <% else %>
-  	    <%= link_to t(".manage_projects"), root_path, :id => "back_to_dashboard" %>
+  	    <%= link_to t("layouts.dashboard.back_to_dashboard"), root_path, :id => "back_to_dashboard" %>
   	  <% end %>
 		</h2>
     <nav id="nav_project">

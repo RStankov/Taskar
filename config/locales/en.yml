@@ -44,8 +44,6 @@ en:
       task_list: "Tasks"
       archive: "Archive"
       switch_to_project: "Open other project"
-      manage_projects: "index"
-      all_projects: "All projects"
       goto_dashboard: "Events"
       sections: "Current Tasks"
       new_section: "Create tasklist"
