@@ -30,12 +30,15 @@ CD3.Behaviors({
     '.archive': function(e){
       var task = e.findElement('.task');
       if (task){
+        var newComment = $('new_comment');
         if (task.hasClassName('archived')){
           task.removeClassName('archived');
           task.down('.checkbox').writeAttribute('data-disabled', null);
+          newComment && newComment.slideDown();
         } else {
           task.addClassName('archived');
           task.down('.checkbox').writeAttribute('data-disabled', 'true');
+          newComment && newComment.slideUp();
         }
       }
     }
