@@ -137,6 +137,7 @@ en:
     move_into_section: "Drop the task over the selected section<br />to move it there"
     empty_archive: "There aren't no archived tasks"
     confirm: "Are you sure, you want to delete this task?"
+    from_section: 'Task from "%{section}"'
     task:
       comments:
         zero: "Add comment"

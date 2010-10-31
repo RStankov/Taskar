@@ -1,5 +1,5 @@
 <header>
-  <h1 id="task_title"><%= @section.name %></h1>
+  <h1 id="task_title"><%=raw t("tasks.from_section", :section => link_to(@section.name, @section))  %></h1>
 </header>
 <div class="wrap">
   <%= render "content" %>
