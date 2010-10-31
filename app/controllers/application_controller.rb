@@ -10,12 +10,6 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
 
   protected
-    def set_locale
-      if user_signed_in? && I18n.available_locales.include?(current_user.locale.try(:to_sym))
-        I18n.locale = current_user.locale.to_sym
-      end
-    end
-
     def deny_access
       if request.xhr?
         head :forbidden
@@ -44,5 +38,21 @@ class ApplicationController < ActionController::Base
 
     def project_user
       @project_user ||= ProjectUser.find_by_user_id_and_project_id(current_user.id, @project.id)
+    end
+
+    def set_locale
+      set_locale_from current_user.locale if user_signed_in? && current_user.locale
+    end
+
+    def set_locale_from_param
+      set_locale_from params[:locale] if params[:locale]
+    end
+
+  private
+    def set_locale_from(locale)
+      locale = locale.to_sym
+      if locale && I18n.available_locales.include?(locale)
+         I18n.locale = locale
+      end
     end
 end

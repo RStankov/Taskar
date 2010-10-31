@@ -74,4 +74,30 @@ describe ApplicationController do
       controller.__send__(:set_locale)
     end
   end
+
+  describe "#set_locale_from_param" do
+    before do
+      controller.stub(:params).and_return @mock_params = {}
+    end
+
+    it "should not try to set locale if params[:locale] is not given" do
+      I18n.should_not_receive(:locale=)
+      controller.send(:set_locale_from_param)
+    end
+
+    it "should not try to set locale if params[:locale] is not in I18n.available_locales" do
+      @mock_params[:locale] = locale = "ffooo"
+
+      I18n.available_locales.should_not include(locale)
+      I18n.should_not_receive(:locale=)
+      controller.send(:set_locale_from_param)
+    end
+
+    it "should try to set locale to params[:locale] if given and valid" do
+      @mock_params[:locale] = locale = I18n.available_locales.last.to_s
+
+      I18n.should_receive(:locale=).with(locale.to_sym)
+      controller.send(:set_locale_from_param)
+    end
+  end
 end
