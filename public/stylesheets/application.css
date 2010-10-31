@@ -873,82 +873,16 @@ body > footer a:hover {
   padding-bottom: 2px;
 }
 
-.people_extended li {
+#people_envolved li {
   height: 42px;
   line-height: 10px;
 }
 
-.people_extended img {
+#people_envolved img {
   float: left;
   margin-right: 10px;
   max-width: 32px;
   border: 1px solid #ccc;
-}
-
-.list_images {
-  background-position: -28px 3px;
-}
-
-.people_images li .people_info {
-  background-color: #A5A5A5;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  color: #fff;
-  display: none;
-  padding: 7px 10px;
-  position: absolute;
-  right: -16px;
-  top: -47px;
-  white-space: nowrap;
-}
-
-.people_images li {
-  display: inline-block;
-  height: 32px;
-  margin: 0 0 5px;
-  position: relative;
-  width: 32px;
-}
-
-.people_images img {
-  max-width: 100%;
-}
-
-.people_images li:hover .people_info {
-  display: block;
-}
-
-.people_images .people_info span {
-  background: url(../images/sprite_old.png) 0 0 no-repeat;
-  bottom: -4px;
-  display: block;
-  height: 4px;
-  position: absolute;
-  right: 28px;
-  width: 7px;
-}
-
-.list_images, .list_extended {
-  background-image: url(../images/sprite_old.png);
-  border: 1px solid transparent;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  cursor: pointer;
-  float: right;
-  height: 17px;
-  margin-right: 2px;
-  width: 19px;
-}
-
-.list_extended {
-  background-position: -29px -27px;
-}
-
-.list_extended:hover, .list_images:hover, .list_on {
-  background-color: #fff;
-  border-color: #D7D7D7;
 }
 
 /*** ARTICLE HEADER IMAGES ***/
