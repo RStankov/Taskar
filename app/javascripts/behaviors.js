@@ -8,6 +8,8 @@ CD3.Behaviors({
                           },
     '.edit':              function(e, element){
                             element.addClassName('loading');
+                            element.style.textDecoration = 'none';
+                            element.innerHTML = element.innerHTML.gsub(/./, '&nbsp;');
                           }
   },
   '#sections':            function(){
