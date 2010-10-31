@@ -1595,11 +1595,13 @@ header:hover .tooltip {
 
 .checkbox.completed {
   border: 1px solid #135F9F;
+  background-color: #135F9F;
   background-position: 0px -566px;
 }
 
 .checkbox.rejected {
   border: 1px solid #135F9F;
+  background-color: #135F9F;
   background-position: 0px -582px;
 }
 
@@ -1641,9 +1643,9 @@ header:hover .tooltip {
   display: none;
 }
 
-#archived_tasks .archive, .unarchive {
-  width: 18px;
-  height: 14px;
+#archived_tasks .archive, .archived .archive, .unarchive {
+  width: 15px;
+  height: 13px;
   display: inline-block;
   background: url(../images/sprite.png) 0px -489px no-repeat;
 }

@@ -1,4 +1,4 @@
-<%= content_tag_for(:div, @task, :class => @task.state) do %>
+<%= content_tag_for(:div, @task, :class => @task.state + (@task.archived ? " archived" : "")) do %>
   <div class="tooltip">
 		<div class="arrow"></div>
 		<div class="actions">

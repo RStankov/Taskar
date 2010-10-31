@@ -5,7 +5,7 @@ Taskar.Sections.Actions = {
     },
     '.add': function(e, element){
       e.stop();
-      
+
       function insertBefore(){
         var before = element.getAttribute('data-after'),
             scroll = false;
@@ -24,17 +24,17 @@ Taskar.Sections.Actions = {
           scroll && new Taskar.FX.ScrollTo(e.element);
         });
       }
-      
+
       element.hide()
       element.show.bind(element).defer();
-      
+
       var newTask  = $('new_task'),
           task     = element.up('.task');
-    
+
       if (!newTask.visible()){
         insertBefore();
       } else {
-        if (task && task.next() == newTask){  
+        if (task && task.next() == newTask){
           newTask.down('textarea').focus();
         } else {
           newTask.slideUp(insertBefore);
@@ -43,7 +43,7 @@ Taskar.Sections.Actions = {
     },
     '.toggle_archived': function(e, element){
       e.stop();
-      
+
       var archive = $('archived_tasks');
       if (archive){
         element.toggleClassName('selected');
@@ -53,9 +53,9 @@ Taskar.Sections.Actions = {
           }
         });
       }
-      
+
       element.addClassName('loading');
-      
+
       new Ajax.Request(element.getAttribute('data-url'), {
         method:     'get',
         onComplete: function(t){
@@ -83,7 +83,7 @@ Taskar.Sections.Actions = {
     },
     '.task': function(e, element){
       Taskar.UI.HoverBubble.hide(e.memo.originalEvent);
-      
+
       var section = e.memo.originalEvent.findElement('.section');
       if (section && !section.down('.selected')){
         new Ajax.Request(element.getAttribute('data-change-section'), {
@@ -108,24 +108,24 @@ Taskar.Sections.Actions = {
           parent    = $('archived_tasks');
           insert    = {top: task};
           disabled  = "true";
-        } else { 
+        } else {
           parent    = $('tasks');
           insert    = {bottom: task};
           disabled  = null;
         }
-        
+
         task.down('.checkbox').writeAttribute('data-disabled', disabled);
-        
+
         if (!parent){
           task.remove();
         } else {
           parent.insert(insert);
           task.slideDown();
         }
-        
+
         task.fire('task:archive_changed');
       });
-    } 
+    }
   },
   'ajax:delete': {
     '.task': function(e, element){
