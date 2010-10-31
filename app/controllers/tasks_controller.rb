@@ -71,8 +71,7 @@ class TasksController < ApplicationController
   end
 
   def archive
-     @task.archived = params[:archived] ? true : false
-     @task.save
+     @task.toggle_archived
 
      event
 

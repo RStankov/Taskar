@@ -127,27 +127,12 @@ describe TasksController do
       end
 
       describe "PUT archive" do
-        before do
-          mock_task.stub!(:save).and_return true
-          mock_task.stub!(:archived=)
+        it "should toggle the archived flag of task" do
+          mock_task.should_receive(:toggle_archived)
 
           controller_should_fire_event
-        end
-
-        it "should try to archive the task to true, when archived is true" do
-          mock_task.should_receive(:archived=).with(true)
-
-          xhr :put, :archive, :id => "1", :archived => "true"
-        end
-
-        it "should try to archive the task to false, when archived is set to false" do
-          mock_task.should_receive(:archived=).with(false)
 
           xhr :put, :archive, :id => "1"
-        end
-
-        it "should just head ok" do
-          xhr :put, :archive, :id => "1", :archived => "true"
 
           response.should be_success
         end
