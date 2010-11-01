@@ -175,7 +175,7 @@ bg:
   comments:
     preview: "Преглед"
     comment:
-      editable_for: "редактируем за oще %{minutes} минути"
+      editable_for: "време за редкатиране %{minutes} минути"
       confirm: "Сигурни ли сте, че искате да изтриете този коментар"
 
     new_form:
