@@ -1565,13 +1565,13 @@ header:hover .tooltip {
 }
 
 .archive {
-  width: 10px;
+  width: 15px;
   height: 13px;
-  background: url(../images/sprite.png) 0px -462px no-repeat;
+  background: url(../images/sprite.png) 0px -489px no-repeat;
 }
 
 .archive:hover {
-  background-position: 0px -476px;
+  background-position: -0px -476px;
 }
 
 #archived_tasks {
@@ -1589,14 +1589,12 @@ header:hover .tooltip {
 }
 
 #archived_tasks .archive, .archived .archive, .unarchive {
-  width: 15px;
-  height: 13px;
   display: inline-block;
-  background: url(../images/sprite.png) 0px -489px no-repeat;
+  background-position: 0px -462px;
 }
 
-#archived_tasks .archive:hover, .unarchive:hover {
-  background-position: -0px -503px;
+#archived_tasks .archive:hover, .archived .archive:hover, .unarchive:hover {
+  background-position: 0px -503px;
 }
 
 #archived_tasks_empty {
