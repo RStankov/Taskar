@@ -1334,6 +1334,7 @@ header:hover .tooltip {
   height: 16px;
   width: 16px;
   position: absolute;
+  cursor: move;
 }
 
 .task .drag {
@@ -1344,6 +1345,7 @@ header:hover .tooltip {
   left: 5px;
   top: 7px;
   opacity: 0.5;
+  cursor: move;
 }
 
 .task .drag:hover {
