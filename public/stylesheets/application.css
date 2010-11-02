@@ -1358,6 +1358,20 @@ header:hover .tooltip {
   padding: 8px;
 }
 
+.task_wrapper strong {
+  font-size: 10px;
+  font-weight: normal;
+  text-decoration: none;
+  padding: 2px 8px;
+  -moz-border-radius: 10px 0 0 10px;
+  -webkit-border-radius:  10px 0 0 10px;
+  border-radius: 10px 0 0 10px;
+  background: #eee;
+  color: #858585;
+  white-space: nowrap;
+  float: right;
+}
+
 .task_wrapper:hover, .task_wrapper.with_form {
   background-color: #ECF3FE;
 }
@@ -1372,20 +1386,7 @@ header:hover .tooltip {
 }
 
 .task_short_text {
-  margin: 2px 15px 0 30px;
-}
-
-.task strong {
-  font-size: 10px;
-  font-weight: normal;
-  text-decoration: none;
-  padding: 2px 8px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
-  background: #eee;
-  color: #858585;
-  white-space: nowrap;
+  margin: 2px 0px 0 30px;
 }
 
 .task .add {
@@ -1459,7 +1460,7 @@ header:hover .tooltip {
 
 @media all and (min-width:1200px){
   .task .tooltip {
-    left: -134px;
+    left: -136px;
     top: -3px;
     display: none;
     min-width: 130px;
@@ -1520,7 +1521,7 @@ header:hover .tooltip {
   width: 16px;
   position: absolute;
   top: 7px;
-  left: 15px;
+  left: 16px;
   border: 1px solid #C7C7C7;
   background: url(../images/sprite.png) 0px -550px no-repeat;
 }

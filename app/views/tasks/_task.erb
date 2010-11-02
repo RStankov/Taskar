@@ -14,8 +14,8 @@
     <%= task_state_checkbox(task) %>
     <p class="task_short_text">
       <%= task_archive_button(task) %>
-      <span><%= raw auto_link(h(task.text)) %></span>
       <% if task.responsible_party %><strong><%= task.responsible_party.full_name %></strong><% end %>
+      <span><%= raw auto_link(h(task.text)) %></span>
     </p>
     <input type="button" class="drag" title="<%=t :dnd %>" />
   </div>

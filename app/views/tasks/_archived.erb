@@ -9,8 +9,8 @@
   	</div>
     <%= task_state_checkbox(task) %>
     <p class="task_short_text">
-      <%= task.text %>
       <% if task.responsible_party %><strong><%= task.responsible_party.full_name %></strong><% end %>
+      <%= task.text %>
     </p>
   </div>
 <% end %>
