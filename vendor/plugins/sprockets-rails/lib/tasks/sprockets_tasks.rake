@@ -4,7 +4,7 @@ namespace :sprockets do
     require 'fileutils'
 
     path = File.join(Rails.public_path, "sprockets.js")
-    if File.directory? path
+    if File.file? path
       FileUtils.rm_r path
     end
   end
