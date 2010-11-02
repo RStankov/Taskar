@@ -70,6 +70,9 @@ Taskar.Sections.Actions = {
   'drag:start': {
     '.tasks_list': function(e, element){
       element.addClassName('dragging');
+    },
+    '.task': function(e, element){
+      element.addClassName('dragging');
     }
   },
   'drag:move': {
@@ -82,6 +85,8 @@ Taskar.Sections.Actions = {
       element.removeClassName('dragging');
     },
     '.task': function(e, element){
+      element.removeClassName('dragging');
+
       Taskar.UI.HoverBubble.hide(e.memo.originalEvent);
 
       var section = e.memo.originalEvent.findElement('.section');

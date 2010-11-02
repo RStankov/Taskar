@@ -1362,8 +1362,9 @@ header:hover .tooltip {
   background-color: #ECF3FE;
 }
 
-.task_wrapper:hover .drag {
-  display: block;
+.task.dragging {
+  opacity: 0.8;
+  background-color: #ECF3FE;
 }
 
 .dragging .tooltip, .dragging .add, .static .add, .static .drag {

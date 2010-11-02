@@ -4,7 +4,7 @@ options (draggable):
 	- filter
 	- moveX
 	- moveY
-	
+
 options (sortable)
 	view CD3.Dnd.Sortable.DEFAULT_OPTIONS
 
@@ -13,7 +13,7 @@ events (dragable):
 	drag:start
 	drag:move
 	drag:finish
-	
+
 events (sortable)
 	order:changed
 	order:updated
@@ -27,13 +27,13 @@ Taskar.Dnd = (function(){
       element:        element,
       originalEvent:  e,
       x:		          e.pointerX(),
-      y:		          e.pointerY()  
+      y:		          e.pointerY()
     })
   }
 
   function start(drag, e, givenOptions){
     e.stop();
-  
+
     if (element){
       end(e);
     }
@@ -48,20 +48,21 @@ Taskar.Dnd = (function(){
       left:     style.left
     };
 
-    var cumulativeOffset = element.cumulativeOffset(); 
-    
+    var cumulativeOffset = element.cumulativeOffset();
+
     offset = {
       x: e.pointerX() - cumulativeOffset[0],
       y: e.pointerY() - cumulativeOffset[1]
     };
-    
+
     if (fireEvent('before', e).stopped){
       return false;
     }
 
     element.absolutize();
-    
-    fireEvent('start', e); 
+    element.style.zIndex = "9999";
+
+    fireEvent('start', e);
 
     document.observe('mousemove', move);
     document.observe('mouseup', end);
@@ -69,10 +70,10 @@ Taskar.Dnd = (function(){
 
   function move(e){
     e.stop();
-  
+
     if (!element) return;
 
-    var cumulativeOffset = element.cumulativeOffset(); 
+    var cumulativeOffset = element.cumulativeOffset();
     var position = {
       x: e.pointerX() - cumulativeOffset[0] + (parseInt(element.getStyle('left')) || 0) - offset.x,
       y: e.pointerY() - cumulativeOffset[1] + (parseInt(element.getStyle('top'))  || 0) - offset.y
@@ -81,7 +82,7 @@ Taskar.Dnd = (function(){
     if (options.filter)         position   = options.filter(position);
     if (options.moveX != false) element.style.left = position.x + 'px';
     if (options.moveY != false) element.style.top  = position.y + 'px';
-    
+
     if (fireEvent('move', e).stopped){
       end(e);
     }
@@ -92,11 +93,11 @@ Taskar.Dnd = (function(){
     if (!element){
       return;
     }
-    
+
     fireEvent('finish', e);
-    
+
     element.setStyle(original);
-    
+
     element = original = options = offset = style = null;
 
     document.stopObserving('mousemove', move);
@@ -173,7 +174,7 @@ Taskar.Dnd.Sortable = Class.create({
     var id, rule = this.constructor.SERIALIZE_RULE;
 
     name || (name = this.options.name);
-    
+
     return ($(list) || this.container).select(this.options.item).inject([], function(memo, item){
       if (id = (item.id && item.id.match(rule)[1])){
         memo.push( name + '=' + id );
