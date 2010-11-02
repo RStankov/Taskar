@@ -9,7 +9,5 @@
       <%= render @task.comments %>
     </ul>
   </div>
-  <% unless @task.archived? %>
-   	<%= render "comments/new_form" %>
-  <% end %>
+ 	<%= render "comments/new_form" %>
 </div>
