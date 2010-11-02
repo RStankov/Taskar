@@ -1328,7 +1328,7 @@ header:hover .tooltip {
   text-decoration: line-through;
 }
 
-.tasks_list .drag, #sections .drag {
+#sections .drag {
   background: url(../images/sprite.png) 0px -398px no-repeat;
   display: none;
   height: 16px;
@@ -1336,13 +1336,22 @@ header:hover .tooltip {
   position: absolute;
 }
 
-.drag:hover, #sections .drag:hover {
-  background-position: 0px -414px;
+.task .drag {
+  background: url(../images/sprite.png) 0px -598px no-repeat;
+  height: 20px;
+  width: 5px;
+  position: absolute;
+  left: 5px;
+  top: 7px;
+  opacity: 0.5;
 }
 
-.tasks_list .drag {
-  right: 10px;
-  top: 10px;
+.task .drag:hover {
+  opacity: 1.0;
+}
+
+#sections .drag:hover {
+  background-position: 0px -414px;
 }
 
 .task_wrapper {
@@ -1357,12 +1366,12 @@ header:hover .tooltip {
   display: block;
 }
 
-.dragging .tooltip, .dragging .drag, .dragging .add, .static .add, .static .drag {
+.dragging .tooltip, .dragging .add, .static .add, .static .drag {
   visibility: hidden;
 }
 
-.task .task_short_text {
-  margin: 2px 15px 0 22px;
+.task_short_text {
+  margin: 2px 15px 0 30px;
 }
 
 .task strong {
@@ -1510,7 +1519,7 @@ header:hover .tooltip {
   width: 16px;
   position: absolute;
   top: 7px;
-  left: 7px;
+  left: 15px;
   border: 1px solid #C7C7C7;
   background: url(../images/sprite.png) 0px -550px no-repeat;
 }
