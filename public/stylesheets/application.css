@@ -1785,6 +1785,11 @@ article footer > li:last-child {
   text-shadow: white 1px 1px 1px;
 }
 
+.task_text .checkbox {
+  left: 7px;
+  top: 7px;
+}
+
 .task_description {
   padding-top: 10px;
   padding-bottom: 15px;
