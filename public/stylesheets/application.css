@@ -1553,6 +1553,7 @@ header:hover .tooltip {
 }
 
 .personal strong {
+  margin-left: 5px;
   color: #fff;
   background: #9FBEDC;
   text-shadow: #6B9BC5 1px 0px 0px;
