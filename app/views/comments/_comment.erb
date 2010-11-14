@@ -5,7 +5,7 @@
       <%= link_to comment.user.full_name, comment %>
       <%= time_tag(comment.updated_at) %>
     </h4>
-    <%= simple_format auto_link(h(comment.text)) %>
+    <%= format_text comment.text %>
     <% if comment.editable_by?(current_user) %>
     <div class="actions">
       <%=t :'.editable_for', :minutes => comment.editable_for %>:
