@@ -82,4 +82,32 @@ describe ApplicationHelper do
       helper.nl2br("text").should be_html_safe
     end
   end
+
+  describe "#format_text" do
+    it "calls nl2br <- auto_link <- h" do
+      helper.should_receive(:h).with("start text").and_return "text after h"
+      helper.should_receive(:auto_link).with("text after h").and_return "text after auto_link"
+      helper.should_receive(:nl2br).with("text after auto_link").and_return "text after nl2br"
+
+      helper.format_text("start text").should == "text after nl2br"
+    end
+
+    it "replaces new lines with <br>" do
+      helper.format_text("line 1\nline 2\nline 3").should == "line 1<br />line 2<br />line 3"
+    end
+
+    it "escapes html code" do
+      helper.format_text("<script>alert('foo')</script>").should == "&lt;script&gt;alert('foo')&lt;/script&gt;"
+    end
+
+    it "adds links if href found" do
+      helper.format_text("http://rstankov.com").should == '<a href="http://rstankov.com">http://rstankov.com</a>'
+    end
+
+    it "returns html_safe code" do
+      returned_text = helper.format_text("http://rstankov.com\n<script>alert('foo')</script>")
+      returned_text.should be_html_safe
+      returned_text.should == '<a href="http://rstankov.com">http://rstankov.com</a><br />&lt;script&gt;alert(\'foo\')&lt;/script&gt;'
+    end
+  end
 end

@@ -20,6 +20,10 @@ module ApplicationHelper
     raw text
   end
 
+  def format_text(text)
+    nl2br auto_link(h(text))
+  end
+
   def title(page_title)
     page_title = t(page_title, :default => page_title)
     content_for :title, page_title
