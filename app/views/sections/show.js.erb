@@ -4,7 +4,7 @@
 		<% unless @section.text.blank? %>
 			element.insert({
 				after: new Element("p", {className: "text", id: "section_text"})
-								.update("<%= raw escape_javascript(section_text) %>")
+								.update("<%= raw escape_javascript(format_text @section.text) %>")
 								.hide()
 								.slideDown()
 			});
