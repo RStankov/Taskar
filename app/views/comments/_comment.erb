@@ -9,11 +9,11 @@
       <%= format_text comment.text %>
     </p>
     <% if comment.editable_by?(current_user) %>
-    <div class="actions">
-      <%=t :'.editable_for', :minutes => comment.editable_for %>:
-      <%= link_to t(:edit), [:edit, comment], :class => "edit", "data-remote" => true %> |
-      <%= link_to t(:delete), comment, :class => "delete", "data-remote" => true, "data-method" => "delete", "data-confirm" => t(:'.confirm') %>
-    </div>
+      <div class="actions">
+        <%=t :'.editable_for', :minutes => comment.editable_for %>:
+        <%= link_to t(:edit), [:edit, comment], :class => "edit", :remote => true %> |
+        <%= link_to t(:delete), comment, :class => "delete", :remote => true, :method => "delete", :confirm => t(:'.confirm') %>
+      </div>
     <% end %>
   </div>
 <% end %>
