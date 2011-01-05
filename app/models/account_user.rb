@@ -1,6 +1,4 @@
 class AccountUser < ActiveRecord::Base
-#  extend ActiveSupport::Memoizable
-
   belongs_to :account
   belongs_to :user
 
