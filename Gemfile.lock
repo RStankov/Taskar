@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/garmz/sprocketizer.git
+  revision: 0694920a0ab4e2c708ff2541fd1e2160c70eacff
+  specs:
+    sprocketizer (1.0.2)
+      sprockets (= 1.0.2)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -148,7 +155,8 @@ DEPENDENCIES
   rcov (>= 0.9.9)
   rspec-rails (= 2.0.1)
   shoulda (>= 2.11.3)
-  sprockets (~> 1.0.2)
+  sprocketizer!
+  sprockets
   sqlite3-ruby
   webrat (~> 0.7.1)
   will_paginate (= 3.0.pre2)

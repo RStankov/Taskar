@@ -6,7 +6,8 @@ gem "paperclip", "2.3.3"
 gem "will_paginate", "3.0.pre2"
 gem "devise", "1.1.2"
 
-gem "sprockets", "~>1.0.2"
+gem "sprockets"
+gem "sprocketizer", :git => "git://github.com/garmz/sprocketizer.git"
 gem "acts_as_list", "~>0.1.2"
 
 gem "hoptoad_notifier"

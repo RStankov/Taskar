@@ -65,9 +65,10 @@ Taskar::Application.routes.draw do
     resources :invitations, :only => [:show, :update]
   end
 
-  match "sprockets.js" => "sprockets#show"
   get "changes" => "changelog#index"
+
   match "issues" => "issues#create", :via => :post
+  match "/sprockets/:file" => "sprocketizer/sprockets#show"
 
   root :to => "dashboard#index"
 end

@@ -1,13 +1,7 @@
-//= require <raphael-min>
-//= require <prototype>
-//= require <s2>
-
-var CD3 = {};
-
-//= require <cd3/behaviors>
-//= require <cd3/extensions/element>
-//= require <cd3/extensions/element/insert>
-//= require <cd3/extensions/effects>
+//= require "vendor/raphael-min"
+//= require "vendor/prototype"
+//= require "vendor/s2"
+//= require "vendor/cd3widgets"
 
 //= require "extensions"
 //= require "rails"
