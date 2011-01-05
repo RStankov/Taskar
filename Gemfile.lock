@@ -134,6 +134,7 @@ GEM
       rack (>= 1.0)
       rack-test (>= 0.5.3)
     will_paginate (3.0.pre2)
+    yui-compressor (0.9.1)
 
 PLATFORMS
   ruby
@@ -160,3 +161,4 @@ DEPENDENCIES
   sqlite3-ruby
   webrat (~> 0.7.1)
   will_paginate (= 3.0.pre2)
+  yui-compressor

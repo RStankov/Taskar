@@ -8,6 +8,8 @@ gem "devise", "1.1.2"
 
 gem "sprockets"
 gem "sprocketizer", :git => "git://github.com/garmz/sprocketizer.git"
+gem "yui-compressor"
+
 gem "acts_as_list", "~>0.1.2"
 
 gem "hoptoad_notifier"
