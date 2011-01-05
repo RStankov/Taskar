@@ -10,7 +10,8 @@ gem "sprockets", "~>1.0.2"
 gem "acts_as_list", "~>0.1.2"
 
 gem "hoptoad_notifier"
-gem 'newrelic_rpm'
+gem "newrelic_rpm"
+gem "compass"
 
 group :development do
   gem "sqlite3-ruby", :require => "sqlite3"
