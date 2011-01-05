@@ -7,5 +7,7 @@ describe "/accounts/projects/show.html.erb" do
     assign :sections, [Factory(:section)]
   end
 
-  it "renders" { render }
+  it "renders" do
+    render
+  end
 end
