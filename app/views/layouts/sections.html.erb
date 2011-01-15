@@ -16,7 +16,7 @@
   	      <span><%= t ".switch_to_project" %></span>
   	      <ul>
   	        <% current_user.projects.order(:account_id).active(:limit => 10).each do |project| %>
-  	        <li><%= link_to project.name, [project, :sections], :class => @project == project && "selected" %></li>
+  	        <li><%= link_to project.name, [project, :sections], :class => @project == project ? "selected" : nil %></li>
   	        <% end %>
   	        <li><%= link_to t("layouts.dashboard.back_to_dashboard"), root_path, :id => "back_to_dashboard" %></li>
   	      </ul>
@@ -28,9 +28,9 @@
     <nav id="nav_project">
   		<%= link_to 0, [@project, :sections], :id => "notify_badge", :style => "display: none;" %>
   		<span>
-        <%= link_to t(".dashboard"), [@project, :sections], :class => section_is_dashboard? && "selected" %>
-        <%= link_to t(".task_list"), [:tasks, @project, :sections], :class => section_is_tasks? && "selected" %>
-        <%= link_to t(".archive"), [:archived, @project, :sections], :class => section_is_archive? && "selected" %>
+        <%= link_to t(".dashboard"), [@project, :sections], :class => section_is_dashboard? ? "selected" : nil %>
+        <%= link_to t(".task_list"), [:tasks, @project, :sections], :class => section_is_tasks? ? "selected" : nil %>
+        <%= link_to t(".archive"), [:archived, @project, :sections], :class => section_is_archive? ? "selected" : nil %>
       </span>
     </nav>
   <% end %>
@@ -70,7 +70,7 @@
   	      <% @project.sections.unarchived.each do |section| %>
   	        <%= content_tag_for(:li, section) do %>
               <%= new_section_link section %>
-              <%= link_to section.name, section, :class => "link " + (@section == section && "selected").to_s %>
+              <%= link_to section.name, section, :class => "link " + (@section == section ? "selected" : nil).to_s %>
               <input type="button" class="drag" title="<%=t :dnd %>" />
             <% end %>
           <% end %>
