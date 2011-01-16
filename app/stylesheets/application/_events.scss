@@ -10,7 +10,7 @@
   }
 
   span {
-    @include border-radius(0, 5px, 5px, 0);
+    @include border-radius(0 5px 5px 0);
     color: #fff;
     display: block;
     padding: 5px;
