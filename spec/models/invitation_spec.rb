@@ -15,7 +15,7 @@ describe Invitation do
   it { should_not allow_value('some@domain').for(:email) }
   it { should allow_value('some@domain.com').for(:email) }
 
-  it "should not allow user who already is in this account to be added twice" do
+  it "not allowing user, who is already in this account to be added" do
     account_user = Factory(:account_user)
     invitation   = Factory.build(:invitation, :account => account_user.account, :email => account_user.user.email)
 
@@ -24,32 +24,28 @@ describe Invitation do
     invitation.errors[:email].first.should == I18n.t("activerecord.errors.invitations.account_exists")
   end
 
-  describe "#full_name" do
-    it "should be first_name + last_name" do
-      invitation = Factory.build(:invitation, {:first_name => 'Radoslav', :last_name => 'Stankov'})
-      invitation.full_name.should == "Radoslav Stankov"
-    end
+  it "provides user's full_name" do
+    invitation = Factory.build(:invitation, {:first_name => 'Radoslav', :last_name => 'Stankov'})
+    invitation.full_name.should == "Radoslav Stankov"
   end
 
-  describe "#generate_token" do
-    it "should be genereated of sha1 of [invitation-token-{Time.now}-{email}-{rand(100)}]" do
-      invate = Factory.build(:invitation)
-      invate.stub(:rand).with(100).and_return 5
-      invate.save.should be_true
-      invate.should_not be_new_record
-      invate.token.should == Digest::SHA1.hexdigest("[invitation-token-#{Time.now}-#{invate.email}-5]")
-    end
+  it "generates token" do
+    invate = Factory.build(:invitation)
+    invate.stub(:rand).with(100).and_return 5
+    invate.save.should be_true
+    invate.should_not be_new_record
+    invate.token.should == Digest::SHA1.hexdigest("[invitation-token-#{Time.now}-#{invate.email}-5]")
   end
 
   describe "#user" do
-    it "should return a user with same e-mail as the invitation e-mail" do
+    it "returns a user with same e-mail as the invitation e-mail" do
       invitation = Factory(:invitation, :email => "same@email34343.com")
       user = Factory(:user, :email => invitation.email)
 
       invitation.user.should == user
     end
 
-    it "should memorize it's value" do
+    it "memorizes it's value" do
       invitation = Factory(:invitation)
       invitation.user.first_name = "some name"
       invitation.user.first_name.should == "some name"
@@ -58,12 +54,12 @@ describe Invitation do
       invitation.user.full_name == "some name other name"
     end
 
-    it "should return new user if user with invitation e-mail doesn't exits" do
+    it "returns new user if user with invitation e-mail doesn't exits" do
       invitation = Factory(:invitation)
       invitation.user.should be_new_record
     end
 
-    it "should pre populate new user with inviations email, first_name, last_name" do
+    it "pre populates new user with inviations email, first_name, last_name" do
       invitation = Factory(:invitation, :first_name => "inviation.first_name", :last_name => "inviation.last_name")
       invitation.user.email.should == invitation.email
       invitation.user.first_name.should == "inviation.first_name"
@@ -72,13 +68,13 @@ describe Invitation do
   end
 
   describe "#accept" do
-    it "should use Invitation#user method" do
+    it "uses Invitation#user method" do
       invitation = Factory(:invitation)
       invitation.should_receive(:user).at_least(1).times.and_return User.new
       invitation.accept({})
     end
 
-    it "should accept hash of :password, :password_confirmation, :locale, :avatar (for new_user)" do
+    it "accepts hash of :password, :password_confirmation, :locale, :avatar (for new_user)" do
       invitation = Factory(:invitation)
 
       invitation.accept(:first_name => "no first", :last_name => "no last", :password => "password", :password_confirmation => "password_confirmation", :locale => "locale", :avatar => "avatar")
@@ -89,7 +85,7 @@ describe Invitation do
       invitation.user.last_name.should_not == "no last"
     end
 
-    it "should return false if user is invalid" do
+    it "returns false if user is invalid" do
       invitation = Factory(:invitation)
       invitation.stub(:user).and_return user = Factory.build(:user)
       user.should_receive(:save).and_return false
@@ -97,7 +93,7 @@ describe Invitation do
       invitation.accept({}).should be_false
     end
 
-    it "should return true if user is created succesfully" do
+    it "returns true if user is created succesfully" do
       invitation = Factory(:invitation)
 
       invitation.user.should be_new_record
@@ -105,7 +101,7 @@ describe Invitation do
       invitation.user.should_not be_new_record
     end
 
-    it "should return false if user is existing user, and password is invalid" do
+    it "returns false if user is existing user, and password is invalid" do
        invitation = Factory(:invitation)
        invitation.stub(:user).and_return user = Factory(:user)
 
@@ -113,7 +109,7 @@ describe Invitation do
        invitation.accept(:password => 23242).should be_false
     end
 
-    it "should return true if user is existing, and password is valid" do
+    it "returns true if user is existing, and password is valid" do
       invitation = Factory(:invitation)
       invitation.stub(:user).and_return user = Factory(:user)
 
@@ -122,14 +118,14 @@ describe Invitation do
       invitation.accept(:password => "valid").should be_true
     end
 
-    it "should connect newly created user with invitation account" do
+    it "connects newly created user with invitation account" do
       invitation = Factory(:invitation)
       invitation.accept(Factory.attributes_for(:user)).should be_true
 
       AccountUser.find_by_account_id_and_user_id(invitation.account_id, invitation.user.id).should_not be_nil
     end
 
-    it "should delete this invitation if user attributes are valid" do
+    it "deletes this invitation if user attributes are valid" do
       invitation = Factory(:invitation)
 
       invitation.accept({}).should be_false
