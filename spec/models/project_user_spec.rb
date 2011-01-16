@@ -10,7 +10,7 @@ describe ProjectUser do
   it { Factory(:project_user).should validate_uniqueness_of(:user_id).scoped_to(:project_id) }
 
   describe "#event_seen!" do
-    it "should last_seen_event_at column with current time" do
+    it "sets last_seen_event_at column with current time" do
       user = Factory.build :project_user
       user.last_seen_event_at.try(:time).to_s.should_not == user.send(:current_time_from_proper_timezone).to_s
       user.event_seen!
@@ -19,7 +19,7 @@ describe ProjectUser do
   end
 
   describe "#unseen_events" do
-    it "should call Event#unseen_from with self" do
+    it "calls Event#unseen_from with self" do
       project_user = ProjectUser.new
       Event.should_receive(:unseen_from).with(project_user).and_return "data-returned-from-fetching"
       project_user.unseen_events.should == "data-returned-from-fetching"
