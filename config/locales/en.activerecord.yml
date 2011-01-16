@@ -17,7 +17,7 @@ en:
             account_id: "Account"
 
           section:
-            name: "Tasklist name"
+            name: "Name"
             position: "Position"
             text: "Description"
 
