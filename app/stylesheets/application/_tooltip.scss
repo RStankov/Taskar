@@ -1,0 +1,99 @@
+.tooltip {
+  z-index: 4;
+  position: absolute;
+
+
+  div {
+    @include box-shadow(rgba(0, 0, 0, 0.5), 0, 2px, 10px);
+  }
+
+  .arrow {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #000;
+    border: 1px solid #000;
+    @include transform-origin(center);
+    @include rotate(45deg);
+  }
+
+  a {
+    text-decoration: none;
+    padding-right: 5px;
+    color: #fff;
+    display: block;
+  }
+
+  a:hover {
+    color: #00589D;
+  }
+}
+
+.tooltip .actions, .tooltip_actions {
+  position: relative;
+  background-color: #000;
+  @include border-radius(5px);
+  padding: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.tooltip_actions {
+  padding-right: 20px;
+}
+
+.insert_at {
+  z-index: 4;
+  display: none;
+  color: #eee;
+  padding: 5px 10px;
+  background: #000;
+  font-size: 12px;
+  position: absolute;
+  bottom: -12px;
+  min-width: 80px;
+  @include box-shadow(rgba(0, 0, 0, 0.5), 0, 2px, 10px);
+
+  .pointer {
+    position: absolute;
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    background: #000;
+    border: 1px solid #000;
+    @include transform-origin(center);
+    @include rotate(45deg);
+    @include box-shadow(rgba(0, 0, 0, 0.5), 0, 2px, 10px);
+  }
+}
+
+.window {
+  width: 400px;
+  z-index: 5;
+  position: absolute;
+  @include box-shadow(rgba(0, 0, 0, 0.5), 0, 2px, 10px);
+  @include border-radius(10px);
+  border: 4px solid #000;
+
+  .arrow {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #000;
+    border: 1px solid #000;
+    @include transform-origin(center);
+    @include rotate(45deg);
+    right: 10px;
+    top: -10px;
+  }
+}
+
+#info_bubble {
+  position: absolute;
+  background: #000;
+  padding: 10px;
+  color: #fff;
+  font-size: 10px;
+  @include border-radius(5px);
+}

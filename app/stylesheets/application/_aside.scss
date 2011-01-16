@@ -1,0 +1,348 @@
+
+aside {
+  background-color: #eee;
+  @include border-radius(0 10px 10px 0);
+  display: table-cell;
+  padding: 10px;
+  vertical-align: top;
+  width: 220px;
+
+  h3 {
+    border-top: 1px solid #D7D7D7;
+    font-size: 14px;
+    font-weight: normal;
+    margin: 0;
+    padding: 5px 0 10px;
+    text-shadow: 0 -1px #fff, 1px 0 #fff, 0 1px #fff, -1px 0 #fff;
+  }
+
+  section h3 {
+    border-top: none;
+    border-bottom: 1px solid #D7D7D7;
+  }
+
+  section ul {
+    margin: 0;
+    padding: 10px 20px;
+    list-style: circle;
+  }
+
+  section .title {
+    list-style: none;
+    margin-left: -20px;
+    padding: 5px 0;
+  }
+
+  section a {
+    font-size: 12px;
+    text-decoration: none;
+  }
+
+  section a:hover {
+    text-decoration: underline;
+    color: #000;
+  }
+}
+
+#sections {
+  ul {
+    margin-left: -10px;
+  }
+
+  li {
+    position: relative;
+  }
+
+  li:hover .drag {
+    display: block;
+  }
+
+  h3 a {
+    display: inline-block;
+    float: right;
+    text-align: center;
+    text-decoration: none;
+    font-family: tahoma, verdana,  arial, sans-serif;
+    font-size: 14px;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #b7b7b7;
+    @include border-radius(4px);
+    margin-right: 5px;
+
+    a:hover {
+      color: #375185;
+      background: #eeeeee;
+      @include linear-gradient(color-stops(#eeeeee, #d7d7d7), top);
+      @include box-shadow(#d7d7d7, 0, 0, 3px);
+    }
+
+    a:active {
+      background: #d7d7d7;
+      @include linear-gradient(color-stops(#d7d7d7, #eeeeee), top);
+    }
+  }
+
+  .link {
+    display: block;
+    font-size: 12px;
+    text-decoration: none;
+    @include border-radius(0, 4px, 4px, 0);
+    padding: 5px 20px;
+    margin-bottom: 4px;
+  }
+
+  li:hover .link, .selected {
+    color: #eee;
+    background: #5C5C5C;
+  }
+
+  .hover {
+    color: #eee;
+    background: #4564A3;
+  }
+
+  .add_section {
+    height: 5px;
+    width: 20px;
+    display: block;
+    padding: 0px;
+    position: absolute;
+    top: -4px;
+  }
+
+  .insert_at {
+    display: none;
+  }
+
+  .add_section:hover .insert_at {
+    display: block;
+    -webkit-animation-name: bounce-scale;
+    -webkit-animation-duration: 0.1s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-transform-origin: top right;
+  }
+
+  .add_section .insert_at {
+    left: -100px;
+    @include border-radius(10px 4px 4px 10px);
+    @include transform-origin(top right);
+  }
+
+  .add_section .pointer {
+    right: -6px;
+  }
+
+  .drag {
+    top: 5px;
+    right: 5px;
+    background: url(../images/sprite.png) 0px -398px no-repeat;
+    display: none;
+    height: 16px;
+    width: 16px;
+    position: absolute;
+    cursor: move;
+  }
+
+  .drag:hover {
+    background-position: 0px -414px;
+  }
+}
+
+#new_section {
+  margin: 5px 0px 5px 10px;
+  padding: 10px;
+  @include border-radius(5px);
+  border: 1px solid #D7D7D7;
+  font-size: 12px;
+  background: #eeeeee;
+  @include linear-gradient(color-stops(#eeeeee, #d7d7d7), top);
+
+  input[type=text] {
+    display: block;
+    margin: 5px 0;
+    width: 160px;
+    border: 1px solid #b7b7b7;
+    @include border-radius(5px);
+    font-size: 12px;
+    padding: 4px 25px 4px 10px;
+  }
+
+  input[type="button"]:hover, input[type="button"]:focus {
+    color: #ff0000;
+    text-decoration: underline;
+  }
+
+  label {
+    font-weight: bold;
+    text-shadow: #fff 1px 1px 1px;
+  }
+}
+
+#live_search {
+  position: relative;
+  margin-bottom: 20px;
+
+  input[type="text"] {
+    border: 1px solid #d7d7d7;
+    @include border-radius(10px);
+    font-size: 12px;
+    padding: 4px 25px 4px 10px;
+    width: 190px;
+    background: #fff;
+  }
+
+  input[type="text"]:hover {
+    border-color: #b7b7b7;
+  }
+
+  input[type="text"]:focus {
+    border-color: #008fff;
+    @include box-shadow(#999, 0px, 0px, 4px);
+    outline: none;
+  }
+
+  input[type="submit"] {
+    background: url(../images/sprite.png) 0 -430px no-repeat;
+    border: 0;
+    position: absolute;
+    right: 4px;
+    top: 6px;
+    width: 15px;
+    height: 14px;
+  }
+
+  input[type="submit"]:hover, input[type="submit"]:focus {
+    background-position: 0 -446px;
+  }
+
+  img {
+    position: absolute;
+    right: 4px;
+    top: 5px;
+  }
+
+  ul {
+    background-color: #fff;
+    @include border-radius(10px);
+    @include box-shadow(#aeaeae, 0, 5px, 5px);
+    font-size: 12px;
+    padding: 5%;
+    position: absolute;
+    width: 90%;
+    z-index: 2;
+  }
+
+  a {
+    color: #333;
+    text-decoration: none;
+  }
+
+  li {
+    padding: 5px;
+    @include border-radius(5px);
+  }
+
+  .selected {
+    background-color: #eee;
+  }
+
+  strong {
+    color: #00589d;
+  }
+}
+
+#user_card {
+  font-size: 12px;
+  height: 50px;
+  padding: 5px;
+  margin-top: -10px;
+  margin-bottom: 5px;
+  position: relative;
+
+  a {
+    color: #5C5C5C;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: #00589d;
+  }
+
+  img {
+    float: left;
+    margin-right: 10px;
+    border: 1px solid #C4C4C4;
+    cursor: pointer;
+  }
+
+  img:hover {
+    @include box-shadow(rgba(0, 0, 0, 0.2), 0, 2px, 4px);
+  }
+
+  strong {
+    font-size: 14px;
+    font-weight: normal;
+    margin: 0;
+    display: block;
+    text-shadow: 0 -1px #fff, 1px 0 #fff, 0 1px #fff, -1px 0 #fff;
+  }
+}
+
+#new_status {
+  right: 0px;
+  bottom: -25px;
+  z-index: 3;
+
+  .arrow {
+    right: 185px;
+    top: 4px;
+  }
+
+  section {
+    position: absolute;
+    right: 0px;
+    padding: 10px;
+    @include border-radius(10px);
+    background-color: #eee;
+    border: 4px solid #000;
+  }
+
+  textarea {
+    height: 60px;
+    width: 332px;
+  }
+}
+
+#people_envolved {
+  .people_info {
+    font-size: 11px;
+  }
+
+  p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    white-space: nowrap;
+    height: 20px;
+    width: 180px;
+  }
+
+  strong {
+    display: block;
+    font-size: 12px;
+    padding-bottom: 2px;
+  }
+
+  li {
+    height: 42px;
+    line-height: 10px;
+  }
+
+  img {
+    float: left;
+    margin-right: 10px;
+    max-width: 32px;
+    border: 1px solid #ccc;
+  }
+}

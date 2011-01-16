@@ -1,0 +1,15 @@
+#changes {
+  width: 800px;
+
+  #events {
+    margin-bottom: 20px;
+  }
+
+   #events td:first-child {
+    width: 80px;
+
+    span {
+      background-color: #00589D;
+    }
+  }
+}

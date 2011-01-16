@@ -1,4 +1,3 @@
-
 #sections_index h1, #statuses_index h1 {
   background: url(../images/sprite.png) 0px -192px no-repeat;
 }
@@ -41,4 +40,14 @@
 
 #account_title {
 	background: url(../images/sprite.png) 0px -518px no-repeat;
+}
+
+#section_title {
+  a {
+    float: none;
+  }
+
+  h1:hover .archive, h1:hover .unarchive {
+    display: inline-block;
+  }
 }

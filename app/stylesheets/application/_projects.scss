@@ -1,0 +1,71 @@
+
+h2.statistics {
+  font-size: 16px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.tasks_stats {
+  float: left;
+  width: 148px;
+  height: 170px;
+  border: 4px solid #fff;
+  overflow: hidden;
+  padding: 4px;
+  @include border-radius(15px);
+  margin: 5px;
+  @include transition(all, 0.2s, ease-out);
+  @include box-shadow(inset 0, 0, 0, 1px #eee);
+  background: #fff;
+  opacity: 0.8;
+  text-align: center;
+  position: relative;
+
+  a {
+    text-decoration: none;
+  }
+
+  span {
+    display: block;
+    position: absolute;
+    bottom: 10px;
+    left: 0px;
+    right: 0px;
+  }
+
+  strong {
+    font-size: 22px;
+    display: block;
+    padding: 30px 0;
+  }
+
+  ul {
+    display: none;
+  }
+
+  small {
+    @include rotate(45deg);
+    @include translate(25px, -10px);
+    @include box-shadow(#fff, inset 0, 0, 0, 1px);
+    @include linear-gradient(color-stops(#aa0000, #cc0000), top);
+  	text-shadow: 0px 1px 10px #000;
+  	font-size: 10px;
+  	border: 1px solid #CC0000;
+  	display: block;
+  	padding: 4px;
+  	color: #fff;
+  	font-weight: bold;
+  	text-align: center;
+  	width: 80px;
+  	position: absolute;
+  	top: 0px;
+  	right: 0px;
+  }
+}
+
+.tasks_stats:hover {
+  border-color: #eee;
+  opacity: 1;
+  @include scale(1.1);
+}

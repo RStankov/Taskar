@@ -1,0 +1,61 @@
+h1 {
+  font-size: 18px;
+  padding-top: 3px;
+  padding-left: 35px;
+  vertical-align: middle;
+  height: 30px;
+  overflow: hidden;
+}
+
+section header {
+  @include border-top-left-radius(5px);
+  @include box-shadow(#888, 0, 10px, 10px, -10px);
+  padding: 15px 10px 0px 20px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+header {
+  .actions {
+    position: absolute;
+    right: 14px;
+    top: 14px;
+
+    li {
+      display: inline-block;
+    }
+
+    a {
+      text-decoration: none;
+      background-color: #d9d9d9;
+      @include linear-gradient(color-stops(#ffffff, #d9d9d9), top);
+      text-shadow: 1px 1px 1px #fff;
+      color: #000;
+      font-size: 14px;
+      padding: 5px;
+      @include border-radius(5px);
+      border: 1px solid #B3B3B3;
+    }
+
+    a:hover, a:focus {
+      background-color: #ececec;
+      @include linear-gradient(color-stops(#ffffff, #ececec), top);
+      margin: 0px;
+    }
+
+    a:active {
+      @include box-shadow(#00589d, 0px, 0px, 2px);
+    }
+  }
+
+  .tooltip {
+    display: none;
+  }
+}
+
+header:hover .tooltip {
+  display: block;
+  -webkit-animation-name: bounce-scale;
+  -webkit-animation-duration: 0.2s;
+  -webkit-animation-iteration-count: 1;
+}

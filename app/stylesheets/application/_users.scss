@@ -1,0 +1,57 @@
+
+#users_list {
+  li {
+    display: inline-block;
+    margin: 1px 11px 1px 1px;
+    padding: 10px;
+    height: 45px;
+    width: 300px;
+    float: left;
+    @include border-radius(5px);
+    line-height: 98%;
+  }
+
+  li:hover {
+    margin: 0px 10px 0 0;
+    border: 1px solid #eee;
+    @include box-shadow(#888, 0px 10px 10px -10px);
+  }
+
+  img {
+    float: left;
+    border-right: 1px dashed #ddd;
+    padding-right: 5px;
+    margin-right: 5px;
+  }
+
+  em {
+    font-size: 10px;
+    color: #CC0000;
+  }
+}
+
+#invitations_list {
+  li {
+    display: inline-block;
+    padding: 10px;
+    height: 30px;
+    display: block;
+    @include border-radius(5px);
+    border: 1px solid #eee;
+    margin-bottom: 10px;
+  }
+
+  li:hover em {
+    display: block;
+  }
+
+  em {
+    display: none;
+    font-size: 10px;
+    text-align: right;
+  }
+
+  a {
+    color: #CC0000;
+  }
+}

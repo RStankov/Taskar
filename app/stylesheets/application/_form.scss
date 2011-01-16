@@ -1,0 +1,99 @@
+.action_form {
+  clear: both;
+  padding: 13px 15px;
+  position: relative;
+  background-color: #eee;
+  font-size: 14px;
+  @include border-radius(4px);
+
+  label {
+    text-shadow: #fff 1px 1px 1px;
+    color: #5C5C5C;
+  }
+
+  h3 {
+    text-shadow: #fff 1px 1px 1px;
+    color: #5C5C5C;
+    margin: 10px 0 10px 0;
+  }
+
+  textarea {
+    display: block;
+    width: 100%;
+    height: 100px;
+    margin: 10px 0 10px 0;
+    font-size: 14px;
+  }
+
+  .buttons {
+    border-top: 1px dashed #C3C3C3;
+    padding-top: 10px;
+    margin-top: 10px;
+    color: #5C5C5C;
+    font-size: 12;
+  }
+
+  input[type="text"], input[type="password"] {
+    display: block;
+    width: 300px;
+  }
+
+  select {
+    width: 150px;
+  }
+
+  input[type="submit"], .submit_button {
+    color: #fff;
+    border: 1px solid #135F9F;
+    @include border-radius(5px);
+    background: #1977c0;
+    @include linear-gradient(color-stops(#76b7ef, #135f9f), top);
+    font-size: 12px;
+    text-shadow: rgba(0, 0, 0, 0.496094) 0px -1px 0px;
+    padding: 4px 8px;
+    margin-right: 5px;
+  }
+
+  input[type="submit"]:hover, input[type="submit"]:focus, .submit_button:hover {
+    border: 1px solid #002E52;
+    outline: none;
+    @include box-shadow(rgba(0, 0, 0, 0.5), 0, 0, 2px);
+  }
+
+  input[type="submit"]:active, .submit_button:active {
+    background: #1977c0;
+    @include linear-gradient(color-stops(#00589d, #1977c0), top);
+  }
+
+  .cancel {
+    font-size: 12px;
+    margin-left: 5px;
+    padding: 0;
+    color: #F00;
+    text-decoration: none;
+  }
+
+  .cancel:hover, .cancel:focus {
+    text-decoration: underline;
+    color: #FF0000;
+  }
+}
+
+.error_messages {
+  border-bottom: 1px dashed red;
+  margin-bottom: 10px;
+  padding: 10px;
+  color: #CC0000;
+  font-size: 12px;
+}
+
+.field_with_errors {
+  textarea, input, select {
+    border: 2px solid #ff9999;
+  }
+}
+
+.action_form.loading .buttons {
+  text-indent: -1000px;
+  background: url(/images/loaders/action_form.gif) 0px 15px no-repeat;
+}

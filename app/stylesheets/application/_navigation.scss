@@ -113,7 +113,8 @@
       -webkit-box-shadow: #33588B 0px 0px 1px 1px inset, rgba(255, 255, 255, 0.246094) 0px 1px 0px 0px;
       box-shadow: #33588B 0px 0px 1px 1px inset, rgba(255, 255, 255, 0.246094) 0px 1px 0px 0px;
       border: 1px solid #000;
-      @include linear-gradient(color-stops(#3B547E, #243455), top);
+      background: #3b547e;
+      @include linear-gradient(color-stops(#3b547e, #243455), top);
       color: #eee;
       text-decoration: none;
       font-weight: normal;

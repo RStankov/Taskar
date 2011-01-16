@@ -1,0 +1,380 @@
+
+.tasks_list {
+  padding: 0 20px;
+  color: #3d3d3d;
+
+  .task {
+    position: relative;
+    font-size: 12px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .rejected p span, .completed p span, .rejected .archive, .completed .archive {
+    opacity: 0.6;
+  }
+
+  .tasks_list .rejected p span {
+    text-decoration: line-through;
+  }
+}
+
+.task {
+  .drag {
+    background: url(../images/sprite.png) 0px -598px no-repeat;
+    height: 20px;
+    width: 5px;
+    position: absolute;
+    left: 5px;
+    top: 7px;
+    opacity: 0.5;
+    cursor: move;
+  }
+
+  .drag:hover {
+    opacity: 1.0;
+  }
+
+  .add {
+    display: block;
+    width: 20px;
+    height: 10px;
+    bottom: 0px;
+    position: absolute;
+    text-decoration: none;
+  }
+
+  .add:hover .insert_at {
+    display: block;
+    -webkit-animation-name: bounce-scale;
+    -webkit-animation-duration: 0.2s;
+    -webkit-animation-iteration-count: 1;
+  }
+}
+
+.task_wrapper {
+  padding: 8px;
+
+  strong {
+    font-size: 10px;
+    font-weight: normal;
+    text-decoration: none;
+    padding: 2px 8px;
+    @include border-radius(10px 0 0 10px);
+    background: #eee;
+    color: #858585;
+    white-space: nowrap;
+    float: right;
+  }
+}
+
+.task_wrapper:hover, .task_wrapper.with_form {
+  background-color: #ECF3FE;
+}
+
+.task.dragging {
+  opacity: 0.8;
+  background-color: #ECF3FE;
+}
+
+.dragging .tooltip, .dragging .add, .static .add, .static .drag {
+  visibility: hidden;
+}
+
+.task_short_text {
+  margin: 2px 0px 0 30px;
+}
+
+
+@media all and (max-width:1199px){
+  .task .tooltip {
+    right: -135px;
+    top: -2px;
+    display: none;
+    min-width: 130px;
+  }
+
+  .task .arrow {
+    left: -5px;
+    top: 8px;
+  }
+
+  .task_tooltip:hover .tooltip {
+    display: block;
+    -webkit-animation-name: bounce-scale;
+    -webkit-animation-duration: 0.2s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-transform-origin: top left;
+  }
+
+  .task .add {
+    right: -20px;
+  }
+
+  .task .insert_at {
+    right: -100px;
+    @include border-radius(4px 10px 10px 4px);
+    @include transform-origin(top left);
+  }
+
+  .task .insert_at .pointer {
+    left: -6px;
+  }
+
+  header:hover .tooltip {
+    -webkit-transform-origin: top left;
+  }
+
+  header .tooltip {
+    z-index: 4;
+    right: -74px;
+    top: 10px;
+  }
+
+  header .arrow {
+    left: -5px;
+    top: 7px;
+  }
+}
+
+@media all and (min-width:1200px){
+  .task .tooltip {
+    left: -136px;
+    top: -3px;
+    display: none;
+    min-width: 130px;
+  }
+
+  .task .arrow {
+    right: -5px;
+    top: 8px;
+  }
+
+  .task_tooltip:hover .tooltip {
+    display: block;
+    -webkit-animation-name: bounce-scale;
+    -webkit-animation-duration: 0.2s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-transform-origin: top right;
+  }
+
+  .task .add {
+    left: -20px;
+  }
+
+  .task .insert_at {
+    left: -100px;
+    @include border-radius(10px 4px 4px 10px);
+    @include transform-origin(top right);
+  }
+
+  .insert_at .pointer {
+    right: -6px;
+  }
+
+  header:hover .tooltip {
+    @include transform-origin(top right);
+  }
+
+  header .tooltip {
+    left: -94px;
+    top: 10px;
+  }
+
+  header .arrow {
+    right: -5px;
+    top: 7px;
+  }
+}
+
+.checkbox {
+  @include border-radius(4px);
+  color: #eee;
+  cursor: pointer;
+  display: inline-block;
+  height: 16px;
+  width: 16px;
+  position: absolute;
+  top: 7px;
+  left: 16px;
+  border: 1px solid #C7C7C7;
+  background: url(../images/sprite.png) 0px -550px no-repeat;
+}
+
+.checkbox:hover {
+  @include box-shadow(#5c5c5c, 0, 0, 1px);
+}
+
+.checkbox:active {
+  @include box-shadow(#5c5c5c, inset 0, 0, 1px);
+}
+
+.checkbox.completed {
+  border: 1px solid #135F9F;
+  background-color: #135F9F;
+  background-position: 0px -566px;
+}
+
+.checkbox.rejected {
+  border: 1px solid #135F9F;
+  background-color: #135F9F;
+  background-position: 0px -582px;
+}
+
+.personal strong {
+  margin-left: 5px;
+  color: #fff;
+  background: #9FBEDC;
+  text-shadow: #6B9BC5 1px 0px 0px;
+}
+
+.opened .archive {
+  display: none;
+}
+
+.completed .archive, .rejected .archive {
+  display: inline-block;
+}
+
+.archive {
+  width: 15px;
+  height: 13px;
+  background: url(../images/sprite.png) 0px -489px no-repeat;
+}
+
+.archive:hover {
+  background-position: -0px -476px;
+}
+
+#archived_tasks {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #eee;
+
+  .checkbox {
+    opacity: 0.6;
+  }
+}
+
+#archived_tasks .task .edit, .task.completed .edit, .task.rejected .edit {
+  display: none;
+}
+
+#archived_tasks .archive, .archived .archive, .unarchive {
+  display: inline-block;
+  background-position: 0px -462px;
+}
+
+#archived_tasks .archive:hover, .archived .archive:hover, .unarchive:hover {
+  background-position: 0px -503px;
+}
+
+#archived_tasks_empty {
+  font-size: 14px;
+  color: #5C5C5C;
+}
+
+
+
+.task {
+  position: relative;
+}
+
+.task_text {
+  position: relative;
+  padding: 6px 10px 10px 30px;
+  font-size: 16px;
+  background-color: #ECF3FE;
+  @include border-radius(2px);
+  text-shadow: white 1px 1px 1px;
+}
+
+.task_text .checkbox {
+  left: 7px;
+  top: 7px;
+}
+
+.task_description {
+  padding-top: 10px;
+  padding-bottom: 15px;
+  font-size: 10px;
+  text-align: right;
+  color: gray;
+}
+
+#comments h3 {
+  background:  url(../images/sprite.png) 0px -352px no-repeat;
+  padding-left: 35px;
+  margin-bottom: 13px;
+  height: 23px;
+}
+
+.comment {
+  position: relative;
+  border-top: 1px solid #C3C3C3;
+  padding: 10px;
+  clear: both;
+
+  a {
+    text-decoration: none;
+    color: #5C5C5C;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  img {
+  	float: left;
+  	margin: 0 10px 10px 0;
+  	border: 1px solid #eee;
+  	padding: 4px;
+  }
+
+  > div {
+  	margin-left: 75px;
+  }
+
+  time {
+    float: right;
+    font-size: 10px;
+    font-weight: normal;
+  }
+
+  .actions {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    font-size: 12px;
+    padding: 5px;
+    background-color: #fd7;
+    @include border-radius(0 0 5px 5px);
+  }
+
+  .edit, .delete {
+    padding: 3px;
+    @include border-radius(5px);
+  }
+
+  .edit:hover {
+    color: #014577;
+  }
+
+  .delete:hover {
+    color: #FF0000;
+  }
+
+  p {
+    font-size: 14px;
+  }
+}
+
+#new_comment_label {
+  background:  url(../images/sprite.png) 0px -375px no-repeat;
+  padding: 4px 0 0 40px;
+  height: 23px;
+  font-size: 16px;
+}
+
+#new_comment textarea, .comment textarea {
+  height: 150px;
+}

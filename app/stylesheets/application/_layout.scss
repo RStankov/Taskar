@@ -1,0 +1,102 @@
+
+body > header {
+  @include box-shadow(#000, -5px, 0, 5px);
+  color: #eee;
+  text-shadow: 0px 1px 0px #000;
+  margin-bottom: 20px;
+  padding-top: 5px;
+  height: 28px;
+  background: #243455;
+  @include linear-gradient(color-stops(#3b547e, #243455), top);
+  border-bottom: 1px solid #4E5B65;
+  text-align: center;
+  min-width: 950px;
+	position: relative;
+
+	h2 {
+    display: inline-block;
+    font-weight: normal;
+    font-size: 16px;
+  	left: 10px;
+  	position: absolute;
+  }
+}
+
+body > section {
+  display: table;
+  margin: 15px auto;
+  min-height: 200px;
+  width: 980px;
+  @include box-shadow(rgba(0, 0, 0, 0.496094), 0, 1px, 2px);
+  @include border-radius(10px);
+}
+
+article {
+  background-color: #fff;
+  @include border-radius(10px 0 0 10px);
+  display: table-cell;
+  padding-bottom: 20px;
+  vertical-align: top;
+	height: 550px;
+  font-family: verdana, 'Helvetica', arial, tahoma, sans-serif;
+}
+
+#user_box {
+  form {
+    margin: 20px;
+  }
+
+  input[type="text"], input[type="password"], select {
+    font-size: 18px;
+    width: 98%;
+    margin: 10px 0 10px 0;
+  }
+
+  input[type="file"] {
+  	width: 98%;
+    margin: 10px 0 10px 0;
+  }
+
+  input[type="submit"] {
+    padding: 5px 20px;
+    font-size: 14px;
+  }
+}
+
+.bottom_links {
+  border-top: 1px solid #eee;
+  padding: 20px;
+  height: 18px;
+
+  li {
+    float: left;
+    padding-right: 5px;
+  }
+
+  a {
+    color: #000;
+    text-decoration: none;
+    margin-right: 5px;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+}
+
+#outside_box {
+	@include border-radius(5px);
+	background-color:#FFFFFF;
+	font-size: 14px;
+	width: 500px;
+	margin: 25px auto 30px;
+
+  h1 {
+    text-align: center;
+    padding: 0px;
+  }
+
+	.wrap {
+    margin-top: 20px;
+  }
+}
