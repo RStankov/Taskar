@@ -24,6 +24,7 @@ group :development do
 end
 
 group :test do
+  gem "cucumber-rails"
   gem "webrat", "~>0.7.1"
   gem "autotest", "~>4.3.2"
   gem "rspec-rails", "2.0.1"
