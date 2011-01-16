@@ -1,7 +1,7 @@
 Feature: Manage projects
-  In order to be able to work on my projects
-  As stakeholder
-  I want to manage my projects
+  In order to be more organized
+  As user
+  I want to be able to create and manage projects
   
   Scenario: Create new project
     Given I am "Jack Jones" owner of "Baker shop" account
