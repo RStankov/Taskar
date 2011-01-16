@@ -8,6 +8,6 @@
         <%=t :or %>
         <input type="button" value="<%= t :cancel %>" class="cancel">
       </p>
-      <input type="hidden" name="issue[url]" value="<%= request.request_uri %>">
+      <input type="hidden" name="issue[url]" value="<%= request.fullpath %>">
   <% end %>
 </div>
