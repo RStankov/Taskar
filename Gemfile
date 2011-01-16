@@ -25,7 +25,12 @@ end
 
 group :test do
   gem "cucumber-rails"
-  gem "webrat", "~>0.7.1"
+  gem "cucumber"
+  gem "capybara", "0.3.9"
+  gem "selenium-webdriver", "0.0.24"
+  gem "webrat"
+  gem "database_cleaner"
+  gem "launchy"
   gem "autotest", "~>4.3.2"
   gem "rspec-rails", "2.0.1"
   gem "rcov", ">=0.9.9"
