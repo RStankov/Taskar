@@ -32,12 +32,12 @@ en:
       title_projects: ": Projects"
       title_users: ": Users"
       users: "Users (%{count})"
-      new_user: "create user"
-      manage_users: "Menage"
+      new_user: "Create user"
+      manage_users: "Manage"
       current_projects: "Active projects (%{count})"
       project_settings: "setting"
       new_project: "Create new project"
-      manage_projects: "All projects"
+      manage_projects: "Show all projects"
 
     sections:
       dashboard: "Dashboard"
