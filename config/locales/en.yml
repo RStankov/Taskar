@@ -112,7 +112,7 @@ en:
       remove_admin: "Administrators could not be deleted."
 
   sections:
-    new_section: "Create tasklist"
+    new_section: "Create task list"
     edit_section: "Edit tasklist"
     empty_archive: "There aren't any archived tasklists.<br />To archive the tasklist, first archive all tasks in it. <br />And then click the archive button, next to the tasklist name."
     index:
