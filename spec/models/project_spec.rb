@@ -16,23 +16,21 @@ describe Project do
   it { should belong_to(:account) }
 
   describe "#involves?" do
-    before do
-      @project = Factory(:project)
-      @user    = Factory(:user)
+    let(:project){ Factory(:project) }
+    let(:user){ Factory(:user) }
+
+    it "returns true if user is involved in the project" do
+      project.users << user
+      project.involves?(user).should be_true
     end
 
-    it "should return true if user is involved in the project" do
-      @project.users << @user
-      @project.involves?(@user).should be_true
-    end
-
-    it "should return false if user is not involved in the project" do
-      @project.involves?(@user).should be_false
+    it "returns false if user is not involved in the project" do
+      project.involves?(user).should be_false
     end
   end
 
   describe "#user_ids" do
-    it "should allow users from project account to be project participents" do
+    it "allows users from project account to be project participents" do
       account = Factory(:account)
       user_ids = (1..3).map { Factory(:user) }.map &:id
 
@@ -42,18 +40,18 @@ describe Project do
 
       project = Factory(:project, :account => account, :user_ids => user_ids)
       project.should_not be_new_record
-      project.users.count.should == 3
+      project.should have(3).users
     end
 
-    it "should not allow users from other accounts to be added to project participents" do
+    it "don't allow users from other accounts to be added to project participents" do
       user_ids = (1..3).map { Factory(:user) }.map &:id
 
       project = Factory(:project, :user_ids => user_ids)
       project.should_not be_new_record
-      project.users.count.should == 0
+      project.should have(0).users
     end
 
-    it "should allow only user from project account and reject the others" do
+    it "allows only user from project account and reject the others" do
       account = Factory(:account)
       account_user_ids = (1..2).map { Factory(:user) }.map &:id
 
@@ -65,7 +63,7 @@ describe Project do
 
       project = Factory(:project, :account => account, :user_ids => (user_ids + account_user_ids).shuffle)
       project.should_not be_new_record
-      project.users.count.should == 2
+      project.should have(2).users
     end
   end
 end
