@@ -95,6 +95,7 @@ describe Accounts::ProjectsController do
           end
 
           it { should assign_to(:project).with(mock_project) }
+          it { should set_the_flash }
           it { should redirect_to(account_project_url(mock_account, mock_project)) }
         end
 
