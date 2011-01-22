@@ -93,7 +93,10 @@ en:
     index: "Projects"
     active: "Active projects"
     completed: "Completed projects"
+    complete_project: "Complete project"
     updated_project: "Project updated successfully"
+    completed: "Project completed successfully"
+    reseted: "Project reseted successfully"
 
   invitations:
     new_user: "Add new user to %{account}"

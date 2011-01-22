@@ -29,7 +29,7 @@ class Accounts::ProjectsController < Accounts::BaseController
 
   def update
     if @project.update_attributes(params[:project])
-      redirect_to [@account, @project], :notice => t('projects.updated_project')
+      redirect_to [@account, @project], :notice => t("projects.updated_project")
     else
       render "edit"
     end
@@ -45,7 +45,7 @@ class Accounts::ProjectsController < Accounts::BaseController
     @project.completed = params[:complete] ? true : false
     @project.save
 
-    redirect_to [@account, @project]
+    redirect_to [@account, @project], :notice => t( @project.completed ? :completed : :reseted, :scope => :projects )
   end
 
   private

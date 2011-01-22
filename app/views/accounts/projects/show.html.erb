@@ -3,7 +3,7 @@
 	<ul class="actions">
 		<li>
 			<%= link_to complete_account_project_path(@account, @project, :complete => !@project.completed?), :method => "put" do %>
-	   		<%= check_box_tag '', '', @project.completed? %> <%=t :'projects.completed' %>
+	   		<%= check_box_tag '', '', @project.completed? %> <%=t :'projects.complete_project' %>
 	 		<% end %>
 		</li>
 	  <li><%= link_to t(:view), project_sections_path(@project) %></li>

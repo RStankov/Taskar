@@ -93,7 +93,10 @@ bg:
     index: "Проекти"
     active: "Активни проекти"
     completed: "Завършени проекти"
+    complete_project: "Завършен проект"
     updated_project: "Проекта променен успешно"
+    completed: "Проекта завършен успешно"
+    reseted: "Проекта е отворен отново"
 
   invitations:
     new_user: "Добавяне на нов потребител към %{account}"

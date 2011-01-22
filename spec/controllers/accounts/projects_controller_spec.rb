@@ -102,6 +102,7 @@ describe Accounts::ProjectsController do
       before do
         project.stub :completed=
         project.stub :save
+        project.stub :completed => true
       end
 
       it "should set completed flag to project to true" do
@@ -118,10 +119,18 @@ describe Accounts::ProjectsController do
         put :complete, :account_id => "1", :id => "2"
       end
 
+      it "sets the flash" do
+        project.stub(:completed=)
+
+        put :complete, :account_id => "1", :id => "2"
+
+        should set_the_flash
+      end
+
       it "redirects back to the projecs pages" do
         project.stub(:completed=)
 
-        put :complete, :account_id => "1", :id => "2", :complete => "foo"
+        put :complete, :account_id => "1", :id => "2"
 
         should redirect_to(account_project_url(account, project))
       end
