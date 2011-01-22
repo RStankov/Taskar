@@ -26,4 +26,12 @@ Feature: Manage projects
     Then I should see "Project updated successfully"
     And I should see "New-line"
 
-  
+  Scenario: Completing and reseting project
+    Given "Newline" project exists for "15 Lines"
+    And I am on the "Newline" project page
+    When I follow "Complete project"
+    Then I should see "Project completed successfully"
+    And the project should be completed
+    When I follow "Complete project"
+    Then I should see "Project reseted successfully"
+    And the project should not be completed
