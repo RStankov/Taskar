@@ -11,3 +11,8 @@ Given 'I am logged in' do
   When "I press \"Login\""
   Then "I should see \"Signed in successfully.\""
 end
+
+Given '"$project_name" project exists for "$account_name"' do |project_name, account_name|
+  account = Account.find_by_name(account_name) || Factory(:account, :name => account_name)
+  @project = Factory(:project, :name => project_name, :account => account)
+end
