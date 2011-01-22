@@ -1,10 +1,6 @@
 <header>
   <h1 id="dashboard_title"><%=t :'.header' %></h1>
 </header>
-
-<%= raw '<div class="wrap"><p class="notice">' + notice + '</p></div>' if notice %>
-<%= raw '<div class="wrap"><p class="alert">' + alert + '</p></div>' if alert %>
-
 <% if @projects.empty? %>
   <div class="help_notice">
     <% if current_user.admin_in_accounts.empty? %>

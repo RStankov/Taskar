@@ -32,3 +32,5 @@
   <% end %>
 </header>
 <%= render "issues/issue" %>
+<%= raw '<div class="flash notice">' + notice + '</div>' if notice %>
+<%= raw '<div class="flash alert">' + alert + '</div>' if alert %>

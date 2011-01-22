@@ -1,20 +1,25 @@
-.alert, .notice {
+.flash {
+  @include border-radius(5px);
   color: #000;
-  margin: 0 0 12px;
+  margin: 0px auto 12px;
   padding: 5px;
   text-align: center;
-  @include border-radius(5px);
+  width: 955px;
+
+  &.alert {
+    background-color: #fcc;
+    border: 1px solid #f00;
+    color: #f00;
+  }
+
+  &.notice {
+    background-color: #ffc;
+    border: 1px solid #ddd18e;
+  }
 }
 
-.alert {
-  background-color: #fcc;
-  border: 1px solid #f00;
-  color: #f00;
-}
-
-.notice {
-  background-color: #ffc;
-  border: 1px solid #ddd18e;
+#user_box .flash {
+  width: 450px;
 }
 
 .help_notice {

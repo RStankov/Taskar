@@ -6,8 +6,6 @@
 	  </ul>
 	<% end %>
 </header>
-<%= raw '<div class="wrap"><p class="notice">' + notice + '</p></div>' if notice %>
-
 <% if @projects.empty? %>
   <div class="help_notice">
     <h2><%= raw t('dashboard.index.empty_admin', :account_name => @account.name) %></h2>
