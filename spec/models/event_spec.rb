@@ -53,10 +53,7 @@ describe Event do
       Factory(:event, :project => project)                              # event in same project, but before user date
 
       project_user = Factory(:project_user, :project => project)
-      project_user.should_not be_new_record
-
       other_user = Factory(:project_user)
-      other_user.should_not be_new_record
 
       # should not be unseen events
       unneeded_event_1 = Factory(:event)                                                   # unrelated event
@@ -71,7 +68,7 @@ describe Event do
       mark_events_after last_seen + 5.minutes, unseen_event_1, unseen_event_2
 
       Event.unseen_from(other_user).should == []
-      Event.unseen_from(project_user).should == [unseen_event_1, unseen_event_2].map(&:reload)
+      Event.unseen_from(project_user).should == [unseen_event_2, unseen_event_1].map(&:reload)
 
       # mark events as seen
       last_seen += 6.minutes
@@ -92,7 +89,7 @@ describe Event do
       mark_events_after last_seen + 5.minutes, unseen_event_3, unseen_event_4
 
       Event.unseen_from(other_user).should == []
-      Event.unseen_from(project_user).should == [unseen_event_3, unseen_event_4].map(&:reload)
+      Event.unseen_from(project_user).should == [unseen_event_4, unseen_event_3].map(&:reload)
     end
   end
 
