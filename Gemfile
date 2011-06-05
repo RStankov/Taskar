@@ -7,7 +7,7 @@ gem "will_paginate", "3.0.pre2"
 gem "devise", "1.1.2"
 
 gem "sprockets"
-gem "sprocketizer", :git => "git://github.com/garmz/sprocketizer.git"
+gem "sprocketizer"
 gem "yui-compressor"
 
 gem "acts_as_list", "~>0.1.2"
@@ -15,6 +15,8 @@ gem "acts_as_list", "~>0.1.2"
 gem "hoptoad_notifier"
 gem "newrelic_rpm"
 gem "compass"
+
+gem 'confu'
 
 group :development do
   gem "sqlite3-ruby", :require => "sqlite3"
@@ -41,5 +43,5 @@ group :test do
 end
 
 group :production do
-  gem "mysql"
+  gem "pg"
 end
