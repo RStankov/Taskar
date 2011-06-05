@@ -1,6 +1,6 @@
 # Be sure to restart your server when you modify this file.
 
-Taskar::Application.config.session_store :cookie_store, :key => Application.app_cookie_key
+Taskar::Application.config.session_store :cookie_store, :key => ApplicationConfig.app_cookie_key
 
 # Use the database for sessions instead of the cookie-based default,
 # which shouldn't be used to store highly confidential information

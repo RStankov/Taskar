@@ -1,0 +1,16 @@
+development: &default
+  devise_mailer_sender: "-"
+  devise_password_paper: "-"
+  hoptoad_api_key: "-"
+  app_secret_token: "-"
+  app_cookie_key: "-"
+  action_mailer: { host: "-" }
+
+test:
+  <<: *default
+
+staging:
+  <<: *default
+
+production:
+  <<: *default
