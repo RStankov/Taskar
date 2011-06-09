@@ -1,7 +1,7 @@
 Taskar
 =========
 
-Taskar is Todo project management app. Used as a diploma work for my bachelor degree at Technical University of Varna. And was successfully defended on 22 July 2010 :)
+Taskar is Todo project management app. Used as a diploma thesis for my bachelor degree at Technical University of Varna. And was successfully defended on 22 July 2010 :)
 
 ## Installation
 
