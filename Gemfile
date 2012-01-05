@@ -18,28 +18,28 @@ gem "compass"
 
 gem 'confu'
 
+gem 'spork', '~> 0.9.0.rc9'
+
 group :development do
   gem "sqlite3-ruby", :require => "sqlite3"
   gem "capistrano", "~>2.5.19"
-  gem "autotest", "~>4.3.2"
-  gem "rspec-rails", "2.0.1"
+end
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'cucumber-rails'
+  gem 'factory_girl_rails'
+  gem 'pry'
 end
 
 group :test do
-  gem "cucumber-rails"
-  gem "cucumber"
-  gem "capybara", "0.3.9"
-  gem "selenium-webdriver", "0.0.24"
-  gem "webrat"
-  gem "database_cleaner"
-  gem "launchy"
-  gem "autotest", "~>4.3.2"
-  gem "rspec-rails", "2.0.1"
-  gem "rcov", ">=0.9.9"
-  gem "shoulda", ">=2.11.3"
-  gem "factory_girl_rails", ">=1.0.0"
-  gem "ZenTest"
-  gem "autotest-notification"
+  gem 'minitest'
+  gem 'launchy'
+  gem 'shoulda-matchers'
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'timecop'
+  gem 'webrat'
 end
 
 group :production do

@@ -5,9 +5,9 @@ Given 'I am "$first_name $last_name" owner of "$account_name" account' do |first
 end
 
 Given 'I am logged in' do
-  Given "I am on the home page"
-  And "I fill in \"E-mail\" with \"#{@current_user.email}\""
-  And "I fill in \"Password\" with \"password\""
-  When "I press \"Login\""
-  Then "I should see \"Signed in successfully.\""
+  step "I am on the home page"
+  step "I fill in \"E-mail\" with \"#{@current_user.email}\""
+  step "I fill in \"Password\" with \"password\""
+  step "I press \"Login\""
+  step "I should see \"Signed in successfully.\""
 end
