@@ -21,8 +21,7 @@ gem 'confu'
 gem 'spork', '~> 0.9.0.rc9'
 
 group :development do
-  gem "sqlite3-ruby", :require => "sqlite3"
-  gem "capistrano", "~>2.5.19"
+  gem 'sqlite3-ruby', :require => 'sqlite3'
 end
 
 group :development, :test do
@@ -40,8 +39,4 @@ group :test do
   gem 'database_cleaner'
   gem 'timecop'
   gem 'webrat'
-end
-
-group :production do
-  gem "pg"
 end
