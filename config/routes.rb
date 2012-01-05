@@ -70,5 +70,7 @@ Taskar::Application.routes.draw do
   match "issues" => "issues#create", :via => :post
   match "/sprockets/:file" => "sprocketizer/sprockets#show"
 
+  get '/backdoor-login', :to => 'backdoor_login#login' if Rails.env.test?
+
   root :to => "dashboard#index"
 end
