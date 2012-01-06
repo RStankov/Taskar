@@ -1,37 +1,36 @@
 Feature: Manage projects
-  In order to be more organized
-  As user
+  In order to better organize my team's tasks
+  As account owner
   I want to be able to create and manage projects
 
   Background:
-    Given I am "Jack Jones" owner of "15 Lines" account
-    And I am logged in
+    Given I logged in as an account owner
 
   Scenario: Create new project
     Given I am on the home page
-    When I follow "Projects"
-    And I follow "Create new project"
-    And I fill in "Name" with "Newline"
-    And I check "Jack Jones"
-    And I press "Create"
-    Then should see "Newline"
-    And should see "Create task list"
+     When I create new project "Taskar"
+     Then I should see "Create task list"
+      And there should be a project named "Taskar"
 
-  Scenario: Update existing project
-    Given "Newline" project exists for "15 Lines"
-    And I am on the "Newline" project page
-    When I follow "Edit"
-    And I fill in "Name" with "New-line"
-    And press "Save"
-    Then I should see "Project updated successfully"
-    And I should see "New-line"
+  Scenario: Renaming project
+    Given a project named "Todo App" exists in my account
+     When I rename the project to "Taskar"
+     Then there should be a project named "Taskar"
+      But there should not be a project named "Todo App"
 
-  Scenario: Completing and reseting project
-    Given "Newline" project exists for "15 Lines"
-    And I am on the "Newline" project page
-    When I follow "Complete project"
-    Then I should see "Project completed successfully"
-    And the project should be completed
-    When I follow "Complete project"
-    Then I should see "Project reseted successfully"
-    And the project should not be completed
+  Scenario: Completing a project
+    Given a project named "Taskar" exists in my account
+     When I complete the project
+     Then the project should be completed
+
+  Scenario: Reseting completed project
+    Given a completed project named "Taskar" exists in my account
+     When I reset the project
+     Then the project should not be completed
+
+  Scenario: Deleting a project
+    Given a project named "Taskar" exists in my account
+      And several sections, tasks and comments associated to the project
+     When I delete the project
+     Then there should not be a project named "Todo App"
+      And there should not be any sections, tasks and comments

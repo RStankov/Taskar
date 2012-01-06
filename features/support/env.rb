@@ -15,6 +15,8 @@ Spork.prefork do
   Capybara.default_selector = :css
   Cucumber::Rails::World.use_transactional_fixtures = true
 
+  ActionController::Base.allow_rescue = false
+
   ActiveSupport::Dependencies.clear
 end
 
@@ -22,4 +24,6 @@ Spork.each_run do
   Taskar::Application.reload_routes!
 
   I18n.reload!
+
+  World(Factory::Syntax::Methods)
 end
