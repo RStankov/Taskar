@@ -9,7 +9,7 @@ end
 Given 'several sections, tasks and comments associated to the project' do
   section = create :section, :project => @project
   task    = create :task, :section => section
-  comment = create :comment, :task => task, :project => @project
+  comment = create :comment, :task => task
 end
 
 When 'I create new project "$name"' do |name|
