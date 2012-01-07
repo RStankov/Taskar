@@ -5,6 +5,7 @@ Spork.prefork do
   require File.expand_path(File.dirname(__FILE__) + '/../../config/environment')
 
   require 'cucumber/rails'
+  require 'cucumber/rspec/doubles'
 
   require 'capybara/rails'
   require 'capybara/cucumber'
@@ -17,13 +18,15 @@ Spork.prefork do
 
   ActionController::Base.allow_rescue = false
 
-  ActiveSupport::Dependencies.clear
+  DatabaseCleaner.strategy = :deletion
+
+  ActiveSupport::Dependencies.clear if Spork.using_spork?
 end
 
 Spork.each_run do
-  Taskar::Application.reload_routes!
-
   I18n.reload!
 
   World(Factory::Syntax::Methods)
+
+  Taskar::Application.reload_routes!
 end
