@@ -19,7 +19,7 @@ Given 'a user "$email" with password "$password"' do |email, password|
   create :user, :email => email, :password => password, :password_confirmation => password
 end
 
-When 'I login as "$email" with password "$password"' do |email, password|
+When /I (?:|try to )login as "([^"]*)" with password "([^"]*)"/ do |email, password|
   visit root_path
 
   fill_in 'E-mail', :with => email
