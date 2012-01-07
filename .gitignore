@@ -3,6 +3,7 @@ log/*
 log/production.log
 log/development.log
 log/test.log
+log/server.log
 tmp/**/*
 config/database.yml
 config/deploy.rb
