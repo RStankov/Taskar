@@ -26,7 +26,7 @@
 	  <%= f.file_field :avatar %>
 
 		<%= f.fields_for :owned_account, @user.owned_account || Account.new do |account| %>
-			<%= account.label :name, "Име на фирмата ви" %>
+			<%= account.label :name %>
 			<%= account.text_field :name %>
 		<% end %>
 

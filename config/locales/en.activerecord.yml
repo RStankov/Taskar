@@ -32,7 +32,7 @@ en:
           user:
             email: "E-mail"
             first_name: "Name"
-            last_name: "Family"
+            last_name: "Last name"
             full_name: "Name"
             password: "Password"
             password_confirmation: "Confirm password"
