@@ -3,7 +3,9 @@ Given 'I logged in as an account owner' do
   account = create :account, :owner => user
   account_user = create :account_user, :user => user, :account => account
 
-  visit "/backdoor-login?email=#{CGI.escape(user.email)}"
+  backdoor_login user
+end
 
-  @current_user = user
+Given 'I logged in' do
+  backdoor_login create(:user)
 end

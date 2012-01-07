@@ -15,9 +15,6 @@ module NavigationHelpers
     #
     #   when /^(.*)'s profile page$/i
     #     user_profile_path(User.find_by_login($1))
-    when /the "(.*)" project page/
-      project = Project.find_by_name($1)
-      account_project_path(project.account, project)
     else
       begin
         page_name =~ /the (.*) page/

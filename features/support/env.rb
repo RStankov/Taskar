@@ -27,9 +27,11 @@ Spork.prefork do
 end
 
 Spork.each_run do
-  I18n.reload!
+  require 'features/support/helpers'
 
+  World(CucumberHelpers)
   World(Factory::Syntax::Methods)
 
+  I18n.reload!
   Taskar::Application.reload_routes!
 end
