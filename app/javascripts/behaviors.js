@@ -3,16 +3,16 @@ CD3.Behaviors({
                             Taskar.Sections.Ordering(this);
                             Taskar.Sections.NewSection(this);
                           },
-  '#sections_show':       Taskar.Sections.Actions,
-  '#tasks_index':         Taskar.Sections.Actions,
   '#section_aside':       Taskar.Sections.Aside.initialize,
   '#user_card':           Taskar.Sections.NewStatus,
-  '#tasks':               Taskar.Sections.TaskList,
+  '#tasks':               Taskar.Sections.TaskList.initialize,
+  '#tasks_index':         Taskar.Sections.TaskList.behaviors,
+  '#sections_show':       Taskar.Sections.TaskList.behaviors,
   '#tasks_show':          Taskar.Sections.Comments.behaviors,
   '#feedback':            Taskar.Sections.Feedback,
   'body':                 Taskar.Dnd.Sortable.AjaxSave,
   '#live_search':         Taskar.UI.LiveSearch.Form,
-  'li.tasks_stats ul':    Taskar.Graphics.createPieChart,
+  'li.tasks_stats ul':    Taskar.Graphics.createPieChart
 });
 
-CD3.Behaviors(Taskar.Sections.Global.behaviors)
+CD3.Behaviors(Taskar.Sections.Global.behaviors);
