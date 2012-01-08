@@ -61,6 +61,17 @@ When 'I give access to "$project_name" to "$user_name"' do |project_name, user_n
   click_button 'Save'
 end
 
+When 'I give access to "$project_name" to "$user_name" from his account profile page' do |project_name, user_name|
+  visit account_path(@current_user.accounts.first)
+
+  click_link 'Manage users'
+  click_link user_name
+
+  check project_name
+
+  click_button "change projects permissions"
+end
+
 When 'I revoke the access to "$project_name" to "$user_full_name"' do |project_name, user_full_name|
   project = Project.find_by_name! project_name
 

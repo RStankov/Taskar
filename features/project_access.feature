@@ -18,6 +18,11 @@ Feature: Project access
      When I revoke the access to "Todo App" to "John Doe"
      Then "John Doe" should not have access to "Todo App" project
 
+  Scenario: Giving access to a user from his account profile page
+    Given a user named "John Doe" exists in my account
+     When I give access to "Todo App" to "John Doe" from his account profile page
+     Then "John Doe" should have access to "Todo App" project
+
   Scenario: Deny access to project (even for the account owner)
      When I open "Todo App" project
      Then I should see that I don't have access to the project
