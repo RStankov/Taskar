@@ -107,7 +107,7 @@ en:
   users:
     title: "Users"
     invitations: "User invitations(%{count})"
-    invitation_link: "Invitation link"
+    invitation_link: "Resend invitation"
     confirm: "Are you sure, you want to delete this user"
     projects: "%{name}'s projects"
     change_projects: "change projects permissions"

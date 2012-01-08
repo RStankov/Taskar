@@ -45,14 +45,24 @@ describe Accounts::InvitationsController do
         should assign_to(:invitation).with(mock_invitation)
         should render_template("new")
       end
+
+      it "should send the invitation" do
+        mock_invitation.stub :save => true
+        mock_invitation.should_receive(:send_invite)
+
+        post "create", :account_id => "1", :invitation => {"these" => "params"}
+      end
     end
 
     describe "PUT 'update'" do
       it "should be successful" do
-        # TODO
+        @inviations.should_receive(:find).with("2").and_return mock_invitation
+
+        mock_invitation.should_receive(:send_invite)
+
         get "update", :account_id => "1", :id => "2"
 
-        response.should be_success
+        should redirect_to [mock_account, :users]
       end
     end
 

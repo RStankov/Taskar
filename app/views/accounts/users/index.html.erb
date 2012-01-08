@@ -16,7 +16,7 @@
 	      <li>
   	      <strong><%= invitation.full_name %></strong> - <small><%= invitation.email %></small>
     	    <em>
-    	      <%= link_to t("users.invitation_link"), sign_invitation_path(invitation.token) %> |
+    	      <%= link_to t("users.invitation_link"), account_invitation_path(invitation.account, invitation), :method => :put, :confirm => t(:confirm) %> |
     	      <%= link_to t(:delete), [@account, invitation], :method => :delete, :confirm => t(:confirm) %>
     	    </em>
     	  </li>

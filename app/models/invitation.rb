@@ -15,6 +15,8 @@ class Invitation < ActiveRecord::Base
 
   before_validation :check_for_duplicate_account_user, :generate_token, :on => :create
 
+  delegate :name, :to => :account, :prefix => true
+
   def full_name
     @full_name ||= "#{first_name} #{last_name}"
   end
@@ -25,6 +27,10 @@ class Invitation < ActiveRecord::Base
       user.first_name = first_name
       user.last_name  = last_name
     end
+  end
+
+  def send_invite
+    InvitationsMailer.invite(self).deliver
   end
 
   def accept(params)

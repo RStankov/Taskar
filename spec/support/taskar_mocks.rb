@@ -12,7 +12,7 @@ module TaskarMocks
   end
 
   def mock_invitation(stubs={})
-    @mock_invitation ||= mock_model(Invitation, stubs)
+    @mock_invitation ||= mock_model(Invitation, {:send_invite => nil}.merge(stubs))
   end
 
   def mock_project_user(stubs={})

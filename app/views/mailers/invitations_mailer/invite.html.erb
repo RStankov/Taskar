@@ -1,0 +1,7 @@
+Hi <%= @invitation.full_name %>,
+
+<p><%= @invitation.account_name %> is inviting you to join their team in Taskar.</p>
+<hr/>
+<p><%= @invitation.message %><p>
+<hr/>
+<p><%= link_to 'Accept invitation', sign_invitation_url(@invitation.token) %></p>

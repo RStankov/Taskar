@@ -7,6 +7,8 @@ class Accounts::InvitationsController < Accounts::BaseController
     @invitation = @account.invitations.build(params[:invitation])
 
     if @invitation.save
+      @invitation.send_invite
+
       redirect_to [@account, :users]
     else
       render "new"
@@ -14,14 +16,21 @@ class Accounts::InvitationsController < Accounts::BaseController
   end
 
   def update
-    render :nothing => true
-  end
-
-  def destroy
-    @invitation = @account.invitations.find(params[:id])
-    @invitation.destroy
+    find_invitation.send_invite
 
     redirect_to [@account, :users]
   end
 
+  def destroy
+    find_invitation.destroy
+
+    redirect_to [@account, :users]
+  end
+
+
+  private
+
+  def find_invitation
+    @account.invitations.find(params[:id])
+  end
 end

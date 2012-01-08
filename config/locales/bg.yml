@@ -107,7 +107,7 @@ bg:
   users:
     title: "Потребители"
     invitations: "Покани (%{count})"
-    invitation_link: "Връзка до поканата"
+    invitation_link: "Пак изпрати поканата"
     change_password: "Промяна на паролата"
     confirm: "Сигурни ли сте, че искате да изтриете този потребител"
     projects: "Проекти, в който участва %{name}"
