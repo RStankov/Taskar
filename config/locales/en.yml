@@ -33,7 +33,7 @@ en:
       title_users: ": Users"
       users: "Users (%{count})"
       new_user: "Create user"
-      manage_users: "Manage"
+      manage_users: "Manage users"
       current_projects: "Active projects (%{count})"
       project_settings: "setting"
       new_project: "Create new project"
@@ -109,7 +109,7 @@ en:
     invitation_link: "Invitation link"
     confirm: "Are you sure, you want to delete this user"
     projects: "%{name}'s projects"
-    change_projects: "change projects"
+    change_projects: "change projects permissions"
     admin: "Administrator"
     flash:
       removed: "User deleted succesfully."
