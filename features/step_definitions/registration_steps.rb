@@ -23,7 +23,7 @@ Given 'a user named "$full_name" exists in my account' do |full_name|
   first_name, last_name = full_name.split ' '
 
   user = create :user, :first_name => first_name, :last_name => last_name
-  create :account_user, :user => user, :account => @current_user.accounts.first
+  create :account_user, :user => user, :account => current_account
 end
 
 When /I (?:|try to )login as "([^"]*)" with password "([^"]*)"/ do |email, password|

@@ -1,9 +1,9 @@
 Given 'a project named "$name" exists in my account' do |name|
-  @project = create :project, :name => name, :account => @current_user.accounts.first
+  @project = create :project, :name => name, :account => current_account
 end
 
 Given 'a completed project named "$name" exists in my account' do |name|
-  @project = create :project, :name => name, :account => @current_user.accounts.first, :completed => true
+  @project = create :project, :name => name, :account => current_account, :completed => true
 end
 
 Given '"$user_name" has access to "$project_name" project' do |user_name, project_name|
@@ -62,7 +62,7 @@ When 'I give access to "$project_name" to "$user_name"' do |project_name, user_n
 end
 
 When 'I give access to "$project_name" to "$user_name" from his account profile page' do |project_name, user_name|
-  visit account_path(@current_user.accounts.first)
+  visit account_path(current_account)
 
   click_link 'Manage users'
   click_link user_name

@@ -4,7 +4,7 @@ Given '"$user_name" is admin' do |user_name|
 end
 
 When 'I rename my account name to "$account_name"' do |account_name|
-  visit account_path(@current_user.accounts.first)
+  visit account_path(current_account)
 
   click_link 'Edit'
 
@@ -14,7 +14,7 @@ When 'I rename my account name to "$account_name"' do |account_name|
 end
 
 When 'I toggle the admin access of "$user_name" user' do |user_name|
-  visit account_path(@current_user.accounts.first)
+  visit account_path(current_account)
 
   click_link 'Manage users'
   click_link user_name
@@ -22,7 +22,7 @@ When 'I toggle the admin access of "$user_name" user' do |user_name|
 end
 
 When 'I delete "$user_name" from my account' do |user_name|
-  visit account_path(@current_user.accounts.first)
+  visit account_path(current_account)
 
   click_link 'Manage users'
   click_link user_name
@@ -32,7 +32,7 @@ end
 Then '"$user_name" should not be in my account' do |user_name|
   user = find_user user_name
 
-  account = @current_user.accounts.first
+  account = current_account
   account.reload
   account.users.should_not include(user)
 end
@@ -44,7 +44,7 @@ end
 
 Then 'I should be owner of the "$account_name" account' do |account_name|
   @current_user.reload
-  @current_user.accounts.first.name.should eq account_name
+  current_account.name.should eq account_name
 end
 
 Then '"$user_name" should be admin in my account' do |user_name|
