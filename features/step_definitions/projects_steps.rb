@@ -12,9 +12,9 @@ Given 'several sections, tasks and comments associated to the project' do
   comment = create :comment, :task => task
 end
 
-Given '"$user_full_name" has access to "$project_name" project' do |user_full_name, project_name|
+Given '"$user_name" has access to "$project_name" project' do |user_name, project_name|
   project = Project.find_by_name! project_name
-  user    = User.find_by_first_name_and_last_name! *(user_full_name.split ' ')
+  user    = find_user user_name
 
   project.user_ids = [user.id]
 end
@@ -55,14 +55,14 @@ When 'I delete the project' do
   click_link 'Delete'
 end
 
-When 'I give access to "$project_name" to "$user_full_name"' do |project_name, user_full_name|
+When 'I give access to "$project_name" to "$user_name"' do |project_name, user_name|
   project = Project.find_by_name! project_name
 
   visit account_project_path(project.account, project)
 
   click_link "Edit"
 
-  check user_full_name
+  check user_name
 
   click_button 'Save'
 end
@@ -107,16 +107,16 @@ Then 'there should not be any sections, tasks and comments' do
   Comment.count.should eq 0
 end
 
-Then '"$user_full_name" should have access to "$project_name" project' do |user_full_name, project_name|
+Then '"$user_name" should have access to "$project_name" project' do |user_name, project_name|
   project = Project.find_by_name! project_name
-  user    = User.find_by_first_name_and_last_name! *(user_full_name.split ' ')
+  user    = find_user user_name
 
   project.involves?(user).should be_true
 end
 
-Then '"$user_full_name" should not have access to "$project_name" project' do |user_full_name, project_name|
+Then '"$user_name" should not have access to "$project_name" project' do |user_name, project_name|
   project = Project.find_by_name! project_name
-  user    = User.find_by_first_name_and_last_name! *(user_full_name.split ' ')
+  user    = find_user user_name
 
   project.involves?(user).should be_false
 end

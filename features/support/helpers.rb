@@ -4,4 +4,8 @@ module CucumberHelpers
 
     @current_user = user
   end
+
+  def find_user(full_name)
+    User.find_by_first_name_and_last_name! *(full_name.split ' ', 2)
+  end
 end
