@@ -19,6 +19,13 @@ Given 'a user "$email" with password "$password"' do |email, password|
   create :user, :email => email, :password => password, :password_confirmation => password
 end
 
+Given 'a user named "$full_name" exists in my account' do |full_name|
+  first_name, last_name = full_name.split ' '
+
+  user = create :user, :first_name => first_name, :last_name => last_name
+  create :account_user, :user => user, :account => @current_user.accounts.first
+end
+
 When /I (?:|try to )login as "([^"]*)" with password "([^"]*)"/ do |email, password|
   visit root_path
 
