@@ -10,7 +10,6 @@ CD3.Behaviors({
   '#sections_show':       Taskar.Sections.TaskList.behaviors,
   '#tasks_show':          Taskar.Sections.Comments.behaviors,
   '#feedback':            Taskar.Sections.Feedback,
-  'body':                 Taskar.Dnd.Sortable.AjaxSave,
   '#live_search':         Taskar.UI.LiveSearch.Form,
   'li.tasks_stats ul':    Taskar.Graphics.createPieChart
 });

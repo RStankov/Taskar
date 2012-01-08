@@ -9,3 +9,4 @@
 //= require "behaviors"
 
 Taskar.UI.StateCheckboxObserver();
+Taskar.Dnd.SortableObserver();
