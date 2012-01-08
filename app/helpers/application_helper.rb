@@ -39,15 +39,7 @@ module ApplicationHelper
   end
 
   def javascript_call_on(object, *args)
-    js_args = args.map do |value|
-      if value.is_a? Numeric
-        value
-      else
-        '"' + escape_javascript(value) + '"'
-      end
-    end
-
-    raw "try { #{object}(#{js_args.join(', ')}); } catch(e){ alert(e); }"
+    raw "try { #{object}(#{args.map(&:to_json).join(', ')}); } catch(e){ alert(e); }"
   end
 
   def copywrite
