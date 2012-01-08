@@ -1,3 +1,1 @@
-<%= javascript_response do %>
-  Taskar.alert("<%= t :thanks_for_feedback  %>");
-<% end %>
+<%= javascript_call_on 'Taskar.alert', t(:thanks_for_feedback) %>
