@@ -138,6 +138,7 @@ Taskar.Sections.Actions = {
     }
   },
   'key:esc': {
+    '#section_title form':  Taskar.Sections.cancelAction,
     '.task': Taskar.Sections.cancelAction,
     '#new_task': function(e){
       e.findElement('li').slideUp();

@@ -47,7 +47,6 @@ Taskar.Sections = {
 //= require "sections/new_section"
 //= require "sections/ordering"
 //= require "sections/actions"
-//= require "sections/title"
 //= require "sections/task_list"
 //= require "sections/comments"
 //= require "sections/aside"

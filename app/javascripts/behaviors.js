@@ -17,7 +17,6 @@ CD3.Behaviors({
                             Taskar.Sections.NewSection(this);
                           },
   '.flash:click':         function(){ this.fade().slideUp(); },
-  '#section_title':       Taskar.Sections.Title,
   '#sections_show':       Taskar.Sections.Actions,
   '#tasks_index':         Taskar.Sections.Actions,
   '#section_aside':       Taskar.Sections.Aside.initialize,
