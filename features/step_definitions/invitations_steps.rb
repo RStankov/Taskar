@@ -19,6 +19,8 @@ When 'I resent my invitation' do
 
   click_link 'Manage users'
   click_link 'Resend invitation'
+
+  page.should have_content 'Invitation resend successfully'
 end
 
 When 'I delete my invitation' do

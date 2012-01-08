@@ -18,7 +18,7 @@ class Accounts::InvitationsController < Accounts::BaseController
   def update
     find_invitation.send_invite
 
-    redirect_to [@account, :users]
+    redirect_to [@account, :users], :notice => 'Invitation resend successfully'
   end
 
   def destroy
