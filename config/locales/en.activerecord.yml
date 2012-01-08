@@ -64,7 +64,7 @@ en:
 
           invitation:
             email: "E-mail address"
-            first_name: "Fist name"
+            first_name: "First name"
             last_name: "Last name"
             message: "Additional message"
 
