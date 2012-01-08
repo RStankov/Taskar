@@ -23,12 +23,12 @@ CD3.Behaviors({
   '#section_aside':       Taskar.Sections.Aside.initialize,
   '#user_card':           Taskar.Sections.NewStatus,
   '#tasks':               Taskar.Sections.TaskList,
-  '#tasks_show':          Taskar.Sections.Comments,
+  '#tasks_show':          Taskar.Sections.Comments.behaviors,
   '#feedback':            Taskar.Sections.Feedback,
   'body':                 Taskar.Dnd.Sortable.AjaxSave,
   '#live_search':         Taskar.UI.LiveSearch.Form,
   'li.tasks_stats ul':    Taskar.Graphics.createPieChart,
-  '#statuses_list:ajax:delete': function(e){ Taskar.FX.dropOut(e.findElement('li'), function(e){e.element.remove()}); },
+  '#statuses_list:ajax:delete': function(e){ Taskar.FX.dropOut(e.findElement('li'), function(e){e.element.remove();}); },
   '#tasks_show:ajax:put': {
     '.archive': function(e){
       var task = e.findElement('.task');

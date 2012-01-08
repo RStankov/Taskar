@@ -1,3 +1,1 @@
-<%= javascript_response do %>
-  $('new_comment').replace(<%= javascript_string_from_partial "new_form" %>).down('textarea').highlight({startColor: Taskar.ERROR_COLOR}).focus();
-<% end %>
+<%= javascript_call_on 'Taskar.Sections.Comments.actions.errorOnNew', render('new_form') %>

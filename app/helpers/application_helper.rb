@@ -38,6 +38,18 @@ module ApplicationHelper
     raw '"' + escape_javascript(render(partial, options)) + '"'
   end
 
+  def javascript_call_on(object, *args)
+    js_args = args.map do |value|
+      if value.is_a? Numeric
+        value
+      else
+        '"' + escape_javascript(value) + '"'
+      end
+    end
+
+    raw "try { #{object}(#{js_args.join(', ')}); } catch(e){ alert(e); }"
+  end
+
   def copywrite
     t(:'copywrite', :year => Time.now.year)
   end

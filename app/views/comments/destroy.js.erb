@@ -1,6 +1,1 @@
-<%= javascript_response do %>
-  $('comments_count').update("<%= @comment.task.comments.count %>");
-  <% if @comment.task.comments.count == 0 %>
-  $('comments').slideUp("fast");
-  <% end %>
-<% end %>
+<%= javascript_call_on 'Taskar.Sections.Comments.actions.afterDestroy', @comment.task.comments.count %>

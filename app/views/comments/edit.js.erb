@@ -1,3 +1,1 @@
-<%= javascript_response do %>
-	$("<%= dom_id @comment %>").transform(<%= javascript_string_from_partial "edit_form" %>);
-<% end %>
+<%= javascript_call_on 'Taskar.Sections.Comments.actions.edit', dom_id(@comment), render('edit_form') %>
