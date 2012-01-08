@@ -32,7 +32,7 @@ en:
       title_projects: ": Projects"
       title_users: ": Users"
       users: "Users (%{count})"
-      new_user: "Create user"
+      new_user: "Invite user"
       manage_users: "Manage users"
       current_projects: "Active projects (%{count})"
       project_settings: "setting"
@@ -101,7 +101,7 @@ en:
   invitations:
     new_user: "Add new user to %{account}"
     message: "Additional message<small> to be added at the bottom of the user's welcome email</small>"
-    note: "After you add this user, he or she will invitation e-mail. It will contain a link, when they click that link they will only have to fill in a password.<br /> After that they could start working in your projects"
+    note: "Seleted user will receive an invaitation email."
 
   users:
     title: "Users"
