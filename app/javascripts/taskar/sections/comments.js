@@ -1,5 +1,22 @@
 Taskar.Sections.Comments = {
   behaviors: {
+    'ajax:put': {
+      '.task .archive': function(e){
+        var task = e.findElement('.task');
+        if (task){
+          var newComment = $('new_comment');
+          if (task.hasClassName('archived')){
+            task.removeClassName('archived');
+            task.down('.checkbox').writeAttribute('data-disabled', null);
+            newComment && newComment.slideDown();
+          } else {
+            task.addClassName('archived');
+            task.down('.checkbox').writeAttribute('data-disabled', 'true');
+            newComment && newComment.slideUp();
+          }
+        }
+      }
+    },
     'ajax:delete': {
       '.comment': function(e, element){
         element.removeWithEffect('slideUp');

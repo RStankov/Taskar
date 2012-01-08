@@ -44,6 +44,7 @@ Taskar.Sections = {
   }
 };
 
+//= require "sections/global"
 //= require "sections/new_section"
 //= require "sections/ordering"
 //= require "sections/actions"
@@ -52,3 +53,4 @@ Taskar.Sections = {
 //= require "sections/aside"
 //= require "sections/new_status"
 //= require "sections/feedback"
+
