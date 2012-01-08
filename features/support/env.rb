@@ -14,9 +14,15 @@ Spork.prefork do
   require 'email_spec'
   require 'email_spec/cucumber'
 
-  ActionController::Base.allow_rescue = false
+  require 'features/support/driver'
 
   Capybara.default_selector = :css
+  Capybara.server_port = 9887 + ENV['TEST_ENV_NUMBER'].to_i
+  Capybara.server_boot_timeout = 50
+  Capybara.default_wait_time = 5
+
+  ActionController::Base.allow_rescue = false
+
   Cucumber::Rails::World.use_transactional_fixtures = true
 
   ActionController::Base.allow_rescue = false

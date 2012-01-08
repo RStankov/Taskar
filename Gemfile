@@ -27,16 +27,15 @@ end
 group :development, :test do
   gem 'rspec-rails'
   gem 'cucumber-rails'
-  gem 'factory_girl_rails'
   gem 'pry'
 end
 
 group :test do
-  gem 'minitest'
   gem 'launchy'
   gem 'shoulda-matchers'
   gem 'capybara'
   gem 'database_cleaner'
-  gem 'timecop'
   gem 'email_spec'
+  gem 'factory_girl_rails'
+  gem 'selenium-webdriver', '= 2.14.0'
 end
