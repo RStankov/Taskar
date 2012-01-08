@@ -6,12 +6,6 @@ Given 'a completed project named "$name" exists in my account' do |name|
   @project = create :project, :name => name, :account => @current_user.accounts.first, :completed => true
 end
 
-Given 'several sections, tasks and comments associated to the project' do
-  section = create :section, :project => @project
-  task    = create :task, :section => section
-  comment = create :comment, :task => task
-end
-
 Given '"$user_name" has access to "$project_name" project' do |user_name, project_name|
   project = Project.find_by_name! project_name
   user    = find_user user_name
@@ -99,12 +93,6 @@ end
 
 Then 'the project should not be completed' do
   @project.reload.should_not be_completed
-end
-
-Then 'there should not be any sections, tasks and comments' do
-  Section.count.should eq 0
-  Task.count.should eq 0
-  Comment.count.should eq 0
 end
 
 Then '"$user_name" should have access to "$project_name" project' do |user_name, project_name|

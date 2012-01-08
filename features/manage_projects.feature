@@ -30,7 +30,5 @@ Feature: Manage projects
 
   Scenario: Deleting a project
     Given a project named "Taskar" exists in my account
-      And several sections, tasks and comments associated to the project
      When I delete the project
      Then there should not be a project named "Todo App"
-      And there should not be any sections, tasks and comments
