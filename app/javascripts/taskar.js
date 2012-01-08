@@ -1,5 +1,8 @@
 var Taskar = {
-  ERROR_COLOR: '#ff9999'
+  ERROR_COLOR: '#ff9999',
+  alert: function() {
+    // use custom dialog
+  }
 };
 
 //= require "taskar/fx"
