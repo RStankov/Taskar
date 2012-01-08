@@ -1,10 +1,7 @@
 CD3.Behaviors({
-  '#sections':            function(){
-                            Taskar.Sections.Ordering(this);
-                            Taskar.Sections.NewSection(this);
-                          },
+  '#sections':            Taskar.Sections.SectionsList.initialize,
   '#section_aside':       Taskar.Sections.Aside.initialize,
-  '#user_card':           Taskar.Sections.NewStatus,
+  '#user_card':           Taskar.Sections.Aside.newStatusForm,
   '#tasks':               Taskar.Sections.TaskList.initialize,
   '#tasks_index':         Taskar.Sections.TaskList.behaviors,
   '#sections_show':       Taskar.Sections.TaskList.behaviors,

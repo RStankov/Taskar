@@ -29,6 +29,9 @@ Taskar.Sections.Aside = {
       }
     });
   },
+  newStatusForm: function(userCard) {
+    userCard.down("img").observe("click", Taskar.UI.WindowForm("new_status"));
+  },
   updateContent: function(element, newHtml) {
     if (element.innerHTML != newHtml) {
       element.morph("opacity:0", function(e) {
