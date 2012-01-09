@@ -9,3 +9,7 @@ end
 Given 'I am logged in' do
   backdoor_login create(:user)
 end
+
+Given 'I am logged in project member' do
+  backdoor_login create(:project_user).user
+end

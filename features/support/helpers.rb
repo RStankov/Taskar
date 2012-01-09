@@ -10,7 +10,11 @@ module CucumberHelpers
   end
 
   def current_account
-    @current_user.accounts.first
+    @current_account ||= @current_user.accounts.first
+  end
+
+  def current_project
+    @current_project ||= @current_user.projects.first
   end
 
   def javascript_enabled?
@@ -20,5 +24,9 @@ module CucumberHelpers
   def wait_for_ajax_to_complete
     # wait_until { page.evaluate_script('window.$ && $.active == 0') } if javascript_enabled?
     wait_until { page.evaluate_script('window.Ajax && Ajax.activeRequestCount == 0') } if javascript_enabled?
+  end
+
+  def confirm_on_next_action
+    page.evaluate_script 'window.confirm = function(msg) { return true; }'
   end
 end
