@@ -1,4 +1,4 @@
-Given 'I logged in as an account owner' do
+Given 'I am logged in as an account owner' do
   user = create :user
   account = create :account, :owner => user
   account_user = create :account_user, :user => user, :account => account
@@ -6,6 +6,6 @@ Given 'I logged in as an account owner' do
   backdoor_login user
 end
 
-Given 'I logged in' do
+Given 'I am logged in' do
   backdoor_login create(:user)
 end

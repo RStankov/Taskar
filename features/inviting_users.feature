@@ -4,7 +4,7 @@ Feature: Inviting users
   I want to be able to invite people
 
   Background:
-    Given I logged in as an account owner
+    Given I am logged in as an account owner
 
   Scenario: Inviting user
     When I invite "rs@example.org" to my account

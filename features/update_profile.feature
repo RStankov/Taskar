@@ -4,7 +4,7 @@ Feature: Update profile
   I need to be able to manage my profile
 
   Background:
-    Given I logged in
+    Given I am logged in
       And I am on the home page
 
   Scenario: Update name

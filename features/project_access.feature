@@ -4,7 +4,7 @@ Feature: Project access
   I want to be able to give and revoke access to projects
 
   Background:
-    Given I logged in as an account owner
+    Given I am logged in as an account owner
       And a project named "Todo App" exists in my account
 
   Scenario: Giving access to a user

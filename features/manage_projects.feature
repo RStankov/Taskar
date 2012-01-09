@@ -4,7 +4,7 @@ Feature: Manage projects
   I want to be able to create and manage projects
 
   Background:
-    Given I logged in as an account owner
+    Given I am logged in as an account owner
 
   Scenario: Create new project
     Given I am on the home page

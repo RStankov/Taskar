@@ -4,7 +4,7 @@ Feature: Manage account users
   I want to be able to able to manage the users associated to my account
 
   Background:
-    Given I logged in as an account owner
+    Given I am logged in as an account owner
       And a user named "Radoslav Stankov" exists in my account
 
   Scenario: Give admin access to user
