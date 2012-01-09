@@ -1,3 +1,1 @@
-<%= javascript_response do %>
-  $("<%= dom_id @task %>").transform(<%= javascript_string_from_partial "form", :task => @task %>);
-<% end %>
+<%= javascript_call_on 'Taskar.Sections.TaskList.actions.edit', dom_id(@task), render('form', :task => @task) %>

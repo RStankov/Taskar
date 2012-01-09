@@ -22,6 +22,31 @@ Taskar.Sections.TaskList = {
       handle: '.drag'
     });
   },
+  actions: {
+    errorOnNew: function(html) {
+      $('new_task').replace(html);
+      $('new_task').show().highlight({startColor: Taskar.ERROR_COLOR}).down('textarea').focus();
+    },
+    create: function(taskId, taskHtml, higherTaskId) {
+      var higher = higherTaskId && $('task_' + higherTaskId);
+      if (!higher) {
+        $("new_task").insert({before: taskHtml});
+      } else {
+        higher.insert({after: taskHtml});
+      }
+
+      $('task_' + taskId).hide().slideDown(function(e){
+        new Taskar.FX.ScrollTo(e.element);
+      });
+      Taskar.Sections.resetTaskForm($('new_task').down('form').show(), taskId);
+    },
+    edit: function(elementId, html) {
+      $(elementId).transform(html);
+    },
+    show: function(elementId, inListHtml, inShowActionHtml) {
+      $(elementId).replaceWithEffect($("task_title") ? inShowActionHtml : inListHtml);
+    }
+  },
   behaviors: {
     click: {
       'input.cancel': function(e, element){
