@@ -41,10 +41,8 @@ Then '"$user_name" user should still exist' do |user_name|
   find_user user_name
 end
 
-
 Then 'I should be owner of the "$account_name" account' do |account_name|
-  @current_user.reload
-  current_account.name.should eq account_name
+  current_account.reload.name.should eq account_name
 end
 
 Then '"$user_name" should be admin in my account' do |user_name|
