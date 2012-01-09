@@ -1,13 +1,1 @@
-<%= javascript_response do %>
-	(function(element){
-		element.transform(<%= javascript_string_from_partial "title" %>, true);
-		<% unless @section.text.blank? %>
-			element.insert({
-				after: new Element("p", {className: "text", id: "section_text"})
-								.update("<%= raw escape_javascript(format_text @section.text) %>")
-								.hide()
-								.slideDown()
-			});
-		<% end %>
-	})($("section_title"));
-<% end %>
+<%= javascript_call_on 'Taskar.Sections.SectionsList.actions.show', render('title'), format_text(@section.text) %>
