@@ -1,5 +1,10 @@
 Taskar.Sections.Feedback = function(element){
   var appear = Taskar.UI.WindowForm("feedback_form");
+
+  $("feedback_form").observe('ajax:after', function(e) {
+    this.fade();
+  });
+
   element.observe("click", function(e){
     e.stop();
     $("feedback_form").setStyle({
