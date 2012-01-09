@@ -13,6 +13,10 @@ Given '"$user_name" has access to "$project_name" project' do |user_name, projec
   project.user_ids = [user.id]
 end
 
+Given 'I am working with another user on this project' do
+  create :project_user, :project => current_project
+end
+
 When 'I create new project "$name"' do |name|
   click_link 'Projects'
   click_link 'Create new project'

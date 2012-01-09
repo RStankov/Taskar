@@ -1,0 +1,15 @@
+Feature: Statuses
+  In order to collaborate with my coworkers
+  As project user
+  I want to be able to tell them what I'm currently doing
+
+  Background:
+    Given I am logged in project member
+      And I am working with another user on this project
+
+  @javascript
+  Scenario: Setting my status
+     When I update my status to "Going to lunch"
+     Then I should have a status "Going to lunch"
+      And I see my updated status on the page to "Going to lunch"
+
