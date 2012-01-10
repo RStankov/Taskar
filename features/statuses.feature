@@ -6,6 +6,7 @@ Feature: Statuses
   Background:
     Given I am logged in project member
       And I am working with another user on this project
+      And I am on the project page
 
   @javascript
   Scenario: Setting my status

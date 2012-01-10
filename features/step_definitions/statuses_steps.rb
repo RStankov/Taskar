@@ -3,16 +3,12 @@ Given 'I have set my status to "$status_text"' do |status_text|
 end
 
 When 'I clear my status' do
-  visit project_sections_path(current_project)
-
   click_link 'clear status'
 
   wait_for_ajax_to_complete
 end
 
 When 'I update my status to "$status_text"' do |status_text|
-  visit project_sections_path(current_project)
-
   find('#user_card img').click
 
   fill_in 'What are you doing?', :with => status_text
@@ -23,8 +19,6 @@ When 'I update my status to "$status_text"' do |status_text|
 end
 
 When 'I delete my "$status_text" status' do |status_text|
-  visit project_sections_path(current_project)
-
   click_link 'Statuses'
   click_link 'Delete'
 end

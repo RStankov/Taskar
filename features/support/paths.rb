@@ -8,6 +8,8 @@ module NavigationHelpers
   def path_to(page_name)
     case page_name
 
+    when /the project page/
+      project_sections_path(current_project)
     when /the home page/
       '/'
     # Add more mappings here.
