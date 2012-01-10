@@ -11,7 +11,7 @@ Taskar.UI.WindowForm = function(form){
   }
 
   function show(){
-    form.down('textarea').setValue('').focus();
+    form.down('textarea').focus();
     hideFormHandler.start();
   }
 
