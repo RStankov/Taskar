@@ -1,4 +1,4 @@
-Feature: Manage projects
+Feature: Projects
   In order to better organize my team's tasks
   As account owner
   I want to be able to create and manage projects

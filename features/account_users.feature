@@ -1,4 +1,4 @@
-Feature: Manage account users
+Feature: Account users
   In order to better organize my team
   As account owner
   I want to be able to able to manage the users associated to my account
