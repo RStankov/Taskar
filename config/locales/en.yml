@@ -47,7 +47,7 @@ en:
       switch_to_project: "Open other project"
       goto_dashboard: "Events"
       sections: "Current Tasks"
-      new_section: "Create tasklist"
+      new_section: "Create task list"
       tasks:
         one: "One task"
         zero: "No tasks"
@@ -118,8 +118,8 @@ en:
 
   sections:
     new_section: "Create task list"
-    edit_section: "Edit tasklist"
-    empty_archive: "There aren't any archived tasklists.<br />To archive the tasklist, first archive all tasks in it. <br />And then click the archive button, next to the tasklist name."
+    edit_section: "Edit task list"
+    empty_archive: "There aren't any archived task lists.<br />To archive the task list, first archive all tasks in it. <br />And then click the archive button, next to the task list name."
     index:
       title: "Project activity"
       previous: "Previous"
@@ -127,7 +127,7 @@ en:
       statuses: "Statuses"
 
     show:
-      confirm: "Are you sure, you want to delete this tasklist?"
+      confirm: "Are you sure, you want to delete this task list?"
       add_task: "Add task"
       toggle_archive: "Archive"
       archive: "Archive"
@@ -136,7 +136,7 @@ en:
 
 
   tasks:
-    move_into_section: "Drop the task over the selected tasklist<br />to move it there"
+    move_into_section: "Drop the task over the selected task list<br />to move it there"
     empty_archive: "There aren't no archived tasks"
     confirm: "Are you sure, you want to delete this task?"
     from_section: 'Task from "%{section}"'
