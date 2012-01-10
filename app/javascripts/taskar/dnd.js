@@ -219,12 +219,13 @@ Taskar.Dnd.Sortable.Ghost = {
   }
 };
 
-Taskar.Dnd.SortableObserver = function(items) {
-  items || (items = 'items[]');
-  document.on('order:updated', '[data-sortable]', function(e, element) {
-    new Ajax.Request(element.getAttribute('data-sortable'), {
-      method:     'put',
-      parameters: e.memo.sortable.serialize(items)
-    });
-  });
+Taskar.Dnd.behaviors = {
+  'order:updated': {
+     '[data-sortable]': function(e, element) {
+       new Ajax.Request(element.getAttribute('data-sortable'), {
+         method:     'put',
+         parameters: e.memo.sortable.serialize('items[]')
+      });
+    }
+  }
 };

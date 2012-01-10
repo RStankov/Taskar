@@ -21,5 +21,10 @@ CD3.Behaviors({
   'li.tasks_stats ul':    Taskar.Graphics.createPieChart
 });
 
-Taskar.UI.StateCheckboxObserver();
-Taskar.Dnd.SortableObserver();
+CD3.Behaviors({
+  'body': Taskar.UI.StateCheckbox.behaviors
+});
+
+CD3.Behaviors({
+  'body': Taskar.Dnd.behaviors
+});
