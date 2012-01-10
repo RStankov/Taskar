@@ -21,27 +21,31 @@ Taskar.Sections.Global = {
       Taskar.FX.dropOut(e.findElement('li'), removeElement);
     }
 
-    function scrollToTop(e) {
+    function scrollToTop(e, target) {
       e.stop();
 
-      var id      = this.getAttribute('href').split('#').last(),
+      var id      = target.getAttribute('href').split('#').last(),
           element = $(id);
 
       element && new Taskar.FX.ScrollTo(element, function() { location.hash = id; });
     }
 
-    function hideFlash() {
-      this.fade().slideUp();
+    function hideFlash(e, element) {
+      element.removeWithEffect('slideUp');
     }
 
     return {
-      'body:ajax:after': {
+      'ajax:after': {
         '.action_form': loadingOnAjax,
         '.edit':        loadingOnAjaxEdit
       },
-      '.flash:click': hideFlash,
-      '#statuses_list:ajax:delete': deleteStatus,
-      '#scroll_to_top:click': scrollToTop
+      'ajax:delete': {
+        '#statuses_list': deleteStatus
+      },
+      'click': {
+        '.flash':         hideFlash,
+        '#scroll_to_top': scrollToTop
+      }
     };
   })()
 };

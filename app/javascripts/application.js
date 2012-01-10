@@ -8,6 +8,7 @@
 //= require "taskar"
 
 CD3.Behaviors({
+  'body':                 Taskar.Sections.Global.behaviors,
   '#sections':            Taskar.Sections.SectionsList.initialize,
   '#section_aside':       Taskar.Sections.Aside.initialize,
   '#user_card':           Taskar.Sections.Aside.newStatusForm,
@@ -19,8 +20,6 @@ CD3.Behaviors({
   '#live_search':         Taskar.UI.LiveSearch.Form,
   'li.tasks_stats ul':    Taskar.Graphics.createPieChart
 });
-
-CD3.Behaviors(Taskar.Sections.Global.behaviors);
 
 Taskar.UI.StateCheckboxObserver();
 Taskar.Dnd.SortableObserver();
