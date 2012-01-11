@@ -1,4 +1,9 @@
 Taskar.Sections.Aside = {
+  behaviors: {
+    'click': {
+      'img': Taskar.UI.WindowForm("new_status")
+    }
+  },
   actions: {
     refresh: function(options) {
       options || (options = {});
@@ -28,9 +33,6 @@ Taskar.Sections.Aside = {
         }
       }
     });
-  },
-  newStatusForm: function(userCard) {
-    userCard.down("img").observe("click", Taskar.UI.WindowForm("new_status"));
   },
   updateContent: function(element, newHtml) {
     if (element.innerHTML != newHtml) {

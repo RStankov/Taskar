@@ -11,7 +11,7 @@ CD3.Behaviors({
   'body':                 Taskar.Sections.Global.behaviors,
   '#sections':            Taskar.Sections.SectionsList.initialize,
   '#section_aside':       Taskar.Sections.Aside.initialize,
-  '#user_card':           Taskar.Sections.Aside.newStatusForm,
+  '#user_card':           Taskar.Sections.Aside.behaviors,
   '#tasks':               Taskar.Sections.TaskList.initialize,
   '#tasks_index':         Taskar.Sections.TaskList.behaviors,
   '#sections_show':       Taskar.Sections.TaskList.behaviors,
