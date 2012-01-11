@@ -1,22 +1,25 @@
 source "http://rubygems.org"
 
-gem "rails", "3.0.1"
+gem 'rake', '0.8.7'
+gem 'rails', '3.1.3'
+
+group :assets do
+  gem 'sass-rails',   '~> 3.1.4'
+  gem 'coffee-rails', '~> 3.1.1'
+  gem 'uglifier',     '>= 1.0.3'
+  gem 'compass',      '~> 0.12.alpha'
+end
 
 gem "paperclip", "2.3.3"
 gem "will_paginate", "3.0.pre2"
 gem "devise", "1.1.2"
 
-gem "sprockets"
-gem "sprocketizer"
-gem "yui-compressor"
-
 gem "acts_as_list", "~>0.1.2"
 
 gem "hoptoad_notifier"
 gem "newrelic_rpm"
-gem "compass"
 
-gem 'confu'
+gem 'confu', :git => 'git@github.com:garmz/confu.git'
 
 gem 'spork', '~> 0.9.0.rc9'
 
