@@ -20,3 +20,7 @@
 @import "application/users";
 @import "application/projects";
 @import "application/footer";
+
+.testing-show-tooltips .tooltip {
+  display: block !important;
+}
