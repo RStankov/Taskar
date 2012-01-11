@@ -1,6 +1,1 @@
-<%= javascript_response do %>
-  $("<%= dom_id @task %>").replaceWithEffect(
-    $("task_title") ? <%= javascript_string_from_partial "content" %> : <%= javascript_string_from_partial @task %>
-  );
-<% end %>
-
+<%= javascript_call_on 'Taskar.Sections.TaskList.actions.show', dom_id(@task), render(@task), render('content') %>

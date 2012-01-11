@@ -1,11 +1,1 @@
-<%= javascript_response do %>
-	(function(){
-		$("section_title").slideUp({
-			after: function(e){
-				e.element.update(<%= javascript_string_from_partial "form", :section => @section, :remote => true %>).slideDown();
-			}
-		});
-		var text = $("section_text");
-    text && text.removeWithEffect("slideUp");
-	})();
-<% end %>
+<%= javascript_call_on 'Taskar.Sections.SectionsList.actions.edit', render('form', :section => @section, :remote => true) %>

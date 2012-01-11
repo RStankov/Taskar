@@ -44,12 +44,10 @@ Taskar.Sections = {
   }
 };
 
-//= require "sections/new_section"
-//= require "sections/ordering"
-//= require "sections/actions"
-//= require "sections/title"
+//= require "sections/global"
+//= require "sections/sections_list"
 //= require "sections/task_list"
 //= require "sections/comments"
 //= require "sections/aside"
-//= require "sections/new_status"
 //= require "sections/feedback"
+

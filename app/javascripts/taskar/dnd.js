@@ -19,22 +19,22 @@ events (sortable)
 	order:updated
 
 */
-Taskar.Dnd = (function(){
+Taskar.Dnd = (function() {
   var element, original, options, offset, style;
 
-  function fireEvent(eventName, e){
+  function fireEvent(eventName, e) {
     return element.fire('drag:' + eventName, {
       element:        element,
       originalEvent:  e,
       x:		          e.pointerX(),
       y:		          e.pointerY()
-    })
+    });
   }
 
-  function start(drag, e, givenOptions){
+  function start(drag, e, givenOptions) {
     e.stop();
 
-    if (element){
+    if (element) {
       end(e);
     }
 
@@ -55,7 +55,7 @@ Taskar.Dnd = (function(){
       y: e.pointerY() - cumulativeOffset[1]
     };
 
-    if (fireEvent('before', e).stopped){
+    if (fireEvent('before', e).stopped) {
       return false;
     }
 
@@ -68,29 +68,29 @@ Taskar.Dnd = (function(){
     document.observe('mouseup', end);
   }
 
-  function move(e){
+  function move(e) {
     e.stop();
 
     if (!element) return;
 
     var cumulativeOffset = element.cumulativeOffset();
     var position = {
-      x: e.pointerX() - cumulativeOffset[0] + (parseInt(element.getStyle('left')) || 0) - offset.x,
-      y: e.pointerY() - cumulativeOffset[1] + (parseInt(element.getStyle('top'))  || 0) - offset.y
-    }
+      x: e.pointerX() - cumulativeOffset[0] + (parseInt(element.getStyle('left'), 10) || 0) - offset.x,
+      y: e.pointerY() - cumulativeOffset[1] + (parseInt(element.getStyle('top'),  10)  || 0) - offset.y
+    };
 
     if (options.filter)         position   = options.filter(position);
     if (options.moveX != false) element.style.left = position.x + 'px';
     if (options.moveY != false) element.style.top  = position.y + 'px';
 
-    if (fireEvent('move', e).stopped){
+    if (fireEvent('move', e).stopped) {
       end(e);
     }
   }
 
-  function end(e){
+  function end(e) {
     e.stop();
-    if (!element){
+    if (!element) {
       return;
     }
 
@@ -106,18 +106,18 @@ Taskar.Dnd = (function(){
 
   return {
     drag: start,
-    startDragging: function(e, element){
+    startDragging: function(e, element) {
       start(element || e.findElement(), e);
     }
   };
 })();
 
 Taskar.Dnd.Sortable = Class.create({
-  initialize: function(container, options){
+  initialize: function(container, options) {
     this.container  = container = $(container);
     this.options    = options   = Object.extend(Object.clone(this.constructor.DEFAULT_OPTIONS), options || {});
 
-    if (options.autostart){
+    if (options.autostart) {
       container.on('mousedown', options.handle || options.item, this.startDragging.bind(this));
     }
 
@@ -125,34 +125,34 @@ Taskar.Dnd.Sortable = Class.create({
     container.observe('drag:move',		this.onDrag.bind(this));
     container.observe('drag:finish',	this.onDragEnd.bind(this));
 
-    if (options.ghosting){
+    if (options.ghosting) {
       this.constructor.Ghost.initialize(this);
     }
   },
-  startDragging: function(e){
+  startDragging: function(e) {
     var options = this.options;
     Taskar.Dnd.drag(e.findElement(options.item), e, {
       moveX: options.moveX,
       moveY: options.moveY
     });
   },
-  onDragStart: function(e){
+  onDragStart: function(e) {
     var options = this.options,
         drag	  = e.memo.element;
 
     this.changed = false;
     this.drag 	 = drag;
-    this.items	 = this.container.select(options.item).reject(function(item){ return item == drag });
+    this.items	 = this.container.select(options.item).reject(function(item) { return item == drag; });
   },
-  onDrag: function(e){
-    var hover = this.items.find(function(item){ return Position.within(item, e.memo.x, e.memo.y); });
+  onDrag: function(e) {
+    var hover = this.items.find(function(item) { return Position.within(item, e.memo.x, e.memo.y); });
 
     if (!hover) return;
 
     var insert  = Position.overlap('vertical', hover) > 0.5 ? ['previous', 'before'] : ['next', 'after'],
         sibling = hover[ insert[0] ](this.options.item);
 
-    if (sibling == this.drag || sibling == this.ghost){
+    if (sibling == this.drag || sibling == this.ghost) {
       return;
     }
 
@@ -164,19 +164,19 @@ Taskar.Dnd.Sortable = Class.create({
       changed:  hover.up(this.options.list)
     });
   },
-  onDragEnd: function(e){
-    if (this.changed){
+  onDragEnd: function(e) {
+    if (this.changed) {
       (e.findElement() || this.container).fire('order:updated', { sortable: this });
     }
     this.changed = this.drag = this.items = null;
   },
-  serialize: function(name, list){
+  serialize: function(name, list) {
     var id, rule = this.constructor.SERIALIZE_RULE;
 
     name || (name = this.options.name);
 
-    return ($(list) || this.container).select(this.options.item).inject([], function(memo, item){
-      if (id = (item.id && item.id.match(rule)[1])){
+    return ($(list) || this.container).select(this.options.item).inject([], function(memo, item) {
+      if (id = (item.id && item.id.match(rule)[1])) {
         memo.push( name + '=' + id );
       }
       return memo;
@@ -197,12 +197,12 @@ Taskar.Dnd.Sortable.DEFAULT_OPTIONS = {
 };
 
 Taskar.Dnd.Sortable.Ghost = {
-  initialize: function(sortable){
+  initialize: function(sortable) {
     sortable.container.observe('drag:before',		this.create.bind(sortable));
     sortable.container.observe('order:changed',	this.swap.bind(sortable));
     sortable.container.observe('drag:finish',   this.remove.bind(sortable));
   },
-  create: function(e){
+  create: function(e) {
     this.ghost = $(e.memo.element.cloneNode(true));
     this.ghost.id = null;
     this.ghost.setOpacity(0.5);
@@ -210,21 +210,22 @@ Taskar.Dnd.Sortable.Ghost = {
 
     e.memo.element.insert({ after: this.ghost });
   },
-  swap: function(){
+  swap: function() {
     this.drag.insert({ after: this.ghost });
   },
-  remove: function(){
+  remove: function() {
     this.ghost.remove();
     this.ghost = false;
   }
 };
 
-Taskar.Dnd.Sortable.AjaxSave = function(root, items){
-  items || (items = 'items[]')
-  root.on('order:updated', '[data-sortable]', function(e, element){
-    new Ajax.Request(element.getAttribute('data-sortable'), {
-      method:     'put',
-      parameters: e.memo.sortable.serialize(items)
-    });
-  });
-}
+Taskar.Dnd.behaviors = {
+  'order:updated': {
+     '[data-sortable]': function(e, element) {
+       new Ajax.Request(element.getAttribute('data-sortable'), {
+         method:     'put',
+         parameters: e.memo.sortable.serialize('items[]')
+      });
+    }
+  }
+};

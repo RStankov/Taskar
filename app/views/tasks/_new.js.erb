@@ -1,4 +1,1 @@
-<%= javascript_response do %>
-  $('new_task').replace(<%= javascript_string_from_partial "new_task" %>);
-  $('new_task').show().highlight({startColor: Taskar.ERROR_COLOR}).down('textarea').focus();
-<% end %>
+<%= javascript_call_on 'Taskar.Sections.TaskList.actions.errorOnNew', render('new_task') %>

@@ -30,12 +30,8 @@ module ApplicationHelper
     raw "<h1>#{page_title}</h1>"
   end
 
-  def javascript_response(&block)
-    raw "try {" + capture(&block) + "} catch(e){ alert(e); }"
-  end
-
-  def javascript_string_from_partial(partial, options = {})
-    raw '"' + escape_javascript(render(partial, options)) + '"'
+  def javascript_call_on(object, *args)
+    raw "try { #{object}(#{args.map(&:to_json).join(', ')}); } catch(e){ alert(e); }"
   end
 
   def copywrite

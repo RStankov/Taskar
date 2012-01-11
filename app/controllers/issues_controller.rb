@@ -3,7 +3,7 @@ class IssuesController < ApplicationController
     current_user.issues.create(params[:issue])
 
     if request.xhr?
-      render
+      head :ok
     else
       redirect_to root_path
     end
