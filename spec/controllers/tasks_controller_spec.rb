@@ -208,7 +208,7 @@ describe TasksController do
             post :create, params
           end
 
-          it { should assign_to(:task).with(@task) }
+          it { should assign_to(:task).with(mock_task) }
           it { should render_template("_new") }
         end
 

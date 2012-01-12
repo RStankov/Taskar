@@ -39,7 +39,7 @@ describe User do
     it { should validate_presence_of(:last_name) }
 
     it { should validate_presence_of(:password) }
-    it { should ensure_length_of(:password).is_at_least(6).is_at_most(20) }
+    it { should ensure_length_of(:password).is_at_least(6) }
 
     it { User.should have_attached_file(:avatar) }
 

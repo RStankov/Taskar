@@ -13,6 +13,7 @@ end
 gem "paperclip", "2.3.3"
 gem 'will_paginate', '3.0.2'
 gem 'devise', '1.3.4'
+gem 'rinku', :require => 'rails_rinku'
 
 gem "acts_as_list", "~>0.1.2"
 
