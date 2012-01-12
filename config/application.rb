@@ -25,7 +25,8 @@ module Taskar
     # Activate observers that should always be running.
     # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
 
-    config.autoload_paths     += %w[#{config.root}/lib]
+    config.autoload_paths     += %W[#{config.root}/lib]
+    config.autoload_paths     += Dir["#{config.root}/lib/**/"]
     config.time_zone           = "UTC"
     config.i18n.default_locale = :en
     config.encoding            = "utf-8"
