@@ -104,7 +104,7 @@ describe SectionsController do
         end
 
         it { should assign_to(:events).with(@events) }
-        it { should assign_to(:project).with(@project) }
+        it { should assign_to(:project).with(mock_project) }
         it { should render_template("index") }
       end
 

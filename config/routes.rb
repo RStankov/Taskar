@@ -65,12 +65,11 @@ Taskar::Application.routes.draw do
     resources :invitations, :only => [:show, :update]
   end
 
-  get "changes" => "changelog#index"
+  match 'changes' => 'changelog#index', :via => :get
 
-  match "issues" => "issues#create", :via => :post
-  match "/sprockets/:file" => "sprocketizer/sprockets#show"
+  match 'issues' => 'issues#create', :via => :post
 
-  get '/backdoor-login', :to => 'backdoor_login#login' if Rails.env.test?
+  match '/backdoor-login', :to => 'backdoor_login#login', :via => :get if Rails.env.test?
 
   root :to => "dashboard#index"
 end

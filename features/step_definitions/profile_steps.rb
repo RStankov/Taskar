@@ -19,8 +19,6 @@ When 'I change my password to "$password"' do |password|
   fill_in 'Current password', :with => @current_user.password
 
   click_button 'Save'
-
-  page.should have_content 'You updated your account successfully.'
 end
 
 Then 'my name should be "$full_name"' do |full_name|

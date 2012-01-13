@@ -30,7 +30,8 @@ Spork.each_run do
     config.include EmailSpec::Matchers
     config.include ControllerMacros
     config.include TaskarMocks
-    config.include Taskar::DeviseTestHelpers
+    config.include Devise::TestHelpers, :type => :controller
+    config.include Devise::TestHelpers, :type => :view
     config.extend Taskar::SpecHelper
   end
 end

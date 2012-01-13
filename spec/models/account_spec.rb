@@ -167,10 +167,10 @@ describe Account do
 
   describe "#remove_user" do
     it "destroys user's account user (only of this account)" do
-      AccountUser.create :account_id => account.id, :user_id => user.id
+      create :account_user, :account => account, :user => user
 
-      2.times { Factory(:account_user, :account_id => account.id )}
-      2.times { Factory(:account_user, :user_id => user.id ) }
+      2.times { create(:account_user, :account_id => account.id )}
+      2.times { create(:account_user, :user_id => user.id ) }
 
       user.reload.should have(3).account_users
       account.reload.should have(3).account_users
@@ -186,17 +186,19 @@ describe Account do
     end
 
     it "destroys user's project_users (only of this account)" do
-      project_1 = Factory(:project, :account_id => account.id)
-      project_2 = Factory(:project, :account_id => account.id)
+      project_1 = create :project, :account => account
+      project_2 = create :project, :account => account
 
-      ProjectUser.create :project_id => project_1.id, :user_id => user
-      ProjectUser.create :project_id => project_2.id, :user_id => user
+      create :project_user, :project => project_1, :user => user
+      create :project_user, :project => project_2, :user => user
 
-      2.times { Factory(:project_user, :project_id => project_1.id )}
-      2.times { Factory(:project_user, :project_id => project_2.id )}
-      2.times { Factory(:project_user, :user_id => user.id ) }
+      2.times { create :project_user, :project => project_1 }
+      2.times { create :project_user, :project => project_2 }
+      2.times { create :project_user, :user => user }
 
-      user.reload.should have(4).projects
+      user.reload
+      user.should have(4).projects
+
       project_1.reload.should have(3).users
       project_2.reload.should have(3).users
 

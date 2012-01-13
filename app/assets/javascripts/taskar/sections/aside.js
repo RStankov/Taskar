@@ -1,9 +1,4 @@
 Taskar.Sections.Aside = {
-  behaviors: {
-    'click': {
-      'img': Taskar.UI.WindowForm("new_status")
-    }
-  },
   actions: {
     refresh: function(options) {
       options || (options = {});
@@ -24,6 +19,10 @@ Taskar.Sections.Aside = {
     }
   },
   initialize: function(element) {
+    var showForm = Taskar.UI.WindowForm('new_status');
+    
+    element.on('click', '#user_card img', showForm);
+    
     var url = element.getAttribute("data-update-path");
     Ajax.Responders.register({
       onComplete: function(request) {
