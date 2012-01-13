@@ -1,4 +1,20 @@
-(function(){  
+(function(){
+  Ajax.Responders.register({
+    onCreate: function(request) {
+      var csrf_meta_tag = $$('meta[name=csrf-token]')[0];
+
+      if (csrf_meta_tag) {
+        var header = 'X-CSRF-Token',
+            token = csrf_meta_tag.readAttribute('content');
+
+        if (!request.options.requestHeaders) {
+          request.options.requestHeaders = {};
+        }
+        request.options.requestHeaders[header] = token;
+      }
+    }
+  });
+
   document.on('click', 'a[data-method]', function(e, element){
   	if (element.hasAttribute('data-remote')) return;
 
@@ -9,8 +25,7 @@
   		    form    = Element('form', {method: 'post', action: element.href}).hide()
   		    param   = $$('meta[name=csrf-param]')[0],
           token   = $$('meta[name=csrf-token]')[0];
-  		
-  		
+
   		if (param && token){
   		  form.insert(Element('input', {type: 'hidden', name: param.readAttribute('content'), value: token.readAttribute('content')}));
 		  }
@@ -24,7 +39,7 @@
   		form.submit();
   	}
   });
-  
+
   function handleRemote(e, element){
     if (!e.stopped){
       e.stop();
@@ -38,7 +53,7 @@
 
   document.on('click', 'a[data-remote=true]', handleRemote);
   document.on('submit', 'form[data-remote=true]', handleRemote);
-  
+
   document.observe('keyup', function(e){
     if (e.keyCode == Event.KEY_ESC){
       e.findElement().fire('key:esc');
