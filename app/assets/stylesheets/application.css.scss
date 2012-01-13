@@ -17,6 +17,7 @@
 @import "application/projects";
 @import "application/footer";
 
-.testing-show-tooltips .tooltip {
-  display: block !important;
+.testing-show-tooltips {
+  .archive,
+  .tooltip { display: block !important; }
 }

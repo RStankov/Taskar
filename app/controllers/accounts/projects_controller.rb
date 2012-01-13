@@ -42,7 +42,7 @@ class Accounts::ProjectsController < Accounts::BaseController
   end
 
   def complete
-    @project.completed = params[:complete] == 'true' ? true : false
+    @project.completed = params[:complete] == 'true'
     @project.save
 
     redirect_to [@account, @project], :notice => t( @project.completed ? :completed : :reseted, :scope => :projects )

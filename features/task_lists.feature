@@ -25,3 +25,16 @@ Feature: Task lists
   Scenario: Deleting a task list
     When I delete "Analytics module" task list
     Then there should not be a "Analytics module" task list in the project
+
+  Scenario: Archiving a task list
+    Given a task completed task on "Analytics module"
+     When I archive the last task on "Analytics module"
+      And I archive the section
+     Then the task list "Analytics module" should be archived
+      And no tasks can not be added to "Analytics module"
+
+  Scenario: Unarchiving a task list
+    Given the task list "Analytics module" is archived
+     When I unarchive the task list "Analytics module"
+     Then the task list "Analytics module" should not be archived
+      And tasks can be added to "Analytics module"

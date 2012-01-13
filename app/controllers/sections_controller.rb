@@ -55,7 +55,7 @@ class SectionsController < ApplicationController
   end
 
   def archive
-    @section.archived = params[:archive]
+    @section.archived = params[:archive] == 'true'
     @section.save
 
     redirect_to @section

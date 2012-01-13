@@ -75,7 +75,11 @@ class TasksController < ApplicationController
 
      event
 
-     head :ok
+     if request.xhr?
+       head :ok
+     else
+       redirect_to section_path(@task.section)
+     end
   end
 
   def reorder

@@ -18,9 +18,9 @@ class Section < ActiveRecord::Base
   scope :unarchived, where(:archived => false).order("position ASC")
 
   def archived=(archived)
-    if tasks.unarchived.count == 0
+    if tasks.unarchived.empty?
       move_to_bottom
-      super(archived ? true : false)
+      super !!archived
     end
   end
 
