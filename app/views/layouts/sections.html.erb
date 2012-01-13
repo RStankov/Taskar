@@ -42,7 +42,7 @@
       <form id="live_search" action="<%= search_project_tasks_path(@project) %>" method="get">
         <input type="text" name="ss" value="" />
         <input type="submit" value="" />
-        <%= image_tag "loaders/live_search.gif", :style => 'display: none;', :alt => current_user.full_name %>
+        <%= image_tag "/images/loaders/live_search.gif", :style => 'display: none;', :alt => current_user.full_name %>
         <ul style="display: none;"></ul>
       </form>
       <div id="user_card">
