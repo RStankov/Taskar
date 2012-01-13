@@ -1,17 +1,18 @@
-//= require "vendor/raphael-min"
-//= require "vendor/prototype"
-//= require "vendor/s2"
-//= require "vendor/cd3widgets"
+//= require vendor/raphael-min
+//= require vendor/prototype
+//= require vendor/s2
+//= require vendor/cd3widgets
 
-//= require "extensions"
-//= require "rails"
-//= require "taskar"
+//= require extensions
+//= require rails
+//= require taskar
+
+//= require_self
 
 CD3.Behaviors({
   'body':                 Taskar.Sections.Global.behaviors,
   '#sections':            Taskar.Sections.SectionsList.initialize,
   '#section_aside':       Taskar.Sections.Aside.initialize,
-  '#user_card':           Taskar.Sections.Aside.behaviors,
   '#tasks':               Taskar.Sections.TaskList.initialize,
   '#tasks_index':         Taskar.Sections.TaskList.behaviors,
   '#sections_show':       Taskar.Sections.TaskList.behaviors,

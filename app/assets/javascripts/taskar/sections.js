@@ -1,3 +1,6 @@
+//= require_self
+//= require_tree ./sections
+
 Taskar.Sections = {
   validateForm: function(e){
     var input = e.findElement('form').down('input[type=text],textarea');
@@ -43,11 +46,4 @@ Taskar.Sections = {
     cancel && cancel.request() && cancel.fire('ajax:after');
   }
 };
-
-//= require "sections/global"
-//= require "sections/sections_list"
-//= require "sections/task_list"
-//= require "sections/comments"
-//= require "sections/aside"
-//= require "sections/feedback"
 

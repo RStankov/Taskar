@@ -1,7 +1,4 @@
-Taskar.UI = {};
+//= require_self
+//= require_tree ./ui
 
-//= require "ui/state_checkbox"
-//= require "ui/live_search"
-//= require "ui/tooltip_bubble"
-//= require "ui/hover_bubble"
-//= require "ui/window_form"
+Taskar.UI = {};
