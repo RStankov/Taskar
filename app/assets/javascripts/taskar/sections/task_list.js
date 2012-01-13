@@ -156,11 +156,10 @@ Taskar.Sections.TaskList = {
     'ajax:put': {
       '.archive': function(e){
         var task = e.findElement('.task');
-        console.log('a');
 
         task.slideUp(function(e){
           var parent, insert, disabled;
-          if (task.parentNode.id == 'tasks'){
+          if (task.up('#tasks')){
             parent    = $('archived_tasks');
             insert    = {top: task};
             disabled  = "true";
