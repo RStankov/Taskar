@@ -213,12 +213,6 @@ bg:
       dashboard: "Събития"
 
 
-  tasks_stats:
-    empty: "0 задачи"
-    opened:
-      one: "1 задача"
-      other: "%{count} задачи"
-
     rejected:
         one: "1 отхвърлена задача"
         other: "%{count} отхвърлени задачи"

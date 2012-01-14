@@ -23,12 +23,7 @@
 	<h2 class="statistics"><%=t :'projects.sections' %> (<%= @sections.size  %>)</h2>
 	<ul>
 	  <% @sections.each do |section| %>
-			<li class="tasks_stats">
-				<%= link_to section do %>
-					<%= tasks_stats(section)  %>
-					<%= raw "<small>#{t('projects.archived_section')}</small>" if section.archived? %>
-				<% end %>
-			</li>
+			<li><%= link_to section.name, section %></li>
 	 <% end %>
 	</ul>
 	<% end %>

@@ -211,13 +211,6 @@ en:
       title: "Project participants's statuses"
       dashboard: "Events"
 
-
-  tasks_stats:
-    empty: "0 tasks"
-    opened:
-      one: "1 task"
-      other: "%{count} tasks"
-
     rejected:
         one: "1 rejected task"
         other: "%{count} rejected tasks"
