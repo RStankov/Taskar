@@ -27,7 +27,7 @@ namespace :db do
 
       class_names = Dir.glob("#{path}/*.yml").map { |file_name| File.basename(file_name, ".yml") }
 
-      Fixtures.create_fixtures(path, class_names)
+      ActiveRecord::Fixtures.create_fixtures(path, class_names)
 
       puts "version: #{File.basename(path)}"
       class_names.each do |class_name|
