@@ -66,12 +66,12 @@
       </div>
       <div id="sections">
         <h3><%= t ".sections" %><%= link_to "+", [:new, @project, :section], :title => t(".new_section") %></h3>
-        <ul data-sortable="<%= reorder_project_sections_path(@project.id) %>">
+        <ul data-sortable-url="<%= reorder_project_sections_path(@project) %>">
   	      <% @project.sections.unarchived.each do |section| %>
   	        <%= content_tag_for(:li, section) do %>
               <%= new_section_link section %>
               <%= link_to section.name, section, :class => "link " + (@section == section ? "selected" : nil).to_s %>
-              <input type="button" class="drag" title="<%=t :dnd %>" />
+              <span class="drag" title="<%=t :dnd %>"></span>
             <% end %>
           <% end %>
   	      <li><%= new_section_link %></li>

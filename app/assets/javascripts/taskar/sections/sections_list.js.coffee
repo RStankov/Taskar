@@ -33,6 +33,12 @@ Taskar.Sections.SectionsList =
       .on('key:esc', 'form',               hide)
       .on('submit',  'form',               Taskar.validateForm)
 
+    container.find('ul').sortable
+      items:  '.section'
+      handle: '.drag'
+      axis:   'y'
+      update: -> $(this).trigger 'order:updated', $(this).sortable('serialize')
+
   actions:
     show: (titleHtml, descriptionHtml) ->
       $('#section_title').slideUp 'fast', ->

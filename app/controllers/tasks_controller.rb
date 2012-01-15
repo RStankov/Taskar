@@ -83,7 +83,7 @@ class TasksController < ApplicationController
   end
 
   def reorder
-    @project.tasks.reorder(params[:items])
+    @project.tasks.change_order_of(params[:task])
 
     head :ok
   end

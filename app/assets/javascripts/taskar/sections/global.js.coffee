@@ -15,6 +15,13 @@ Taskar.Sections.GlobalBehaviors =
   'ajax:delete':
     '#statuses_list': -> $('li', this).slideUp 'fast', -> $(this).remove()
 
+  'order:updated':
+    '[data-sortable-url]': (e, data) ->
+      $.ajax
+        url:  $(this).data('sortable-url')
+        type: 'put'
+        data: data
+
   'click':
     '.flash': -> $(this).slideUp 'fast', -> $(this).remove()
 

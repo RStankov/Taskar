@@ -1,4 +1,7 @@
 #= require vendor/jquery
+#= require vendor/jquery_ui
+
+
 #= require rails
 #= require taskar
 #= require_self

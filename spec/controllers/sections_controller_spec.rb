@@ -169,9 +169,9 @@ describe SectionsController do
       describe "PUT reorder" do
         before do
           mock_project.should_receive(:sections).and_return Section
-          Section.should_receive(:reorder).with ["1", "2", "3", "4"]
+          Section.should_receive(:change_order_of).with ["1", "2", "3", "4"]
 
-          xhr :put, :reorder, :project_id => "1", :items => ["1", "2", "3", "4"]
+          xhr :put, :reorder, :project_id => "1", :section => ["1", "2", "3", "4"]
         end
 
         it { should_not render_template("reorder") }

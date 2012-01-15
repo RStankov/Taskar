@@ -267,9 +267,9 @@ describe TasksController do
       describe "PUT reorder" do
         before do
           mock_project.should_receive(:tasks).and_return  mock_tasks = []
-          mock_tasks.should_receive(:reorder).with(["1", "2", "3", "4"])
+          mock_tasks.should_receive(:change_order_of).with(["1", "2", "3", "4"])
 
-          xhr :put, :reorder, :project_id => "3", :items => ["1", "2", "3", "4"]
+          xhr :put, :reorder, :project_id => "3", :task => ["1", "2", "3", "4"]
         end
 
         it { should_not render_template("reorder") }

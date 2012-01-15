@@ -9,6 +9,12 @@ Taskar.Sections.TaskList =
       .mouseenter -> $(this).find('a.archive').toggle element.find('.task').length == 0
       .mouseenter()
 
+    $('#tasks').sortable
+      items:  '.task'
+      handle: '.drag'
+      axis:   'y'
+      update: -> $(this).trigger 'order:updated', $(this).sortable('serialize')
+
   behaviors:
     'click':
       'input.cancel': -> $(this).closest('li').slideUp()
