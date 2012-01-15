@@ -49,7 +49,7 @@ class SectionsController < ApplicationController
   end
 
   def reorder
-    @project.sections.reorder(params[:items])
+    @project.sections.change_order_of(params[:section])
 
     head :ok
   end

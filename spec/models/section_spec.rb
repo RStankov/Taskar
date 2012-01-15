@@ -69,7 +69,7 @@ describe Section do
 
     end
 
-    describe "#reorder" do
+    describe "#change_order_of" do
       before do
         @section_1 = create_next_section
         @section_2 = create_next_section
@@ -78,11 +78,11 @@ describe Section do
       end
 
       it "should accept nil as argument" do
-        lambda { Section.reorder( nil ) }.should_not raise_error
+        lambda { Section.change_order_of( nil ) }.should_not raise_error
       end
 
       it "should take array of section ids and sort them" do
-        Section.reorder([@section_2.id, @section_4.id, @section_1.id, @section_3.id])
+        Section.change_order_of([@section_2.id, @section_4.id, @section_1.id, @section_3.id])
 
         should_have_order_of @section_2, @section_4, @section_1, @section_3
       end
@@ -92,7 +92,7 @@ describe Section do
         s21 = create_next_section(p2)
         s22 = create_next_section(p2)
 
-        Section.reorder([@section_3.id, s21.id, @section_1.id, s22.id, @section_4.id, @section_2.id])
+        Section.change_order_of([@section_3.id, s21.id, @section_1.id, s22.id, @section_4.id, @section_2.id])
 
         should_have_order_of @section_3, @section_1, @section_4, @section_2
 

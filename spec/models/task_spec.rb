@@ -116,7 +116,7 @@ describe Task do
 
     end
 
-    describe "#reorder" do
+    describe "#change_order_of" do
       before do
         @task_1 = create_next_task
         @task_2 = create_next_task
@@ -125,11 +125,11 @@ describe Task do
       end
 
       it "should accept nil as argument" do
-        lambda { Task.reorder( nil ) }.should_not raise_error
+        lambda { Task.change_order_of( nil ) }.should_not raise_error
       end
 
       it "should take array of task ids and sort them" do
-        Task.reorder([@task_2.id, @task_4.id, @task_1.id, @task_3.id])
+        Task.change_order_of([@task_2.id, @task_4.id, @task_1.id, @task_3.id])
 
         should_have_order_of @task_2, @task_4, @task_1, @task_3
       end
@@ -139,7 +139,7 @@ describe Task do
         t21 = create_next_task(s2)
         t22 = create_next_task(s2)
 
-        Task.reorder([@task_3.id, t21.id, @task_1.id, t22.id, @task_4.id, @task_2.id])
+        Task.change_order_of([@task_3.id, t21.id, @task_1.id, t22.id, @task_4.id, @task_2.id])
 
         should_have_order_of @task_3, @task_1, @task_4, @task_2
 

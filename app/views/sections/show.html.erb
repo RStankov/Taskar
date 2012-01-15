@@ -33,7 +33,7 @@
 			<%= format_text @section.text %>
 		</p>
 	<% end %>
-  <ul id="tasks" class="tasks_list" data-sortable="<%= reorder_project_tasks_path(@section.project, @section)  %>">
+  <ul id="tasks" class="tasks_list" data-sortable-url="<%= reorder_project_tasks_path(@section.project, @section)  %>">
     <%= render @tasks %>
     <%= render "tasks/new_task" %>
   </ul>

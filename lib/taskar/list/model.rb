@@ -1,17 +1,17 @@
 module Taskar
   module List
     module Model
-      def self.included(model)        
+      def self.included(model)
         model.class_exec do
           extend ClassMethods
           include InstanceMethods
-          
+
           attr_accessor :insert_before, :insert_after
         end
       end
-      
+
       module ClassMethods
-        def reorder(ids)
+        def change_order_of(ids)
           if ids.is_a? Array
             position = 0
             ids.each do |id|
@@ -20,7 +20,7 @@ module Taskar
           end
         end
       end
-       
+
       module InstanceMethods
         def add_to_list_bottom
           if insert_before && record = self.class.find(:first, :conditions => {:id => insert_before})
@@ -31,7 +31,7 @@ module Taskar
           else
             record = bottom_item
           end
-          
+
           self[position_column] = (record.try(:position) || 0 ) + 1
         end
       end
