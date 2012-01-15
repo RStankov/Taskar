@@ -1,0 +1,23 @@
+@import "compass/css3";
+
+@import "legacy/base";
+@import "legacy/layout";
+@import "legacy/utils";
+@import "legacy/navigation";
+@import "legacy/aside";
+@import "legacy/titles";
+@import "legacy/header";
+@import "legacy/changes";
+@import "legacy/events";
+@import "legacy/statuses";
+@import "legacy/form";
+@import "legacy/tasks";
+@import "legacy/tooltip";
+@import "legacy/users";
+@import "legacy/projects";
+@import "legacy/footer";
+
+.testing-show-tooltips {
+  .archive,
+  .tooltip { display: block !important; }
+}

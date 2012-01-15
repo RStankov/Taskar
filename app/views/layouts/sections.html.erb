@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <%= csrf_meta_tag %>
   <title><%=t :project %>: <%= @project.name %><%= " / #{@section.name}" if @section %></title>
-  <%= stylesheet_link_tag "application" %>
+  <%= stylesheet_link_tag 'legacy' %>
   <%= favicon_link_tag "favicon.png" %>
 </head>
 <body<%= Rails.env.test? ? ' class="testing-show-tooltips"'.html_safe : '' %>>
