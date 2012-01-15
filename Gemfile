@@ -15,6 +15,8 @@ gem 'acts_as_list', '~>0.1.2'
 gem 'hoptoad_notifier'
 gem 'newrelic_rpm'
 
+gem 'slim'
+
 gem 'confu', :git => 'git@github.com:garmz/confu.git'
 
 group :assets do
@@ -22,6 +24,10 @@ group :assets do
   gem 'coffee-rails', '~> 3.1.1'
   gem 'uglifier',     '>= 1.0.3'
   gem 'compass',      '~> 0.12.alpha'
+end
+
+group :development do
+  gem 'active_reload'
 end
 
 group :development, :test do

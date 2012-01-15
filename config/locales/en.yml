@@ -15,7 +15,6 @@ en:
   or: "or"
   share: "Share"
   changes: "Changes"
-  dnd: "Drag"
   previous_page: "Previous page"
   next_page: "Next page"
   thanks_for_feedback: "Thanks for the feedback :)"
@@ -42,9 +41,7 @@ en:
 
     sections:
       dashboard: "Dashboard"
-      task_list: "Tasks"
       archive: "Archive"
-      switch_to_project: "Open other project"
       goto_dashboard: "Events"
       sections: "Current Tasks"
       new_section: "Create task list"
@@ -53,7 +50,6 @@ en:
         zero: "No tasks"
         other: "%{count} tasks"
 
-      people_in_project: "Project participants"
       last_activity: "Last active on %{time}"
       status:
         label: "What are you doing?"

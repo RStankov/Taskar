@@ -17,6 +17,6 @@
       <% if task.responsible_party %><strong><%= task.responsible_party.full_name %></strong><% end %>
       <span><%= raw auto_link(h(task.text)) %></span>
     </p>
-    <span class="drag" title="<%=t :dnd %>"></span>
+    <span class="drag" title="Drag"></span>
   </div>
 <% end %>

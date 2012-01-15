@@ -1,0 +1,108 @@
+doctype html
+html
+  head
+    meta charset="utf-8"
+    title Project: #{@project.name} #{"/ #{@section.name}" if @section}
+    = csrf_meta_tag
+    = stylesheet_link_tag 'legacy'
+    = favicon_link_tag 'favicon.png'
+  body class="#{'testing-show-tooltips' if Rails.env.test?}"
+    header
+      nav#nav_account
+        = link_to 'Profile', edit_user_registration_path
+        = link_to 'Feedback', '#', :id => 'feedback'
+        = link_to 'Logout', destroy_user_session_path
+
+      h2
+        = @project.name
+        - if current_user.projects.active.size > 1
+          nav#nav_projects
+            span Open other project
+            ul
+              - current_user.projects.order(:account_id).active(:limit => 10).each do |project|
+                li = link_to project.name, [project, :sections], :class => @project == project ? "selected" : nil
+              li = link_to 'dashboard', root_path, :id => 'back_to_dashboard'
+        - else
+          li = link_to 'back to dashboard', root_path, :id => 'back_to_dashboard'
+
+      nav#nav_project
+        = link_to '0', [@project, :sections], :id => 'notify_badge', :style => 'display: none;'
+        span
+          = link_to 'Dashboard', [@project, :sections], :class => section_is_dashboard? ? 'selected' : nil
+          = link_to 'Tasks', [:tasks, @project, :sections], :class => section_is_tasks? ? 'selected' : nil
+          = link_to 'Archive', [:archived, @project, :sections], :class => section_is_archive? ? 'selected' : nil
+
+    #feedback_form.window style="display: none;"
+      .arrow
+      = form_for Issue.new, :html => {:class => 'action_form', 'data-remote' => true, 'data-disable' => false} do |form|
+        = form.label :description
+        = form.text_area :description
+        p.buttons
+          = form.submit 'Share'
+          '  or
+          input type="button" value="Cancel" class="cancel"
+          input type="hidden" name="issue[url]" value=request.fullpath
+
+    = raw '<div class="flash notice">' + notice + '</div>' if notice
+    = raw '<div class="flash alert">' + alert + '</div>' if alert
+
+    section
+      article id="#{controller_name}_#{action_name}"
+        = yield
+      aside#section_aside data-update-path=project_aside_index_path(@project)
+        form#live_search method="get" action=search_project_tasks_path(@project)
+          input type="text" name="ss" value=""
+          input type="submit" value=""
+          = image_tag '/images/loaders/live_search.gif', :style => 'display: none;', :alt => current_user.full_name
+          ul style="display: none;"
+        #user_card
+          = image_tag current_user.avatar.url
+          strong = current_user.full_name
+          = link_to participant_task_count(current_user.responsibilities_count(@project.id)), [@project, :tasks]
+          br
+          = link_to 'clear status', [:clear, @project, :statuses], 'data-method' => 'delete', 'data-remote' => true
+          = form_for [@project, Status.new], :html => {:class => 'action_form tooltip', :style => 'display: none;', 'data-remote' => true, 'data-disable' => false} do |form|
+            #arrow
+            section
+              = form.label :text, 'What are you doing?'
+              = form.text_area :text
+              p.buttons
+                = form.submit 'Share'
+                '  or
+                input type="button" value='Cancel' class="cancel"
+        #sections
+          h3
+            ' Task lists
+            = link_to '+', [:new, @project, :section], :title => 'New list'
+          ul data-sortable-url=reorder_project_sections_path(@project)
+            - @project.sections.unarchived.each do |section|
+              = content_tag_for :li, section do
+                = new_section_link section
+                = link_to section.name, section, :class => "link #{(@section == section ? 'selected' : nil)}"
+                span.drag title="Drag to change order"
+            li = new_section_link
+            li#new_section style="display: none"
+              = form_for [@project, Section.new], :html => {:id => nil} do |form|
+                = form.label :name
+                = form.text_field :name, :autocomplete => 'off'
+                = form.hidden_field :insert_before
+                = form.submit 'Create task list', :class => 'submit_button'
+                '  or
+                input type="button" value="cancel"
+        - if @project.participants.size > 1
+          #people_envolved
+            h3 Project participants
+            ul
+              - @project.participants.each do |participant|
+                = content_tag_for :li, participant, :title => participant_status_title(participant) do
+                  = image_tag participant.user.avatar.url(:aside), :alt => participant.user.full_name
+                  span.people_info
+                    strong = participant.user.full_name
+                    span.status = participant_status participant
+    footer
+      ' #{copywrite} | #{link_to 'Changes', changes_path}
+      a href="#nav_account" id="scroll_to_top" title="Back to top"  ▲
+
+    #info_bubble style="display:none;" Drop the task over the selected task list<br />to move it there
+
+    = javascript_include_tag 'application'

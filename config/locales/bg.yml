@@ -15,7 +15,6 @@ bg:
   or: "или"
   share: "Сподели"
   changes: "Промени"
-  dnd: "Хвани"
   previous_page: "Предишна страница"
   next_page: "Следваща страница"
   thanks_for_feedback: "Благодара за подадената информация :)"
@@ -42,9 +41,7 @@ bg:
 
     sections:
       dashboard: "Табло"
-      task_list: "Задачи"
       archive: "Архив"
-      switch_to_project: "Отвори друг проект"
       goto_dashboard: "Събития"
       sections: "Текущи задачи"
       new_section: "Нов списък"
@@ -53,7 +50,6 @@ bg:
         zero: "Няма задачи"
         other: "%{count} задачи"
 
-      people_in_project: "Участници в проекта"
       last_activity: "Последно активен преди %{time}"
       status:
         label: "Какво правите в момента?"
