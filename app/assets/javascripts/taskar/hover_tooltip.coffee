@@ -1,48 +1,37 @@
-Taskar.HoverTooltip = do ->
-  class Tooltip
-    constructor: (element, @showOn, @hoverOn, e) ->
-      @element = $(element)
-      @hover   = $()
-      @positionate(e) if e?
+class Taskar.HoverTooltip
+  constructor: (element, @showOn, @hoverOn) ->
+    @element = $(element).hide()
+    @hovered = $()
 
-    positionate: (e) ->
-      target = $(e.target)
-      if target.find(@showOn).length > 0
-        @element.hide()
-      else
-        @hover target.find(@hoverOn) if @hoverOn?
-        @element.css
-          display:  'block'
-          top:      e.pageY + 20
-          left:     e.pageX + 20
+  positionate: (e) =>
+    target = $(e.target)
+    if target.closest(@showOn).length == 0
+      @element.hide()
+    else
+      @hover target.closest(@hoverOn).first()
+      @element.css
+        display:  'block'
+        top:      e.pageY + 20
+        left:     e.pageX + 20
 
-      hover: (element) ->
-        unless element.is(@hover)
-          @hover.removeClass('hover')
-          @hover = element.addClass('hover')
+  hover: (element) ->
+    unless element.is @hovered
+      @hovered.removeClass('hover')
+      @hovered = element.addClass('hover')
 
-      unhover: ->
-        @hover.removeClass('hover')
-        @hover = $()
+  unhover: ->
+    @hovered.removeClass('hover')
+    @hovered = $()
 
-      destroy: ->
-        @unhover()
-        @hover = null
-        @element.hide()
-        @element = null
+  hide: ->
+    @unhover()
+    @element.hide()
 
-  create = (e) ->
-    @instance = new Tooltip('info_bubble', 'aside', '.link:not(.selected)', e)
-    @move     = move
+  start: ->
+    $(document).bind('mousemove', @positionate)
 
-  move = (e) -> @instance.positionate(e)
-
-  hide = ->
-    if @instance
-      @instance.destroy
-      @instance = null
-      @move     = create
-
-  instance: null,
-  move:     create
-  hide:     hide
+  stopAndReturn: ->
+    droppedOn = @hovered
+    $(document).unbind('mousemove', @positionate)
+    @hide()
+    droppedOn

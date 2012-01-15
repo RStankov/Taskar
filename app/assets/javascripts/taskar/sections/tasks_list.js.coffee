@@ -9,11 +9,25 @@ Taskar.Sections.TaskList =
       .mouseenter -> $(this).find('a.archive').toggle element.find('.task').length == 0
       .mouseenter()
 
+    tooltip = new Taskar.HoverTooltip('#info_bubble', 'aside', '.link:not(.selected)')
+
     $('#tasks').sortable
       items:  '.task'
       handle: '.drag'
       axis:   'y'
       update: -> $(this).trigger 'order:updated', $(this).sortable('serialize')
+      start:  (e) ->
+        $(e.target).addClass('dragging')
+        tooltip.start()
+      stop:   (e, ui) ->
+        $(e.target).removeClass('dragging')
+        droppedOn = tooltip.stopAndReturn().closest('.section')
+        if droppedOn.length
+          $.ajax
+            url:  ui.item.data('change-section')
+            type: 'put'
+            data: {section_id: droppedOn.attr('id').match(/\w+_(\d+)/)[1]}
+          ui.item.remove()
 
   behaviors:
     'click':
