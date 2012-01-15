@@ -30,12 +30,12 @@ class Taskar.LiveSearchForm
   handleFocusOut: => @resultsBox.delay(300).fadeOut(0)
 
   handleKeypress: (e) =>
-    event = Taskar.Event
+    event = $.ui.keyCode
     switch e.keyCode
-      when event.KEY_ESC    then @close()
-      when event.KEY_UP     then @updateSelection 'up'
-      when event.KEY_DOWN   then @updateSelection 'down'
-      when event.KEY_RETURN then @select(e)
+      when event.ESCAPE then @close()
+      when event.UP     then @updateSelection 'up'
+      when event.DOWN   then @updateSelection 'down'
+      when event.ENTER  then @select(e)
 
   close: ->
     @input.val('')
@@ -78,7 +78,6 @@ class Taskar.LiveSearchForm
   markSelected: (element) =>
     @resultsBox.find('.selected').removeClass('selected')
     element.addClass('selected')
-
 
 class Taskar.LiveSearchForm.InputObserver
   constructor: (element, @frequency, @callback) ->
