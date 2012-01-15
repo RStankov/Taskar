@@ -79,9 +79,9 @@ describe SectionsController do
       describe "PUT archive" do
         before do
           mock_section.should_receive(:save)
-          mock_section.should_receive(:archived=).with "true"
+          mock_section.should_receive(:archived=).with true
 
-          put :archive, :id => "1", :archive => "true"
+          put :archive, :id => "1", :archive => 'true'
         end
 
         it { should redirect_to(section_url(mock_section)) }

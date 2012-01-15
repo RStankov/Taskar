@@ -109,7 +109,7 @@ describe Accounts::ProjectsController do
         project.should_receive(:completed=).with(true)
         project.should_receive(:save)
 
-        put :complete, :account_id => "1", :id => "2", :complete => "foo"
+        put :complete, :account_id => "1", :id => "2", :complete => "true"
       end
 
       it "should set completed flag to project to false" do
