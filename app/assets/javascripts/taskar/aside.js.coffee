@@ -1,7 +1,7 @@
-Taskar.Sections.Aside =
+Taskar.Aside =
   actions:
     refresh: (options = {}) ->
-      aside = Taskar.Sections.Aside
+      aside = Taskar.Aside
       aside.updateEvents(options.events, options.eventsText);
       aside.updateResponsibilities(options.responsibilities);
       for participant in options.participants or []

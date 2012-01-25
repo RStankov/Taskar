@@ -1,4 +1,4 @@
-Taskar.Sections.TaskList =
+Taskar.TaskList =
   initialize: ->
     element = $(this)
 

@@ -6,12 +6,12 @@
 #= require_self
 
 Taskar.behaviors
-  'body':             Taskar.Sections.GlobalBehaviors
-  '#sections':        Taskar.Sections.SectionsList.initialize
-  '#section_aside':   Taskar.Sections.Aside.initialize
-  '#tasks':           Taskar.Sections.TaskList.initialize
-  '#tasks_index':     Taskar.Sections.TaskList.behaviors
-  '#sections_show':   Taskar.Sections.TaskList.behaviors
-  '#tasks_show':      Taskar.Sections.Comments.behaviors
-  '#feedback':        Taskar.Sections.Feedback
+  'body':             Taskar.GlobalBehaviors
+  '#sections':        Taskar.SectionsList.initialize
+  '#section_aside':   Taskar.Aside.initialize
+  '#tasks':           Taskar.TaskList.initialize
+  '#tasks_index':     Taskar.TaskList.behaviors
+  '#sections_show':   Taskar.TaskList.behaviors
+  '#tasks_show':      Taskar.Comments.behaviors
+  '#feedback':        Taskar.Feedback
   '#live_search':     -> new Taskar.LiveSearchForm(this)

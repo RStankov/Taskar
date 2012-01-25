@@ -1,4 +1,4 @@
-Taskar.Sections.GlobalBehaviors =
+Taskar.GlobalBehaviors =
   'ajax:after':
     '.action_form': ->
       element = $(this)

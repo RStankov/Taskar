@@ -1,4 +1,4 @@
-Taskar.Sections.Comments =
+Taskar.Comments =
   behaviors:
     'ajax:put':
       '.task .archive': ->

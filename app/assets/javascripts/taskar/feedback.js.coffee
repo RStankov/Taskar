@@ -1,4 +1,4 @@
-Taskar.Sections.Feedback = ->
+Taskar.Feedback = ->
   form   = $('#feedback_form')
   appear = Taskar.showWindowForm(form)
 

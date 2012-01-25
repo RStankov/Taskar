@@ -1,4 +1,4 @@
-Taskar.Sections.SectionsList =
+Taskar.SectionsList =
   initialize: ->
     container = $(this)
     newSection = $('#new_section')

@@ -1,16 +1,14 @@
 #= require_self
 #= require taskar/live_search
 #= require taskar/hover_tooltip
-#= require taskar/sections/global
-#= require taskar/sections/comments
-#= require taskar/sections/feedback
-#= require taskar/sections/aside
-#= require taskar/sections/sections_list
-#= require taskar/sections/tasks_list
+#= require taskar/global
+#= require taskar/comments
+#= require taskar/feedback
+#= require taskar/aside
+#= require taskar/sections_list
+#= require taskar/tasks_list
 
 window.Taskar =
-  Sections: {}
-
   behaviors: (behaviorDefinitions) ->
     for own selector, behaviors of behaviorDefinitions
       if typeof behaviors is 'function'

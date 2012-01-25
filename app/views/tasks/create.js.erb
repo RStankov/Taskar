@@ -1,1 +1,1 @@
-<%= javascript_call_on 'Taskar.Sections.TaskList.actions.create', @task.id, render(@task), @task.higher_item.try(:id) %>
+<%= javascript_call_on 'Taskar.TaskList.actions.create', @task.id, render(@task), @task.higher_item.try(:id) %>
