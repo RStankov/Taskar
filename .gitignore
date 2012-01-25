@@ -9,8 +9,6 @@ config/database.yml
 config/deploy.rb
 config/newrelic.yml
 config/site/application.yml
-db/schema.rb
-db/*.sqlite3
 db/backups/**/*
 public/system/**/*
 public/sprockets/*
