@@ -51,7 +51,6 @@ class Invitation < ActiveRecord::Base
         return user.valid_password?(params[:password])
       end
 
-      user.locale                 = params[:locale]
       user.avatar                 = params[:avatar]
       user.password               = params[:password]
       user.password_confirmation  = params[:password_confirmation]

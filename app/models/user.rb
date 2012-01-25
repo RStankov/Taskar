@@ -1,8 +1,7 @@
 class User < ActiveRecord::Base
-  attr_accessible             :email, :password, :password_confirmation, :first_name, :last_name, :avatar, :owned_account_attributes, :remember_me, :locale
+  attr_accessible             :email, :password, :password_confirmation, :first_name, :last_name, :avatar, :owned_account_attributes, :remember_me
 
   validates_presence_of       :first_name, :last_name
-  validates_inclusion_of      :locale, :in => %w(bg en), :allow_blank => true
 
   has_attached_file           :avatar,  :styles => { :image => '48x48', :aside => '32x32' }, :default_style => :image
 

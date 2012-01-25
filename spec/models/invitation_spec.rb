@@ -74,13 +74,12 @@ describe Invitation do
       invitation.accept({})
     end
 
-    it "accepts hash of :password, :password_confirmation, :locale, :avatar (for new_user)" do
+    it "accepts hash of :password, :password_confirmation, :avatar (for new_user)" do
       invitation = Factory(:invitation)
 
-      invitation.accept(:first_name => "no first", :last_name => "no last", :password => "password", :password_confirmation => "password_confirmation", :locale => "locale", :avatar => "avatar")
+      invitation.accept(:first_name => "no first", :last_name => "no last", :password => "password", :password_confirmation => "password_confirmation", :avatar => "avatar")
       invitation.user.password.should == "password"
       invitation.user.password_confirmation.should == "password_confirmation"
-      invitation.user.locale.should == "locale"
       invitation.user.first_name.should_not == "no first"
       invitation.user.last_name.should_not == "no last"
     end

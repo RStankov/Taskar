@@ -15,7 +15,6 @@ describe "devise/invitations/show.html.erb" do
     render
     rendered.should have_selector("#user_password")
     rendered.should have_selector("#user_password_confirmation")
-    rendered.should have_selector("#user_locale")
     rendered.should have_selector("#user_avatar")
   end
 
@@ -25,7 +24,6 @@ describe "devise/invitations/show.html.erb" do
     render
     rendered.should have_selector("#user_password")
     rendered.should_not have_selector("#user_password_confirmation")
-    rendered.should_not have_selector("#user_locale")
     rendered.should_not have_selector("#user_avatar")
   end
 end
