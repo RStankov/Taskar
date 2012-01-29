@@ -35,12 +35,6 @@ describe ApplicationHelper do
     end
   end
 
-  describe "#copywrite" do
-    it "returns the t(:copywrite) with the current year" do
-      helper.copywrite.should == t(:'copywrite', :year => Time.now.year)
-    end
-  end
-
   describe "#time_tag" do
     it "returns html5 time tag datetime/title attributes" do
       time     = Time.now

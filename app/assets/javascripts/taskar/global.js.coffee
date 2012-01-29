@@ -25,8 +25,6 @@ Taskar.GlobalBehaviors =
   'click':
     '.flash': -> $(this).slideUp 'fast', -> $(this).remove()
 
-    '#scroll_to_top': -> window.scrollTo 0, 0
-
     '.checkbox[data-disabled!=true]': do ->
       STATES =
         'opened':     'completed'
