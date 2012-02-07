@@ -5,6 +5,8 @@ gem 'rails', '3.1.3'
 
 gem 'pg'
 
+gem 'simple_form'
+
 gem 'paperclip', '2.3.3'
 gem 'will_paginate', '3.0.2'
 gem 'devise', '~>1.5.3'
