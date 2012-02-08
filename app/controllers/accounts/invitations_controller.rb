@@ -1,4 +1,7 @@
 class Accounts::InvitationsController < Accounts::BaseController
+  def index
+  end
+
   def new
     @invitation = Invitation.new
   end

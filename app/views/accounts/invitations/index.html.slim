@@ -1,0 +1,19 @@
+.listing.invitations
+  h2 Invitations (#{@account.invitations.size})
+
+  = link_to '+', new_account_invitation_path(@account), :class => 'new', :title => 'Invite user'
+
+  table
+    thead
+      tr
+        th Name
+        th Email
+    tbody
+      - @account.invitations.each do |invitation|
+        tr
+            td = invitation.full_name
+            td = invitation.email
+            td.actions
+              = link_to 'Resend invitation', account_invitation_path(@account, invitation), :method => :put, :confirm => 'Are you sure?'
+              = link_to 'Delete', account_invitation_path(@account, invitation), :method => :delete, :confirm => 'Are you sure?'
+

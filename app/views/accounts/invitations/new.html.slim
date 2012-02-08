@@ -1,0 +1,15 @@
+= render 'accounts/users/users'
+
+article
+  h2 Invite user
+
+  = simple_form_for [@account, @invitation] do |form|
+    = form.error_notification
+    = form.input :email
+    = form.input :first_name
+    = form.input :last_name
+    = form.input :message, :as => :text, :label => 'Additional message', :hint => "it will be added at the bottom of the user's welcome email"
+
+    .buttons
+      = form.button :submit, 'Send invitation'
+      = link_to 'Cancel', account_users_path(@account)

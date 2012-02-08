@@ -5,29 +5,28 @@ end
 When 'I invite "$email" to my account' do |email|
   visit account_path(current_account)
 
-  click_link 'Invite user'
+  click_on 'Members'
+  click_on 'Invite user'
 
   fill_in 'E-mail', :with => email
   fill_in 'First name', :with => 'Radoslav'
   fill_in 'Last name', :with => 'Stankov'
 
-  click_button 'Send'
+  click_on 'Send'
 end
 
 When 'I resent my invitation' do
   visit account_path(current_account)
 
-  click_link 'Manage users'
-  click_link 'Resend invitation'
-
-  page.should have_content 'Invitation resend successfully'
+  click_on 'Invitations'
+  click_on 'Resend invitation'
 end
 
 When 'I delete my invitation' do
   visit account_path(current_account)
 
-  click_link 'Manage users'
-  click_link 'Delete'
+  click_on 'Invitations'
+  click_on 'Delete'
 end
 
 When '"$email" accepts my invitation' do |email|
@@ -38,7 +37,7 @@ When '"$email" accepts my invitation' do |email|
   fill_in 'Password', :with => '123456'
   fill_in 'Confirm password', :with => '123456'
 
-  click_button 'Accept invitation'
+  click_on 'Accept invitation'
 end
 
 When '"$email" accepts my invitation confirming with "$password" password' do |email, password|
@@ -48,7 +47,7 @@ When '"$email" accepts my invitation confirming with "$password" password' do |e
 
   fill_in 'enter your password', :with => password
 
-  click_button 'Accept invitation'
+  click_on 'Accept invitation'
 end
 
 Then 'the user with "$email" should be in my account' do |email|
