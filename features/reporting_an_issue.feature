@@ -3,7 +3,7 @@ Feature: Reporting an issue
   As a registered user
   I want to be able to report an issues with the application
 
-  @javascript
+  @pending @javascript
   Scenario: Reporting an issue
     Given I am logged in
       And I am on the home page
