@@ -24,7 +24,7 @@ class Accounts::UsersController < Accounts::BaseController
   end
 
   def set_projects
-    @account.set_user_projects(@user, params[:project_ids])
+    @account.set_user_projects(@user, params[:user][:project_ids])
 
     redirect_to [@account, @user]
   end

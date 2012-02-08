@@ -66,7 +66,7 @@ describe Accounts::UsersController do
         it "should set projects of user and redirect" do
           mock_account.should_receive(:set_user_projects).with(mock_user, ["1", "2", "3"])
 
-          put :set_projects, :account_id => "1", :id => "2", :project_ids => ["1", "2", "3"]
+          put :set_projects, :account_id => "1", :id => "2", :user => {:project_ids => ["1", "2", "3"]}
 
           should redirect_to(account_user_url(mock_account, mock_user))
         end

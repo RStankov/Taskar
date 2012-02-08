@@ -7,14 +7,16 @@ Feature: Account users
     Given I am logged in as an account owner
       And a user named "Radoslav Stankov" exists in my account
 
+  @pending
   Scenario: Give admin access to user
      When I toggle the admin access of "Radoslav Stankov" user
      Then "Radoslav Stankov" should be admin in my account
 
-   Scenario: Revoke admin access to user
-     Given "Radoslav Stankov" is admin
-      When I toggle the admin access of "Radoslav Stankov" user
-      Then "Radoslav Stankov" should not be admin in my account
+  @pending
+  Scenario: Revoke admin access to user
+    Given "Radoslav Stankov" is admin
+     When I toggle the admin access of "Radoslav Stankov" user
+     Then "Radoslav Stankov" should not be admin in my account
 
   Scenario: Delete user
      When I delete "Radoslav Stankov" from my account
