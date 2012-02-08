@@ -28,4 +28,16 @@ module CucumberHelpers
   def confirm_on_next_action
     page.evaluate_script 'window.confirm = function(msg) { return true; }'
   end
+
+  def edit_project(project_name, &block)
+    project = Project.find_by_name! project_name
+
+    visit account_project_path(project.account, project)
+
+    click_on 'Edit'
+
+    yield
+
+    click_on 'Update'
+  end
 end

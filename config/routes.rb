@@ -52,7 +52,7 @@ Taskar::Application.routes.draw do
       end
     end
 
-    resources :projects, :controller => "accounts/projects" do
+    resources :projects, :controller => 'accounts/projects' do
       member do
         put :complete
       end

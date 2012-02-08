@@ -2,12 +2,9 @@ class Accounts::ProjectsController < Accounts::BaseController
   before_filter :get_project, :only => [:show, :edit, :update, :destroy, :complete]
 
   def index
-    @projects  = projects.active
-    @completed = projects.completed
   end
 
   def show
-    @sections = @project.sections.order("position ASC")
   end
 
   def new
@@ -23,15 +20,15 @@ class Accounts::ProjectsController < Accounts::BaseController
     if @project.save
       redirect_to [:tasks, @project, :sections]
     else
-      render "new"
+      render 'new'
     end
   end
 
   def update
     if @project.update_attributes(params[:project])
-      redirect_to [@account, @project], :notice => t("projects.updated_project")
+      redirect_to [@account, @project], :notice => 'Project updated successfully'
     else
-      render "edit"
+      render 'edit'
     end
   end
 
@@ -45,7 +42,7 @@ class Accounts::ProjectsController < Accounts::BaseController
     @project.completed = params[:complete] == 'true'
     @project.save
 
-    redirect_to [@account, @project], :notice => t( @project.completed ? :completed : :reseted, :scope => :projects )
+    redirect_to [@account, @project], :notice => @project.completed ? 'Project completed successfully' : 'Project has been reset'
   end
 
   private

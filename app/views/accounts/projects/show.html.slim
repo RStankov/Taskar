@@ -1,0 +1,17 @@
+= render 'projects'
+
+article
+  h2 = @project.name
+
+  ul.actions
+    li = link_to 'Delete', account_project_path(@account, @project), :confirm => 'Are you sure, you want to delete this project?', :method => 'delete'
+    li = link_to 'Edit', edit_account_project_path(@account, @project)
+    li = link_to 'Open', project_sections_path(@project)
+    li.complete
+      = link_to complete_account_project_path(@account, @project, :complete => !@project.completed?), :method => 'put' do
+       ' #{check_box_tag '', '', @project.completed?} Complete project?
+
+  - if @project.users.any?
+    h3 Project participants:
+    ul = render @project.users
+

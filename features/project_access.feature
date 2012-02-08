@@ -6,20 +6,18 @@ Feature: Project access
   Background:
     Given I am logged in as an account owner
       And a project named "Todo App" exists in my account
+      And a user named "John Doe" exists in my account
 
   Scenario: Giving access to a user
-    Given a user named "John Doe" exists in my account
      When I give access to "Todo App" to "John Doe"
      Then "John Doe" should have access to "Todo App" project
 
   Scenario: Revoking access to a user
-    Given a user named "John Doe" exists in my account
-      And "John Doe" has access to "Todo App" project
+    Given "John Doe" has access to "Todo App" project
      When I revoke the access to "Todo App" to "John Doe"
      Then "John Doe" should not have access to "Todo App" project
 
   Scenario: Giving access to a user from his account profile page
-    Given a user named "John Doe" exists in my account
      When I give access to "Todo App" to "John Doe" from his account profile page
      Then "John Doe" should have access to "Todo App" project
 

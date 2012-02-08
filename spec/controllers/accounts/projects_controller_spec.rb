@@ -1,8 +1,6 @@
 require 'spec_helper'
 
 describe Accounts::ProjectsController do
-  before { sign_up_and_mock_account }
-
   let(:current_user){ @current_user }
   let(:account){ mock_account }
   let(:project){ mock_project }
@@ -10,21 +8,22 @@ describe Accounts::ProjectsController do
   let(:section){ mock_section }
   let(:sections){ [section] }
 
+  before do
+    sign_up_and_mock_account
+
+    mock_account.stub :projects => projects
+  end
+
   describe "with admin user" do
     before do
       account.should_receive(:admin?).with(current_user).and_return true
-      account.stub :projects => projects
 
       projects.stub :find => project
     end
 
     describe "GET index" do
-      before { projects.stub :completed => "completed projects" }
-      before { projects.stub :active => "active projects" }
       before { get :index, :account_id => "1" }
 
-      it { should assign_to(:projects).with("active projects") }
-      it { should assign_to(:completed).with("completed projects") }
       it { should render_template(:index) }
     end
 
@@ -57,10 +56,8 @@ describe Accounts::ProjectsController do
     end
 
     describe "GET show" do
-      before { project.stub_chain :sections, :order => [section] }
       before { get :show, :account_id => "1", :id => "2" }
 
-      it { should assign_to(:sections).with(sections) }
       it { should assign_to(:project).with(project) }
       it { should render_template(:show) }
     end
