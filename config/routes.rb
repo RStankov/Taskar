@@ -42,7 +42,7 @@ Taskar::Application.routes.draw do
     end
   end
 
-  resources :accounts, :controller => "accounts/accounts", :only => [:show, :edit, :update] do
+  resources :accounts, :controller => 'accounts/accounts', :only => [:show, :edit, :update] do
     resources :invitations, :controller => 'accounts/invitations', :only => [:index, :new, :create, :update, :destroy]
 
     resources :users, :controller => 'accounts/users', :except => [:new, :create, :edit, :update] do

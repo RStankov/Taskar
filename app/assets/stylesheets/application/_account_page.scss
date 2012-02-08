@@ -56,17 +56,17 @@
   article .actions li { float: right; padding: 5px; }
   article .actions li.complete { float: left; padding: 5px; }
   article .actions li a { @include gray-button; line-height: 20px; }
-  article div.user { width: 190px; margin-right: 0px; }
+  article a.user { width: 190px; margin-right: 0px; }
 
-  div.user { @include inline-block; @include border-radius(5px); @include clearfix; position: relative; width: 198px; margin: 5px 10px; color: #000; text-decoration: none; border: 1px solid $line; }
-  div.user img { float: left; padding: 7px; }
-  div.user div { float: left; padding: 10px 7px; border-left: 1px solid $line; }
-  div.user div strong { display: block; margin-bottom: 5px; }
-  div.user div small { display: block; font-size: 10px; }
-  div.user.selected { @include background-gradient(lighten($selected-item-color, 40%), lighten($selected-item-color, 20%)); border-color: $selected-item-color; }
-  div.user.selected div { border-color: $header-gradient-start; }
-  div.user:hover,
-  div.user:active { @include box-shadow(0 0 4px $shadow-color); }
+  a.user { @include inline-block; @include border-radius(5px); @include clearfix; position: relative; width: 198px; margin: 5px 10px; color: #000; text-decoration: none; border: 1px solid $line; }
+  a.user img { float: left; padding: 7px; }
+  a.user div { float: left; padding: 10px 7px; border-left: 1px solid $line; }
+  a.user div strong { display: block; margin-bottom: 5px; }
+  a.user div small { display: block; font-size: 10px; }
+  a.user.selected { @include background-gradient(lighten($selected-item-color, 40%), lighten($selected-item-color, 20%)); border-color: $selected-item-color; }
+  a.user.selected div { border-color: $header-gradient-start; }
+  a.user:hover,
+  a.user:active { @include box-shadow(0 0 4px $shadow-color); }
 
   a.delete { @include red-button; position: absolute; top: 6px; right: 10px; }
 
