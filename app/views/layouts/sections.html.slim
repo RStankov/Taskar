@@ -99,9 +99,8 @@ html
                   span.people_info
                     strong = participant.user.full_name
                     span.status = participant_status participant
-    footer
-      ' #{copywrite} | #{link_to 'Changes', changes_path}
-      a href="#nav_account" id="scroll_to_top" title="Back to top"  ▲
+
+    = render 'shared/footer'
 
     #info_bubble style="display:none;" Drop the task over the selected task list<br />to move it there
 
