@@ -1,0 +1,51 @@
+.simple_form {
+  input[type="text"],
+  input[type="password"],
+  input[type="tel"],
+  input[type="email"],
+  textarea { padding: 5px; border: 1px solid $line; font-size: 14px; }
+
+  select { font-size: 14px; }
+
+  textarea { height: 50px; resize: vertical; }
+
+  label { display: block; margin: 0 0 5px 2px; font-size: 14px; }
+  fieldset + fieldset { margin-top: 20px; }
+
+  .input + .input { margin-top: 15px; }
+
+  .buttons { padding: 18px 0 10px; margin-top: 20px; border-top: 1px solid $line; }
+  .buttons .button { @include submit-button; }
+  .buttons a { margin-left: 10px; color: $error; }
+  .buttons a:hover { text-decoration: none; }
+
+  .hint { color: #888; }
+
+  .error { color: $error; margin-left: 10px; }
+  .error-notification { margin-bottom: 20px; padding: 10px 20px; background: lighten($error, 10%); border-bottom: 2px solid $error; color: #fff; font-size: 16px; }
+
+  .field-with-error {
+    input, textarea { border-color: $error; }
+    label { color: $error; }
+  }
+
+  .input.boolean,
+  .input.check_boxes {
+    @include clearfix;
+
+    input { float: left; margin-right: 5px; }
+    label { float: left; margin-bottom: 0; }
+    label span { display: none; }
+  }
+
+  .input.check_boxes {
+    > label { margin-bottom: 10px; }
+    > span { display: block; clear: both; }
+    > span + span { margin-top: 5px; }
+    > span label { font-size: 13px; }
+  }
+
+  .input.text {
+    .hint { display: block; margin: 5px 0 0 2px; }
+  }
+}
