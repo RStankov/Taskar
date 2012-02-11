@@ -1,4 +1,6 @@
 class Accounts::UsersController < Accounts::BaseController
+  layout 'users'
+
   before_filter :get_user, :only => [:show, :destroy, :set_admin, :set_projects]
 
   def index

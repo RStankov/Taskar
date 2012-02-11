@@ -4,6 +4,8 @@ class Accounts::InvitationsController < Accounts::BaseController
 
   def new
     @invitation = Invitation.new
+
+    render :layout => 'users'
   end
 
   def create
@@ -14,7 +16,7 @@ class Accounts::InvitationsController < Accounts::BaseController
 
       redirect_to [@account, :users]
     else
-      render "new"
+      render 'new', :layout => 'users'
     end
   end
 

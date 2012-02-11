@@ -1,15 +1,12 @@
-= render 'accounts/users/users'
+h2 = title 'Invite user'
 
-article
-  h2 Invite user
+= simple_form_for [@account, @invitation] do |form|
+  = form.error_notification
+  = form.input :email
+  = form.input :first_name
+  = form.input :last_name
+  = form.input :message, :as => :text, :label => 'Additional message', :hint => "it will be added at the bottom of the user's welcome email"
 
-  = simple_form_for [@account, @invitation] do |form|
-    = form.error_notification
-    = form.input :email
-    = form.input :first_name
-    = form.input :last_name
-    = form.input :message, :as => :text, :label => 'Additional message', :hint => "it will be added at the bottom of the user's welcome email"
-
-    .buttons
-      = form.button :submit, 'Send invitation'
-      = link_to 'Cancel', account_users_path(@account)
+  .buttons
+    = form.button :submit, 'Send invitation'
+    = link_to 'Cancel', account_users_path(@account)

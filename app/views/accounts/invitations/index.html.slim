@@ -1,5 +1,5 @@
 .listing.invitations
-  h2 Invitations (#{@account.invitations.size})
+  h2 = title "Invitations (#{@account.invitations.size})"
 
   = link_to '+', new_account_invitation_path(@account), :class => 'new', :title => 'Invite user'
 

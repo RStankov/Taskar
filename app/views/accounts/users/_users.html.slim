@@ -1,6 +1,0 @@
-.listing
-  h2 Users (#{@account.users.size}):
-
-  = link_to '+', new_account_invitation_path(@account), :class => 'new', :title => 'Invite user'
-
-  = render @account.users

@@ -41,7 +41,7 @@
   .content nav a.selected { @include background-gradient($light-gray, $gray); @include text-shadow(0 1px 0 #fff); padding: 10px 30px; border-top: 1px solid $line; border-bottom: 1px solid $line; font-weight: bold; }
   .content nav a:active,
   .content nav a:hover { text-decoration: underline; }
-  .content nav a.selected:first-child { border-top: none; padding: 11px 30px 10px; }
+  .content nav a.selected:first-child { border-top: none; padding: 11px 30px; }
 
   .listing { display: table-cell; padding-top: 10px; position: relative; width: 220px; border-right: 1px solid $line; }
   .listing h2 { padding-left: 10px; margin-bottom: 5px; font-size: 16px; color: #000; border-bottom: 1px solid $line; padding-bottom: 10px; }

@@ -2,7 +2,7 @@ doctype html
 html
   head
     meta charset="utf-8"
-    title = @account.name + t('.title_#{controller_name}', :default => '')
+    title = title_name @account.name
     = csrf_meta_tag
     = stylesheet_link_tag 'application'
     = favicon_link_tag 'favicon.png'
@@ -42,6 +42,6 @@ html
           = link_to 'Members', account_users_path(@account), :class => controller_name == 'users' && 'selected'
           = link_to 'Invitations', account_invitations_path(@account), :class => controller_name == 'invitations' && 'selected'
 
-        = yield
+        = content_for?(:content) ? yield(:content) : yield
 
     = render 'shared/footer'

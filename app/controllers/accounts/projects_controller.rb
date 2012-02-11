@@ -1,4 +1,6 @@
 class Accounts::ProjectsController < Accounts::BaseController
+  layout 'projects'
+
   before_filter :get_project, :only => [:show, :edit, :update, :destroy, :complete]
 
   def index

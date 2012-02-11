@@ -1,7 +1,9 @@
 class Accounts::BaseController < ApplicationController
-  layout "accounts"
+  layout 'accounts'
 
   before_filter :get_account_and_check_permissions
+
+  prepend_view_path Rails.root.join('app', 'views', 'accounts')
 
   protected
     def account_id
