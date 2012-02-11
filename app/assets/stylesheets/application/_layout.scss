@@ -24,8 +24,8 @@ body > header {
   nav.settings h3 {
     @include border-radius(4px);
     @include background-gradient(lighten($header-gradient-start, 10%), $header-gradient-end);
+    @include inline-block;
 
-    display: inline-block;
     padding: 5px 10px;
     border: 1px solid #000;
   }

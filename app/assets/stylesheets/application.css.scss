@@ -9,7 +9,6 @@
 @import "application/simple_form";
 @import "application/account_page";
 
-
 .testing-env {
-  #accounts-page header nav { display: block; }
+  #accounts-page header nav ul { display: block; }
 }

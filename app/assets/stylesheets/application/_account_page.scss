@@ -11,16 +11,28 @@
   position: relative;
 
   header { @include background-gradient($gray, $light-gray); @include border-radius(5px 5px 0 0); @include box-shadow(inset 0 1px 0 $gray); position: relative; border-bottom: 1px solid $line; }
+  header h1 { @include text-shadow(0 1px 0 $gray); width: 200px; margin: 0 auto; padding: 10px 0;  text-align: center; color: #000; font-size: 16px; }
 
-  h1 { @include text-shadow(0 1px 0 $gray); position: relative; width: 200px; margin: 0 auto; padding: 10px 0;  text-align: center; color: #000; font-size: 16px; }
-  h1 nav { display: none; @include border-radius(5px); position: absolute; top: 30px; left: -50px; right: -50px; z-index: 1; padding: 5px 10px 10px; border: 1px solid $line; background: white; text-align: left; font-size: 12px; }
-  h1:hover nav { display: block; }
-  h1 nav strong { display: block; padding: 5px 0 10px; text-align: center; }
-  h1 nav ul li { margin-top: 10px; }
-  h1 nav ul li + li { margin-top: 10px; padding-top: 10px; border-top: 1px solid $line; }
-  h1 nav ul li .actions { float: right; }
-  h1 nav ul li a { text-decoration: none; }
-  h1 nav ul li a:hover { text-decoration: underline; }
+  header nav { position: absolute; right: 6px; top: 6px; }
+  header nav:hover ul { display: block; }
+  header nav:hover h3 { @include border-radius(4px, 4px 4px 0 0); background: white; color: black; }
+
+  header h3 {
+    @include border-radius(4px);
+    @include background-gradient(lighten($light-gray, 10%), lighten($dark-gray, 10%));
+
+    display: inline-block;
+    padding: 5px 10px;
+    border: 1px solid darken($dark-gray, 20%);
+    color: darken($dark-gray, 20%);
+  }
+
+  header nav ul { display: none; position: absolute; right: 0px; top: 23px; width: 250px; background: white; z-index: 1; padding: 5px 10px 10px; border: 1px solid darken($dark-gray, 20%);  @include box-shadow($shadow-color 0px 2px 5px); @include border-radius(4px, 0 0 4px 4px); }
+  header nav ul li { margin-top: 10px; }
+  header nav ul li + li { margin-top: 10px; padding-top: 10px; border-top: 1px solid $line; }
+  header nav ul li .actions { float: right; }
+  header nav ul li a { text-decoration: none; }
+  header nav ul li a:hover { text-decoration: underline; }
 
   .content { display: table; }
 
