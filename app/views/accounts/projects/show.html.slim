@@ -9,7 +9,7 @@ article
     li = link_to 'Open', project_sections_path(@project)
     li.complete
       = link_to complete_account_project_path(@account, @project, :complete => !@project.completed?), :method => 'put' do
-       ' #{check_box_tag '', '', @project.completed?} Complete project?
+       ' #{check_box_tag '', '', @project.completed?} Completed project?
 
   - if @project.users.any?
     h3 Project participants:

@@ -36,7 +36,7 @@ end
 When 'I complete the project' do
   visit account_project_path(@project.account, @project)
 
-  click_on 'Complete project'
+  click_on 'Completed project?'
 end
 
 When 'I reset the project' do
