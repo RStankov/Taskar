@@ -48,8 +48,6 @@
   article h2 { padding-left: 10px; margin: 10px 0; font-size: 16px; color: #000; border-bottom: 1px solid $line; padding-bottom: 10px; text-align: center; }
   article h3 { font-size: 14px; margin-bottom: 5px; padding-left: 10px; }
   article form { padding: 20px 20px 10px; }
-  article form .error-notification { margin: -26px -20px 20px; }
-  article form .buttons { margin-left: -20px; margin-right: -20px; padding-left: 20px; }
   article .todo { @include border-radius(20px); position: absolute; top: 20px; right: 20px; bottom: 20px; left: 20px; background: $light-gray; border: 1px solid $line; }
   article .todo span { @include text-shadow(1px 1px 1px $dark-gray); position: absolute; top: 46%; left: 0px; right: 0px; font-size: 36px; text-transform: uppercase; text-align: center; color: white; }
   article .actions { @include clearfix; margin-bottom: 20px; padding: 0 10px; }

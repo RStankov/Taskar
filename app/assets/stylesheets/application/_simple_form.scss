@@ -22,7 +22,7 @@
   .hint { color: #888; }
 
   .error { color: $error; margin-left: 10px; }
-  .error-notification { margin-bottom: 20px; padding: 10px 20px; background: lighten($error, 10%); border-bottom: 2px solid $error; color: #fff; font-size: 16px; }
+  .error-notification { margin-bottom: 20px; padding: 10px 20px; background: lighten($error, 10%); border: 2px solid #AF0100; color: #fff; font-size: 16px; }
 
   .field-with-error {
     input, textarea { border-color: $error; }
