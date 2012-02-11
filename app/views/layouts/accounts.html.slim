@@ -39,8 +39,8 @@ html
       .content
         nav
           = link_to 'Overview', account_path(@account), :class => controller_name == 'accounts' && 'selected'
-          = link_to 'Members', account_users_path(@account), :class => controller_name == 'users' && 'selected'
           = link_to 'Projects', account_projects_path(@account), :class => controller_name == 'projects' && 'selected'
+          = link_to 'Members', account_users_path(@account), :class => controller_name == 'users' && 'selected'
           = link_to 'Invitations', account_invitations_path(@account), :class => controller_name == 'invitations' && 'selected'
 
         = yield

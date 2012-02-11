@@ -9,7 +9,7 @@
         li = link_to project.name, account_project_path(@account, project), :class => @project == project && 'selected'
 
   - unless @account.projects.completed.empty?
-    h3 Archived (#{@account.projects.completed.count})
+    h3 Completed (#{@account.projects.completed.count})
     ul
       - @account.projects.completed.each do |project|
         li = link_to project.name, account_project_path(@account, project), :class => @project == project && 'selected'
