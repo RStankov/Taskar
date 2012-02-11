@@ -46,10 +46,6 @@ describe Accounts::AccountsController do
     end
 
     describe "PUT update" do
-      before do
-        mock_account.should_receive(:instance_variable_set).with("@readonly", false)
-      end
-
       it "should update account if data valid" do
         mock_account.should_receive(:update_attributes).with("these" => "params").and_return true
 

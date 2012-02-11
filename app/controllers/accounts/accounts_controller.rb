@@ -9,7 +9,6 @@ class Accounts::AccountsController < Accounts::BaseController
   end
 
   def update
-    @account.instance_variable_set('@readonly', false)
     if @account.update_attributes(params[:account])
       redirect_to @account, :notice => t('accounts.updated')
     else
