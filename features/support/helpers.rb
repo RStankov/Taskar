@@ -40,4 +40,11 @@ module CucumberHelpers
 
     click_on 'Update'
   end
+
+  def goto_user_account_page(user_name)
+    visit account_path(current_account)
+
+    click_on 'Members'
+    click_on user_name
+  end
 end

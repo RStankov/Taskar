@@ -13,20 +13,16 @@ When 'I rename my account name to "$account_name"' do |account_name|
   click_on 'Save'
 end
 
-When 'I toggle the admin access of "$user_name" user' do |user_name|
-  visit account_path(current_account)
+When 'I toggle the admin access of "$user_name"' do |user_name|
+  goto_user_account_page user_name
 
-  click_on 'Members'
-  click_on user_name
   click_on 'Administrator'
 end
 
 When 'I delete "$user_name" from my account' do |user_name|
-  visit account_path(current_account)
+  goto_user_account_page user_name
 
-  click_on 'Members'
-  click_on user_name
-  click_on 'remove'
+  click_on 'Remove'
 end
 
 Then '"$user_name" should not be in my account' do |user_name|
@@ -54,3 +50,10 @@ Then '"$user_name" should not be admin in my account' do |user_name|
   user = find_user user_name
   user.account_users.first.should_not be_admin
 end
+
+Then 'I should not be able to delete "$user_name" from my account' do |user_name|
+  goto_user_account_page user_name
+
+  page.should_not have_content 'Remove'
+end
+

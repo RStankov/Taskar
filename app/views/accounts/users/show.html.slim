@@ -3,8 +3,12 @@
 article
   h2 = @user.full_name
 
-  - unless @account.admin?(@user)
-    = link_to 'remove', [@account, @user], :class => 'delete', :confirm => 'Are you sure?', :method => :delete
+  ul.actions
+    - unless @account.admin?(@user)
+      li = link_to 'Remove', account_user_path(@account, @user), :confirm => 'Are you sure?', :method => :delete
+    li.left
+      = link_to set_admin_account_user_path(@account, @user, :admin => !@account.admin?(@user)), :method => "put" do
+        ' #{check_box_tag '', '', @account.admin?(@user)} Administrator?
 
   = simple_form_for @user, :url => set_projects_account_user_path(@account, @user), :method => :put do |form|
     = form.input :project_ids, :as => :check_boxes, :collection => @account.projects.map { |project| [project.name, project.id] }, :label => "Projects #{@user.first_name} have access to:"

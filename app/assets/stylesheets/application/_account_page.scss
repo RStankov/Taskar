@@ -54,7 +54,7 @@
   article .todo span { @include text-shadow(1px 1px 1px $dark-gray); position: absolute; top: 46%; left: 0px; right: 0px; font-size: 36px; text-transform: uppercase; text-align: center; color: white; }
   article .actions { @include clearfix; margin-bottom: 20px; padding: 0 10px; }
   article .actions li { float: right; padding: 5px; }
-  article .actions li.complete { float: left; padding: 5px; }
+  article .actions li.left { float: left; padding: 5px; }
   article .actions li a { @include gray-button; line-height: 20px; }
   article a.user { width: 190px; margin-right: 0px; }
 
