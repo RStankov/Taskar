@@ -9,22 +9,23 @@ class Accounts::AccountsController < Accounts::BaseController
   end
 
   def update
-    @account.instance_variable_set("@readonly", false)
+    @account.instance_variable_set('@readonly', false)
     if @account.update_attributes(params[:account])
-      redirect_to @account, :notice => t("accounts.updated")
+      redirect_to @account, :notice => t('accounts.updated')
     else
-      render "edit"
+      render 'edit'
     end
   end
 
-  protected
-    def account_id
-      params[:id]
-    end
+  private
 
-    def allow_only_account_owner
-      if @account.owner_id != current_user.id
-        deny_access
-      end
+  def account_id
+    params[:id]
+  end
+
+  def allow_only_account_owner
+    if @account.owner_id != current_user.id
+      deny_access
     end
+  end
 end

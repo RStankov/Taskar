@@ -48,11 +48,12 @@ class Accounts::ProjectsController < Accounts::BaseController
   end
 
   private
-    def projects
-      @account.projects
-    end
 
-    def get_project
-      @project = projects.find(params[:id])
-    end
+  def projects
+    @account.projects
+  end
+
+  def get_project
+    @project = projects.find(params[:id])
+  end
 end

@@ -13,7 +13,7 @@ class Accounts::UsersController < Accounts::BaseController
   end
 
   def destroy
-    flash = @account.remove_user(@user) ? { :notice => t("users.flash.removed") } : { :alert => t("users.flash.remove_admin")}
+    flash = @account.remove_user(@user) ? { :notice => t('users.flash.removed') } : { :alert => t('users.flash.remove_admin')}
     redirect_to [@account, :users], flash
   end
 
@@ -32,7 +32,8 @@ class Accounts::UsersController < Accounts::BaseController
   end
 
   private
-    def get_user
-      @user = @account.users.find(params[:id])
-    end
+
+  def get_user
+    @user = @account.users.find(params[:id])
+  end
 end
