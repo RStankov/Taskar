@@ -18,12 +18,13 @@ Given 'I am working with another user on this project' do
 end
 
 When 'I create new project "$name"' do |name|
-  click_on 'Projects'
+  visit new_account_project_path(@current_user.accounts.first)
+
   click_on 'Create new project'
 
   fill_in :name, :with => name
   check @current_user.full_name
-  click_button 'Create'
+  click_on 'Create Project'
 end
 
 When 'I rename the project to "$name"' do |name|

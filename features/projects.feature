@@ -7,7 +7,6 @@ Feature: Projects
     Given I am logged in as an account owner
 
   Scenario: Create new project
-    Given I am on the home page
      When I create new project "Taskar"
      Then I should see "Create task list"
       And there should be a project named "Taskar"
