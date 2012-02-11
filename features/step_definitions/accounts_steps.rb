@@ -6,11 +6,11 @@ end
 When 'I rename my account name to "$account_name"' do |account_name|
   visit account_path(current_account)
 
-  click_on 'Edit'
+  click_on "Edit #{current_account.name}"
 
   fill_in 'Account name', :with => account_name
 
-  click_on 'Save'
+  click_on 'Update'
 end
 
 When 'I toggle the admin access of "$user_name"' do |user_name|

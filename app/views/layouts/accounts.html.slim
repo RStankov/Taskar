@@ -7,7 +7,7 @@ html
     = stylesheet_link_tag 'application'
     = favicon_link_tag 'favicon.png'
 
-  body
+  body class="#{'testing-env' if Rails.env.test?}"
     header
       h2 = @account.name
 
@@ -34,7 +34,7 @@ html
                 li
                   = link_to account.name, account_path(account)
                   .actions
-                    = link_to 'edit', edit_account_path(account), :title => 'Edit #{account.name}' if account.admin?(current_user)
+                    = link_to 'edit', edit_account_path(account), :title => "Edit #{account.name}" if account.admin?(current_user)
 
       .content
         nav
