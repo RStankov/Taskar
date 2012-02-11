@@ -11,30 +11,6 @@ describe ApplicationHelper do
     end
   end
 
-  describe "#title" do
-    before do
-      helper.stub(:t).with("foo", :default => "foo").and_return "bar"
-
-      helper.content_for(:title) { "" }
-    end
-
-    it "should pass title to 't' helper" do
-      helper.should_receive(:t).with("foo", :default => "foo").and_return "bar"
-
-      helper.title("foo")
-    end
-
-    it "should save t(title) to @content_for_title variable" do
-      helper.title("foo")
-
-      helper.content_for(:title).should == "bar"
-    end
-
-    it "should return t(title) wrapped in h1" do
-      helper.title("foo").should == "<h1>bar</h1>"
-    end
-  end
-
   describe "#time_tag" do
     it "returns html5 time tag datetime/title attributes" do
       time     = Time.now
