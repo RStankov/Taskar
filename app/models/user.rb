@@ -35,10 +35,6 @@ class User < ActiveRecord::Base
     @full_name ||= "#{first_name} #{last_name}"
   end
 
-  def short_name
-    @short_name ||= "#{first_name} #{last_name[0,1]}."
-  end
-
   def new_comment(task, attributes = {})
     task.comments.build(attributes) do |comment|
       comment.user_id = id
