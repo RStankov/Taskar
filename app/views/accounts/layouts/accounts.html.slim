@@ -11,11 +11,6 @@ html
     header
       h2 = @account.name
 
-      nav.main
-        = link_to 'Dashboard', @account, :class => controller_name == 'accounts' && 'selected'
-        = link_to 'Users', account_users_path(@account), :class => (controller_name == 'users' || controller_name == 'invitations') && 'selected'
-        = link_to 'Projects', account_projects_path(@account), :class => controller_name == 'projects' && 'selected'
-
       nav.settings
         h3 = image_tag 'settings.png'
         ul
