@@ -2,8 +2,9 @@ require 'spec_helper'
 
 describe Accounts::UsersController do
   let(:account)      { mock_model(Account) }
-  let(:current_user) { mock_model(User) }
+  let(:current_user) { mock_model(User, :account => account) }
   let(:user)         { mock_model(User) }
+  let(:member)       { mock_model(User, :account => account) }
 
   before do
     controller.stub :authenticate_user!
@@ -12,6 +13,8 @@ describe Accounts::UsersController do
     current_user.stub :find_account => account
 
     account.stub_chain :users, :find => user
+
+    AccountMember.stub :find => member
   end
 
   describe "with admin user" do
@@ -29,68 +32,80 @@ describe Accounts::UsersController do
 
     describe "GET show" do
       it "assigns account member as @user" do
-        controller.should_receive(:find_member).and_return user
+        AccountMember.should_receive(:find).with(account, '2').and_return member
 
         get :show, :account_id => '1', :id => '2'
 
-        controller.should assign_to(:member).with(user)
+        controller.should assign_to(:member).with(member)
       end
     end
 
     describe "DELETE destroy" do
-      before { account.stub :remove_user => false }
+      before { member.stub :remove }
 
-      it "removes an user from account" do
-        account.should_receive(:remove_user).with(user).and_return true
+      it "removes account member if possible" do
+        member.stub :removable? => true
+        member.should_receive(:remove).and_return true
 
         delete :destroy, :account_id => '1', :id => '2'
       end
 
-      it "redirects to account users with flash message" do
+      it "redirects to account members with flash message if member is removed" do
+        member.stub :removable? => true
+
         delete :destroy, :account_id => '1', :id => '2'
 
-        controller.should redirect_to account_users_path(account)
+        controller.should redirect_to account_users_path(member.account)
+        controller.should set_the_flash
+      end
+
+      it "redirects to account member page with flash message if member is not removable" do
+        member.stub :removable? => false
+
+        delete :destroy, :account_id => '1', :id => '2'
+
+        controller.should redirect_to account_user_path(member.account, member)
         controller.should set_the_flash
       end
     end
 
     describe "PUT set_admin" do
-      before { account.stub :set_admin_status => true }
+      before { member.stub :set_admin_status_to => true }
 
-      it "changes the admin status of the user" do
-        account.should_receive(:set_admin_status).with(user, 'true')
+      it "changes the admin status of the member" do
+        member.should_receive(:set_admin_status_to).with 'true'
 
         put :set_admin, :account_id => '1', :id => '2', :admin => 'true'
       end
 
       it "can not chage admin status of the current user" do
-        controller.stub :find_user => current_user
+        AccountMember.stub :find => current_user
 
-        account.should_not_receive(:set_admin_status).with(user, 'true')
+        member.should_not_receive(:set_admin_status_to).with 'true'
 
         put :set_admin, :account_id => '1', :id => '2', :admin => 'true'
       end
 
-      it "redirects to the user account page" do
+      it "redirects to the member account page" do
         put :set_admin, :account_id => '1', :id => '2', :admin => 'true'
 
-        controller.should redirect_to account_user_path(account, user)
+        controller.should redirect_to account_user_path(member.account, member)
       end
     end
 
-    describe "PUT set_user_projects" do
-      before { account.stub :set_user_projects => true }
+    describe "PUT set_projects" do
+      before { member.stub :set_projects }
 
-      it "changes projects of the user" do
-        account.should_receive(:set_user_projects).with user, ['1', '2', '3']
+      it "changes projects of a member" do
+        member.should_receive(:set_projects).with ['1', '2', '3']
 
         put :set_projects, :account_id => '1', :id => '2', :user => {:project_ids => ['1', '2', '3']}
       end
 
-      it "redirects to the user account page" do
+      it "redirects to the member account page" do
         put :set_projects, :account_id => '1', :id => '2', :user => {:project_ids => ['1', '2', '3']}
 
-        controller.should redirect_to account_user_path(account, user)
+        controller.should redirect_to account_user_path(member.account, member)
       end
     end
   end

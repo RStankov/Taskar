@@ -1,4 +1,4 @@
-= link_to account_user_path(@account, user), :class => "user #{@user == user && 'selected'}" do
+= link_to account_user_path(user.account, user), :class => "user #{@member == user && 'selected'}" do
   = image_tag user.avatar.url(:aside)
   div
     strong = user.full_name

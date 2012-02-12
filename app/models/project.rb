@@ -21,6 +21,7 @@ class Project < ActiveRecord::Base
   scope :active,    where(:completed => false).order("updated_at DESC")
   scope :completed, where(:completed => true).order("updated_at DESC")
 
+  # deprecate
   def involves?(user)
     users.include? user
   end
