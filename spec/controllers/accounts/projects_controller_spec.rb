@@ -1,17 +1,19 @@
 require 'spec_helper'
 
 describe Accounts::ProjectsController do
-  let(:current_user){ @current_user }
-  let(:account){ mock_account }
-  let(:project){ mock_project }
-  let(:projects){ [project] }
-  let(:section){ mock_section }
-  let(:sections){ [section] }
+  let(:account)      { mock_model(Account) }
+  let(:current_user) { mock_model(User) }
+  let(:user)         { mock_model(User) }
+  let(:project)      { mock_model(Project) }
+  let(:projects)     { double }
 
   before do
-    sign_up_and_mock_account
+    controller.stub :authenticate_user!
+    controller.stub :current_user => current_user
 
-    mock_account.stub :projects => projects
+    current_user.stub :find_account => account
+
+    account.stub :projects => projects
   end
 
   describe "with admin user" do
@@ -22,77 +24,128 @@ describe Accounts::ProjectsController do
     end
 
     describe "GET index" do
-      before { get :index, :account_id => "1" }
+      it "renders index template" do
+        get :index, :account_id => '1'
 
-      it { should render_template(:index) }
-    end
-
-    describe "GET new" do
-      before { projects.stub :build => project }
-      before { get :new, :account_id => "1" }
-
-      it { should assign_to(:project).with(project) }
-      it { should render_template(:new) }
-    end
-
-    describe "POST create" do
-      before { projects.should_receive(:build).with({'these' => 'params'}).and_return project }
-
-      describe "with valid params" do
-        before { project.stub :save => true }
-        before { post :create, :account_id => "1", :project => {:these => 'params'} }
-
-        it { should assign_to(:project).with(project) }
-        it { should redirect_to(tasks_project_sections_url(project)) }
-      end
-
-      describe "with invalid params" do
-        before { project.stub :save => false }
-        before { post :create, :account_id => "1", :project => {:these => 'params'} }
-
-        it { should assign_to(:project).with(project) }
-        it { should render_template(:new) }
+        controller.should render_template 'index'
       end
     end
 
     describe "GET show" do
-      before { get :show, :account_id => "1", :id => "2" }
+      it "assigns the project as @project" do
+        projects.should_receive(:find).with('2').and_return project
 
-      it { should assign_to(:project).with(project) }
-      it { should render_template(:show) }
+        get :show, :account_id => '1', :id => '2'
+
+        controller.should assign_to(:project).with(project)
+      end
     end
 
     describe "GET edit" do
-      before { get :edit, :account_id => "1", :id => "2" }
+      it "assigns the project as @project" do
+        projects.should_receive(:find).with('2').and_return project
 
-      it { should assign_to(:project).with(project) }
-      it { should render_template(:edit) }
+        get :edit, :account_id => '1', :id => '2'
+
+        controller.should assign_to(:project).with(project)
+      end
+    end
+
+    describe "GET new" do
+      it "assings new project as @project" do
+        projects.should_receive(:build).and_return project
+
+        get :new, :account_id => '1'
+
+        controller.should assign_to(:project).with(project)
+      end
+    end
+
+    describe "POST create" do
+      before do
+        projects.stub :build => project
+        project.stub :save
+      end
+
+      it "assigns the project as @project" do
+        projects.should_receive(:build).with('these' => 'params').and_return project
+
+        post :create, :account_id => '1', :project => {:these => 'params'}
+
+        controller.should assign_to(:project).with(project)
+      end
+
+      it "creates new project" do
+        project.should_receive(:save)
+
+        post :create, :account_id => '1'
+      end
+
+      it "redirects to the projects tasks page if projects is created succesfully" do
+        project.stub :save => true
+
+        post :create, :account_id => '1'
+
+        controller.should redirect_to tasks_project_sections_url(project)
+      end
+
+      it "renders new page if project is not created succesfully" do
+        project.stub :save => false
+
+        post :create, :account_id => '1'
+
+        controller.should render_template 'new'
+      end
     end
 
     describe "PUT update" do
-      describe "with valid params" do
-        before { project.should_receive(:update_attributes).with({'these' => 'params'}).and_return true }
-        before { put :update, :account_id => "1", :id => "2", :project => {:these => 'params'} }
+      before { project.stub :update_attributes }
 
-        it { should assign_to(:project).with(project) }
-        it { should set_the_flash }
-        it { should redirect_to(account_project_url(account, project)) }
+      it "assigns the project as @project" do
+        projects.should_receive(:find).with('2').and_return project
+
+        put :update, :account_id => '1', :id => '2'
+
+        controller.should assign_to(:project).with(project)
       end
 
-      describe "with invalid params" do
-        before { project.should_receive(:update_attributes).with({'these' => 'params'}).and_return false }
-        before { put :update, :account_id => "1", :id => "2", :project => {:these => 'params'} }
+      it "updates the project" do
+        project.should_receive(:update_attributes).with 'these' => 'params'
 
-        it { should assign_to(:project).with(project) }
-        it { should render_template("edit") }
+        put :update, :account_id => '1', :id => '2', :project => {:these => 'params'}
+      end
+
+      it "redirects to account project page if projects is updated succesfully" do
+        project.stub :update_attributes => true
+
+        put :update, :account_id => '1', :id => '2'
+
+        controller.should redirect_to account_project_path(account, project)
+      end
+
+      it "renders edit page if project is not updated succesfully" do
+        project.stub :update_attributes => false
+
+        put :update, :account_id => '1', :id => '2'
+
+        controller.should render_template 'edit'
       end
     end
 
     describe "DELETE destroy" do
-      before { project.should_receive(:destroy) }
-      before { delete :destroy, :account_id => "1", :id => "2" }
+      before { project.stub :destroy }
 
-      it { should redirect_to(account_projects_url(account)) }
+      it "destroys an project" do
+        project.should_receive(:destroy)
+
+        delete :destroy, :account_id => '1', :id => '2'
+      end
+
+      it "redirects to account projects" do
+        delete :destroy, :account_id => '1', :id => '2'
+
+        controller.should redirect_to account_projects_path(account)
+      end
     end
 
     describe "PUT complete" do
@@ -102,34 +155,27 @@ describe Accounts::ProjectsController do
         project.stub :completed => true
       end
 
-      it "should set completed flag to project to true" do
+      it "can set completed flag to project to true" do
         project.should_receive(:completed=).with(true)
         project.should_receive(:save)
 
-        put :complete, :account_id => "1", :id => "2", :complete => "true"
+        put :complete, :account_id => '1', :id => '2', :complete => 'true'
       end
 
-      it "should set completed flag to project to false" do
+      it "can set completed flag to project to false" do
         project.should_receive(:completed=).with(false)
         project.should_receive(:save)
 
         put :complete, :account_id => "1", :id => "2"
       end
 
-      it "sets the flash" do
+      it "redirects to account project page with flash message" do
         project.stub(:completed=)
 
         put :complete, :account_id => "1", :id => "2"
 
-        should set_the_flash
-      end
-
-      it "redirects back to the projecs pages" do
-        project.stub(:completed=)
-
-        put :complete, :account_id => "1", :id => "2"
-
-        should redirect_to(account_project_url(account, project))
+        controller.should redirect_to account_project_path(account, project)
+        controller.should set_the_flash
       end
     end
   end
