@@ -1,8 +1,6 @@
 require 'spec_helper'
 
 describe Accounts::AccountsController do
-  before { sign_up_and_mock_account }
-
   let(:account)      { mock_model(Account) }
   let(:current_user) { mock_model(User) }
 
@@ -90,7 +88,7 @@ describe Accounts::AccountsController do
       :edit       => 'get(:edit, :id => "1")',
       :update     => 'put(:update, :id => "1")',
     }.each do |(action, code)|
-      it "should not allow #{action}, and redirect_to root_url" do
+      it "does not allow #{action}, and redirect to root url" do
         eval code
       end
     end
