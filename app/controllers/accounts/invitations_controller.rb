@@ -5,7 +5,7 @@ class Accounts::InvitationsController < Accounts::BaseController
   def new
     @invitation = Invitation.new
 
-    render :layout => 'users'
+    render :layout => 'members'
   end
 
   def create
@@ -14,9 +14,9 @@ class Accounts::InvitationsController < Accounts::BaseController
     if @invitation.save
       @invitation.send_invite
 
-      redirect_to account_users_path(@account), :notice => 'Invitation send successfully'
+      redirect_to account_members_path(@account), :notice => 'Invitation send successfully'
     else
-      render 'new', :layout => 'users'
+      render 'new', :layout => 'members'
     end
   end
 

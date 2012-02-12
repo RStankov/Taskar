@@ -1,21 +1,10 @@
 require 'spec_helper'
 
 describe Accounts::AccountsController do
-  let(:account)      { mock_model(Account) }
-  let(:current_user) { mock_model(User) }
-
-  before do
-    controller.stub :authenticate_user!
-    controller.stub :current_user => current_user
-
-    current_user.stub :find_account => account
-  end
+  sign_up_with_account_member
 
   describe "with account owner" do
-    before do
-      account.stub(:admin?).with(current_user).and_return true
-      account.stub(:owner?).with(current_user).and_return true
-    end
+    before { current_member.stub :admin? => true, :owner? => true }
 
     describe "GET 'edit'" do
       it "assigns the account" do
@@ -38,7 +27,7 @@ describe Accounts::AccountsController do
         put :update, :id => '1'
 
         controller.should set_the_flash
-        controller.should redirect_to(account_url(account))
+        controller.should redirect_to account_path(account)
       end
 
       it "renders edit action if update wasn't successfull" do
@@ -52,10 +41,7 @@ describe Accounts::AccountsController do
   end
 
   describe "with admin user" do
-    before do
-      account.stub(:admin?).with(current_user).and_return true
-      account.stub(:owner?).with(current_user).and_return false
-    end
+    before { current_member.stub :admin? => true, :owner? => false }
 
     describe "GET 'show'" do
       it "renders show action" do
@@ -78,7 +64,7 @@ describe Accounts::AccountsController do
 
   describe "with normal user" do
     before do
-      account.stub(:admin?).with(current_user).and_return false
+      current_member.stub :admin? => false
 
       ensure_deny_access_is_called
     end

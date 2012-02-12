@@ -13,9 +13,12 @@ class Accounts::BaseController < ApplicationController
 
   def get_account_and_check_permissions
     @account = current_user.find_account(account_id)
+    @current_member = AccountMember.new(current_user, @account)
 
-    unless @account.admin? current_user
-      deny_access
-    end
+    deny_access unless @current_member.admin?
+  end
+
+  def current_member
+    @current_member
   end
 end

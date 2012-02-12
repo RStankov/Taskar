@@ -58,10 +58,6 @@ class User < ActiveRecord::Base
     @responsibilities_count[project_id] ||= responsibilities.count :conditions => {:status => 0, :project_id => project_id}
   end
 
-  def admin_in_accounts
-    @admin_in_accounts ||= accounts.find_all { |account| account.admin? self }
-  end
-
   def self.find_for_authentication(conditions)
     conditions[:email].downcase! if conditions[:email]
     super(conditions)

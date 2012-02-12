@@ -8,8 +8,8 @@ class Accounts::AccountsController < Accounts::BaseController
   end
 
   def update
-    if @account.update_attributes(params[:account])
-      redirect_to @account, :notice => 'Account information updated successfully'
+    if current_member.account.update_attributes(params[:account])
+      redirect_to current_member.account, :notice => 'Account information updated successfully'
     else
       render 'edit'
     end
@@ -22,6 +22,6 @@ class Accounts::AccountsController < Accounts::BaseController
   end
 
   def allow_only_account_owner
-    deny_access unless @account.owner? current_user
+    deny_access unless current_member.owner?
   end
 end

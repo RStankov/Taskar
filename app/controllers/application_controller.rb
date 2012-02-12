@@ -15,6 +15,7 @@ class ApplicationController < ActionController::Base
       else
         redirect_to root_path, :alert => I18n.t(:deny_access)
       end
+      false
     end
 
     def check_project_permissions
