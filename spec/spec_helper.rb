@@ -28,7 +28,8 @@ Spork.each_run do
     config.include Paperclip::Shoulda::Matchers
     config.include EmailSpec::Helpers
     config.include EmailSpec::Matchers
-    config.include ControllerMacros
+    config.include ControllerMacros, :type => :controller
+    config.extend ControllerMacros::ClassMethods, :type => :controller
     config.include TaskarMocks
     config.include Devise::TestHelpers, :type => :controller
     config.include Devise::TestHelpers, :type => :view

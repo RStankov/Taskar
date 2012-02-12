@@ -1,25 +1,15 @@
 require 'spec_helper'
 
 describe Accounts::UsersController do
-  let(:account)      { mock_model(Account) }
-  let(:current_user) { mock_model(User, :account => account) }
-  let(:user)         { mock_model(User) }
-  let(:member)       { mock_model(User, :account => account) }
-
-  before do
-    controller.stub :authenticate_user!
-    controller.stub :current_user => current_user
-
-    current_user.stub :find_account => account
-
-    account.stub_chain :users, :find => user
-
-    AccountMember.stub :find => member
-  end
+  sign_up_with_account_member
 
   describe "with admin user" do
+    let(:member) { mock_model(User, :account => account) }
+
     before do
-      account.should_receive(:admin?).with(current_user).and_return true
+      current_member.stub :admin? => true
+
+      AccountMember.stub :find => member
     end
 
     describe "GET index" do
@@ -79,7 +69,7 @@ describe Accounts::UsersController do
       end
 
       it "can not chage admin status of the current user" do
-        AccountMember.stub :find => current_user
+        AccountMember.stub :find => current_member
 
         member.should_not_receive(:set_admin_status_to).with 'true'
 
@@ -112,7 +102,7 @@ describe Accounts::UsersController do
 
   describe "with not-admin user" do
     before do
-      account.stub(:admin?).with(current_user).and_return false
+      current_member.stub :admin? => false
 
       ensure_deny_access_is_called
     end

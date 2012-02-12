@@ -1,24 +1,16 @@
 require 'spec_helper'
 
 describe Accounts::ProjectsController do
-  let(:account)      { mock_model(Account) }
-  let(:current_user) { mock_model(User) }
-  let(:user)         { mock_model(User) }
-  let(:project)      { mock_model(Project) }
-  let(:projects)     { double }
-
-  before do
-    controller.stub :authenticate_user!
-    controller.stub :current_user => current_user
-
-    current_user.stub :find_account => account
-
-    account.stub :projects => projects
-  end
+  sign_up_with_account_member
 
   describe "with admin user" do
+    let(:project)  { mock_model(Project) }
+    let(:projects) { double }
+
     before do
-      account.should_receive(:admin?).with(current_user).and_return true
+      current_member.stub :admin? => true
+
+      account.stub :projects => projects
 
       projects.stub :find => project
     end
@@ -182,7 +174,7 @@ describe Accounts::ProjectsController do
 
   describe "with normal user" do
     before do
-      account.should_receive(:admin?).with(current_user).and_return false
+      current_member.stub :admin? => false
 
       ensure_deny_access_is_called
     end

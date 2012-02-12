@@ -23,7 +23,7 @@ class Accounts::UsersController < Accounts::BaseController
   def set_admin
     member = find_member
 
-    unless member == current_user
+    unless member == current_member
       member.set_admin_status_to params[:admin]
     end
 
