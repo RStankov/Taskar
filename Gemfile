@@ -14,9 +14,6 @@ gem 'rinku', :require => 'rails_rinku'
 
 gem 'acts_as_list', '~>0.1.2'
 
-gem 'hoptoad_notifier'
-gem 'newrelic_rpm'
-
 gem 'slim'
 
 gem 'confu', :git => 'git@github.com:garmz/confu.git'

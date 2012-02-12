@@ -98,9 +98,6 @@ GEM
     gherkin (2.7.3)
       json (>= 1.4.6)
     hike (1.2.1)
-    hoptoad_notifier (2.4.11)
-      activesupport
-      builder
     i18n (0.6.0)
     json (1.6.5)
     launchy (2.0.5)
@@ -113,7 +110,6 @@ GEM
       ruby_parser (>= 2.3.1)
     mime-types (1.17.2)
     multi_json (1.0.4)
-    newrelic_rpm (3.3.1)
     nokogiri (1.5.0)
     orm_adapter (0.0.6)
     paperclip (2.3.3)
@@ -227,9 +223,7 @@ DEPENDENCIES
   devise (~> 1.5.3)
   email_spec
   factory_girl_rails
-  hoptoad_notifier
   launchy
-  newrelic_rpm
   paperclip (= 2.3.3)
   pg
   pry
