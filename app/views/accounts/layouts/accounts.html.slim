@@ -30,10 +30,11 @@ html
           h3 ▾
           ul
             - current_user.accounts.each do |account|
-              - if account.admin? current_user
+              - member = AccountMember.new(current_user, account)
+              - if member.admin?
                 li
                   = link_to account.name, account_path(account)
-                  - if account.owner? current_user
+                  - if member.owner?
                     .actions
                       = link_to 'edit', edit_account_path(account), :title => "Edit #{account.name}"
 
