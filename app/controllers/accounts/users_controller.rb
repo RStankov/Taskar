@@ -5,7 +5,7 @@ class Accounts::UsersController < Accounts::BaseController
   end
 
   def show
-    @user = find_user
+    @member = find_member
   end
 
   def destroy
@@ -33,6 +33,10 @@ class Accounts::UsersController < Accounts::BaseController
   end
 
   private
+
+  def find_member
+    AccountMember.find @account, params[:id]
+  end
 
   def find_user
     @account.users.find(params[:id])

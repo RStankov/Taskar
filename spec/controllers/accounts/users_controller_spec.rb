@@ -28,12 +28,12 @@ describe Accounts::UsersController do
     end
 
     describe "GET show" do
-      it "assigns user as @user" do
-        controller.should_receive(:find_user).and_return user
+      it "assigns account member as @user" do
+        controller.should_receive(:find_member).and_return user
 
         get :show, :account_id => '1', :id => '2'
 
-        controller.should assign_to(:user).with(user)
+        controller.should assign_to(:member).with(user)
       end
     end
 
