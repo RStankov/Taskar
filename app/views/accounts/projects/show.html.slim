@@ -10,5 +10,5 @@ ul.actions
 
 - if @project.users.any?
   h3 Project participants:
-  ul = render AccountMember.wrap(@account, @project.users)
+  ul = render :partial => 'members/member', :collection => AccountMember.wrap(@account, @project.users)
 

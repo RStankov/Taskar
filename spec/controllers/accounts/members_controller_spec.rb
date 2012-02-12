@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe Accounts::UsersController do
+describe Accounts::MembersController do
   sign_up_with_account_member
 
-  describe "with admin user" do
+  describe "with admin member" do
     let(:member) { mock_model(User, :account => account) }
 
     before do
@@ -21,7 +21,7 @@ describe Accounts::UsersController do
     end
 
     describe "GET show" do
-      it "assigns account member as @user" do
+      it "assigns account member as @member" do
         AccountMember.should_receive(:find).with(account, '2').and_return member
 
         get :show, :account_id => '1', :id => '2'
@@ -45,7 +45,7 @@ describe Accounts::UsersController do
 
         delete :destroy, :account_id => '1', :id => '2'
 
-        controller.should redirect_to account_users_path(member.account)
+        controller.should redirect_to account_members_path(member.account)
         controller.should set_the_flash
       end
 
@@ -54,7 +54,7 @@ describe Accounts::UsersController do
 
         delete :destroy, :account_id => '1', :id => '2'
 
-        controller.should redirect_to account_user_path(member.account, member)
+        controller.should redirect_to account_member_path(member.account, member)
         controller.should set_the_flash
       end
     end
@@ -68,7 +68,7 @@ describe Accounts::UsersController do
         put :set_admin, :account_id => '1', :id => '2', :admin => 'true'
       end
 
-      it "can not chage admin status of the current user" do
+      it "can not chage admin status of the current member" do
         AccountMember.stub :find => current_member
 
         member.should_not_receive(:set_admin_status_to).with 'true'
@@ -79,7 +79,7 @@ describe Accounts::UsersController do
       it "redirects to the member account page" do
         put :set_admin, :account_id => '1', :id => '2', :admin => 'true'
 
-        controller.should redirect_to account_user_path(member.account, member)
+        controller.should redirect_to account_member_path(member.account, member)
       end
     end
 
@@ -89,18 +89,18 @@ describe Accounts::UsersController do
       it "changes projects of a member" do
         member.should_receive(:set_projects).with ['1', '2', '3']
 
-        put :set_projects, :account_id => '1', :id => '2', :user => {:project_ids => ['1', '2', '3']}
+        put :set_projects, :account_id => '1', :id => '2', :account_member => {:project_ids => ['1', '2', '3']}
       end
 
       it "redirects to the member account page" do
-        put :set_projects, :account_id => '1', :id => '2', :user => {:project_ids => ['1', '2', '3']}
+        put :set_projects, :account_id => '1', :id => '2', :account_member => {:project_ids => ['1', '2', '3']}
 
-        controller.should redirect_to account_user_path(member.account, member)
+        controller.should redirect_to account_member_path(member.account, member)
       end
     end
   end
 
-  describe "with not-admin user" do
+  describe "with not-admin member" do
     before do
       current_member.stub :admin? => false
 

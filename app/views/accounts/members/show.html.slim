@@ -2,12 +2,12 @@ h2 = title @member.full_name
 
 ul.actions
   - if @member.removable?
-    li = link_to 'Remove', account_user_path(@account, @member), :confirm => 'Are you sure?', :method => :delete
+    li = link_to 'Remove', account_member_path(@account, @member), :confirm => 'Are you sure?', :method => :delete
   li.left
-    = link_to set_admin_account_user_path(@member.account, @member, :admin => !@member.admin?), :method => 'put' do
+    = link_to set_admin_account_member_path(@member.account, @member, :admin => !@member.admin?), :method => 'put' do
       ' #{check_box_tag '', '', @member.admin?} Administrator?
 
-= simple_form_for @member, :url => set_projects_account_user_path(@member.account, @member), :method => :put do |form|
+= simple_form_for @member, :url => set_projects_account_member_path(@member.account, @member), :method => :put do |form|
   = form.input :project_ids, :as => :check_boxes, :collection => @account.projects.active.map { |project| [project.name, project.id] }, :label => "Projects #{@member.first_name} have access to:"
 
   .buttons

@@ -15,11 +15,16 @@ class AccountMember
     end
   end
 
-  delegate :id, :email, :first_name, :last_name, :full_name, :avatar, :project_ids, :to_param, :to => :user
+  extend ActiveModel::Naming
+  include ActiveModel::Conversion
+
+  delegate :id, :email, :first_name, :last_name, :full_name, :avatar, :project_ids, :to => :user
 
   attr_reader :user, :account
 
-  alias :to_model :user
+  def persisted?
+    true
+  end
 
   def initialize(user, account)
     @user = user

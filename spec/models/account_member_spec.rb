@@ -8,7 +8,6 @@ describe AccountMember do
     member.full_name.should eq user.full_name
     member.email.should eq user.email
     member.avatar.should eq user.avatar
-    member.to_model.should eq user
   end
 
   it "can tell if an user is account owner" do
@@ -32,13 +31,13 @@ describe AccountMember do
     AccountMember.for(account_user.account).should eq [AccountMember.new(account_user.user, account_user.account)]
   end
 
+  let(:account_user)  { create :account_user }
+  let(:user)          { account_user.user }
+  let(:account)       { account_user.account }
+  let(:member)        { AccountMember.new(user, account) }
+
   describe "find" do
-    let(:user)    { create :user }
-    let(:account) { create :account }
-
     it "finds an account member by account and user id" do
-      create :account_user, :account =>  account, :user => user
-
       member = AccountMember.find(account, user.id)
       member.user.should eq user
       member.account.should eq account
@@ -88,12 +87,6 @@ describe AccountMember do
   end
 
   describe "remove" do
-    let(:user)    { create :user }
-    let(:account) { create :account }
-    let(:member)  { AccountMember.new(user, account) }
-
-    before { create :account_user, :account => account, :user => user }
-
     it "destroys user's account user" do
       member.remove
 
@@ -136,12 +129,6 @@ describe AccountMember do
   end
 
   describe "set admin status" do
-    let(:user)    { create :user }
-    let(:account) { create :account }
-    let(:member)  { AccountMember.new(user, account) }
-
-    before { create :account_user, :account => account, :user => user }
-
     it "can give admin rights to a member" do
       member.set_admin_status_to true
       member.should be_admin
@@ -154,10 +141,6 @@ describe AccountMember do
   end
 
   describe "set projects" do
-    let(:user)    { create :user }
-    let(:account) { create :account }
-    let(:member)  { AccountMember.new(user, account) }
-
     it "gives access to specified projects from member's account" do
       project = create :project, :account => account
       other_project = create :project

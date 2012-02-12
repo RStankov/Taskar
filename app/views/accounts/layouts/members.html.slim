@@ -6,7 +6,7 @@
 
     = link_to '+', new_account_invitation_path(@account), :class => 'new', :title => 'Invite user'
 
-    = render AccountMember.for(@account)
+    = render :partial => 'members/member', :collection => AccountMember.for(@account)
 
   article
     = yield

@@ -56,7 +56,7 @@ describe Accounts::InvitationsController do
 
         post :create, :account_id => '1'
 
-        controller.should redirect_to account_users_path(account)
+        controller.should redirect_to account_members_path(account)
         controller.should set_the_flash
 
       end
