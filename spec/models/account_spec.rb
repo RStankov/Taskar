@@ -15,6 +15,12 @@ describe Account do
   let(:account) { Factory(:account) }
   let(:user) { Factory(:user) }
 
+  it "can tell if an user is his owner" do
+    account = create :account
+    account.owner?(account.owner).should be_true
+    account.owner?(create(:user)).should be_false
+  end
+
   describe "#admin?" do
     let(:account_user) do
       AccountUser.new.tap do |account_user|

@@ -2,7 +2,6 @@ class Accounts::AccountsController < Accounts::BaseController
   before_filter :allow_only_account_owner, :only => [:edit, :update]
 
   def show
-    @projects = @account.projects.active
   end
 
   def edit
@@ -10,7 +9,7 @@ class Accounts::AccountsController < Accounts::BaseController
 
   def update
     if @account.update_attributes(params[:account])
-      redirect_to @account, :notice => t('accounts.updated')
+      redirect_to @account, :notice => 'Account information updated successfully'
     else
       render 'edit'
     end
@@ -23,8 +22,6 @@ class Accounts::AccountsController < Accounts::BaseController
   end
 
   def allow_only_account_owner
-    if @account.owner_id != current_user.id
-      deny_access
-    end
+    deny_access unless @account.owner? current_user
   end
 end

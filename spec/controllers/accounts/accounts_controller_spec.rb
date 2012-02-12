@@ -3,21 +3,67 @@ require 'spec_helper'
 describe Accounts::AccountsController do
   before { sign_up_and_mock_account }
 
+  let(:account)      { mock_model(Account) }
+  let(:current_user) { mock_model(User) }
+
+  before do
+    controller.stub :authenticate_user!
+    controller.stub :current_user => current_user
+
+    current_user.stub :find_account => account
+  end
+
+  describe "with account owner" do
+    before do
+      account.stub(:admin?).with(current_user).and_return true
+      account.stub(:owner?).with(current_user).and_return true
+    end
+
+    describe "GET 'edit'" do
+      it "assigns the account" do
+        get :edit, :id => '1'
+
+        controller.should assign_to(:account).with(account)
+      end
+    end
+
+    describe "PUT update" do
+      it "tries to update the account" do
+        account.should_receive(:update_attributes).with('these' => 'params').and_return true
+
+        put :update, :id => '1', :account => { :these => 'params' }
+      end
+
+      it "redirects to account show page with flash message on successfull update" do
+        account.stub :update_attributes => true
+
+        put :update, :id => '1'
+
+        controller.should set_the_flash
+        controller.should redirect_to(account_url(account))
+      end
+
+      it "renders edit action if update wasn't successfull" do
+        account.stub :update_attributes => false
+
+        put :update, :id => '1', :account => { :these => 'params' }
+
+        controller.should render_template 'edit'
+      end
+    end
+  end
+
   describe "with admin user" do
     before do
-      mock_account.should_receive(:admin?).with(@current_user).and_return true
-      mock_account.stub(:owner_id).stub(:owner_id).and_return 0
+      account.stub(:admin?).with(current_user).and_return true
+      account.stub(:owner?).with(current_user).and_return false
     end
 
     describe "GET 'show'" do
-      it "should show accounts projects events" do
-        mock_account.stub_chain :projects, :active => [mock_project, mock_project]
+      it "renders show action" do
+        get :show, :id => '1'
 
-        get "show", :id => "1"
-
-        should assign_to(:projects).with([mock_project, mock_project])
-        should assign_to(:account).with(mock_account)
-        should render_template("show")
+        should render_template 'show'
       end
     end
 
@@ -32,45 +78,9 @@ describe Accounts::AccountsController do
     end
   end
 
-  describe "with account owner" do
-    before do
-      mock_account.should_receive(:admin?).with(@current_user).and_return true
-      mock_account.stub(:owner_id).and_return @current_user.id
-    end
-
-    describe "GET 'edit'" do
-      before { get "edit", :id => "1" }
-
-      it { should assign_to(:account).with(mock_account) }
-      it { should render_template("edit") }
-    end
-
-    describe "PUT update" do
-      it "should update account if data valid" do
-        mock_account.should_receive(:update_attributes).with("these" => "params").and_return true
-
-        put "update", :id => "1", :account => { :these => "params" }
-
-        should assign_to(:account).with(mock_account)
-        should set_the_flash
-        should redirect_to(account_url(mock_account))
-      end
-
-      it "should not update account if data is not valid" do
-        mock_account.should_receive(:update_attributes).with("these" => "params").and_return false
-
-        put "update", :id => "1", :account => { :these => "params" }
-
-        should assign_to(:account).with(mock_account)
-        should_not set_the_flash
-        should render_template("edit")
-      end
-    end
-  end
-
   describe "with normal user" do
     before do
-      mock_account.should_receive(:admin?).with(@current_user).and_return false
+      account.stub(:admin?).with(current_user).and_return false
 
       ensure_deny_access_is_called
     end

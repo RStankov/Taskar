@@ -12,8 +12,12 @@ class Account < ActiveRecord::Base
   has_many :projects, :dependent => :destroy
   has_many :invitations, :dependent => :destroy
 
+  def owner?(user)
+    owner_id == user.id
+  end
+
   def admin?(user)
-    if owner_id == user.id
+    if owner? user
       true
     else
       account_user = account_users.find_by_user_id(user.id)

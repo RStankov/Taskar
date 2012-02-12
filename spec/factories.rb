@@ -4,6 +4,7 @@ FactoryGirl.define do
 
   factory :account do
     name { Factory.next :name }
+    association :owner, :factory => :user
   end
 
   factory :account_user do
