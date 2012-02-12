@@ -33,7 +33,7 @@ describe ApplicationController do
   end
 
   it "have rescue_from who will render 404 page and set 404 status" do
-    controller.should_receive(:render).with(:action => "shared/not_found", :layout => "application", :status => 404);
+    controller.should_receive(:render).with(:template => '/shared/not_found', :layout => 'application', :status => 404);
     controller.send(:record_not_found)
   end
 
