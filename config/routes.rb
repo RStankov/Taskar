@@ -42,17 +42,17 @@ Taskar::Application.routes.draw do
     end
   end
 
-  resources :accounts, :controller => "accounts/accounts", :only => [:show, :edit, :update] do
-    resources :invitations, :controller => "accounts/invitations", :only => [:new, :create, :update, :destroy]
+  resources :accounts, :controller => 'accounts/accounts', :only => [:show, :edit, :update] do
+    resources :invitations, :controller => 'accounts/invitations', :only => [:index, :new, :create, :update, :destroy]
 
-    resources :users, :controller => "accounts/users", :except => [:new, :create, :edit, :update] do
+    resources :users, :controller => 'accounts/users', :except => [:new, :create, :edit, :update] do
       member do
         put :set_admin
         put :set_projects
       end
     end
 
-    resources :projects, :controller => "accounts/projects" do
+    resources :projects, :controller => 'accounts/projects' do
       member do
         put :complete
       end

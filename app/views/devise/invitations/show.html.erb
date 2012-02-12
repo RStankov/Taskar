@@ -1,6 +1,6 @@
 <div id="user_box">
   <header>
-    <%= title t("devise.invitations.title", :sender => @invitation.account.owner.full_name) %>
+    <%= legacy_title t("devise.invitations.title", :sender => @invitation.account.owner.full_name) %>
   </header>
   <p style="padding-left: 20px;">
     <%= t("devise.invitations.hi", :name => @invitation.full_name) %>

@@ -1,0 +1,8 @@
+= simple_form_for [@account, @project] do |form|
+  = form.error_notification
+  = form.input :name
+  = form.input :user_ids, :as => :check_boxes, :collection => @account.users.map { |user| [user.full_name, user.id] }, :label => 'Project participants:'
+
+  .buttons
+    = form.button :submit
+    = link_to 'Cancel', @project.new_record? ? account_projects_path(@account) : account_project_path(@account, @project)

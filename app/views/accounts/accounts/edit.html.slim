@@ -1,0 +1,10 @@
+article.overview
+  h2 title = 'Edit account'
+
+  = simple_form_for @account do |form|
+    = form.error_notification
+    = form.input :name
+
+    .buttons
+      = form.button :submit
+      = link_to 'Cancel', account_path

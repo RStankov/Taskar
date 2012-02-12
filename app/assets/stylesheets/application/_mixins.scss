@@ -1,0 +1,38 @@
+@mixin background-gradient($top-color, $bottom-color) {
+  @include linear-gradient(color-stops($top-color, $bottom-color));
+  background-color: $bottom-color;
+}
+
+@mixin base-button($text-color, $start-color, $end-color) {
+  $shadow: darken($start-color, 10%);
+
+  @include background-gradient($start-color, $end-color);
+  @include box-shadow(0 1px 0 $shadow);
+
+  &:hover,
+  &:focus { @include box-shadow(0 1px 0 $shadow, inset 3px -3px 15px $start-color, inset -3px -3px 15px $start-color); }
+  &:active { @include box-shadow(0 1px 0 $shadow, inset 3px -3px 15px $end-color, inset -3px -3px 15px $end-color, inset -3px 3px 15px $end-color); background: $start-color; }
+
+  padding: 5px 10px;
+  text-decoration: none;
+  border: 1px solid darken($end-color, 30%);
+  color: $text-color;
+  outline: 0;
+  cursor: pointer;
+}
+
+@mixin gray-button {
+  @include base-button(#000, lighten($light-gray, 10%), lighten($dark-gray, 10%));
+  @include border-radius(5px);
+  @include text-shadow(0 1px 0 $gray);
+}
+
+@mixin submit-button {
+  @include base-button(#fff, #76b7ef, #135f9f);
+  @include border-radius(5px);
+}
+
+@mixin red-button {
+  @include base-button(#fff, lighten($error, 20%), $error);
+  @include border-radius(5px);
+}

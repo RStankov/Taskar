@@ -1,6 +1,6 @@
 <div id="user_box">
   <header>
-  	<%= title "devise.passwords.forgot_title" %>
+  	<%= legacy_title "devise.passwords.forgot_title" %>
   </header>
 	<%= form_for @user, :url => password_path(resource_name), :html => {:class => "action_form"} do |f| %>
 	  <%= render "shared/error_messages", :target => f.object %>

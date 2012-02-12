@@ -1,94 +1,103 @@
 require 'spec_helper'
 
 describe Accounts::UsersController do
-  before { sign_up_and_mock_account }
+  let(:account)      { mock_model(Account) }
+  let(:current_user) { mock_model(User) }
+  let(:user)         { mock_model(User) }
+
+  before do
+    controller.stub :authenticate_user!
+    controller.stub :current_user => current_user
+
+    current_user.stub :find_account => account
+
+    account.stub_chain :users, :find => user
+  end
 
   describe "with admin user" do
     before do
-      mock_account.should_receive(:admin?).with(@current_user).and_return true
-      mock_account.stub(:users).and_return @users = [mock_user]
-    end
-
-    describe "on member action" do
-      before do
-        @users.should_receive(:find).with("2").and_return mock_user
-      end
-
-      describe "GET show" do
-        it "should display user information" do
-          mock_account.stub_chain :projects, :active => active_projects = [mock_project]
-
-          get :show, :account_id => "1", :id => "2"
-
-          should assign_to(:projects).with(active_projects)
-          should assign_to(:user).with(mock_user)
-          should render_template("show")
-        end
-      end
-
-      describe "DELETE destroy" do
-        it "should destroy all of account_user and project_users of that user" do
-          mock_account.should_receive(:remove_user).with(mock_user).and_return true
-
-          delete :destroy, :account_id => "1", :id => "2"
-
-          should set_the_flash
-          should redirect_to(account_users_url(mock_account))
-        end
-      end
-
-      describe "PUT set_admin" do
-        it "should set user admin field to param[:value]" do
-          mock_account.should_receive(:set_admin_status).with(mock_user, true)
-
-          put :set_admin, :account_id => "1", :id => "2", :admin => true
-        end
-
-        it "should not allow the current user to change his admin status" do
-          mock_user.should_receive(:==).with(@current_user).and_return true
-          mock_user.stub(:admin?).and_return(true)
-
-          mock_account.should_not_receive(:set_admin_status)
-
-          put :set_admin, :account_id => "1", :id => "2", :admin => true
-        end
-
-        it "should redirect to user page" do
-          mock_account.should_receive(:set_admin_status)
-
-          put :set_admin, :account_id => "1", :id => "2"
-
-          should redirect_to(account_user_url(mock_account, mock_user))
-        end
-      end
-
-      describe "PUT set_projects" do
-        it "should set projects of user and redirect" do
-          mock_account.should_receive(:set_user_projects).with(mock_user, ["1", "2", "3"])
-
-          put :set_projects, :account_id => "1", :id => "2", :project_ids => ["1", "2", "3"]
-
-          should redirect_to(account_user_url(mock_account, mock_user))
-        end
-      end
+      account.should_receive(:admin?).with(current_user).and_return true
     end
 
     describe "GET index" do
-      it "shows all users and invitations" do
-        mock_account.should_receive(:invitations).and_return [mock_invitation]
+      it "renders index action" do
+        get :index, :account_id => '1'
 
-        get :index, :account_id => "1"
+        controller.should render_template 'index'
+      end
+    end
 
-        should assign_to(:users).with(@users)
-        should assign_to(:invitations).with([mock_invitation])
-        should render_template("index")
+    describe "GET show" do
+      it "assigns user as @user" do
+        controller.should_receive(:find_user).and_return user
+
+        get :show, :account_id => '1', :id => '2'
+
+        controller.should assign_to(:user).with(user)
+      end
+    end
+
+    describe "DELETE destroy" do
+      before { account.stub :remove_user => false }
+
+      it "removes an user from account" do
+        account.should_receive(:remove_user).with(user).and_return true
+
+        delete :destroy, :account_id => '1', :id => '2'
+      end
+
+      it "redirects to account users with flash message" do
+        delete :destroy, :account_id => '1', :id => '2'
+
+        controller.should redirect_to account_users_path(account)
+        controller.should set_the_flash
+      end
+    end
+
+    describe "PUT set_admin" do
+      before { account.stub :set_admin_status => true }
+
+      it "changes the admin status of the user" do
+        account.should_receive(:set_admin_status).with(user, 'true')
+
+        put :set_admin, :account_id => '1', :id => '2', :admin => 'true'
+      end
+
+      it "can not chage admin status of the current user" do
+        controller.stub :find_user => current_user
+
+        account.should_not_receive(:set_admin_status).with(user, 'true')
+
+        put :set_admin, :account_id => '1', :id => '2', :admin => 'true'
+      end
+
+      it "redirects to the user account page" do
+        put :set_admin, :account_id => '1', :id => '2', :admin => 'true'
+
+        controller.should redirect_to account_user_path(account, user)
+      end
+    end
+
+    describe "PUT set_user_projects" do
+      before { account.stub :set_user_projects => true }
+
+      it "changes projects of the user" do
+        account.should_receive(:set_user_projects).with user, ['1', '2', '3']
+
+        put :set_projects, :account_id => '1', :id => '2', :user => {:project_ids => ['1', '2', '3']}
+      end
+
+      it "redirects to the user account page" do
+        put :set_projects, :account_id => '1', :id => '2', :user => {:project_ids => ['1', '2', '3']}
+
+        controller.should redirect_to account_user_path(account, user)
       end
     end
   end
 
   describe "with not-admin user" do
     before do
-      mock_account.should_receive(:admin?).with(@current_user).and_return false
+      account.stub(:admin?).with(current_user).and_return false
 
       ensure_deny_access_is_called
     end
@@ -100,7 +109,7 @@ describe Accounts::UsersController do
       :set_admin    => 'put(:set_admin, :account_id => "1", :id => "1")',
       :set_projects => 'put(:set_projects, :account_id => "1", :id => "1")'
     }.each do |(action, code)|
-      it "should not allow #{action}, and redirect_to root_url" do
+      it "does not allow #{action}, and redirect to root url" do
         eval code
       end
     end

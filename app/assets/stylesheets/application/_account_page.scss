@@ -1,0 +1,129 @@
+#accounts-page {
+  $selected-item-color: #3b547e;
+
+  @include clearfix;
+  @include box-shadow(0 1px 2px $shadow-color);
+  @include border-radius(3px);
+
+  width: $layout-width;
+  margin: 20px auto;
+  background: $content-background;
+  position: relative;
+
+  header { @include background-gradient($gray, $light-gray); @include border-radius(5px 5px 0 0); @include box-shadow(inset 0 1px 0 $gray); position: relative; border-bottom: 1px solid $line; }
+  header h1 { @include text-shadow(0 1px 0 $gray); width: 200px; margin: 0 auto; padding: 10px 0;  text-align: center; color: #000; font-size: 16px; }
+
+  header nav { position: absolute; right: 6px; top: 6px; }
+  header nav:hover ul { display: block; }
+  header nav:hover h3 { @include border-radius(4px, 4px 4px 0 0); background: white; color: black; }
+
+  header h3 {
+    @include border-radius(4px);
+    @include background-gradient(lighten($light-gray, 10%), lighten($dark-gray, 10%));
+
+    display: inline-block;
+    padding: 5px 10px;
+    border: 1px solid darken($dark-gray, 20%);
+    color: darken($dark-gray, 20%);
+  }
+
+  header nav ul { display: none; position: absolute; right: 0px; top: 23px; width: 250px; background: white; z-index: 1; padding: 5px 10px 10px; border: 1px solid darken($dark-gray, 20%);  @include box-shadow($shadow-color 0px 2px 5px); @include border-radius(4px, 0 0 4px 4px); }
+  header nav ul li { margin-top: 10px; }
+  header nav ul li + li { margin-top: 10px; padding-top: 10px; border-top: 1px solid $line; }
+  header nav ul li .actions { float: right; }
+  header nav ul li a { text-decoration: none; }
+  header nav ul li a:hover { text-decoration: underline; }
+
+  .content { display: table; }
+
+  .content nav { display: table-cell; width: 160px; height: 500px; padding-bottom: 50px; vertical-align: top; border-right: 1px solid $line; }
+  .content nav a { padding: 11px 30px; display: block; color: #000; cursor: pointer; font-size: 14px; text-decoration: none;}
+  .content nav a.selected { @include background-gradient($light-gray, $gray); @include text-shadow(0 1px 0 #fff); padding: 10px 30px; border-top: 1px solid $line; border-bottom: 1px solid $line; font-weight: bold; }
+  .content nav a:active,
+  .content nav a:hover { text-decoration: underline; }
+  .content nav a.selected:first-child { border-top: none; padding: 11px 30px; }
+
+  .listing { display: table-cell; padding-top: 10px; position: relative; width: 220px; border-right: 1px solid $line; }
+  .listing h2 { padding-left: 10px; margin-bottom: 5px; font-size: 16px; color: #000; border-bottom: 1px solid $line; padding-bottom: 10px; }
+  .listing h3 { margin-top: 10px; padding: 10px; border-top: 1px dashed $line; border-bottom: 1px dashed $line; font-size: 14px; }
+  .listing a.new { @include gray-button; position: absolute; top: 6px; right: 10px; }
+  .listing ul { margin: 10px 30px; }
+  .listing ul li { margin-top: 5px; list-style: disc; }
+  .listing ul a { text-decoration: none; }
+  .listing ul a.selected { color: $selected-item-color; }
+  .listing ul a:active,
+  .listing ul a:hover { text-decoration: underline; }
+
+  article.overview { width: 840px; }
+
+  article { display:table-cell; position: relative; width: 620px; padding-bottom: 10px; }
+  article h2 { padding-left: 10px; margin: 10px 0; font-size: 16px; color: #000; border-bottom: 1px solid $line; padding-bottom: 10px; text-align: center; }
+  article h3 { font-size: 14px; margin-bottom: 5px; padding-left: 10px; }
+  article form { padding: 20px 20px 10px; }
+  article .todo { @include border-radius(20px); position: absolute; top: 20px; right: 20px; bottom: 20px; left: 20px; background: $light-gray; border: 1px solid $line; }
+  article .todo span { @include text-shadow(1px 1px 1px $dark-gray); position: absolute; top: 46%; left: 0px; right: 0px; font-size: 36px; text-transform: uppercase; text-align: center; color: white; }
+  article .actions { @include clearfix; margin-bottom: 20px; padding: 0 10px; }
+  article .actions li { float: right; padding: 5px; }
+  article .actions li.left { float: left; padding: 5px; }
+  article .actions li a { @include gray-button; line-height: 20px; }
+  article a.user { width: 190px; margin-right: 0px; }
+
+  a.user { @include inline-block; @include border-radius(5px); @include clearfix; position: relative; width: 198px; margin: 5px 10px; color: #000; text-decoration: none; border: 1px solid $line; }
+  a.user img { float: left; padding: 7px; }
+  a.user div { float: left; padding: 10px 7px; border-left: 1px solid $line; }
+  a.user div strong { display: block; margin-bottom: 5px; }
+  a.user div small { display: block; font-size: 10px; }
+  a.user.selected { @include background-gradient(lighten($selected-item-color, 40%), lighten($selected-item-color, 20%)); border-color: $selected-item-color; }
+  a.user.selected div { border-color: $header-gradient-start; }
+  a.user:hover,
+  a.user:active { @include box-shadow(0 0 4px $shadow-color); }
+
+  a.delete { @include red-button; position: absolute; top: 6px; right: 10px; }
+
+  .invitations {
+    width: 840px;
+    border-right: none;
+
+    table {
+       margin: 20px;
+       width: 95%;
+       border-spacing: 0;
+       border: 1px solid $line;
+       border-collapse: separate;
+       @include border-radius(4px);
+
+       th,
+       td {
+         &[align="center"] { text-align: center !important; }
+         &[align="right"] { text-align: right !important; }
+       }
+
+       th,
+       td { padding: 8px 10px; line-height: 20px; border-top: 1px solid $line; }
+
+       th { font-weight: bold; vertical-align: bottom; }
+       td { vertical-align: top; }
+
+       th + th { border-left: 1px solid $line; }
+
+       thead:first-child tr th,
+       thead:first-child tr td { border-top: 0; }
+
+       tbody.small { font-size: 11px; }
+
+       tbody tr:nth-child(odd) td,
+       tbody tr:nth-child(odd) th {
+         background-color: #f9f9f9;
+       }
+
+       tbody tr:hover td,
+       tbody tr:hover tr {
+         background-color: #eee;
+       }
+     }
+
+     a { @include gray-button; }
+     a + a { margin-left: 10px; }
+     .actions { text-align: right; }
+  }
+}

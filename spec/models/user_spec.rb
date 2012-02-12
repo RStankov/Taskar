@@ -200,4 +200,20 @@ describe User do
     end
   end
 
+  describe "find account" do
+    it "can find account in which the user participates" do
+      account_user = create :account_user
+      user         = account_user.user
+      account      = account_user.account
+
+      user.find_account(account.id).should eq account
+    end
+
+    it "can't find accounts in which the user doesn't participate" do
+      user    = create :user
+      account = create :account
+
+      expect { user.find_account(account.id) }.to raise_error(ActiveRecord::RecordNotFound)
+    end
+  end
 end

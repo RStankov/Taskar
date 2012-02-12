@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe InvitationsMailer do
   describe "invite" do
-    let(:invite) { mock_invitation :account_name => 'Apple', :email => 'rs@example.org', :full_name => 'Radoslav Stankov', :token => 'foo' }
+    let(:invite) { mock_model Invitation, :account_name => 'Apple', :email => 'rs@example.org', :full_name => 'Radoslav Stankov', :token => 'foo' }
 
     subject { InvitationsMailer.invite(invite) }
 

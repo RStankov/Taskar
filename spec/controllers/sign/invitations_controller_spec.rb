@@ -1,45 +1,63 @@
 require 'spec_helper'
 
 describe Sign::InvitationsController do
-  before do
-    Invitation.stub(:find_by_token).with("token_value").and_return mock_invitation(:user => mock_user)
-  end
+  let(:invitation) { mock_model(Invitation, :user => user) }
+  let(:user)       { mock_model(User) }
 
   describe "GET 'show'" do
-    it "should show invitation by token" do
-      get "show", :id => "token_value"
+    it "shows invitation by token" do
+      Invitation.should_receive(:find_by_token).with('token_value').and_return invitation
 
-      should assign_to(:invitation).with(mock_invitation)
-      should render_template("show")
+      get :show, :id => 'token_value'
+
+      controller.should assign_to(:invitation).with(invitation)
+      controller.should render_template 'show'
     end
 
-    it "should render invalid token if record is not found" do
-      Invitation.stub(:find_by_token).with("token_value").and_return nil
+    it "renders invalid token page if invitation doesn't exists" do
+      Invitation.should_receive(:find_by_token).with('token_value').and_return nil
 
-      get "show", :id => "token_value"
+      get :show, :id => 'token_value'
 
-      should render_template("not_found")
+      controller.should render_template 'not_found'
     end
   end
 
   describe "PUT 'update'" do
-    it "should sign_in @invitation.user and redirect to root if #process_user is true" do
-      mock_invitation.should_receive(:accept).with("these" => "params").and_return true
-      controller.should_receive(:sign_in).with(mock_user)
-
-      put :update, :id => "token_value", :user => {"these" => "params"}
-
-      should set_the_flash.to(I18n.t("devise.invitations.complete"))
-      should redirect_to(:root)
+    before do
+      Invitation.stub(:find_by_token).with('token_value').and_return invitation
+      controller.stub :sign_in
     end
 
-    it "should sign_in @invitation.user and redirect to root if #process_user is true" do
-      mock_invitation.should_receive(:accept).with("these" => "params").and_return false
+    it "accepts the invitation" do
+      invitation.should_receive(:accept).with('these' => 'params').and_return true
 
-      put :update, :id => "token_value", :user => {"these" => "params"}
+      put :update, :id => 'token_value', :user => {'these' => 'params'}
+    end
 
-      should assign_to(:invitation).with(mock_invitation)
-      should render_template("show")
+    it "signs in invitation's user if invitations is accepted" do
+      invitation.stub :accept => true
+      controller.should_receive(:sign_in).with(user)
+
+      put :update, :id => 'token_value'
+    end
+
+    it "redirecs to root page with flash message if invitation is accepted" do
+      invitation.stub :accept => true
+
+      put :update, :id => 'token_value'
+
+      controller.should set_the_flash
+      controller.should redirect_to(:root)
+    end
+
+    it "renders show page if invitation is not accepted" do
+      invitation.stub :accept => false
+
+      put :update, :id => 'token_value'
+
+      controller.should assign_to(:invitation).with(invitation)
+      controller.should render_template('show')
     end
   end
 end

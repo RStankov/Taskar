@@ -24,7 +24,7 @@ module ApplicationHelper
     nl2br auto_link(h(text))
   end
 
-  def title(page_title)
+  def legacy_title(page_title)
     page_title = t(page_title, :default => page_title)
     content_for :title, page_title
     raw "<h1>#{page_title}</h1>"

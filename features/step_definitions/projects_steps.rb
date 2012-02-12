@@ -18,29 +18,25 @@ Given 'I am working with another user on this project' do
 end
 
 When 'I create new project "$name"' do |name|
-  click_link 'Projects'
-  click_link 'Create new project'
+  visit new_account_project_path(@current_user.accounts.first)
+
+  click_on 'Create new project'
 
   fill_in :name, :with => name
   check @current_user.full_name
-  click_button 'Create'
+  click_on 'Create Project'
 end
 
 When 'I rename the project to "$name"' do |name|
-  visit account_project_path(@project.account, @project)
-
-  click_link 'Edit'
-
-  fill_in :name, :with => name
-  click_button 'Save'
-
-  page.should have_content 'Project updated successfully'
+  edit_project(@project.name) do
+    fill_in :name, :with => name
+  end
 end
 
 When 'I complete the project' do
   visit account_project_path(@project.account, @project)
 
-  click_link 'Complete project'
+  click_on 'Completed project?'
 end
 
 When 'I reset the project' do
@@ -50,42 +46,30 @@ end
 When 'I delete the project' do
   visit account_project_path(@project.account, @project)
 
-  click_link 'Delete'
+  click_on 'Delete'
 end
 
 When 'I give access to "$project_name" to "$user_name"' do |project_name, user_name|
-  project = Project.find_by_name! project_name
-
-  visit account_project_path(project.account, project)
-
-  click_link "Edit"
-
-  check user_name
-
-  click_button 'Save'
+  edit_project(project_name) do
+    check user_name
+  end
 end
 
 When 'I give access to "$project_name" to "$user_name" from his account profile page' do |project_name, user_name|
   visit account_path(current_account)
 
-  click_link 'Manage users'
-  click_link user_name
+  click_on 'Members'
+  click_on user_name
 
   check project_name
 
-  click_button "change projects permissions"
+  click_on 'Update permissions'
 end
 
 When 'I revoke the access to "$project_name" to "$user_full_name"' do |project_name, user_full_name|
-  project = Project.find_by_name! project_name
-
-  visit account_project_path(project.account, project)
-
-  click_link "Edit"
-
-  uncheck user_full_name
-
-  click_button 'Save'
+  edit_project(project_name) do
+    uncheck user_full_name
+  end
 end
 
 When 'I open "$project_name" project' do |project_name|

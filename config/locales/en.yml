@@ -27,17 +27,6 @@ en:
       feedback: "Feedback"
       logout: "Logout"
 
-    accounts:
-      title_projects: ": Projects"
-      title_users: ": Users"
-      users: "Users (%{count})"
-      new_user: "Invite user"
-      manage_users: "Manage users"
-      current_projects: "Active projects (%{count})"
-      project_settings: "setting"
-      new_project: "Create new project"
-      manage_projects: "Show all projects"
-
     sections:
       dashboard: "Dashboard"
       archive: "Archive"
@@ -75,37 +64,10 @@ en:
   sessions:
     title: "Login"
 
-  accounts:
-    updated: "Account information updated successfully"
-
-  projects:
-    participants: "Project participants"
-    sections: "Tasklists"
-    archived_section: "archived"
-    confirm: "Are you sure, you wan't to delete this project?"
-    new_project: "Create project"
-    edit_project: "Edit project"
-    completed: "Completed"
-    index: "Projects"
-    active: "Active projects"
-    completed: "Completed projects"
-    complete_project: "Complete project"
-    updated_project: "Project updated successfully"
-    completed: "Project completed successfully"
-    reseted: "Project reseted successfully"
-
-  invitations:
-    new_user: "Add new user to %{account}"
-    message: "Additional message<small> to be added at the bottom of the user's welcome email</small>"
-    note: "Seleted user will receive an invaitation email."
-
   users:
     title: "Users"
-    invitations: "User invitations(%{count})"
-    invitation_link: "Resend invitation"
     confirm: "Are you sure, you want to delete this user"
     projects: "%{name}'s projects"
-    change_projects: "change projects permissions"
     admin: "Administrator"
     flash:
       removed: "User deleted succesfully."

@@ -1,0 +1,14 @@
+@import "compass/css3";
+@import "compass/reset";
+@import "compass/utilities/general/clearfix";
+@import "compass/utilities/text/ellipsis";
+
+@import "application/variables";
+@import "application/mixins";
+@import "application/layout";
+@import "application/simple_form";
+@import "application/account_page";
+
+.testing-env {
+  #accounts-page header nav ul { display: block; }
+}
