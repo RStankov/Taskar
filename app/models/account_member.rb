@@ -7,7 +7,11 @@ class AccountMember
     end
 
     def for(account)
-      account.users.map { |user| new user, account }
+      wrap account, account.users
+    end
+
+    def wrap(account, users)
+      users.map { |user| new user, account}
     end
   end
 
