@@ -12,7 +12,7 @@ class Accounts::BaseController < ApplicationController
   end
 
   def get_account_and_check_permissions
-    @account = current_user.accounts.find(account_id)
+    @account = current_user.find_account(account_id)
 
     unless @account.admin? current_user
       deny_access

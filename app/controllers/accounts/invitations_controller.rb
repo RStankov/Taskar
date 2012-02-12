@@ -14,24 +14,25 @@ class Accounts::InvitationsController < Accounts::BaseController
     if @invitation.save
       @invitation.send_invite
 
-      redirect_to [@account, :users]
+      redirect_to account_users_path(@account), :notice => 'Invitation send successfully'
     else
       render 'new', :layout => 'users'
     end
   end
 
   def update
-    find_invitation.send_invite
+    invitation = find_invitation
+    invitation.send_invite
 
-    redirect_to [@account, :users], :notice => 'Invitation resend successfully'
+    redirect_to account_invitations_path(@account), :notice => 'Invitation resend successfully'
   end
 
   def destroy
-    find_invitation.destroy
+    invitation = find_invitation
+    invitation.destroy
 
-    redirect_to [@account, :users]
+    redirect_to account_invitations_path(@account)
   end
-
 
   private
 

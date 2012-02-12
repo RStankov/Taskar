@@ -1,87 +1,123 @@
 require 'spec_helper'
 
 describe Accounts::InvitationsController do
-  before do
-    sign_up_and_mock_account
+  let(:account)      { mock_model(Account) }
+  let(:current_user) { mock_model(User) }
+  let(:invitation)   { mock_model(Invitation) }
 
-    mock_account.stub(:invitations).and_return @inviations = []
+  before do
+    controller.stub :authenticate_user!
+    controller.stub :current_user => current_user
+
+    current_user.stub :find_account => account
+
+    account.stub :invitations => []
   end
 
-  describe "with admin user" do
-    before do
-      mock_account.should_receive(:admin?).with(@current_user).and_return true
-    end
+  context "with admin user" do
+    before { account.stub(:admin?).with(current_user).and_return true }
 
     describe "GET 'new'" do
-      it "should display new invitation form" do
-        Invitation.should_receive(:new).and_return mock_invitation
+      it "assings new invitation" do
+        Invitation.should_receive(:new).and_return invitation
 
-        get "new", :account_id => "1"
+        get :new, :account_id => '1'
 
-        should assign_to(:invitation).with(mock_invitation)
-        should render_template("new")
+        controller.should assign_to(:invitation).with(invitation)
       end
     end
 
     describe "POST 'create'" do
       before do
-        @inviations.should_receive(:build).with("these" => "params").and_return mock_invitation
+        account.invitations.stub :build => invitation
+
+        invitation.stub :send_invite
+        invitation.stub :save => true
       end
 
-      it "should create new invitation, and redirect to users, on valid data" do
-        mock_invitation.should_receive(:save).and_return true
+      it "assigns the new invitaion" do
+        account.invitations.should_receive(:build).with('these' => 'params').and_return invitation
 
-        post "create", :account_id => "1", :invitation => {"these" => "params"}
+        post :create, :account_id => '1', :invitation => {'these' => 'params'}
 
-        should assign_to(:invitation).with(mock_invitation)
-        should redirect_to([mock_account, :users])
+        controller.should assign_to(:invitation).with(invitation)
       end
 
-      it "should render 'new' form, on invaild data" do
-        mock_invitation.should_receive(:save).and_return false
+      it "creates new invitation" do
+        invitation.should_receive(:save).and_return true
 
-        post "create", :account_id => "1", :invitation => {"these" => "params"}
-
-        should assign_to(:invitation).with(mock_invitation)
-        should render_template("new")
+        post :create, :account_id => '1'
       end
 
-      it "should send the invitation" do
-        mock_invitation.stub :save => true
-        mock_invitation.should_receive(:send_invite)
+      it "send the invitation, on succesfull creation" do
+        invitation.stub :save => true
+        invitation.should_receive :send_invite
 
-        post "create", :account_id => "1", :invitation => {"these" => "params"}
+        post :create, :account_id => '1'
+      end
+
+      it 'redirects to account users with flash message, on succesfull creation' do
+        invitation.stub :save => true
+
+        post :create, :account_id => '1'
+
+        controller.should redirect_to account_users_path(account)
+        controller.should set_the_flash
+
+      end
+
+      it "renders new action, on unsuccesfull creation" do
+        invitation.stub :save => false
+
+        post :create, :account_id => '1'
+
+        controller.should render_template 'new'
       end
     end
 
     describe "PUT 'update'" do
-      it "should be successful" do
-        @inviations.should_receive(:find).with("2").and_return mock_invitation
+      before do
+        account.invitations.stub :find => invitation
+        invitation.stub :send_invite
+      end
 
-        mock_invitation.should_receive(:send_invite)
+      it "sends an other invitation" do
+        invitation.should_receive :send_invite
 
-        get "update", :account_id => "1", :id => "2"
+        put :update, :account_id => '1', :id => '2'
+      end
 
-        should redirect_to [mock_account, :users]
+      it "redirects backs to account inviations with flash message" do
+        put :update, :account_id => '1', :id => '2'
+
+        controller.should redirect_to account_invitations_path(account)
+        controller.should set_the_flash
       end
     end
 
     describe "DELETE 'destroy'" do
-      it "should be destroy invitation and redirect" do
-        @inviations.should_receive(:find).with("2").and_return mock_invitation
+      before do
+        account.invitations.stub :find => invitation
+        invitation.stub :destroy
+      end
 
-        mock_invitation.should_receive(:destroy)
+      it "sends an other invitation" do
+        invitation.should_receive :destroy
 
-        get "destroy", :account_id => "1", :id => "2"
+        put :destroy, :account_id => '1', :id => '2'
+      end
 
-        should redirect_to([mock_account, :users])
+      it "redirects backs to account inviations" do
+        put :destroy, :account_id => '1', :id => '2'
+
+        controller.should redirect_to account_invitations_path(account)
       end
     end
   end
 
-  describe "with not-admin user" do
+  context "with not-admin user" do
     before do
-      mock_account.should_receive(:admin?).with(@current_user).and_return false
+      account.should_receive(:admin?).with(current_user).and_return false
 
       ensure_deny_access_is_called
     end
@@ -92,7 +128,7 @@ describe Accounts::InvitationsController do
       :update     => 'put(:update, :account_id => "1", :id => "1")',
       :destroy    => 'delete(:destroy, :account_id => "1", :id => "1")'
     }.each do |(action, code)|
-      it "should not allow #{action}, and redirect_to root_url" do
+      it "should not allow #{action}, and redirect to root url" do
         eval code
       end
     end

@@ -71,6 +71,10 @@ class User < ActiveRecord::Base
     super(conditions)
   end
 
+  def find_account(account_id)
+    accounts.find(account_id)
+  end
+
   private
     def downcase_email
       self.email = email.to_s.downcase
