@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
     end
 
     def record_not_found
-      render :action => "shared/not_found", :layout => "application", :status => 404
+      render :template => '/shared/not_found', :layout => 'application', :status => 404
     end
 
     def get_project
