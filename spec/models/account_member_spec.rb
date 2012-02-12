@@ -1,6 +1,11 @@
 require 'spec_helper'
 
 describe AccountMember do
+  let(:account_user)  { create :account_user }
+  let(:user)          { account_user.user }
+  let(:account)       { account_user.account }
+  let(:member)        { AccountMember.new(user, account) }
+
   it "delegates to user" do
     user = double :full_name => 'Radoslav Stankov', :email => 'rs@example.com', :avatar => 'avatar'
     member = AccountMember.new(user, double)
@@ -18,23 +23,13 @@ describe AccountMember do
   end
 
   it "is equal to same user or account member" do
-    user = double
-    account = double
-
     AccountMember.new(user, account).should == user
     AccountMember.new(user, account).should == AccountMember.new(user, account)
   end
 
   it "can find all account members for an account" do
-    account_user = create :account_user
-
-    AccountMember.for(account_user.account).should eq [AccountMember.new(account_user.user, account_user.account)]
+    AccountMember.for(account).should eq [AccountMember.new(user, account)]
   end
-
-  let(:account_user)  { create :account_user }
-  let(:user)          { account_user.user }
-  let(:account)       { account_user.account }
-  let(:member)        { AccountMember.new(user, account) }
 
   describe "find" do
     it "finds an account member by account and user id" do
@@ -44,7 +39,7 @@ describe AccountMember do
     end
 
     it "raises record not found if user doesn't exists in this account" do
-      expect { AccountMember.find(account, user.id) }.to raise_error ActiveRecord::RecordNotFound
+      expect { AccountMember.find(create(:account), create(:user).id) }.to raise_error ActiveRecord::RecordNotFound
     end
   end
 
