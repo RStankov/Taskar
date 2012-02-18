@@ -1,2 +1,7 @@
 footer
   div Managed by Taskar | #{link_to 'Changes', changes_path}
+
+= javascript_include_tag 'application'
+- if Rails.env.test?
+  javascript:
+    $.fx.off = true;
