@@ -67,3 +67,31 @@ body > footer {
   div a { color: #b8b8b8; text-decoration: none; }
   div a:hover { text-decoration: underline; }
 }
+
+.notice {
+  position: fixed;
+  right: 0px;
+  top: 0px;
+  left: 0px;
+  background: lighten($success, 15%);
+  border-bottom: 5px solid $success;
+  padding: 20px;
+  text-align: center;
+  color: $success;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.alert {
+  position: fixed;
+  right: 0px;
+  top: 0px;
+  left: 0px;
+  background: lighten($error, 15%);
+  border-bottom: 5px solid $error;
+  padding: 20px;
+  text-align: center;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}

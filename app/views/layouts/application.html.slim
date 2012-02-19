@@ -19,3 +19,9 @@ html
     = content_for?(:content) ? yield(:content) : yield
 
     = render 'shared/footer'
+
+    - if flash[:notice].present?
+      .notice = flash[:notice]
+
+    - if flash[:alert].present?
+      .alert = flash[:alert]
