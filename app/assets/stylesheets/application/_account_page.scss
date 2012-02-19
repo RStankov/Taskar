@@ -11,7 +11,7 @@
   position: relative;
 
   header { @include background-gradient($gray, $light-gray); @include border-radius(5px 5px 0 0); @include box-shadow(inset 0 1px 0 $gray); position: relative; border-bottom: 1px solid $line; }
-  header h1 { @include text-shadow(0 1px 0 $gray); width: 200px; margin: 0 auto; padding: 10px 0;  text-align: center; color: #000; font-size: 16px; }
+  header h1 { @include text-shadow(0 1px 0 $gray); padding: 10px 0;  text-align: center; color: #000; font-size: 16px; }
 
   header nav { position: absolute; right: 6px; top: 6px; }
   header nav:hover ul { display: block; }

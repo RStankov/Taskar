@@ -1,0 +1,10 @@
+#devise-page
+  header
+    h1 = title 'Change your password'
+
+  = simple_form_for @user, :url => password_path(:user), :method => :put do |form|
+    = form.error_notification
+    = form.hidden_field :reset_password_token
+    = form.input :password
+    = form.input :password_confirmation
+    = form.button :submit, 'Change password'

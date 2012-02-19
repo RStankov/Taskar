@@ -4,7 +4,6 @@ en:
       invalid: 'Invalid email/password or account.'
 
     sessions:
-      link: 'Login'
       signed_in: 'Signed in successfully.'
       signed_out: 'Signed out successfully.'
 
@@ -19,40 +18,17 @@ en:
 
     passwords:
       invalid: 'Invalid email/password or account.'
-      link: 'Forgotten password?'
       send_instructions: 'You will receive an email with instructions about how to reset your password in a few minutes.'
       updated: 'Your password was changed successfully. You are now signed in.'
-      forgot_title: 'Forgotten password?'
-      change_title: 'Change your password'
-      send_instructions_button: 'Send'
-      update_button: 'Change password'
 
     registrations:
-      link: 'Registration'
-      signed_up: 'You have signed up successfully.'
-      updated: 'You updated your account successfully.'
       destroyed: 'Bye! Your account was successfully cancelled. We hope to see you again soon.'
-      new: 'Registration'
-      register: 'Register'
 
     unlocks:
-      title: 'Unlock account'
-      link: 'Unlock account'
-      submit: 'Unlock'
-      send_instructions: 'You will receive an email with instructions about how to unlock your account in a few minutes.'
       unlocked: Your account was successfully unlocked. You are now signed in.'
 
     invitations:
       complete: "The invitation was accepted, wellcome!"
-      title: "Invitation from %{sender}"
-      hi: "Hi, %{name}"
-      note: '%{sender} has invited you to work with his "<em>%{account}</em>" account in Taskar.'
-      instructions_register: "You only need to fill the from below"
-      instructions_sign_in: "You have account, already so you only need to enter your password."
-      accept: "Accept invitation"
-      invalid_password: "Invalid password"
-      not_found: "The invitation you are looking for doesn't exists"
-      not_found_help: 'It could be deleted from the sender or it could already be accepted. Please contact the person from whom you expect <a href="/">Taskar</a> invitation or <a href="%{registration}">register</a>  your self from this <a href="%{registration}">address</a>.'
 
     mailer:
       confirmation_instructions:

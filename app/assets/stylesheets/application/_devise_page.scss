@@ -1,0 +1,30 @@
+#devise-page {
+  @include clearfix;
+  @include box-shadow(0 1px 2px $shadow-color);
+  @include border-radius(3px);
+
+  width: 540px;
+  margin: 20px auto;
+  background: $content-background;
+  position: relative;
+
+  header { @include background-gradient($gray, $light-gray); @include border-radius(5px 5px 0 0); @include box-shadow(inset 0 1px 0 $gray); position: relative; border-bottom: 1px solid $line; }
+  header h1 { @include text-shadow(0 1px 0 $gray); padding: 10px 0;  text-align: center; color: #000; font-size: 16px; }
+
+  form { padding: 20px 20px 10px; }
+  form .input label { float: left; width: 150px; padding-top: 10px; }
+  form .input.boolean { padding-left: 150px; }
+  form .input.boolean label { padding-top: 0px; }
+  form > .button { width: 216px; margin: 20px 0 20px 150px; font-size: 14px; @include submit-button; }
+
+  nav { margin: 0 20px; padding: 20px 0; border-top: 1px solid $line; }
+  nav ul { @include clearfix; }
+  nav ul li { float: left; }
+  nav ul li + li { margin-left: 10px; padding-left: 10px; border-left: 1px solid $line; }
+
+  a { text-decoration: underline; }
+  a:hover { text-decoration: none; }
+
+  > p { padding: 20px; font-size: 16px; }
+  > p + p { padding-top: 0px; }
+}

@@ -1,0 +1,24 @@
+#devise-page
+  header
+    h1 = title "Invitation from #{@invitation.sender_name}"
+
+  p Hi #{@invitation.receiver_name}.
+
+  p #{@invitation.sender_name} has invited you to work with his "<em>#{@invitation.account_name}</em>" account in Taskar.
+
+  - if @invitation.user.new_record?
+    p You only need to fill the from below
+  - else
+    p You have account, already so you only need to enter your password.
+
+  = simple_form_for @invitation.user, :url => sign_invitation_path(@invitation.token), :method => :put do |form|
+    = form.error_notification
+
+    - if @invitation.user.new_record?
+      = form.input :password
+      = form.input :password_confirmation
+      = form.input :avatar, :as => :file
+    - else
+      = form.input :password
+
+    = form.button :submit, 'Accept invitation'

@@ -1,0 +1,20 @@
+#devise-page
+  header
+    h1 = title 'Registration'
+
+  = simple_form_for @user, :url => user_registration_path do |form|
+    = form.error_notification
+
+    = form.input :email
+    = form.input :password
+    = form.input :password_confirmation
+    = form.input :first_name
+    = form.input :last_name
+    = form.input :avatar, :as => :file
+
+    = form.fields_for :owned_account, @user.owned_account || Account.new do |account|
+      - account.input :name, :label => 'Account name'
+
+    = form.button :submit, 'Register'
+
+  = render 'devise/shared/links'

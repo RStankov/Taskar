@@ -1,0 +1,11 @@
+#devise-page
+  header
+    h1 = title 'Login'
+
+  = simple_form_for @user, :url => session_path(resource_name) do |form|
+    = form.input :email
+    = form.input :password
+    = form.input :remember_me, :as => :boolean
+    = form.button :submit, 'Login'
+
+  = render 'devise/shared/links'
