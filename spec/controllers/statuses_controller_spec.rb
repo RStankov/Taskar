@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe StatusesController do
+  let(:status) { double }
+
   subject { controller }
 
   before { Project.should_receive(:find).with("1").and_return mock_project }
@@ -9,23 +11,23 @@ describe StatusesController do
     before { sign_with_project_user }
 
     def controller_should_fire_event
-      controller.should_receive(:activity).with(mock_status)
+      controller.should_receive(:activity).with(status)
     end
 
     describe "POST create" do
-      before { @current_user.should_receive(:new_status).with(mock_project, {"these" => "params"}).and_return mock_status }
+      before { @current_user.should_receive(:new_status).with(mock_project, {"these" => "params"}).and_return status }
 
       describe "with valid data" do
         before do
-          mock_status.should_receive(:save).and_return true
+          status.should_receive(:save).and_return true
 
-          controller.should_receive(:activity).with mock_status
+          controller.should_receive(:activity).with status
         end
 
         describe "xhr request" do
           before { xhr :post, :create, :project_id => "1", :status => {:these => "params"} }
 
-          it { should assign_to(:status).with(mock_status) }
+          it { should assign_to(:status).with(status) }
           it { should_not render_template("create") }
           it { response.should be_success }
         end
@@ -33,18 +35,18 @@ describe StatusesController do
         describe "normal request" do
           before { post :create, :project_id => "1", :status => {:these => "params"} }
 
-          it { should assign_to(:status).with(mock_status) }
+          it { should assign_to(:status).with(status) }
           it { should redirect_to(project_statuses_url(mock_project)) }
         end
       end
 
       describe "with invali data" do
-        before { mock_status.should_receive(:save).and_return false }
+        before { status.should_receive(:save).and_return false }
 
         describe "xhr request" do
           before { xhr :post, :create, :project_id => "1", :status => {:these => "params"} }
 
-          it { should assign_to(:status).with(mock_status) }
+          it { should assign_to(:status).with(status) }
           it { should_not render_template("create") }
           it { response.should be_success }
         end
@@ -52,7 +54,7 @@ describe StatusesController do
         describe "normal request" do
           before { post :create, :project_id => "1", :status => {:these => "params"} }
 
-          it { should assign_to(:status).with(mock_status) }
+          it { should assign_to(:status).with(status) }
           it { should redirect_to(project_statuses_url(mock_project)) }
         end
       end
@@ -60,13 +62,13 @@ describe StatusesController do
 
     describe "GET index" do
       before do
-        mock_project.should_receive(:statuses).and_return @mock_statuses = [mock_status]
-        @mock_statuses.should_receive(:paginate).with(:page => "2", :per_page => 20, :order => "id DESC").and_return @mock_statuses
+        mock_project.should_receive(:statuses).and_return @statuses = [status]
+        @statuses.should_receive(:paginate).with(:page => "2", :per_page => 20, :order => "id DESC").and_return @statuses
 
         get :index, :project_id => "1", :page => "2"
       end
 
-      it { should assign_to(:statuses).with(@mock_statuses) }
+      it { should assign_to(:statuses).with(@statuses) }
       it { should render_template("index") }
     end
 
@@ -92,9 +94,9 @@ describe StatusesController do
 
     describe "DELETE status" do
       before do
-        @current_user.stub_chain(:statuses, :find => mock_status)
+        @current_user.stub_chain(:statuses, :find => status)
 
-        mock_status.should_receive(:destroy)
+        status.should_receive(:destroy)
       end
 
       it "should redirect on normal request" do

@@ -94,7 +94,7 @@ describe SectionsController do
 
       describe "GET index" do
         before do
-          mock_project.stub!(:events).and_return @events = [mock_event]
+          mock_project.stub!(:events).and_return @events = []
           @events.should_receive(:paginate).with(:page => "1", :per_page => 30).and_return @events
 
           controller.stub!(:project_user).and_return mock_project_user

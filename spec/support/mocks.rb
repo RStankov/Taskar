@@ -19,17 +19,5 @@ module SpecSupport
     def mock_task(stubs={})
       @mock_task ||= mock_model(Task, {:section => mock_section, :project => mock_project, :user => mock_user}.merge(stubs))
     end
-
-    def mock_comment(stubs={})
-      @mock_comment ||= mock_model(Comment, {:task => mock_task, :user => mock_user, :project => mock_project}.merge(stubs))
-    end
-
-    def mock_event(stubs={})
-      @mock_event ||= mock_model(Event, stubs)
-    end
-
-    def mock_status(stubs={})
-      @mock_status ||= mock_model(Status, stubs)
-    end
   end
 end

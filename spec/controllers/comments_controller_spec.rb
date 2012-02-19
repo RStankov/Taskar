@@ -1,37 +1,39 @@
 require 'spec_helper'
 
 describe CommentsController do
+  let(:comment) { double :id => '1', :task => mock_task, :user => mock_user, :project => mock_project }
+
   subject { controller }
 
   describe "with project user" do
     before { sign_with_project_user }
 
     def controller_should_fire_event
-      controller.should_receive(:activity).with(mock_comment)
+      controller.should_receive(:activity).with(comment)
     end
 
-    def mock_comment_url
-      task_url(mock_comment.task, :anchor => "comment_#{mock_comment.id}")
+    def comment_url
+      task_url(comment.task, :anchor => "comment_#{comment.id}")
     end
 
     context "member action" do
       before do
-        Comment.should_receive(:find).with("1").and_return mock_comment
-        mock_comment.stub(:editable_by?).and_return true
+        Comment.should_receive(:find).with("1").and_return comment
+        comment.stub(:editable_by?).and_return true
       end
 
       describe "GET show" do
         context "" do
           before { get :show, :id => "1" }
 
-          it { should assign_to(:comment).with(mock_comment) }
-          it { should redirect_to(mock_comment_url) }
+          it { should assign_to(:comment).with(comment) }
+          it { should redirect_to(comment_url) }
         end
 
         context "xhr" do
           before { xhr :get, :show, :id => "1" }
 
-          it { should assign_to(:comment).with(mock_comment) }
+          it { should assign_to(:comment).with(comment) }
           it { should render_template('show') }
         end
       end
@@ -40,14 +42,14 @@ describe CommentsController do
         context "" do
           before { get :edit, :id => "1" }
 
-          it { should assign_to(:comment).with(mock_comment) }
-          it { should redirect_to(task_url(mock_comment.task, :anchor => "comment_#{mock_comment.id}")) }
+          it { should assign_to(:comment).with(comment) }
+          it { should redirect_to(task_url(comment.task, :anchor => "comment_#{comment.id}")) }
         end
 
         context "xhr" do
           before { xhr :get, :edit, :id => "1" }
 
-          it { should assign_to(:comment).with(mock_comment) }
+          it { should assign_to(:comment).with(comment) }
           it { should render_template("edit") }
         end
       end
@@ -59,7 +61,7 @@ describe CommentsController do
 
         context "with valid params" do
           before do
-            mock_comment.should_receive(:update_attributes).with({'these' => 'params'}).and_return(true)
+            comment.should_receive(:update_attributes).with({'these' => 'params'}).and_return(true)
 
             controller_should_fire_event
           end
@@ -67,34 +69,34 @@ describe CommentsController do
           context "" do
             before { put :update, params }
 
-            it { should assign_to(:comment).with(mock_comment) }
-            it { should redirect_to(mock_comment_url) }
+            it { should assign_to(:comment).with(comment) }
+            it { should redirect_to(comment_url) }
           end
 
           context "xhr" do
             before { xhr :put, :update, params }
 
-            it { should assign_to(:comment).with(mock_comment) }
+            it { should assign_to(:comment).with(comment) }
             it { should render_template("show") }
           end
         end
 
         context "with invalid params" do
           before do
-            mock_comment.should_receive(:update_attributes).with({'these' => 'params'}).and_return(false)
+            comment.should_receive(:update_attributes).with({'these' => 'params'}).and_return(false)
           end
 
           context "" do
             before { put :update, params }
 
-            it { should assign_to(:comment).with(mock_comment) }
-            it { should redirect_to(mock_comment_url) }
+            it { should assign_to(:comment).with(comment) }
+            it { should redirect_to(comment_url) }
           end
 
           context "xhr" do
             before { xhr :put, :update, params }
 
-            it { should assign_to(:comment).with(mock_comment) }
+            it { should assign_to(:comment).with(comment) }
             it { should render_template("edit") }
           end
         end
@@ -103,14 +105,14 @@ describe CommentsController do
 
       describe "DELETE destroy" do
         before do
-          mock_comment.should_receive(:destroy)
+          comment.should_receive(:destroy)
 
           controller_should_fire_event
         end
 
         it "redirects after destroy on normal request" do
           delete :destroy, :id => "1"
-          should redirect_to(task_url(mock_comment.task))
+          should redirect_to(task_url(comment.task))
         end
 
         it "it render tempalte on xhr request " do
@@ -125,12 +127,12 @@ describe CommentsController do
       before do
         Task.should_receive(:find).with("1").and_return mock_task
 
-        controller.current_user.should_receive(:new_comment).with(mock_task, {"these" => "params"}).and_return mock_comment
+        controller.current_user.should_receive(:new_comment).with(mock_task, {"these" => "params"}).and_return comment
       end
 
       context "with valid params" do
         before do
-          mock_comment.stub(:save).and_return true
+          comment.stub(:save).and_return true
 
           controller_should_fire_event
         end
@@ -138,33 +140,33 @@ describe CommentsController do
         context "" do
           before { post :create, :comment => {:these => 'params'}, :task_id => "1" }
 
-          it { should assign_to(:comment).with(mock_comment) }
-          it { should redirect_to(mock_comment_url) }
+          it { should assign_to(:comment).with(comment) }
+          it { should redirect_to(comment_url) }
         end
 
         context "xhr" do
           before { xhr :post, :create, :comment => {:these => 'params'}, :task_id => "1" }
 
 
-          it { should assign_to(:comment).with(mock_comment) }
+          it { should assign_to(:comment).with(comment) }
           it { should render_template("show") }
         end
       end
 
       context "with invalid params" do
-        before { mock_comment.stub(:save).and_return false }
+        before { comment.stub(:save).and_return false }
 
         context "" do
           before { post :create, :comment => {:these => 'params'}, :task_id => "1" }
 
-          it { should assign_to(:comment).with(mock_comment) }
-          it { should redirect_to(mock_comment_url) }
+          it { should assign_to(:comment).with(comment) }
+          it { should redirect_to(comment_url) }
         end
 
         context "xhr" do
           before { xhr :post, :create, :comment => {:these => 'params'}, :task_id => "1" }
 
-          it { should assign_to(:comment).with(mock_comment) }
+          it { should assign_to(:comment).with(comment) }
           it { should render_template("new") }
         end
       end
@@ -173,8 +175,8 @@ describe CommentsController do
 
     describe "get_comment_and_ensure_its_editable filter (with not editable comment)" do
       before do
-        Comment.should_receive(:find).with("1").and_return(mock_comment)
-        mock_comment.stub!(:editable_by?).and_return(false)
+        Comment.should_receive(:find).with("1").and_return(comment)
+        comment.stub!(:editable_by?).and_return(false)
       end
 
 
@@ -200,7 +202,7 @@ describe CommentsController do
 
       describe "redirect" do
         def redirect_to_comment
-          redirect_to(task_url(mock_comment.task, :anchor => "comment_#{mock_comment.id}"))
+          redirect_to(task_url(comment.task, :anchor => "comment_#{comment.id}"))
         end
 
         it "on GET edit" do
@@ -236,7 +238,7 @@ describe CommentsController do
       :destroy    => 'delete(:destroy, :id => "1")',
     }.each do |(action, code)|
       it "should not allow #{action}, and redirect_to root_url" do
-        Comment.should_receive(:find).with("1").and_return(mock_comment)
+        Comment.should_receive(:find).with("1").and_return(comment)
 
         eval code
       end
