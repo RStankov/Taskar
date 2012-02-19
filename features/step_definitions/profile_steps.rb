@@ -1,24 +1,18 @@
 When 'I change my name to "$full_name"' do |full_name|
   first_name, last_name = full_name.split ' '
 
-  click_link 'Profile'
-
-  fill_in 'Name', :with => first_name
-  fill_in 'Last name', :with => last_name
-
-  click_button 'Save'
-
-  page.should have_content 'You updated your account successfully.'
+  edit_profile do
+    fill_in 'Name', :with => first_name
+    fill_in 'Last name', :with => last_name
+  end
 end
 
 When 'I change my password to "$password"' do |password|
-  click_link 'Profile'
-
-  fill_in 'Password', :with => password
-  fill_in 'Confirm password', :with => password
-  fill_in 'Current password', :with => @current_user.password
-
-  click_button 'Save'
+  edit_profile do
+    fill_in 'Password', :with => password
+    fill_in 'Confirm password', :with => password
+    fill_in 'Current password', :with => @current_user.password
+  end
 end
 
 Then 'my name should be "$full_name"' do |full_name|
