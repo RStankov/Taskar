@@ -17,8 +17,12 @@ class Invitation < ActiveRecord::Base
 
   delegate :name, :to => :account, :prefix => true
 
-  def full_name
+  def receiver_name
     @full_name ||= "#{first_name} #{last_name}"
+  end
+
+  def sender_name
+    account.owner.full_name
   end
 
   def user
@@ -33,10 +37,8 @@ class Invitation < ActiveRecord::Base
     InvitationsMailer.invite(self).deliver
   end
 
-  def accept(params)
-    unless create_or_authenticate_user(params)
-      return false
-    end
+  def accept(params = {})
+    return false unless create_or_authenticate_user(params)
 
     AccountUser.create(:account_id => account_id, :user_id => user.id)
 
@@ -46,24 +48,25 @@ class Invitation < ActiveRecord::Base
   end
 
   protected
-    def create_or_authenticate_user(params = {})
-      unless user.new_record?
-        return user.valid_password?(params[:password])
-      end
 
-      user.avatar                 = params[:avatar]
-      user.password               = params[:password]
-      user.password_confirmation  = params[:password_confirmation]
-      user.save
+  def create_or_authenticate_user(params = {})
+    unless user.new_record?
+      return user.valid_password?(params[:password])
     end
 
-    def check_for_duplicate_account_user
-      if account && account.users.find_by_email(email.to_s.downcase)
-        errors[:email] << I18n.t("activerecord.errors.invitations.account_exists")
-      end
-    end
+    user.avatar                 = params[:avatar]
+    user.password               = params[:password]
+    user.password_confirmation  = params[:password_confirmation]
+    user.save
+  end
 
-    def generate_token
-      self.token = Digest::SHA1.hexdigest("[invitation-token-#{Time.now}-#{email}-#{rand(100)}]")
+  def check_for_duplicate_account_user
+    if account && account.users.find_by_email(email.to_s.downcase)
+      errors[:email] << 'is already registered in your account'
     end
+  end
+
+  def generate_token
+    self.token = Digest::SHA1.hexdigest("[invitation-token-#{Time.now}-#{email}-#{rand(100)}]")
+  end
 end

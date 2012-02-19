@@ -12,7 +12,7 @@ Feature: Reset password
 
   Scenario: Try to reset password with wrong email
     When I try to reset the password of "not.me@exmaple.org"
-    Then I should see "E-mail not found"
+    Then I should see "not found"
 
   Scenario: Try to reset password with wrong token
     When I try to reset password with wrong token

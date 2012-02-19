@@ -1,0 +1,10 @@
+nav
+  ul
+    - if controller_name != 'sessions'
+      li = link_to 'Login', new_session_path(:user)
+    - if controller_name != 'registrations'
+      li = link_to 'Register', new_registration_path(:user)
+    - if controller_name != 'passwords'
+      li = link_to 'Forgotten password?', new_password_path(:user)
+    - if controller_name != 'unlocks'
+      li = link_to 'Unlock account', new_unlock_path(:user)

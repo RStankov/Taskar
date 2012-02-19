@@ -17,7 +17,6 @@ en:
   previous_page: "Previous page"
   next_page: "Next page"
   thanks_for_feedback: "Thanks for the feedback :)"
-  deny_access: "You don't have access to this project"
   layouts:
     general:
       profile: "Profile"
@@ -56,10 +55,6 @@ en:
       empty_admin: 'There are no active projects, Like administrator of "<em>%{account_name}</em>" you can create:'
       add_project: "New project"
       add_user: "New user"
-
-
-  sessions:
-    title: "Login"
 
   users:
     title: "Users"

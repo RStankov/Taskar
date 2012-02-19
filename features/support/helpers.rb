@@ -41,6 +41,14 @@ module CucumberHelpers
     click_on 'Update'
   end
 
+  def edit_profile(&block)
+    click_link 'Profile'
+
+    yield
+
+    click_button 'Update'
+  end
+
   def goto_user_account_page(user_name)
     visit account_path(current_account)
 

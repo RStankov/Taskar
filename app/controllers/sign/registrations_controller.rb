@@ -12,7 +12,7 @@ class Sign::RegistrationsController < ApplicationController
 
     if @user.save
       sign_in @user
-      redirect_to :root, :notice => t("devise.registrations.signed_up")
+      redirect_to :root, :notice => 'You have signed up successfully.'
     else
       @user.clean_up_passwords
       render "new"
@@ -24,7 +24,7 @@ class Sign::RegistrationsController < ApplicationController
 
   def update
     if is_password_required ? current_user.update_with_password(params[:user]) : current_user.update_attributes(params[:user])
-      redirect_to edit_user_registration_path, :notice => t("devise.registrations.updated")
+      redirect_to edit_user_registration_path, :notice => 'You updated your profile successfully.'
     else
       current_user.clean_up_passwords
       render "edit"

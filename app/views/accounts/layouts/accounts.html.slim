@@ -1,45 +1,28 @@
-doctype html
-html
-  head
-    meta charset="utf-8"
-    title = title_name @account.name
-    = csrf_meta_tag
-    = stylesheet_link_tag 'application'
-    = favicon_link_tag 'favicon.ico'
+- title @account.name
 
-  body class="#{'testing-env' if Rails.env.test?}"
+- content_for :content do
+  #accounts-page
     header
-      h2 = @account.name
-
-      nav.settings
-        h3 = image_tag 'settings.png'
+      h1 = @account.name
+      nav
+        h3 ▾
         ul
-          li = link_to 'Accounts', '#'
-          li = link_to 'Profile', edit_user_registration_path
-          li = link_to 'Logout', destroy_user_session_path
+          - current_user.accounts.each do |account|
+            - member = AccountMember.new(current_user, account)
+            - if member.admin?
+              li
+                = link_to account.name, account_path(account)
+                - if member.owner?
+                  .actions
+                    = link_to 'edit', edit_account_path(account), :title => "Edit #{account.name}"
 
-    #accounts-page
-      header
-        h1 = @account.name
-        nav
-          h3 ▾
-          ul
-            - current_user.accounts.each do |account|
-              - member = AccountMember.new(current_user, account)
-              - if member.admin?
-                li
-                  = link_to account.name, account_path(account)
-                  - if member.owner?
-                    .actions
-                      = link_to 'edit', edit_account_path(account), :title => "Edit #{account.name}"
+    .content
+      nav
+        = link_to 'Overview', account_path(@account), :class => controller_name == 'accounts' && 'selected'
+        = link_to 'Projects', account_projects_path(@account), :class => controller_name == 'projects' && 'selected'
+        = link_to 'Members', account_members_path(@account), :class => controller_name == 'users' && 'selected'
+        = link_to 'Invitations', account_invitations_path(@account), :class => controller_name == 'invitations' && 'selected'
 
-      .content
-        nav
-          = link_to 'Overview', account_path(@account), :class => controller_name == 'accounts' && 'selected'
-          = link_to 'Projects', account_projects_path(@account), :class => controller_name == 'projects' && 'selected'
-          = link_to 'Members', account_members_path(@account), :class => controller_name == 'users' && 'selected'
-          = link_to 'Invitations', account_invitations_path(@account), :class => controller_name == 'invitations' && 'selected'
+      = content_for?(:content) ? yield(:content) : yield
 
-        = content_for?(:content) ? yield(:content) : yield
-
-    = render 'shared/footer'
+= render :template => 'layouts/application'

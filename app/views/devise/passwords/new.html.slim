@@ -1,0 +1,10 @@
+#devise-page
+  header
+    h1 = title 'Forgotten password?'
+
+  = simple_form_for @user, :url => password_path(:user) do |form|
+    = form.error_notification
+    = form.input :email
+    = form.button :submit, 'Send'
+
+  = render 'devise/shared/links'

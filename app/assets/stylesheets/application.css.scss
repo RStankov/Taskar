@@ -8,6 +8,7 @@
 @import "application/layout";
 @import "application/simple_form";
 @import "application/account_page";
+@import "application/devise_page";
 
 .testing-env {
   #accounts-page header nav ul { display: block; }

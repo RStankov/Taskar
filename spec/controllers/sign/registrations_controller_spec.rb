@@ -26,7 +26,7 @@ describe Sign::RegistrationsController do
         post :create, :user => {"these" => "params"}
 
         should assign_to(:user).with(mock_user)
-        should set_the_flash.to(I18n.t("devise.registrations.signed_up"))
+        should set_the_flash
         should redirect_to(root_url)
       end
 
@@ -77,7 +77,7 @@ describe Sign::RegistrationsController do
 
         post :update, :user => {"these" => "params"}
 
-        should set_the_flash.to(I18n.t("devise.registrations.updated"))
+        should set_the_flash
         should redirect_to(edit_user_registration_url)
       end
 
@@ -88,7 +88,7 @@ describe Sign::RegistrationsController do
 
         post :update, :user => {"these" => "params"}
 
-        should set_the_flash.to(I18n.t("devise.registrations.updated"))
+        should set_the_flash
         should redirect_to(edit_user_registration_url)
       end
 

@@ -1,0 +1,10 @@
+#devise-page
+  header
+    h1 = title 'Unlock account'
+
+  = simple_form_for @user, :url => unlock_path(resource_name) do |form|
+    = form.error_notification
+    = form.input :email
+    = form.button :submit, 'Unlock'
+
+  = render 'devise/shared/links'

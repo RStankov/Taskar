@@ -45,7 +45,7 @@ When '"$email" accepts my invitation confirming with "$password" password' do |e
 
   visit_in_email('Accept invitation')
 
-  fill_in 'enter your password', :with => password
+  fill_in 'Password', :with => password
 
   click_on 'Accept invitation'
 end

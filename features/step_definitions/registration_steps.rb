@@ -3,7 +3,7 @@ Given 'I register as "$full_name" with account "$account_name"' do |full_name, a
 
   visit root_path
 
-  click_link 'Registration'
+  click_on 'Register'
 
   fill_in 'E-mail', :with => 'user@example.org'
   fill_in 'Password', :with => '123456'
@@ -12,7 +12,7 @@ Given 'I register as "$full_name" with account "$account_name"' do |full_name, a
   fill_in 'Last name', :with => last_name
   fill_in 'Account name', :with => account_name
 
-  click_button 'Register'
+  click_on 'Register'
 end
 
 Given 'a user "$email" with password "$password"' do |email, password|
@@ -32,7 +32,7 @@ When /I (?:|try to )login as "([^"]*)" with password "([^"]*)"/ do |email, passw
   fill_in 'E-mail', :with => email
   fill_in 'Password', :with => password
 
-  click_button 'Login'
+  click_on 'Login'
 end
 
 Then 'there should be a user "$full_name" owning the account "$account_name"' do |full_name, account_name|
