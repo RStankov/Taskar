@@ -9,129 +9,129 @@ describe Invitation do
   it { should validate_presence_of(:first_name) }
   it { should validate_presence_of(:last_name) }
   it { should validate_presence_of(:email) }
-  it { Factory(:invitation).should validate_uniqueness_of(:email).scoped_to(:account_id) }
+
+  it { create(:invitation).should validate_uniqueness_of(:email).scoped_to(:account_id) }
+
   it { should_not allow_value('not valid address').for(:email) }
-  it { should_not allow_value('domain.com').for(:email) }
-  it { should_not allow_value('some@domain').for(:email) }
-  it { should allow_value('some@domain.com').for(:email) }
+  it { should_not allow_value('example.com').for(:email) }
+  it { should_not allow_value('rs@example').for(:email) }
+  it { should allow_value('rs@example.org').for(:email) }
 
   it "not allowing user, who is already in this account to be added" do
-    account_user = Factory(:account_user)
-    invitation   = Factory.build(:invitation, :account => account_user.account, :email => account_user.user.email)
+    account_user = create(:account_user)
+    invitation   = build(:invitation, :account => account_user.account, :email => account_user.user.email)
 
     invitation.save.should be_false
     invitation.should have(1).error_on(:email)
-    invitation.errors[:email].first.should == I18n.t("activerecord.errors.invitations.account_exists")
+    invitation.errors[:email].first.should eq 'is already registered in your account'
   end
 
-  it "provides user's full_name" do
-    invitation = Factory.build(:invitation, {:first_name => 'Radoslav', :last_name => 'Stankov'})
-    invitation.full_name.should == "Radoslav Stankov"
+  it "can tell its receiver name" do
+    invitation = build :invitation, :first_name => 'Radoslav', :last_name => 'Stankov'
+    invitation.receiver_name.should eq 'Radoslav Stankov'
   end
 
-  it "generates token" do
-    invate = Factory.build(:invitation)
-    invate.stub(:rand).with(100).and_return 5
-    invate.save.should be_true
-    invate.should_not be_new_record
-    invate.token.should == Digest::SHA1.hexdigest("[invitation-token-#{Time.now}-#{invate.email}-5]")
+  it "can tell from who is its sender" do
+    account    = build(:account)
+    invitation = build :invitation, :account => account
+
+    invitation.sender_name.should eq account.owner.full_name
   end
 
-  describe "#user" do
+  it "generates token on creation" do
+    invate = create :invitation
+    invate.token.should be_present
+  end
+
+  describe "user" do
     it "returns a user with same e-mail as the invitation e-mail" do
-      invitation = Factory(:invitation, :email => "same@email34343.com")
-      user = Factory(:user, :email => invitation.email)
+      email      = 'rs@example.org'
+      invitation = create :invitation, :email => email
+      user       = create :user, :email => invitation.email
 
-      invitation.user.should == user
-    end
-
-    it "memorizes it's value" do
-      invitation = Factory(:invitation)
-      invitation.user.first_name = "some name"
-      invitation.user.first_name.should == "some name"
-      invitation.user.last_name = "other name"
-      invitation.user.last_name.should == "other name"
-      invitation.user.full_name == "some name other name"
+      invitation.user.should eq user
     end
 
     it "returns new user if user with invitation e-mail doesn't exits" do
-      invitation = Factory(:invitation)
+      invitation = create :invitation
       invitation.user.should be_new_record
     end
 
-    it "pre populates new user with inviations email, first_name, last_name" do
-      invitation = Factory(:invitation, :first_name => "inviation.first_name", :last_name => "inviation.last_name")
-      invitation.user.email.should == invitation.email
-      invitation.user.first_name.should == "inviation.first_name"
-      invitation.user.last_name.should  == "inviation.last_name"
+    it "populates new user with inviations email, first_name, last_name" do
+      invitation = create :invitation, :first_name => 'Radoslav', :last_name => 'Stankov'
+
+      invitation.user.email.should eq invitation.email
+      invitation.user.first_name.should eq 'Radoslav'
+      invitation.user.last_name.should  eq 'Stankov'
     end
   end
 
-  describe "#accept" do
-    it "uses Invitation#user method" do
-      invitation = Factory(:invitation)
-      invitation.should_receive(:user).at_least(1).times.and_return User.new
-      invitation.accept({})
+  describe "accept" do
+    let(:invitation) { create :invitation }
+
+    context "new user" do
+      def valid_user_attributes
+        attributes_for(:user)
+      end
+
+      it "accepts attributes for its user" do
+        invitation.accept(:first_name => 'Radoslav', :last_name => 'Stankov', :password => 'password', :password_confirmation => 'password_confirmation', :avatar => 'avatar')
+
+        user = invitation.user
+        user.password.should eq 'password'
+        user.password_confirmation.should eq 'password_confirmation'
+        user.first_name.should_not eq 'Radoslav'
+        user.last_name.should_not eq 'Stankov'
+      end
+
+      it "returns false if user is invalid" do
+        invitation.accept.should be_false
+        invitation.user.should_not be_valid
+      end
+
+      it "returns true if user is created succesfully" do
+        invitation.accept valid_user_attributes
+        invitation.user.should_not be_new_record
+      end
+
+      it "deletes this invitation after succesfull accepting" do
+        invitation.accept
+        invitation.should_not be_destroyed
+
+        invitation.accept valid_user_attributes
+        invitation.should be_destroyed
+      end
+
+      it "connects newly created user with invitation account" do
+        invitation.accept valid_user_attributes
+
+        AccountUser.find_by_account_id_and_user_id(invitation.account_id, invitation.user.id).should be_present
+      end
     end
 
-    it "accepts hash of :password, :password_confirmation, :avatar (for new_user)" do
-      invitation = Factory(:invitation)
+    context "existing user" do
+      def password
+        '123456'
+      end
 
-      invitation.accept(:first_name => "no first", :last_name => "no last", :password => "password", :password_confirmation => "password_confirmation", :avatar => "avatar")
-      invitation.user.password.should == "password"
-      invitation.user.password_confirmation.should == "password_confirmation"
-      invitation.user.first_name.should_not == "no first"
-      invitation.user.last_name.should_not == "no last"
-    end
+      before do
+        create :user, :email => invitation.email, :password => password, :password_confirmation => password
+      end
 
-    it "returns false if user is invalid" do
-      invitation = Factory(:invitation)
-      invitation.stub(:user).and_return user = Factory.build(:user)
-      user.should_receive(:save).and_return false
+      it "returns false if user is existing user, and password is invalid" do
+        invitation.accept.should be_false
+        invitation.accept(:password => 'wrong').should be_false
+      end
 
-      invitation.accept({}).should be_false
-    end
+      it "returns true if user is existing, and password is valid" do
+        invitation.accept(:password => password).should be_true
+      end
 
-    it "returns true if user is created succesfully" do
-      invitation = Factory(:invitation)
+      it "connects the existing user with invitation account" do
+        invitation.accept :password => password
 
-      invitation.user.should be_new_record
-      invitation.accept(Factory.attributes_for(:user)).should be_true
-      invitation.user.should_not be_new_record
-    end
-
-    it "returns false if user is existing user, and password is invalid" do
-       invitation = Factory(:invitation)
-       invitation.stub(:user).and_return user = Factory(:user)
-
-       invitation.accept({}).should be_false
-       invitation.accept(:password => 23242).should be_false
-    end
-
-    it "returns true if user is existing, and password is valid" do
-      invitation = Factory(:invitation)
-      invitation.stub(:user).and_return user = Factory(:user)
-
-      user.should_receive(:valid_password?).with("valid").and_return true
-
-      invitation.accept(:password => "valid").should be_true
-    end
-
-    it "connects newly created user with invitation account" do
-      invitation = Factory(:invitation)
-      invitation.accept(Factory.attributes_for(:user)).should be_true
-
-      AccountUser.find_by_account_id_and_user_id(invitation.account_id, invitation.user.id).should_not be_nil
-    end
-
-    it "deletes this invitation if user attributes are valid" do
-      invitation = Factory(:invitation)
-
-      invitation.accept({}).should be_false
-      invitation.should_not be_destroyed
-
-      invitation.accept(Factory.attributes_for(:user)).should be_true
-      invitation.should be_destroyed
+        AccountUser.find_by_account_id_and_user_id(invitation.account_id, invitation.user.id).should be_present
+      end
     end
   end
 end

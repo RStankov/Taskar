@@ -77,6 +77,3 @@ en:
 
           comments:
             archived_task: "You can't comment on archived task"
-
-          invitations:
-            account_exists: "is already registered in your account"
