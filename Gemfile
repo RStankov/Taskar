@@ -1,14 +1,14 @@
 source 'http://rubygems.org'
 
-gem 'rake', '0.8.7'
-gem 'rails', '3.1.3'
+gem 'rake'
+gem 'rails', '3.2'
 
 gem 'pg'
 
 gem 'simple_form'
 
-gem 'paperclip', '2.3.3'
-gem 'will_paginate', '3.0.2'
+gem 'paperclip', '2.3.16'
+gem 'will_paginate'
 gem 'devise', '~>1.5.3'
 gem 'rinku', :require => 'rails_rinku'
 
@@ -19,14 +19,10 @@ gem 'slim'
 gem 'confu', :git => 'git@github.com:garmz/confu.git'
 
 group :assets do
-  gem 'sass-rails',   '~> 3.1.4'
-  gem 'coffee-rails', '~> 3.1.1'
-  gem 'uglifier',     '>= 1.0.3'
+  gem 'sass-rails'
+  gem 'coffee-rails'
+  gem 'uglifier'
   gem 'compass-rails'
-end
-
-group :development do
-  gem 'active_reload'
 end
 
 group :development, :test do
