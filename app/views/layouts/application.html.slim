@@ -1,16 +1,13 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-	  <%= csrf_meta_tag %>
-    <title><%= content_for?(:title) ? "#{yield :title} | Taskar" : "Taskar" %></title>
-  	<%= stylesheet_link_tag 'legacy' %>
-    <%= favicon_link_tag "favicon.ico" %>
-  </head>
-  <body>
-  	<%= header if current_user %>
-		<section id="outside_box">
-    	<%= yield %>
-		</section>
-  </body>
-</html>
+doctype html
+html
+  head
+    meta charset="utf-8"
+    title = title_value 'Taskar'
+    = csrf_meta_tag
+    = stylesheet_link_tag 'application'
+    = favicon_link_tag 'favicon.ico'
+
+  body class="#{'testing-env' if Rails.env.test?}"
+    = content_for?(:content) ? yield(:content) : yield
+
+    = render 'shared/footer'

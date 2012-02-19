@@ -1,13 +1,6 @@
-doctype html
-html
-  head
-    meta charset="utf-8"
-    title = title_name @account.name
-    = csrf_meta_tag
-    = stylesheet_link_tag 'application'
-    = favicon_link_tag 'favicon.ico'
+- title @account.name
 
-  body class="#{'testing-env' if Rails.env.test?}"
+- content_for :content do
     header
       h2 = @account.name
 
@@ -42,4 +35,4 @@ html
 
         = content_for?(:content) ? yield(:content) : yield
 
-    = render 'shared/footer'
+= render :template => 'layouts/application'
