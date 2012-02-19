@@ -27,9 +27,9 @@ end
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'spork-rails'
   gem 'cucumber-rails'
   gem 'pry'
-  gem 'spork', '~> 0.9.0.rc9'
 end
 
 group :test do

@@ -34,13 +34,5 @@ module Taskar
     config.assets.enabled      = true
     config.assets.version      = '1.0'
     config.action_mailer.default_url_options = ApplicationConfig.action_mailer
-
-    ### Part of a Spork hack. See http://bit.ly/arY19y
-    if Rails.env.test? && defined?(Spork) && Spork.using_spork?
-      initializer :after => :initialize_dependency_mechanism do
-        # Work around initializer in railties/lib/rails/application/bootstrap.rb
-        ActiveSupport::Dependencies.mechanism = :load
-      end
-    end
   end
 end
