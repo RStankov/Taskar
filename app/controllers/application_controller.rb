@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
       if request.xhr?
         head :forbidden
       else
-        redirect_to root_path, :alert => I18n.t(:deny_access)
+        redirect_to root_path, :alert => "You don't have access to this project"
       end
       false
     end

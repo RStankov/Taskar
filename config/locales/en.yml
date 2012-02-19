@@ -17,7 +17,6 @@ en:
   previous_page: "Previous page"
   next_page: "Next page"
   thanks_for_feedback: "Thanks for the feedback :)"
-  deny_access: "You don't have access to this project"
   layouts:
     general:
       profile: "Profile"
