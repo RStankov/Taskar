@@ -1,0 +1,22 @@
+#profile-page
+  header
+    h1 = title 'Edit your profile'
+
+  = simple_form_for current_user, :url => user_registration_path, :method => :put do |form|
+    = form.error_notification
+
+    = form.input :first_name
+    = form.input :last_name
+    = form.input :avatar, :as => :file
+
+    = field_set_tag 'Credentials' do
+      p For changing your password or e-mail address, is required to enter your current password
+
+      = form.input :email
+      = form.input :password
+      = form.input :password_confirmation
+      = form.input :current_password
+
+    .buttons
+      = form.button :submit, 'Update profile'
+      = link_to 'Cancel', account_path

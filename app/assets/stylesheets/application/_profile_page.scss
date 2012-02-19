@@ -1,0 +1,17 @@
+#profile-page {
+  @include clearfix;
+  @include box-shadow(0 1px 2px $shadow-color);
+  @include border-radius(3px);
+
+  width: 500px;
+  margin: 20px auto;
+  background: $content-background;
+  position: relative;
+
+  header { @include background-gradient($gray, $light-gray); @include border-radius(5px 5px 0 0); @include box-shadow(inset 0 1px 0 $gray); position: relative; border-bottom: 1px solid $line; }
+  header h1 { @include text-shadow(0 1px 0 $gray); width: 200px; margin: 0 auto; padding: 10px 0;  text-align: center; color: #000; font-size: 16px; }
+
+  form { padding: 20px 20px 10px; }
+  form .input label { float: left; width: 150px; padding-top: 10px; }
+  form .buttons { text-align: center; }
+}
