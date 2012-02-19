@@ -8,6 +8,14 @@ html
     = favicon_link_tag 'favicon.ico'
 
   body class="#{'testing-env' if Rails.env.test?}"
+    header
+      - if current_user.present?
+        nav.settings
+          h3 = image_tag 'settings.png'
+          ul
+            li = link_to 'Accounts', '#'
+            li = link_to 'Profile', edit_user_registration_path
+            li = link_to 'Logout', destroy_user_session_path
     = content_for?(:content) ? yield(:content) : yield
 
     = render 'shared/footer'
