@@ -5,7 +5,7 @@ html
     title Project: #{@project.name} #{"/ #{@section.name}" if @section}
     = csrf_meta_tag
     = stylesheet_link_tag 'legacy'
-    = favicon_link_tag 'favicon.png'
+    = favicon_link_tag 'favicon.ico'
   body class="#{'testing-show-tooltips' if Rails.env.test?}"
     header
       nav#nav_account
