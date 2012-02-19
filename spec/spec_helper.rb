@@ -24,15 +24,17 @@ Spork.each_run do
   RSpec.configure do |config|
     config.mock_with :rspec
     config.use_transactional_fixtures = true
+
     config.include Factory::Syntax::Methods
-    config.include Paperclip::Shoulda::Matchers
+    config.include Paperclip::Shoulda::Matchers, :type => :model
     config.include EmailSpec::Helpers
     config.include EmailSpec::Matchers
-    config.include ControllerMacros, :type => :controller
-    config.extend ControllerMacros::ClassMethods, :type => :controller
-    config.include TaskarMocks
     config.include Devise::TestHelpers, :type => :controller
-    config.include Devise::TestHelpers, :type => :view
-    config.extend Taskar::SpecHelper
+
+    config.include SpecSupport::Mocks
+    config.include SpecSupport::Controller, :type => :controller
+
+    config.extend SpecSupport::Controller::Autentication, :type => :controller
+    config.extend SpecSupport::Model::Validation, :type => :model
   end
 end
